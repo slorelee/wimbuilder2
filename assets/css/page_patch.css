@@ -1,0 +1,29 @@
+#patches_area {
+    padding-top: 20px;
+}
+
+#patches_list, #patch_html {
+    float: left;
+    height: 600px;
+}
+
+#patches_list {
+    width:35%;
+    box-shadow: 0 0 10px 1px  #ccc;
+    border-radius: 3px;
+    color: #000;
+}
+
+#patch_html {
+    padding-left: 10px;
+    width:62%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#patches_tree {
+    max-width: 100%;
+    overflow: auto;
+    /* font: 10px Verdana, sans-serif; */
+    padding: 10px;
+}

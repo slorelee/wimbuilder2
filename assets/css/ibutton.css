@@ -1,0 +1,190 @@
+
+
+.ibutton {
+    display: inline-block;
+    white-space: nowrap;
+    background-color: #ddd;
+    background-image: -ms-linear-gradient(top, #eee, #ccc);
+    border: 1px solid #777;
+    padding: 0 1.5em;
+    margin: 0.5em;
+    font: bold 1em/2em Arial, Helvetica;
+    text-decoration: none;
+    color: #333;
+    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    /* border-radius: .2em; */
+    box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+}
+
+.ibutton:hover {
+    color: #333;
+    background-color: #eee;
+    background-image: -ms-linear-gradient(top, #fafafa, #ddd);
+    text-decoration: none;
+}
+
+.ibutton:active {
+    box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+    position: relative;
+    top: 1px;
+}
+
+.ibutton:focus {
+    outline: 0;
+    background: #fafafa;
+}
+
+.ibutton:before {
+    background: #ccc;
+    background: rgba(0,0,0,.1);
+    float: left;
+    width: 1em;
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0 1em 0 -1em;
+    padding: 0 .2em;
+    box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+    border-radius: .15em 0 0 .15em;
+    pointer-events: none;
+}
+
+.ibutton.right:after {
+    background: #ccc;
+    background: rgba(0,0,0,.1);
+    float: right;
+    width: 1em;
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0 -1em 0 1em;
+    padding: 0 .2em;
+    box-shadow: -1px 0 0 rgba(0,0,0,.5), -2px 0 0 rgba(255,255,255,.5);
+    border-radius: 0 .15em .15em 0;
+    pointer-events: none;
+}
+
+/* Buttons and inputs */
+button.ibutton, input.ibutton {
+    cursor: pointer;
+    overflow: visible;
+ /* removes extra side spacing in IE */
+}
+
+ /* The disabled styles */
+.ibutton[disabled], .ibutton[disabled]:hover, .ibutton.disabled, .ibutton.disabled:hover {
+    background: #eee;
+    color: #aaa;
+    border-color: #aaa;
+    cursor: default;
+    text-shadow: none;
+    position: static;
+    box-shadow: none;
+}
+    
+/* Hexadecimal entities for the icons */
+.add:before {
+    content: "\271A";
+}
+
+.edit:before {
+    content: "\270E";
+}
+
+.delete:before {
+    content: "\2718";
+}
+
+.save:before {
+    content: "\2714";
+}
+
+.email:before {
+    content: "\2709";
+}
+
+.like:before {
+    content: "\2764";
+}
+
+.prev:before, .prev_r:after  {
+    content: "\25C4";
+}
+
+.next:before, .next_r:after  {
+    content: "\25BA";
+}
+
+.star:before {
+    content: "\2605";
+}
+
+.spark:before {
+    content: "\2737";
+}
+
+.play:before {
+    content: "\25B6";
+}
+
+
+.browse, .browse:hover {
+    background-image: -ms-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,0));
+}
+
+.browse, .browse:focus {
+    background-color: #1878d6;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0,0,0,.4);
+}
+
+.browse:hover {
+    color: #fff;
+    background-color: #1878d6;
+}
+
+.browse:before {
+    content: "\EC51";
+    background-color: #4467ac;
+    background: rgba(0,0,0,.1);
+    font-family: Segoe MDL2 Assets;
+}
+
+/* Social media.ibuttons */  
+.tw, .fb, .tw:hover, .fb:hover {
+    background-image: -ms-linear-gradient(top, rgba(255,255,255,.5), rgba(255,255,255,0));
+}
+
+.tw, .tw:focus {
+    background-color: #88E1E6;
+}
+
+.tw:hover {
+    background-color: #b1f0f3;
+}
+
+.tw:before {
+    content: "t";
+    background: #91cfd3;
+    background: rgba(0,0,0,.1);
+    color: #fff;
+    font-family: verdana;
+    text-shadow: 0 1px 0 rgba(0,0,0,.4);
+}
+
+.fb, .fb:focus {
+    background-color: #3C5A98;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0,0,0,.4);
+}
+
+.fb:hover {
+    color: #fff;
+    background-color: #879bc3;
+}
+
+.fb:before {
+    content: "f";
+    background: #4467ac;
+    background: rgba(0,0,0,.1);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0,0,0,.4);
+}

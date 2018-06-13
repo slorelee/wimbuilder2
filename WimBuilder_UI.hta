@@ -1,0 +1,191 @@
+<!--WimBuilder_UI.hta-->
+<html>
+<head>
+    <HTA:Application id="oWimBuilderUI"
+        applicationname="WimBuilderUI"
+        icon="assets\builder.ico" />
+
+    <title>Wim Builder</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+
+    <link rel="stylesheet" href="assets/vendor/pure-min.css">
+    <link rel="stylesheet" href="assets/vendor/jstree/themes/default/style.min.css">
+
+    <link rel="stylesheet" href="assets/css/side-menu.css">
+    <link rel="stylesheet" href="assets/css/page.css">
+    <link rel="stylesheet" href="assets/css/page_patch.css">
+    <link rel="stylesheet" href="assets/css/ibutton.css">
+    <link rel="stylesheet" href="assets/htakit/css/uikit-tab.css" />
+
+    <script src="assets/vendor/jquery-3.3.1.min.js"></script>
+    <script src="assets/vendor/jstree/jstree.min.js"></script>
+    <script src="assets/vendor/marked.min.js"></script>
+    <script src="assets/htakit/js/htakit.js"></script>
+    <script src="assets/js/fs_project.js"></script>
+    <script src="assets/js/fs_patch.js"></script>
+    <script src="assets/js/helper_html.js"></script>
+    <script src="assets/js/helper_i18n.js"></script>
+    <script src="assets/default_config.js"></script>
+    <script src="config.js"></script>
+    <script type="text/javascript">
+        function window_onload() {
+            var w = $width, h = $height; 
+            window.resizeTo(w, h); 
+            window.moveTo((window.screen.width - w) / 2,
+                (window.screen.height - h) / 2); 
+        }
+        window_onload();
+    </script>
+</head>
+
+<body>
+<div id="layout">
+
+<!-- ############################# Menu Start ############################# -->
+<a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+</a>
+<div id="menu">
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="#">WimBuilder</a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_start">Getting Started</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_project">Project</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_patch">Patches</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_build">Building</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_about">About</a></li>
+        </ul>
+    </div>
+</div>
+<!-- ############################# Menu End ############################# -->
+
+<!-- ############################# content Start ############################# -->
+<div id="content">
+
+<!-- ############################# page_start Start ############################# -->
+<div id="page_start" class="content_page">
+<span style="font-weight:bold;color:#000;" class="i18n-text">Please configure the base infomation:</span><br/>
+<input type="text" id="wb_workspace" style="width:450px" value="D:\WB_Workspace" />
+<a href="#" class="ibutton browse i18n-title" title="Set the build workspace"
+    onclick="$('#wb_workspace').val(BrowseFolder('Select build workspace folder:'))">Browse</a><br/>
+
+<input type="text" id="source_wim" style="width:450px" value="D:\WB_Workspace\mnt\install.wim" />
+<a href="#" class="ibutton browse" title="Select the install.wim file if it needed"
+    onclick="$('#source_wim').val(BrowseFolder('Select the source install.wim:'))">Browse</a><br/>
+
+<input type="text" id="source_wim" style="width:450px" value="D:\WB_Workspace\mnt\winre.wim" />
+<a href="#" class="ibutton browse" title="Select the base image(boot.wim/winre.wim or other customed.wim)"
+    onclick="$('#base_wim').val(BrowseFolder('Select the base image(wim):'))">Browse</a><br/>
+
+    <div>
+        <button class="pure-button pre-button" enable="false">&lt;pre</button>
+        <button class="pure-button next-button" onclick="$('#menu_project').click()">next&gt;</button>
+    </div>
+</div>
+<!-- ############################# page_start End ############################# -->
+
+
+<!-- ############################# page_project Start ############################# -->
+<div id="page_project" class="content_page">
+    <div>
+        <a href="#" class="ibutton prev" onclick="$('#menu_start').click()">Prev</a>
+        <a href="#" class="ibutton right next_r" onclick="$('#menu_patch').click()">Next</a>
+    </div>
+
+<div id="pj_tab">
+    <div class="tab tab0">
+        <span style="font-weight:bold;color:#000;">Please select a project:</span>
+        <div id="project_list"></div>
+        <span>Project Description</span>
+        <div id="project_desc" height="200" width="200"></div>
+    </div>
+    <div class="tab tab1">
+        <!-- <span style="font-weight:bold;color:#000;">Project Info</span> -->
+        <div id="project_html"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#pj_tab").ultab({header:['Projects', 'Details']})
+</script>
+
+</div>
+<!-- ############################# page_project End ############################# -->
+
+
+<!-- ############################# page_patches Start ############################# -->
+<div id="page_patch" class="content_page">
+    <div>
+        <button class="pure-button pre-button" onclick="$('#menu_project').click()">&lt;pre</button>
+        <button class="pure-button next-button" onclick="$('#menu_build').click()">next&gt;</button>
+    </div>
+    <div style="margin-top:20px; width:98%; border:0.5px solid #ccc;"></div>
+    <div id="patches_area">
+        <div id="patches_list">
+            <div id="patches_tree"></div>
+        </div>
+        <div id="patch_html"></div>
+    </div>
+
+    <script>
+var jstree_data = { "plugins" : ["checkbox"],
+"checkbox": {
+                tie_selection: false,
+                whole_node:false
+            },
+  'core' : {
+    'data' : [
+       { "id" : "ExtendBatch", "parent" : "#", "text" : "ExtendBatch" },
+       { "id" : "Markdown", "parent" : "#", "text" : "Markdown" },
+       { "id" : "Shell", "parent" : "#", "text" : "Shell" },
+       { "id" : "StartMenu_Redirect", "parent" : "#", "text" : "StartMenu_Redirect" },
+       { "id" : "Shell/explorer", "parent" : "Shell", "text" : "explorer" },
+       { "id" : "Shell/WinXShell", "parent" : "Shell", "text" : "WinXShell" },
+    ]
+} };
+        $('#patches_tree').jstree(jstree_data);
+        var selected_node = null;
+        function patch_onselect(id) {
+            if (selected_node == id) return;
+            selected_node = id;
+            var project = Project.New('WIN10XPE');    //TODO:select project
+            var patch = Patch.New(project, id);       //TODO:cache with Patch.pool
+            $('#patch_html').html(patch.html);
+        }
+        $('#patches_tree').on("select_node.jstree", function (e, data) { patch_onselect(data.node.id); });
+    </script>
+</div>
+<!-- ############################# page_patches End ############################# -->
+
+
+<!-- ############################# page_building Start ############################# -->
+<div id="page_build" class="content_page">
+    <button id="build" onclick="run_build()">run</button>
+    <button id="build" onclick="exec_build()">exec</button>
+    <div id="build_stdout" style="overflow:scroll">stdout</div>
+    <div>
+        <button class="pure-button pre-button" onclick="$('#menu_patch').click()">&lt;pre</button>
+        <button class="pure-button next-button" onclick="$('#menu_about').click()">next&gt;</button>
+    </div>
+</div>
+<!-- ############################# page_building End ############################# -->
+
+<!-- ############################# page_about Start ############################# -->
+<div id="page_about" class="content_page">
+    <span>just a demo for wimbuilder UI</span>
+    <button onclick="self.close()">closeMe</button>
+</div>
+<!-- ############################# page_about End ############################# -->
+
+</div>
+<!-- ############################# content End ############################# -->
+
+
+</div>
+<script src="assets/js/page_project.js"></script>
+<script src="assets/js/page_build.js"></script>
+<script src="assets/js/menu_click.js"></script>
+<script src="assets/js/init.js"></script>
+</body>
+</html>

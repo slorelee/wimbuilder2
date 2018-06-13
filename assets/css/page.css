@@ -1,0 +1,39 @@
+.content_page {
+    padding: 10px 0px 0px 10px;
+}
+
+.pre-button, .next-button {
+  margin-top: 10px;
+  width: 200px;
+  background-color:#c23501;
+  color:#fff;
+}
+
+.next-button {
+  background-color:#0078e7;
+}
+
+div.tab {
+display:none;
+}
+
+div.tab-active {
+display:block;
+}
+
+.project-button {
+    width: 240px;
+    margin-bottom: 5px;
+}
+
+.project-selected {
+    background-color: red;
+    color: #fff;
+}
+
+#build_stdout {
+    height: 400px;
+    width: 95%;
+    background-color: #000000;
+    color: #fff;
+}

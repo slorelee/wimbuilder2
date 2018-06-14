@@ -26,6 +26,7 @@
     <script src="assets/js/fs_patch.js"></script>
     <script src="assets/js/helper_html.js"></script>
     <script src="assets/js/helper_i18n.js"></script>
+    <script src="assets/js/helper_page.js"></script>
     <script src="assets/default_config.js"></script>
     <script src="config.js"></script>
     <script type="text/javascript">
@@ -40,6 +41,9 @@
 </head>
 
 <body>
+<div>
+  <input type="file" style="display:none" id="$f" /> <!-- gobal OpenFileDialog element -->
+</div>
 <div id="layout">
 
 <!-- ############################# Menu Start ############################# -->
@@ -68,16 +72,38 @@
 <div id="page_start" class="content_page">
 <span style="font-weight:bold;color:#000;" class="i18n-text">Please configure the base infomation:</span><br/>
 <input type="text" id="wb_workspace" style="width:450px" value="D:\WB_Workspace" />
-<a href="#" class="ibutton browse i18n-title" title="Set the build workspace"
-    onclick="$('#wb_workspace').val(BrowseFolder('Select build workspace folder:'))">Browse</a><br/>
+<a href="#" id="wb_workspace_folder_btn" class="ibutton browse i18n-title"
+    title="Set the build workspace">Browse</a><br/>
 
-<input type="text" id="source_wim" style="width:450px" value="D:\WB_Workspace\mnt\install.wim" />
-<a href="#" class="ibutton browse" title="Select the install.wim file if it needed"
-    onclick="$('#source_wim').val(BrowseFolder('Select the source install.wim:'))">Browse</a><br/>
+<input type="text" id="wb_src" style="width:450px" value="D:\WB_Workspace\mnt\install.wim" />
+<select id='wb_src_idx_opt'>
+  <option value ="-1">-</option>
+  <option value ="1">1</option>
+  <option value ="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+</select>
 
-<input type="text" id="source_wim" style="width:450px" value="D:\WB_Workspace\mnt\winre.wim" />
-<a href="#" class="ibutton browse" title="Select the base image(boot.wim/winre.wim or other customed.wim)"
-    onclick="$('#base_wim').val(BrowseFolder('Select the base image(wim):'))">Browse</a><br/>
+<a href="#" id="wb_src_wim_btn" class="ibutton browse i18n-title"
+    title="Select the install.wim file if it needed">Wim</a>
+<a href="#" id="wb_src_folder_btn" class="ibutton browse i18n-title"
+    title="Select the extracted install.wim folder if it needed">Browse</a><br/>
+
+<input type="text" id="wb_base" style="width:450px" />
+<select id='wb_base_idx_opt'>
+  <option value ="-1">-</option>
+  <option value ="1">1</option>
+  <option value ="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+</select>
+
+<a href="#" id="wb_base_wim_btn" class="ibutton browse i18n-title" 
+    title="Select the base image(boot.wim/winre.wim or other customed.wim)">Wim</a>
 
     <div>
         <button class="pure-button pre-button" enable="false">&lt;pre</button>
@@ -96,10 +122,14 @@
 
 <div id="pj_tab">
     <div class="tab tab0">
-        <span style="font-weight:bold;color:#000;">Please select a project:</span>
-        <div id="project_list"></div>
-        <span>Project Description</span>
-        <div id="project_desc" height="200" width="200"></div>
+        <span style="font-weight:bold;color:#000;" class="i18n-text">Please select a project:</span>
+        <div>
+            <div style="float:left" id="project_list"></div>
+        </div>
+        <div style="float:left;margin-left:10px">
+        <span class="i18n-text">Project Information</span>
+        <div id="project_desc"></div>
+        </div>
     </div>
     <div class="tab tab1">
         <!-- <span style="font-weight:bold;color:#000;">Project Info</span> -->
@@ -144,6 +174,7 @@ var jstree_data = { "plugins" : ["checkbox"],
        { "id" : "Shell/WinXShell", "parent" : "Shell", "text" : "WinXShell" },
     ]
 } };
+        $project_obj
         $('#patches_tree').jstree(jstree_data);
         var selected_node = null;
         function patch_onselect(id) {
@@ -183,6 +214,7 @@ var jstree_data = { "plugins" : ["checkbox"],
 
 
 </div>
+<script src="assets/js/page_start.js"></script>
 <script src="assets/js/page_project.js"></script>
 <script src="assets/js/page_build.js"></script>
 <script src="assets/js/menu_click.js"></script>

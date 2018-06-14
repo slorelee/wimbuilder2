@@ -1,5 +1,6 @@
 $('#menu_start').click(function(){
     switch_page('start');
+    start_page_init();
 });
 
 $('#menu_project').click(function(){

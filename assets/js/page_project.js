@@ -23,10 +23,10 @@ function regist_event() {
         $('#pj_' + selected_project).addClass('project-selected');
         $('#pj_' + selected_project).text(name + '   *');
         var project = Project.New(name);
-        $('#project_desc').html('<p>' + project.desc + '</p>');
+        $('#project_desc').html('<p>' + project.desc.replace(/\r\n/g, '<br/>') + '</p>');
         if (project.desc) {
             var obj = JSON.parse(project.desc);
-            alert('read JSON[description]:' + obj.description);
+            //alert('read JSON[description]:' + obj.description);
         }
         $('#project_html').html(project.html);
     })

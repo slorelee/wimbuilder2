@@ -1,6 +1,7 @@
 var selected_project = null;
 
 page_init();
+start_page_init();
 i18n_init();
 i18n_trans();
 
@@ -14,7 +15,6 @@ function i18n_init() {
     var file = fso.OpenTextFile('assets/i18n/' + $lang + '.json', ForReading, false, true);
     var text = file.readall();
     file.close();
-    alert(text);
     $i18n = JSON.parse(text);
 }
 

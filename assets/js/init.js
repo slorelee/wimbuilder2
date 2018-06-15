@@ -1,5 +1,3 @@
-var selected_project = null;
-
 page_init();
 start_page_init();
 i18n_init();

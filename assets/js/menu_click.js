@@ -10,6 +10,7 @@ $('#menu_project').click(function(){
 
 $('#menu_patch').click(function(){
     switch_page('patch');
+    show_patches_settings();
 });
 
 $('#menu_build').click(function(){

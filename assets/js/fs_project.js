@@ -19,6 +19,9 @@ var Project = {
         };
         project.desc = project.load_desc();
         project.html = project.load_html();
+        var $patches_tree_data = [];
+        eval(load_file('config.js'));
+        project.patches_tree_data = $patches_tree_data;
         return project;
     }
 }

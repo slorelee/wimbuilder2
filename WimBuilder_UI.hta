@@ -27,6 +27,7 @@
     <script src="assets/js/helper_html.js"></script>
     <script src="assets/js/helper_i18n.js"></script>
     <script src="assets/js/helper_page.js"></script>
+    <script src="assets/js/definition.js"></script>
     <script src="assets/default_config.js"></script>
     <script src="config.js"></script>
     <script type="text/javascript">
@@ -157,35 +158,6 @@
         </div>
         <div id="patch_html"></div>
     </div>
-
-    <script>
-var jstree_data = { "plugins" : ["checkbox"],
-"checkbox": {
-                tie_selection: false,
-                whole_node:false
-            },
-  'core' : {
-    'data' : [
-       { "id" : "ExtendBatch", "parent" : "#", "text" : "ExtendBatch" },
-       { "id" : "Markdown", "parent" : "#", "text" : "Markdown" },
-       { "id" : "Shell", "parent" : "#", "text" : "Shell" },
-       { "id" : "StartMenu_Redirect", "parent" : "#", "text" : "StartMenu_Redirect" },
-       { "id" : "Shell/explorer", "parent" : "Shell", "text" : "explorer" },
-       { "id" : "Shell/WinXShell", "parent" : "Shell", "text" : "WinXShell" },
-    ]
-} };
-        $project_obj
-        $('#patches_tree').jstree(jstree_data);
-        var selected_node = null;
-        function patch_onselect(id) {
-            if (selected_node == id) return;
-            selected_node = id;
-            var project = Project.New('WIN10XPE');    //TODO:select project
-            var patch = Patch.New(project, id);       //TODO:cache with Patch.pool
-            $('#patch_html').html(patch.html);
-        }
-        $('#patches_tree').on("select_node.jstree", function (e, data) { patch_onselect(data.node.id); });
-    </script>
 </div>
 <!-- ############################# page_patches End ############################# -->
 
@@ -216,6 +188,7 @@ var jstree_data = { "plugins" : ["checkbox"],
 </div>
 <script src="assets/js/page_start.js"></script>
 <script src="assets/js/page_project.js"></script>
+<script src="assets/js/page_patches.js"></script>
 <script src="assets/js/page_build.js"></script>
 <script src="assets/js/menu_click.js"></script>
 <script src="assets/js/init.js"></script>

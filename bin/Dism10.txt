@@ -1,0 +1,86 @@
+.\Dism10
+|   api-ms-win-downlevel-advapi32-l1-1-1.dll
+|   api-ms-win-downlevel-advapi32-l4-1-0.dll
+|   api-ms-win-downlevel-kernel32-l1-1-0.dll
+|   api-ms-win-downlevel-kernel32-l2-1-0.dll
+|   api-ms-win-downlevel-ole32-l1-1-1.dll
+|   api-ms-win-downlevel-user32-l1-1-1.dll
+|   Dism.exe
+|   DismApi.dll
+|   SSShim.dll
+|
+\---Dism
+    |   AppxProvider.dll
+    |   AssocProvider.dll
+    |   CbsProvider.dll
+    |   CompatProvider.dll
+    |   DismCore.dll
+    |   DismCorePS.dll
+    |   DismHost.exe
+    |   DismProv.dll
+    |   DmiProvider.dll
+    |   FfuProvider.dll
+    |   FolderProvider.dll
+    |   GenericProvider.dll
+    |   IBSProvider.dll
+    |   ImagingProvider.dll
+    |   IntlProvider.dll
+    |   LogProvider.dll
+    |   MsiProvider.dll
+    |   OfflineSetupProvider.dll
+    |   OSProvider.dll
+    |   ProvProvider.dll
+    |   SmiProvider.dll
+    |   TransmogProvider.dll
+    |   UnattendProvider.dll
+    |   VhdProvider.dll
+    |   WimProvider.dll
+    |
+    +---en-US
+    |       AppxProvider.dll.mui
+    |       AssocProvider.dll.mui
+    |       CbsProvider.dll.mui
+    |       CompatProvider.dll.mui
+    |       DismCore.dll.mui
+    |       DismProv.dll.mui
+    |       DmiProvider.dll.mui
+    |       FfuProvider.dll.mui
+    |       FolderProvider.dll.mui
+    |       GenericProvider.dll.mui
+    |       IBSProvider.dll.mui
+    |       ImagingProvider.dll.mui
+    |       IntlProvider.dll.mui
+    |       LogProvider.dll.mui
+    |       MsiProvider.dll.mui
+    |       OfflineSetupProvider.dll.mui
+    |       OSProvider.dll.mui
+    |       ProvProvider.dll.mui
+    |       SmiProvider.dll.mui
+    |       TransmogProvider.dll.mui
+    |       UnattendProvider.dll.mui
+    |       VhdProvider.dll.mui
+    |       WimProvider.dll.mui
+    |
+    \---zh-CN
+            AppxProvider.dll.mui
+            AssocProvider.dll.mui
+            CbsProvider.dll.mui
+            CompatProvider.dll.mui
+            DismCore.dll.mui
+            DismProv.dll.mui
+            DmiProvider.dll.mui
+            FfuProvider.dll.mui
+            FolderProvider.dll.mui
+            GenericProvider.dll.mui
+            ImagingProvider.dll.mui
+            IntlProvider.dll.mui
+            LogProvider.dll.mui
+            MsiProvider.dll.mui
+            OfflineSetupProvider.dll.mui
+            OSProvider.dll.mui
+            ProvProvider.dll.mui
+            SmiProvider.dll.mui
+            TransmogProvider.dll.mui
+            UnattendProvider.dll.mui
+            VhdProvider.dll.mui
+            WimProvider.dll.mui

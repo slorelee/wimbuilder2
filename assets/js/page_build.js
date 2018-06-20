@@ -1,6 +1,19 @@
-function sleep(n) {
-    var start = new Date().getTime();
-    while (true) if (new Date().getTime() - start > n) break;
+function structure_env() {
+    var env = wsh.Environment("PROCESS");
+    env('WB_STRAIGHT_MODE') = $wb_straight_mode;
+
+    env('WB_WORKSPACE') = $wb_workspace;
+    env('WB_SRC') = $wb_src;
+    env('WB_BASE') = $wb_base;
+    env('WB_SRC_INDEX') = $wb_src_index;
+    env('WB_BASE_INDEX') = $wb_base_index;
+
+
+    env('WB_PROJECT') = selected_project;
+    env('WB_SKIP_UFR') = $wb_skip_ufr;
+    env('WB_SKIP_URR') = $wb_skip_urr;
+
+    //env('WB_OPT_SHELL') = $WB_OPT['shell'];
 }
 
 //WshHide 0;WshNormalFocus 1;WshMinimizedNoFocus 6
@@ -10,7 +23,8 @@ function run_build() {
         return;
     }
     $('#build_stdout').empty();
-    wsh.run('Projects\\' + selected_project + '\\init.bat',1,true);
+    structure_env();
+    wsh.run('cmd /k bin\\_process.bat', 1, true);
 }
 
 function exec_build() {
@@ -19,10 +33,16 @@ function exec_build() {
         return;
     }
     $('#build_stdout').empty();
-    var oExec = wsh.exec('Projects\\' + selected_project + '\\init.bat');
+    structure_env();
+    var oExec = wsh.exec('bin\\_process.bat');
     var stdout = null;
     var b = null;
     update_output(oExec);
+}
+
+function sleep(n) {
+    var start = new Date().getTime();
+    while (true) if (new Date().getTime() - start > n) break;
 }
 
 function update_output(oExec) {

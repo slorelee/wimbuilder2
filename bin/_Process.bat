@@ -26,6 +26,12 @@ set "_WB_PE_WIM=%Factory%\target\%WB_PROJECT%\%RET_GETNAME%"
 
 call :MKPATH "%Factory%\target\%WB_PROJECT%\"
 
+set "_WB_TMP_DIR=%Factory%\tmp\%WB_PROJECT%"
+call :MKPATH "%_WB_TMP_DIR%\"
+if exist "%_WB_TMP_DIR%\_AddFiles.txt" (
+  rem type nul>"%_WB_TMP_DIR%\_AddFiles.txt"
+  del /f /q "%_WB_TMP_DIR%\_AddFiles.txt"
+)
 
 rem ";" can't be pass to CALL LABEL, so use a ":" for it
 call :CLOG 97:104m "[%WB_PROJECT%] --- build information"
@@ -77,7 +83,7 @@ if "x%WB_BASE_INDEX%"=="x" set WB_BASE_INDEX=1
 if "x%WB_SRC_INDEX%"=="x" set WB_SRC_INDEX=1
 
 :BASE_MOUNT
-call :MKPATH "%_WB_PE%"
+call :MKPATH "%_WB_PE_WIM%"
 call copy /y "%WB_BASE%" "%_WB_PE_WIM%"
 
 call WIM_Mounter "%_WB_PE_WIM%" %WB_BASE_INDEX% "%_WB_MNT_DIR%" base_wim_mounted
@@ -184,26 +190,7 @@ call :CLOG ERROR "Please specify the @s in config file" %1
 call :CLEANUP
 
 :CLEANUP
-if "x%WB_REG_LOADED%"=="x1" call PERegPorter.bat UNLOAD 1>nul
-
-if not "x%src_wim_mounted%"=="x" (
-    call WIM_UnMounter.bat "%WB_MNT_DIR%\SOURCES" /discard src_wim_mounted
-)
-set UNMNT_OPT=/discard
-if "x%1"=="x0" (
-  rem cleanup REGISTRY log files
-  del /f /q /a X:\Windows\System32\config\*.LOG* 1>nul 2>nul
-  del /f /q /a X:\Windows\System32\config\*{*}* 1>nul 2>nul
-  del /f /q /a X:\Windows\System32\SMI\Store\Machine\*.LOG* 1>nul 2>nul
-  del /f /q /a X:\Windows\System32\SMI\Store\Machine\*{*}* 1>nul 2>nul
-  set UNMNT_OPT=/commit
-)
-if not "x%base_wim_mounted%"=="x" (
-  call WIM_UnMounter.bat "%WB_MNT_DIR%\%WB_PROJECT%" %UNMNT_OPT% base_wim_mounted
-)
-
-if exist X:\ SUBST X: /D
-
+call _Cleanup.bat %1
 if "x%1"=="x0" (
   goto :EOF
 )

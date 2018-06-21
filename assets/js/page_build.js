@@ -16,6 +16,24 @@ function structure_env() {
     //env('WB_OPT_SHELL') = $WB_OPT['shell'];
 }
 
+function _cleanup() {
+    $('#build_stdout').empty();
+    structure_env();
+    var oExec = wsh.exec('bin\\_cleanup.bat');
+    var stdout = null;
+    var b = null;
+    window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
+    update_output(oExec);
+}
+
+function cleanup() {
+    if (selected_project == null) {
+        alert('Please select a project for building.');
+        return;
+    }
+    window.setTimeout(function(){_cleanup();}, 100);
+}
+
 //WshHide 0;WshNormalFocus 1;WshMinimizedNoFocus 6
 function run_build() {
     if (selected_project == null) {
@@ -37,6 +55,7 @@ function exec_build() {
     var oExec = wsh.exec('bin\\_process.bat');
     var stdout = null;
     var b = null;
+    window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
     update_output(oExec);
 }
 

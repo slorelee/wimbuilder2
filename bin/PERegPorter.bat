@@ -1,10 +1,12 @@
+echo off
 set GetLastError=1
 
-rem %%1 = "SRC" or "PE"
+rem %%1 must be "Src" or "Tmp"
 if "x%1"=="x" goto :EOF
-if not /i "x%1"=="xSRC" goto :EOF
-if not /i "x%1"=="xPE"  goto :EOF
+if /i "x%1"=="xSrc" goto :MAIN
+if /i "x%1"=="xTmp"  goto :MAIN
 
+:MAIN
 if /i "x%2"=="xLOAD" goto :REG_PORTER
 if /i "x%2"=="xUNLOAD" (
   set "COMMENT_STR=) ^& rem ("
@@ -18,7 +20,7 @@ set GetLastError=0
 set FILEPATH=X:\Windows\System32\config
 set FILEPATH_NTUSER=X:\Users\Default
 
-if/i "x%1"=="xSRC" (
+if /i "x%1"=="xSrc" (
   set FILEPATH=%WB_SRC_DIR%\Windows\System32\config
   set FILEPATH_NTUSER=%WB_SRC_DIR%\Users\Default
 )
@@ -26,11 +28,12 @@ if/i "x%1"=="xSRC" (
 rem check existence before UNLOAD
 rem   Query -* HKEY_USERS\.DEFAULT\Environment
 rem   Query -* HKEY_LOCAL_MACHINE\SAM\SAM
-rem   Query -* HKEY_LOCAL_MACHINE\SYSTEM\MountedDevices
+rem   Query -* HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft
+rem   Query -* HKEY_LOCAL_MACHINE\SYSTEM\Software
 rem   Query -* HKEY_CURRENT_USER\Environment
 
 
-if/i "x%2"=="xUNLOAD" (
+if /i "x%2"=="xUNLOAD" (
   reg query HKLM\%1_DEFAULT\Environment /ve 2>nul 1>&2
   if ERRORLEVEL 1 goto :DEAL_SAM
 )
@@ -38,7 +41,7 @@ if/i "x%2"=="xUNLOAD" (
 if ERRORLEVEL 1 set GetLastError=1
 
 :DEAL_SAM
-if/i "x%2"=="xUNLOAD" (
+if /i "x%2"=="xUNLOAD" (
   reg query HKLM\%1_SAM\SAM /ve 2>nul 1>&2
   if ERRORLEVEL 1 goto :DEAL_SECURITY
 )
@@ -54,7 +57,7 @@ if "x%WB_REG_USE_SECURITY%"=="x1" (
 )
 
 :DEAL_SOFTWARE
-if/i "x%2"=="xUNLOAD" (
+if /i "x%2"=="xUNLOAD" (
   reg query HKLM\%1_SOFTWARE\Microsoft /ve 2>nul 1>&2
   if ERRORLEVEL 1 goto :DEAL_SYSTEM
 )
@@ -62,15 +65,15 @@ if/i "x%2"=="xUNLOAD" (
 if ERRORLEVEL 1 set GetLastError=1
 
 :DEAL_SYSTEM
-if/i "x%2"=="xUNLOAD" (
-  reg query HKLM\%1_SYSTEM\MountedDevices /ve 2>nul 1>&2
+if /i "x%2"=="xUNLOAD" (
+  reg query HKLM\%1_SYSTEM\Software /ve 2>nul 1>&2
   if ERRORLEVEL 1 goto :DEAL_NTUSER
 )
 (REG %2 HKLM\%1_SYSTEM %COMMENT_STR% %FILEPATH%\SYSTEM)
 if ERRORLEVEL 1 set GetLastError=1
 
 :DEAL_NTUSER
-if/i "x%2"=="xUNLOAD" (
+if /i "x%2"=="xUNLOAD" (
   reg query HKLM\%1_NTUSER.DAT\Environment /ve 2>nul 1>&2
   if ERRORLEVEL 1 goto :DEAL_END
 )

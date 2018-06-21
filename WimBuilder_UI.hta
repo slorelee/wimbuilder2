@@ -164,9 +164,12 @@
 
 <!-- ############################# page_building Start ############################# -->
 <div id="page_build" class="content_page">
-    <button id="build" onclick="run_build()">run</button>
-    <button id="build" onclick="exec_build()">exec</button>
-    <div id="build_stdout" style="overflow:scroll">stdout</div>
+    <div>
+        <button class="pure-button" onclick="cleanup()">cleanup</button>
+        <button class="pure-button" id="build" onclick="run_build()">run</button>
+        <button class="pure-button" id="build" onclick="exec_build()">exec</button>
+    </div>
+    <div id="build_stdout" style="overflow:scroll;margin-top:10px">stdout</div>
     <div>
         <button class="pure-button pre-button" onclick="$('#menu_patch').click()">&lt;pre</button>
         <button class="pure-button next-button" onclick="$('#menu_about').click()">next&gt;</button>

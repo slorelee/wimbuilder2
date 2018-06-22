@@ -12,4 +12,4 @@ set "tmp_key=%param_key:HKLM\Software\=HKLM\Tmp_Software\%"
 set "src_key=%src_key:HKLM\SYSTEM\=HKLM\Src_SYSTEM\%"
 set "tmp_key=%tmp_key:HKLM\SYSTEM\=HKLM\Tmp_SYSTEM\%"
 
-reg copy "%src_key%" "%tmp_key%"
+reg copy "%src_key%" "%tmp_key%" /s /f

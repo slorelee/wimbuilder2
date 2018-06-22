@@ -7,6 +7,7 @@ if "x%_WB_MNT_DIR%"=="x" (
   set "_WB_MNT_DIR=%Factory%\target\%WB_PROJECT%\mounted"
 )
 
+call PERegPorter.bat Src UNLOAD 1>nul
 call PERegPorter.bat Tmp UNLOAD 1>nul
 
 set UNMNT_OPT=/discard

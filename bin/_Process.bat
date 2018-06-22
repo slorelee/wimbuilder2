@@ -78,6 +78,13 @@ if exist X:\ (
   call :CLEANUP
 )
 
+rem extract sources registry
+rem TODO: check if %WB_SRC% is wim file or folder
+
+set "WB_SRC_DIR=%Factory%\target\%WB_PROJECT%\install"
+call :MKPATH "%WB_SRC_DIR%\"
+call wimextract "%WB_SRC%" %WB_SRC_INDEX% @"%root%\bin\SRC_REGFILES.txt" --dest-dir="%WB_SRC_DIR%" --no-acls --nullglob
+
 rem PHRASE:mount WIM
 if "x%WB_BASE_INDEX%"=="x" set WB_BASE_INDEX=1
 if "x%WB_SRC_INDEX%"=="x" set WB_SRC_INDEX=1
@@ -107,14 +114,11 @@ echo.
 
 :PROJECT_BUILDING
 pushd "%WB_WORKSPACE%\Projects\%WB_PROJECT%"
-main.bat
 
+call main.bat
 
-
-
-
-
-
+call :CLEANUP 0
+call WIM_Exporter "%_WB_PE_WIM%"
 
 rem =========================================================
 
@@ -190,7 +194,7 @@ call :CLOG ERROR "Please specify the @s in config file" %1
 call :CLEANUP
 
 :CLEANUP
-call _Cleanup.bat %1
+call _Cleanup %1
 if "x%1"=="x0" (
   goto :EOF
 )

@@ -1,0 +1,18 @@
+<job id="opentextfile">
+  <script language="JScript">
+    var locales_script = 1;
+  </script>
+  <script language="JScript" src="../../OpenTextFile.js" />
+  <script language="JScript">
+    text_processor.prototype.把 = function(e){return this.exp1(e);};
+    text_processor.prototype.将 = function(e){return this.exp1(e);};
+    text_processor.prototype.在 = function(e){return this.exp1(e);};
+    text_processor.prototype.替换 = function(str1, str2){return this.replace(str1, str2);};
+    text_processor.prototype.替换为 = function(str1){return this.replace(str1);};
+    text_processor.prototype.前插入 = function(e){return this.insert(e);};
+    text_processor.prototype.后追加 = function(e){return this.append(e);};
+
+    var 文本 = TXT;
+    main();
+  </script>
+</job>

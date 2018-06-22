@@ -1,8 +1,55 @@
 If WSH.Arguments.Count = 0 Then WSH.Quit(0)
 If WSH.Arguments.Count = 1 Then
-    WSH.Echo GetLocale()
+    WSH.Echo GetLocaleName()
     WSH.Quit(0)
 End If
+
+Function GetLocaleName()
+    Set objLocaleDic = CreateObject("scripting.dictionary")
+    objLocaleDic.Add "1025", "ar-SA"
+    objLocaleDic.Add "1026", "bg-BG"
+    objLocaleDic.Add "1029", "cs-CZ"
+    objLocaleDic.Add "1030", "da-DK"
+    objLocaleDic.Add "1031", "de-DE"
+    objLocaleDic.Add "1032", "el-GR"
+    objLocaleDic.Add "1033", "en-US"
+    objLocaleDic.Add "3082", "es-ES"
+    objLocaleDic.Add "1061", "et-EE"
+    objLocaleDic.Add "1035", "fi-FI"
+    objLocaleDic.Add "1036", "fr-FR"
+    objLocaleDic.Add "1037", "he-IL"
+    objLocaleDic.Add "1050", "hr-HR"
+    objLocaleDic.Add "1038", "hu-HU"
+    objLocaleDic.Add "1040", "it-IT"
+    objLocaleDic.Add "1041", "ja-JP"
+    objLocaleDic.Add "1042", "ko-KR"
+    objLocaleDic.Add "1063", "lt-LT"
+    objLocaleDic.Add "1062", "lv-LV"
+    objLocaleDic.Add "1044", "nb-NO"
+    objLocaleDic.Add "1043", "nl-NL"
+    objLocaleDic.Add "1045", "pl-PL"
+    objLocaleDic.Add "1046", "pt-BR"
+    objLocaleDic.Add "2070", "pt-PT"
+    objLocaleDic.Add "1048", "ro-RO"
+    objLocaleDic.Add "1049", "ru-RU"
+    objLocaleDic.Add "1051", "sk-SK"
+    objLocaleDic.Add "1060", "sl-SI"
+    objLocaleDic.Add "1053", "sv-SE"
+    objLocaleDic.Add "1054", "th-TH"
+    objLocaleDic.Add "1055", "tr-TR"
+    objLocaleDic.Add "1058", "uk-UA"
+    objLocaleDic.Add "2052", "zh-CN"
+    objLocaleDic.Add "3076", "zh-HK"
+    objLocaleDic.Add "1028", "zh-TW"
+
+    Dim lcid
+    lcid = GetLocale()
+    If objLocaleDic.Exists(CStr(lcid)) Then
+        GetLocaleName = objLocaleDic.Item(CStr(lcid))
+    Else
+        GetLocaleName = lcid
+    End If
+End Function
 
 Set objI18nStrDic = CreateObject("scripting.dictionary")
 Set objI18nRegExpDic = CreateObject("scripting.dictionary")

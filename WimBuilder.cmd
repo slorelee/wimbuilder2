@@ -16,9 +16,17 @@ if "x%~1"=="xrunas" (SHIFT)
 
 rem init i18n file
 set "I18N_SCRIPT=%~dp0i18n\i18n_.wsf"
+for /f "tokens=3 delims=='; " %%i in ('findstr "$lang" config.js') do (
+  set LocaleID=%%i
+)
+if not "xLocaleID"=="x" goto :SKIP_AUTO_LANG
+set LocaleID=0
 for /f "delims=" %%i in ('cscript.exe //nologo "%I18N_SCRIPT%" init') do set LocaleID=%%i
 if "x%LocaleID%"=="x" set LocaleID=0
+
+:SKIP_AUTO_LANG
 set I18N_LCID=%LocaleID%
+set WB_UI_LANG=%LocaleID%
 if not exist i18n\%LocaleID%.vbs (
     set I18N_LCID=0
     goto :MAIN_ENTRY

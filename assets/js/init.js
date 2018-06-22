@@ -9,8 +9,12 @@ function page_init() {
 
 function i18n_init() {
     if (typeof($lang) == "undefined") return;
+    if ($lang == '') {
+        var env = wsh.Environment("PROCESS");
+        $lang = env('WB_UI_LANG');
+    }
     if (!fso.FileExists('assets/i18n/' + $lang + '.json')) return;
-    var file = fso.OpenTextFile('assets/i18n/' + $lang + '.json', ForReading, false, true);
+    var file = fso.OpenTextFile('assets/i18n/' + $lang + '.json', ForReading, false, true); //UTF16-LE //TODO:UTF-8
     var text = file.readall();
     file.close();
     $i18n = JSON.parse(text);

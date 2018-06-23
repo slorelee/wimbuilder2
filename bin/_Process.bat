@@ -79,17 +79,20 @@ if exist X:\ (
 )
 
 rem extract sources registry
+if "x%WB_SRC%"=="x" goto :BASE_MOUNT
+
 rem TODO: check if %WB_SRC% is wim file or folder
+rem if exist "%WB_SRC%\" (echo WB_SRC is src dir) else (echo WB_SRC is src wim)
 
 set "WB_SRC_DIR=%Factory%\target\%WB_PROJECT%\install"
 call :MKPATH "%WB_SRC_DIR%\"
 call wimextract "%WB_SRC%" %WB_SRC_INDEX% @"%root%\bin\SRC_REGFILES.txt" --dest-dir="%WB_SRC_DIR%" --no-acls --nullglob
 
+:BASE_MOUNT
 rem PHRASE:mount WIM
 if "x%WB_BASE_INDEX%"=="x" set WB_BASE_INDEX=1
 if "x%WB_SRC_INDEX%"=="x" set WB_SRC_INDEX=1
 
-:BASE_MOUNT
 call :MKPATH "%_WB_PE_WIM%"
 call copy /y "%WB_BASE%" "%_WB_PE_WIM%"
 
@@ -114,6 +117,9 @@ echo.
 
 :PROJECT_BUILDING
 pushd "%WB_WORKSPACE%\Projects\%WB_PROJECT%"
+
+call PERegPorter.bat Src LOAD 1>nul
+call PERegPorter.bat Tmp LOAD 1>nul
 
 call main.bat
 

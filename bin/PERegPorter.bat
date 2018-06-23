@@ -21,6 +21,7 @@ set FILEPATH=X:\Windows\System32\config
 set FILEPATH_NTUSER=X:\Users\Default
 
 if /i "x%1"=="xSrc" (
+  if "x%WB_SRC_DIR%"=="x" goto :EOF
   set FILEPATH=%WB_SRC_DIR%\Windows\System32\config
   set FILEPATH_NTUSER=%WB_SRC_DIR%\Users\Default
 )

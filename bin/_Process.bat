@@ -120,6 +120,8 @@ call main.bat
 call :CLEANUP 0
 call WIM_Exporter "%_WB_PE_WIM%"
 
+goto :EOF
+
 rem =========================================================
 
 :MKPATH

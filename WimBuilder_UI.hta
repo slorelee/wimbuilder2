@@ -165,9 +165,11 @@
 <!-- ############################# page_building Start ############################# -->
 <div id="page_build" class="content_page">
     <div>
-        <button class="pure-button" onclick="cleanup()">cleanup</button>
-        <button class="pure-button" id="build" onclick="run_build()">run</button>
-        <button class="pure-button" id="build" onclick="exec_build()">exec</button>
+        <button class="pure-button" onclick="cleanup()">0-cleanup</button>
+        <button class="pure-button" id="build" onclick="run_build()">1-run</button>
+        <button class="pure-button" id="build" onclick="exec_build()">1-exec</button>
+        <button class="pure-button" id="build" onclick="make_iso()">2-make_iso</button>
+        
     </div>
     <div id="build_stdout" style="overflow:scroll;margin-top:10px">stdout</div>
     <div>

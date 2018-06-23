@@ -19,7 +19,7 @@ set "I18N_SCRIPT=%~dp0i18n\i18n_.wsf"
 for /f "tokens=3 delims=='; " %%i in ('findstr "$lang" config.js') do (
   set LocaleID=%%i
 )
-if not "xLocaleID"=="x" goto :SKIP_AUTO_LANG
+if not "x%LocaleID%"=="x" goto :SKIP_AUTO_LANG
 set LocaleID=0
 for /f "delims=" %%i in ('cscript.exe //nologo "%I18N_SCRIPT%" init') do set LocaleID=%%i
 if "x%LocaleID%"=="x" set LocaleID=0
@@ -43,6 +43,7 @@ copy /y i18n\%LocaleID%.vbs i18n\0.vbs
 :MAIN_ENTRY
 set "root=%~dp0"
 set "Factory=%root%_Factory_"
+set "ISO_DIR=%root%_ISO_"
 
 rem ======set bin PATH======
 set "PATH=%root%bin;%PATH%"

@@ -4,6 +4,10 @@ i18n_init();
 i18n_trans();
 
 function page_init() {
+    if (!fso.FileExists($wb_base)) {
+        $('#menu_start').click();
+        return;
+    }
     $('#menu_project').click();
 }
 

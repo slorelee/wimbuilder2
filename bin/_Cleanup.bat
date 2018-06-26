@@ -20,10 +20,11 @@ if "x%1"=="x0" (
   set UNMNT_OPT=/commit
 )
 
+if exist X:\ SUBST X: /D
+
 if exist "%_WB_MNT_DIR%\Windows" (
   call WIM_UnMounter.bat "%_WB_MNT_DIR%" %UNMNT_OPT% base_wim_mounted
 )
 
-if exist X:\ SUBST X: /D
 
 echo Cleanup finished.

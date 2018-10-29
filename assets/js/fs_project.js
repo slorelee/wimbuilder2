@@ -19,10 +19,34 @@ var Project = {
         };
         project.desc = project.load_desc();
         project.html = project.load_html();
-        var $patches_tree_data = [];
-        eval(load_file('config.js'));
-        project.patches_tree_data = $patches_tree_data;
+        //var $patches_tree_data = [];
+        //eval(load_file('config.js'));
+        project.patches_tree_data = Project.GetPatches(project.path);;
         return project;
+    },
+    GetPatches:function(rootdir) {
+        function get_sub_patches(rootdir, pdir, pid, arr) {
+            var cdir = rootdir + '/' + pdir;
+            if (pid == '#') cdir = pdir;
+
+            var folder = fso.GetFolder(cdir);
+            var fenum = new Enumerator(folder.SubFolders);
+            for (var i = 0 ; !fenum.atEnd();i++) {
+                var name = fenum.item().Name;
+                var cid = pdir + '/' + name;
+                if (pid == '#') cid = name;
+                if (!fso.FileExists(cdir + '/' + name + '/main.html')) return '';
+                var pos = name.indexOf('-');
+                if (pos >= 0) name = name.substring(pos + 1);
+                var item = { "id" : cid , "parent" : pid, "text" : name };
+                arr.push(item);
+                get_sub_patches(rootdir, cid, cid, arr);
+                fenum.moveNext();
+            }
+        };
+        var arr = new Array();
+        get_sub_patches(rootdir, rootdir, '#', arr);
+        return arr;
     }
 }
 

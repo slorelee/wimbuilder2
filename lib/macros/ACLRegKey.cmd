@@ -1,5 +1,9 @@
 @echo off
 
+if "x%WB_RUNAS_TI%"=="x1" (
+  goto :EOF
+)
+
 rem MACRO:ACLRegKey
 rem call SetACL.exe to set the registry's ACL
 echo [MACRO]ACLRegKey %*

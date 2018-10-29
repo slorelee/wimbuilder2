@@ -2,6 +2,16 @@
 SETLOCAL ENABLEDELAYEDEXPANSION
 title WimBuilder(%cd%)
 
+if "x%WB_RUNAS_TI%"=="x" (
+  set WB_RUNAS_TI=1
+  call NSudo.exe -U:T "%cd%\%~0"
+  cd /d "%root%"
+  exit
+)
+
+cd /d "%root%"
+title WimBuilder(%cd%)
+
 rem ======generate logfile name======
 rem ">" mark will cause *ECHO* error, change to "*"
 rem i.e. Mount [WIM] -> [PATH] ---> Mount [WIM] -* [PATH]

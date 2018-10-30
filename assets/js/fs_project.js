@@ -4,6 +4,8 @@ var Project = {
         var project = {};
         project.name = name;
         project.path = Project.root_path + '/' + name;
+        var env = wsh.Environment("PROCESS");
+        project.wb_root = env('root').replace(/\\/g, '/');
         function load_file(file) {
             if (!fso.FileExists(project.path + '/' + file)) return '';
             var file = fso.OpenTextFile(project.path + '/' + file, ForReading);
@@ -19,8 +21,9 @@ var Project = {
         };
         project.desc = project.load_desc();
         project.html = project.load_html();
-        //var $patches_tree_data = [];
-        //eval(load_file('config.js'));
+        var $patches_opt = {};
+        eval(load_file('config.js'));
+        project.patches_opt = $patches_opt;
         project.patches_tree_data = Project.GetPatches(project.path);;
         return project;
     },

@@ -5,11 +5,7 @@ var Patch = {
         patch.name = name;
         patch.path = project.path + '/' + name;
         function load_file(file) {
-            if (!fso.FileExists(patch.path + '/' + file)) return '';
-            var file = fso.OpenTextFile(patch.path + '/' + file, ForReading);
-            var text = file.readall();
-            file.close();
-            return text;
+            return load_text_file(patch.path + '/' + file);
         };
         patch.load_desc = function() {
             return load_file('desc.json');
@@ -19,6 +15,15 @@ var Patch = {
         };
         patch.desc = patch.load_desc();
         patch.html = patch.load_html();
+        var i18n = load_utf8_file(patch.path + '/' + $lang + '.js');
+        if (i18n != '') {
+            eval(i18n);
+            if (typeof(patch_i18n) != "undefined") {
+                for (key in patch_i18n) {
+                    patch.html = patch.html.replace(key, patch_i18n[key]);
+                }
+            }
+        }
         return patch;
     }
 }

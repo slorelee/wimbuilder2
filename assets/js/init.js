@@ -26,11 +26,9 @@ function i18n_init() {
         var env = wsh.Environment("PROCESS");
         $lang = env('WB_UI_LANG');
     }
-    if (!fso.FileExists('assets/i18n/' + $lang + '.json')) return;
-    var file = fso.OpenTextFile('assets/i18n/' + $lang + '.json', ForReading, false, true); //UTF16-LE //TODO:UTF-8
-    var text = file.readall();
-    file.close();
-    $i18n = JSON.parse(text);
+
+    var text = load_utf8_file('assets/i18n/' + $lang + '.json');
+    if (text != "") $i18n = JSON.parse(text);
 }
 
 function i18n_trans() {

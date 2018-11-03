@@ -5,11 +5,11 @@ title WimBuilder(%cd%)
 if "x%WB_RUNAS_TI%"=="x" (
   set WB_RUNAS_TI=1
   call NSudo.exe -U:T "%cd%\%~0"
-  cd /d "%root%"
+  cd /d "%WB_ROOT%"
   exit
 )
 
-cd /d "%root%"
+cd /d "%WB_ROOT%"
 title WimBuilder(%cd%)
 
 rem ======generate logfile name======
@@ -96,7 +96,7 @@ rem if exist "%WB_SRC%\" (echo WB_SRC is src dir) else (echo WB_SRC is src wim)
 
 set "WB_SRC_DIR=%Factory%\target\%WB_PROJECT%\install"
 call :MKPATH "%WB_SRC_DIR%\"
-call wimextract "%WB_SRC%" %WB_SRC_INDEX% @"%root%\bin\SRC_REGFILES.txt" --dest-dir="%WB_SRC_DIR%" --no-acls --nullglob
+call wimextract "%WB_SRC%" %WB_SRC_INDEX% @"%WB_ROOT%\bin\SRC_REGFILES.txt" --dest-dir="%WB_SRC_DIR%" --no-acls --nullglob
 
 :BASE_MOUNT
 rem PHRASE:mount WIM

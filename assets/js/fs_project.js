@@ -5,7 +5,7 @@ var Project = {
         project.name = name;
         project.path = Project.root_path + '/' + name;
         var env = wsh.Environment("PROCESS");
-        project.wb_root = env('root').replace(/\\/g, '/');
+        project.wb_root = env('WB_ROOT').replace(/\\/g, '/');
         project.full_path = project.wb_root + project.path;
         function load_file(file) {
             return load_text_file(project.path + '/' + file);

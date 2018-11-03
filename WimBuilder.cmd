@@ -41,18 +41,18 @@ if not ERRORLEVEL 1 goto :MAIN_ENTRY
 copy /y i18n\%LocaleID%.vbs i18n\0.vbs
 
 :MAIN_ENTRY
-set "root=%~dp0"
-set "Factory=%root%_Factory_"
-set "ISO_DIR=%root%_ISO_"
+set "WB_ROOT=%~dp0"
+set "Factory=%WB_ROOT%_Factory_"
+set "ISO_DIR=%WB_ROOT%_ISO_"
 
 rem ======set bin PATH======
-set "PATH=%root%bin;%PATH%"
+set "PATH=%WB_ROOT%bin;%PATH%"
 if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
-  set "PATH=%root%bin\x64;%PATH%"
+  set "PATH=%WB_ROOT%bin\x64;%PATH%"
 ) else (
-  set "PATH=%root%bin\x86;%PATH%"
+  set "PATH=%WB_ROOT%bin\x86;%PATH%"
 )
-set "PATH=%root%lib\macros;%PATH%"
+set "PATH=%WB_ROOT%lib\macros;%PATH%"
 rem ========================
 
 start WimBuilder_UI.hta %*

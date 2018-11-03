@@ -14,10 +14,17 @@ $('#menu_patch').click(function(){
 });
 
 $('#menu_build').click(function(){
+    if ($obj_project) {
+        update_patches_opt($obj_project.patches_opt);
+    }
     switch_page('build');
     $('#build_stdout').empty();
     if (selected_project != null) {
-        $('#build_stdout').append('Do you want to build the [' + selected_project + '] project?');
+        var msg = 'Do you want to build the [' + selected_project + '] project?';
+        var json = JSON.stringify($obj_project.patches_opt);
+        json = json.replace(/(\".+?\":.+?),/g, "$1,<br\/>");
+        msg += '<br/><br/>' + json;
+        $('#build_stdout').append(msg);
     } else {
         $('#build_stdout').append('No project to build.');
     }

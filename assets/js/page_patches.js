@@ -1,7 +1,7 @@
 var _patches_selected_node = null;
 var $patch_loaded = false;
 
-function init_radio_opt(elem, patches_opt){
+function init_radio_opt(elem, patches_opt) {
     var key = $(elem).attr('name');
     if (key in patches_opt) {
         if ($(elem).attr("value") == patches_opt[key]) {
@@ -10,7 +10,7 @@ function init_radio_opt(elem, patches_opt){
     }
 }
 
-function init_checkbox_opt(elem, patches_opt){
+function init_checkbox_opt(elem, patches_opt) {
     var key = $(elem).attr('name');
     if (key in patches_opt) {
         if (true == patches_opt[key]) {
@@ -19,7 +19,7 @@ function init_checkbox_opt(elem, patches_opt){
     }
 }
 
-function init_image_opt(elem, patches_opt, patch_full_path){
+function init_image_opt(elem, patches_opt, patch_full_path) {
     var update = $(elem).attr('update');
     var key = $(elem).attr('name');
     var src = $(elem).attr('src');
@@ -35,16 +35,42 @@ function init_image_opt(elem, patches_opt, patch_full_path){
     }
 }
 
-function init_text_opt(elem, patches_opt){
+function init_text_opt(elem, patches_opt) {
     var key = $(elem).attr('name');
     if (key in patches_opt) {
-        $(elem).attr("value", patches_opt[key]);
+        $(elem).val(patches_opt[key]);
+    }
+}
+
+function init_select_opt(elem, patches_opt){
+    var key = $(elem).attr('name');
+    if (key in patches_opt) {
+        $(elem).val(patches_opt[key]);
+        //jquery-ui selectmenu
+        var inst = ($(elem).selectmenu("instance"));
+        if (typeof(inst) != "undefined") {
+            $(elem).selectmenu("refresh");
+        }
+    }
+}
+
+function init_spinbutton_opt(elem, patches_opt){
+    var key = $(elem).attr('name');
+    if (key in patches_opt) {
+        $(elem).spinner("value", patches_opt[key]);
     }
 }
 
 function init_patches_opt(patches_opt, patch_full_path) {
- $(".opt_item").each(function(){
-    var type = $(this).attr('type');
+ $(".opt_item").each(function() {
+    var type = $(this)[0].tagName.toLowerCase();
+    if (type == 'input') type = $(this).attr('type');
+    if (typeof(type) == 'undefined') {
+        //jquery-ui spinner
+        if ($(this).hasClass('ui-spinner-input')) {
+            type = 'spinbutton';
+        }
+    }
     if (type == 'radio') {
         init_radio_opt(this, patches_opt);
     } else if (type == 'checkbox') {
@@ -53,28 +79,40 @@ function init_patches_opt(patches_opt, patch_full_path) {
         init_image_opt(this, patches_opt, patch_full_path);
     } else if (type == 'text') {
         init_text_opt(this, patches_opt);
+    } else if (type == 'select') {
+        init_select_opt(this, patches_opt);
+    } else if (type == 'spinbutton') {
+        init_spinbutton_opt(this, patches_opt);
     }
   });
 }
 
 function update_patches_opt(patches_opt) {
- $(".opt_item").each(function(){
-    var type = $(this).attr('type');
+ $(".opt_item").each(function() {
+    var type = $(this)[0].tagName.toLowerCase();
+    if (type == 'input') type = $(this).attr('type');
+    if (typeof(type) == 'undefined') {
+        //is jquery-ui spinner?
+        type = $(this).attr('role'); //spinbutton
+    }
+    var key = $(this).attr('name');
     if (type == 'radio') {
-        var key = $(this).attr('name');
         if ($(this).prop("checked") == true) {
             patches_opt[key] = $(this).attr("value");
         }
     } else if (type == 'checkbox') {
-        var key = $(this).attr('name');
         patches_opt[key] = $(this).prop("checked");
     } else if (type == 'image') {
-        var key = $(this).attr('name');
         var src = $(this).attr('src');
         patches_opt[key] = src.replace(/\//g, '\\');
     } else if (type == 'text') {
         var key = $(this).attr('name');
-        patches_opt[key] = $(this).attr("value");
+        patches_opt[key] = $(this).val();
+    } else if (type == 'select') {
+        var val = $(this).children("option:selected").text();
+        patches_opt[key] = val;
+    } else if  (type == 'spinbutton') {
+        patches_opt[key] = $(this).spinner("value");
     }
   });
 }
@@ -141,10 +179,12 @@ function show_patches_settings() {
         ]
     } };
 
+    var patches_tree_loaded = true;
     if ($obj_patches == null) {
         $obj_patches = new Object();
         $.jstree.destroy();
         $('#patch_html').html('');
+        patches_tree_loaded = false;
     }
 
     if ($obj_project) {
@@ -155,7 +195,7 @@ function show_patches_settings() {
         });
     }
 
-    if ($obj_project) {
+    if ($obj_project && !patches_tree_loaded) {
         if (typeof($obj_project.patches_state_init) == 'function') {
            $obj_project.patches_state_init();
         }

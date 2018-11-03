@@ -1,4 +1,5 @@
 var Shell = new ActiveXObject("Shell.Application");
+var ws = new ActiveXObject("WScript.Shell")
 
 //BROWSEINFO
 var BIF_RETURNONLYFSDIRS = 0x00000001;
@@ -15,4 +16,12 @@ function BrowseFolder(msg) {
         p = folder.Self.Path;
     }
     return p;
+}
+
+function Run(file) {
+    ws.Run(file);
+}
+
+function OpenFolder(path){
+    Run(path);
 }

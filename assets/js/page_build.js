@@ -43,7 +43,9 @@ function run_build() {
     }
     $('#build_stdout').empty();
     structure_env(0);
-    wsh.run('cmd /k bin\\_process.bat', 1, true);
+    dump_patches_selected();
+    dump_patches_opt();
+    wsh.run('cmd /k \"' + $wb_root + '\\bin\\_process.bat\"', 1, true);
 }
 
 function exec_build() {
@@ -53,7 +55,9 @@ function exec_build() {
     }
     $('#build_stdout').empty();
     structure_env(1);
-    var oExec = wsh.exec('bin\\_process.bat');
+    dump_patches_selected();
+    dump_patches_opt();
+    var oExec = wsh.exec($wb_root + '\\bin\\_process.bat');
     var stdout = null;
     var b = null;
     window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
@@ -67,7 +71,7 @@ function make_iso() {
     }
     $('#build_stdout').empty();
     structure_env(0);
-    wsh.run('cmd /c bin\\_MakeBootISO.bat', 1, true);
+    wsh.run('cmd /c \"' + $wb_root + '\\bin\\_MakeBootISO.bat\"', 1, true);
 }
 
 function sleep(n) {

@@ -1,4 +1,5 @@
 var _patches_selected_node = null;
+var $patches_opt = null;
 var $patch_loaded = false;
 
 function init_radio_opt(elem, patches_opt) {
@@ -127,6 +128,7 @@ function patch_onselect(id) {
     var patch = null;
     var content = null;
     var need_init = false;
+    $patches_opt = $obj_project.patches_opt;
     if (id in $obj_patches) {
         content = $obj_patches[id];
         $patch_loaded = true;
@@ -137,11 +139,10 @@ function patch_onselect(id) {
         $obj_patches[id] = content;
         need_init = true;
     }
-    var patches_opt = $obj_project.patches_opt;
-    update_patches_opt(patches_opt);
+    update_patches_opt($patches_opt);
     $('#patch_html').html(content);
-    if (need_init) init_patches_opt(patches_opt, $obj_project.wb_root + patch.path);
-    //show_patches_opt(patches_opt);
+    if (need_init) init_patches_opt($patches_opt, $obj_project.wb_root + '/' + patch.path);
+    //show_patches_opt($patches_opt);
 }
 
 function open_tree_node(id) {
@@ -200,4 +201,40 @@ function show_patches_settings() {
            $obj_project.patches_state_init();
         }
     }
+}
+
+function get_tmp_folder(project) {
+    var env = wsh.Environment("PROCESS");
+    var tmp_path = env('Factory') + "\\tmp\\" + project;
+    create_folder_cascade(tmp_path);
+    return tmp_path;
+}
+
+function patches_opt_stringify() {
+    var str = JSON.stringify($obj_project.patches_opt);
+    str = str.replace(/(\".+?\":.+?),/g, "$1,<br\/>");
+    return str;
+}
+
+function dump_patches_selected() {
+    var tmp_folder = get_tmp_folder($obj_project.name);
+    var patches_selected = $('#patches_tree').jstree(true).get_checked();
+    var str = '';
+    for(var patch_id in patches_selected) {
+        str += patches_selected[patch_id] + "\r\n";
+    }
+    str = str.replace(/\//g, "\\");
+    save_text_file(tmp_folder + "\\_patches_selected.txt", str);
+    return str;
+}
+
+function dump_patches_opt() {
+    var options = $obj_project.patches_opt;
+    var tmp_folder = get_tmp_folder($obj_project.name);
+    var str = '';
+    for(var key in options) {
+        str += "set \"opt[" + key + "]=" + options[key] + "\"\r\n";
+    }
+    save_text_file(tmp_folder + "\\_patches_opt.bat", str);
+    return str;
 }

@@ -1,10 +1,14 @@
+var $wb_root = null;
+
 (function startup_check() {
     var env = wsh.Environment("PROCESS");
-    if (env('WB_ROOT') == '') {
+    $wb_root = env('WB_ROOT');
+    if ($wb_root == '') {
         var msg = 'Please startup with WimBuilder.cmd.';
         alert(msg);
         self.close();
     }
+    $wb_root = $wb_root.substring(0, $wb_root.length - 1);
 })();
 
 page_init();

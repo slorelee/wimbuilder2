@@ -1,15 +1,15 @@
 @echo off
 SETLOCAL ENABLEDELAYEDEXPANSION
+
+cd /d "%WB_ROOT%"
 title WimBuilder(%cd%)
 
 if "x%WB_RUNAS_TI%"=="x" (
   set WB_RUNAS_TI=1
-  call NSudo.exe -U:T "%cd%\%~0"
-  cd /d "%WB_ROOT%"
+  call NSudo.exe -U:T "%~0"
   exit
 )
 
-cd /d "%WB_ROOT%"
 title WimBuilder(%cd%)
 
 rem ======generate logfile name======
@@ -41,6 +41,11 @@ call :MKPATH "%_WB_TMP_DIR%\"
 if exist "%_WB_TMP_DIR%\_AddFiles.txt" (
   rem type nul>"%_WB_TMP_DIR%\_AddFiles.txt"
   del /f /q "%_WB_TMP_DIR%\_AddFiles.txt"
+)
+
+rem load patches options
+if exist "%_WB_TMP_DIR%\_patches_opt.bat" (
+  call "%_WB_TMP_DIR%\_patches_opt.bat"
 )
 
 rem ";" can't be pass to CALL LABEL, so use a ":" for it
@@ -131,7 +136,10 @@ pushd "%WB_WORKSPACE%\Projects\%WB_PROJECT%"
 call PERegPorter.bat Src LOAD 1>nul
 call PERegPorter.bat Tmp LOAD 1>nul
 
-call main.bat
+rem =========================================================
+rem apply project patches
+call ApplyProjectPatches.bat "%cd%"
+rem =========================================================
 
 call :CLEANUP 0
 call WIM_Exporter "%_WB_PE_WIM%"

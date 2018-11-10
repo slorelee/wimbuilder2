@@ -21,9 +21,8 @@ $('#menu_build').click(function(){
     $('#build_stdout').empty();
     if (selected_project != null) {
         var msg = 'Do you want to build the [' + selected_project + '] project?';
-        var json = JSON.stringify($obj_project.patches_opt);
-        json = json.replace(/(\".+?\":.+?),/g, "$1,<br\/>");
-        msg += '<br/><br/>' + json;
+        var opts = patches_opt_stringify();
+        msg += '<br/><br/>' + opts;
         $('#build_stdout').append(msg);
     } else {
         $('#build_stdout').append('No project to build.');

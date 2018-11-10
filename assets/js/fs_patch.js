@@ -20,7 +20,12 @@ var Patch = {
             eval(i18n);
             if (typeof(patch_i18n) != "undefined") {
                 for (key in patch_i18n) {
-                    patch.html = patch.html.replace(key, patch_i18n[key]);
+                    var dst = patch_i18n[key];
+                    if (typeof(dst) == 'object') {  // replace all
+                        dst = dst[0];
+                        key = new RegExp(key, 'g');
+                    }
+                    patch.html = patch.html.replace(key, dst);
                 }
             }
         }

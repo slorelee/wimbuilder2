@@ -22,9 +22,10 @@ if "x%1"=="x0" (
 
 if exist X:\ SUBST X: /D
 
+if "x%USE_WIMLIB%"=="x1" goto :UNMOUNT_SKIPPED
 if exist "%_WB_MNT_DIR%\Windows" (
   call WIM_UnMounter.bat "%_WB_MNT_DIR%" %UNMNT_OPT% base_wim_mounted
 )
 
-
+:UNMOUNT_SKIPPED
 echo Cleanup finished.

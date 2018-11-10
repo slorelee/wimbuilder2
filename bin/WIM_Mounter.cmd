@@ -17,7 +17,11 @@ if "x%chk_file%"=="x" (
 set chk_file=
 
 if not exist "%~3" mkdir "%~3"
-call DismX /mount-wim /wimfile:"%~1" /index:%2 /mountdir:"%~3"
 
+if "x%USE_WIMLIB%"=="x1" (
+    wimlib-imagex.exe extract "%~1" %2 --dest-dir="%~3" --no-acls --nullglob
+) else (
+    call DismX /mount-wim /wimfile:"%~1" /index:%2 /mountdir:"%~3"
+)
 if "x%~4"=="x" goto :EOF
 if "%errorlevel%"=="0" set %~4=1

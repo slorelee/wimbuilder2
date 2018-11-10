@@ -5,6 +5,11 @@ if exist "%BUILD_WIM%" del /q "%BUILD_WIM%"
 call :MKPATH "%BUILD_WIM%"
 call WB_LOG "[%WB_PROJECT%] --- EXPORT [%~1:%WB_BASE_INDEX%] -%%gt:%% [%BUILD_WIM%]"
 
+if "x%USE_WIMLIB%"=="x1" (
+    wimlib-imagex.exe capture "%_WB_MNT_DIR%" "%BUILD_WIM%" "%WB_PROJECT%" "%WB_PROJECT%" --boot --flags=9 --compress=XPRESS --verbose
+    goto :EOF
+)
+
 rem use imagex for building on Windows 7
 ver|findstr " 6.1." >nul
 if not ERRORLEVEL 1 (

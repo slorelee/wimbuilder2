@@ -55,4 +55,6 @@ if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
 set "PATH=%WB_ROOT%lib\macros;%PATH%"
 rem ========================
 
+rem mount winre.wim/boot.wim with wimlib, otherwise dism
+set USE_WIMLIB=0
 start WimBuilder_UI.hta %*

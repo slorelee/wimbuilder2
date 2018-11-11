@@ -21,6 +21,11 @@ Const TristateFalse = 0
 
 Set fso = CreateObject("Scripting.FileSystemObject")
 
+Dim wshShell, env, wim_ver
+Set wshShell = WScript.CreateObject("WScript.Shell")
+Set env = wshShell.Environment("Process")
+wim_ver = env("WB_PE_VER")
+
 Dim f, bCode, line
 Dim outs
 outs = ""
@@ -43,18 +48,38 @@ Set f = fso.OpenTextFile(out_file, ForAppending, True)
 f.Write outs
 f.Close
 
+Function check_ver(ver_line)
+  If ver_line = "pass" Or ver_line = "skip" Then
+    check_ver = ver_line
+    Exit Function
+  End If
+
+  Dim build_num
+  build_num = Split(wim_ver, ".")(2)
+  ver_line = Mid(ver_line, 2)
+  ver_line = Replace(ver_line, "ver", build_num)
+  check_ver = "skip"
+  If eval(ver_line) Then check_ver = "pass"
+End Function
+
 Sub parser(line)
   If line = "" Then Exit Sub             'empty line
   If Left(line, 1) = ";" Then Exit Sub   'comment line
   If line = "@-" Then g_path = "":Exit Sub
   If line = "-mui" Then g_mui = "":Exit Sub
   If line = "+mui" Then g_mui = "+":Exit Sub
-  If Left(line, 1) = "@" Then g_path = Mid(line, 2):Exit Sub
-  If Left(line, 4) = "+ver*" Then g_ver = "":Exit Sub
+  If Left(line, 1) = "@" Then
+    g_path = Mid(line, 2)
+    If Left(g_path, 1) <> "\" Then g_path = "\" & g_path
+    If Right(g_path, 1) <> "\" Then g_path = g_path & "\"
+    Exit Sub
+  End If
+  If Left(line, 5) = "+ver*" Then g_ver = "":Exit Sub
   If Left(line, 4) = "+ver" Then g_ver = line:Exit Sub
 
   If g_ver <> "" Then
-    'TODO:check ver
+    g_ver = check_ver(g_ver)
+    If g_ver = "skip" Then Exit Sub
   End If
 
   Dim i, files
@@ -65,8 +90,17 @@ Sub parser(line)
 End Sub
 
 Sub addfile(fn)
-  outs = outs & g_path & fn & vbCrLf
-  If g_mui <> "" Then
-      outs = outs & g_path & "??\" & fn & ".mui" & vbCrLf
+  'ignore g_path
+  If Left(fn, 1) = "\" Then
+    outs = outs & fn & vbCrLf
+    Exit Sub
   End If
+  outs = outs & g_path & fn & vbCrLf
+  If g_mui = "" Then Exit Sub
+
+  'no mui for folder
+  If Right(fn, 1) = "\" Then Exit Sub
+  If Right(fn, 4) = ".mui" Then Exit Sub
+
+  outs = outs & g_path & "??-??\" & fn & ".mui" & vbCrLf
 End Sub

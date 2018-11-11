@@ -1,5 +1,5 @@
 Set objArgs = WScript.Arguments
-If objArgs.Count < 3 Then
+If objArgs.Count < 2 Then
     WScript.Echo "AddFiles.vbs:Wrong Parmaters."
     WScript.Quit(1)
 End If
@@ -11,9 +11,16 @@ Next
 Dim g_path, g_mui, g_ver
 
 Dim code_file, code_word, out_file
-code_file = objArgs.Item(0)
-code_word = objArgs.Item(1)
-out_file = objArgs.Item(2)
+
+If objArgs.Count = 2 Then
+  code_file = ""
+  code_word = objArgs.Item(0)
+  out_file = objArgs.Item(1)
+Else
+  code_file = objArgs.Item(0)
+  code_word = objArgs.Item(1)
+  out_file = objArgs.Item(2)
+End If
 
 Dim fso
 Const ForReading = 1, ForWriting = 2, ForAppending = 8
@@ -29,19 +36,24 @@ wim_ver = env("WB_PE_VER")
 Dim f, bCode, line
 Dim outs
 outs = ""
-Set f = fso.OpenTextFile(code_file, ForReading, False)
-line = f.Readline
-Do Until f.AtEndOfStream
-   line = f.ReadLine
-   If (Not bCode) And line = "goto " & code_word Then
-       bCode = true
-   ElseIf line = code_word Then
-       Exit Do
-   ElseIf bCode Then
-       parser(line)
-   End If
-Loop
-f.Close
+
+If code_file <> "" Then
+  Set f = fso.OpenTextFile(code_file, ForReading, False)
+  line = f.Readline
+  Do Until f.AtEndOfStream
+     line = f.ReadLine
+     If (Not bCode) And line = "goto " & code_word Then
+         bCode = true
+     ElseIf line = code_word Then
+         Exit Do
+     ElseIf bCode Then
+         parser(line)
+     End If
+  Loop
+  f.Close
+Else
+  outs = code_word
+End If
 
 WSH.echo outs
 Set f = fso.OpenTextFile(out_file, ForAppending, True)

@@ -43,10 +43,13 @@ var Project = {
                 var state_opened = false;
                 var state_selected = true;
                 if (i18n != '') {
+                    var patch_name = null;
+                    var patch_opened = null;
+                    var patch_selected = null;
                     eval(i18n);
-                    if (typeof(patch_name) != "undefined") name = patch_name;
-                    if (typeof(patch_opened) != "undefined") state_opened = patch_opened;
-                    if (typeof(patch_selected) != "undefined") state_selected = patch_selected;
+                    if (patch_name != null) name = patch_name;
+                    if (patch_opened != null) state_opened = patch_opened;
+                    if (patch_selected != null) state_selected = patch_selected;
                 } else {
                     var pos = name.indexOf('-');
                     if (pos >= 0) name = name.substring(pos + 1);

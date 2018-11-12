@@ -17,8 +17,9 @@ var Patch = {
         patch.html = patch.load_html();
         var i18n = load_utf8_file(patch.path + '/' + $lang + '.js');
         if (i18n != '') {
+            var patch_i18n = null;
             eval(i18n);
-            if (typeof(patch_i18n) != "undefined") {
+            if (patch_i18n != null) {
                 for (key in patch_i18n) {
                     var dst = patch_i18n[key];
                     if (typeof(dst) == 'object') {  // replace all

@@ -10,7 +10,7 @@ if "x%ISO_DIR%"=="x" (
 if not exist "%ISO_DIR%" (
   call :MKPATH "%ISO_DIR%\boot\"
   call :MKPATH "%ISO_DIR%\sources\"
-  copy /y "%ROOT%\bin\etfsboot.com" "%ISO_DIR%\boot\"
+  copy /y "%WB_ROOT%\bin\etfsboot.com" "%ISO_DIR%\boot\"
 )
 
 copy /y "%Factory%\target\%WB_PROJECT%\build\boot.wim" "%ISO_DIR%\sources\boot.wim"

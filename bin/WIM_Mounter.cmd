@@ -11,14 +11,10 @@ if exist "%~3" (
     )
 )
 
-if "x%chk_file%"=="x" (
-    rd /q "%~3"
-)
-set chk_file=
-
-if exist "%~3\Windows" (
+if not "x%chk_file%"=="x" (
     rd /s /q "%~3"
 )
+set chk_file=
 
 if not exist "%~3" mkdir "%~3"
 

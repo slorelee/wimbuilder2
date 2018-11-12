@@ -1,0 +1,174 @@
+<!--INIT
+var patch_opt = {
+  "shell.app":"explorer",
+  "shell.wallpaper":"wallpaper.jpg",
+  "shell.show_thisPC":true,
+  "shell.taskbar.combine":"never"
+}
+INIT-->
+
+<style>
+.box {
+    background-color: #f1f1f1;
+    padding: 0.01em 2px;
+    margin: 5px 10px 5px 0px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+}
+</style>
+
+<div class="box">
+<p>Shell settings</p>
+</div>
+
+<div id="shell_tab" style="margin-right:5px">
+    <div class="tab tab0">
+<style>
+fieldset {
+    /*background: rgba(255,255,255,.3);
+    border-color: rgba(255,255,255,.6);*/
+    border-style: solid;
+    border-width: 2px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    padding: 2px 10px;
+    margin-bottom: 2px;
+    width:260px;
+    font-size:0.8em;
+}  
+
+fieldset legend {
+    color: #302A2A;
+    font: bold 16px/2 Verdana, Geneva, sans-serif;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: 2px 2px 2px rgb(88, 126, 156);
+}
+</style>
+<div style="float:left;">
+<div style="float:left;">
+<fieldset>
+<legend>Shell</legend>
+<input type="radio" class="opt_item" name="shell.app" value="explorer" checked="checked" /> Explorer
+<input type="radio" class="opt_item" name="shell.app" value="winxshell" /> WinXShell
+</fieldset>
+
+<fieldset>
+<legend>Wallpaper</legend>
+<input type="image" class="opt_item" name="shell.wallpaper" update="src" src="wallpaper.jpg"
+   width="260" height="195" onclick="select_image(this)" />
+</fieldset>
+</div>
+
+<div style="float:right;margin-right:20px;">
+<fieldset>
+<legend>Desktop</legend>
+<span style="float:left;padding-top:5px;">Show This PC on Desktop</span>
+<div class="onoffswitch"  style="float:right;">
+    <input type="checkbox" name="shell.show_thisPC" class="onoffswitch-checkbox opt_item" id="shell.show_thisPC" checked>
+    <label class="onoffswitch-label" for="shell.show_thisPC">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+</fieldset>
+
+<fieldset style="font-size:0.8em;">
+<legend>Taskbar</legend>
+<input type="radio" class="opt_item" name="shell.taskbar.combine" value="always"> Always combine, hide labels</input><br/>
+<input type="radio" class="opt_item" name="shell.taskbar.combine" value="auto"> Combine when taskbar is full</input><br/>
+<input type="radio" class="opt_item" name="shell.taskbar.combine" value="never" checked> Never combine</input><br/>
+</fieldset>
+</div>
+</div>
+</div>
+    <div class="tab tab1">
+<div>
+<fieldset>
+<legend>Fix with WinXShell</legend>
+<style>
+#winxshell_fixitem .chklabel {
+  float:left;padding-top:2px;
+  height:30px;
+  width:200px;
+}
+
+</style>
+<div id="winxshell_fixitem">
+<span class="chklabel">ShowDesktop Button</span>
+<div class="onoffswitch" style="float:right;">
+    <input type="checkbox" name="shell.fix.showDesktop" class="onoffswitch-checkbox opt_item" id="shell.fix.showDesktop" checked>
+    <label class="onoffswitch-label" for="shell.fix.showDesktop">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+
+<span class="chklabel">Resolution Settings</span>
+<div class="onoffswitch" style="float:right;">
+    <input type="checkbox" name="shell.ui.resolution" class="onoffswitch-checkbox opt_item" id="shell.ui.resolution" checked>
+    <label class="onoffswitch-label" for="shell.ui.resolution">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+
+<span class="chklabel">Handle ClockArea event</span>
+<div class="onoffswitch" style="float:right;">
+    <input type="checkbox" name="shell.clockarea.event" class="onoffswitch-checkbox opt_item" id="shell.clockarea.event" checked>
+    <label class="onoffswitch-label" for="shell.clockarea.event">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+
+<span class="chklabel">Handle System Property</span>
+<div class="onoffswitch" style="float:right;">
+    <input type="checkbox" name="shell.system.property" class="onoffswitch-checkbox opt_item" id="shell.system.property" checked>
+    <label class="onoffswitch-label" for="shell.system.property">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+
+<span class="chklabel">OpenContainingFolder</span>
+<div class="onoffswitch" style="float:right;">
+    <input type="checkbox" name="shell.shortcut.ocf" class="onoffswitch-checkbox opt_item" id="shell.shortcut.ocf" checked>
+    <label class="onoffswitch-label" for="shell.shortcut.ocf">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+
+<span class="chklabel">Autohide taskbar for fullscreen application</span>
+<div class="onoffswitch" style="float:right;">
+    <input type="checkbox" name="shell.fix.fullscreen" class="onoffswitch-checkbox opt_item" id="shell.fix.fullscreen" checked>
+    <label class="onoffswitch-label" for="shell.fix.fullscreen">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+
+</div>
+</fieldset>
+</div>
+    </div>
+</div>
+
+
+<script>
+(function init() {
+    if (!$patch_loaded) {
+      $("#shell_tab").ultab({header:['Base', 'More']});
+    } else {
+      $("#shell_tab").ultab(true);
+    }
+})();
+
+function select_image(elem) {
+  var file = BrowseFile(null);
+  if (file != '') elem.src = file;
+}
+</script>
+</div>

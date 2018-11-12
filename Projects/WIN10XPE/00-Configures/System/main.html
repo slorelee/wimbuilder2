@@ -1,0 +1,175 @@
+<div style="mergin:5px;padding:5px;color:#000;">
+<!--
+<link id="jquery-ui-theme" href="assets/vendor/jquery-ui/themes/hotsneaks/jquery-ui.theme.min.css" rel="stylesheet">
+-->
+<style type="text/css">
+  .left_label {
+      display:inline-block;
+      width: 50%;
+  }
+  .right_val {
+      display:inline-block;
+      width: 40%;
+  }
+</style>
+
+<style>
+fieldset {
+  /*background: rgba(255,255,255,.3);
+  border-color: rgba(255,255,255,.6);*/
+  border-style: solid;
+  border-width: 2px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  padding: 2px 10px;
+  margin-bottom: 2px;
+  width:360px;
+  font-size:0.8em;
+}
+
+fieldset legend {
+  color: #302A2A;
+  font: bold 16px/2 Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  text-align: left;
+  text-shadow: 2px 2px 2px rgb(88, 126, 156);
+}
+</style>
+
+<fieldset>
+<label class="left_label">Set ComputerName:</label>
+<input type="text" name="config.computername" class="right_val opt_item" value="WINXPE"/><br/>
+<label class="left_label">WinPE Cache Size(MB):</label>
+<!-- Selectmenu -->
+<select id="fbwf_select" name="config.fbwf.cache" width="40%" class="opt_item">
+    <option selected="selected">2048</option>
+    <option>1024</option>
+    <option>512</option>
+</select>
+
+</fieldset>
+
+<fieldset>
+<legend>Theme Options</legend>
+<style>
+.chklabel {
+  padding-top:2px;
+  width:300px;
+  display: inline-block;
+}
+</style>
+<div>
+<span class="chklabel">Explorer Dark Theme(>v1809)</span>
+<div class="onoffswitch" style="float:right;">
+    <input type="checkbox" name="system.darktheme" class="onoffswitch-checkbox opt_item" id="system.darktheme">
+    <label class="onoffswitch-label" for="system.darktheme">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+</div>
+
+<div>
+<style>
+#colors_panel input[type="radio"] + label {
+    border: 2px solid transparent;
+    display: block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    vertical-align: middle;
+    color: black;
+    font-size:.6em;
+    margin-left: 3px;
+    margin-top: -15px;
+    cursor: pointer;
+}
+
+#colors_panel input[type="radio"]:hover + label {
+    border: 2px solid black;
+}
+
+#colors_panel input[type="radio"]:checked + label {
+    border: 2px solid black;
+}
+
+</style>
+<span class="chklabel">Windows Title Bars Color:</span>
+<div id="colors_panel" style="float:left;">
+</div>
+</div>
+
+</fieldset>
+
+<fieldset>
+<legend>Power Options</legend>
+  <table>
+    <tr><td /><td>On Battery&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Plugged In&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+    <tr><td>Turn off display(mins):</td>
+      <td><input id="off_disp_bat" name="system.power.off_disp_bat" min="0" max="300" value="0" class="opt_item" style="width:30px"></td>
+      <td><input id="off_disp_plug" name="system.power.off_disp_plug" min="0" max="300" value="0" class="opt_item" style="width:30px"></td>
+    </tr>
+    <tr><td>Turn off hard disk(mins):</td>
+      <td><input id="off_disk_bat" name="system.power.off_disk_bat" min="0" max="300" value="20" class="opt_item" style="width:30px"></td>
+      <td><input id="off_disk_plug" name="system.power.off_disk_plug" min="0" max="300" value="0" class="opt_item" style="width:30px"></td>
+    </tr>
+    <tr><td>Disable USB Selective suspend:</td>
+      <td align="center"><input type="checkbox" name="system.power.dis_usb_suspend_bat" class="opt_item" checked /></td>
+      <td align="center"><input type="checkbox" name="system.power.dis_usb_suspend_plug" class="opt_item" checked /></td>
+    </tr>
+  </table>
+</fieldset>
+
+<fieldset>
+<legend>Volume Options</legend>
+<!-- Spinner -->
+<label class="left_label">System Volume At Startup:</label>
+<input id="volume_level" name="system.volume_level" min="0" max="100" value="33" class="opt_item" style="width:30px"><br/>
+<div style="margin:3px;"><input type="checkbox" name="system.volume_mute" class="opt_item">Mute The System Volume At Startup</div><br/>
+</fieldset>
+
+<div style="margin:3px;font-size:.8em;"><input type="checkbox" name="system.numlock" class="opt_item" checked>NumLock ON</div><br/>
+
+</div>
+
+<script>
+(function() {
+    if (!$patch_loaded) {
+        draw_colors_panel();
+        //$patches_opt["theme.title_color"] = "1";
+    }
+    $("#fbwf_select").selectmenu();
+    $("#fbwf_select").selectmenu( "option", "width", '40%' );
+    $("#volume_level").spinner();
+    $("#off_disp_bat").spinner();
+    $("#off_disp_plug").spinner();
+    $("#off_disk_bat").spinner();
+    $("#off_disk_plug").spinner();
+    $(':radio[id^=bt-]').checkboxradio();
+})();
+
+
+function draw_colors_panel() {
+    var colors_pool = ['#FFFFFF', '#FFFFFF', '#FFB900', '#F7630C', '#EF6950', '#E81123', '#B146C2', '#9A0089',
+                       '#0078D7', '#0063B1', '#038387', '#00CC6A', '#107C10', '#567C73', '#5D5A58', '#847545'];
+    var count = 0;
+    var html = '<table>';
+    for(i=0;i<2;i++) {
+      html+= "<tr>";
+      for(j=0;j<8;j++) {
+       html+= '<td align="center"><input type="radio" id="color_radio_' + count + '" name="theme.title_color" class="opt_item" value="'
+           + count + '" style="opacity:0" />'
+           + '<label for="color_radio_' + count + '" style="background:' + colors_pool[count] + '"/></td>';
+       count++;
+      }
+      html+= "</tr>";
+     }
+    html+= '</table>';
+    $('#colors_panel').html(html);
+    $('#colors_panel label').eq(0).html('None');
+    $('#colors_panel label').eq(1).html('Auto');
+}
+</script>

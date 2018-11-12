@@ -1,0 +1,42 @@
+<!--INIT
+var patch_opt = {
+  "build.source":"light",
+  "build.registry.software":"merge"
+}
+INIT-->
+
+<div style="margin:5px 10px 5px 0px">
+<!--
+<link id="jquery-ui-theme" href="assets/vendor/jquery-ui/themes/hotsneaks/jquery-ui.theme.min.css" rel="stylesheet">
+-->
+  <fieldset>
+    <legend>Build source: </legend>
+    <label for="bt-1">Full Winre.wim</label>
+    <input type="radio" name="build.source" class="opt_item" value="full" id="bt-1">
+    <label for="bt-2">Winre.wim with light WinSxS</label>
+    <input type="radio" name="build.source" class="opt_item" value="light" id="bt-2" checked>
+  </fieldset>
+
+  <div style="margin:10px 2px;padding:5px;border: 1px solid #c0c0c0;">
+
+    <input type="radio" class="opt_item" name="build.registry.software" value="full" /> Use full install.wim's SOFTWARE hive<br/>
+    <input type="radio" class="opt_item" name="build.registry.software" value="merge" checked/> Merge hive from install.wim<br/>
+    <div style='font-size:0.8em;'>
+      <ul>
+        <li>Copy HKLM\Software\Classes\AppID</li>
+        <li>Copy HKLM\Software\Classes\CLSID</li>
+        <li>Copy HKLM\Software\Classes\Interface</li>
+        <li>Copy HKLM\Software\Classes\TypeLib</li>
+        <li>...</li>
+        <li>Remove "RunAs"="Interactive User"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin:3px;font-size:.8em;"><input type="checkbox" name="build.wow64support" class="opt_item">WOW64 Support</div><br/>
+<script>
+(function() {
+    $(':radio[id^=bt-]').checkboxradio();
+})();
+</script>
+</div>

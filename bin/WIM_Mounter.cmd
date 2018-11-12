@@ -16,6 +16,10 @@ if "x%chk_file%"=="x" (
 )
 set chk_file=
 
+if exist "%~3\Windows" (
+    rd /s /q "%~3"
+)
+
 if not exist "%~3" mkdir "%~3"
 
 if "x%USE_WIMLIB%"=="x1" (

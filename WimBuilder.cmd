@@ -16,7 +16,7 @@ if "x%~1"=="xrunas" (SHIFT)
 
 rem init i18n file
 set "I18N_SCRIPT=%~dp0i18n\i18n_.wsf"
-for /f "tokens=3 delims=='; " %%i in ('findstr "$lang" config.js') do (
+for /f "tokens=2 delims=='; " %%i in ('findstr "$lang" config.js') do (
   set LocaleID=%%i
 )
 if not "x%LocaleID%"=="x" goto :SKIP_AUTO_LANG

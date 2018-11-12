@@ -1,10 +1,10 @@
 $width = 1200;
 $height = 800;
-var $lang = '';
+$lang = '';
 
-var $wb_workspace = '.';
-var $wb_src = 'D:\\Win10src\\install.wim';
-var $wb_base = 'D:\\Win10src\\boot.wim';
+$wb_workspace = '.';
+$wb_src = 'D:\\sources\\install.wim';
+$wb_base = 'D:\\sources\\winre.wim';
 
-var $wb_src_index = 1;
-var $wb_base_index = 1;
+$wb_src_index = 1;
+$wb_base_index = 1;

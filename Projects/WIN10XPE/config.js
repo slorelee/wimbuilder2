@@ -18,6 +18,7 @@ function patches_state_init() {
     check_tree_node('01-Components/DWM');
     check_tree_node('01-Components/IME');
     check_tree_node('01-Components/MMC');
+    check_tree_node('01-Components/za-Accessories');
     open_tree_node('01-Components');
 }
 

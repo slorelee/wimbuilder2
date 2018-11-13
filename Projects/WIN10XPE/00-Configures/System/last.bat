@@ -7,5 +7,5 @@ if "x%opt[system.darktheme]%"=="xtrue" (
 
 rem NumLock on/off
 if not "x%opt[system.numlock]%"=="xfalse" (
-    reg add "HKLM\Tmp_Default\Control Panel\Keyboard" /v InitialKeyboardIndicators /t REG_DWORD /d 2 /f
+    reg add "HKLM\Tmp_Default\Control Panel\Keyboard" /v InitialKeyboardIndicators /d 2 /f
 )

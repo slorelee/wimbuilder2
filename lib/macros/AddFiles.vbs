@@ -113,6 +113,9 @@ Sub addfile(fn)
   'no mui for folder
   If Right(fn, 1) = "\" Then Exit Sub
   If Right(fn, 4) = ".mui" Then Exit Sub
-
-  outs = outs & g_path & "??-??\" & fn & ".mui" & vbCrLf
+  If Right(fn, 4) = ".msc" Then
+    outs = outs & g_path & "??-??\" & fn & vbCrLf
+  Else
+    outs = outs & g_path & "??-??\" & fn & ".mui" & vbCrLf
+  End If
 End Sub

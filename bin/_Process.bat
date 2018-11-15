@@ -111,6 +111,11 @@ if "x%WB_SRC_INDEX%"=="x" set WB_SRC_INDEX=1
 call :MKPATH "%_WB_PE_WIM%"
 call copy /y "%WB_BASE%" "%_WB_PE_WIM%"
 
+rem call _pre_wim.bat before mounting
+if exist "%WB_WORKSPACE%\Projects\%WB_PROJECT%\_pre_wim.bat" (
+    call "%WB_WORKSPACE%\Projects\%WB_PROJECT%\_pre_wim.bat"
+)
+
 call WIM_Mounter "%_WB_PE_WIM%" %WB_BASE_INDEX% "%_WB_MNT_DIR%" base_wim_mounted
 if not "%base_wim_mounted%"=="1" (
   call :cecho ERROR "mount base wim file failed."

@@ -17,6 +17,8 @@ if "x%1"=="x0" (
   del /f /q /a X:\Windows\System32\config\*{*}* 1>nul 2>nul
   del /f /q /a X:\Windows\System32\SMI\Store\Machine\*.LOG* 1>nul 2>nul
   del /f /q /a X:\Windows\System32\SMI\Store\Machine\*{*}* 1>nul 2>nul
+  del /f /q /a X:\Users\Default\*.LOG* 1>nul 2>nul
+  del /f /q /a X:\Users\Default\*{*}* 1>nul 2>nul
   set UNMNT_OPT=/commit
 )
 

@@ -73,9 +73,17 @@ if ERRORLEVEL 1 set GetLastError=1
 :DEAL_SYSTEM
 if /i "x%2"=="xUNLOAD" (
   reg query HKLM\%1_SYSTEM /ve 2>nul 1>&2
-  if ERRORLEVEL 1 goto :DEAL_NTUSER
+  if ERRORLEVEL 1 goto :DEAL_DRIVERS
 )
 (REG %2 HKLM\%1_SYSTEM %COMMENT_STR% %FILEPATH%\SYSTEM)
+if ERRORLEVEL 1 set GetLastError=1
+
+:DEAL_DRIVERS
+if /i "x%2"=="xUNLOAD" (
+  reg query HKLM\%1_DRIVERS /ve 2>nul 1>&2
+  if ERRORLEVEL 1 goto :DEAL_NTUSER
+)
+(REG %2 HKLM\%1_DRIVERS %COMMENT_STR% %FILEPATH%\DRIVERS)
 if ERRORLEVEL 1 set GetLastError=1
 
 :DEAL_NTUSER

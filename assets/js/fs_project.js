@@ -37,28 +37,28 @@ var Project = {
                 var name = fenum.item().Name;
                 var cid = pdir + '/' + name;
                 if (pid == '#') cid = name;
-                if (!fso.FileExists(cdir + '/' + name + '/main.html')) return '';
+                if (fso.FileExists(cdir + '/' + name + '/main.html')) {
+                    var i18n = load_utf8_file(cdir + '/' + name + '/' + $lang + '.js');
+                    var state_opened = false;
+                    var state_selected = true;
+                    if (i18n != '') {
+                        var patch_name = null;
+                        var patch_opened = null;
+                        var patch_selected = null;
+                        eval(i18n);
+                        if (patch_name != null) name = patch_name;
+                        if (patch_opened != null) state_opened = patch_opened;
+                        if (patch_selected != null) state_selected = patch_selected;
+                    } else {
+                        var pos = name.indexOf('-');
+                        if (pos >= 0) name = name.substring(pos + 1);
+                    }
 
-                var i18n = load_utf8_file(cdir + '/' + name + '/' + $lang + '.js');
-                var state_opened = false;
-                var state_selected = true;
-                if (i18n != '') {
-                    var patch_name = null;
-                    var patch_opened = null;
-                    var patch_selected = null;
-                    eval(i18n);
-                    if (patch_name != null) name = patch_name;
-                    if (patch_opened != null) state_opened = patch_opened;
-                    if (patch_selected != null) state_selected = patch_selected;
-                } else {
-                    var pos = name.indexOf('-');
-                    if (pos >= 0) name = name.substring(pos + 1);
+                    var item = { "id" : cid , "parent" : pid, "text" : name,
+                     "state": {opened: state_opened, checked: state_selected} };
+                    arr.push(item);
+                    get_sub_patches(rootdir, cid, cid, arr);
                 }
-
-                var item = { "id" : cid , "parent" : pid, "text" : name,
-                 "state": {opened: state_opened, checked: state_selected} };
-                arr.push(item);
-                get_sub_patches(rootdir, cid, cid, arr);
                 fenum.moveNext();
             }
         };

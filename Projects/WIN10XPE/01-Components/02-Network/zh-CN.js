@@ -1,1 +1,1 @@
-﻿patch_name = "网络";
+﻿patch_name = "网络支持";

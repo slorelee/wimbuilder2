@@ -1,9 +1,10 @@
 function show_projects() {
     var dirs = get_subdirs('Projects');
     $('#project_list').html("");
-    for (i in dirs) {
-        $('#project_list').append(pj_button(dirs[i]));
-    }
+    dirs.forEach(function(item) {
+        $('#project_list').append(pj_button(item));
+    });
+
     if (selected_project != null) {
         $('#pj_' + selected_project).text(selected_project + '   *');
         $('#pj_' + selected_project).addClass('project-selected');

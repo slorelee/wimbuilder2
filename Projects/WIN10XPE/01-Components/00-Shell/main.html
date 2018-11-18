@@ -6,7 +6,7 @@ var patch_opt = {
   "shell.taskbar.combine":"never"
 }
 INIT-->
-
+<div>
 <style>
 .box {
     background-color: #f1f1f1;
@@ -20,8 +20,7 @@ INIT-->
 <p>Shell settings</p>
 </div>
 
-<div id="shell_tab" style="margin-right:5px">
-    <div class="tab tab0">
+
 <style>
 fieldset {
     /*background: rgba(255,255,255,.3);
@@ -46,7 +45,13 @@ fieldset legend {
     text-shadow: 2px 2px 2px rgb(88, 126, 156);
 }
 </style>
-<div style="float:left;">
+
+<div id="shell_tab">
+    <div class="tab tab0">
+
+<!-- TAB0 START -->
+<div>
+<!-- TAB0 LEFT START -->
 <div style="float:left;">
 <fieldset>
 <legend>Shell</legend>
@@ -60,7 +65,9 @@ fieldset legend {
    width="260" height="195" onclick="select_image(this)" />
 </fieldset>
 </div>
+<!-- TAB0 LEFT END -->
 
+<!-- TAB0 RIGHT START -->
 <div style="float:right;margin-right:20px;">
 <fieldset>
 <legend>Desktop</legend>
@@ -81,9 +88,14 @@ fieldset legend {
 <input type="radio" class="opt_item" name="shell.taskbar.combine" value="never" checked> Never combine</input><br/>
 </fieldset>
 </div>
+<!-- TAB0 RIGHT END -->
+
 </div>
-</div>
+<!-- TAB0 END -->
+    </div>
+
     <div class="tab tab1">
+<!-- TAB1 START -->
 <div>
 <fieldset>
 <legend>Fix with WinXShell</legend>
@@ -153,6 +165,7 @@ fieldset legend {
 </div>
 </fieldset>
 </div>
+<!-- TAB1 END -->
     </div>
 </div>
 

@@ -34,7 +34,7 @@
       ul.addClass('uk-tab');
       _this.prepend(ul);
 
-      for (var i in options.header) {
+      options.header.forEach(function(item, i) {
         var li = $('<li><a href="#">' + options.header[i] + '</a></li>');
         if (i == options.active) {
           li.addClass('uk-active');
@@ -42,7 +42,7 @@
         }
         regist_click_event(li, {parent:_this, ul:ul, i:i});
         ul.append(li);
-      }
+      });
     })
     return $(this);
   }

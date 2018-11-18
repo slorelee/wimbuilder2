@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!--WimBuilder_UI.hta-->
 <html>
 <head>
@@ -7,8 +8,7 @@
 
     <title>Wim Builder</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=10" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="assets/vendor/pure-min.css" />
     <link rel="stylesheet" href="assets/vendor/jstree/themes/default/style.min.css" />
     <link rel="stylesheet" href="assets/vendor/jquery-ui/jquery-ui.min.css">
@@ -19,43 +19,108 @@
     <link rel="stylesheet" href="assets/css/ibutton.css" />
     <link rel="stylesheet" href="assets/css/switch.css" />
     <link rel="stylesheet" href="assets/htakit/css/uikit-tab.css" />
-
-    <script src="assets/vendor/jquery-3.3.1.min.js"></script>
-    <script src="assets/vendor/jstree/jstree.min.js"></script>
-    <script src="assets/vendor/marked.min.js"></script>
-    <script src="assets/vendor/jquery-ui/jquery-ui.min.js"></script>
-    <script src="assets/htakit/js/htakit.js"></script>
-    <script src="assets/js/fs_project.js"></script>
-    <script src="assets/js/fs_patch.js"></script>
-    <script src="assets/js/helper_html.js"></script>
-    <script src="assets/js/helper_i18n.js"></script>
-    <script src="assets/js/helper_page.js"></script>
-    <script src="assets/js/definition.js"></script>
-    <script src="assets/default_config.js"></script>
-    <script src="config.js"></script>
-    <script type="text/javascript">
-        function window_onload() {
-            var w = $width, h = $height; 
-            window.resizeTo(w, h); 
-            window.moveTo((window.screen.width - w) / 2,
-                (window.screen.height - h) / 2); 
-        }
-        window_onload();
-    </script>
 </head>
 
 <body>
+<script>var $IE_VER = '0';</script>
+ <!--[if lte IE 6]>
+    <script>$IE_VER = '-6';</script>
+ <![endif]-->
+
+  <!--[if IE 7]>
+    <script>$IE_VER = '7';</script>
+ <![endif]-->
+
+ <!--[if lt IE 9]>
+    <script>$IE_VER = '8';</script>
+    <script src="assets/js/ES5_fix.js"></script>
+    <script src="assets/vendor/jquery-1.12.4.min.js"></script>
+    <style>
+        /* overwrite onoffswitch css */
+        .onoffswitch-label {
+        display: none;
+        }
+    </style>
+<![endif]-->
+
+ <!--[if gte IE 9]>
+      <script>alert($IE_VER);</script>
+      <script>$IE_VER = '9+';</script>
+      <script src="assets/vendor/jquery-3.3.1.min.js"></script>
+<![endif]-->
+
+<script>
+// Edage
+if ($IE_VER == '0') {
+    $IE_VER = '9+';
+    document.write('<script src="assets/vendor/jquery-3.3.1.min.js"><\/script>');
+    /*
+    var head_script = document.createElement("script");
+    head_script.type = "text/javascript";
+    head_script.src = "assets/vendor/jquery-3.3.1.min.js";
+    document.getElementsByTagName('head')[0].appendChild(head_script);
+    */
+}
+</script>
+
+<script src="assets/vendor/jstree/jstree.min.js"></script>
+<script src="assets/vendor/marked.min.js"></script>
+<script src="assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+<script src="assets/htakit/js/htakit.js"></script>
+<script src="assets/js/fs_project.js"></script>
+<script src="assets/js/fs_patch.js"></script>
+<script src="assets/js/helper_html.js"></script>
+<script src="assets/js/helper_i18n.js"></script>
+<script src="assets/js/helper_page.js"></script>
+<script src="assets/js/definition.js"></script>
+<script src="assets/default_config.js"></script>
+<script src="config.js"></script>
+
 <div>
   <input type="file" style="display:none" id="$f" /> <!-- gobal OpenFileDialog element -->
 </div>
 <div id="layout">
 
 <!-- ############################# Menu Start ############################# -->
-<a href="#menu" id="menuLink" class="menu-link">
-        <!-- Hamburger icon -->
-        <span></span>
-</a>
-<div id="menu">
+<script>
+if ($IE_VER == '9+') {
+    document.write('<a href="#menu" id="menuLink" class="menu-link">');
+    document.write('        <!-- Hamburger icon -->');
+    document.write('        <span></span>');
+    document.write('</a>');
+}
+</script>
+
+ <!--[if lt IE 9]>
+<div>
+<div id="menu_fixed" style="float:left;width:150px">
+<style>
+#menu_fixed .pure-menu {
+  height:100%;
+  background:#000;
+}
+
+#menu_fixed .pure-menu-heading {
+  color:#fff;
+}
+#menu_fixed .pure-menu-item:active {
+    background:#eee;
+}
+#menu_fixed .pure-menu-selected {
+    background:#1f8dd6;
+}
+
+#menu_fixed .pure-menu-selected a {
+    color:#fff;
+}
+</style>
+<![endif]-->
+
+<script>
+if ($IE_VER == '9+') {
+    document.write('<div id="menu">');
+}
+</script>
     <div class="pure-menu">
         <a class="pure-menu-heading" href="#">WimBuilder</a>
         <ul class="pure-menu-list">
@@ -70,7 +135,16 @@
 <!-- ############################# Menu End ############################# -->
 
 <!-- ############################# content Start ############################# -->
-<div id="content">
+
+<!--[if lt IE 9]>
+<div id="content" style="margin-left:160px">
+<![endif]-->
+
+<script>
+if ($IE_VER == '9+') {
+    document.write('<div id="content">');
+}
+</script>
 
 <!-- ############################# page_start Start ############################# -->
 <div id="page_start" class="content_page">
@@ -191,9 +265,23 @@
 
 </div>
 <!-- ############################# content End ############################# -->
-
+ <!--[if lt IE 9]>
+ </div>
+<![endif]-->
 
 </div>
+<script type="text/javascript">
+    function window_onload() {
+        var w = $width, h = $height; 
+        window.resizeTo(w, h); 
+        window.moveTo((window.screen.width - w) / 2,
+            (window.screen.height - h) / 2); 
+    }
+    window_onload();
+    if ($IE_VER != '9+') {
+        $("#menu_fixed").css('height', $height - 42);
+    }
+</script>
 <script src="assets/js/page_start.js"></script>
 <script src="assets/js/page_project.js"></script>
 <script src="assets/js/page_patches.js"></script>

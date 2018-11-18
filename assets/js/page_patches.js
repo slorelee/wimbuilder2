@@ -135,7 +135,11 @@ function patch_onselect(id) {
     } else {
         patch = Patch.New($obj_project, id);
         $patch_loaded = false;
-        content = $(patch.html);
+        var html = patch.html;
+        if ($IE_VER != '9+') {
+            html = html.replace(/onoffswitch-checkbox/g, 'onoffswitch-checkbox_DIS');
+        }
+        content = $(html);
         $obj_patches[id] = content;
         need_init = true;
     }

@@ -53,6 +53,22 @@ call :CLOG 97:104m "[%WB_PROJECT%] --- build information"
 set WB_
 echo.
 
+rem extract winre.wim from install.wim
+if /i not "%WB_BASE%"=="winre.wim" goto :PHRASE_GETINFO
+if "x%WB_SRC%"=="x" (
+  call :cecho ERROR "mount base wim file failed(can't get winre.wim)."
+  call :CLEANUP
+)
+
+call :MKPATH "%_WB_PE_WIM%"
+call wimextract "%WB_SRC%" %WB_SRC_INDEX% "Windows\System32\Recovery\WinRe.wim" --dest-dir="%Factory%\target\%WB_PROJECT%" --no-acls --nullglob
+if not exist "%_WB_PE_WIM%" (
+  call :cecho ERROR "mount base wim file failed(can't get winre.wim)."
+  call :CLEANUP
+)
+set "WB_BASE=%_WB_PE_WIM%"
+
+:PHRASE_GETINFO
 call :cecho PHRASE "PHRASE:Get WIM image INFO"
 for /f "tokens=1,2 delims=:(" %%i in ('DismX /Get-WimInfo /WimFile:"%WB_BASE%" /Index:%WB_BASE_INDEX% /English') do (
   if "%%i"=="Architecture " set WB_PE_ARCH=%%j
@@ -109,7 +125,12 @@ if "x%WB_BASE_INDEX%"=="x" set WB_BASE_INDEX=1
 if "x%WB_SRC_INDEX%"=="x" set WB_SRC_INDEX=1
 
 call :MKPATH "%_WB_PE_WIM%"
+
+if /i "%WB_BASE%"=="winre.wim" goto :BASE_WIM_PREPARED
+
 call copy /y "%WB_BASE%" "%_WB_PE_WIM%"
+
+:BASE_WIM_PREPARED
 
 rem call prepare.bat before mounting
 if exist "%WB_WORKSPACE%\Projects\%WB_PROJECT%\prepare.bat" (

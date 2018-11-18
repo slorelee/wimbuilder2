@@ -5,6 +5,9 @@ set opt
 
 cd /d "%~dp0"
 
+rem BUILD_NUMBER
+for /f "tokens=3 delims=." %%v in ("%WB_PE_VER%") do set VER[3]=%%v
+
 if "x%opt[build.registry.software]%"=="xfull" (
   call PERegPorter.bat Tmp UNLOAD 1>nul
   call AddFiles \Windows\System32\config\SOFTWARE

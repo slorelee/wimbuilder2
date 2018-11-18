@@ -16,14 +16,16 @@ for /F %%i IN ('Reg Query HKLM\Tmp_Software\Classes\AppID /s /f "Interactive Use
 call RegCopy HKLM\Software\Classes\CLSID
 call RegCopy HKLM\Software\Classes\Interface
 call RegCopy HKLM\Software\Classes\TypeLib
+rem //-
 call RegCopy HKLM\Software\Classes\Folder
 call RegCopy HKLM\Software\Classes\themefile
 call RegCopy HKLM\Software\Classes\SystemFileAssociations
+rem //-
 call RegCopy "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Svchost"
 call RegCopy HKLM\Software\Microsoft\SecurityManager
 call RegCopy HKLM\Software\Microsoft\Ole
 
-rem policymanager.dll need:
+rem // policymanager.dll need:
 call RegCopy HKLM\Software\Microsoft\PolicyManager
 rem call RegCopy HKLM\Software\Classes\Unknown
 

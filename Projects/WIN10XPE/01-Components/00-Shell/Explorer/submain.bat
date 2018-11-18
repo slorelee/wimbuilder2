@@ -23,8 +23,9 @@ desktop.ini
 \Windows\System32\xx-xx\comctl32.dll.mui
 
 @\Windows\System32\
+comctl32.dll
 +mui
-actxprxy.dll,AppHelp.dll,AppResolver.dll,atlthunk.dll,avifil32.dll,clip.exe,Clipc.dll,comctl32.dll
+actxprxy.dll,AppHelp.dll,AppResolver.dll,atlthunk.dll,avifil32.dll,clip.exe,Clipc.dll
 control.exe,comsvcs.dll,CoreMessaging.dll,CoreUIComponents.dll,cscapi.dll
 ctfmon.exe,desk.cpl,edputil.dll
 ELSCore.dll,IconCodecService.dll,imageres.dll,InfDefaultInstall.exe
@@ -35,7 +36,7 @@ rmclient.dll,rshx32.dll,sendmail.dll
 SettingSyncCore.dll,SharedStartModel.dll,ShellCommonCommonProxyStub.dll,shfolder.dll,shutdown.exe
 StartTileData.dll,stobject.dll,systemcpl.dll,TDLMigration.dll,TextInputFramework.dll,thumbcache.dll
 twinapi.appcore.dll,twinapi.dll,twinui.appcore.dll,twinui.pcshell.dll,UIAnimation.dll,UIRibbon.dll,UIRibbonRes.dll
-VEEventDispatcher.dll,Windows.Internal.Shell.Broker.dll,Windows.Networking.Connectivity.dll,WorkFoldersShell.dll,zipfldr.dll
+VEEventDispatcher.dll,Windows.Gaming.Input.dll,Windows.Internal.Shell.Broker.dll,Windows.Networking.Connectivity.dll,WorkFoldersShell.dll,zipfldr.dll
 
 +ver > 17000
 cdp.dll,dsreg.dll,VEEventDispatcher.dll
@@ -69,7 +70,8 @@ timedate.cpl,main.cpl,intl.cpl
 ExplorerFrame.dll
 
 ; DragAndDrop (d2d1.dll,ksuser.dll already in Winre.wim)
-DataExchange.dll,dcomp.dll,d3d11.dll,dxgi.dll,d2d1.dll,ksuser.dll
+DataExchange.dll,dcomp.dll,d3d11.dll,dxgi.dll
+;d2d1.dll,ksuser.dll
 
 ; CopyProgress
 -mui
@@ -91,15 +93,6 @@ dtsh.dll,shpafact.dll,networkexplorer.dll,provsvc.dll
 ; Addional Cmds
 cacls.exe,Comp.exe,choice.exe,Fc.exe,findstr.exe
 Help.exe,Label.exe,Makecab.exe,sc.exe,Sort.exe
-
-; Search
-\Windows\INF\wsearchidxpi
-esent.dll,NaturalLanguage6.dll,NOISE.DAT,MSWB7.dll
-mssph.dll,mssprxy.dll,mssrch.dll,mssvp.dll,mssitlb.dll
-query.exe,query.dll,SearchFilterHost.exe,SearchFolder.dll,SearchIndexer.exe,SearchProtocolHost.exe
-srchadmin.dll,StructuredQuery.dll,tquery.dll
-Windows.Shell.Search.UriHandler.dll,Windows.Storage.Search.dll,wsepno.dll
-prm*.dll,MLS*.dll
 
 ; ShellHWDetection
 shsvcs.dll

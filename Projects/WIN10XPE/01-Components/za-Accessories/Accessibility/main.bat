@@ -13,9 +13,12 @@ goto :end_files
 
 ; In Common Osk Paint Wordpad
 IconCodecService.dll,UIRibbonRes.dll
-WindowsCodecs.dll,WindowsCodecsExt.dll
+;WindowsCodecs.dll already in winre.wim
+WindowsCodecsExt.dll
+
 +mui
-mfc42u.dll,UIRibbon.dll
+; mfc42u.dll already in winre.wim
+UIRibbon.dll
 
 ; Osk
 osk.exe,utilman.exe,OskSupport.dll

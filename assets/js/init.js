@@ -17,11 +17,17 @@ i18n_init();
 i18n_trans();
 
 function page_init() {
-    if (!fso.FileExists($wb_base)) {
-        $('#menu_start').click();
+    if ($wb_base == "winre.wim" && fso.FileExists($wb_src)) {
+        $('#menu_project').click();
         return;
     }
-    $('#menu_project').click();
+
+    if (fso.FileExists($wb_base)) {
+        $('#menu_project').click();
+        return;
+    }
+
+    $('#menu_start').click();
 }
 
 function i18n_init() {
@@ -38,6 +44,10 @@ function i18n_init() {
 function i18n_trans() {
     $('.i18n-text').each(function(){
         $(this).text($i18n[$(this).text()]);
+    });
+
+    $('.i18n-html').each(function(){
+        $(this).html($i18n[$(this).html()]);
     });
 
     $('.i18n-title').each(function(){

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="assets/css/ibutton.css" />
     <link rel="stylesheet" href="assets/css/switch.css" />
     <link rel="stylesheet" href="assets/htakit/css/uikit-tab.css" />
+    <link rel="stylesheet" href="assets/css/alert.css" />
 </head>
 
 <body>
@@ -148,11 +149,23 @@ if ($IE_VER == '9+') {
 
 <!-- ############################# page_start Start ############################# -->
 <div id="page_start" class="content_page">
-<span style="font-weight:bold;color:#000;" class="i18n-text">Please configure the base infomation:</span><br/>
-<input type="text" id="wb_workspace" style="width:450px" value="D:\WB_Workspace" />
-<a href="#" disabled="disabled" id="wb_workspace_folder_btn" class="ibutton browse i18n-title"
-    title="Set the build workspace">Browse</a><br/>
 
+<div class="alert alert-info i18n-html"><strong>INFO</strong>:You can set the default settings in 'config.js'.</div>
+<br/>
+<div style="display:none"> <!-- hide workspace -->
+<input type="text" id="wb_workspace" style="width:450px" value="D:\WB_Workspace" />
+<a href="#" disabled="disabled" id="wb_workspace_folder_btn" class="ibutton browse i18n-title i18n-text"
+    title="Set the build workspace">Browse...</a><br/>
+</div>
+
+<span style="font-weight:bold;color:#000;" class="i18n-text">Please select the Windows ISO folder/drive, or the "sources" folder(auto detect)</span><br/>
+<input type="text" id="wb_src_folder" style="width:450px" value="" />
+<!-- keep same align -->
+<select style="visibility:hidden"><option value ="-1">-</option></select>
+<a href="#" id="wb_src_folder_btn" class="ibutton browse i18n-title i18n-text"
+    title="Select the image path or the 'sources' folder">Browse...</a><br/>
+
+<span style="font-weight:bold;color:#000;" class="i18n-text">Select the install.wim file if it needed</span><br/>
 <input type="text" id="wb_src" style="width:450px" value="D:\WB_Workspace\mnt\install.wim" />
 <select id='wb_src_idx_opt'>
   <option value ="-1">-</option>
@@ -166,9 +179,12 @@ if ($IE_VER == '9+') {
 
 <a href="#" id="wb_src_wim_btn" class="ibutton browse i18n-title"
     title="Select the install.wim file if it needed">Wim</a>
-<a href="#" id="wb_src_folder_btn" class="ibutton browse i18n-title"
-    title="Select the extracted install.wim folder if it needed">Browse</a><br/>
 
+<input type="checkbox" id="wb_auto_winre"  checked /><span class="i18n-text">Auto extract the winre.wim</span>
+<div id="wb_src_alert" class="alert alert-info i18n-html" style="display:none"><strong>INFO</strong>:the install.wim isn't exist.</div>
+
+<br/>
+<span style="font-weight:bold;color:#000;" class="i18n-text">Select the base image(boot.wim/winre.wim or other customed.wim)</span><br/>
 <input type="text" id="wb_base" style="width:450px" />
 <select id='wb_base_idx_opt'>
   <option value ="-1">-</option>
@@ -180,13 +196,20 @@ if ($IE_VER == '9+') {
   <option value="6">6</option>
 </select>
 
+
 <a href="#" id="wb_base_wim_btn" class="ibutton browse i18n-title" 
     title="Select the base image(boot.wim/winre.wim or other customed.wim)">Wim</a>
+<div id="wb_base_alert" class="alert alert-error i18n-html" style="display:none"><strong>ERROR</strong>:the base wim isn't exist.</div>
 
     <div>
         <button class="pure-button pre-button" enable="false">&lt;pre</button>
         <button class="pure-button next-button" onclick="$('#menu_project').click()">next&gt;</button>
     </div>
+
+<br/>
+<br/>
+<div class="alert alert-warning i18n-html"><strong>Notice</strong>:Please select the correct wim file, and the image index, otherwise cause build failed.</div>
+
 </div>
 <!-- ############################# page_start End ############################# -->
 

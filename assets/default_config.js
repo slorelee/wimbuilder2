@@ -5,7 +5,9 @@ var $i18n = {};
 var $lang = ''; //auto
 
 var $wb_straight_mode = '1';
-var $wb_workspace = 'D:\\WB_workspace';
+
+var $wb_workspace = '.';
+var $wb_src_folder = '';
 var $wb_src = 'D:\\sources\\install.wim';
 var $wb_base = 'D:\\sources\\winre.wim';
 

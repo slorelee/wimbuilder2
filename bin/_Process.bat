@@ -111,9 +111,9 @@ if "x%WB_SRC_INDEX%"=="x" set WB_SRC_INDEX=1
 call :MKPATH "%_WB_PE_WIM%"
 call copy /y "%WB_BASE%" "%_WB_PE_WIM%"
 
-rem call _pre_wim.bat before mounting
-if exist "%WB_WORKSPACE%\Projects\%WB_PROJECT%\_pre_wim.bat" (
-    call "%WB_WORKSPACE%\Projects\%WB_PROJECT%\_pre_wim.bat"
+rem call prepare.bat before mounting
+if exist "%WB_WORKSPACE%\Projects\%WB_PROJECT%\prepare.bat" (
+    call "%WB_WORKSPACE%\Projects\%WB_PROJECT%\prepare.bat" :BEFORE_WIM_MOUNT
 )
 
 call WIM_Mounter "%_WB_PE_WIM%" %WB_BASE_INDEX% "%_WB_MNT_DIR%" base_wim_mounted
@@ -136,6 +136,12 @@ call :techo "Update files with Administrators' FULL ACL rights successfully."
 echo.
 
 :PROJECT_BUILDING
+
+rem call prepare.bat before hive load
+if exist "%WB_WORKSPACE%\Projects\%WB_PROJECT%\prepare.bat" (
+    call "%WB_WORKSPACE%\Projects\%WB_PROJECT%\prepare.bat" :BEFORE_HIVE_LOAD
+)
+
 pushd "%WB_WORKSPACE%\Projects\%WB_PROJECT%"
 
 call PERegPorter.bat Src LOAD 1>nul

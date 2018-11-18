@@ -7,6 +7,17 @@ if "x%ISO_DIR%"=="x" (
   goto :ON_ERROR
 )
 
+rem auto create the _ISO_
+if not exist "%ISO_DIR%" (
+  if exist "%WB_SRC_FOLDER%boot" (
+    call :MKPATH "%ISO_DIR%\sources\"
+    xcopy /E /Y "%WB_SRC_FOLDER%boot" "%ISO_DIR%\boot\"
+    xcopy /E /Y "%WB_SRC_FOLDER%efi" "%ISO_DIR%\efi\"
+    copy /y "%WB_SRC_FOLDER%bootmgr" "%ISO_DIR%\"
+    copy /y "%WB_SRC_FOLDER%bootmgr.efi" "%ISO_DIR%\"
+  )
+)
+
 if not exist "%ISO_DIR%" (
   call :MKPATH "%ISO_DIR%\boot\"
   call :MKPATH "%ISO_DIR%\sources\"

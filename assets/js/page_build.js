@@ -3,6 +3,8 @@ function structure_env(mode) {
     env('WB_STRAIGHT_MODE') = $wb_straight_mode;
 
     env('WB_WORKSPACE') = $wb_workspace;
+
+    env('WB_SRC_FOLDER') = $wb_src_folder;
     env('WB_SRC') = $wb_src;
     env('WB_BASE') = $wb_base;
     env('WB_SRC_INDEX') = $wb_src_index;

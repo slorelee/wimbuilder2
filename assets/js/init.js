@@ -47,7 +47,12 @@ function i18n_trans() {
     });
 
     $('.i18n-html').each(function(){
-        $(this).html($i18n[$(this).html()]);
+       // turn the tag names into lowercase(compatibility for IE8)
+        var key = $(this).html();
+        key = key.replace(/<([^<]+)>/gi, function (x) {
+            return x.toLowerCase();
+        });
+        $(this).html($i18n[key]);
     });
 
     $('.i18n-title').each(function(){

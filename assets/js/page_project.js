@@ -10,6 +10,10 @@ function show_projects() {
         $('#pj_' + selected_project).addClass('project-selected');
     }
     regist_event();
+
+    if (dirs.length == 1 && selected_project == null) {
+        $('#pj_' + dirs[0]).click();
+    }
 }
 
 function regist_event() {

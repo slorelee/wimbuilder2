@@ -19,8 +19,7 @@ desktop.ini
 \Windows\explorer.exe
 \Windows\??-??\explorer.exe.mui
 
-; typo?
-\Windows\System32\xx-xx\comctl32.dll.mui
+\Windows\System32\%WB_PE_LANG%\comctl32.dll.mui
 
 @\Windows\System32\
 comctl32.dll

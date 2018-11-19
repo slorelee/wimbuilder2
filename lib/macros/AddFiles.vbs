@@ -102,6 +102,10 @@ Sub parser(line)
 End Sub
 
 Sub addfile(fn)
+  If InStr(fn, "%") > 0 Then
+    fn = wshShell.ExpandenVironmentStrings(fn)
+  End If
+
   'ignore g_path
   If Left(fn, 1) = "\" Then
     outs = outs & fn & vbCrLf

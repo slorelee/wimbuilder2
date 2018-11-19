@@ -3,7 +3,11 @@ cd /d "%~dp0"
 title WimBuilder(%cd%)
 
 rem run with Administrators right
-bin\IsAdmin.exe
+if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+  bin\x64\IsAdmin.exe
+) else (
+  bin\IsAdmin.exe
+)
 if not ERRORLEVEL 1 (
   if not "x%~1"=="xrunas" (
     set ElevateMe=1
@@ -13,10 +17,12 @@ if not ERRORLEVEL 1 (
 )
 if "x%~1"=="xrunas" (SHIFT)
 
-
 rem init i18n file
 set "I18N_SCRIPT=%~dp0i18n\i18n_.wsf"
-for /f "tokens=2 delims=='; " %%i in ('findstr "$lang" config.js') do (
+
+set findcmd=findstr
+if not exist "%windir%\System32\findstr.exe" set findcmd=find
+for /f "tokens=2 delims=='; " %%i in ('%findcmd% "$lang" config.js') do (
   set LocaleID=%%i
 )
 if not "x%LocaleID%"=="x" goto :SKIP_AUTO_LANG
@@ -57,4 +63,10 @@ rem ========================
 
 rem mount winre.wim/boot.wim with wimlib, otherwise dism
 set USE_WIMLIB=0
+if not "%PROCESSOR_ARCHITECTURE%"=="AMD64" goto :Normal_Start
+if exist "%windir%\SysWOW64\mshta.exe" goto :Normal_Start
+start mshta "%~dp0WimBuilder_UI.hta" %*
+goto :EOF
+
+:Normal_Start
 start WimBuilder_UI.hta %*

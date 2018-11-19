@@ -25,7 +25,7 @@ if not exist "%ISO_DIR%" (
 )
 
 copy /y "%Factory%\target\%WB_PROJECT%\build\boot.wim" "%ISO_DIR%\sources\boot.wim"
-"%~dp0oscdimg.exe" -b"%ISO_DIR%\boot\etfsboot.com" -h -l"%WB_ISO_LABEL%" -m -u2 "%ISO_DIR%" "%Factory%\%WB_ISO_NAME%.iso"
+oscdimg.exe -b"%ISO_DIR%\boot\etfsboot.com" -h -l"%WB_ISO_LABEL%" -m -u2 "%ISO_DIR%" "%Factory%\%WB_ISO_NAME%.iso"
 echo \033[96mISO Created -* %Factory%\%WB_ISO_NAME%.iso | cmdcolor.exe
 if ERRORLEVEL 1 (
   echo make boot iso failed.

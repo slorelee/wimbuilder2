@@ -11,7 +11,8 @@ if "x%USE_WIMLIB%"=="x1" (
 )
 
 rem use imagex for building on Windows 7
-ver|findstr " 6.1." >nul
+if not exist "%windir%\System32\findstr.exe" set findcmd=find
+ver|%findcmd% " 6.1." >nul
 if not ERRORLEVEL 1 (
   if "x%PROCESSOR_ARCHITECTURE%"=="xAMD64" (
     wimexport.cmd "%~1" %WB_BASE_INDEX% "%BUILD_WIM%" --boot

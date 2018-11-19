@@ -17,8 +17,8 @@ goto :EOF
 
 :REG_PORTER
 set GetLastError=0
-set FILEPATH=X:\Windows\System32\config
-set FILEPATH_NTUSER=X:\Users\Default
+set FILEPATH=%X%:\Windows\System32\config
+set FILEPATH_NTUSER=%X%:\Users\Default
 
 if /i "x%1"=="xSrc" (
   if "x%WB_SRC_DIR%"=="x" goto :EOF

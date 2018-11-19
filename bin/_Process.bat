@@ -98,14 +98,14 @@ echo.
 call :cecho PHRASE "PHRASE:Mount WIM image"
 
 rem check X: driver
-if exist X:\ (
-  call :cecho WARN "X: is already use."
-  call :setp yTry "Try SUBST X: /D?[y/n]:"
+if exist %X%:\ (
+  call :cecho WARN "%X%: is already use."
+  call :setp yTry "Try SUBST %X%: /D?[y/n]:"
 )
-if "%yTry%"=="y" SUBST X: /D
-if "%yTry%"=="Y" SUBST X: /D
-if exist X:\ (
-  call :cecho ERROR "X: is already in use, goto CLEANUP."
+if "%yTry%"=="y" SUBST %X%: /D
+if "%yTry%"=="Y" SUBST %X%: /D
+if exist %X%:\ (
+  call :cecho ERROR "%X%: is already in use, goto CLEANUP."
   call :CLEANUP
 )
 
@@ -144,7 +144,7 @@ if not "%base_wim_mounted%"=="1" (
 )
 
 rem NOTICE:explorer.exe don't show X:\ when running with Administrators right
-SUBST X: "%_WB_MNT_DIR%"
+SUBST %X%: "%_WB_MNT_DIR%"
 echo.
 if "x%WB_SKIP_UFR%"=="x1" goto :PROJECT_BUILDING
 rem update files ACL Right

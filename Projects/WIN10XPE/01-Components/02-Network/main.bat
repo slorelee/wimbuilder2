@@ -266,10 +266,10 @@ rem //Partial in Winre.wim call RegCopy HKLM\System\ControlSet001\Services\WinSo
 rem // mrxsmb10
 if exist %X%:\Windows\System32\drivers\mrxsmb10.sys (
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DependOnService /t REG_MULTI_SZ /d mrxsmb /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Description "@%%systemroot%%\system32\wkssvc.dll,-1005" /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DisplayName "@%%systemroot%%\system32\wkssvc.dll,-1004" /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Description /d "@%%systemroot%%\system32\wkssvc.dll,-1005" /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DisplayName /d "@%%systemroot%%\system32\wkssvc.dll,-1004" /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v ErrorControl /t REG_DWORD /d 1 /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Group /fNetwork
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Group /d Network /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v ImagePath /t REG_EXPAND_SZ /d system32\DRIVERS\mrxsmb10.sys /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Start /t REG_DWORD /d 2 /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Tag /t REG_DWORD /d 6 /f

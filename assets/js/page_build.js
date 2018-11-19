@@ -60,7 +60,6 @@ function _cleanup() {
 
 function x_drive_confirm() {
     var rt_env = this;
-    alert($i18n['Continue']);
     $("#x-drive-confirm").dialog({
       resizable: false,
       height: "auto",
@@ -84,7 +83,6 @@ function x_drive_confirm() {
         }
       }]
     });
-    return this.x_drive_confirm_cont;
 }
 
 function cleanup(no_confirm) {

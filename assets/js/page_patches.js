@@ -224,6 +224,7 @@ function dump_patches_selected() {
     var tmp_folder = get_tmp_folder($obj_project.name);
     var patches_selected = $('#patches_tree').jstree(true).get_checked();
     var str = '';
+    patches_selected = patches_selected.sort();
     for(var patch_id in patches_selected) {
         str += patches_selected[patch_id] + "\r\n";
     }

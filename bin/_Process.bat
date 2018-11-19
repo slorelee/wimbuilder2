@@ -29,7 +29,7 @@ rem type nul>%LOGFILE%
 
 
 if "x%WB_BASE%"=="x" call :NO_ENV_CONF WB_BASE
-
+set _WB_BASE_EXTRACTED=0
 set "_WB_MNT_DIR=%Factory%\target\%WB_PROJECT%\mounted"
 call :GETNAME "%WB_BASE%"
 set "_WB_PE_WIM=%Factory%\target\%WB_PROJECT%\%RET_GETNAME%"
@@ -66,6 +66,7 @@ if not exist "%_WB_PE_WIM%" (
   call :cecho ERROR "mount base wim file failed(can't get winre.wim)."
   call :CLEANUP
 )
+set _WB_BASE_EXTRACTED=1
 set "WB_BASE=%_WB_PE_WIM%"
 
 :PHRASE_GETINFO
@@ -126,7 +127,7 @@ if "x%WB_SRC_INDEX%"=="x" set WB_SRC_INDEX=1
 
 call :MKPATH "%_WB_PE_WIM%"
 
-if /i "%WB_BASE%"=="winre.wim" goto :BASE_WIM_PREPARED
+if "%_WB_BASE_EXTRACTED%"=="1" goto :BASE_WIM_PREPARED
 
 call copy /y "%WB_BASE%" "%_WB_PE_WIM%"
 

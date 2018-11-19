@@ -13,7 +13,11 @@ if "x%USE_WIMLIB%"=="x1" (
 rem use imagex for building on Windows 7
 ver|findstr " 6.1." >nul
 if not ERRORLEVEL 1 (
-  imagex.exe /Export "%~1" %WB_BASE_INDEX% "%BUILD_WIM%" /boot
+  if "x%PROCESSOR_ARCHITECTURE%"=="xAMD64" (
+    wimexport.cmd "%~1" %WB_BASE_INDEX% "%BUILD_WIM%" --boot
+  ) else (
+    imagex.exe /Export "%~1" %WB_BASE_INDEX% "%BUILD_WIM%" /boot
+  )
 ) else (
   call DismX /Export-Image /SourceImageFile:"%~1" /SourceIndex:%WB_BASE_INDEX% /DestinationImageFile:"%BUILD_WIM%" /Bootable
 )

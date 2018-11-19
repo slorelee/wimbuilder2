@@ -264,7 +264,7 @@ rem //In Winre.wim call RegCopy HKLM\System\ControlSet001\Services\wdiwifi
 rem //Partial in Winre.wim call RegCopy HKLM\System\ControlSet001\Services\WinSock
 rem //Partial in Winre.wim call RegCopy HKLM\System\ControlSet001\Services\WinSock2
 rem // mrxsmb10
-if exist X:\Windows\System32\drivers\mrxsmb10.sys (
+if exist %X%:\Windows\System32\drivers\mrxsmb10.sys (
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DependOnService /t REG_MULTI_SZ /d mrxsmb /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Description "@%%systemroot%%\system32\wkssvc.dll,-1005" /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DisplayName "@%%systemroot%%\system32\wkssvc.dll,-1004" /f

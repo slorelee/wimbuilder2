@@ -11,7 +11,7 @@ rem BUILD_NUMBER
 for /f "tokens=3 delims=." %%v in ("%WB_PE_VER%") do set VER[3]=%%v
 rem ===================================
 rem SYSTEM_PATH
-set X=X
+rem set X=%WB_X_DRIVE%
 set X_WIN=%X%\Windows
 set X_SYS=%X_WIN%\System32
 rem ===================================

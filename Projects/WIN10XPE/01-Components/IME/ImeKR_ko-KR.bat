@@ -158,12 +158,7 @@ if not "x%opt[build.registry.software]%"=="xfull" (
 
 call :Keyboard_ko-KR_Reg
 
-rem create Register IME dlls script
-if "x%opt[build.registry.software]%"=="xfull" (
-  echo start ctfmon.exe>X:\Windows\System32\IME_Cmd.cmd
-) else (
-  copy /y IME_Cmd.txt X:\Windows\System32\IME_Cmd.cmd
-)
+set IME_Startup=1
 goto :EOF
 
 

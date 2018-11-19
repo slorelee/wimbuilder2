@@ -11,3 +11,10 @@ function i18n_init() {
         document.write('<script src="' + i18n_file + '"><\/script>');
     }
 }
+
+function i18n_t(key) {
+    if (key in $i18n) {
+        return $i18n[key];
+    }
+    return key;
+}

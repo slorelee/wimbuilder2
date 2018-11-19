@@ -18,15 +18,7 @@ $('#menu_build').click(function(){
         update_patches_opt($obj_project.patches_opt);
     }
     switch_page('build');
-    $('#build_stdout').empty();
-    if (selected_project != null) {
-        var msg = 'Do you want to build the [' + selected_project + '] project?';
-        var opts = patches_opt_stringify();
-        msg += '<br/><br/>' + opts;
-        $('#build_stdout').append(msg);
-    } else {
-        $('#build_stdout').append('No project to build.');
-    }
+    build_page_init();
 });
 
 $('#menu_about').click(function(){

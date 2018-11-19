@@ -13,6 +13,8 @@ var $wb_base = 'D:\\sources\\winre.wim';
 var $wb_src_index = '-';
 var $wb_base_index = '1';
 
+var $wb_x_drv = 'X';
+
 //skip update files' rights operation
 var $wb_skip_ufr = '1';
 //skip update registry's rights operation

@@ -1,6 +1,6 @@
 $width = 1200;
 $height = 800;
-$lang = '';
+$lang = 'zh-CN';
 
 $wb_src_folder = '';
 $wb_src = '';

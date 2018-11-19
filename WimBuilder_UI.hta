@@ -264,6 +264,26 @@ if ($IE_VER == '9+') {
 
 <!-- ############################# page_building Start ############################# -->
 <div id="page_build" class="content_page">
+
+    <div id="x-drive-confirm" style="display:none" class="i18n-title" title="Mapping drive is used">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+           <span class="i18n-text">If the Drive is used by the unfinish build, click Continue to go on, it will be fixed,</span><br/>
+           <span class="i18n-text">otherwise, please select an usable drive.</span>
+        </p>
+    </div>
+
+    <div id="x_drive_mapping" style="margin:10px 15px 10px 0px;padding:5px;border:2px solid #c0c0c0;">
+        <label class="i18n-text">Subst mounted folder to Drive</label>
+        <span style="margin-left:20px" />
+        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="A" /> A:
+        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="B" /> B:
+        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="V" /> V:
+        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="W" /> W:
+        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="X" checked /> X:
+        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="Y" /> Y:
+        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="Z" /> Z:
+        <div id="x_drive_notice" class="alert alert-warning i18n-html" style="display2:none"><strong>INFO</strong>:If the mounted folder isn't mapping to X:, The patch scripts need use %X%:\ then X:\ when modifying, deleting the files, and please don't create the shortcuts on building, they may point to the wrong target, do it on booting phase.</div>
+    </div>
     <div>
         <button class="pure-button" onclick="cleanup()">0-cleanup</button>
         <button class="pure-button" id="build" onclick="run_build()">1-run</button>

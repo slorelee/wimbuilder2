@@ -13,7 +13,6 @@ var $wb_root = null;
 
 page_init();
 start_page_init();
-i18n_init();
 i18n_trans();
 
 function page_init() {
@@ -28,17 +27,6 @@ function page_init() {
     }
 
     $('#menu_start').click();
-}
-
-function i18n_init() {
-    if (typeof($lang) == "undefined") return;
-    if ($lang == '') {
-        var env = wsh.Environment("PROCESS");
-        $lang = env('WB_UI_LANG');
-    }
-
-    var text = load_utf8_file('assets/i18n/' + $lang + '.json');
-    if (text != "") $i18n = JSON.parse(text);
 }
 
 function i18n_trans() {

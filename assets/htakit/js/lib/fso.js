@@ -1,8 +1,22 @@
 var ForReading = 1;
 var ForWriting = 2;
 
+var TristateTrue = -1; // UNICODE
+var TristateFalse = 0; // ANSI
+
 var fso = new ActiveXObject("Scripting.FileSystemObject");
-var ado = new ActiveXObject("ADODB.Stream") 
+var ado = null;
+
+// remove ADODB dependency, i18n resources files' encoding need to be UTF-16LE BOM
+// get_ado();
+
+function get_ado() {
+    var env = wsh.Environment("PROCESS");
+    var path = env('CommonProgramFiles') + "\\System\\ado\\msado15.dll";
+    if (fso.FileExists(path)) {
+        ado = new ActiveXObject("ADODB.Stream");
+    }
+}
 
 function get_subdirs(parentdir) {
     var arr = new Array();
@@ -15,9 +29,10 @@ function get_subdirs(parentdir) {
     return arr;
 }
 
-function load_text_file(filename) {
+function load_text_file(filename, format) {
     if (!fso.FileExists(filename)) return '';
-    var objFile = fso.OpenTextFile(filename, ForReading);
+    if (format == null) format = TristateFalse;
+    var objFile = fso.OpenTextFile(filename, ForReading, false, format);
     var text = objFile.readall();
     objFile.close();
     return text;
@@ -25,6 +40,9 @@ function load_text_file(filename) {
 
 function load_utf8_file(filename) {
     if (!fso.FileExists(filename)) return '';
+    if (ado == null) {
+        return load_text_file(filename, TristateTrue);
+    }
     ado.Charset = "utf-8";
     ado.Type = 2; //adTypeText  
     ado.Open;

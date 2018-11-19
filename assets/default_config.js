@@ -1,7 +1,6 @@
 var $width = 1000;
 var $height = 800;
 
-var $i18n = {};
 var $lang = ''; //auto
 
 var $wb_straight_mode = '1';

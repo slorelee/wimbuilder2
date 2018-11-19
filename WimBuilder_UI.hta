@@ -293,6 +293,7 @@ if ($IE_VER == '9+') {
 <![endif]-->
 
 </div>
+<script src="assets/js/i18n.js"></script>
 <script type="text/javascript">
     function window_onload() {
         var w = $width, h = $height; 
@@ -300,6 +301,7 @@ if ($IE_VER == '9+') {
         window.moveTo((window.screen.width - w) / 2,
             (window.screen.height - h) / 2); 
     }
+    i18n_init();
     window_onload();
     if ($IE_VER != '9+') {
         $("#menu_fixed").css('height', $height - 42);

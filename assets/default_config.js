@@ -19,6 +19,8 @@ var $wb_default_project = '';
 var $wb_x_subst = true;
 var $wb_x_drv = 'auto';
 
+var $wb_auto_makeiso = false;
+
 //skip update files' rights operation
 var $wb_skip_ufr = '1';
 //skip update registry's rights operation

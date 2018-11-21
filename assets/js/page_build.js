@@ -1,4 +1,5 @@
 var x_auto_drive = '-';
+var _in_building = '';
 
 function build_page_init() {
     $('#build_stdout').empty();
@@ -13,11 +14,16 @@ function build_page_init() {
 
     $("input[name='wb_x_drive'][type='radio'][value='" + $wb_x_drv + "']").prop("checked", true);
     x_drive_detect();
+    $("#wb_auto_makeiso").prop("checked", $wb_auto_makeiso);
 }
 
 $("input[name='wb_x_drive'][type='radio']").click(function() {
     $wb_x_drv = $(this).val();
     x_drive_detect();
+});
+
+$("#wb_auto_makeiso").click(function() {
+    $wb_auto_makeiso = $(this).prop("checked");
 });
 
 function x_drive_detect() {
@@ -146,7 +152,11 @@ function run_build(no_confirm) {
     structure_env(0);
     dump_patches_selected();
     dump_patches_opt();
-    wsh.run('cmd /k \"' + $wb_root + '\\bin\\_process.bat\"', 1, true);
+    var cmd_mode = "/k";
+    if ($wb_auto_makeiso) cmd_mode = "/c";
+    _in_building = 'run_build';
+    wsh.run('cmd ' + cmd_mode + ' \"' + $wb_root + '\\bin\\_process.bat\"', 1, true);
+    //if ($wb_auto_makeiso) make_iso();
 }
 
 function exec_build(no_confirm) {
@@ -168,6 +178,7 @@ function exec_build(no_confirm) {
     structure_env(1);
     dump_patches_selected();
     dump_patches_opt();
+    _in_building = 'exec_build';
     var oExec = wsh.exec($wb_root + '\\bin\\_process.bat');
     var stdout = null;
     var b = null;

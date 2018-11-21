@@ -1,5 +1,7 @@
 var x_auto_drive = '-';
 var _in_building = '';
+var _stdout_len = 0;
+var _log_path = '';
 
 function build_page_init() {
     $('#build_stdout').empty();
@@ -15,6 +17,8 @@ function build_page_init() {
     $("input[name='wb_x_drive'][type='radio'][value='" + $wb_x_drv + "']").prop("checked", true);
     x_drive_detect();
     $("#wb_auto_makeiso").prop("checked", $wb_auto_makeiso);
+    var env = wsh.Environment("PROCESS");
+    _log_path = env('Factory') + '\\log\\' + selected_project;
 }
 
 $("input[name='wb_x_drive'][type='radio']").click(function() {
@@ -82,8 +86,6 @@ function _cleanup() {
     $('#build_stdout').empty();
     structure_env(1);
     var oExec = wsh.exec('bin\\_cleanup.bat');
-    var stdout = null;
-    var b = null;
     window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
     update_output(oExec);
 }
@@ -149,14 +151,21 @@ function run_build(no_confirm) {
     }
 
     $('#build_stdout').empty();
-    structure_env(0);
+    if ($wb_auto_makeiso) {
+        structure_env(1);
+    } else {
+        structure_env(0);
+    }
     dump_patches_selected();
     dump_patches_opt();
     var cmd_mode = "/k";
-    if ($wb_auto_makeiso) cmd_mode = "/c";
     _in_building = 'run_build';
-    wsh.run('cmd ' + cmd_mode + ' \"' + $wb_root + '\\bin\\_process.bat\"', 1, true);
-    //if ($wb_auto_makeiso) make_iso();
+    if ($wb_auto_makeiso) {
+        wsh.run('NSudoC.exe -UseCurrentConsole -Wait -U:T "' + $wb_root + '\\bin\\_process.bat\"', 1, true);
+         make_iso(true);
+    } else {
+        wsh.run('cmd ' + cmd_mode + ' \"' + $wb_root + '\\bin\\_process.bat\"', 1, true);
+    }
 }
 
 function exec_build(no_confirm) {
@@ -179,19 +188,20 @@ function exec_build(no_confirm) {
     dump_patches_selected();
     dump_patches_opt();
     _in_building = 'exec_build';
-    var oExec = wsh.exec($wb_root + '\\bin\\_process.bat');
-    var stdout = null;
-    var b = null;
+    var logfile = _log_path + '\\last_wimbuilder.log';
+    var oExec = wsh.exec('NSudoC.exe -UseCurrentConsole -Wait -U:T "' + $wb_root + '\\bin\\_process.bat" 1>"' + logfile + '" 2>&1');
     window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
-    update_output(oExec);
+    update_output_by_log(oExec);
 }
 
-function make_iso() {
+function make_iso(keep) {
     if (selected_project == null) {
         alert('Please select a project for building.');
         return;
     }
-    $('#build_stdout').empty();
+    if (!keep) {
+        $('#build_stdout').empty();
+    }
     structure_env(0);
     wsh.run('cmd /c \"' + $wb_root + '\\bin\\_MakeBootISO.bat\"', 1, true);
 }
@@ -225,5 +235,21 @@ function update_output(oExec) {
     }
     build_stdout.scrollTop(build_stdout[0].scrollHeight);
     window.setTimeout(function(){update_output(oExec);}, 100);
+}
+
+function update_output_by_log(oExec) {
+    var build_stdout = $('#build_stdout');
+    var logfile = _log_path + '\\last_wimbuilder.log';
+    var text = load_text_file(logfile);
+    text = text.replace(/([\r\n]+)/g, '<br/>');
+    build_stdout.html(text);
+    build_stdout.scrollTop(build_stdout[0].scrollHeight);
+    if (oExec.status != 0) {
+        if ($wb_auto_makeiso) {
+            window.setTimeout(function(){make_iso(true);}, 1000);
+        }
+        return;
+    }
+    window.setTimeout(function(){update_output_by_log(oExec);}, 100);
 }
 

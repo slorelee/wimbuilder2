@@ -37,6 +37,8 @@ $i18n = {
   "Continue":"继续",
   "Cancel":"取消",
   "Create ISO after building":" 构建后立即创建ISO",
+  "Open log folder":"打开日志文件夹",
+  "Open last build log":"打开最后一次构建日志",
   "Please select a project:":"请选择工程:",
   "Project Information":"工程信息",
   "#LASTDUMMY#":""

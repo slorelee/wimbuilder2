@@ -18,5 +18,9 @@ function BrowseFolder(msg) {
 }
 
 function OpenFolder(path) {
-    Run(path);
+    if (fso.FolderExists(path)) Run(path);
+}
+
+function OpenFile(path) {
+    if (fso.FileExists(path)) Run(path);
 }

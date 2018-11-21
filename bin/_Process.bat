@@ -4,10 +4,11 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 cd /d "%WB_ROOT%"
 title WimBuilder(%cd%)
 
+if "x%_WB_EXEC_MODE%"=="x1" set WB_RUNAS_TI=1
 if "x%WB_RUNAS_TI%"=="x" (
   set WB_RUNAS_TI=1
-  call NSudo.exe -U:T "%~0"
-  exit
+  NSudoC.exe -UseCurrentConsole -U:T "%~0"
+  goto :EOF
 )
 
 title WimBuilder(%cd%)
@@ -48,6 +49,7 @@ if exist "%_WB_TMP_DIR%\_patches_opt.bat" (
   call "%_WB_TMP_DIR%\_patches_opt.bat"
 )
 
+echo.
 rem ";" can't be pass to CALL LABEL, so use a ":" for it
 call :CLOG 97:104m "[%WB_PROJECT%] --- build information"
 set WB_
@@ -189,7 +191,7 @@ rem =========================================================
 
 call :CLEANUP 0
 call WIM_Exporter "%_WB_PE_WIM%"
-
+call exit
 goto :EOF
 
 rem =========================================================

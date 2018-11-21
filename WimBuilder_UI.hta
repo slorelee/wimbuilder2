@@ -294,11 +294,15 @@ if ($IE_VER == '9+') {
     <div>
         <button class="pure-button" onclick="cleanup()">0-cleanup</button>
         <button class="pure-button" id="build" onclick="run_build()">1-run</button>
-        <button class="pure-button" id="build" onclick="exec_build()">1-exec</button>
+        <button class="pure-button" id="build" onclick="exec_build()">1-exec(log)</button>
         <button class="pure-button" id="build" onclick="make_iso()">2-make_iso</button>
         <input type="checkbox" id="wb_auto_makeiso" /><span class="i18n-text">Create ISO after building</span>
     </div>
     <div id="build_stdout" style="overflow:scroll;margin-top:10px">stdout</div>
+    <div>
+        <button class="pure-button i18n-text" onclick="OpenFolder(_log_path)">Open log folder</button>
+        <button class="pure-button i18n-text" onclick="OpenFile(_log_path + '\\last_wimbuilder.log')">Open last build log</button>
+    <div>
     <div>
         <button class="pure-button pre-button" onclick="$('#menu_patch').click()">&lt;pre</button>
         <button class="pure-button next-button" onclick="$('#menu_about').click()">next&gt;</button>

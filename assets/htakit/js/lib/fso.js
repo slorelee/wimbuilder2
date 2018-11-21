@@ -33,7 +33,10 @@ function load_text_file(filename, format) {
     if (!fso.FileExists(filename)) return '';
     if (format == null) format = TristateFalse;
     var objFile = fso.OpenTextFile(filename, ForReading, false, format);
-    var text = objFile.readall();
+    var text = '';
+    if (!objFile.AtEndOfStream) {
+        text = objFile.ReadAll();
+    }
     objFile.close();
     return text;
 }

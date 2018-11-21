@@ -25,5 +25,5 @@ goto :EOF
 
 :_REMOVE_MUI
 for %%i in (%~2) do (
- if not "x%%i"=="x%WB_PE_LANG%" (if exist "%X%:\%~1\%%i" rd /s /q "%X%:\%~1\%%i")
+ if not "x%%i"=="x%WB_PE_LANG%" (if exist "%X%\%~1\%%i" rd /s /q "%X%\%~1\%%i")
 )

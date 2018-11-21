@@ -11,4 +11,4 @@ if "x%opt[build.wow64support]%"=="xtrue" (
 )
 
 rem call X2X macro
-xcopy /E /Y X\*.* %X%:\
+xcopy /E /Y X\*.* %X%\

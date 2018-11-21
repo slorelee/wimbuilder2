@@ -1,3 +1,5 @@
+var x_auto_drive = '-';
+
 function build_page_init() {
     $('#build_stdout').empty();
     if (selected_project != null) {
@@ -10,16 +12,36 @@ function build_page_init() {
     }
 
     $("input[name='wb_x_drive'][type='radio'][value='" + $wb_x_drv + "']").prop("checked", true);
+    x_drive_detect();
 }
 
 $("input[name='wb_x_drive'][type='radio']").click(function() {
     $wb_x_drv = $(this).val();
+    x_drive_detect();
 });
+
+function x_drive_detect() {
+    if ($wb_x_drv != 'auto') {
+        $('#x_auto_drive').text('');
+        return;
+    }
+    x_auto_drive = '--';
+    var drv_list = ['X', 'A']//, 'B', 'Z', 'Y', 'W', 'V', 'U', 'T', 'S' , 'R', 'Q', 'P', 'O', 'N', 'M', 'L']; // fair enough
+    for (var i=0;i<drv_list.length;i++) {
+        if (!fso.DriveExists(drv_list[i])) {
+            x_auto_drive = drv_list[i] + ':';
+            break;
+        }
+    }
+    $('#x_auto_drive').text('(' + x_auto_drive + ')');
+}
 
 function x_drive_exists() {
     //var env = wsh.Environment("PROCESS");
     //var sys_drive = env('HOMEDRIVE');
-    if (fso.DriveExists($wb_x_drv)) {
+    var drv = $wb_x_drv;
+    if (drv == 'auto') drv = x_auto_drive;
+    if (fso.DriveExists(drv)) {
         return 1;
     }
     return 0;
@@ -41,8 +63,10 @@ function structure_env(mode) {
     env('WB_PROJECT') = selected_project;
     env('WB_SKIP_UFR') = $wb_skip_ufr;
     env('WB_SKIP_URR') = $wb_skip_urr;
-    env('WB_X_DRIVE') = $wb_x_drv;
-    env('X') = $wb_x_drv;
+    var drv = $wb_x_drv;
+    if (drv == 'auto') drv = x_auto_drive;
+    env('WB_X_DRIVE') = drv;
+    env('X') = drv;
     env('_WB_EXEC_MODE') = mode;
 
     //env('WB_OPT_SHELL') = $WB_OPT['shell'];
@@ -109,6 +133,7 @@ function run_build(no_confirm) {
         return;
     }
 
+    x_drive_detect();
     if (x_drive_exists() == 1) {
         if (!no_confirm) {
             this.build_action = 'run_build';
@@ -130,6 +155,7 @@ function exec_build(no_confirm) {
         return;
     }
 
+    x_drive_detect();
     if (x_drive_exists() == 1) {
         if (!no_confirm) {
             this.build_action = 'exec_build';

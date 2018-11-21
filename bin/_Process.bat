@@ -99,16 +99,23 @@ echo.
 call :cecho PHRASE "PHRASE:Mount WIM image"
 
 rem check X: driver
-if exist %X%:\ (
-  call :cecho WARN "%X%: is already use."
-  call :setp yTry "Try SUBST %X%: /D?[y/n]:"
+set NO_X_SUBST=0
+if "x%X%"=="x--" (
+  set NO_X_SUBST=1
+  goto :SUBST_CHECK_END
 )
-if "%yTry%"=="y" SUBST %X%: /D
-if "%yTry%"=="Y" SUBST %X%: /D
-if exist %X%:\ (
-  call :cecho ERROR "%X%: is already in use, goto CLEANUP."
+
+if exist %X%\ (
+  call :cecho WARN "%X% is already use."
+  call :setp yTry "Try SUBST %X% /D?[y/n]:"
+)
+if "%yTry%"=="y" SUBST %X% /D
+if "%yTry%"=="Y" SUBST %X% /D
+if exist %X%\ (
+  call :cecho ERROR "%X% is already in use, goto CLEANUP."
   call :CLEANUP
 )
+:SUBST_CHECK_END
 
 rem extract sources registry
 if "x%WB_SRC%"=="x" goto :BASE_MOUNT
@@ -145,7 +152,13 @@ if not "%base_wim_mounted%"=="1" (
 )
 
 rem NOTICE:explorer.exe don't show X:\ when running with Administrators right
-SUBST %X%: "%_WB_MNT_DIR%"
+if not "x%NO_X_SUBST%"=="x1" (
+  SUBST %X% "%_WB_MNT_DIR%"
+) else (
+  set "X=%_WB_MNT_DIR%"
+  echo.
+  echo SET %%X%%=%_WB_MNT_DIR%
+)
 echo.
 if "x%WB_SKIP_UFR%"=="x1" goto :PROJECT_BUILDING
 rem update files ACL Right

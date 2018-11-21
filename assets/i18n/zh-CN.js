@@ -28,6 +28,7 @@ $i18n = {
   "Current project:":"当前工程:",
 
   "Subst mounted folder to Drive":"将wim挂载目录映射到",
+  " Auto":"自动",
   "<strong>INFO</strong>:If the mounted folder isn't mapping to X:, The patch scripts need use %X%\\ than X:\\ when modifying, deleting the files, and please don't create the shortcuts on building, they may point to the wrong target, do it on booting phase.":
       "<STRONG>请注意</STRONG>:如果挂载目录不是映射到X:驱动器，在补丁脚本中修改和删除文件时，请使用%X%\\来代替路径中的X:\\。同样也无法在构建过程中提前创建快捷方式，因为他们可能会指向错误的路径，请修改启动脚本，在启动阶段进行创建。",
   "Mapping drive is used":"映射驱动器被占用",

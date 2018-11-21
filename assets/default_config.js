@@ -17,7 +17,7 @@ var $wb_skip_project_page = false;
 var $wb_default_project = '';
 
 var $wb_x_subst = true;
-var $wb_x_drv = 'X:';
+var $wb_x_drv = 'auto';
 
 //skip update files' rights operation
 var $wb_skip_ufr = '1';

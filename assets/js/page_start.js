@@ -30,11 +30,16 @@ function check_wim_file() {
 function start_page_init() {
     user_trigger = false;
     $('#wb_workspace').val($wb_workspace);
+    $('#wb_src_folder').val($wb_src_folder);
     $('#wb_src').val($wb_src);
     $('#wb_base').val($wb_base);
+    $('#wb_auto_winre').prop('checked', $wb_auto_winre);
+    wb_src_folder_btn_click(false);
     $('#wb_src_idx_opt').val($wb_src_index);
     $('#wb_base_idx_opt').val($wb_base_index);
     check_wim_file();
+    _auto_saved_settings = get_current_settings();
+    auto_save_trigger = true;
     user_trigger = true;
 }
 
@@ -85,6 +90,7 @@ function wb_src_folder_btn_click(event) {
     }
     var path = $('#wb_src_folder').val();
     $wb_src_folder = path;
+    if (path.slice(-1) == '\\') path = path.slice(0, -1);
     var found = auto_detect_wims(path);
     if (found["install.wim"] == 0) {
         found = auto_detect_wims(path + '\\sources');
@@ -100,6 +106,10 @@ $('#wb_src_folder_btn').click(function(){
 $('#wb_src_wim_btn').click(function(){
     BrowseFile('#wb_src');
     $wb_src = $('#wb_src').val();
+    check_wim_file();
+});
+
+$('#wb_auto_winre').click(function(){
     check_wim_file();
 });
 

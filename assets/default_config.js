@@ -9,11 +9,15 @@ var $wb_workspace = '.';
 var $wb_src_folder = '';
 var $wb_src = 'D:\\sources\\install.wim';
 var $wb_base = 'D:\\sources\\winre.wim';
-
-var $wb_src_index = '-';
+var $wb_auto_winre = true;
+var $wb_src_index = '1';
 var $wb_base_index = '1';
 
-var $wb_x_drv = 'X';
+var $wb_skip_project_page = false;
+var $wb_default_project = '';
+
+var $wb_x_subst = true;
+var $wb_x_drv = 'X:';
 
 //skip update files' rights operation
 var $wb_skip_ufr = '1';

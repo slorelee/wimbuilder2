@@ -1,4 +1,4 @@
-$('body').css("font-family", "'Microsoft YaHei', 'Microsoft JhengHei', SimSun");
+﻿$('body').css("font-family", "'Microsoft YaHei', 'Microsoft JhengHei', SimSun");
 
 $i18n = {
   "Getting Started":"准备",
@@ -7,7 +7,8 @@ $i18n = {
   "Building":"构建",
   "About":"关于",
   "Browse...":"浏览...",
-  "<strong>INFO</strong>:You can set the default settings in 'config.js'.":"<strong>温馨提示</strong>:你可以在\"config.js\"文件中配置默认路径，以便于快速开始。",
+  "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
+      "<strong>温馨提示</strong>:您可以在\"config.js\"文件中配置默认路径，程序也会自动将选择的设定保存到\"auto_config.js\"中，以便于快速开始。您可以通过左侧的导航菜单再次改变这些设定。",
   "Please configure the base infomation:":"请设置基本信息:",
   "Set the build workspace":"设置工作空间位置",
   "Select build workspace folder:":"选择工作空间位置:",
@@ -22,9 +23,13 @@ $i18n = {
   "Select the base image(boot.wim/winre.wim or other customed.wim)":"请选择基础映像(boot.wim/winre.wim或者其他自定义wim文件)",
   "<strong>Notice</strong>:Please select the correct wim file, and the image index, otherwise cause build failed.":"<STRONG>请注意</STRONG>:对于不同的工程需要选择适当的wim文件及索引号，否则可能导致构建失败。",
 
+  "Skip when project is selected":"当有工程自动选择时，跳过此页面",
+
+  "Current project:":"当前工程:",
+
   "Subst mounted folder to Drive":"将wim挂载目录映射到",
-  "<strong>INFO</strong>:If the mounted folder isn't mapping to X:, The patch scripts need use %X%:\\ then X:\\ when modifying, deleting the files, and please don't create the shortcuts on building, they may point to the wrong target, do it on booting phase.":
-      "<STRONG>请注意</STRONG>:如果挂载目录不是映射到X:驱动器，在补丁脚本中修改和删除文件时，请使用%X%:\\来代替路径中的X:\\。同样也无法在构建过程中提前创建快捷方式，因为他们可能会指向错误的路径，请修改启动脚本，在启动阶段进行创建。",
+  "<strong>INFO</strong>:If the mounted folder isn't mapping to X:, The patch scripts need use %X%\\ than X:\\ when modifying, deleting the files, and please don't create the shortcuts on building, they may point to the wrong target, do it on booting phase.":
+      "<STRONG>请注意</STRONG>:如果挂载目录不是映射到X:驱动器，在补丁脚本中修改和删除文件时，请使用%X%\\来代替路径中的X:\\。同样也无法在构建过程中提前创建快捷方式，因为他们可能会指向错误的路径，请修改启动脚本，在启动阶段进行创建。",
   "Mapping drive is used":"映射驱动器被占用",
   "If the Drive is used by the unfinish build, click Continue to go on, it will be fixed,":"如果此占用是因为某次未完成的构建导致的，请点击继续，程序将自动重置。",
   "otherwise, please select an usable drive.":"否则，请重新指定映射驱动器。",

@@ -10,6 +10,7 @@ $('#menu_project').click(function(){
 
 $('#menu_patch').click(function(){
     switch_page('patch');
+    $('#patch_project_name').text(selected_project);
     show_patches_settings();
 });
 
@@ -31,5 +32,6 @@ function switch_page(page) {
 
     $('.content_page').hide();
     $('#page_' + page).show();
+    auto_save_settings();
 }
 

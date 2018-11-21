@@ -1,7 +1,19 @@
+var _auto_selected = false;
+
+function project_page_init() {
+    $('#wb_skip_project_page').prop('checked', $wb_skip_project_page);
+}
+
+$('#wb_skip_project_page').click(function(){
+    $wb_skip_project_page = $(this).prop('checked');
+});
+
 function show_projects() {
     var dirs = get_subdirs('Projects');
     $('#project_list').html("");
+    var default_in_list = false;
     dirs.forEach(function(item) {
+        if (item == $wb_default_project) default_in_list = true;
         $('#project_list').append(pj_button(item));
     });
 
@@ -11,8 +23,14 @@ function show_projects() {
     }
     regist_event();
 
-    if (dirs.length == 1 && selected_project == null) {
+    if (_auto_selected) return;
+    _auto_selected = true;
+    if (default_in_list) {
+        $('#pj_' + $wb_default_project).click();
+        if ($wb_skip_project_page) $('#menu_patch').click();
+    } else if (dirs.length == 1 && $wb_default_project == '' && selected_project == null) {
         $('#pj_' + dirs[0]).click();
+        if ($wb_skip_project_page) $('#menu_patch').click();
     }
 }
 

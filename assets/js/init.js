@@ -13,6 +13,7 @@ var $wb_root = null;
 
 page_init();
 start_page_init();
+project_page_init();
 i18n_trans();
 
 function page_init() {

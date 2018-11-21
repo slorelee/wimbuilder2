@@ -189,6 +189,7 @@ function exec_build(no_confirm) {
     dump_patches_opt();
     _in_building = 'exec_build';
     var logfile = _log_path + '\\last_wimbuilder.log';
+    create_folder_cascade(_log_path);
     var oExec = wsh.exec('NSudoC.exe -UseCurrentConsole -Wait -U:T "' + $wb_root + '\\bin\\_process.bat" 1>"' + logfile + '" 2>&1');
     window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
     update_output_by_log(oExec);

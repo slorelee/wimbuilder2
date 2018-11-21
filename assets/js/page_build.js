@@ -192,24 +192,27 @@ function sleep(n) {
 
 function update_output(oExec) {
     stdout = oExec.StdOut.ReadLine();
+    var build_stdout = $('#build_stdout');
     if (stdout.length > 0) {
-        $('#build_stdout').append(stdout + '<br/>');
+        build_stdout.append(stdout + '<br/>');
     }
     if (!oExec.StdOut.AtEndOfStream) {
         stdout = oExec.StdOut.ReadLine();
         if (stdout.length > 0) {
-            $('#build_stdout').append(stdout + '<br/>');
+            build_stdout.append(stdout + '<br/>');
         }
     }
     if (oExec.status != 0) {
         if (!oExec.StdOut.AtEndOfStream) {
             stdout = oExec.StdOut.ReadAll();
             if (stdout.length > 0) {
-                $('#build_stdout').append(stdout + '<br/>');
+                build_stdout.append(stdout + '<br/>');
             }
         }
+        build_stdout.scrollTop(build_stdout[0].scrollHeight);
         return;
     }
+    build_stdout.scrollTop(build_stdout[0].scrollHeight);
     window.setTimeout(function(){update_output(oExec);}, 100);
 }
 

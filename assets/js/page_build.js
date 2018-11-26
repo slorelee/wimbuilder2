@@ -36,7 +36,7 @@ function x_drive_detect() {
         return;
     }
     x_auto_drive = '--';
-    var drv_list = ['X', 'A']//, 'B', 'Z', 'Y', 'W', 'V', 'U', 'T', 'S' , 'R', 'Q', 'P', 'O', 'N', 'M', 'L']; // fair enough
+    var drv_list = ['X', 'A', 'B', 'Z', 'Y', 'W', 'V', 'U', 'T', 'S' , 'R', 'Q', 'P', 'O', 'N', 'M', 'L']; // fair enough
     for (var i=0;i<drv_list.length;i++) {
         if (!fso.DriveExists(drv_list[i])) {
             x_auto_drive = drv_list[i] + ':';

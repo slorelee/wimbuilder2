@@ -34,7 +34,9 @@ function start_page_init() {
     $('#wb_src').val($wb_src);
     $('#wb_base').val($wb_base);
     $('#wb_auto_winre').prop('checked', $wb_auto_winre);
-    wb_src_folder_btn_click(false);
+    if ($wb_base == '') {
+        wb_src_folder_btn_click(false);
+    }
     $('#wb_src_idx_opt').val($wb_src_index);
     $('#wb_base_idx_opt').val($wb_base_index);
     check_wim_file();
@@ -90,6 +92,7 @@ function wb_src_folder_btn_click(event) {
     }
     var path = $('#wb_src_folder').val();
     $wb_src_folder = path;
+    if (path == '') return;
     if (path.slice(-1) == '\\') path = path.slice(0, -1);
     var found = auto_detect_wims(path);
     if (found["install.wim"] == 0) {
@@ -99,14 +102,32 @@ function wb_src_folder_btn_click(event) {
     check_wim_file();
 }
 
+function wb_src_wim_btn_click(event) {
+    if (event) {
+        BrowseFile('#wb_src');
+    }
+    $('#wb_src_folder').val('');
+    $wb_src_folder = '';
+    $wb_src = $('#wb_src').val();
+    check_wim_file();
+}
+
+function wb_base_wim_btn_click(event) {
+    if (event) {
+        BrowseFile('#wb_base');
+    }
+    $('#wb_src_folder').val('');
+    $wb_src_folder = '';
+    $wb_base = $('#wb_base').val();
+    check_wim_file();
+}
+
 $('#wb_src_folder_btn').click(function(){
     wb_src_folder_btn_click(true);
 });
 
 $('#wb_src_wim_btn').click(function(){
-    BrowseFile('#wb_src');
-    $wb_src = $('#wb_src').val();
-    check_wim_file();
+    wb_src_wim_btn_click(true);
 });
 
 $('#wb_auto_winre').click(function(){
@@ -114,9 +135,7 @@ $('#wb_auto_winre').click(function(){
 });
 
 $('#wb_base_wim_btn').click(function(){
-    BrowseFile('#wb_base');
-    $wb_base = $('#wb_base').val();
-    check_wim_file();
+    wb_base_wim_btn_click(true);
 });
 
 
@@ -132,15 +151,13 @@ $("#wb_src_folder").change(function(){
 
 $("#wb_src").change(function(){
     if (user_trigger) {
-        $wb_src = $(this).val();
-        check_wim_file();
+        wb_src_wim_btn_click(false);
     }
 });
 
 $("#wb_base").change(function(){
     if (user_trigger) {
-        $wb_base = $(this).val();
-       check_wim_file();
+        wb_base_wim_btn_click(false);
     }
 });
 

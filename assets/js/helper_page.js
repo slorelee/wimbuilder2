@@ -11,6 +11,7 @@ function BrowseFile(elem) {
 
 function get_current_settings() {
     var text = '';
+    text += '$wb_auto_config_created=' + $wb_auto_config_created + ";\r\n";
     text += '$width=' + $width + ";\r\n";
     text += '$height=' + $height + ";\r\n";
     text += '$wb_src_folder="' + $wb_src_folder + "\";\r\n";
@@ -33,6 +34,7 @@ function get_current_settings() {
 
 function auto_save_settings() {
     if (!auto_save_trigger) return;
+    $wb_auto_config_created = true;
     var current_settings = get_current_settings();
     if (current_settings != _auto_saved_settings) {
         _auto_saved_settings = current_settings;

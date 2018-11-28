@@ -3,6 +3,8 @@ var $height = 800;
 
 var $lang = ''; //auto
 
+var $wb_auto_config_created = false;
+
 var $wb_straight_mode = '1';
 
 var $wb_workspace = '.';

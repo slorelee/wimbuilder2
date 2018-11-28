@@ -43,6 +43,9 @@ function start_page_init() {
     _auto_saved_settings = get_current_settings();
     auto_save_trigger = true;
     user_trigger = true;
+    if (!$wb_auto_config_created) {
+        $('#page_start_info').show();
+    }
 }
 
 $('#wb_workspace_folder_btn').click(function(){

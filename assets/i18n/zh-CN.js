@@ -6,6 +6,9 @@ $i18n = {
   "Patches":"补丁",
   "Building":"构建",
   "About":"关于",
+  "Quick build":"快速构建",
+  "run(cmd)":"CMD模式",
+  "exec(log)":"日志模式",
   "Browse...":"浏览...",
   "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
       "<strong>温馨提示</strong>:您可以在\"config.js\"文件中配置默认路径，程序也会自动将选择的设定保存到\"auto_config.js\"中，以便于快速开始。您可以通过左侧的导航菜单再次改变这些设定。",

@@ -12,6 +12,7 @@ function BrowseFile(elem) {
 function get_current_settings() {
     var text = '';
     text += '$wb_auto_config_created=' + $wb_auto_config_created + ";\r\n";
+    text += '$wb_show_quick_build=' + $wb_show_quick_build + ";\r\n";
     text += '$width=' + $width + ";\r\n";
     text += '$height=' + $height + ";\r\n";
     text += '$wb_src_folder="' + $wb_src_folder + "\";\r\n";
@@ -39,5 +40,52 @@ function auto_save_settings() {
     if (current_settings != _auto_saved_settings) {
         _auto_saved_settings = current_settings;
         save_text_file($wb_root + '\\auto_config.js', current_settings);
+    }
+}
+
+
+function do_quick_build() {
+    var jump_page = '';
+    if ($wb_base == 'winre.wim') {
+        if (!$('#wb_auto_winre').prop('checked')) {
+            jump_page = 'start';
+        } else {
+            if (!fso.FileExists($wb_src)) jump_page = 'start';
+        }
+    } else if (!fso.FileExists($wb_base)) {
+        jump_page = 'start';
+    }
+
+    if (jump_page == '' && selected_project == null) {
+        jump_page = 'project';
+    }
+
+    if (jump_page != '') {
+        if (_current_page != jump_page) $('#menu_' + jump_page).click();
+        return;
+    }
+
+    $('#menu_build').click();
+
+    var mode = 'exec';
+    if ($('#quick_build_mode_run').prop('checked')) mode = 'run';
+
+    cleanup(false, mode != 'exec');
+
+    window.setTimeout(function(){wait_and_build(mode);}, 500);
+}
+
+function wait_and_build(mode) {
+    if (_in_cleanup == 'pre') return;
+    if (_in_cleanup != 'done') {
+        //waiting
+        window.setTimeout(function(){wait_and_build(mode);}, 500);
+        return;
+    }
+
+    if (mode == 'run') {
+        run_build(false, true);
+    } else {
+        exec_build(false, true);
     }
 }

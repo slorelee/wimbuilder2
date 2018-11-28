@@ -1,4 +1,5 @@
 var x_auto_drive = '-';
+var _in_cleanup = 'pre';
 var _in_building = '';
 var _stdout_len = 0;
 var _log_path = '';
@@ -82,11 +83,12 @@ function structure_env(mode) {
     //env('WB_OPT_SHELL') = $WB_OPT['shell'];
 }
 
-function _cleanup() {
+function _cleanup(no_activate) {
+    _in_cleanup = 'doing';
     $('#build_stdout').empty();
     structure_env(1);
     var oExec = wsh.exec('bin\\_cleanup.bat');
-    window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
+    if (!no_activate) window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
     update_output(oExec);
 }
 
@@ -117,12 +119,12 @@ function x_drive_confirm() {
     });
 }
 
-function cleanup(no_confirm) {
+function cleanup(no_confirm, no_activate) {
     if (selected_project == null) {
         alert('Please select a project for building.');
         return;
     }
-
+    _in_cleanup = 'pre';
     if (x_drive_exists() == 1) {
         if (!no_confirm) {
             this.build_action = 'cleanup';
@@ -131,11 +133,11 @@ function cleanup(no_confirm) {
         }
     }
 
-    window.setTimeout(function(){_cleanup();}, 100);
+    window.setTimeout(function(){_cleanup(no_activate);}, 100);
 }
 
 //WshHide 0;WshNormalFocus 1;WshMinimizedNoFocus 6
-function run_build(no_confirm) {
+function run_build(no_confirm, keep) {
     if (selected_project == null) {
         alert('Please select a project for building.');
         return;
@@ -150,7 +152,7 @@ function run_build(no_confirm) {
         }
     }
 
-    $('#build_stdout').empty();
+    if (!keep) $('#build_stdout').empty();
     if ($wb_auto_makeiso) {
         structure_env(1);
     } else {
@@ -162,13 +164,13 @@ function run_build(no_confirm) {
     _in_building = 'run_build';
     if ($wb_auto_makeiso) {
         wsh.run('NSudoC.exe -UseCurrentConsole -Wait -U:T "' + $wb_root + '\\bin\\_process.bat\"', 1, true);
-         make_iso(true);
+        make_iso(true, 'exec'); //show result in OUTPUT textarea if auto makeiso
     } else {
         wsh.run('cmd ' + cmd_mode + ' \"' + $wb_root + '\\bin\\_process.bat\"', 1, true);
     }
 }
 
-function exec_build(no_confirm) {
+function exec_build(no_confirm, keep) {
     if (selected_project == null) {
         alert('Please select a project for building.');
         return;
@@ -183,7 +185,7 @@ function exec_build(no_confirm) {
         }
     }
 
-    $('#build_stdout').empty();
+    if (!keep) $('#build_stdout').empty();
     structure_env(1);
     dump_patches_selected();
     dump_patches_opt();
@@ -195,16 +197,24 @@ function exec_build(no_confirm) {
     update_output_by_log(oExec);
 }
 
-function make_iso(keep) {
+function make_iso(keep, mode) {
     if (selected_project == null) {
         alert('Please select a project for building.');
         return;
     }
     if (!keep) {
         $('#build_stdout').empty();
+    } else {
+        $('#build_stdout').append('<br/>Creating ISO...<br/>');
     }
-    structure_env(0);
-    wsh.run('cmd /c \"' + $wb_root + '\\bin\\_MakeBootISO.bat\"', 1, true);
+    if (typeof(mode) == 'undefined' || !$wb_auto_makeiso) structure_env(0);
+    if ($wb_auto_makeiso && mode == 'exec') {
+        var oExec = wsh.exec($wb_root + '\\bin\\_MakeBootISO.bat');
+        window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
+        update_output(oExec);
+    } else {
+        wsh.run('cmd /c \"' + $wb_root + '\\bin\\_MakeBootISO.bat\"', 1, true);
+    }
 }
 
 function sleep(n) {
@@ -228,9 +238,11 @@ function update_output(oExec) {
         if (!oExec.StdOut.AtEndOfStream) {
             stdout = oExec.StdOut.ReadAll();
             if (stdout.length > 0) {
+                stdout = stdout.replace(/([\r\n]+)/g, '\r\n<br/>');
                 build_stdout.append(stdout + '<br/>');
             }
         }
+        if (_in_cleanup == 'doing') _in_cleanup = 'done';
         build_stdout.scrollTop(build_stdout[0].scrollHeight);
         return;
     }
@@ -247,7 +259,7 @@ function update_output_by_log(oExec) {
     build_stdout.scrollTop(build_stdout[0].scrollHeight);
     if (oExec.status != 0) {
         if ($wb_auto_makeiso) {
-            window.setTimeout(function(){make_iso(true);}, 1000);
+            window.setTimeout(function(){make_iso(true, 'exec');}, 1000);
         }
         return;
     }

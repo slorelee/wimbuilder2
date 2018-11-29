@@ -40,9 +40,14 @@ $i18n = {
   "Continue":"继续",
   "Cancel":"取消",
   "Create ISO after building":" 构建后立即创建ISO",
+  "Test ISO after building with:":"构建后测试ISO镜像",
+  "Launch":"启动",
   "Open log folder":"打开日志文件夹",
   "Open last build log":"打开最后一次构建日志",
   "Please select a project:":"请选择工程:",
   "Project Information":"工程信息",
+
+
+  "The system cannot find the file specified.":"系统找不到指定的文件。",
   "#LASTDUMMY#":""
 }

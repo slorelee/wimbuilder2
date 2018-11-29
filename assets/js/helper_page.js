@@ -30,6 +30,8 @@ function get_current_settings() {
     text += '$wb_x_subst=' + $wb_x_subst + ";\r\n";
     text += '$wb_x_drv="' + $wb_x_drv + "\";\r\n";
     text += '$wb_auto_makeiso=' + $wb_auto_makeiso + ";\r\n";
+    text += '$wb_auto_testiso=' + $wb_auto_testiso + ";\r\n";
+    text += '$wb_test_cmd="' + $wb_test_cmd + "\";\r\n";
     return text;
 }
 

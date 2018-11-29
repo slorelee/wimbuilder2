@@ -309,6 +309,15 @@ if ($IE_VER == '9+') {
         <button class="pure-button" id="build" onclick="make_iso()">2-make_iso</button>
         <input type="checkbox" id="wb_auto_makeiso" /><span class="i18n-text">Create ISO after building</span>
     </div>
+    <div style="margin-top:10px">
+        <div class="pure-form">
+             <label for="wb_auto_testiso">
+                <input type="checkbox" id="wb_auto_testiso" ><span class="i18n-text">Test ISO after building with:</span>
+            </label>
+            <input type="text" id="wb_test_cmd" style="width:50%;color:#000" placeholder="VBox.cmd testvm" />
+            <button class="pure-button pure-button-primary i18n-text" onclick="test_iso()">Launch</button>
+        </div>
+    </div>
     <div id="build_stdout" style="overflow:scroll;margin-top:10px">stdout</div>
     <div>
         <button class="pure-button i18n-text" onclick="OpenFolder(_log_path)">Open log folder</button>

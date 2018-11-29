@@ -1,5 +1,6 @@
 var x_auto_drive = '-';
 var _in_cleanup = 'pre';
+var _in_makeiso = 'pre';
 var _in_building = '';
 var _stdout_len = 0;
 var _log_path = '';
@@ -18,6 +19,9 @@ function build_page_init() {
     $("input[name='wb_x_drive'][type='radio'][value='" + $wb_x_drv + "']").prop("checked", true);
     x_drive_detect();
     $("#wb_auto_makeiso").prop("checked", $wb_auto_makeiso);
+    $("#wb_auto_testiso").prop("checked", $wb_auto_testiso);
+    $("#wb_test_cmd").val($wb_test_cmd);
+
     var env = wsh.Environment("PROCESS");
     _log_path = env('Factory') + '\\log\\' + selected_project;
 }
@@ -29,6 +33,14 @@ $("input[name='wb_x_drive'][type='radio']").click(function() {
 
 $("#wb_auto_makeiso").click(function() {
     $wb_auto_makeiso = $(this).prop("checked");
+});
+
+$("#wb_auto_testiso").click(function() {
+    $wb_auto_testiso = $(this).prop("checked");
+});
+
+$("#wb_test_cmd").change(function() {
+    $wb_test_cmd = $(this).val();
 });
 
 function x_drive_detect() {
@@ -196,6 +208,7 @@ function exec_build(no_confirm, keep) {
 }
 
 function make_iso(keep, mode) {
+    _in_makeiso = 'pre';
     if (selected_project == null) {
         alert('Please select a project for building.');
         return;
@@ -206,6 +219,7 @@ function make_iso(keep, mode) {
         $('#build_stdout').append('<br/>Creating ISO...<br/>');
     }
     if (typeof(mode) == 'undefined') structure_env(0);
+    _in_makeiso = 'doing';
     if (mode == 'exec') {
         structure_env(1);
         var oExec = wsh.exec($wb_root + '\\bin\\_MakeBootISO.bat');
@@ -214,6 +228,32 @@ function make_iso(keep, mode) {
     } else {
         wsh.run('cmd /c "' + $wb_root + '\\bin\\_MakeBootISO.bat"', 1, true);
     }
+    if ($wb_auto_testiso) {
+        wait_and_test();
+    }
+}
+
+function test_iso() {
+    var cmd = $('#wb_test_cmd').val();
+    if (cmd == '') return;
+
+    var name = cmd.split(' ')[0];
+    name = $wb_root + '\\test\\' + name;
+    if (fso.FileExists(name)) {
+        wsh.run($wb_root + '\\test\\' + cmd, 1, false);
+    } else {
+        alert(i18n_t('The system cannot find the file specified.') + '\r\n' + name);
+    }
+}
+
+function wait_and_test() {
+    if (_in_makeiso == 'pre') return;
+    if (_in_makeiso != 'done') {
+        //waiting
+        window.setTimeout(function(){wait_and_test();}, 500);
+        return;
+    }
+    test_iso();
 }
 
 function sleep(n) {
@@ -242,6 +282,7 @@ function update_output(oExec) {
             }
         }
         if (_in_cleanup == 'doing') _in_cleanup = 'done';
+        if (_in_makeiso == 'doing') _in_makeiso = 'done';
         build_stdout.scrollTop(build_stdout[0].scrollHeight);
         return;
     }

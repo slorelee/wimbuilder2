@@ -45,7 +45,6 @@
 <![endif]-->
 
  <!--[if gte IE 9]>
-      <script>alert($IE_VER);</script>
       <script>$IE_VER = '9+';</script>
       <script src="assets/vendor/jquery-3.3.1.min.js"></script>
 <![endif]-->
@@ -153,14 +152,18 @@ if ($IE_VER == '9+') {
     <a href="#" title="Quick build" class="i18n-title" onclick="do_quick_build();"
        style="display:inline-block;height:48px;width:48px;background-image:url(assets/img/play.png)" ></a>
     <div style="display:inline-block;height:48px;">
-    <input type="radio" name="quick_build_mode"  id="quick_build_mode_run" /><span class="i18n-text">run(cmd)</span><br/>
-    <input type="radio" name="quick_build_mode" checked /><span class="i18n-text">exec(log)</span>
+    <label for="quick_build_mode_run">
+        <input type="radio" name="quick_build_mode" id="quick_build_mode_run" /><span class="i18n-text">run(cmd)</span><br/>
+    </label>
+    <label for="quick_build_mode_exec">
+        <input type="radio" name="quick_build_mode" id="quick_build_mode_exec" checked /><span class="i18n-text">exec(log)</span>
+    </label>
     </div>
 </div>
 </div>
 
 <!-- ############################# page_start Start ############################# -->
-<div id="page_start" class="content_page">
+<div id="page_start" class="content_page pure-form">
 
 <div id="page_start_info" style="display:none" class="alert alert-info i18n-html"><strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.</div>
 <br/>
@@ -192,7 +195,9 @@ if ($IE_VER == '9+') {
 <a href="#" id="wb_src_wim_btn" class="ibutton browse i18n-title"
     title="Select the install.wim file if it needed">Wim</a>
 
-<input type="checkbox" id="wb_auto_winre" checked /><span class="i18n-text">Auto extract the winre.wim</span>
+<label for="wb_auto_winre">
+    <input type="checkbox" id="wb_auto_winre" checked /><span class="i18n-text">Auto extract the winre.wim</span>
+</label>
 <div id="wb_src_alert" class="alert alert-info i18n-html" style="display:none"><strong>INFO</strong>:the install.wim isn't exist.</div>
 
 <br/>
@@ -231,7 +236,9 @@ if ($IE_VER == '9+') {
     <div>
         <a href="#" class="ibutton prev" onclick="$('#menu_start').click()">Prev</a>
         <a href="#" class="ibutton right next_r" onclick="$('#menu_patch').click()">Next</a>
-        <input type="checkbox" id="wb_skip_project_page" /><span class="i18n-text">Skip when project is selected</span>
+        <label for="wb_skip_project_page">
+            <input type="checkbox" id="wb_skip_project_page" /><span class="i18n-text">Skip when project is selected</span>
+        </label>
     </div>
 
 <div id="pj_tab">
@@ -303,11 +310,36 @@ if ($IE_VER == '9+') {
         <div id="x_drive_notice" class="alert alert-warning i18n-html" style="display2:none"><strong>INFO</strong>:If the mounted folder isn't mapping to X:, The patch scripts need use %X%\ than X:\ when modifying, deleting the files, and please don't create the shortcuts on building, they may point to the wrong target, do it on booting phase.</div>
     </div>
     <div>
-        <button class="pure-button" onclick="cleanup()">0-cleanup</button>
-        <button class="pure-button" id="build" onclick="run_build()">1-run(cmd)</button>
-        <button class="pure-button" id="build" onclick="exec_build()">1-exec(log)</button>
-        <button class="pure-button" id="build" onclick="make_iso()">2-make_iso</button>
-        <input type="checkbox" id="wb_auto_makeiso" /><span class="i18n-text">Create ISO after building</span>
+        <style scoped>
+        .button-green, .button-maroon, .button-orange, .button-lightblue {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-green {
+            background: rgb(28, 184, 65); /* this is a green */
+        }
+
+        .button-maroon {
+            background: rgb(202, 60, 60); /* this is a maroon */
+        }
+
+        .button-orange {
+            background: rgb(223, 117, 20); /* this is an orange */
+        }
+
+        .button-lightblue {
+            background: rgb(66, 184, 221); /* this is a light blue */
+        }
+        </style>
+        <button class="pure-button button-green" onclick="cleanup()">0-cleanup</button>
+        <button class="pure-button button-maroon" id="build" onclick="run_build()">1-run(cmd)</button>
+        <button class="pure-button button-orange" id="build" onclick="exec_build()">1-exec(log)</button>
+        <button class="pure-button button-lightblue" id="build" onclick="make_iso()">2-make_iso</button>
+        <label for="wb_auto_makeiso">
+            <input type="checkbox" id="wb_auto_makeiso" /><span class="i18n-text">Create ISO after building</span>
+        </label>
     </div>
     <div style="margin-top:10px">
         <div class="pure-form">
@@ -319,10 +351,10 @@ if ($IE_VER == '9+') {
         </div>
     </div>
     <div id="build_stdout" style="overflow:scroll;margin-top:10px">stdout</div>
-    <div>
+    <div style="margin-top:10px">
         <button class="pure-button i18n-text" onclick="OpenFolder(_log_path)">Open log folder</button>
         <button class="pure-button i18n-text" onclick="OpenFile(_log_path + '\\last_wimbuilder.log')">Open last build log</button>
-    <div>
+    </div>
     <div>
         <button class="pure-button pre-button" onclick="$('#menu_patch').click()">&lt;pre</button>
         <button class="pure-button next-button" onclick="$('#menu_about').click()">next&gt;</button>
@@ -332,7 +364,7 @@ if ($IE_VER == '9+') {
 
 <!-- ############################# page_about Start ############################# -->
 <div id="page_about" class="content_page">
-    <span>just a demo for wimbuilder UI</span>
+    <span>I am lazy, nothing left here.</span>
     <button onclick="self.close()">closeMe</button>
 </div>
 <!-- ############################# page_about End ############################# -->

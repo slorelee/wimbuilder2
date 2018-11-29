@@ -153,20 +153,17 @@ function run_build(no_confirm, keep) {
     }
 
     if (!keep) $('#build_stdout').empty();
-    if ($wb_auto_makeiso) {
-        structure_env(1);
-    } else {
-        structure_env(0);
-    }
+
+    var cmd_mode = '/k';
+    if ($wb_auto_makeiso) cmd_mode = '/c';
+    structure_env(0);
     dump_patches_selected();
     dump_patches_opt();
-    var cmd_mode = "/k";
+
     _in_building = 'run_build';
+    wsh.run('cmd ' + cmd_mode + ' "' + $wb_root + '\\bin\\_process.bat"', 1, true);
     if ($wb_auto_makeiso) {
-        wsh.run('NSudoC.exe -UseCurrentConsole -Wait -U:T "' + $wb_root + '\\bin\\_process.bat\"', 1, true);
         make_iso(true, 'exec'); //show result in OUTPUT textarea if auto makeiso
-    } else {
-        wsh.run('cmd ' + cmd_mode + ' \"' + $wb_root + '\\bin\\_process.bat\"', 1, true);
     }
 }
 
@@ -193,6 +190,7 @@ function exec_build(no_confirm, keep) {
     var logfile = _log_path + '\\last_wimbuilder.log';
     create_folder_cascade(_log_path);
     var oExec = wsh.exec('NSudoC.exe -UseCurrentConsole -Wait -U:T "' + $wb_root + '\\bin\\_process.bat" 1>"' + logfile + '" 2>&1');
+    //var oExec = wsh.exec('cmd /c """' + $wb_root + '\\bin\\_process.bat"" 1>""' + logfile + '"" 2>&1"');
     window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
     update_output_by_log(oExec);
 }
@@ -207,13 +205,14 @@ function make_iso(keep, mode) {
     } else {
         $('#build_stdout').append('<br/>Creating ISO...<br/>');
     }
-    if (typeof(mode) == 'undefined' || !$wb_auto_makeiso) structure_env(0);
-    if ($wb_auto_makeiso && mode == 'exec') {
+    if (typeof(mode) == 'undefined') structure_env(0);
+    if (mode == 'exec') {
+        structure_env(1);
         var oExec = wsh.exec($wb_root + '\\bin\\_MakeBootISO.bat');
         window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
         update_output(oExec);
     } else {
-        wsh.run('cmd /c \"' + $wb_root + '\\bin\\_MakeBootISO.bat\"', 1, true);
+        wsh.run('cmd /c "' + $wb_root + '\\bin\\_MakeBootISO.bat"', 1, true);
     }
 }
 

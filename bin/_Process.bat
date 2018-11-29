@@ -7,7 +7,7 @@ title WimBuilder(%cd%)
 if "x%_WB_EXEC_MODE%"=="x1" set WB_RUNAS_TI=1
 if "x%WB_RUNAS_TI%"=="x" (
   set WB_RUNAS_TI=1
-  NSudoC.exe -UseCurrentConsole -U:T "%~0"
+  NSudoC.exe -UseCurrentConsole -Wait -U:T "%~0"
   goto :EOF
 )
 
@@ -191,7 +191,6 @@ rem =========================================================
 
 call :CLEANUP 0
 call WIM_Exporter "%_WB_PE_WIM%"
-call exit
 goto :EOF
 
 rem =========================================================

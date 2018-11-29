@@ -5,6 +5,7 @@ function i18n_init() {
     if ($lang == '') {
         var env = wsh.Environment("PROCESS");
         $lang = env('WB_UI_LANG');
+        if ($lang == '') $lang = navigator.language || navigator.userLanguage;
     }
     var i18n_file = 'assets/i18n/' + $lang + '.js';
     if (fso.FileExists(i18n_file)) {

@@ -39,6 +39,10 @@ $i18n = {
   "otherwise, please select an usable drive.":"否则，请重新指定映射驱动器。",
   "Continue":"继续",
   "Cancel":"取消",
+  "0-cleanup":"0-清理",
+  "1-run(cmd)":"1-运行(CMD)",
+  "1-exec(log)":"1-运行(日志)",
+  "2-make_iso":"2-创建镜像",
   "Create ISO after building":" 构建后立即创建ISO",
   "Test ISO after building with:":"构建后测试ISO镜像",
   "Launch":"启动",
@@ -48,6 +52,10 @@ $i18n = {
   "Project Information":"工程信息",
 
 
+  "Please startup with WimBuilder.cmd.":"请通过WimBuilder.cmd启动。",
+  "No project to build.":"未选择构建工程。",
+  "Do you want to build the [%s] project?":"是否要对[%s]工程进行构建？",
+  "Please select a project for building.":"请选择构建工程。",
   "The system cannot find the file specified.":"系统找不到指定的文件。",
   "#LASTDUMMY#":""
 }

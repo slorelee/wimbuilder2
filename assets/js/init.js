@@ -4,7 +4,7 @@ var $wb_root = null;
     var env = wsh.Environment("PROCESS");
     $wb_root = env('WB_ROOT');
     if ($wb_root == '') {
-        var msg = 'Please startup with WimBuilder.cmd.';
+        var msg = i18n_t('Please startup with WimBuilder.cmd.');
         alert(msg);
         self.close();
     }

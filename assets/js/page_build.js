@@ -8,12 +8,13 @@ var _log_path = '';
 function build_page_init() {
     $('#build_stdout').empty();
     if (selected_project != null) {
-        var msg = 'Do you want to build the [' + selected_project + '] project?';
+        var msg = i18n_t('Do you want to build the [%s] project?');
+        msg = msg.replace('%s', selected_project);
         var opts = patches_opt_stringify();
         msg += '<br/><br/>' + opts;
         $('#build_stdout').append(msg);
     } else {
-        $('#build_stdout').append('No project to build.');
+        $('#build_stdout').append(i18n_t('No project to build.'));
     }
 
     $("input[name='wb_x_drive'][type='radio'][value='" + $wb_x_drv + "']").prop("checked", true);
@@ -133,7 +134,7 @@ function x_drive_confirm() {
 
 function cleanup(no_confirm, no_activate) {
     if (selected_project == null) {
-        alert('Please select a project for building.');
+        alert(i18n_t('Please select a project for building.'));
         return;
     }
     _in_cleanup = 'pre';
@@ -151,7 +152,7 @@ function cleanup(no_confirm, no_activate) {
 //WshHide 0;WshNormalFocus 1;WshMinimizedNoFocus 6
 function run_build(no_confirm, keep) {
     if (selected_project == null) {
-        alert('Please select a project for building.');
+        alert(i18n_t('Please select a project for building.'));
         return;
     }
 
@@ -181,7 +182,7 @@ function run_build(no_confirm, keep) {
 
 function exec_build(no_confirm, keep) {
     if (selected_project == null) {
-        alert('Please select a project for building.');
+        alert(i18n_t('Please select a project for building.'));
         return;
     }
 
@@ -210,7 +211,7 @@ function exec_build(no_confirm, keep) {
 function make_iso(keep, mode) {
     _in_makeiso = 'pre';
     if (selected_project == null) {
-        alert('Please select a project for building.');
+        alert(i18n_t('Please select a project for building.'));
         return;
     }
     if (!keep) {

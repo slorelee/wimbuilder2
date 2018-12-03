@@ -8,7 +8,7 @@ For i = 0 To objArgs.Count - 1
    WScript.Echo "ARGUMENTS(" & i & "):" & objArgs.Item(i)
 Next
 
-Dim g_path, g_mui, g_ver
+Dim g_path, g_mui, g_mui_list, g_ver
 
 Dim code_file, code_word, out_file
 
@@ -77,15 +77,35 @@ End Function
 Sub parser(line)
   If line = "" Then Exit Sub             'empty line
   If Left(line, 1) = ";" Then Exit Sub   'comment line
+
   If line = "@-" Then g_path = "":Exit Sub
-  If line = "-mui" Then g_mui = "":Exit Sub
-  If line = "+mui" Then g_mui = "+":Exit Sub
   If Left(line, 1) = "@" Then
     g_path = Mid(line, 2)
     If Left(g_path, 1) <> "\" Then g_path = "\" & g_path
     If Right(g_path, 1) <> "\" Then g_path = g_path & "\"
+    'expand environment variables in string
+    If InStr(g_path, "%") > 0 Then
+      g_path = wshShell.ExpandEnvironmentStrings(g_path)
+    End If
     Exit Sub
   End If
+
+  If line = "-mui" Then
+    g_mui = ""
+    Exit Sub
+  ElseIf line = "+mui" Then
+    g_mui = "+"
+    g_mui_list = "??-??"
+    Exit Sub
+  ElseIf Left(line, 4) = "+mui" Then
+    g_mui = "+"
+    g_mui_list = Mid(line, 6, Len(line) - 6)
+    If InStr(g_mui_list, "%") > 0 Then
+      g_mui_list = wshShell.ExpandEnvironmentStrings(g_mui_list)
+    End If
+    Exit Sub
+  End If
+
   If Left(line, 5) = "+ver*" Then g_ver = "":Exit Sub
   If Left(line, 4) = "+ver" Then g_ver = line:Exit Sub
 
@@ -102,8 +122,10 @@ Sub parser(line)
 End Sub
 
 Sub addfile(fn)
+  Dim i, ext, mui_arr
+
   If InStr(fn, "%") > 0 Then
-    fn = wshShell.ExpandenVironmentStrings(fn)
+    fn = wshShell.ExpandEnvironmentStrings(fn)
   End If
 
   'ignore g_path
@@ -117,9 +139,18 @@ Sub addfile(fn)
   'no mui for folder
   If Right(fn, 1) = "\" Then Exit Sub
   If Right(fn, 4) = ".mui" Then Exit Sub
-  If Right(fn, 4) = ".msc" Then
-    outs = outs & g_path & "??-??\" & fn & vbCrLf
-  Else
-    outs = outs & g_path & "??-??\" & fn & ".mui" & vbCrLf
+
+  ext = ".mui"
+  If Right(fn, 4) = ".msc" Then ext = ""
+  ext = "\" & fn & ext & vbCrLf
+  If InStr(g_mui_list, ",") = 0 Then
+    outs = outs & g_path & g_mui_list & ext
+    Exit Sub
   End If
+
+  mui_arr = Split(g_mui_list, ",")
+  For i = 0 To Ubound(mui_arr)
+    outs = outs & g_path & mui_arr(i) & ext
+  Next
+
 End Sub

@@ -96,6 +96,7 @@ function wb_src_folder_btn_click(event) {
     var path = $('#wb_src_folder').val();
     $wb_src_folder = path;
     if (path == '') return;
+    $('#wb_use_testwim').prop('checked', false);
     if (path.slice(-1) == '\\') path = path.slice(0, -1);
     var found = auto_detect_wims(path);
     if (found["install.wim"] == 0) {
@@ -115,12 +116,13 @@ function wb_src_wim_btn_click(event) {
     check_wim_file();
 }
 
-function wb_base_wim_btn_click(event) {
+function wb_base_wim_btn_click(event, testwim_event) {
     if (event) {
         BrowseFile('#wb_base');
     }
     $('#wb_src_folder').val('');
     $wb_src_folder = '';
+    if (!testwim_event) $('#wb_use_testwim').prop('checked', false);
     $wb_base = $('#wb_base').val();
     check_wim_file();
 }
@@ -136,6 +138,19 @@ $('#wb_src_wim_btn').click(function(){
 $('#wb_auto_winre').click(function(){
     check_wim_file();
 });
+
+$('#wb_use_testwim').click(function(){
+    var use_testwim = $(this).prop('checked');
+    if (use_testwim) {
+      $('#wb_base').val($wb_root + '\\test\\boot.wim');
+      $wb_base_index = 1;
+      $('#wb_base_idx_opt').val($wb_base_index);
+    } else {
+         $('#wb_base').val('');
+    }
+    wb_base_wim_btn_click(false, true);
+});
+
 
 $('#wb_base_wim_btn').click(function(){
     wb_base_wim_btn_click(true);

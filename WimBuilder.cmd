@@ -2,15 +2,24 @@
 cd /d "%~dp0"
 title WimBuilder(%cd%)
 
-rem run with Administrators right
+set "WB_ROOT=%~dp0"
+set "PATH_ORG=%PATH%"
+rem ======set bin PATH======
+set "PATH=%WB_ROOT%bin;%PATH%"
 if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
-  bin\x64\IsAdmin.exe
+  set "PATH=%WB_ROOT%bin\x64;%WB_ROOT%bin\x86;%PATH%"
 ) else (
-  bin\IsAdmin.exe
+  set "PATH=%WB_ROOT%bin\x86;%PATH%"
 )
+rem ========================
+
+rem run with Administrators right
+IsAdmin.exe
+
 if not ERRORLEVEL 1 (
   if not "x%~1"=="xrunas" (
     set ElevateMe=1
+    set "PATH=%PATH_ORG%"
     bin\ElevateMe.vbs "%~0" "runas" %*
   )
   goto :EOF
@@ -47,17 +56,10 @@ if not ERRORLEVEL 1 goto :MAIN_ENTRY
 copy /y i18n\%LocaleID%.vbs i18n\0.vbs
 
 :MAIN_ENTRY
-set "WB_ROOT=%~dp0"
 set "Factory=%WB_ROOT%_Factory_"
 set "ISO_DIR=%WB_ROOT%_ISO_"
 
-rem ======set bin PATH======
-set "PATH=%WB_ROOT%bin;%PATH%"
-if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
-  set "PATH=%WB_ROOT%bin\x64;%PATH%"
-) else (
-  set "PATH=%WB_ROOT%bin\x86;%PATH%"
-)
+rem ======set macros PATH======
 set "PATH=%WB_ROOT%lib\macros;%PATH%"
 rem ========================
 

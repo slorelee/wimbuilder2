@@ -2,7 +2,7 @@ if "x%I18N_SCRIPT%"=="x" goto :EOF
 call :i18n.t LOG %*
 echo %i18n.str%
 if "x%LOGFILE%"=="x" goto :EOF
->>%LOGFILE% (echo %i18n.log%)
+>>"%LOGFILE%" (echo %i18n.log%)
 
 goto :EOF
 

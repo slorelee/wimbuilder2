@@ -1,5 +1,5 @@
 
-if "x%1"=="x" goto :EOF
+if "x%~1"=="x" goto :EOF
 set "project_path=%~1"
 
 call :apply_patch "%project_path%\main.bat"

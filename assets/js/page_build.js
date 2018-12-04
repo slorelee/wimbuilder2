@@ -223,7 +223,7 @@ function make_iso(keep, mode) {
     _in_makeiso = 'doing';
     if (mode == 'exec') {
         structure_env(1);
-        var oExec = wsh.exec($wb_root + '\\bin\\_MakeBootISO.bat');
+        var oExec = wsh.exec('"' + $wb_root + '\\bin\\_MakeBootISO.bat"');
         window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
         update_output(oExec);
     } else {
@@ -239,9 +239,10 @@ function test_iso() {
     if (cmd == '') return;
 
     var name = cmd.split(' ')[0];
+    var param = cmd.substr(name.length + 1);
     name = $wb_root + '\\test\\' + name;
     if (fso.FileExists(name)) {
-        wsh.run($wb_root + '\\test\\' + cmd, 1, false);
+        wsh.run('"' + name + '" ' + param, 1, false);
     } else {
         alert(i18n_t('The system cannot find the file specified.') + '\r\n' + name);
     }

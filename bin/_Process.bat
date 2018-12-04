@@ -26,7 +26,7 @@ rem ======define var======
 if "x%WB_PROJECT%"=="x" call :NO_ENV_CONF WB_PROJECT
 set "LOGFILE=%Factory%\log\%WB_PROJECT%\%LOGSUFFIX%.log"
 call :MKPATH "%LOGFILE%"
-rem type nul>%LOGFILE%
+rem type nul>"%LOGFILE%"
 
 
 if "x%WB_BASE%"=="x" call :NO_ENV_CONF WB_BASE
@@ -248,13 +248,13 @@ goto :EOF
 :LOG
 call :i18n.t LOG %*
 echo %i18n.str%
->>%LOGFILE% (echo %i18n.log%)
+>>"%LOGFILE%" (echo %i18n.log%)
 goto :EOF
 
 :CLOG
 call :i18n.t CLR_LOG_%*
 echo %i18n.str% | cmdcolor.exe
->>%LOGFILE% (echo %i18n.log%)
+>>"%LOGFILE%" (echo %i18n.log%)
 goto :EOF
 
 rem =========================================================

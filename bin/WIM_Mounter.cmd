@@ -1,4 +1,4 @@
-if "x%3"=="x" goto :EOF
+if "x%~3"=="x" goto :EOF
 if not "x%~4"=="x" set %~4=
 
 call WB_LOG "[%WB_PROJECT%] --- MOUNT [%~1:%2] -%%gt:%% [%~3]"

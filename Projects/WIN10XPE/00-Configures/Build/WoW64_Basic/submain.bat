@@ -11,12 +11,12 @@ HistoryNotes=Be Free to Customize
 HistoryNotes01=slore modified, add 17763.107 missing WinSxS
 
 :main
+if not "x%WB_PE_ARCH%"=="xx64" goto :EOF
+if not "x%opt[build.wow64support]%"=="xtrue" goto :EOF
+
 rem ==========update filesystem==========
 
-if not "x%WB_PE_ARCH%"=="xx64" goto :EOF
-
 set SxSArch=x86
-
 call AddFiles %0 :end_files
 goto :end_files
 

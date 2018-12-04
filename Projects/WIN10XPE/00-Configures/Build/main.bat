@@ -30,3 +30,7 @@ call RegCopy HKLM\Software\Microsoft\PolicyManager
 rem call RegCopy HKLM\Software\Classes\Unknown
 
 call "%~dp0Catalog.bat"
+
+pushd "%~dp0WoW64_Basic"
+submain.bat
+popd

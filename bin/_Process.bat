@@ -13,6 +13,8 @@ if "x%WB_RUNAS_TI%"=="x" (
 
 title WimBuilder(%cd%)
 
+call DisAutoRun
+
 rem ======generate logfile name======
 rem ">" mark will cause *ECHO* error, change to "*"
 rem i.e. Mount [WIM] -> [PATH] ---> Mount [WIM] -* [PATH]

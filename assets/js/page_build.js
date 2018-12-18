@@ -183,7 +183,7 @@ function run_build(no_confirm, keep) {
     dump_patches_opt();
 
     _in_building = 'run_build';
-    wsh.run('cmd ' + cmd_mode + ' "' + $wb_root + '\\bin\\_process.bat"', 1, true);
+    wsh.run('cmd /d ' + cmd_mode + ' "' + $wb_root + '\\bin\\_process.bat"', 1, true);
     if ($wb_auto_makeiso) {
         make_iso(true, 'exec'); //show result in OUTPUT textarea if auto makeiso
     }
@@ -236,7 +236,7 @@ function make_iso(keep, mode) {
         window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
         update_output(oExec);
     } else {
-        wsh.run('cmd /c "' + $wb_root + '\\bin\\_MakeBootISO.bat"', 1, true);
+        wsh.run('cmd /d /c "' + $wb_root + '\\bin\\_MakeBootISO.bat"', 1, true);
     }
     if ($wb_auto_testiso) {
         wait_and_test();

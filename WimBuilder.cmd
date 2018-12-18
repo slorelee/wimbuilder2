@@ -26,6 +26,8 @@ if not ERRORLEVEL 1 (
 )
 if "x%~1"=="xrunas" (SHIFT)
 
+call DisAutoRun
+
 rem init i18n file
 set "I18N_SCRIPT=%~dp0i18n\i18n_.wsf"
 

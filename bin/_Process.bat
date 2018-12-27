@@ -142,9 +142,15 @@ call copy /y "%WB_BASE%" "%_WB_PE_WIM%"
 
 :BASE_WIM_PREPARED
 
+
+rem export working paths
+set "WB_PROJECT_PATH=%WB_ROOT%\Projects\%WB_PROJECT%"
+set "WB_TEMP=%_WB_TMP_DIR%"
+set "WB_TMP=%_WB_TMP_DIR%"
+
 rem call prepare.bat before mounting
-if exist "%WB_WORKSPACE%\Projects\%WB_PROJECT%\prepare.bat" (
-    call "%WB_WORKSPACE%\Projects\%WB_PROJECT%\prepare.bat" :BEFORE_WIM_MOUNT
+if exist "%WB_PROJECT_PATH%\prepare.bat" (
+    call "%WB_PROJECT_PATH%\prepare.bat" :BEFORE_WIM_MOUNT
 )
 
 call WIM_Mounter "%_WB_PE_WIM%" %WB_BASE_INDEX% "%_WB_MNT_DIR%" base_wim_mounted
@@ -175,11 +181,11 @@ echo.
 :PROJECT_BUILDING
 
 rem call prepare.bat before hive load
-if exist "%WB_WORKSPACE%\Projects\%WB_PROJECT%\prepare.bat" (
-    call "%WB_WORKSPACE%\Projects\%WB_PROJECT%\prepare.bat" :BEFORE_HIVE_LOAD
+if exist "%WB_PROJECT_PATH%\prepare.bat" (
+    call "%WB_PROJECT_PATH%\prepare.bat" :BEFORE_HIVE_LOAD
 )
 
-pushd "%WB_WORKSPACE%\Projects\%WB_PROJECT%"
+pushd "%WB_PROJECT_PATH%"
 
 call PERegPorter.bat Src LOAD 1>nul
 call PERegPorter.bat Tmp LOAD 1>nul

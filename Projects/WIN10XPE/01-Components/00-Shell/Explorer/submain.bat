@@ -1,4 +1,5 @@
 @echo off
+if not "x%opt[shell.app]%"=="xexplorer" goto :EOF
 
 call AddFiles %0 :end_files
 goto :end_files
@@ -36,6 +37,7 @@ SettingSyncCore.dll,SharedStartModel.dll,ShellCommonCommonProxyStub.dll,shfolder
 StartTileData.dll,stobject.dll,systemcpl.dll,TDLMigration.dll,TextInputFramework.dll,thumbcache.dll
 twinapi.appcore.dll,twinapi.dll,twinui.appcore.dll,twinui.pcshell.dll,UIAnimation.dll,UIRibbon.dll,UIRibbonRes.dll
 VEEventDispatcher.dll,Windows.Gaming.Input.dll,Windows.Internal.Shell.Broker.dll,Windows.Networking.Connectivity.dll,WorkFoldersShell.dll,zipfldr.dll
+windows.immersiveshell.serviceprovider.dll
 
 +ver > 17000
 cdp.dll,dsreg.dll,VEEventDispatcher.dll

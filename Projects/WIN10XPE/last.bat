@@ -11,7 +11,7 @@ reg add HKLM\Tmp_System\Setup /v CmdLine /d "Pecmd.exe Main %%Windir%%\System32\
 goto :STARTUP_ENTRY_END
 
 :STARTNET_ENTRY
-rem startup explorer shell
+rem startup shell
 
 call AddFiles %0 :end_files
 goto :end_files
@@ -36,9 +36,16 @@ start explorer.exe\r\n\
 
 :end_startnet_edit
 
-echo ping -n 2 127.0.0.1 1^>nul>>"%X32%\startnet.cmd"
-echo taskkill /f /im explorer.exe>>"%X32%\startnet.cmd"
-echo explorer.exe>>"%X32%\startnet.cmd"
+
+if "x%opt[shell.app]%"=="xwinxshell" (
+    call TextReplace "%X32%\startnet.cmd" "start explorer.exe" "start #qShell#q #q#pProgramFiles#p\WinXShell\WinXShell.exe#q -winpe"
+)
+
+if not "x%opt[shell.app]%"=="xwinxshell" (
+    echo ping -n 2 127.1 1^>nul>>"%X32%\startnet.cmd"
+    echo taskkill /f /im explorer.exe>>"%X32%\startnet.cmd"
+    echo explorer.exe>>"%X32%\startnet.cmd"
+)
 echo cmd.exe>>"%X32%\startnet.cmd"
 
 :STARTUP_ENTRY_END

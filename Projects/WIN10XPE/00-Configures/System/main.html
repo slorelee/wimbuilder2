@@ -52,59 +52,6 @@ fieldset legend {
 </fieldset>
 
 <fieldset>
-<legend>Theme Options</legend>
-<style>
-.chklabel {
-  padding-top:2px;
-  width:300px;
-  display: inline-block;
-}
-</style>
-<div>
-<span class="chklabel">Explorer Dark Theme(>v1809)</span>
-<div class="onoffswitch" style="float:right;">
-    <input type="checkbox" name="system.darktheme" class="onoffswitch-checkbox opt_item" id="system.darktheme">
-    <label class="onoffswitch-label" for="system.darktheme">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-</div>
-</div>
-
-<div>
-<style>
-#colors_panel input[type="radio"] + label {
-    border: 2px solid transparent;
-    display: block;
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
-    text-align: center;
-    vertical-align: middle;
-    color: black;
-    font-size:.6em;
-    margin-left: 3px;
-    margin-top: -15px;
-    cursor: pointer;
-}
-
-#colors_panel input[type="radio"]:hover + label {
-    border: 2px solid black;
-}
-
-#colors_panel input[type="radio"]:checked + label {
-    border: 2px solid black;
-}
-
-</style>
-<span class="chklabel">Windows Title Bars Color:</span>
-<div id="colors_panel" style="float:left;">
-</div>
-</div>
-
-</fieldset>
-
-<fieldset>
 <legend>Power Options</legend>
   <table>
     <tr><td /><td>On Battery&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Plugged In&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
@@ -137,10 +84,6 @@ fieldset legend {
 
 <script>
 (function() {
-    if (!$patch_loaded) {
-        draw_colors_panel();
-        //$patches_opt["theme.title_color"] = "1";
-    }
     $("#fbwf_select").selectmenu();
     $("#fbwf_select").selectmenu( "option", "width", '40%' );
     $("#volume_level").spinner();
@@ -151,25 +94,4 @@ fieldset legend {
     $(':radio[id^=bt-]').checkboxradio();
 })();
 
-
-function draw_colors_panel() {
-    var colors_pool = ['#FFFFFF', '#FFFFFF', '#FFB900', '#F7630C', '#EF6950', '#E81123', '#B146C2', '#9A0089',
-                       '#0078D7', '#0063B1', '#038387', '#00CC6A', '#107C10', '#567C73', '#5D5A58', '#847545'];
-    var count = 0;
-    var html = '<table>';
-    for(i=0;i<2;i++) {
-      html+= "<tr>";
-      for(j=0;j<8;j++) {
-       html+= '<td align="center"><input type="radio" id="color_radio_' + count + '" name="theme.title_color" class="opt_item" value="'
-           + count + '" style="opacity:0" />'
-           + '<label for="color_radio_' + count + '" style="background:' + colors_pool[count] + '"/></td>';
-       count++;
-      }
-      html+= "</tr>";
-     }
-    html+= '</table>';
-    $('#colors_panel').html(html);
-    $('#colors_panel label').eq(0).html('None');
-    $('#colors_panel label').eq(1).html('Auto');
-}
 </script>

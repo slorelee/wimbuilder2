@@ -5,6 +5,7 @@ Title=Internet Explorer
 Description=Internet Explorer 11 for Windows 10
 Author=windowsforum
 Date=2018.10.11
+History002=Registry - Removed WoW64 Support Requirement
 
 :main
 rem ==========update filesystem==========
@@ -348,8 +349,15 @@ call RegCopy HKLM\Software\Macromedia
 call RegCopy "HKLM\Software\Microsoft\Internet Explorer"
 call RegCopy "HKLM\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
 
-rem // IE11_AddReg.txt if needed
-if exist IE11_AddReg.reg reg import IE11_AddReg.reg
+if "x%opt[build.wow64support]%"=="xtrue" goto :_IE_CustomReg
+if "x%WB_PE_ARCH%"=="xx64" (
+    rem Removed WoW64 Support Requirement(add TabProcGrowth option)
+    rem Thanks To noelBlanc, Bob.Omb For Registry Trick For Pure IE11_x64
+    reg add "HKLM\Tmp_Software\Microsoft\Internet Explorer\Main" /v TabProcGrowth /t REG_DWORD /d 0 /f
+    reg add "HKLM\Tmp_Software\Microsoft\Internet Explorer\Main" /v x86AppPath /d "X:\Program Files\Internet Explorer\IEXPLORE.EXE" /f
+)
+
+:_IE_CustomReg
 reg add "HKLM\Tmp_Software\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f
 reg add "HKLM\Tmp_Software\Microsoft\Internet Explorer\Main" /v EnableAutoUpgrade /t REG_DWORD /d 0 /f
 reg add "HKLM\Tmp_Software\Microsoft\Internet Explorer\Main" /v Default_Page_URL /d https://www.google.com/ /f
@@ -400,3 +408,7 @@ if "x%opt[build.wow64support]%"=="xtrue" (
     call RegCopy "HKLM\Software\WOW6432Node\Microsoft\Internet Explorer"
     call RegCopy "HKLM\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Internet Settings"
 )
+
+rem // IE11_AddReg.txt if needed
+if exist IE11_AddReg.reg reg import IE11_AddReg.reg
+

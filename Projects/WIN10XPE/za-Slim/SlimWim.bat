@@ -1,6 +1,19 @@
-rem this called by pre_wim.bat before wim mounted
+rem this called by prepare.bat before wim mounted
 
 if "x%_WB_TMP_DIR%"=="x" goto :EOF
+
+rem check if test\boot.wim
+set _slim_wim_check=%WB_BASE:test\boot.wim=%
+if not "%_slim_wim_check%"=="%WB_BASE%" (
+  echo INFO:Skipping SlimWim for test\boot.wim
+  set _slim_wim_check=
+  goto :EOF
+)
+
+call CheckPatch "za-Slim"
+if %errorlevel% NEQ 0 goto :EOF
+
+
 
 echo.>"%_WB_TMP_DIR%\SlimPatch.txt"
 

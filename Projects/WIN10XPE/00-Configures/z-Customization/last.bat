@@ -1,4 +1,3 @@
-
 rem Explorer Dark or Light Theme
 if "x%opt[system.darktheme]%"=="xtrue" (
     rem check WB_PE_VER > 17700
@@ -9,12 +8,20 @@ if "x%opt[system.darktheme]%"=="xtrue" (
 
 if not exist "%X_SYS%\WindowsPowerShell\v1.0\powershell.exe" (
     rem use cmd.exe on directorybackground than powershell.exe
+    rem Directory background context menu
     reg delete HKLM\Tmp_Software\Classes\Directory\background\shell\Powershell /v ShowBasedOnVelocityId /f
-    reg add HKLM\Tmp_Software\Classes\Directory\background\shell\cmd /v HideBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
+    reg add HKLM\Tmp_Software\Classes\Directory\background\shell\Powershell /v HideBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
     reg delete HKLM\Tmp_Software\Classes\Directory\background\shell\cmd /v HideBasedOnVelocityId /f
     reg add HKLM\Tmp_Software\Classes\Directory\background\shell\cmd /v ShowBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
     rem always show the menu item
     reg delete HKLM\Tmp_Software\Classes\Directory\background\shell\cmd /v Extended /f
+
+    rem Directory context menu
+    reg delete HKLM\Tmp_Software\Classes\Directory\shell\Powershell /v ShowBasedOnVelocityId /f
+    reg add HKLM\Tmp_Software\Classes\Directory\shell\Powershell /v HideBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
+    reg delete HKLM\Tmp_Software\Classes\Directory\shell\cmd /v HideBasedOnVelocityId /f
+    reg add HKLM\Tmp_Software\Classes\Directory\shell\cmd /v ShowBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
+
 )
 
 rem // Shortcuts with 'shortcut' name and transparent icon

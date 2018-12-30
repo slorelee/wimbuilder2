@@ -4,9 +4,9 @@ If objArgs.Count < 2 Then
     WScript.Quit(1)
 End If
 
-For i = 0 To objArgs.Count - 1
-   WScript.Echo "ARGUMENTS(" & i & "):" & objArgs.Item(i)
-Next
+'For i = 0 To objArgs.Count - 1
+'   WScript.Echo "ARGUMENTS(" & i & "):" & objArgs.Item(i)
+'Next
 
 Dim g_path, g_mui, g_mui_list, g_ver
 

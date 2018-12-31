@@ -26,6 +26,8 @@ var $wb_auto_makeiso = false;
 var $wb_auto_testiso = false;
 var $wb_test_cmd = '';
 
+var $iso_boot_file = 'bootmgr';
+
 //skip update files' rights operation
 var $wb_skip_ufr = '1';
 //skip update registry's rights operation

@@ -4,16 +4,22 @@ function check_wim_file() {
     var install_wim = 0;
     if (!fso.FileExists($wb_src)) {
         $("#wb_src_alert").show();
+        $('#wb_src_wiminfo').hide();
     } else {
         $("#wb_src_alert").hide();
         install_wim = 1;
+        update_src_wiminfo();
+        $('#wb_src_wiminfo').show();
     }
 
     if (fso.FileExists($wb_base)) {
         $("#wb_base_alert").hide();
+        update_base_wiminfo();
+        $('#wb_base_wiminfo').show();
         return;
     }
 
+    $('#wb_base_wiminfo').hide();
     if ($wb_base.substr(1, 1) == ":") {
        $("#wb_base_alert").show();
     } else {
@@ -181,8 +187,28 @@ $("#wb_base").change(function(){
 
 $('#wb_src_idx_opt').click(function(){
     $wb_src_index = $(this).val();
+    update_src_wiminfo();
 });
 
 $('#wb_base_idx_opt').click(function(){
     $wb_base_index = $(this).val();
+    update_base_wiminfo();
 });
+
+function update_src_wiminfo() {
+    if ($wb_src_index != -1) {
+        update_wim_info();
+        $('#wb_src_wiminfo').text(_last_src_info);
+    } else {
+        $('#wb_src_wiminfo').text('source.wim[-]:-(-,-,-)');
+    }
+}
+
+function update_base_wiminfo() {
+    if ($wb_base_index != -1) {
+        update_wim_info();
+        $('#wb_base_wiminfo').text(_last_base_info);
+    } else {
+        $('#wb_base_wiminfo').text('base.wim[-]:-(-,-,-)');
+    }
+}

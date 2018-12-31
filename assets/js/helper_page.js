@@ -91,3 +91,38 @@ function wait_and_build(mode) {
         exec_build(false, true);
     }
 }
+
+
+var last_src_key = '';
+var last_base_key = '';
+var _last_src_info = '';
+var _last_base_info = '';
+function update_wim_info() {
+    var status = '';
+    var src_info = _last_src_info;
+    var base_info = _last_base_info;
+    var src_key = $wb_src + '[' + $wb_src_index + ']';
+    var base_key = $wb_base + '[' + $wb_base_index + ']';
+
+    if ($wb_src == '' || $wb_src_index == '-1' || !fso.FileExists($wb_src)) {
+        src_info = 'source.wim[-]:-(-,-,-)';
+    } else if (src_key != last_src_key) {
+        var n = get_file_name($wb_src);
+        src_info = n + '[' + $wb_src_index + ']:' + exec_cmd('\"%WB_ROOT%\\bin\\GetWimInfo.cmd\" \"' + $wb_src + '\" ' + $wb_src_index);
+        last_src_key = $wb_src + '[' + $wb_src_index + ']';
+        _last_src_info = src_info;
+    }
+
+    if ($wb_base == 'winre.wim') {
+        base_info = 'winre.wim[1]:' + src_info.split(':')[1];
+    } else if ($wb_base == '' || $wb_base_index == '-1' || !fso.FileExists($wb_base)) {
+        base_info = 'base.wim[-]:-(-,-,-)';
+    } else if (base_key != last_base_key) {
+        var n = get_file_name($wb_base);
+        base_info = n + '[' + $wb_base_index + ']:' + exec_cmd('\"%WB_ROOT%\\bin\\GetWimInfo.cmd\" \"' + $wb_base + '\" ' + $wb_base_index);
+        last_base_key = $wb_base + '[' + $wb_base_index + ']';
+        _last_base_info = base_info;
+    }
+
+    $('#status_text').text(base_info); //src_info + ' ' + base_info
+}

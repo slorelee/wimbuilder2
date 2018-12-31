@@ -31,6 +31,8 @@ $i18n = {
 
   "Current project:":"当前工程:",
 
+  "The _ISO_ folder is not available, you can\'t create bootable ISO image.\r\nPlease make your ISO template manually, or select the Windows ISO folder/drive for auto creating.":
+      "当前_ISO_模板目录不可用，您无法创建可启动的ISO镜像。\r\n请手动创建您的ISO模板，或者选择Windows镜像路径，将自动为您创建。",
   "Subst mounted folder to Drive":"将wim挂载目录映射到",
   " Auto":" 自动",
   "<strong>INFO</strong>:If the mounted folder isn't mapping to X:, The patch scripts need use %X%\\ than X:\\ when modifying, deleting the files, and please don't create the shortcuts on building, they may point to the wrong target, do it on booting phase.":

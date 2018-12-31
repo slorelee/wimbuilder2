@@ -20,6 +20,14 @@
     <link rel="stylesheet" href="assets/css/switch.css" />
     <link rel="stylesheet" href="assets/htakit/css/uikit-tab.css" />
     <link rel="stylesheet" href="assets/css/alert.css" />
+    <style type="text/css">
+        #statusbar {
+            position: fixed;right: 0;top: 100%;
+            height: 30px;width: 100%;
+            transform: translate(0,-100%);
+            background-color: #191818;color: white;
+        }
+    </style>
 </head>
 
 <body  onbeforeunload="window_beforeunload()">
@@ -199,6 +207,7 @@ if ($IE_VER == '9+') {
     <input type="checkbox" id="wb_auto_winre" checked /><span class="i18n-text">Auto extract the winre.wim</span>
 </label>
 <div id="wb_src_alert" class="alert alert-info i18n-html" style="display:none"><strong>INFO</strong>:the install.wim isn't exist.</div>
+<div id="wb_src_wiminfo" class="alert alert-info">wim information</div>
 
 <br/>
 <span style="font-weight:bold;color:#000;" class="i18n-text">Select the base image(boot.wim/winre.wim or other customed.wim)</span><br/>
@@ -222,6 +231,7 @@ if ($IE_VER == '9+') {
 </label>
 
 <div id="wb_base_alert" class="alert alert-error i18n-html" style="display:none"><strong>ERROR</strong>:the base wim isn't exist.</div>
+<div id="wb_base_wiminfo" class="alert alert-info">wim information</div>
 
     <div>
         <button class="pure-button pre-button" enable="false">&lt;pre</button>
@@ -381,6 +391,10 @@ if ($IE_VER == '9+') {
 <![endif]-->
 
 </div>
+<div id="statusbar">
+    <div style="float:right;margin-top:-10px;"><p id="status_text"></p></div>
+</div>
+
 <script src="assets/js/i18n.js"></script>
 <script type="text/javascript">
     function window_onload() {

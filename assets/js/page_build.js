@@ -25,6 +25,15 @@ function build_page_init() {
 
     var env = wsh.Environment("PROCESS");
     _log_path = env('Factory') + '\\log\\' + selected_project;
+    var iso_path = eformat('%WB_ROOT%\\_ISO_');
+    if (!fso.FolderExists(iso_path)) {
+        fso.CreateFolder(iso_path);
+    }
+    if (!fso.FileExists(iso_path + '\\' + $iso_boot_file)) {
+        if (!fso.FolderExists($wb_src_folder + 'boot')) {
+            alert(i18n_t('The _ISO_ folder is not available, you can\'t create bootable ISO image.\r\nPlease make your ISO template manually, or select the Windows ISO folder/drive for auto creating.'));
+        }
+    }
 }
 
 $("input[name='wb_x_drive'][type='radio']").click(function() {

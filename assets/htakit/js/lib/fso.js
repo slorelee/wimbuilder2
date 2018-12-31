@@ -75,3 +75,13 @@ function create_folder_cascade(path) {
         }
     }
 }
+
+function get_file_dir(path) {
+    var pos = path.lastIndexOf('\\');
+    return path.substring(0, pos - 1);
+}
+
+function get_file_name(path) {
+    var pos = path.lastIndexOf('\\');
+    return path.substring(pos + 1);
+}

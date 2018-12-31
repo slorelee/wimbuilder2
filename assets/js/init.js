@@ -17,13 +17,16 @@ project_page_init();
 i18n_trans();
 
 function page_init() {
+    create_folder_cascade(eformat("%WB_ROOT%\\_Factory_\\tmp"));
     if ($wb_base == "winre.wim" && fso.FileExists($wb_src)) {
         $('#menu_project').click();
+        update_wim_info();
         return;
     }
 
     if (fso.FileExists($wb_base)) {
         $('#menu_project').click();
+        update_wim_info();
         return;
     }
 

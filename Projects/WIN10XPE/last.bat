@@ -30,9 +30,12 @@ goto :end_startnet_edit
 
 TXT.before('wpeinit').insert('set USERPROFILE=X:\\Users\\Default');
 TXT.append('\r\n\
-taskkill /f /im WallpaperHost.exe\r\n\
-start explorer.exe\r\n\
+if exist %SystemRoot%\\System32\\IME_Cmd.cmd (\r\n\
+    call %SystemRoot%\\System32\\IME_Cmd.cmd\r\n\
+    @echo on\r\n\
+)\r\n\
 ');
+TXT.append('\r\nstart explorer.exe\r\n');
 
 :end_startnet_edit
 

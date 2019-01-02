@@ -6,7 +6,8 @@ var $patches_opt = {
     "theme.title_color":"1",
     "config.fbwf.cache": "2048",
     "config.computername": "WINXPE",
-    "shell.app":"explorer"
+    "shell.app":"explorer",
+    "shell.wallpaper":"wallpaper.jpg"
 };
 
 //advanced operation

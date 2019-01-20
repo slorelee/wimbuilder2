@@ -8,9 +8,10 @@ if "x%ISO_DIR%"=="x" (
 )
 
 rem auto create the _ISO_
-if not exist "%ISO_DIR%\boot\bootmgr" (
+
+call :MKPATH "%ISO_DIR%\sources\"
+if not exist "%ISO_DIR%\bootmgr" (
   if exist "%WB_SRC_FOLDER%boot" (
-    call :MKPATH "%ISO_DIR%\sources\"
     xcopy /E /Y "%WB_SRC_FOLDER%boot" "%ISO_DIR%\boot\"
     xcopy /E /Y "%WB_SRC_FOLDER%efi" "%ISO_DIR%\efi\"
     copy /y "%WB_SRC_FOLDER%bootmgr" "%ISO_DIR%\"
@@ -18,9 +19,8 @@ if not exist "%ISO_DIR%\boot\bootmgr" (
   )
 )
 
+call :MKPATH "%ISO_DIR%\boot\"
 if not exist "%ISO_DIR%\boot\etfsboot.com" (
-  call :MKPATH "%ISO_DIR%\boot\"
-  call :MKPATH "%ISO_DIR%\sources\"
   copy /y "%WB_ROOT%\bin\etfsboot.com" "%ISO_DIR%\boot\"
 )
 

@@ -25,15 +25,6 @@ function build_page_init() {
 
     var env = wsh.Environment("PROCESS");
     _log_path = env('Factory') + '\\log\\' + selected_project;
-    var iso_path = eformat('%WB_ROOT%\\_ISO_');
-    if (!fso.FolderExists(iso_path)) {
-        fso.CreateFolder(iso_path);
-    }
-    if (!fso.FileExists(iso_path + '\\' + $iso_boot_file)) {
-        if (!fso.FolderExists($wb_src_folder + 'boot')) {
-            alert(i18n_t('The _ISO_ folder is not available, you can\'t create bootable ISO image.\r\nPlease make your ISO template manually, or select the Windows ISO folder/drive for auto creating.'));
-        }
-    }
 }
 
 $("input[name='wb_x_drive'][type='radio']").click(function() {
@@ -52,6 +43,20 @@ $("#wb_auto_testiso").click(function() {
 $("#wb_test_cmd").change(function() {
     $wb_test_cmd = $(this).val();
 });
+
+function check_iso_template() {
+    var iso_path = eformat('%WB_ROOT%\\_ISO_');
+    if (!fso.FolderExists(iso_path)) {
+        fso.CreateFolder(iso_path);
+    }
+    if ($iso_boot_file != '') {
+        if (!fso.FileExists(iso_path + '\\' + $iso_boot_file)) {
+            if (!fso.FolderExists($wb_src_folder + 'boot')) {
+                alert(i18n_t('The _ISO_ folder is not available, you can\'t create bootable ISO image.\r\nPlease make your ISO template manually, or select the Windows ISO folder/drive for auto creating.'));
+            }
+        }
+    }
+}
 
 function x_drive_detect() {
     if ($wb_x_drv != 'auto') {
@@ -218,6 +223,7 @@ function exec_build(no_confirm, keep) {
 }
 
 function make_iso(keep, mode) {
+    check_iso_template();
     _in_makeiso = 'pre';
     if (selected_project == null) {
         alert(i18n_t('Please select a project for building.'));

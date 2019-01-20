@@ -1,0 +1,90 @@
+<fieldset>
+<legend>Skin</legend>
+<label for="sib_skin_1">
+    <input type="radio" id="sib_skin_1" class="opt_item" name="SIB.skin" value="Windows 7" /> Windows 7
+</label>
+<label for="sib_skin_2">
+    <input type="radio" id="sib_skin_2" class="opt_item" name="SIB.skin" value="Plain8" checked /> Plain8
+</label>
+<label for="sib_skin_3">
+    <input type="radio" id="sib_skin_3" class="opt_item" name="SIB.skin" value="Plain10" /> Plain10
+</label>
+</fieldset>
+
+<label for="sib_check_1">
+    <input type="checkbox" id="sib_check_1" class="opt_item" name="SIB.programs.flyout" checked /> Show All programs as flyout menu (Windows XP style)
+</label>
+<br/>
+<label for="sib_check_2">
+    <input type="checkbox" id="sib_check_2" class="opt_item" name="SIB.style.opaque" checked /> Opaque
+</label>
+<br/>
+<br/>
+<div id="sib_preview_layout" style="margin-left:30px;width:184px;height:200px;background:url(assets/wp.png) no-repeat;">
+<div id="sib_preview" style="padding-top:50px;">
+    <div id="sib_pre_bk" style='width:120px;height:136px;background:url("assets/Windows 7.png");'>
+        <div id="sib_pre_lefttree" style="float:left;margin:22px 0px 0px 8px;width:31px;height:43px;background:url(assets/lefttree_a.png) no-repeat;"></div>
+        <div id="sib_pre_flyout" style="float:left;margin:60px 0px 0px 64px;width:40px;height:45px;background:url((assets/flyout_a.png) no-repeat;"></div>
+    </div>
+</div>
+</div>
+
+<script>
+(function() {
+    if (!$patch_loaded) {
+       var patch_fpath = $obj_project.full_path + '/' + _patches_selected_node;
+       $('#sib_preview_layout').css('background', 'url(' + patch_fpath + '/assets/wp.png)');
+       update_sib_preview();
+       update_sib_opacity();
+    }
+})();
+
+$('input:radio[name="SIB.skin"]').change(function(){
+    if ($(this).prop('checked')) {
+        update_sib_preview();
+    }
+});
+
+$('input:checkbox[name="SIB.programs.flyout"]').change(function(){
+    update_sib_preview();
+});
+
+$('input:checkbox[name="SIB.style.opaque"]').change(function(){
+    update_sib_opacity($(this).prop('checked'));
+});
+
+function update_sib_opacity(prop) {
+    if (prop == null) {
+        prop = $('input:checkbox[name="SIB.style.opaque"]').prop('checked')
+    }
+    if (prop) {
+        $('#sib_preview').css('opacity', '1.0');
+    } else {
+        $('#sib_preview').css('opacity', '0.6');
+    }
+}
+
+function update_sib_preview() {
+    var skin_name = $('input:radio[name="SIB.skin"]:checked').val();
+    var flyout_style = $('input:checkbox[name="SIB.programs.flyout"]').prop('checked');
+    var patch_fpath = $obj_project.full_path + '/' + _patches_selected_node;
+    var skin_type = 'a';
+    var flyout_dy = '60px';
+    if (skin_name == 'Plain10') {
+       skin_type = 'b';
+       flyout_dy = '68px';
+    }
+    $('#sib_pre_bk').css('background', 'url("' + patch_fpath + '/assets/' + skin_name + '.png")');
+    $('#sib_pre_flyout').css('margin-top', flyout_dy);
+    if (flyout_style) {
+        $('#sib_pre_lefttree').hide();
+        $('#sib_pre_flyout').show();
+        $('#sib_pre_flyout').css('background', 'url(' + patch_fpath + '/assets/flyout_' + skin_type + '.png)');
+    } else {
+        $('#sib_pre_lefttree').show();
+        $('#sib_pre_flyout').hide();
+        $('#sib_pre_lefttree').css('background', 'url(' + patch_fpath + '/assets/lefttree_' + skin_type + '.png)');
+    }
+}
+
+</script>

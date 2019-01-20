@@ -1,0 +1,46 @@
+if not exist "X_PF\StartIsBack\" goto :EOF
+call X2X
+if not "%WB_PE_ARCH%"=="x64" del /f "%X%\Program Files\StartIsBack\StartIsBack64.dll"
+
+reg import "%~dp0SIB_RegDefault.reg"
+reg import "%~dp0SIB_RegSoftware.reg"
+
+rem update dll path for x86
+if "%WB_PE_ARCH%"=="x64" goto :update_config
+call :update_clsid_dll_path {865e5e76-ad83-4dca-a109-50dc2113ce9b}
+call :update_clsid_dll_path {a2a9545d-a0c2-42b4-9708-a0b2badd77c9}
+call :update_clsid_dll_path {AD1405D2-30CF-4877-8468-1EE1C52C759F}
+call :update_clsid_dll_path {c71c41f1-ddad-42dc-a8fc-f5bfc61df958}
+call :update_clsid_dll_path {E5C31EC8-C5E6-4E07-957E-944DB4AAD85E}
+call :update_clsid_dll_path {FCEA18FF-BC55-4E63-94D7-1B2EFBFE706F}
+reg add HKLM\Tmp_Software\Classes\CLSID\{FCEA18FF-BC55-4E63-94D7-1B2EFBFE706F} /v LocalizedString /t REG_EXPAND_SZ /d @%^ProgramFiles^%\StartIsBack\StartIsBack32.dll,-510 /f
+
+:update_config
+if "x%opt[SIB.skin]%"=="x" set opt[SIB.skin]=Plain8
+set SIB_KEY=HKLM\Tmp_Default\Software\StartIsBack
+reg add %SIB_KEY% /v AlterStyle /d "X:\Program Files\StartIsBack\Styles\%opt[SIB.skin]%.msstyles" /f
+reg add %SIB_KEY% /v TaskbarStyle /d "X:\Program Files\StartIsBack\Styles\%opt[SIB.skin]%.msstyles" /f
+
+rem // StartIsBack Display as flyout menu (Windows XP style) value 0/1
+if not "x%opt[SIB.programs.flyout]%"=="xfalse" (
+    reg add %SIB_KEY% /v AllProgramsFlyout /t REG_DWORD /d 1 /f
+) else (
+    reg add %SIB_KEY% /v AllProgramsFlyout /t REG_DWORD /d 0 /f
+)
+
+rem // StartIsBack Start Menu Opaque
+if not "x%opt[SIB.style.opaque]%"=="xfalse" (
+    reg add %SIB_KEY% /v StartMenuColor  /t REG_DWORD /d 0xffffffff /f
+    reg add %SIB_KEY% /v StartMenuBlur   /t REG_DWORD /d 2 /f
+    reg add %SIB_KEY% /v StartMenuAlpha  /t REG_DWORD /d 255 /f
+)
+set SIB_KEY=
+
+if not exist "%X%\ProgramData\Microsoft\User Account Pictures\" (
+    mkdir "%X%\ProgramData\Microsoft\User Account Pictures"
+)
+copy /y user-200.png "%X%\ProgramData\Microsoft\User Account Pictures\"
+goto :EOF
+
+:update_clsid_dll_path
+reg add HKLM\Tmp_Software\Classes\CLSID\%1\InProcServer32 /ve /d "X:\\Program Files\\StartIsBack\\StartIsBack32.dll" /f

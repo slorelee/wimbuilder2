@@ -31,7 +31,9 @@ if "x%opt[tweak.shortcut.noarrow]%"=="xtrue" (
 )
 
 if "x%opt[tweak.shortcut.nonosuffix]%"=="xtrue" (
-    reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer /v link /t REG_BINARY /d 15000000 /f
+    reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer /v link /t REG_BINARY /d 00000000 /f
+) else (
+    reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer /v link /t REG_BINARY /d 16000000 /f
 )
 
 

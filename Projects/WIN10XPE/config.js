@@ -7,13 +7,18 @@ var $patches_opt = {
     "config.fbwf.cache": "2048",
     "config.computername": "WINXPE",
     "shell.app":"explorer",
-    "shell.wallpaper":"wallpaper.jpg"
+    "shell.wallpaper":"wallpaper.jpg",
+    "tweak.shortcut.noarrow":false,
+    "tweak.shortcut.nosuffix":true
 };
 
 //advanced operation
 function patches_state_init() {
     open_tree_node('00-Configures');
     select_tree_node('00-Configures/Build');
+    uncheck_tree_node('02-Apps');
+    uncheck_tree_node('MTP_Support');
+    uncheck_tree_node('Patch_drvinst');
     uncheck_tree_node('01-Components');
     check_tree_node('01-Components/00-Shell');
     check_tree_node('01-Components/DWM');

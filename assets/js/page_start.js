@@ -116,7 +116,7 @@ function wb_src_wim_btn_click(event) {
     if (event) {
         BrowseFile('#wb_src');
     }
-    $('#wb_src_folder').val('');
+    //$('#wb_src_folder').val('');
     $wb_src_folder = '';
     $wb_src = $('#wb_src').val();
     check_wim_file();
@@ -126,7 +126,7 @@ function wb_base_wim_btn_click(event, testwim_event) {
     if (event) {
         BrowseFile('#wb_base');
     }
-    $('#wb_src_folder').val('');
+    //$('#wb_src_folder').val('');
     $wb_src_folder = '';
     if (!testwim_event) $('#wb_use_testwim').prop('checked', false);
     $wb_base = $('#wb_base').val();

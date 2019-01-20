@@ -14,9 +14,7 @@ function init_radio_opt(elem, patches_opt) {
 function init_checkbox_opt(elem, patches_opt) {
     var key = $(elem).attr('name');
     if (key in patches_opt) {
-        if (true == patches_opt[key]) {
-            $(elem).prop("checked", true);
-        }
+        $(elem).prop("checked", true == patches_opt[key]);
     }
 }
 

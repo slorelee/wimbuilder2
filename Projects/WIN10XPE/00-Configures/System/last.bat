@@ -1,4 +1,8 @@
 
+call ComputerName.bat
+reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-18" /v ProfileImagePath /d X:\Users\Default /f
+
+
 rem Fbwf Cache Size. Limited to 1024 Mb with x86
 set _fbwf_size=%opt[config.fbwf.cache]%
 if "x%_fbwf_size%"=="x" set _fbwf_size=1024

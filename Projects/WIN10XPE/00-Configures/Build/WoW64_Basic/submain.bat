@@ -8,7 +8,6 @@ Description=WoW64 basic
 Author=ChriSR
 Date=2018.10.11
 HistoryNotes=Be Free to Customize
-HistoryNotes01=slore modified, add 17763.107 missing WinSxS
 
 :main
 if not "x%WB_PE_ARCH%"=="xx64" goto :EOF
@@ -20,32 +19,25 @@ set SxSArch=x86
 call AddFiles %0 :end_files
 goto :end_files
 
+
+; WinSXS
 ; //- Language without fallback language should be enough for WinSxS
 \Windows\WinSxS\%SxSArch%_microsoft.windows.c..-controls.resources_*_%WB_PE_LANG%*\*.*
 \Windows\WinSxS\%SxSArch%_microsoft.windows.common-controls*\*.*
-\Windows\WinSxS\%SxSArch%_microsoft.windows.gdiplus.systemcopy_*\*.*
+\Windows\WinSxS\wow64_microsoft.windows.gdiplus.systemcopy_*\*.*
 \Windows\WinSxS\%SxSArch%_microsoft.windows.gdiplus_*\*.*
 \Windows\WinSxS\%SxSArch%_microsoft.windows.isolationautomation_*\*.*
 \Windows\WinSxS\%SxSArch%_microsoft.windows.i..utomation.proxystub_*\*.*
 \Windows\WinSxS\%SxSArch%_microsoft-windows-servicingstack_*\*.*
 ; //-
 \Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.c..-controls.resources_*_%WB_PE_LANG%*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.common-controls*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.gdiplus.systemcopy_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.gdiplus_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.isolationautomation_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.i..utomation.proxystub_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-comdlg32_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-comctl32-v5.resources_*_%WB_PE_LANG%*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-comdlg32.resources_*_%WB_PE_LANG%*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.systemcompatible_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-a..core-base.resources_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-blb-engine-main_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.s...smart_card_library_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.s..rt_driver.resources_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.s..se.scsi_port_driver_*.manifest
-\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-servicingstack_*.manifest
-; //\Windows\WinSxS\manifests\x86_microsoft.windows.s..ation.badcomponents_*.manifest
+\Windows\WinSxS\Manifests\%SxSArch%_microsoft.windows.common-controls_*.manifest
+\Windows\WinSxS\Manifests\wow64_microsoft.windows.gdiplus.systemcopy_*.manifest
+\Windows\WinSxS\Manifests\%SxSArch%_microsoft.windows.gdiplus_*.manifest
+\Windows\WinSxS\Manifests\%SxSArch%_microsoft.windows.isolationautomation_*.manifest
+\Windows\WinSxS\Manifests\%SxSArch%_microsoft.windows.i..utomation.proxystub_*.manifest
+\Windows\WinSxS\Manifests\%SxSArch%_microsoft.windows.systemcompatible_*.manifest
+\Windows\WinSxS\Manifests\%SxSArch%_microsoft-windows-servicingstack_*.manifest
 
 
 @windows\system32\

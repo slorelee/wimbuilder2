@@ -125,14 +125,11 @@ if not "x%opt[build.registry.software]%"=="xfull" (
   call REGCOPY "HKLM\Software\Microsoft\Windows\CurrentVersion\Control Panel"
   call REGCOPY "HKLM\Software\Microsoft\Windows\CurrentVersion\Controls Folder"
   call REGCOPY HKLM\Software\Microsoft\Windows\CurrentVersion\Themes
-  call REGCOPY HKLM\Software\Microsoft\Windows\DWM
 )
 
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\CoreMessagingRegistrar
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\Themes
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\WindowsTrustedRT
-reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v OneCoreNoBootDWM  /t REG_DWORD /d 0 /f
-reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v ColorPrevalence /t REG_DWORD /d 1 /f
 reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\Themes /f
 reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CoreMessagingRegistrar /f
 

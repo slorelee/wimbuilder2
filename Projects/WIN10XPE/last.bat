@@ -4,10 +4,18 @@ attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
 attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories"
 attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools"
 
+rem incompatible with StartIsBack(SYSTEM account)
+del /q "%X_SYS%\windows.immersiveshell.serviceprovider.dll"
+del /q "%X_SYS%\%WB_PE_LANG%\windows.immersiveshell.serviceprovider.dll"
+
 rem startup with pecmd.exe
 :PECMD_ENTRY
 if not exist "%X%\Windows\System32\pecmd.exe" goto :STARTNET_ENTRY
-reg add HKLM\Tmp_System\Setup /v CmdLine /d "Pecmd.exe Main %%Windir%%\System32\Pecmd.ini" /f
+if not "x%PECMDINI%"=="x" (
+    reg add HKLM\Tmp_System\Setup /v CmdLine /d "Pecmd.exe Main %%Windir%%\System32\%PECMDINI%" /f
+) else (
+    reg add HKLM\Tmp_System\Setup /v CmdLine /d "Pecmd.exe Main %%Windir%%\System32\Pecmd.ini" /f
+)
 goto :STARTUP_ENTRY_END
 
 :STARTNET_ENTRY

@@ -42,3 +42,8 @@ reg add HKLM\Tmp_System\ControlSet001\Control\Power /v HibernateEnabled /t REG_D
 reg add HKLM\Tmp_System\ControlSet001\Control\Power /v CustomizeDuringSetup /t REG_DWORD /d 0 /f
 rem // Disable Fast Startup
 reg add "HKLM\Tmp_System\ControlSet001\Control\Session Manager\Power" /v HiberbootEnabled /t REG_DWORD /d 0 /f
+
+if not "x%opt[system.admin_enabled]%"=="xtrue" goto :EOF
+pushd Admin
+call SwitchToAdmin.bat
+popd

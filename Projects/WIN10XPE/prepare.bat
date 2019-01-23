@@ -22,6 +22,10 @@ rem ===================================
 goto :EOF
 
 :BEFORE_HIVE_LOAD
+if "x%opt[system.admin_enabled]%"=="xtrue" (
+    set opt[build.registry.software]=full
+)
+
 if "x%opt[build.registry.software]%"=="xfull" (
   call AddFiles \Windows\System32\config\SOFTWARE
   set REGCOPY_SKIP_SOFTWARE=1

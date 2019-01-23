@@ -52,6 +52,14 @@ fieldset legend {
 </fieldset>
 
 <fieldset>
+<legend>Administrator Options</legend>
+<!-- Spinner -->
+<input type="checkbox" name="system.admin_enabled" class="opt_item">Enable Administrator account<br/>
+<label class="left_label" style="width:70%;">Switch to Administrator for(sec):</label>
+<input id="admin_countdown" name="system.admin_countdown" min="0" max="60" value="5" class="opt_item" style="width:30px">
+</fieldset>
+
+<fieldset>
 <legend>Power Options</legend>
   <table>
     <tr><td /><td>On Battery&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Plugged In&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
@@ -80,12 +88,14 @@ fieldset legend {
 
 <div style="margin:3px;font-size:.8em;"><input type="checkbox" name="system.numlock" class="opt_item" checked>NumLock ON</div><br/>
 
+
 </div>
 
 <script>
 (function() {
     $("#fbwf_select").selectmenu();
     $("#fbwf_select").selectmenu( "option", "width", '40%' );
+    $("#admin_countdown").spinner();
     $("#volume_level").spinner();
     $("#off_disp_bat").spinner();
     $("#off_disp_plug").spinner();

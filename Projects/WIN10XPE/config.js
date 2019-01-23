@@ -2,6 +2,8 @@ var $patches_opt = {
     "build.source":"light",
     "build.registry.software":"merge",
     "build.wow64support":false,           // always false if ARCH=x86
+    "system.admin_enabled":false,
+    "system.admin_countdown":"5",
     "system.darktheme":false,
     "theme.title_color":"1",
     "config.fbwf.cache": "2048",

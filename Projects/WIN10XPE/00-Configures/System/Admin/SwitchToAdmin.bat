@@ -31,14 +31,17 @@ Windows.UI.Xaml.Controls.dll,Windows.ApplicationModel.dll
 Windows.UI.XamlHost.dll
 
 +mui
-AuthExt.dll,InputHost.dll,InputSwitch.dll,MrmCoreR.dll,secedit.exe,seclogon.dll,tscon.exe,tsdiscon.exe,whoami.exe
-Windows.UI.Immersive.dll
+;need install.wim's imageres.dll
+imageres.dll
+AuthExt.dll,InputSwitch.dll,twinapi.appcore.dll,Windows.UI.Immersive.dll
+secedit.exe,seclogon.dll,tscon.exe,tsdiscon.exe,whoami.exe
 
 ; Windows.UI.Xaml.dll exist in all Language folders.
 +mui(en-US,%WB_PE_LANG%)
 Windows.UI.Xaml.dll
 
 -mui
+CoreMessaging.dll,CoreUIComponents.dll,InputHost.dll,MrmCoreR.dll,rmclient.dll,TextInputFramework.dll
 \Windows\SystemResources\Windows.UI.Logon
 
 
@@ -56,6 +59,8 @@ rem use in :PECMD_ENTRY@last.bat
 set PECMDINI=PecmdAdmin.ini
 
 rem ==========update registry==========
+call REGCOPY HKLM\SYSTEM\ControlSet001\Services\CoreMessagingRegistrar
+reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CoreMessagingRegistrar /f
 
 reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
 call RegCopy HKLM\System\ControlSet001\Services\seclogon

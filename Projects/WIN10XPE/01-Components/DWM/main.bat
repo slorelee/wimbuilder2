@@ -6,13 +6,18 @@ goto :end_files
 @\Windows\System32\
 +mui
 ; Theme and dwm
-dwm.exe,dwmcore.dll,dwminit.dll,dwmredir.dll,hotplug.dll,InputHost.dll,ISM.dll
-themeservice.dll,themeui.dll,twinui.dll,ubpm.dll,uDWM.dll,wdi.dll
+dwm.exe,dwmcore.dll,dwminit.dll,dwmredir.dll,hotplug.dll
+themeservice.dll,themeui.dll,twinapi.appcore.dll,twinui.dll,ubpm.dll,uDWM.dll,wdi.dll
 Windows.Gaming.Input.dll,Windows.UI.Immersive.dll
+
+-mui
+CoreMessaging.dll,CoreUIComponents.dll,ISM.dll,rmclient.dll
 
 :end_files
 
 rem ==========update registry==========
+call REGCOPY HKLM\SYSTEM\ControlSet001\Services\CoreMessagingRegistrar
+reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CoreMessagingRegistrar /f
 
 call REGCOPY HKLM\Software\Microsoft\Windows\DWM
 reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v OneCoreNoBootDWM /t REG_DWORD /d 0 /f
@@ -23,7 +28,7 @@ reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v ColorPrevalence /t RE
 rem   // For dwm.exe or StateRepository
 rem   //RegCopyKey,HKLM,Tmp_Software\Microsoft\WindowsRuntime\Server\StateRepository
 rem   //RegCopyKey,HKLM,Tmp_Software\Microsoft\WindowsRuntime\ActivatableClassId
-REGCOPY HKLM\Software\Microsoft\WindowsRuntime
-REGCOPY "HKLM\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel"
-REGCOPY HKLM\Software\Microsoft\Windows\CurrentVersion\AppModel
-REGCOPY HKLM\Software\Microsoft\Windows\CurrentVersion\AppX
+call REGCOPY HKLM\Software\Microsoft\WindowsRuntime
+call REGCOPY "HKLM\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel"
+call REGCOPY HKLM\Software\Microsoft\Windows\CurrentVersion\AppModel
+call REGCOPY HKLM\Software\Microsoft\Windows\CurrentVersion\AppX

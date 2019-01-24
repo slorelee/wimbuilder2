@@ -5,7 +5,7 @@ attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
 attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools"
 
 rem incompatible with StartIsBack(SYSTEM account)
-if exist "%X_PF%\StartIsBack\StartIsBack.exe" ( 
+if exist "%X%\Program Files\StartIsBack\" ( 
     del /q "%X_SYS%\windows.immersiveshell.serviceprovider.dll"
     del /q "%X_SYS%\%WB_PE_LANG%\windows.immersiveshell.serviceprovider.dll.mui"
 )

@@ -31,7 +31,7 @@ Windows.UI.Xaml.Controls.dll,Windows.ApplicationModel.dll
 Windows.UI.XamlHost.dll
 
 +mui
-AuthExt.dll,InputSwitch.dll,MrmCoreR.dll,secedit.exe,seclogon.dll,tscon.exe,tsdiscon.exe,whoami.exe
+AuthExt.dll,InputHost.dll,InputSwitch.dll,MrmCoreR.dll,secedit.exe,seclogon.dll,tscon.exe,tsdiscon.exe,whoami.exe
 Windows.UI.Immersive.dll
 
 ; Windows.UI.Xaml.dll exist in all Language folders.

@@ -1,4 +1,0 @@
-abc
-test
-def
-exit

@@ -75,3 +75,15 @@ if %opt[system.admin_countdown]% GTR 0 (
   call TextReplace "%X_SYS%\PecmdAdmin.ini" "CALL ADMIN#r#n//CALL SWITCHTOADMINQUESTION" "#//CALL ADMIN#r#nCALL SWITCHTOADMINQUESTION"
   call TextReplace "%X_SYS%\PecmdAdmin.ini" "#YN *3000 $N" "#YN *%opt[system.admin_countdown]%000 $N"
 )
+
+rem Screen image
+if "x%opt[system.admin_screen]%"=="x" goto :EOF
+if "x%opt[system.admin_screen]%"=="xnone" goto :EOF
+if not exist "%X%\Windows\Web\Screen\" mkdir "%X%\Windows\Web\Screen"
+
+if "x%opt[system.admin_screen]%"=="xwallpaper" (
+  copy /y "%opt[shell.wallpaper]%" "%X%\Windows\Web\Screen\img100.jpg"
+  goto :EOF
+)
+
+copy /y "%WB_PROJECT_PATH%\_CustomFiles_\%opt[system.admin_screen]%" "%X%\Windows\Web\Screen\img100.jpg"

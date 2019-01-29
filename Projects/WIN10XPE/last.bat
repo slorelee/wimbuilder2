@@ -4,6 +4,12 @@ attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
 attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories"
 attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools"
 
+rem New Menu
+if not "x%opt[build.registry.software]%"=="xfull" (
+    reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\Discardable\PostSetup\ShellNew /v Classes /t REG_MULTI_SZ /d .library-ms\0.txt\0Folder /f
+    reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\Discardable\PostSetup\ShellNew /v ~reserved~ /t REG_BINARY /d 0800000000000600 /f
+)
+
 rem incompatible with StartIsBack(SYSTEM account)
 if exist "%X%\Program Files\StartIsBack\" ( 
     del /q "%X_SYS%\windows.immersiveshell.serviceprovider.dll"

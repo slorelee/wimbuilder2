@@ -12,7 +12,9 @@ var $patches_opt = {
     "shell.app":"explorer",
     "shell.wallpaper": project.full_path + "\\_CustomFiles_\\wallpaper.jpg",
     "tweak.shortcut.noarrow":false,
-    "tweak.shortcut.nosuffix":true
+    "tweak.shortcut.nosuffix":true,
+    "component.mspaint":true,
+    "component.winphotoview":true
 };
 
 //advanced operation

@@ -47,6 +47,10 @@ wow64.dll,wow64cpu.dll,wow64win.dll,wowreg32.exe
 @windows\SysWOW64\
 C_*.NLS,KBD*.dll
 
++ver > 18300
+umpdc.dll
++ver*
+
 ; comctl32.dll.mui,comdlg32.dll.mui and mlang.dll.mui exist in all Language folders
 +mui(en-US,%WB_PE_LANG%)
 comctl32.dll,comdlg32.dll,mlang.dll

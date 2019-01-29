@@ -22,7 +22,7 @@ Else
   out_file = objArgs.Item(2)
 End If
 
-Dim fso
+Dim fso, f
 Const ForReading = 1, ForWriting = 2, ForAppending = 8
 Const TristateFalse = 0
 
@@ -33,7 +33,15 @@ Set wshShell = WScript.CreateObject("WScript.Shell")
 Set env = wshShell.Environment("Process")
 wim_ver = env("WB_PE_VER")
 
-Dim f, bCode, line
+Dim tmp_dir, txt_sysres
+tmp_dir = env("_WB_TMP_DIR")
+
+Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYSRES.txt", ForReading)
+txt_sysres = vbCrLf & f.ReadAll() & vbCrLf
+f.Close()
+
+
+Dim bCode, line
 Dim outs
 outs = ""
 
@@ -121,8 +129,16 @@ Sub parser(line)
   Next
 End Sub
 
+Function valid_munfile(fp)
+  Dim fn, munfile
+  fn = Mid(fp, InStrRev(fp,"\") + 1) 
+  munfile = "\Windows\SystemResources\" & fn & ".mun"
+  valid_munfile = ""
+  if InStr(1, txt_sysres, vbCrLf & munfile & vbCrLf) > 0 Then valid_munfile = munfile
+End Function
+
 Sub addfile(fn)
-  Dim i, ext, mui_arr
+  Dim i, ext, mui_arr, munfile
 
   If InStr(fn, "%") > 0 Then
     fn = wshShell.ExpandEnvironmentStrings(fn)
@@ -134,6 +150,10 @@ Sub addfile(fn)
     Exit Sub
   End If
   outs = outs & g_path & fn & vbCrLf
+  'append mun file
+  munfile = valid_munfile(g_path & fn)
+  If munfile <> "" Then   outs = outs & munfile & vbCrLf
+
   If g_mui = "" Then Exit Sub
 
   'no mui for folder

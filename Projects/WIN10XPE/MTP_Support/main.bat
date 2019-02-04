@@ -1,8 +1,20 @@
-rem install mtpHelper hook
-copy mtpHelper_%WB_PE_ARCH%.dll %X_SYS%\mtpHelper.dll
-reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Windows" /v AppInit_DLLs /d mtpHelper.dll /f
-reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Windows" /v LoadAppInit_DLLs /t REG_DWORD /d 1 /f
-reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Windows" /v RequireSignedAppInit_DLLs /t REG_DWORD /d 0 /f
+rem install mtpHelper
+
+rem use yamingw's ring0 kernel driver
+if exist "mtpHelper_%WB_PE_ARCH%.sys" (
+  copy mtpHelper_%WB_PE_ARCH%.sys %X_SYS%\Drivers\mtpHelper.sys
+  reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v ImagePath /t REG_EXPAND_SZ /d "System32\Drivers\mtpHelper.sys" /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v Start /t REG_DWORD /d 1 /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v ErrorControl /t REG_DWORD /d 0 /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v Type /t REG_DWORD /d 1 /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v DisplayName /t REG_SZ /d "mtpHelper" /f
+) else (
+  rem use mtpHelper.dll hook
+  copy mtpHelper_%WB_PE_ARCH%.dll %X_SYS%\mtpHelper.dll
+  reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Windows" /v AppInit_DLLs /d mtpHelper.dll /f
+  reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Windows" /v LoadAppInit_DLLs /t REG_DWORD /d 1 /f
+  reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Windows" /v RequireSignedAppInit_DLLs /t REG_DWORD /d 0 /f
+)
 
 rem hook requirement(or BSOD)
 call RegCopy "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WUDF"

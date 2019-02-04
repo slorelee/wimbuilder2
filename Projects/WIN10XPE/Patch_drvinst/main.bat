@@ -22,6 +22,16 @@ if "%PATCH_MODE%"=="local" (
   set X_SYS=.
   set PATCH_TMP=.
 )
+rem use JFX's generic patcher
+rem http://theoven.org/index.php?topic=2726.msg31375#msg31375
+DrvInstPatch_%WB_PE_ARCH%.exe p "%X_SYS%\drvinst.exe"
+if "%PATCH_MODE%"=="local" pause
+goto :EOF
+
+
+
+
+
 set VER_NAME=%WB_PE_VER%
 if %VER[3]% GTR 17000 set VER_NAME=win10.rs4later
 if %VER[3]% GTR 17700 set VER_NAME=win10.rs5later

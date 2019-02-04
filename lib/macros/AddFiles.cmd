@@ -25,8 +25,11 @@ if "x%ADDFILES_INITED%"=="x" (
     set ADDFILES_INITED=1
 )
 
+if "x%AddFiles_Mode%"=="xbatch" goto :_AppendFiles
+if "x%AddFiles_Mode%"=="xmerge" goto :_AppendFiles
 type nul>"%_WB_TMP_DIR%\_AddFiles.txt"
 
+:_AppendFiles
 rem CALL AddFiles.vbs
 cscript //nologo  "%~dp0\AddFiles.vbs" %* "%_WB_TMP_DIR%\_AddFiles.txt"
 

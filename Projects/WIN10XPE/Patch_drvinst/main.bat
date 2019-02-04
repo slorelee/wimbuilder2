@@ -10,38 +10,42 @@ rem          usb80236.sys
 rem          wceisvista.inf
 
 if "x%opt[patch_drvinst.install_test_driver]%"=="xtrue" (
-  xcopy /E /Y X\*.* %X%\
+  xcopy /E /Y X\*.* "%X%\"
 )
 
 set "PATCH_TMP=%Temp%"
 rem set PATCH_MODE=local
 if "%PATCH_MODE%"=="local" (
-  set WB_PE_VER=10.0.17763
+  set WB_PE_VER=10.0.18323
+  set VER[3]=18323
   set WB_PE_ARCH=x64
   set X_SYS=.
   set PATCH_TMP=.
 )
-call :Drvinst_%WB_PE_VER%%WB_PE_ARCH%
+set VER_NAME=%WB_PE_VER%
+if %VER[3]% GTR 17000 set VER_NAME=win10.rs4later
+if %VER[3]% GTR 17700 set VER_NAME=win10.rs5later
+call :Drvinst_%VER_NAME%_%WB_PE_ARCH%
 if "%PATCH_MODE%"=="local" pause
 goto :EOF
 
-:Drvinst_10.0.15063x64
+:Drvinst_10.0.15063_x64
 call :PATCH 8BF0 85C0 7509 418B
 goto :EOF
 
-:Drvinst_10.0.17134x64
+:Drvinst_win10.rs4later_x64
 call :PATCH 8BF8 85C0 7509 418B
 goto :EOF
 
-:Drvinst_10.0.17134x86
+:Drvinst_win10.rs4later_x86
 call :PATCH 8BD8 85DB 750A 8B4D
 goto :EOF
 
-:Drvinst_10.0.17763x64
+:Drvinst_win10.rs5later_x64
 call :PATCH 8BF0 85C0 7509 418B
 goto :EOF
 
-:Drvinst_10.0.17763x86
+:Drvinst_win10.rs5later_x86
 call :PATCH 8BD8 85DB 750A 8B4D
 goto :EOF
 

@@ -15,8 +15,6 @@ call AddFiles %0 :end_files
 goto :end_files
 
 ; In ko-KR Winre.wim gulim.ttc,malgun.ttf
-;\Windows\IME\SPTIP.DLL
-;\Windows\IME\??-??\SpTip.dll.mui
 
 \Windows\IME\IMEKR\DICTS\imkrhjd.lex
 
@@ -24,16 +22,7 @@ goto :end_files
 DICTS\imkrhjd.dll,imkrapi.dll,imkrtip.dll
 @\Windows\System32\IME\SHARED\
 IMEAPIS.DLL,IMETIP.DLL,IMJKAPI.DLL,MSCAND20.DLL
-@\Windows\System32
-inputLocaleManager.dll,inputHost.dll,inputService.dll
-msctfime.ime,Msctfp.dll,MSWB7.dll,NOISE.DAT
-MTF.dll,MTFServer.dll,TextInputFramework.dll,Winsta.dll
-
-+mui
-Ctfmon.exe,Globinputhost.dll,input.dll,inputSwitch.dll,msctf.dll,msutb.dll
-MsCtfMonitor.dll,MsctfuiManager.dll,Windows.Globalization.dll,Winlangdb.dll
--mui
-
+@\Windows\System32\
 ; Search
 korwbrkr.lex
 korwbrkr.dll
@@ -115,15 +104,7 @@ goto :end_wow64_files
 DICTS\imkrhjd.dll,imkrapi.dll,imkrtip.dll
 @\Windows\SysWOW64\IME\SHARED\
 IMEAPIS.DLL,IMETIP.DLL,IMJKAPI.DLL,MSCAND20.DLL
-@\Windows\SysWOW64
-inputLocaleManager.dll,inputHost.dll,inputService.dll
-msctfime.ime,Msctfp.dll,MSWB7.dll,NOISE.DAT
-MTF.dll,MTFServer.dll,TextInputFramework.dll,Winsta.dll
 
-+mui
-Ctfmon.exe,Globinputhost.dll,input.dll,inputSwitch.dll,msctf.dll,msutb.dll
-MsCtfMonitor.dll,MsctfuiManager.dll,Windows.Globalization.dll,Winlangdb.dll
--mui
 
 ;------------------------------------------------
 ;          National Language Support (.NLS)
@@ -147,29 +128,14 @@ KBDUSA.DLL
 :end_wow64_files
 
 :UDPATE_REGISTY
-call :ImeKR_RegHKLM\Software
-if "x%opt[build.wow64support]%"=="xtrue" (
-  call :ImeKR_Reg HKLM\Software\WOW6432Node
-)
-
 if not "x%opt[build.registry.software]%"=="xfull" (
   call :Fonts_Reg
 )
-
 call :Keyboard_ko-KR_Reg
 
 set IME_Startup=1
 goto :EOF
 
-
-:ImeKR_Reg
-call RegCopy %1\Microsoft\CTF
-call RegCopy %1\Microsoft\IME\15.0\IMETC
-call RegCopy %1\Microsoft\IME\15.0\Shared
-call RegCopy %1\Microsoft\IME\PlugInDict
-call RegCopy %1\Microsoft\IMEKR
-call RegCopy %1\Microsoft\InputMethod
-goto :EOF
 
 :Keyboard_ko-KR_Reg
 rem // Set ko-KR;en-US Keyboard

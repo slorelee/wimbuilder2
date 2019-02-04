@@ -6,8 +6,9 @@ goto :end_files
 
 \Windows\INF\battery.inf
 \Windows\INF\c_battery.inf
-\Windows\System32\batmeter.dll
-\Windows\System32\??-??\batmeter.dll.mui
+@\Windows\System32\
++mui
+batmeter.dll
 
 :end_files
 

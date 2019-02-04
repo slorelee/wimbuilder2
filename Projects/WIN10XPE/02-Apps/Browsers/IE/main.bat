@@ -6,6 +6,7 @@ Description=Internet Explorer 11 for Windows 10
 Author=windowsforum
 Date=2018.10.11
 History002=Registry - Removed WoW64 Support Requirement
+History003=Add DXCore.dll for 19H1(from yamingw)
 
 :main
 rem ==========update filesystem==========
@@ -88,6 +89,10 @@ VaultCli.dll
 Windows.Gaming.Input.dll
 Windows.Globalization.dll
 WindowsCodecsExt.dll
+
++ver > 18300
+DXCore.dll
+*ver
 
 :end_files
 
@@ -338,6 +343,9 @@ wpdshext.dll
 ws2_32.dll
 xmllite.dll
 
++ver > 18300
+DXCore.dll
+*ver
 :end_wow64_files
 
 rem ==========update registry==========

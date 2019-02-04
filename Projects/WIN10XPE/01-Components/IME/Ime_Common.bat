@@ -32,10 +32,23 @@ MTF.dll,MTFServer.dll,TextInputFramework.dll,Winsta.dll
 +mui
 Ctfmon.exe,Globinputhost.dll,input.dll,inputSwitch.dll,msctf.dll,msutb.dll
 MsCtfMonitor.dll,MsctfuiManager.dll,Windows.Globalization.dll,Winlangdb.dll
+
++ver > 18300
+umpdc.dll
+clbcatq.dll,dusmapi.dll
+netprofm.dll,npmproxy.dll
+Windows.Networking.HostName.dll
+TextInputMethodFormatter.dll,WordBreakers.dll
++ver*
+
 :end_files
 goto :EOF
 
 :Ime_Reg
+if %VER[3]% GTR 18300 (
+  call RegCopy %1\Microsoft\FuzzyDS
+)
+
 call RegCopy %1\Microsoft\CTF
 call RegCopy %1\Microsoft\IME
 if "x%WB_PE_LANG%"=="xja-JP" call RegCopy %1\Microsoft\IMEJP

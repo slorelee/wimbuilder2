@@ -36,6 +36,9 @@ imageres.dll
 AuthExt.dll,InputSwitch.dll,twinapi.appcore.dll,Windows.UI.Immersive.dll
 secedit.exe,seclogon.dll,tscon.exe,tsdiscon.exe,whoami.exe
 
+;need for NoteBook
+batmeter.dll
+
 ; Windows.UI.Xaml.dll exist in all Language folders.
 +mui(en-US,%WB_PE_LANG%)
 Windows.UI.Xaml.dll

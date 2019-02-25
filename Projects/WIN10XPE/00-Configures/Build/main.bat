@@ -1,5 +1,3 @@
-@echo off
-
 call ACLRegKey Tmp_System
 call ACLRegKey Tmp_Software
 call ACLRegKey Tmp_Default
@@ -28,6 +26,12 @@ call RegCopy HKLM\Software\Microsoft\Ole
 rem // policymanager.dll need:
 call RegCopy HKLM\Software\Microsoft\PolicyManager
 rem call RegCopy HKLM\Software\Classes\Unknown
+
+rem has high cost performance to copy all DriverDatabase items,
+rem just 4MB SYSTEM size(608KB compressed)
+call RegCopy SYSTEM\DriverDatabase
+rem skip RegCopy in AddDrivers macro
+set AddDrivers_TYPE=FILE
 
 call "%~dp0Catalog.bat"
 

@@ -6,7 +6,10 @@ rem     TYPE: FILE or REG
 if "x%~1"=="x" goto :EOF
 echo [MACRO]AddDrivers %*
 set "_AddDrivers_FILE=%~dpnx0"
-set _AddDrivers_TYPE=%2
+
+set _AddDrivers_TYPE=%AddDrivers_TYPE%
+if not "x%2"=="x" set _AddDrivers_TYPE=%2
+
 rem * can't be in for (set)
 rem for %%f in (%~1) do call :AddDriver %%f %2
 call :AddDriver_SHIFT %~1

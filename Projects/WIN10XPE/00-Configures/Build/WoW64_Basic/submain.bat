@@ -61,13 +61,13 @@ bcrypt.dll,Bcp47Langs.dll,bcp47mrm.dll,cabinet.dll,cfgmgr32.dll,clb.dll,clip.exe
 Coremessaging.dll,CoreUIComponents.dll
 crypt32.dll,cryptbase.dll,cryptdll.dll,cryptnet.dll,cryptsp.dll,cscapi.dll
 d2d1.dll,d3d9.dll,d3d10warp.dll,d3d11.dll,d3d12.dll,DataExchange.dll,davhlpr.dll,dbgcore.dll,dbghelp.dll
-dcomp.dll,ddraw.dll,devobj.dll,dhcpcsvc.dll,dhcpcsvc6.dll,directmanipulation.dll,dllhost.exe,dlnashext.dll,dnsapi.dll,dpapi.dll
+dcomp.dll,ddraw.dll,devobj.dll,devrtl.dll,dhcpcsvc.dll,dhcpcsvc6.dll,directmanipulation.dll,dllhost.exe,dlnashext.dll,dnsapi.dll,dpapi.dll
 drvstore.dll,dsrole.dll,dui70.dll,duser.dll,dwmapi.dll,Dwrite.dll,dxgi.dll,edputil.dll,ExplorerFrame.dll
 FirewallAPI.dll,fltlib.dll,fwbase.dll,fwpolicyiomgr.dll,FWPUCLNT.DLL,gdi32.dll,gdi32full.dll,GdiPlus.dll,gpapi.dll,hid.dll
 iertutil.dll,imm32.dll,InputHost.dll,iphlpapi.dll,kernel.appcore.dll,kernel32.dll,kernelbase.dll,linkinfo.dll,logoncli.dll
-mfperfhelper.dll,mfc42.dll,mpr.dll,msacm32.dll,msacm32.drv,msasn1.dll,mscms.dll,mscories.dll,ncryptsslp.dll
+mfperfhelper.dll,mfc42.dll,mpr.dll,msacm32.dll,msacm32.drv,msasn1.dll,mscms.dll,mscories.dll
 msctf.dll,msi.dll,msimg32.dll,msIso.dll,mskeyprotect.dll,msls31.dll,msv1_0.dll,msvbvm60.dll,msvcp60.dll,msvcp_win.dll,msvcp110_win.dll,msvcrt.dll,msvcrt40.dll
-msvfw32.dll,mswsock.dll,msxml3.dll,msxml3r.dll,msxml6.dll,msxml6r.dll,ncrypt.dll,netapi32.dll,netutils.dll,normaliz.dll,ntasn1.dll,ntdll.dll
+msvfw32.dll,mswsock.dll,msxml3.dll,msxml3r.dll,msxml6.dll,msxml6r.dll,ncrypt.dll,ncryptprov.dll,ncryptsslp.dll,netapi32.dll,netutils.dll,normaliz.dll,ntasn1.dll,ntdll.dll
 ntdsapi.dll,ntlanman.dll,ntmarta.dll,ntshrui.dll,odbc32.dll,ole32.dll,oleacc.dll,oleaccrc.dll,oleaut32.dll,oledlg.dll,olepro32.dll
 OnDemandConnRouteHelper.dll,OneCoreUAPCommonProxyStub.dll,pdh.dll,policymanager.dll,powrprof.dll,profapi.dll,propsys.dll,psapi.dll
 rasadhlp.dll,rasapi32.dll,reg.exe,regedt32.exe,regsvr32.exe,riched20.dll,riched32.dll,rmclient.dll,rpcrt4.dll,rsaenh.dll

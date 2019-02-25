@@ -1,16 +1,12 @@
 @echo off
 
+rem [Catalog_AddFiles_Info]
+rem Use signtool.exe to find Catalogs ex: Signtool verify /kp /v /a X:\Windows\System32\drivers\*.sys > B:\SignDrivers.txt
+
+
 if not "x%opt[build.catalog]%"=="xfull" goto :CATALOG_ADDFILES
-
-call AddFiles %0 :end_full_files
-goto :end_full_files
-
-;[Catalog_AddFiles_Info]
-; Full Catalogs: \Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}
-; Use signtool.exe to find Catalogs ex: Signtool verify /kp /v /a X:\Windows\System32\drivers\*.sys > B:\SignDrivers.txt
-
-\Windows\System32\catroot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}
-:end_full_files
+rem Full Catalogs
+call AddFiles \Windows\System32\catroot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}
 goto :EOF
 
 :CATALOG_ADDFILES
@@ -58,11 +54,6 @@ Multimedia-RestrictedCodecsCore-Package~*.cat
 Multimedia-RestrictedCodecsExt-Package~*.cat
 
 +ver >= 17763
-; typo? this line make all catalog ?
-\Windows\System32\catroot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}
-
-;skip
-+ver = 0
 Microsoft-Windows-Client-Desktop-Required-Package*.cat
 Microsoft-Windows-Client-Desktop-Required-WOW64-Package*.cat
 Microsoft-Windows-Client-Features-Package*.cat
@@ -90,7 +81,8 @@ Multimedia-MFCore-WOW64-Package~*.cat
 Multimedia-RestrictedCodecsCore-Package~*.cat
 Multimedia-RestrictedCodecsExt-Package~*.cat
 WindowsSearchEngineSKU-Group-Package~*.cat
-
+; For updates
+Package_*
 
 :end_files
 

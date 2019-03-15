@@ -220,7 +220,9 @@ function patches_opt_stringify() {
 
 function dump_patches_selected() {
     var tmp_folder = get_tmp_folder($obj_project.name);
+    var patches_undetermined = $('#patches_tree').jstree(true).get_undetermined();
     var patches_selected = $('#patches_tree').jstree(true).get_checked();
+    patches_selected = patches_undetermined.concat(patches_selected);
     var str = '';
     patches_selected = patches_selected.sort();
     for(var patch_id in patches_selected) {

@@ -10,15 +10,15 @@ var Project = {
             return load_text_file(project.path + '/' + file);
         };
         project.load_desc = function() {
-            return load_file('desc.json');
+            return load_file('_Assets_/desc.json');
         };
         project.load_html = function() {
-            return load_file('main.html');
+            return load_file('_Assets_/intro.html');
         };
         project.desc = project.load_desc();
         project.html = project.load_html();
         var $patches_opt = {};
-        eval(load_file('config.js'));
+        eval(load_file('_Assets_/config.js'));
         if (typeof(patches_state_init) == 'function') {
             project.patches_state_init = patches_state_init;
         }

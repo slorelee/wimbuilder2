@@ -146,12 +146,12 @@ if ($IE_VER == '9+') {
 <!-- ############################# content Start ############################# -->
 
 <!--[if lt IE 9]>
-<div id="content" style="margin-left:160px">
+<div id="content" style="margin-left:160px;margin-bottom:40px">
 <![endif]-->
 
 <script>
 if ($IE_VER == '9+') {
-    document.write('<div id="content">');
+    document.write('<div id="content" style="margin-bottom:40px">');
 }
 </script>
 
@@ -297,6 +297,7 @@ if ($IE_VER == '9+') {
         </div>
         <div id="patch_html" style="overflow:auto"></div>
     </div>
+    <div style="width:98%;height:1px;overflow:auto" />
 </div>
 <!-- ############################# page_patches End ############################# -->
 

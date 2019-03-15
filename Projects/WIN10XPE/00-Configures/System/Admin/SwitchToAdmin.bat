@@ -28,6 +28,8 @@ Windows.UI.Xaml.Resources%VER_CNAME%dll
 
 +ver > 17700
 Windows.UI.Xaml.Controls.dll,Windows.ApplicationModel.dll
++ver > 18300
+wuceffects.dll
 +ver*
 
 Windows.UI.XamlHost.dll

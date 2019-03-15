@@ -39,6 +39,8 @@ clbcatq.dll,dusmapi.dll
 netprofm.dll,npmproxy.dll
 Windows.Networking.HostName.dll
 TextInputMethodFormatter.dll,WordBreakers.dll
+Language*.dll
+Windows.UI.Core.TextInput.dll
 +ver*
 
 :end_files

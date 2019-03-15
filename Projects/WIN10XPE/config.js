@@ -17,7 +17,7 @@ var $patches_opt = {
     "component.MMC":true,
     "component.DWM":true,
     "component.mspaint":true,
-    "component.winphotoview":true,
+    "component.winphotoviewer":true,
     "network.builtin_drivers":true,
     "_._._":""
 };

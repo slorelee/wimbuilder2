@@ -1,17 +1,17 @@
 if "x%opt[component.bitlocker]%"=="xtrue" (
-   call :ApplySubPatch "..\BitLocker"
+   call :ApplySubPatch ".\BitLocker"
 )
 
 if "x%opt[component.DWM]%"=="xtrue" (
-   call :ApplySubPatch "..\DWM"
+   call :ApplySubPatch ".\DWM"
 )
 
 if "x%opt[component.MMC]%"=="xtrue" (
-   call :ApplySubPatch "..\MMC"
+   call :ApplySubPatch ".\MMC"
 )
 
 if "x%opt[component.MTP]%"=="xtrue" (
-   call :ApplySubPatch "..\MTP_Support"
+   call :ApplySubPatch ".\MTP_Support"
 )
 goto :EOF
 

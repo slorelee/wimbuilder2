@@ -18,7 +18,11 @@ var Project = {
         project.desc = project.load_desc();
         project.html = project.load_html();
         var $patches_opt = {};
+        var $patches_preset = 'default';
         eval(load_file('_Assets_/config.js'));
+        if ($patches_preset != '') {
+            eval(load_file('_Assets_/preset/' + $patches_preset + '.js'));
+        }
         if (typeof(patches_state_init) == 'function') {
             project.patches_state_init = patches_state_init;
         }

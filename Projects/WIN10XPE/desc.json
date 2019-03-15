@@ -1,6 +1,8 @@
 {
-    "description" : "This is Win10XPE Project(porting sample)",
-    "author" : "ChrisR",
+    "description" : "RE:Win10XPE Project(based on ChrisR's Win10XPE)",
+    "author" : "slore",
     "version" : 1.0,
-    "url" : "http://theoven.org/index.php?topic=2421.0"
+    "url" : "http://bbs.wuyou.net/forum.php?mod=viewthread&tid=411399",
+    "url(English)" : "http://theoven.org/index.php?topic=2390.0",
+    "url(WIN10XPE)" : "http://theoven.org/index.php?topic=2421.0"
 }

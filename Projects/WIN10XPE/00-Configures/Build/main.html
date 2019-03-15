@@ -19,8 +19,8 @@ INIT-->
 
   <div style="margin:10px 2px;padding:5px;border: 1px solid #c0c0c0;">
 
-    <input type="radio" class="opt_item" name="build.registry.software" value="full" /> Use full install.wim's SOFTWARE hive<br/>
-    <input type="radio" class="opt_item" name="build.registry.software" value="merge" checked/> Merge hive from install.wim<br/>
+    <label><input type="radio" class="opt_item" name="build.registry.software" value="full" /> Use full install.wim's SOFTWARE hive</label><br/>
+    <label><input type="radio" class="opt_item" name="build.registry.software" value="merge" checked/> Merge hive from install.wim</label><br/>
     <div style='font-size:0.8em;'>
       <ul>
         <li>Copy HKLM\Software\Classes\AppID</li>
@@ -33,7 +33,7 @@ INIT-->
     </div>
   </div>
 
-  <div style="margin:3px;font-size:.8em;"><input type="checkbox" name="build.wow64support" class="opt_item">WOW64 Support</div><br/>
+  <div style="margin:3px;font-size:.8em;"><label><input type="checkbox" name="build.wow64support" class="opt_item">WOW64 Support</label></div><br/>
 <script>
 (function() {
     $(':radio[id^=bt-]').checkboxradio();

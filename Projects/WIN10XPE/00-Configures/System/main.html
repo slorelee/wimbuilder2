@@ -54,7 +54,7 @@ fieldset legend {
 <fieldset>
 <legend>Administrator Options</legend>
 <!-- Spinner -->
-<input type="checkbox" name="system.admin_enabled" class="opt_item">Enable Administrator account<br/>
+<label><input type="checkbox" name="system.admin_enabled" class="opt_item">Enable Administrator account</label><br/>
 <label class="left_label" style="width:70%;">Switch to Administrator for(sec):</label>
 <input id="admin_countdown" name="system.admin_countdown" min="0" max="60" value="5" class="opt_item" style="width:30px">
 <br/><span>Background</span><br/>
@@ -89,10 +89,10 @@ fieldset legend {
 <!-- Spinner -->
 <label class="left_label">System Volume At Startup:</label>
 <input id="volume_level" name="system.volume_level" min="0" max="100" value="33" class="opt_item" style="width:30px"><br/>
-<div style="margin:3px;"><input type="checkbox" name="system.volume_mute" class="opt_item">Mute The System Volume At Startup</div><br/>
+<div style="margin:3px;"><label><input type="checkbox" name="system.volume_mute" class="opt_item">Mute The System Volume At Startup</label></div><br/>
 </fieldset>
 
-<div style="margin:3px;font-size:.8em;"><input type="checkbox" name="system.numlock" class="opt_item" checked>NumLock ON</div><br/>
+<div style="margin:3px;font-size:.8em;"><label><input type="checkbox" name="system.numlock" class="opt_item" checked>NumLock ON</label></div><br/>
 
 
 </div>

@@ -12,7 +12,13 @@ if "x%opt[component.MMC]%"=="xtrue" (
 
 if "x%opt[component.MTP]%"=="xtrue" (
    call :ApplySubPatch ".\MTP_Support"
+   set opt[patch.drvinst]=true
 )
+
+if "x%opt[patch.drvinst]%"=="xtrue" (
+   call :ApplySubPatch ".\Patch_drvinst"
+)
+
 goto :EOF
 
 :ApplySubPatch

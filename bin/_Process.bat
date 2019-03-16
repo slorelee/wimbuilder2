@@ -30,6 +30,9 @@ set "LOGFILE=%Factory%\log\%WB_PROJECT%\%LOGSUFFIX%.log"
 call :MKPATH "%LOGFILE%"
 rem type nul>"%LOGFILE%"
 
+set TIMER_START=
+for /f "delims=" %%t in ('cscript.exe //nologo bin\Timer.vbs') do set TIMER_START=%%t
+call :cecho PHRASE "%TIMER_START% - Building Start ..."
 
 if "x%WB_BASE%"=="x" call :NO_ENV_CONF WB_BASE
 set _WB_BASE_EXTRACTED=0
@@ -199,6 +202,15 @@ rem =========================================================
 
 call :CLEANUP 0
 call WIM_Exporter "%_WB_PE_WIM%"
+
+
+set TIMER_END=
+for /f "delims=" %%t in ('cscript.exe //nologo "%WB_ROOT%\bin\Timer.vbs"') do set TIMER_END=%%t
+
+set TIMER_ELAPSED=
+for /f "delims=" %%t in ('cscript.exe //nologo "%WB_ROOT%\bin\Timer.vbs" "%TIMER_START%" "%TIMER_END%"') do set TIMER_ELAPSED=%%t
+call :cecho PHRASE "%TIMER_END% - Building completed in %TIMER_ELAPSED% seconds."
+
 goto :EOF
 
 rem =========================================================

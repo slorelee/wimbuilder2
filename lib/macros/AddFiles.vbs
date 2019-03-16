@@ -35,11 +35,11 @@ Set env = wshShell.Environment("Process")
 wim_ver = env("WB_PE_VER")
 wim_lang = env("WB_PE_LANG")
 
-Dim tmp_dir, txt_sys32mui, txt_sysres
+Dim tmp_dir, txt_sysmui, txt_sysres
 tmp_dir = env("_WB_TMP_DIR")
 
-Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYS32MUI.txt", ForReading)
-txt_sys32mui = vbCrLf & f.ReadAll() & vbCrLf
+Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYSMUI.txt", ForReading)
+txt_sysmui = vbCrLf & f.ReadAll() & vbCrLf
 f.Close()
 Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYSRES.txt", ForReading)
 txt_sysres = vbCrLf & f.ReadAll() & vbCrLf
@@ -154,20 +154,24 @@ Function valid_muifile(fp)
 
   ext = ".mui"
   If Right(fn, 4) = ".msc" Then ext = ""
-  muifile = "\Windows\System32\" & wim_lang & "\" & fn & ext
+  If InStr(1, fp, "\SysWOW64\", vbTextCompare) > 0 Then
+    muifile = "\Windows\SysWOW64\" & wim_lang & "\" & fn & ext
+  Else
+    muifile = "\Windows\System32\" & wim_lang & "\" & fn & ext
+  End If
 
   If InStr(1, fn, "*") > 0 Then
     pattern = Replace(muifile, "\", "\\")
     pattern =  Replace(pattern, ".", "\.")
     pattern =  Replace(pattern, "*", ".*")
     regEx_mui.Pattern = pattern
-    If regEx_mui.Test(txt_sys32mui) Then
+    If regEx_mui.Test(txt_sysmui) Then
       valid_muifile = muifile
     End If
     Exit Function
   End If
 
-  If InStr(1, txt_sys32mui, vbCrLf & muifile & vbCrLf) > 0 Then valid_muifile = muifile
+  If InStr(1, txt_sysmui, vbCrLf & muifile & vbCrLf) > 0 Then valid_muifile = muifile
 End Function
 
 Function valid_munfile(fp)

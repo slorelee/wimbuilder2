@@ -6,6 +6,7 @@ rem analyze syntax, create _AddFiles.txt for wimlib
 rem AddFiles with one line
 rem        call AddFiles \Windows\System32\config\SOFTWARE
 rem        call AddFiles \Windows\System32\dm*.dll
+rem        call AddFiles "@windows\system32\#ndevmgmt.msc,devmgr.dll"
 
 rem AddFiles with mutil lines
 rem        call AddFiles %0 :end_files

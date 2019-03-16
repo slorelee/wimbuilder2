@@ -1,3 +1,4 @@
+Dim i
 Set objArgs = WScript.Arguments
 If objArgs.Count < 2 Then
     WScript.Echo "AddFiles.vbs:Wrong Parmaters."
@@ -73,7 +74,11 @@ If code_file <> "" Then
 Else
   line = code_word
   If Left(line, 1) = "\" Then line = Mid(line, 2)
-  parser(line)
+  Dim arr
+  arr = Split(line, "#n")
+  For i = 0 To Ubound(arr)
+    parser(arr(i))
+  Next
 End If
 
 WSH.echo outs

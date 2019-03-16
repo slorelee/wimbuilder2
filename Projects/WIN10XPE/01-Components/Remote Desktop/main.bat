@@ -2,9 +2,7 @@ rem ==========update filesystem==========
 call AddFiles %0 :end_files
 goto :end_files
 
-; Explorer BitLocker integration
 @\Windows\System32\
-+mui
 cngcredui.dll,CredentialUIBroker.exe,credssp.dll,credui.dll,cryptui.dll
 d2d1.dll,d3d10warp.dll,d3d11.dll,dcomp.dll,DWrite.dll,dxgi.dll
 msacm32.dll,msacm32.drv,mstsc.exe,mstscax.dll
@@ -15,7 +13,6 @@ Windows.UI.Cred.dll,Windows.UI.CredDialogController.dll
 Windows.UI.Xaml.Resources.Common.dll
 wuceffects.dll
 \Windows\SystemResources\Windows.UI.Cred
-bdeunlock.exe,fvenotify.exe
 
 ;SystemPropertiesRemote
 ;racpldlg.dll,remotepg.dll,srrstr.dll,SystemPropertiesRemote.exe

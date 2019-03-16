@@ -16,7 +16,6 @@ IconCodecService.dll,UIRibbonRes.dll
 ;WindowsCodecs.dll already in winre.wim
 WindowsCodecsExt.dll
 
-+mui
 ; mfc42u.dll already in winre.wim
 UIRibbon.dll
 

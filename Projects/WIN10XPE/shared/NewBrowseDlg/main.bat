@@ -3,12 +3,8 @@ rem ==========update filesystem==========
 call AddFiles %0 :end_files
 goto :end_files
 
-\Windows\System32\%WB_PE_LANG%\comctl32.dll.mui
-
 @\Windows\System32\
 comctl32.dll
-
-+mui
 ExplorerFrame.dll
 
 +ver > 17700
@@ -23,7 +19,6 @@ DataExchange.dll,dcomp.dll,d3d11.dll,dxgi.dll
 ;d2d1.dll,ksuser.dll
 
 ; CopyProgress
--mui
 chartv.dll,OneCoreUAPCommonProxyStub.dll
 
 :end_files

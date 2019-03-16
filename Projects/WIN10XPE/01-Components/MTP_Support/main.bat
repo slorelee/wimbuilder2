@@ -35,7 +35,6 @@ Microsoft-Windows-Client-Desktop-Required-Package*
 
 @windows\system32\
 drivers\UMDF\
-+mui
 winusb*,wpd*,WUDF*,PortableDevice*
 :end_files
 

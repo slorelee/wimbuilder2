@@ -7,7 +7,6 @@ goto :end_files
 ; Search
 \Windows\INF\wsearchidxpi
 esent.dll,NaturalLanguage6.dll,NOISE.DAT,MSWB7.dll
-+mui
 mssph.dll,mssprxy.dll,mssrch.dll,mssvp.dll,mssitlb.dll
 query.exe,query.dll,SearchFilterHost.exe,SearchFolder.dll,SearchIndexer.exe,SearchProtocolHost.exe
 srchadmin.dll,StructuredQuery.dll,tquery.dll

@@ -54,8 +54,8 @@ umpdc.dll
 ; comctl32.dll.mui,comdlg32.dll.mui and mlang.dll.mui exist in all Language folders
 +mui(en-US,%WB_PE_LANG%)
 comctl32.dll,comdlg32.dll,mlang.dll
+-mui
 
-+mui
 aclui.dll,actxprxy.dll,adsldp.dll,adsldpc.dll,advapi32.dll,apphelp.dll,asycfilt.dll,atlthunk.dll,authz.dll,avifil32.dll,avrt.dll
 bcrypt.dll,Bcp47Langs.dll,bcp47mrm.dll,cabinet.dll,cfgmgr32.dll,clb.dll,clip.exe,cmd.exe,cmdext.dll,combase.dll
 Coremessaging.dll,CoreUIComponents.dll
@@ -93,7 +93,6 @@ winhttp.dll
 
 ; WB Dependencies addition
 ieframe.dll,mshtml.dll
--mui
 
 :end_files
 

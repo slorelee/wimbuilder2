@@ -8,7 +8,6 @@ call AddFiles %0 :end_files
 goto :end_files
 
 @\Windows\System32\
-+mui
 mmc.exe,mmcbase.dll,mmcndmgr.dll,mmcshext.dll
 ; mmc resources
 filemgmt.dll
@@ -24,6 +23,8 @@ call REGCOPY HKLM\Software\Classes\mscfile
 call REGCOPY HKLM\Software\Microsoft\MMC
 
 call CompMgr.bat
-call DevMgr.bat
+rem DevMgr.bat
+call AddFiles "@windows\system32\#ndevmgmt.msc,devmgr.dll"
 call DiskMgr.bat
-call SrvMgr.bat
+rem SrvMgr.bat
+call AddFiles \windows\system32\services.msc

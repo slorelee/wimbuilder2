@@ -23,7 +23,7 @@ goto :end_files
 @windows\system32\
 Macromed\Flash\activex.vch
 Macromed\Flash\Flash.ocx
-+mui
+
 actxprxy.dll
 apphelp.dll
 apprepapi.dll
@@ -104,7 +104,7 @@ WindowsCodecsExt.dll
 
 +ver > 18300
 DXCore.dll
-*ver
++ver*
 
 :end_files
 
@@ -140,16 +140,6 @@ sxsstore.dll
 Windows.Media.dll
 Windows.Media.MediaControl.dll
 Windows.UI.dll
-??-??\MFCore.dll.mui
-??-??\mfmediaengine.dll.mui
-??-??\Windows.Media.dll.mui
-??-??\Windows.UI.dll.mui
-??-??\mf.dll.mui
-??-??\mfmp4srcsnk.dll.mui
-??-??\mfplat.dll.mui
-??-??\sens.dll.mui
-??-??\srpapi.dll.mui
-??-??\Windows.Media.MediaControl.dll.mui
 
 :end_x86_files
 if not "x%opt[build.wow64support]%"=="xtrue" goto :end_wow64_files
@@ -166,7 +156,7 @@ comdlg32.dll
 %WB_PE_LANG%\comdlg32.dll.mui
 Macromed\Flash\activex.vch
 Macromed\Flash\Flash.ocx
-+mui
+
 aclui.dll
 Activeds.tlb
 actxprxy.dll
@@ -357,7 +347,8 @@ xmllite.dll
 
 +ver > 18300
 DXCore.dll
-*ver
++ver*
+
 :end_wow64_files
 
 rem ==========update registry==========

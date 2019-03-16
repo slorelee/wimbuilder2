@@ -1,13 +1,6 @@
 rem ==========update filesystem==========
-call AddFiles %0 :end_files
-goto :end_files
-
 ; Explorer BitLocker integration
-@\Windows\System32\
-+mui
-bdeunlock.exe,fvenotify.exe
-
-:end_files
+call AddFiles "@\Windows\System32\#nbdeunlock.exe,fvenotify.exe"
 
 rem ==========update registry==========
 call RegCopy HKLM\System\ControlSet001\Services\BDESVC

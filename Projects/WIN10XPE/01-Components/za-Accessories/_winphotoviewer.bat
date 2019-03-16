@@ -4,9 +4,7 @@ goto :end_files
 ;only needs spool\drivers, but add all because it very small
 \Windows\System32\spool
 @\Windows\system32\
-coloradapterclient.dll,efswrt.dll,icm32.dll,mscms.dll
-+mui
-photowiz.dll,shimgvw.dll
+coloradapterclient.dll,efswrt.dll,icm32.dll,mscms.dll,photowiz.dll,shimgvw.dll
 :end_files
 
 call RegCopy HKLM\SOFTWARE\Classes\PhotoViewer.FileAssoc.Tiff

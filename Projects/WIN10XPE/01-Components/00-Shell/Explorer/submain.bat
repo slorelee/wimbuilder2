@@ -20,11 +20,8 @@ desktop.ini
 \Windows\explorer.exe
 \Windows\??-??\explorer.exe.mui
 
-\Windows\System32\%WB_PE_LANG%\comctl32.dll.mui
-
 @\Windows\System32\
 comctl32.dll
-+mui
 actxprxy.dll,AppHelp.dll,AppResolver.dll,atlthunk.dll,avifil32.dll,clip.exe,Clipc.dll
 control.exe,comsvcs.dll,CoreMessaging.dll,CoreUIComponents.dll,cscapi.dll
 ctfmon.exe,desk.cpl,edputil.dll
@@ -75,11 +72,9 @@ DataExchange.dll,dcomp.dll,d3d11.dll,dxgi.dll
 ;d2d1.dll,ksuser.dll
 
 ; CopyProgress
--mui
 chartv.dll,OneCoreUAPCommonProxyStub.dll
 
 ; Eject usb
-+mui
 DeviceCenter.dll,DeviceEject.exe,StorageContextHandler.dll
 
 ; System Information (Optional)

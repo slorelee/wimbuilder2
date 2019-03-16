@@ -29,7 +29,6 @@ inputLocaleManager.dll,inputHost.dll,inputService.dll
 msctfime.ime,Msctfp.dll,MSWB7.dll,NOISE.DAT
 MTF.dll,MTFServer.dll,TextInputFramework.dll,Winsta.dll
 
-+mui
 Ctfmon.exe,Globinputhost.dll,input.dll,inputSwitch.dll,msctf.dll,msutb.dll
 MsCtfMonitor.dll,MsctfuiManager.dll,Windows.Globalization.dll,Winlangdb.dll
 

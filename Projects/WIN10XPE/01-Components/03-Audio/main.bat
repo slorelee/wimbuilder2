@@ -15,7 +15,6 @@ goto :end_files
 drivers\beep.sys
 
 ;In Winre.wim \System32\audiodg.exe,AudioEndpointBuilder.dll,AudioEng.dll,AUDIOKSE.dll,AudioSes.dll,audiosrv.dll,AudioSrvPolicyManager.dll,avrt.dll,coreaudiopolicymanagerext.dll,dciman32.dll,DWrite.dll,hidserv.dll,imaadp32.acm,ksuser.dll,linkinfo.dll,lz32.dll,MMDevAPI.dll,msacm32.dll,msadp32.acm,msg711.acm,msgsm32.acm,umpo.dll,utildll.dll,wdmaud.drv,Windows.Media.Devices.dll,winmm.dll,winmmbase.dll,WinTypes.dll,wsock32.dll
-+mui
 avicap32.dll,bdaplgin.ax,control.exe,ddraw.dll,ddrawex.dll,deviceaccess.dll
 dsound.dll,dxtrans.dll,iyuv_32.dll,l3codeca.acm
 midimap.dll,mmci.dll,mmcico.dll,mmcndmgr.dll,mmcshext.dll,mmres.dll,mmsys.cpl

@@ -4,13 +4,10 @@ call AddFiles %0 :end_files
 goto :end_files
 
 @\Windows\System32\
-+mui
 ; Theme and dwm
 dwm.exe,dwmcore.dll,dwminit.dll,dwmredir.dll,hotplug.dll
 themeservice.dll,themeui.dll,twinapi.appcore.dll,twinui.dll,ubpm.dll,uDWM.dll,wdi.dll
 Windows.Gaming.Input.dll,Windows.UI.Immersive.dll
-
--mui
 CoreMessaging.dll,CoreUIComponents.dll,ISM.dll,rmclient.dll
 
 :end_files

@@ -34,7 +34,6 @@ wuceffects.dll
 
 Windows.UI.XamlHost.dll
 
-+mui
 ;need install.wim's imageres.dll
 imageres.dll
 AuthExt.dll,InputSwitch.dll,twinapi.appcore.dll,Windows.UI.Immersive.dll
@@ -46,8 +45,8 @@ batmeter.dll
 ; Windows.UI.Xaml.dll exist in all Language folders.
 +mui(en-US,%WB_PE_LANG%)
 Windows.UI.Xaml.dll
-
 -mui
+
 CoreMessaging.dll,CoreUIComponents.dll,InputHost.dll,MrmCoreR.dll,rmclient.dll,TextInputFramework.dll
 \Windows\SystemResources\Windows.UI.Logon
 

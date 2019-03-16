@@ -19,8 +19,9 @@ rem       :end_files
 echo [MACRO]AddFiles %*
 if "x%_WB_TMP_DIR%"=="x" goto :EOF
 
-rem *.mun files present from 19H1
 if "x%ADDFILES_INITED%"=="x" (
+    wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\System32\%WB_PE_LANG%\ >"%_WB_TMP_DIR%\_AddFiles_SYS32MUI.txt"
+    rem *.mun files present from 19H1
     wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\SystemResources\ >"%_WB_TMP_DIR%\_AddFiles_SYSRES.txt"
     set ADDFILES_INITED=1
 )

@@ -28,18 +28,29 @@ Const TristateFalse = 0
 
 Set fso = CreateObject("Scripting.FileSystemObject")
 
-Dim wshShell, env, wim_ver
+Dim wshShell, env, wim_ver, wim_lang
 Set wshShell = WScript.CreateObject("WScript.Shell")
 Set env = wshShell.Environment("Process")
 wim_ver = env("WB_PE_VER")
+wim_lang = env("WB_PE_LANG")
 
-Dim tmp_dir, txt_sysres
+Dim tmp_dir, txt_sys32mui, txt_sysres
 tmp_dir = env("_WB_TMP_DIR")
 
+Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYS32MUI.txt", ForReading)
+txt_sys32mui = vbCrLf & f.ReadAll() & vbCrLf
+f.Close()
 Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYSRES.txt", ForReading)
 txt_sysres = vbCrLf & f.ReadAll() & vbCrLf
 f.Close()
 
+
+Dim regEx_mui, regEx_sysres
+Set regEx_mui = New RegExp
+regEx_mui.IgnoreCase = True
+
+Set regEx_sysres = New RegExp
+regEx_sysres.IgnoreCase = True
 
 Dim bCode, line
 Dim outs
@@ -60,7 +71,9 @@ If code_file <> "" Then
   Loop
   f.Close
 Else
-  outs = code_word
+  line = code_word
+  If Left(line, 1) = "\" Then line = Mid(line, 2)
+  parser(line)
 End If
 
 WSH.echo outs
@@ -129,16 +142,52 @@ Sub parser(line)
   Next
 End Sub
 
-Function valid_munfile(fp)
-  Dim fn, munfile
-  fn = Mid(fp, InStrRev(fp,"\") + 1) 
-  munfile = "\Windows\SystemResources\" & fn & ".mun"
-  valid_munfile = ""
-  if InStr(1, txt_sysres, vbCrLf & munfile & vbCrLf) > 0 Then valid_munfile = munfile
+Function valid_muifile(fp)
+  Dim fn, ext, muifile, pattern
+  valid_muifile = ""
+  fn = Mid(fp, InStrRev(fp,"\") + 1)
+
+  ext = ".mui"
+  If Right(fn, 4) = ".msc" Then ext = ""
+  muifile = "\Windows\System32\" & wim_lang & "\" & fn & ext
+
+  If InStr(1, fn, "*") > 0 Then
+    pattern = Replace(muifile, "\", "\\")
+    pattern =  Replace(pattern, ".", "\.")
+    pattern =  Replace(pattern, "*", ".*")
+    regEx_mui.Pattern = pattern
+    If regEx_mui.Test(txt_sys32mui) Then
+      valid_muifile = muifile
+    End If
+    Exit Function
+  End If
+
+  If InStr(1, txt_sys32mui, vbCrLf & muifile & vbCrLf) > 0 Then valid_muifile = muifile
 End Function
 
+Function valid_munfile(fp)
+  Dim fn, munfile, pattern
+  valid_munfile = ""
+  fn = Mid(fp, InStrRev(fp,"\") + 1) 
+  munfile = "\Windows\SystemResources\" & fn & ".mun"
+
+  If InStr(1, fn, "*") > 0 Then
+    pattern = Replace(munfile, "\", "\\")
+    pattern =  Replace(pattern, ".", "\.")
+    pattern =  Replace(pattern, "*", ".*")
+    regEx_sysres.Pattern = pattern
+    If regEx_sysres.Test(txt_sysres) Then
+      valid_munfile = munfile
+    End If
+    Exit Function
+  End If
+
+  If InStr(1, txt_sysres, vbCrLf & munfile & vbCrLf) > 0 Then valid_munfile = munfile
+End Function
+
+
 Sub addfile(fn)
-  Dim i, ext, mui_arr, munfile
+  Dim i, ext, mui_arr, munfile, muifile
 
   If InStr(fn, "%") > 0 Then
     fn = wshShell.ExpandEnvironmentStrings(fn)
@@ -152,9 +201,14 @@ Sub addfile(fn)
   outs = outs & g_path & fn & vbCrLf
   'append mun file
   munfile = valid_munfile(g_path & fn)
-  If munfile <> "" Then   outs = outs & munfile & vbCrLf
+  If munfile <> "" Then outs = outs & munfile & vbCrLf
 
-  If g_mui = "" Then Exit Sub
+  If g_mui = "" Then
+      'append mui file
+      muifile = valid_muifile(g_path & fn)
+      If muifile <> "" Then outs = outs & muifile & vbCrLf
+      Exit Sub
+  End If
 
   'no mui for folder
   If Right(fn, 1) = "\" Then Exit Sub

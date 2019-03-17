@@ -171,7 +171,7 @@ Function valid_muifile(fp)
     Exit Function
   End If
 
-  If InStr(1, txt_sysmui, vbCrLf & muifile & vbCrLf) > 0 Then valid_muifile = muifile
+  If InStr(1, txt_sysmui, vbCrLf & muifile & vbCrLf, vbTextCompare) > 0 Then valid_muifile = muifile
 End Function
 
 Function valid_munfile(fp)
@@ -191,7 +191,7 @@ Function valid_munfile(fp)
     Exit Function
   End If
 
-  If InStr(1, txt_sysres, vbCrLf & munfile & vbCrLf) > 0 Then valid_munfile = munfile
+  If InStr(1, txt_sysres, vbCrLf & munfile & vbCrLf, vbTextCompare) > 0 Then valid_munfile = munfile
 End Function
 
 

@@ -21,6 +21,11 @@ if not exist "%X_SYS%\dwm.exe" (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v Composition /t REG_DWORD /d 0 /f
 )
 
+rem delete useless files
+call :DELEX /q "%X_SYS%\edgehtml.dll"
+call :DELEX /q "%X_SYS%\%WB_PE_LANG%\edgehtml.dll.mui"
+call :DELEX /q "%X%\Windows\SystemResources\edgehtml.dll.mun"
+
 rem startup with pecmd.exe
 :PECMD_ENTRY
 if not exist "%X%\Windows\System32\pecmd.exe" goto :STARTNET_ENTRY
@@ -88,4 +93,10 @@ goto :EOF
 if exist "%~dp0%1" (
    xcopy /E /Y "%~dp0%1" %X%\Windows\System32\Config\
 )
+goto :EOF
 
+:DELEX
+if exist "%~2" (
+    del %~1 "%~2"
+)
+goto :EOF

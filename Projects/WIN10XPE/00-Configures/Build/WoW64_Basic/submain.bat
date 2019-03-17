@@ -55,7 +55,7 @@ umpdc.dll
 +mui(en-US,%WB_PE_LANG%)
 comctl32.dll,comdlg32.dll,mlang.dll
 -mui
-
+imageres.dll
 aclui.dll,actxprxy.dll,adsldp.dll,adsldpc.dll,advapi32.dll,apphelp.dll,asycfilt.dll,atlthunk.dll,authz.dll,avifil32.dll,avrt.dll
 bcrypt.dll,Bcp47Langs.dll,bcp47mrm.dll,cabinet.dll,cfgmgr32.dll,clb.dll,clip.exe,cmd.exe,cmdext.dll,combase.dll
 Coremessaging.dll,CoreUIComponents.dll
@@ -95,10 +95,6 @@ winhttp.dll
 ieframe.dll,mshtml.dll
 
 :end_files
-
-if exist "%X%\windows\system32\imageres.dll" (
-  copy /y "%X%\windows\system32\imageres.dll" "%X%\windows\syswow64\"
-)
 
 rem ==========update registry==========
 

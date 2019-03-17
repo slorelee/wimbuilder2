@@ -18,17 +18,25 @@ if %errorlevel% NEQ 0 goto :EOF
 echo.>"%_WB_TMP_DIR%\SlimPatch.txt"
 
 if not "x%opt[build.wow64support]%"=="xtrue" (
-   (echo delete "\Program Files (x86)" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
-   (echo delete "\Windows\SysWOW64" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
+  (echo delete "\Program Files (x86)" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
+  (echo delete "\Windows\SysWOW64" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
 )
 
 if "x%opt[slim.speech]%"=="xtrue" (
-   (echo delete "\Windows\Speech" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
+  (echo delete "\Windows\Speech" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
+  (echo delete "\Windows\System32\Speech" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
 )
 
 if "x%opt[slim.font.mingliu]%"=="xtrue" (
    (echo delete "\Windows\Fonts\mingliu.ttc" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
 )
+
+if "x%opt[slim.dism]%"=="xtrue" (
+  (echo delete "\Windows\System32\Dism" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
+)
+
+rem (echo delete "\Windows\servicing" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
+rem (echo delete "\Windows\System32\downlevel" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
 
 call SlimWinSxS.bat
 

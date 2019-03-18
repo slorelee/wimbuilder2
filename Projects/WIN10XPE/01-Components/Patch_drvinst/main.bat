@@ -23,7 +23,8 @@ if "%PATCH_MODE%"=="local" (
   set PATCH_TMP=.
 )
 rem use JFX's generic patcher
-rem http://theoven.org/index.php?topic=2726.msg31375#msg31375
+rem http://theoven.org/index.php?topic=2768.0 (>= v1.0.1)
+rem http://theoven.org/index.php?topic=2726.msg31375#msg31375 (v1.0.0)
 DrvInstPatch_%WB_PE_ARCH%.exe p "%X_SYS%\drvinst.exe"
 if "%PATCH_MODE%"=="local" pause
 goto :EOF

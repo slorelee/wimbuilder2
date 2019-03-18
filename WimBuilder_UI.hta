@@ -82,6 +82,7 @@ if ($IE_VER == '0') {
 <script src="assets/js/helper_page.js"></script>
 <script src="assets/js/definition.js"></script>
 <script src="assets/default_config.js"></script>
+<script src="assets/info.js"></script>
 <script src="config.js"></script>
 <script src="auto_config.js"></script>
 
@@ -402,6 +403,7 @@ if ($IE_VER == '9+') {
 
 <script src="assets/js/i18n.js"></script>
 <script type="text/javascript">
+    document.title = document.title + " - v" + $wb_verstr;
     function window_onload() {
         var w = $width, h = $height; 
         window.resizeTo(w, h); 

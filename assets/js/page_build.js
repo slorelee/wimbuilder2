@@ -87,6 +87,7 @@ function x_drive_exists() {
 
 function structure_env(mode) {
     var env = wsh.Environment("PROCESS");
+    env('WB_VER_STR') = $wb_verstr;
     env('WB_STRAIGHT_MODE') = $wb_straight_mode;
 
     env('WB_WORKSPACE') = $wb_workspace;

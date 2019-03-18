@@ -30,6 +30,7 @@ set "LOGFILE=%Factory%\log\%WB_PROJECT%\%LOGSUFFIX%.log"
 call :MKPATH "%LOGFILE%"
 rem type nul>"%LOGFILE%"
 
+echo WimBuilder - v%WB_VER_STR%
 set TIMER_START=
 for /f "delims=" %%t in ('cscript.exe //nologo bin\Timer.vbs') do set TIMER_START=%%t
 call :cecho PHRASE "%TIMER_START% - Building Start ..."

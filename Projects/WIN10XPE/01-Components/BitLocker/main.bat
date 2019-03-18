@@ -1,5 +1,5 @@
 rem ==========update filesystem==========
-; Explorer BitLocker integration
+rem Explorer BitLocker integration
 call AddFiles "@\Windows\System32\#nbdeunlock.exe,fvenotify.exe"
 
 rem ==========update registry==========

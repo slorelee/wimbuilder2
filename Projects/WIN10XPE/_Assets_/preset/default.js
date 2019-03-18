@@ -17,6 +17,8 @@ var $patches_opt = {
     "component.MMC":true,
     "component.DWM":true,
     "component.mspaint":true,
+    "IME.indicator":true,
+    "IME.system_ime":true,
     "IE.x64_component":"x64+x86",
     "IE.custom_settings":true,
     "IE.home_page":"about:blank",

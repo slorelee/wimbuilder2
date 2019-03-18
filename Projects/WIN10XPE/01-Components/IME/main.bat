@@ -2,9 +2,11 @@
 
 set IME_Startup=0
 if exist Ime_%WB_PE_LANG%.bat (
-  set IME_Startup=1
-  call Ime_Common.bat
-  call Ime_%WB_PE_LANG%.bat
+  if "x%opt[IME.indicator]%"=="xtrue" (
+    set IME_Startup=1
+    call Ime_Common.bat
+  )
+  if "x%opt[IME.system_ime]%"=="xtrue" call Ime_%WB_PE_LANG%.bat
 )
 
 if not "x%IME_Startup%"=="x1" goto :EOF

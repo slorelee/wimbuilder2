@@ -33,13 +33,16 @@ rmclient.dll,rshx32.dll,sendmail.dll
 SettingSyncCore.dll,SharedStartModel.dll,ShellCommonCommonProxyStub.dll,shfolder.dll,shutdown.exe
 StartTileData.dll,stobject.dll,systemcpl.dll,TDLMigration.dll,TextInputFramework.dll,thumbcache.dll
 twinapi.appcore.dll,twinapi.dll,twinui.appcore.dll,twinui.pcshell.dll,UIAnimation.dll,UIRibbon.dll,UIRibbonRes.dll
-VEEventDispatcher.dll,Windows.Gaming.Input.dll,Windows.Internal.Shell.Broker.dll,Windows.Networking.Connectivity.dll,WorkFoldersShell.dll,zipfldr.dll
+Windows.Gaming.Input.dll,Windows.Internal.Shell.Broker.dll,Windows.Networking.Connectivity.dll,WorkFoldersShell.dll,zipfldr.dll
 windows.immersiveshell.serviceprovider.dll
 
-+ver > 17000
-cdp.dll,dsreg.dll,VEEventDispatcher.dll
++ver <= 17000
+VEEventDispatcher.dll
 
-+ver >17700
++ver > 17000
+cdp.dll,dsreg.dll
+
++ver > 17700
 ; shellstyle.dll(.mui) is now in \Windows\resources\themes\aero\shell\normalcolor
 \Windows\resources\Themes\aero\shell
 

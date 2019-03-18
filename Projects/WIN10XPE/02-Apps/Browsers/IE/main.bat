@@ -1,4 +1,3 @@
-@echo off
 goto :main
 [Main]
 Title=Internet Explorer
@@ -10,6 +9,18 @@ History003=Add DXCore.dll for 19H1(from yamingw)
 
 :main
 rem ==========update filesystem==========
+
+if not "x%WB_PE_ARCH%"=="xx64" set opt[IE.x64_component]=x64
+if not "x%opt[build.wow64support]%"=="xtrue" (
+    set opt[IE.x64_component]=x64
+)
+
+rem Only IE(x86) [WOW64] // never
+if "x%WB_PE_ARCH%"=="xx64" (
+    if "x%opt[IE.x64_component]%"=="xx86" (
+        goto :end_files
+    )
+)
 
 call AddFiles %0 :end_files
 goto :end_files
@@ -56,7 +67,7 @@ iesysprep.dll
 ieui.dll
 ieuinit.inf
 inetcpl.cpl
-\spool\drivers\color
+spool\drivers\color\
 mf.dll
 mfcore.dll
 MFMediaEngine.dll
@@ -143,6 +154,10 @@ Windows.UI.dll
 
 :end_x86_files
 if not "x%opt[build.wow64support]%"=="xtrue" goto :end_wow64_files
+if "x%opt[IE.x64_component]%"=="xx64" goto :end_wow64_files
+
+if exist "%X_SYS%\Macromed\Flash\activex.vch" del /q "%X_SYS%\Macromed\Flash\activex.vch"
+if exist "%X_SYS%\Macromed\Flash\Flash.ocx" del /q "%X_SYS%\Macromed\Flash\Flash.ocx"
 
 call AddFiles %0 :end_wow64_files
 goto :end_wow64_files
@@ -188,7 +203,6 @@ d3d10warp.dll
 d3d11.dll
 DataExchange.dll
 dciman32.dll
-dcomp.dll
 dcomp.dll
 ddraw.dll
 ;ddrawex.dll
@@ -360,7 +374,7 @@ call RegCopy HKLM\Software\Macromedia
 call RegCopy "HKLM\Software\Microsoft\Internet Explorer"
 call RegCopy "HKLM\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
 
-if "x%opt[build.wow64support]%"=="xtrue" goto :_IE_CustomReg
+if exist "%X%\Program Files (x86)\Internet Explorer\" goto :_IE_CustomReg
 if "x%WB_PE_ARCH%"=="xx64" (
     rem Removed WoW64 Support Requirement(add TabProcGrowth option)
     rem Thanks To noelBlanc, Bob.Omb For Registry Trick For Pure IE11_x64
@@ -420,6 +434,25 @@ if "x%opt[build.wow64support]%"=="xtrue" (
     call RegCopy "HKLM\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Internet Settings"
 )
 
-rem // IE11_AddReg.txt if needed
-if exist IE11_AddReg.reg reg import IE11_AddReg.reg
+if "x%opt[IE.custom_settings]%"=="xtrue" (
+    if exist "%WB_PROJECT_PATH%\_CustomFiles_\IE_Settings.bat" (
+        pushd
+        call "%WB_PROJECT_PATH%\_CustomFiles_\IE_Settings.bat"
+        popd
+    )
+)
+
+if not "x%opt[IE.home_page]%"=="x" (
+    call :_IE_HomePage "%opt[IE.home_page]%"
+)
+
+goto :EOF
+
+:_IE_HomePage
+::-
+reg add "HKLM\Tmp_Software\Microsoft\Internet Explorer\Main" /v Default_Page_URL /d "%~1" /f
+reg add "HKLM\Tmp_Software\Microsoft\Internet Explorer\Main" /v "Start Page" /d "%~1" /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\Main" /v "Start Page" /d "%~1" /f
+::-
+goto :EOF
 

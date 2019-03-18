@@ -1,0 +1,32 @@
+:_IE_CustomReg
+reg add "HKLM\Tmp_Software\Microsoft\Internet Explorer\Main" /v Default_Search_URL /d https://www.bing.com  /f
+reg add "HKLM\Tmp_Software\Microsoft\Internet Explorer\Main" /v "Search Page" /d https://www.bing.com  /f
+::-
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\Main" /v "Search Page" /d https://www.bing.com /f
+
+call :_IE_HomePage about:blank
+rem call :_IE_SearchScopes
+
+goto :EOF
+
+:_IE_HomePage
+::-
+reg add "HKLM\Tmp_Software\Microsoft\Internet Explorer\Main" /v Default_Page_URL /d "%~1" /f
+reg add "HKLM\Tmp_Software\Microsoft\Internet Explorer\Main" /v "Start Page" /d "%~1" /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\Main" /v "Start Page" /d "%~1" /f
+::-
+goto :EOF
+
+:_IE_SearchScopes
+::-
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\SearchScopes" /v DefaultScope /d {977F4D41-E110-4942-A68B-B4BD47C460DD} /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\SearchScopes\{977F4D41-E110-4942-A68B-B4BD47C460DD}" /v DisplayName /d Google /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\SearchScopes\{977F4D41-E110-4942-A68B-B4BD47C460DD}" /v OSDFileURL /d https://www.microsoft.com/cms/api/am/binary/RWiNsg /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\SearchScopes\{977F4D41-E110-4942-A68B-B4BD47C460DD}" /v FaviconPath /d "%%USERPROFILE%%\AppData\LocalLow\Microsoft\Internet Explorer\Services\search_{977F4D41-E110-4942-A68B-B4BD47C460DD}.ico" /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\SearchScopes\{977F4D41-E110-4942-A68B-B4BD47C460DD}" /v FaviconURL /d http://www.google.com/favicon.ico /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\SearchScopes\{977F4D41-E110-4942-A68B-B4BD47C460DD}" /v ShowSearchSuggestions /t REG_DWORD /d 1 /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\SearchScopes\{977F4D41-E110-4942-A68B-B4BD47C460DD}" /v URL /d https://www.google.com/search?q={searchTerms}^&sourceid=ie7^&rls=com.microsoft:{language}:{referrer:source}^&ie={inputEncoding?}^&oe={outputEncoding?} /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\SearchScopes\{977F4D41-E110-4942-A68B-B4BD47C460DD}" /v SortIndex /t REG_DWORD /d 1 /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\SearchScopes\{977F4D41-E110-4942-A68B-B4BD47C460DD}" /v SuggestionsURL /d https://www.google.com/complete/search?q={searchTerms}^&client=ie8^&mw={ie:maxWidth}^&sh={ie:sectionHeight}^&rh={ie:rowHeight}^&inputencoding={inputEncoding}^&outputencoding={outputEncoding} /f
+::-
+goto :EOF

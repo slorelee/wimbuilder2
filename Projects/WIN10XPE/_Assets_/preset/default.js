@@ -17,6 +17,9 @@ var $patches_opt = {
     "component.MMC":true,
     "component.DWM":true,
     "component.mspaint":true,
+    "IE.x64_component":"x64+x86",
+    "IE.custom_settings":true,
+    "IE.home_page":"about:blank",
     "component.winphotoviewer":true,
     "network.builtin_drivers":true,
     "_._._":""

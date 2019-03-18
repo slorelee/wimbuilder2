@@ -1,2 +1,20 @@
 <p>Internet Explorer 11</p>
 <p>It needs the Administrator account for Downloads.</p>
+
+<br/>
+
+<fieldset>
+<legend>Select the IE component for Windows(x64)</legend>
+<label style="margin-right:20px;"><input type="radio" class="opt_item" name="IE.x64_component" value="x64" checked /> Only IE(x64)</label>
+<label style="margin-right:20px;display:none"><input type="radio" class="opt_item" name="IE.x64_component" value="x86" disabled="disabled" /> Only IE(x86)</label>
+<label><input type="radio" class="opt_item" name="IE.x64_component" value="x64+x86" /> Both IE(x64) and IE(x86)</label>
+</fieldset>
+
+<br/>
+<label><input type="checkbox" class="opt_item" name="IE.custom_settings" checked /> CALL _CustomFiles_\IE_Settings.bat</label>
+<br/>
+<br/>
+<div>
+<label>Home page:</label>
+<input type="text" name="IE.home_page" class="opt_item" style="width:98%;" value="about:blank" />
+</div>

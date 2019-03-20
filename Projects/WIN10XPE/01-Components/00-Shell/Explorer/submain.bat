@@ -50,8 +50,9 @@ cdp.dll,dsreg.dll
 StateRepository.core.dll,Windows.StateRepository.dll
 Windows.StateRepositoryBroker.dll,Windows.StateRepositoryClient.dll
 
-+ver <= 17700
++ver <= 17700 or (ver > 18334 and ver < 18800) or ver > 18836
 shellstyle.dll
+en-US\shellstyle.dll.mui
 
 ; remove ver check (add with any ver)
 +ver*

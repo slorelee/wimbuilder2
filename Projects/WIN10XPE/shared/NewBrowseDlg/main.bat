@@ -10,8 +10,9 @@ ExplorerFrame.dll
 +ver > 17700
 ; shellstyle.dll(.mui) is now in \Windows\resources\themes\aero\shell\normalcolor
 \Windows\resources\Themes\aero\shell
-+ver <= 17700
++ver <= 17700 or (ver > 18334 and ver < 18800) or ver > 18836
 shellstyle.dll
+en-US\shellstyle.dll.mui
 +ver*
 
 ; DragAndDrop (d2d1.dll,ksuser.dll already in Winre.wim)

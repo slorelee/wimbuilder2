@@ -10,9 +10,9 @@ goto :end_files
 
 ; Possible Addition  \Windows\System32\umpoext.dll \Windows\System32\umpowmi.dll \Windows\System32\??-??\umpoext.dll.mui
 ; Power management - In Winre.wim system32: powercfg.cpl,powrprof.dll,workerdd.dll
-\Windows\System32\powercpl.dll
-\Windows\System32\??-??\powercpl.dll.mui
+Windows\System32\powercpl.dll
 
+\Windows\Fonts\segoeui.ttf
 :end_files
 
 rem ==========update registry==========

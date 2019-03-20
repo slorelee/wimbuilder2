@@ -19,6 +19,10 @@ if "x%opt[component.search]%"=="xtrue" (
   call :ApplySubPatch ".\Search"
 )
 
+if "x%opt[component.vcruntime]%"=="xtrue" (
+  call :ApplySubPatch ".\VCRuntime"
+)
+
 if "x%opt[patch.drvinst]%"=="xtrue" (
   call :ApplySubPatch ".\Patch_drvinst"
 )

@@ -16,6 +16,7 @@ var $patches_opt = {
     "tweak.shortcut.nosuffix":true,
     "component.MMC":true,
     "component.DWM":true,
+    "component.vcruntime":true,
     "component.mspaint":true,
     "IME.indicator":true,
     "IME.system_ime":true,

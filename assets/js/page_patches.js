@@ -172,11 +172,17 @@ function deselect_tree_node(id) {
 }
 
 function show_patches_settings() {
-    var jstree_data = { "plugins" : ["checkbox"],
+    var jstree_data = { "plugins" : ["checkbox", "contextmenu"],
     "checkbox": {
                     tie_selection: false,
                     whole_node:false
                 },
+    "contextmenu":{
+            select_node:false,
+            show_at_node:false,
+            items: {
+            },
+      },
       'core' : {
         'data' : [
         ]
@@ -192,6 +198,17 @@ function show_patches_settings() {
 
     if ($obj_project) {
         jstree_data['core']['data'] = $obj_project.patches_tree_data;
+        jstree_data['contextmenu']['items'] = {
+            "OpenFolder": {
+                "label": i18n_t("OpenFolder"),
+                "icon": "browse",
+                "action": function(data) {
+                    var inst = $.jstree.reference(data.reference),
+                    obj = inst.get_node(data.reference);
+                    OpenFolder($obj_project.full_path + '/' + obj.id);
+                }
+            }
+        };
         $('#patches_tree').jstree(jstree_data);
         $('#patches_tree').on("select_node.jstree", function (e, data) {
            patch_onselect(data.node.id);

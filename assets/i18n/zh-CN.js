@@ -30,6 +30,7 @@ $i18n = {
   "Skip when project is selected":"当有工程自动选择时，跳过此页面",
 
   "Current project:":"当前工程:",
+  "OpenFolder":"打开文件夹",
 
   "The _ISO_ folder is not available, you can\'t create bootable ISO image.\r\nPlease make your ISO template manually, or select the Windows ISO folder/drive for auto creating.":
       "当前_ISO_模板目录不可用，您无法创建可启动的ISO镜像。\r\n请手动创建您的ISO模板，或者选择Windows镜像路径，将自动为您创建。",

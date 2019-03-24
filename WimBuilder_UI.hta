@@ -406,7 +406,7 @@ if ($IE_VER == '9+') {
     document.title = document.title + " - v" + $wb_verstr;
     function window_onload() {
         var w = $width, h = $height; 
-        window.resizeTo(w, h); 
+        window.resizeTo(w, h);
         window.moveTo((window.screen.width - w) / 2,
             (window.screen.height - h) / 2);
     }
@@ -417,8 +417,11 @@ if ($IE_VER == '9+') {
     }
 
     function window_beforeunload() {
-        $width = window.outerWidth;
-        $height = window.outerHeight;
+        if ($wb_auto_save_window_size) {
+            var w = window.outerWidth, h = window.outerHeight;
+            if (typeof(w) == 'number') $width = w;
+            if (typeof(h) == 'number') $height = h;
+        }
         auto_save_settings();
     }
 </script>

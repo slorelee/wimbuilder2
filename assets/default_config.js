@@ -4,6 +4,8 @@ var $height = 800;
 var $lang = ''; //auto
 
 var $wb_auto_config_created = false;
+var $wb_auto_save_window_size = true;
+
 var $wb_show_quick_build = false;
 
 var $wb_straight_mode = '1';

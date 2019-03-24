@@ -57,8 +57,6 @@ if not exist "%X_SYS%\tsdiscon.exe" (
   echo \033[97;101mERROR Switch to Admin needs tsdiscon.exe present in Education, Professional or Enterprise edition | cmdcolor.exe
 )
 
-call X2X
-ren "%X_SYS%\startnet_%WB_PE_ARCH%.exe" startnet.exe
 expand  Security.cab -F:* "%X_WIN%\Security"
 
 rem use in :PECMD_ENTRY@last.bat

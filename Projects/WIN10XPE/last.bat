@@ -55,6 +55,7 @@ call OpenTextFile JS %X32%\startnet.cmd %0 :end_startnet_edit
 goto :end_startnet_edit
 
 TXT.before('wpeinit').insert('set USERPROFILE=X:\\Users\\Default');
+TXT.append('\r\nstartnet.exe -wg WORKGROUP\r\n');
 TXT.append('\r\n\
 if exist %SystemRoot%\\System32\\IME_Cmd.cmd (\r\n\
     call %SystemRoot%\\System32\\IME_Cmd.cmd\r\n\

@@ -1,3 +1,6 @@
+rem ThemeColors
+call theme.bat
+
 rem Explorer Dark or Light Theme
 if "x%opt[system.darktheme]%"=="xtrue" (
     rem check WB_PE_VER > 17700

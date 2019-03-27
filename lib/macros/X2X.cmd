@@ -1,3 +1,4 @@
+set "X2X_EXCLUDE=%~dps0X2X_EXCLUDE.txt"
 set _X2X_PUSHED=0
 
 if not "x%~1"=="x" (
@@ -8,14 +9,27 @@ if not "x%~1"=="x" (
 )
 
 if exist X\ (
-    xcopy /E /Y X\*.* "%X%\"
+    xcopy /E /Y X\*.* "%X%\" /EXCLUDE:%X2X_EXCLUDE%
+    pushd X
+    call :X_SERIES_COPY
+    popd
 )
 
 rem X_x64, X_x86
 if exist X_%WB_PE_ARCH%\ (
-    xcopy /E /Y X_%WB_PE_ARCH%\*.* "%X%\"
+    xcopy /E /Y X_%WB_PE_ARCH%\*.* "%X%\" /EXCLUDE:%X2X_EXCLUDE%
+    pushd X_%WB_PE_ARCH%
+    call :X_SERIES_COPY
+    popd
 )
 
+call :X_SERIES_COPY
+
+if %_X2X_PUSHED% EQU 1 popd
+set _X2X_PUSHED=
+goto :EOF
+
+:X_SERIES_COPY
 if exist X_PF\ (
     xcopy /E /Y X_PF\*.* "%X%\Program Files\"
 )
@@ -43,7 +57,4 @@ if exist X_Desktop\ (
 
 rem X_WOW, X_WOW64
 rem X.wim(x64,x86)
-
-if %_X2X_PUSHED% EQU 1 popd
-set _X2X_PUSHED=
-
+goto :EOF

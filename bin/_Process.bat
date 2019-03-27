@@ -58,6 +58,7 @@ if exist "%_WB_TMP_DIR%\_patches_opt.bat" (
 echo.
 rem ";" can't be pass to CALL LABEL, so use a ":" for it
 call :CLOG 97:104m "[%WB_PROJECT%] --- build information"
+set "WB_PROJECT_PATH=%WB_ROOT%\Projects\%WB_PROJECT%"
 set WB_
 echo.
 
@@ -150,7 +151,6 @@ call copy /y "%WB_BASE%" "%_WB_PE_WIM%"
 
 
 rem export working paths
-set "WB_PROJECT_PATH=%WB_ROOT%\Projects\%WB_PROJECT%"
 set "WB_TEMP=%_WB_TMP_DIR%"
 set "WB_TMP=%_WB_TMP_DIR%"
 

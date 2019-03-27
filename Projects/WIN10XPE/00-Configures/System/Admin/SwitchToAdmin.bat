@@ -61,6 +61,7 @@ expand  Security.cab -F:* "%X_WIN%\Security"
 
 rem use in :PECMD_ENTRY@last.bat
 set PECMDINI=PecmdAdmin.ini
+if exist "%WB_PROJECT_PATH%\_CustomFiles_\%PECMDINI%" copy /y "%WB_PROJECT_PATH%\_CustomFiles_\%PECMDINI%" "%X_SYS%\"
 
 rem ==========update registry==========
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\CoreMessagingRegistrar

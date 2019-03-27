@@ -25,3 +25,7 @@ if "x%opt[shell.taskbar.combine]%"=="xalways" (
 )
 reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarGlomLevel /t REG_DWORD /d %TaskbarCombineType% /f
 set TaskbarCombineType=
+
+if exist "%X_SYS%\PinTool.exe" (
+    call TextReplace "%X_SYS%\pecmd.ini" "#// EXEC #pWinDir#p\System32\PinTool.exe" "EXEC #pWinDir#p\System32\PinTool.exe"
+)

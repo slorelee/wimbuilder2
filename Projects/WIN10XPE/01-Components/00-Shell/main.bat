@@ -21,5 +21,6 @@ themecpl.dll
 
 :end_files
 
+call X2X
 call Explorer\submain.bat
 call WinXShell\submain.bat

@@ -308,7 +308,7 @@ function update_output(oExec) {
     window.setTimeout(function(){update_output(oExec);}, 100);
 }
 
-function update_output_by_log(oExec) {
+function update_output_by_log(oExec, finished) {
     var build_stdout = $('#build_stdout');
     var logfile = _log_path + '\\last_wimbuilder.log';
     var text = load_text_file(logfile);
@@ -316,8 +316,12 @@ function update_output_by_log(oExec) {
     build_stdout.html(text);
     build_stdout.scrollTop(build_stdout[0].scrollHeight);
     if (oExec.status != 0) {
-        if ($wb_auto_makeiso) {
-            window.setTimeout(function(){make_iso(true, 'exec');}, 1000);
+        if (finished == 1) {
+            if ($wb_auto_makeiso) {
+               window.setTimeout(function(){make_iso(true, 'exec');}, 1000);
+            }
+        } else {
+            window.setTimeout(function(){update_output_by_log(oExec, 1);}, 100);
         }
         return;
     }

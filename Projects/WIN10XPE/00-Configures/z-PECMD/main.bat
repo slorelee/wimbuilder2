@@ -1,3 +1,4 @@
+if exist "%X_SYS%\winpeshl.ini" del /f /q /a "%X_SYS%\winpeshl.ini"
 call X2X
 ren "%X_SYS%\Pecmd_%WB_PE_ARCH%.exe" Pecmd.exe
 del /q "%X_SYS%\Pecmd_x*.exe"

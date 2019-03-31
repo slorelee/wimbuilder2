@@ -46,9 +46,9 @@ windows\system32\taskkill.exe
 
 
 set "X32=%X%\Windows\System32"
-del /q "%X%\setup.exe"
-del /q "%X32%\winpeshl.ini"
-del /q "%X32%\WallpaperHost.exe"
+call :DELEX "/f /q /a" "%X%\setup.exe"
+call :DELEX "/f /q /a" "%X32%\winpeshl.ini"
+call :DELEX "/f /q /a" "%X32%\WallpaperHost.exe"
 
 rem update startnet.cmd
 call OpenTextFile JS %X32%\startnet.cmd %0 :end_startnet_edit

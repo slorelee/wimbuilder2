@@ -12,7 +12,7 @@ sti.dll
 rem System32/SysWOW64
 call :_Compatibility %WB_PE_ARCH% System32
 if "x%opt[build.wow64support]%"=="xtrue" (
-    call :VCRuntimes x86 SysWOW64
+    call :_Compatibility x86 SysWOW64
 )
 goto :EOF
 

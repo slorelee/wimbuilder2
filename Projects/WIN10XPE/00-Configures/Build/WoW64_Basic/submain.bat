@@ -104,7 +104,7 @@ call RegCopy HKLM\Software\Classes\Wow6432Node\CLSID
 call RegCopy HKLM\Software\Classes\Wow6432Node\Interface
 ::-
 call RegCopy HKLM\Software\Classes\WOW6432Node\DirectShow
-call RegCopy "HKLM\Tmp_Software\Classes\WOW6432Node\Media Type"
+call RegCopy "HKLM\Software\Classes\WOW6432Node\Media Type"
 call RegCopy HKLM\Software\Classes\WOW6432Node\MediaFoundation
 ::-
 call RegCopy HKLM\Software\Wow6432Node

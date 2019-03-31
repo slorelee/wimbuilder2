@@ -21,6 +21,8 @@ midimap.dll,mmci.dll,mmcico.dll,mmcndmgr.dll,mmcshext.dll,mmres.dll,mmsys.cpl
 msacm32.drv,MSDvbNP.ax,msrle32.dll,msvfw32.dll,msvidc32.dll,msyuv.dll
 psisdecd.dll,psisrndr.ax,quartz.dll
 SndVol.exe,SndVolSSO.dll,stobject.dll,tsbyuv.dll,WMADMOD.DLL,WMADMOE.DLL,WMASF.DLL
+; some characters in volume mixer dialog need malgun.ttf, but origin malgun.ttf is too big
+; \Windows\Fonts\malgun.ttf
 :end_files
 
 call DoAddFiles

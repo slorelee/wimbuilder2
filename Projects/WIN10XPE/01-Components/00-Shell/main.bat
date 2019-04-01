@@ -21,6 +21,11 @@ themecpl.dll
 
 :end_files
 
+rem Display, Personalize
+if not "x%opt[build.registry.software]%"=="xfull" (
+    call RegCopy HKLM\SOFTWARE\Classes\DesktopBackground\Shell
+)
+
 call X2X
 call Explorer\submain.bat
 call WinXShell\submain.bat

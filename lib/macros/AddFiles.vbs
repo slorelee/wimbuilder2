@@ -9,7 +9,7 @@ End If
 '   WScript.Echo "ARGUMENTS(" & i & "):" & objArgs.Item(i)
 'Next
 
-Dim g_path, g_mui, g_mui_list, g_ver
+Dim g_path, g_mui, g_mui_list, g_ver, g_if_level, g_if_cond(100)
 
 Dim code_file, code_word, out_file
 
@@ -100,6 +100,26 @@ Function check_ver(ver_line)
   If eval(ver_line) Then check_ver = "pass"
 End Function
 
+Function eval_if(line)
+  Dim cond
+  cond = Mid(line, 4)
+  If InStr(cond, "%") > 0 Then
+      cond = wshShell.ExpandEnvironmentStrings(cond)
+  End If
+  eval_if = 0
+  If eval(cond) Then eval_if = 1
+End Function
+
+Function check_if()
+  Dim i
+  check_if = "pass"
+  For i = 0 To g_if_level - 1
+    If g_if_cond(i) = 0 Then
+      check_if = "skip"
+    End If
+  Next
+End Function
+
 Sub parser(line)
   If line = "" Then Exit Sub             'empty line
   If Left(line, 1) = ";" Then Exit Sub   'comment line
@@ -130,6 +150,13 @@ Sub parser(line)
       g_mui_list = wshShell.ExpandEnvironmentStrings(g_mui_list)
     End If
     Exit Sub
+  ElseIf Left(line, 3) = "+if" Then
+    g_if_cond(g_if_level) = eval_if(line)
+    g_if_level = g_if_level + 1
+    Exit Sub
+  ElseIf Left(line, 3) = "-if" Then
+    g_if_level = g_if_level - 1
+    Exit Sub
   End If
 
   If Left(line, 5) = "+ver*" Then g_ver = "":Exit Sub
@@ -138,6 +165,10 @@ Sub parser(line)
   If g_ver <> "" Then
     g_ver = check_ver(g_ver)
     If g_ver = "skip" Then Exit Sub
+  End If
+
+  If g_if_level > 0 Then
+    If check_if() = "skip" Then Exit Sub
   End If
 
   Dim i, files

@@ -43,9 +43,11 @@ cdp.dll,dsreg.dll
 ; shellstyle.dll(.mui) is now in \Windows\resources\themes\aero\shell\normalcolor
 \Windows\resources\Themes\aero\shell
 
++if "%opt[slim.ultra]%" <> "true"
 ; dll for StateRepository (AppRepository). The StateRepository service is not registered in the Registry
 StateRepository.core.dll,Windows.StateRepository.dll
 Windows.StateRepositoryBroker.dll,Windows.StateRepositoryClient.dll
+-if
 
 +ver <= 17700 or (ver > 18334 and ver < 18800) or ver > 18836
 shellstyle.dll

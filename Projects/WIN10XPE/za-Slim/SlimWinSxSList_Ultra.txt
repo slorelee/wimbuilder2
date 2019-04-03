@@ -1,0 +1,26 @@
+; //- Language without fallback language should be enough for WinSxS
+\Windows\WinSxS\%SxSArch%_microsoft.windows.c..-controls.resources_*_%Language%*\*.*
+\Windows\WinSxS\%SxSArch%_microsoft.windows.common-controls*\*.*
+\Windows\WinSxS\%SxSArch%_microsoft.windows.gdiplus.systemcopy_*\*.*
+\Windows\WinSxS\%SxSArch%_microsoft.windows.gdiplus_*\*.*
+\Windows\WinSxS\%SxSArch%_microsoft.windows.isolationautomation_*\*.*
+\Windows\WinSxS\%SxSArch%_microsoft.windows.i..utomation.proxystub_*\*.*
+;\Windows\WinSxS\%SxSArch%_microsoft-windows-servicingstack_*\*.*
+; //-
+\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.c..-controls.resources_*_%Language%*.manifest
+\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.common-controls*.manifest
+\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.gdiplus.systemcopy_*.manifest
+\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.gdiplus_*.manifest
+\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.isolationautomation_*.manifest
+\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.i..utomation.proxystub_*.manifest
+\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-comdlg32_*.manifest
+\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-comctl32-v5.resources_*_%Language%*.manifest
+\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-comdlg32.resources_*_%Language%*.manifest
+\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.systemcompatible_*.manifest
+;\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-a..core-base.resources_*.manifest
+;\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-blb-engine-main_*.manifest
+;\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.s...smart_card_library_*.manifest
+;\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.s..rt_driver.resources_*.manifest
+;\Windows\WinSxS\manifests\%SxSArch%_microsoft.windows.s..se.scsi_port_driver_*.manifest
+;\Windows\WinSxS\manifests\%SxSArch%_microsoft-windows-servicingstack_*.manifest
+; //\Windows\WinSxS\manifests\x86_microsoft.windows.s..ation.badcomponents_*.manifest

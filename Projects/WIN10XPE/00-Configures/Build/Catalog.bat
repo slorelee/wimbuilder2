@@ -40,8 +40,10 @@ Microsoft-Windows-Desktop-Shared-Drivers-*.cat
 Microsoft-Client-Features-Classic-WOW64-*.cat
 +ver*
 
++if "x%opt[slim.ultra]%"<>"xtrue"
 ; For updates
 Package_*
+-if
 
 ; Additions
 Microsoft-Windows-Browser-Package~*.cat

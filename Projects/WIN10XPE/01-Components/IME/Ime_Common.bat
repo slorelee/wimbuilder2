@@ -9,6 +9,12 @@ set SysDir=SysWOW64
 call :Ime_Files
 
 :UDPATE_REGISTY
+
+if %VER[3]% GTR 18300 (
+  call RegCopy HKLM\Software\Microsoft\FuzzyDS
+  call RegCopy HKLM\Software\Microsoft\Input
+)
+
 call :Ime_Reg HKLM\Software
 if "x%opt[build.wow64support]%"=="xtrue" (
   call :Ime_Reg HKLM\Software\WOW6432Node
@@ -46,10 +52,6 @@ Windows.UI.Core.TextInput.dll
 goto :EOF
 
 :Ime_Reg
-if %VER[3]% GTR 18300 (
-  call RegCopy %1\Microsoft\FuzzyDS
-)
-
 call RegCopy %1\Microsoft\CTF
 call RegCopy %1\Microsoft\IME
 if "x%WB_PE_LANG%"=="xja-JP" call RegCopy %1\Microsoft\IMEJP

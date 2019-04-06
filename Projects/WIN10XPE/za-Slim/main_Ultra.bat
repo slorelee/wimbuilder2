@@ -4,16 +4,35 @@ echo Ultra Sliming...
 rem comment out 'startnet.exe -wg WORKGROUP'
 set opt[system.workgroup]=
 
+rem init code page
+set WB_PE_CODEPAGE=437
+rem TODO: other %WB_PE_LANG%
 if "x%WB_PE_LANG%"=="xzh-CN" (
-call :DEL_FONTS browalia.ttc
-call :DEL_FONTS "c,d,e,g,h,i,j,k,l" "*.*"
-call :DEL_FONTS "mangal.ttf,mangalb.ttf,mmrtext.ttf,mmrtextb.ttf,monbaiti.ttf,msyhl.ttc,msyi.ttf"
-call :DEL_FONTS "n,p,r" "*.*"
-call :DEL_FONTS "segoeui.ttf,segoeuii.ttf,segoeuil.ttf,segoeuisl.ttf,segoeuiz.ttf"
-call :DEL_FONTS "seguibl.ttf,seguibli.ttf,seguiemj.ttf,seguihis.ttf,seguili.ttf,seguisb.ttf,seguisli.ttf,shruti.ttf,shrutib.ttf"
-call :DEL_FONTS "taile.ttf,taileb.ttf,tunga.ttf,tungab.ttf,vrinda.ttf,vrindab.ttf"
-call :DEL_FONTS "tahomabd.ttf"
+  set WB_PE_CODEPAGE=936
 )
+if "x%WB_PE_LANG%"=="xru-RU" (
+  set WB_PE_CODEPAGE=866
+)
+
+call :KEEP_FILES \Windows\Fonts\ "app%WB_PE_CODEPAGE%.fon,consola.ttf,marlett.ttf,micross.ttf,tahoma.ttf,segmdl2.ttf,tahoma.ttf,tahomabd.ttf"
+call :KEEP_FILES \Windows\Fonts\ "svgafix.fon,svgasys.fon,vga%WB_PE_CODEPAGE%.fon,vgafix.fon,vgafixr.fon,vgaoem.fon,vgasys.fon,vgasysr.fon"
+if "x%WB_PE_LANG%"=="xen-US" (
+  call :KEEP_FILES \Windows\Fonts\ "segoeui.ttf,segoeuib.ttf,segoeuii.ttf"
+)
+if "x%WB_PE_LANG%"=="xzh-CN" (
+  call :KEEP_FILES \Windows\Fonts\ "msyh.ttc,s8514fix.fon,s8514oem.fon,s8514sys.fon"
+  call :KEEP_FILES \Windows\Fonts\ "segoeuib.ttf,seguisbi.ttf,seguisym.ttf,simsun.ttc,wingding.ttf"
+  del "%X%\[KEEP]\Windows\Fonts\tahomabd.ttf"
+
+  rem volume mixer
+  call :KEEP_FILE \Windows\Fonts\Malgun.ttf
+)
+if "x%WB_PE_LANG%"=="xru-RU" (
+  call :KEEP_FILES \Windows\Fonts\ "cour.ttf,courbd.ttf,courbi.ttf,courer.fon,lucon.ttf,serifer.fon"
+)
+
+del /a /f /q "%X_WIN%\Fonts\*.*"
+
 
 for %%i in (DVD,EFI,Misc,PCAT,PXE) do (
   rd /q /s "%X_WIN%\Boot\%%i"
@@ -137,13 +156,7 @@ call :KEEP_FILE \Windows\System32\credui.dll
 del /a /f /q "%X_SYS%\CredProv*.*"
 
 call :KEEP_FILES \Windows\System32\ "C_1251.NLS,C_1252.NLS,C_437.NLS"
-rem TODO: other %WB_PE_LANG%
-if "x%WB_PE_LANG%"=="xzh-CN" (
-  call :KEEP_FILE \Windows\System32\C_936.NLS
-)
-if "x%WB_PE_LANG%"=="xru-RU" (
-  call :KEEP_FILE \Windows\System32\C_866.NLS
-)
+call :KEEP_FILE \Windows\System32\C_%WB_PE_CODEPAGE%.NLS
 del /a /f /q "%X_SYS%\C_*.NLS"
 
 del /a /f /q "%X_SYS%\csiagent.dll"

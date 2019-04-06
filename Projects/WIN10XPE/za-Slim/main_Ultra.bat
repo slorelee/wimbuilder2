@@ -1,6 +1,9 @@
 if not "x%opt[slim.ultra]%"=="xtrue" goto :EOF
 echo Ultra Sliming...
 
+rem comment out 'startnet.exe -wg WORKGROUP'
+set opt[system.workgroup]=
+
 if "x%WB_PE_LANG%"=="xzh-CN" (
 call :DEL_FONTS browalia.ttc
 call :DEL_FONTS "c,d,e,g,h,i,j,k,l" "*.*"

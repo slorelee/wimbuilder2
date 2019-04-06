@@ -10,6 +10,7 @@ var $patches_opt = {
     "theme.title_color":"1",
     "config.fbwf.cache": "2048",
     "config.computername": "WINXPE",
+    "system.workgroup": "WORKGROUP",
     "system.high_compatibility":true,
     "shell.app":"explorer",
     "shell.wallpaper": project.full_path + "\\_CustomFiles_\\wallpaper.jpg",

@@ -55,7 +55,11 @@ call OpenTextFile JS %X32%\startnet.cmd %0 :end_startnet_edit
 goto :end_startnet_edit
 
 TXT.before('wpeinit').insert('set USERPROFILE=X:\\Users\\Default');
-TXT.append('\r\nstartnet.exe -wg WORKGROUP\r\n');
+TXT.append('\r\n\
+if exist %SystemRoot%\\System32\\startnet.exe (\r\n\
+    start startnet.exe -wg WORKGROUP\r\n\
+)\r\n\
+');
 TXT.append('\r\n\
 if exist %SystemRoot%\\System32\\IME_Cmd.cmd (\r\n\
     call %SystemRoot%\\System32\\IME_Cmd.cmd\r\n\
@@ -77,6 +81,10 @@ TXT.append('\r\n');
 
 if "x%opt[shell.app]%"=="xwinxshell" (
     call TextReplace "%X32%\startnet.cmd" "start explorer.exe" "start #qShell#q #q#pProgramFiles#p\WinXShell\WinXShell.exe#q -regist -winpe"
+)
+
+if "x%opt[slim.ultra]%"=="xtrue" (
+    call TextReplace "%X32%\startnet.cmd" "wpeinit" "rem wpeinit"
 )
 
 if not "x%opt[shell.app]%"=="xwinxshell" (

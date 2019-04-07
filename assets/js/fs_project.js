@@ -1,6 +1,6 @@
 var Project = {
     root_path: "Projects",
-    New:function(name) {
+    New:function(name, preset) {
         var project = {};
         project.name = name;
         project.path = Project.root_path + '/' + name;
@@ -20,6 +20,9 @@ var Project = {
         var $patches_opt = {};
         var $patches_preset = 'default';
         eval(load_file('_Assets_/config.js'));
+        if (preset) {
+            $patches_preset = preset;
+        }
         if ($patches_preset != '') {
             eval(load_file('_Assets_/preset/' + $patches_preset + '.js'));
         }

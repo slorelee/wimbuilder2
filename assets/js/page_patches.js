@@ -260,3 +260,16 @@ function dump_patches_opt() {
     save_text_file(tmp_folder + "\\_patches_opt.bat", str);
     return str;
 }
+
+
+$('#patch_preset').change(function(){
+    if (!$obj_project) return;
+    //reload project with the preset
+    var preset = $(this).children("option:selected").text();
+    project = Project.New(selected_project, preset);
+    $obj_project = project;
+    $obj_patches = null;
+    _patches_selected_node = null;
+    $('#menu_patch').click();
+});
+

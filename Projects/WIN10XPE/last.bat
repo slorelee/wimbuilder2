@@ -62,13 +62,21 @@ if exist %SystemRoot%\\System32\\IME_Cmd.cmd (\r\n\
     @echo on\r\n\
 )\r\n\
 ');
-TXT.append('\r\nstart explorer.exe\r\n');
+TXT.append('\r\n\
+start explorer.exe\r\n\
+if exist "%windir%\\explorer.exe" (\r\n\
+  if exist "%ProgramFiles%\\WinXShell\\WinXShell.exe" (\r\n\
+    start "Daemon" "%ProgramFiles%\\WinXShell\\WinXShell.exe" -regist -daemon\r\n\
+  )\r\n\
+)\r\n\
+');
+TXT.append('\r\n');
 
 :end_startnet_edit
 
 
 if "x%opt[shell.app]%"=="xwinxshell" (
-    call TextReplace "%X32%\startnet.cmd" "start explorer.exe" "start #qShell#q #q#pProgramFiles#p\WinXShell\WinXShell.exe#q -winpe"
+    call TextReplace "%X32%\startnet.cmd" "start explorer.exe" "start #qShell#q #q#pProgramFiles#p\WinXShell\WinXShell.exe#q -regist -winpe"
 )
 
 if not "x%opt[shell.app]%"=="xwinxshell" (

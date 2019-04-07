@@ -19,6 +19,13 @@ var $patches_opt = {
     "component.mspaint":true,
     "component.winphotoviewer":true,
     "network.builtin_drivers":true,
+    "slim.mui":true,
+    "slim.winboot":false,
+    "slim.font.mingliu":true,
+    "slim.jscript":false,
+    "slim.hta":false,
+    "slim.wmi":false,
+    "slim.ultra":false,
     "_._._":""
 };
 
@@ -27,13 +34,12 @@ function patches_state_init() {
     open_tree_node('00-Configures');
     select_tree_node('00-Configures/Build');
     uncheck_tree_node('02-Apps');
-    uncheck_tree_node('Patch_drvinst');
     uncheck_tree_node('01-Components');
-    check_tree_node('01-Components/00-General');
     check_tree_node('01-Components/00-Shell');
     check_tree_node('01-Components/IME');
     check_tree_node('01-Components/za-Accessories');
     open_tree_node('01-Components');
+    uncheck_tree_node('za-SlimExtra');
 }
 
 

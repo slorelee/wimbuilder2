@@ -26,6 +26,16 @@ if "x%opt[shell.taskbar.combine]%"=="xalways" (
 reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarGlomLevel /t REG_DWORD /d %TaskbarCombineType% /f
 set TaskbarCombineType=
 
+rem Display, Personalize
+if not exist "%X_SYS%\ieframe.dll" (
+    reg add HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Display\command /d "WinXShell.exe ms-settings:display" /f
+    reg delete HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Display\command /v DelegateExecute /f
+    reg add HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Personalize\command /d "WinXShell.exe ms-settings:personalization-background" /f
+    reg delete HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Personalize\command /v DelegateExecute /f
+)
+
 if exist "%X_SYS%\PinTool.exe" (
-    call TextReplace "%X_SYS%\pecmd.ini" "#// EXEC #pWinDir#p\System32\PinTool.exe" "EXEC #pWinDir#p\System32\PinTool.exe"
+    if  exist "%X_SYS%\pecmd.ini" (
+        call TextReplace "%X_SYS%\pecmd.ini" "#// EXEC #pWinDir#p\System32\PinTool.exe" "EXEC #pWinDir#p\System32\PinTool.exe"
+    )
 )

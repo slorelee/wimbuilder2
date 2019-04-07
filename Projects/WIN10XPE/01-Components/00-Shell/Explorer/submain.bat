@@ -13,9 +13,6 @@ desktop.ini
 ; Windows Trusted Runtime Interface Driver
 \Windows\System32\drivers\WindowsTrustedRT.sys
 
-; Computer Management shortcut
-\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Computer Management.lnk
-
 ; Explorer
 \Windows\explorer.exe
 \Windows\??-??\explorer.exe.mui

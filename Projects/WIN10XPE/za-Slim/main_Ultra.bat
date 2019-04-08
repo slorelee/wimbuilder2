@@ -5,14 +5,12 @@ rem comment out 'startnet.exe -wg WORKGROUP'
 set opt[system.workgroup]=
 
 rem init code page
-set WB_PE_CODEPAGE=437
-rem TODO: other %WB_PE_LANG%
-if "x%WB_PE_LANG%"=="xzh-CN" (
-  set WB_PE_CODEPAGE=936
+set WB_PE_CODEPAGE=
+for /f "tokens=3" %%i in ('reg query HKLM\Tmp_SYSTEM\ControlSet001\Control\Nls\CodePage /v ACP') do (
+  set WB_PE_CODEPAGE=%%i
 )
-if "x%WB_PE_LANG%"=="xru-RU" (
-  set WB_PE_CODEPAGE=866
-)
+if "x%WB_PE_CODEPAGE%"=="x" set WB_PE_CODEPAGE=437
+echo Got code page: %WB_PE_CODEPAGE%
 
 call :KEEP_FILES \Windows\Fonts\ "app%WB_PE_CODEPAGE%.fon,consola.ttf,marlett.ttf,micross.ttf,tahoma.ttf,segmdl2.ttf,tahoma.ttf,tahomabd.ttf"
 call :KEEP_FILES \Windows\Fonts\ "svgafix.fon,svgasys.fon,vga%WB_PE_CODEPAGE%.fon,vgafix.fon,vgafixr.fon,vgaoem.fon,vgasys.fon,vgasysr.fon"

@@ -42,6 +42,7 @@ function patches_state_init() {
     check_tree_node('01-Components/00-Shell');
     open_tree_node('01-Components');
     uncheck_tree_node('01-Drivers');
+    check_tree_node('za-SlimExtra');
 
     select_tree_node('00-Configures/Build');
 }

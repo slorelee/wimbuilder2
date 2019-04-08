@@ -24,8 +24,8 @@ for /f %%i in ('dir /a-d /b "%X_WIN%\SystemResources"') do (
     )
 )
 :END_DEL_MUN
-
-for /f %%i in ('dir /a-d /b "%X_SYS%\%WB_PE_LANG%"') do (
+rem ignore *.msc files
+for /f %%i in ('dir /a-d /b "%X_SYS%\%WB_PE_LANG%\*.mui"') do (
     if not exist "%X_SYS%\%%~ni" (
         call :DELEX "/f /a /q" "%X_SYS%\%WB_PE_LANG%\%%i" "Remove useless "
     )
@@ -33,7 +33,7 @@ for /f %%i in ('dir /a-d /b "%X_SYS%\%WB_PE_LANG%"') do (
 
 if %Check_SysWOW4% EQU 0 goto :END_DEL_MUI
 
-for /f %%i in ('dir /a-d /b "%X_WIN%\SysWOW4\%WB_PE_LANG%"') do (
+for /f %%i in ('dir /a-d /b "%X_WIN%\SysWOW4\%WB_PE_LANG%\*.mui"') do (
     if not exist "%X_WIN%\SysWOW4\%%~ni" (
         del /f /a /q "%X_WIN%\SysWOW4\%WB_PE_LANG%\%%i" "Remove useless "
     )

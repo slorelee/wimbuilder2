@@ -8,16 +8,16 @@ rem delete useless files
 call :DELEX /q "%X_SYS%\edgehtml.dll"
 
 rem remove usless mui & mun files
-set Check_SysWOW4=0
-if "x%opt[support.wow64]%"=="xtrue" set Check_SysWOW4=1
+set Check_SysWOW64=0
+if "x%opt[support.wow64]%"=="xtrue" set Check_SysWOW64=1
 if not exist "%X_WIN%\SystemResources" goto :END_DEL_MUN
 
 for /f %%i in ('dir /a-d /b "%X_WIN%\SystemResources"') do (
     if not exist "%X_SYS%\%%~ni" (
-        if %Check_SysWOW4% EQU 0 (
+        if %Check_SysWOW64% EQU 0 (
             call :DELEX "/f /a /q" "%X_WIN%\SystemResources\%%i" "Remove useless "
         ) else (
-            if not exist "%X_WIN%\SysWOW4\%%~ni" (
+            if not exist "%X_WIN%\SysWOW64\%%~ni" (
                 call :DELEX "/f /a /q" "%X_WIN%\SystemResources\%%i" "Remove useless "
             )
         )
@@ -31,16 +31,16 @@ for /f %%i in ('dir /a-d /b "%X_SYS%\%WB_PE_LANG%\*.mui"') do (
     )
 )
 
-if %Check_SysWOW4% EQU 0 goto :END_DEL_MUI
+if %Check_SysWOW64% EQU 0 goto :END_DEL_MUI
 
-for /f %%i in ('dir /a-d /b "%X_WIN%\SysWOW4\%WB_PE_LANG%\*.mui"') do (
-    if not exist "%X_WIN%\SysWOW4\%%~ni" (
-        del /f /a /q "%X_WIN%\SysWOW4\%WB_PE_LANG%\%%i" "Remove useless "
+for /f %%i in ('dir /a-d /b "%X_WIN%\SysWOW64\%WB_PE_LANG%\*.mui"') do (
+    if not exist "%X_WIN%\SysWOW64\%%~ni" (
+        del /f /a /q "%X_WIN%\SysWOW64\%WB_PE_LANG%\%%i" "Remove useless "
     )
 )
 
 :END_DEL_MUI
-set Check_SysWOW4=
+set Check_SysWOW64=
 
 rem display startmenu folders/shortcuts name with language
 attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"

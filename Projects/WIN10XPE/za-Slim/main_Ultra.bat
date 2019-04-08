@@ -100,10 +100,18 @@ if not "x%opt[support.network]%"=="xtrue" (
   call :DEL_DRIVERS "netvsc.sys,nwifi.sys,qevbda.sys,rasl2tp.sys,raspppoe.sys,raspptp.sys,rassstp.sys"
   call :DEL_DRIVERS "tcpip.sys,vwifibus.sys,vwififlt.sys,vwifimp.sys,wanarp.sys,WdiWiFi.sys"
 
-  call :KEEP_FILES \Windows\System32\ "net.exe,net1.exe,netapi32.dll,netjoin.dll,netmsg.dll,netutils.dll"
   del /a /f /q "%X_SYS%\arp.exe"
   del /a /f /q "%X_SYS%\dhcp*.*"
-  del /a /f /q "%X_SYS%\net*.*"
+
+  call :KEEP_FILES \Windows\System32\ "net.exe,net1.exe,netapi32.dll,netjoin.dll,netmsg.dll,netutils.dll"
+  rem system boot
+  call :KEEP_FILES \Windows\System32\ "netprovfw.dll"
+  rem device manager resource
+  call :KEEP_FILE \Windows\System32\netcfgx.dll
+  call :DEL_SYSFILES "netbios.dll,NetDriverInstall.dll,neth.dll,netiohlp.dll,netlogon.dll,netman.dll,netmsg.dll"
+  call :DEL_SYSFILES "NetSetupApi.dll,NetSetupEngine.dll,NetSetupShim.dll,NetSetupSvc.dll,netshell.dll"
+  del /a /f /q "%X_SYS%\net*.exe"
+
   rd /s /q "%X_SYS%\NetworkList"
 
   del /a /f /q "%X_SYS%\ras*.*"
@@ -285,6 +293,7 @@ del /a /f /q "%X_SYS%\wpr.exe"
 
 del /a /f /q "%X_SYS%\wpx.dll"
 
+:END_SLIM_FILES
 rem restore [KEEP]
 if not exist "%X%\[KEEP]" goto :EOF
 xcopy /S /E /Q /H /K /Y "%X%\[KEEP]" "%X%\"

@@ -1,3 +1,47 @@
+
+rem incompatible with StartIsBack(SYSTEM account)
+if exist "%X%\Program Files\StartIsBack\" ( 
+    del /q "%X_SYS%\windows.immersiveshell.serviceprovider.dll"
+)
+
+rem delete useless files
+call :DELEX /q "%X_SYS%\edgehtml.dll"
+
+rem remove usless mui & mun files
+set Check_SysWOW4=0
+if "x%opt[support.wow64]%"=="xtrue" set Check_SysWOW4=1
+if not exist "%X_WIN%\SystemResources" goto :END_DEL_MUN
+
+for /f %%i in ('dir /a-d /b "%X_WIN%\SystemResources"') do (
+    if not exist "%X_SYS%\%%~ni" (
+        if %Check_SysWOW4% EQU 0 (
+            call :DELEX "/f /a /q" "%X_WIN%\SystemResources\%%i" "Remove useless "
+        ) else (
+            if not exist "%X_WIN%\SysWOW4\%%~ni" (
+                call :DELEX "/f /a /q" "%X_WIN%\SystemResources\%%i" "Remove useless "
+            )
+        )
+    )
+)
+:END_DEL_MUN
+
+for /f %%i in ('dir /a-d /b "%X_SYS%\%WB_PE_LANG%"') do (
+    if not exist "%X_SYS%\%%~ni" (
+        call :DELEX "/f /a /q" "%X_SYS%\%WB_PE_LANG%\%%i" "Remove useless "
+    )
+)
+
+if %Check_SysWOW4% EQU 0 goto :END_DEL_MUI
+
+for /f %%i in ('dir /a-d /b "%X_WIN%\SysWOW4\%WB_PE_LANG%"') do (
+    if not exist "%X_WIN%\SysWOW4\%%~ni" (
+        del /f /a /q "%X_WIN%\SysWOW4\%WB_PE_LANG%\%%i" "Remove useless "
+    )
+)
+
+:END_DEL_MUI
+set Check_SysWOW4=
+
 rem display startmenu folders/shortcuts name with language
 attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"
 attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessibility"
@@ -10,21 +54,10 @@ if %VER[3]% LSS 18300 (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\Discardable\PostSetup\ShellNew /v ~reserved~ /t REG_BINARY /d 0800000000000600 /f
 )
 
-rem incompatible with StartIsBack(SYSTEM account)
-if exist "%X%\Program Files\StartIsBack\" ( 
-    del /q "%X_SYS%\windows.immersiveshell.serviceprovider.dll"
-    del /q "%X_SYS%\%WB_PE_LANG%\windows.immersiveshell.serviceprovider.dll.mui"
-)
-
 if not exist "%X_SYS%\dwm.exe" ( 
     reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v OneCoreNoBootDWM /t REG_DWORD /d 1 /f
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v Composition /t REG_DWORD /d 0 /f
 )
-
-rem delete useless files
-call :DELEX /q "%X_SYS%\edgehtml.dll"
-call :DELEX /q "%X_SYS%\%WB_PE_LANG%\edgehtml.dll.mui"
-call :DELEX /q "%X%\Windows\SystemResources\edgehtml.dll.mun"
 
 rem startup with pecmd.exe
 :PECMD_ENTRY
@@ -114,6 +147,7 @@ goto :EOF
 
 :DELEX
 if exist "%~2" (
+    if not "x%~3"=="x" echo %~3%~2
     del %~1 "%~2"
 )
 goto :EOF

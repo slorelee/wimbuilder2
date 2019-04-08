@@ -4,6 +4,8 @@ echo Ultra Sliming...
 rem comment out 'startnet.exe -wg WORKGROUP'
 set opt[system.workgroup]=
 
+call SharedPatch CustomCompmgmt
+
 rem init code page
 set WB_PE_CODEPAGE=
 for /f "tokens=3" %%i in ('reg query HKLM\Tmp_SYSTEM\ControlSet001\Control\Nls\CodePage /v ACP') do (

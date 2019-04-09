@@ -40,14 +40,25 @@ if exist "%X_SYS%\Narrator.exe" (
   set opt[slim.narrator]=false
 )
 
+rem services management extended page needs jscript.dll,jscript9.dll,mshtml.dll
+
+set mmc_required=0
+if "x%opt[component.mmc]%"=="xtrue" (
+  if not "x%opt[shell.app]%"=="xwinxshell" (
+    set mmc_required=1
+  )
+)
+
 if "x%opt[slim.jscript]%"=="xtrue" (
-  rem services management error
   del /a /f /q "%X_SYS%\Chakra.dll"
   del /a /f /q "%X_SYS%\Chakradiag.dll"
   del /a /f /q "%X_SYS%\Chakrathunk.dll"
-  
-  del /a /f /q "%X_SYS%\jscript.dll"
-  del /a /f /q "%X_SYS%\jscript9.dll"
+
+  if %mmc_required% EQU 0 (
+    del /a /f /q "%X_SYS%\jscript.dll"
+    del /a /f /q "%X_SYS%\jscript9.dll"
+  )
+
   del /a /f /q "%X_SYS%\jscript9diag.dll"
 )
 
@@ -60,21 +71,23 @@ if "x%opt[component.bitlocker]%"=="xtrue" (
 if "x%opt[slim.hta]%"=="xtrue" (
   del /a /f /q "%X_SYS%\mshta.exe"
 
-  rem services management error
-  del /a /f /q "%X_WIN%\SystemResources\mshtml.dll.mun"
-  del /a /f /q "%X_SYS%\mshtml.dll"
-  del /a /f /q "%X_SYS%\%WB_PE_LANG%\mshtml.dll.mui"
-
+  if %mmc_required% EQU 0 (
+    del /a /f /q "%X_SYS%\mshtml.dll"
+  )
   del /a /f /q "%X_SYS%\mshtml.tlb"
   del /a /f /q "%X_SYS%\mshtmled.dll"
   call :DEL_CATLOG WinPE-HTA-Package "*"
 )
+set mmc_required=
 
 if "x%opt[slim.wmi]%"=="xtrue" (
   del /a /f /q "%X_SYS%\wmi*"
   del /a /f /q "%X_SYS%\%WB_PE_LANG%\wmi*"
-  del /a /f /q "%X_SYS%\wbem\wmi*"
-  del /a /f /q "%X_SYS%\wbem\%WB_PE_LANG%\wmi*"
+  rem disk management
+  if not "x%opt[component.mmc]%"=="xtrue" (
+    del /a /f /q "%X_SYS%\wbem\wmi*"
+    del /a /f /q "%X_SYS%\wbem\%WB_PE_LANG%\wmi*"
+  )
   call :DEL_CATLOG "WMI,StorageWMI,WMIProvider,WmiClnt"
 )
 

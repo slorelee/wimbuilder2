@@ -1,9 +1,6 @@
 if not "x%opt[slim.ultra]%"=="xtrue" goto :EOF
 echo Ultra Sliming...
 
-rem comment out 'startnet.exe -wg WORKGROUP'
-set opt[system.workgroup]=
-
 call SharedPatch CustomCompmgmt
 
 rem init code page

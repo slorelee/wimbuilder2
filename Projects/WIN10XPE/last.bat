@@ -89,8 +89,8 @@ goto :end_startnet_edit
 
 TXT.before('wpeinit').insert('set USERPROFILE=X:\\Users\\Default');
 TXT.append('\r\n\
-if exist %SystemRoot%\\System32\\startnet.exe (\r\n\
-    start startnet.exe -wg WORKGROUP\r\n\
+if exist %SystemRoot%\\System32\\SetWG.exe (\r\n\
+    start SetWG.exe WORKGROUP\r\n\
 )\r\n\
 ');
 TXT.append('\r\n\

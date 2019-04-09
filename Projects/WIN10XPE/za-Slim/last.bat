@@ -5,7 +5,7 @@ if "x%opt[slim.ultra]%"=="xtrue" (
 )
 
 if "x%opt[system.workgroup]%"=="x" (
-    del /a /f /q "%X_SYS%\startnet.exe"
+    rem del /a /f /q "%X_SYS%\startnet.exe"
 )
 
 goto :EOF

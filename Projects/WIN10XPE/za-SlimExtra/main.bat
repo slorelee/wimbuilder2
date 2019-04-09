@@ -333,7 +333,6 @@ del /a /f /q "%X_SYS%\winsockhc.dll"
 call :KEEP_FILES \Windows\System32\ "Windows.Gaming.Input.dll,windows.storage.dll,Windows.UI.Immersive.dll"
 del /a /f /q "%X_SYS%\Windows.*.dll"
 
-del /a /f /q "%X_SYS%\wkssvc.dll"
 del /a /f /q "%X_SYS%\wosc.dll"
 
 call :KEEP_FILES \Windows\System32\ "ws2_32.dll,wsock32.dll"

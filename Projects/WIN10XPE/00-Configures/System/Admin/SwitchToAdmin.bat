@@ -1,7 +1,7 @@
 rem ==========update filesystem==========
 
 rem add all as default
-set VER_CNAME=.*.
+set VER_CNAME=*.
 if %VER[3]% GTR 17000 set VER_CNAME=.rs4.
 if %VER[3]% GTR 17700 set VER_CNAME=.rs5.
 if %VER[3]% GTR 18300 set VER_CNAME=.19h1.

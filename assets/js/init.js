@@ -52,4 +52,8 @@ function i18n_trans() {
         $(this).attr('title', $i18n[$(this).attr('title')]);
     });
 
+    $('.i18n-placeholder').each(function(){
+        $(this).attr('placeholder', $i18n[$(this).attr('placeholder')]);
+    });
+
 }

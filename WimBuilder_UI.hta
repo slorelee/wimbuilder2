@@ -377,11 +377,19 @@ if ($IE_VER == '9+') {
     <div style="margin-top:10px">
         <div class="pure-form">
              <label for="wb_auto_testiso">
-                <input type="checkbox" id="wb_auto_testiso" ><span class="i18n-text">Test ISO after building with:</span>
+                <input type="checkbox" id="wb_auto_testiso" ><span title="WimBuilder2\test\*.cmd" class="i18n-text">Execute command after building:</span>
             </label>
-            <input type="text" id="wb_test_cmd" style="width:50%;color:#000" placeholder="VBox.cmd testvm" />
-            <button class="pure-button pure-button-primary i18n-text" onclick="test_iso()">Launch</button>
+            <input type="text" id="wb_test_cmd" style="width:50%;" class="i18n-placeholder" placeholder="Please input the command.(eg. VBox.cmd testvm)" />
+            <button class="pure-button pure-button-primary i18n-text" onclick="test_iso()">Execute</button>
         </div>
+        <style type="text/css">
+            #wb_test_cmd {
+                color: #000;
+            }
+            #wb_test_cmd:-ms-input-placeholder {
+                color: #999;
+            }
+        </style>
     </div>
     <div id="build_stdout" style="overflow:scroll;margin-top:10px">stdout</div>
     <div style="margin-top:10px">

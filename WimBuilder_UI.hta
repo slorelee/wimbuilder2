@@ -162,10 +162,10 @@ if ($IE_VER == '9+') {
        style="display:inline-block;height:48px;width:48px;background-image:url(assets/img/play.png)" ></a>
     <div style="display:inline-block;height:48px;">
     <label for="quick_build_mode_run">
-        <input type="radio" name="quick_build_mode" id="quick_build_mode_run" /><span class="i18n-text">run(cmd)</span><br/>
+        <input type="radio" name="quick_build_mode" id="quick_build_mode_run" /><span class="i18n-text">build(cmd)</span><br/>
     </label>
     <label for="quick_build_mode_exec">
-        <input type="radio" name="quick_build_mode" id="quick_build_mode_exec" checked /><span class="i18n-text">exec(log)</span>
+        <input type="radio" name="quick_build_mode" id="quick_build_mode_exec" checked /><span class="i18n-text">build(log)</span>
     </label>
     </div>
 </div>
@@ -367,8 +367,8 @@ if ($IE_VER == '9+') {
         }
         </style>
         <button class="pure-button button-green i18n-text" onclick="cleanup()">0-cleanup</button>
-        <button class="pure-button button-maroon i18n-text" onclick="run_build()">1-run(cmd)</button>
-        <button class="pure-button button-orange i18n-text" onclick="exec_build()">1-exec(log)</button>
+        <button class="pure-button button-maroon i18n-text" onclick="run_build()">1-build(cmd)</button>
+        <button class="pure-button button-orange i18n-text" onclick="exec_build()">1-build(log)</button>
         <button class="pure-button button-lightblue i18n-text" onclick="make_iso()">2-make_iso</button>
         <label for="wb_auto_makeiso">
             <input type="checkbox" id="wb_auto_makeiso" /><span class="i18n-text">Create ISO after building</span>

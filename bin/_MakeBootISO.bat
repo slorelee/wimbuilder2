@@ -11,11 +11,11 @@ rem auto create the _ISO_
 
 call :MKPATH "%ISO_DIR%\sources\"
 if not exist "%ISO_DIR%\bootmgr" (
-  if exist "%WB_SRC_FOLDER%boot" (
-    xcopy /E /Y "%WB_SRC_FOLDER%boot" "%ISO_DIR%\boot\"
-    xcopy /E /Y "%WB_SRC_FOLDER%efi" "%ISO_DIR%\efi\"
-    copy /y "%WB_SRC_FOLDER%bootmgr" "%ISO_DIR%\"
-    copy /y "%WB_SRC_FOLDER%bootmgr.efi" "%ISO_DIR%\"
+  if exist "%WB_SRC_FOLDER%\boot" (
+    xcopy /E /Y "%WB_SRC_FOLDER%\boot" "%ISO_DIR%\boot\"
+    xcopy /E /Y "%WB_SRC_FOLDER%\efi" "%ISO_DIR%\efi\"
+    copy /y "%WB_SRC_FOLDER%\bootmgr" "%ISO_DIR%\"
+    copy /y "%WB_SRC_FOLDER%\bootmgr.efi" "%ISO_DIR%\"
   )
 )
 

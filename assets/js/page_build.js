@@ -51,7 +51,12 @@ function check_iso_template() {
     }
     if ($iso_boot_file != '') {
         if (!fso.FileExists(iso_path + '\\' + $iso_boot_file)) {
-            if (!fso.FolderExists($wb_src_folder + 'boot')) {
+            var boot_folder = $wb_src_folder;
+            if (boot_folder.substr(-1, 1) != '\\') {
+                boot_folder += '\\';
+            }
+            boot_folder += 'boot';
+            if (!fso.FolderExists(boot_folder)) {
                 alert(i18n_t('The _ISO_ folder is not available, you can\'t create bootable ISO image.\r\nPlease make your ISO template manually, or select the Windows ISO folder/drive for auto creating.'));
             }
         }
@@ -92,7 +97,11 @@ function structure_env(mode) {
 
     env('WB_WORKSPACE') = $wb_workspace;
 
-    env('WB_SRC_FOLDER') = $wb_src_folder;
+    var src_folder = $wb_src_folder;
+    if (src_folder.substr(-1, 1) == '\\') {
+        src_folder = src_folder.slice(0, -1);
+    }
+    env('WB_SRC_FOLDER') = src_folder;
     env('WB_SRC') = $wb_src;
     env('WB_BASE') = $wb_base;
     env('WB_SRC_INDEX') = $wb_src_index;

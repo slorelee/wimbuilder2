@@ -23,6 +23,10 @@ if "x%opt[component.vcruntime]%"=="xtrue" (
   call :ApplySubPatch ".\VCRuntime"
 )
 
+if "x%opt[component.netfx]%"=="xtrue" (
+  call :ApplySubPatch ".\NetFX"
+)
+
 if "x%opt[patch.drvinst]%"=="xtrue" (
   call :ApplySubPatch ".\Patch_drvinst"
 )

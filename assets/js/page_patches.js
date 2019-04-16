@@ -171,6 +171,18 @@ function deselect_tree_node(id) {
   $('#patches_tree').jstree(true).deselect_node(id);
 }
 
+function edit_menu_action(file) {
+  if (!fso.FileExists(file)) return;
+  var editor = $obj_project.full_path + '/_CustomFiles_/editor.cmd';
+  var style = 0;
+  if (!fso.FileExists(editor)) {
+    editor = 'notepad.exe';
+    style = 1;
+  }
+  file = file.replace(/\//g, '\\');
+  Run(editor, '\"' + file + '\"', style);
+}
+
 function show_patches_settings() {
     var jstree_data = { "plugins" : ["checkbox", "contextmenu"],
     "checkbox": {
@@ -207,7 +219,25 @@ function show_patches_settings() {
                     obj = inst.get_node(data.reference);
                     OpenFolder($obj_project.full_path + '/' + obj.id);
                 }
-            }
+            },
+            "EditMain": {
+                "label": i18n_t("Edit main.bat"),
+                "icon": "edit",
+                "action": function(data) {
+                    var inst = $.jstree.reference(data.reference),
+                    obj = inst.get_node(data.reference);
+                    edit_menu_action($obj_project.full_path + '/' + obj.id + '/main.bat');
+                }
+            },
+            "EditLast": {
+                "label": i18n_t("Edit last.bat"),
+                "icon": "edit",
+                "action": function(data) {
+                    var inst = $.jstree.reference(data.reference),
+                    obj = inst.get_node(data.reference);
+                    edit_menu_action($obj_project.full_path + '/' + obj.id + '/last.bat');
+                }
+            },
         };
         $('#patches_tree').jstree(jstree_data);
         $('#patches_tree').on("select_node.jstree", function (e, data) {

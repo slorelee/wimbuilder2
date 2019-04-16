@@ -1,8 +1,13 @@
 var wsh = new ActiveXObject("WScript.Shell");
 
 
-function Run(file) {
-    wsh.Run('"' + file + '"');
+function Run(file, param, style) {
+    if (style == null) style = 1;
+    if (param) {
+        wsh.Run('"' + file + '" ' + param, style);
+    } else {
+         wsh.Run('"' + file + '"', style);
+    }
 }
 
 function eformat(str) {

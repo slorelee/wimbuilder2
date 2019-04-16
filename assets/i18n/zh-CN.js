@@ -32,6 +32,8 @@ $i18n = {
   "Current project:":"当前工程:",
   "Patch Preset:":"预设:",
   "OpenFolder":"打开文件夹",
+  "Edit main.bat":"编辑 main.bat",
+  "Edit last.bat":"编辑 last.bat",
 
   "The _ISO_ folder is not available, you can\'t create bootable ISO image.\r\nPlease make your ISO template manually, or select the Windows ISO folder/drive for auto creating.":
       "当前_ISO_模板目录不可用，您无法创建可启动的ISO镜像。\r\n请手动创建您的ISO模板，或者选择Windows镜像路径，将自动为您创建。",

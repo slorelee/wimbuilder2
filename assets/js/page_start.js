@@ -1,3 +1,5 @@
+var $_wb_first_run = false;
+
 var user_trigger = false;
 
 function check_wim_file() {
@@ -50,6 +52,7 @@ function start_page_init() {
     auto_save_trigger = true;
     user_trigger = true;
     if (!$wb_auto_config_created) {
+        $_wb_first_run = true;
         $('#page_start_info').show();
     }
 }

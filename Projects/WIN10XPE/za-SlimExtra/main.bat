@@ -331,11 +331,15 @@ del /a /f /q "%X_SYS%\winsku.dll"
 del /a /f /q "%X_SYS%\winsockhc.dll"
 
 call :KEEP_FILES \Windows\System32\ "Windows.Gaming.Input.dll,windows.storage.dll,Windows.UI.Immersive.dll"
+rem keep for Search feature
+call :KEEP_FILES \Windows\System32\ "Windows.Shell.Search.UriHandler.dll,Windows.Storage.Search.dll"
 del /a /f /q "%X_SYS%\Windows.*.dll"
 
 del /a /f /q "%X_SYS%\wosc.dll"
 
 call :KEEP_FILES \Windows\System32\ "ws2_32.dll,wsock32.dll"
+rem keep for Search feature
+call :KEEP_FILE \Windows\System32\wsepno.dll
 del /a /f /q "%X_SYS%\ws*.*"
 
 :END_SLIM_FILES

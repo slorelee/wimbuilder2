@@ -15,10 +15,10 @@ if not exist "%X_WIN%\SystemResources" goto :END_DEL_MUN
 for /f %%i in ('dir /a-d /b "%X_WIN%\SystemResources"') do (
     if not exist "%X_SYS%\%%~ni" (
         if %Check_SysWOW64% EQU 0 (
-            call :DELEX "/f /a /q" "%X_WIN%\SystemResources\%%i" "Remove useless "
+            call :DELEX "/f /a /q" "%X_WIN%\SystemResources\%%i" "Remove orphan "
         ) else (
             if not exist "%X_WIN%\SysWOW64\%%~ni" (
-                call :DELEX "/f /a /q" "%X_WIN%\SystemResources\%%i" "Remove useless "
+                call :DELEX "/f /a /q" "%X_WIN%\SystemResources\%%i" "Remove orphan "
             )
         )
     )
@@ -27,7 +27,7 @@ for /f %%i in ('dir /a-d /b "%X_WIN%\SystemResources"') do (
 rem ignore *.msc files
 for /f %%i in ('dir /a-d /b "%X_SYS%\%WB_PE_LANG%\*.mui"') do (
     if not exist "%X_SYS%\%%~ni" (
-        call :DELEX "/f /a /q" "%X_SYS%\%WB_PE_LANG%\%%i" "Remove useless "
+        call :DELEX "/f /a /q" "%X_SYS%\%WB_PE_LANG%\%%i" "Remove orphan "
     )
 )
 
@@ -35,7 +35,7 @@ if %Check_SysWOW64% EQU 0 goto :END_DEL_MUI
 
 for /f %%i in ('dir /a-d /b "%X_WIN%\SysWOW64\%WB_PE_LANG%\*.mui"') do (
     if not exist "%X_WIN%\SysWOW64\%%~ni" (
-        call :DELEX "/f /a /q" "%X_WIN%\SysWOW64\%WB_PE_LANG%\%%i" "Remove useless "
+        call :DELEX "/f /a /q" "%X_WIN%\SysWOW64\%WB_PE_LANG%\%%i" "Remove orphan "
     )
 )
 

@@ -35,7 +35,7 @@ if %Check_SysWOW64% EQU 0 goto :END_DEL_MUI
 
 for /f %%i in ('dir /a-d /b "%X_WIN%\SysWOW64\%WB_PE_LANG%\*.mui"') do (
     if not exist "%X_WIN%\SysWOW64\%%~ni" (
-        del /f /a /q "%X_WIN%\SysWOW64\%WB_PE_LANG%\%%i" "Remove useless "
+        call :DELEX "/f /a /q" "%X_WIN%\SysWOW64\%WB_PE_LANG%\%%i" "Remove useless "
     )
 )
 

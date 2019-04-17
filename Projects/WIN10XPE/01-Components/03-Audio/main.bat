@@ -23,6 +23,22 @@ psisdecd.dll,psisrndr.ax,quartz.dll
 SndVol.exe,SndVolSSO.dll,stobject.dll,tsbyuv.dll,WMADMOD.DLL,WMADMOE.DLL,WMASF.DLL
 ; some characters in volume mixer dialog need malgun.ttf, but origin malgun.ttf is too big
 ; \Windows\Fonts\malgun.ttf
+
++if "x%opt[audio.win_events]%"="xall"
+\Windows\Media\*.wav
+-if
+
++if "x%opt[audio.win_events]%"="xbase"
+\Windows\Media\Windows Background.wav
+\Windows\Media\Windows Foreground.wav
+-if
+
++if "x%opt[audio.win_events]%"<>"xnone"
++if "x%opt[build.wow64support]%"="xtrue"
+\Windows\SysWOW64\mmres.dll
+-if
+-if
+
 :end_files
 
 call DoAddFiles
@@ -54,6 +70,10 @@ reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\MTCUVC" /v Enable
 rem add services
 rem AudioEndpointBuilder,HDAudBus,MMCSS,volmgr services (already in WinRE.wim)
 call RegCopyEx Services Beep
+
+if not "x%opt[audio.win_events]%"=="xnone" (
+  reg copy HKLM\Src_NTUSER.DAT\AppEvents HKLM\Tmp_Default\AppEvents /s /f
+)
 
 rem // Associate .mp3 with mpg123.exe
 if 0 EQU 1 (

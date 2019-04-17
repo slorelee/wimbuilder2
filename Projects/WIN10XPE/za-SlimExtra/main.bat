@@ -333,6 +333,8 @@ del /a /f /q "%X_SYS%\winsockhc.dll"
 call :KEEP_FILES \Windows\System32\ "Windows.Gaming.Input.dll,windows.storage.dll,Windows.UI.Immersive.dll"
 rem keep for Search feature
 call :KEEP_FILES \Windows\System32\ "Windows.Shell.Search.UriHandler.dll,Windows.Storage.Search.dll"
+rem keep for IME
+call :KEEP_FILES \Windows\System32\ "Windows.Devices.HumanInterfaceDevice.dll,Windows.Globalization.dll,Windows.UI.Core.TextInput.dll"
 del /a /f /q "%X_SYS%\Windows.*.dll"
 
 del /a /f /q "%X_SYS%\wosc.dll"

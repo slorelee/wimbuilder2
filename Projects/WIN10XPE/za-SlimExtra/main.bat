@@ -109,6 +109,9 @@ del /a /f /q "%X_SYS%\driverquery.exe"
 del /a /f /q "%X_SYS%\dxgwdi.dll"
 del /a /f /q "%X_SYS%\dxva2.dll"
 
+if "x%opt[component.winphotoviewer]%"=="xtrue" (
+  call :KEEP_FILE \Windows\System32\efswrt.dll
+)
 del /a /f /q "%X_SYS%\efs*.dll"
 
 del /a /f /q "%X_SYS%\esentutl.exe"
@@ -144,7 +147,9 @@ del /a /f /q "%X_SYS%\hwcompat.txt"
 del /a /f /q "%X_SYS%\hwexclude.txt"
 
 del /a /f /q "%X_SYS%\icfupgd.dll"
-del /a /f /q "%X_SYS%\icm32.dll"
+if not "x%opt[component.winphotoviewer]%"=="xtrue" (
+  del /a /f /q "%X_SYS%\icm32.dll"
+)
 del /a /f /q "%X_SYS%\idndl.dll"
 del /a /f /q "%X_SYS%\iemigplugin.dll"
 del /a /f /q "%X_SYS%\IndexedDbLegacy.dll"

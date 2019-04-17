@@ -135,7 +135,6 @@ rd /q /s "%X_SYS%\config\systemprofile"
 
 rd /q /s "%X_SYS%\DiagSvcs"
 rd /q /s "%X_SYS%\migration"
-rd /q /s "%X_SYS%\spool"
 rd /q /s "%X_SYS%\SMI"
 rd /q /s "%X_SYS%\WindowsPowerShell"
 

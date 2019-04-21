@@ -28,7 +28,7 @@ MrmCoreR.dll,mscories.dll,MsCtfMonitor.dll,msutb.dll,mycomput.dll,policymanager.
 ProximityCommon.dll,ProximityCommonPal.dll,ProximityService.dll,ProximityServicePal.dll
 rmclient.dll,rshx32.dll,sendmail.dll
 SettingSyncCore.dll,SharedStartModel.dll,ShellCommonCommonProxyStub.dll,shfolder.dll,shutdown.exe
-StartTileData.dll,stobject.dll,systemcpl.dll,TDLMigration.dll,TextInputFramework.dll,thumbcache.dll
+StartTileData.dll,stobject.dll,StorageUsage.dll,systemcpl.dll,TDLMigration.dll,TextInputFramework.dll,thumbcache.dll
 twinapi.appcore.dll,twinapi.dll,twinui.appcore.dll,twinui.pcshell.dll,UIAnimation.dll,UIRibbon.dll,UIRibbonRes.dll
 Windows.Gaming.Input.dll,Windows.Internal.Shell.Broker.dll,Windows.Networking.Connectivity.dll,WorkFoldersShell.dll,zipfldr.dll
 windows.immersiveshell.serviceprovider.dll
@@ -77,6 +77,9 @@ DataExchange.dll,dcomp.dll,d3d11.dll,dxgi.dll
 ; CopyProgress
 chartv.dll,OneCoreUAPCommonProxyStub.dll
 
+; Previous version tab
+twext.dll
+
 ; Eject usb
 DeviceCenter.dll,DeviceEject.exe,StorageContextHandler.dll
 
@@ -89,12 +92,19 @@ netplwiz.dll,netplwiz.exe
 ; Sharing from explorer
 dtsh.dll,shpafact.dll,networkexplorer.dll,provsvc.dll
 
+; Password Notification from event-log
+kdcpw.dll
+
 ; Addional Cmds
 cacls.exe,Comp.exe,choice.exe,Fc.exe,findstr.exe
 Help.exe,Label.exe,Makecab.exe,sc.exe,Sort.exe
+taskkill.exe
 
 ; ShellHWDetection
 shsvcs.dll
+
+; DLNA Namespace
+dlnashext.dll
 
 ; Taking Ownership (Appinfo and ProfSvc services). ProfSvc services already here (profsvc.dll,profsvcext.dll,provsvc.dll,objsel.dll)
 appinfo.dll,appinfoext.dll,objsel.dll

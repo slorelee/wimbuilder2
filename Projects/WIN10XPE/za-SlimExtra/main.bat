@@ -1,6 +1,12 @@
 echo Extra-Sliming...
 
 rd /s /q "%X%\sources"
+
+if "x%opt[component.snippingtool]%"=="xtrue" (
+  call :KEEP_FILES "\Program Files\Common Files\Microsoft Shared\ink\" "InkObj.dll,tpcps.dll"
+  call :KEEP_FILE "\Program Files\Common Files\Microsoft Shared\ink\%WB_PE_LANG%\InkObj.dll.mui"
+)
+
 rd /s /q "%X%\Program Files\Common Files\Microsoft Shared\ink"
 
 rd /s /q "%X_WIN%\AppCompat"

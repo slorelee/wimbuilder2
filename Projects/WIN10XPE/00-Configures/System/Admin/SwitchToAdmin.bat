@@ -17,14 +17,31 @@ goto :end_files
 \Windows\inf\wvmic_ext.inf
 
 @\Windows\System32\
-FontGlyphAnimator.dll,LogonUI.exe,profsvcext.dll
-shacct.dll,threadpoolwinrt.dll,Windows.UI.dll,Windows.UI.Logon.dll
+AuthExt.dll
+
+;need for NoteBook
+batmeter.dll
+
+;need install.wim's imageres.dll
+imageres.dll
+
+FontGlyphAnimator.dll,InputSwitch.dll,LogonUI.exe,MrmCoreR.dll,profsvcext.dll
+secedit.exe,seclogon.dll,shacct.dll,threadpoolwinrt.dll,tscon.exe,tsdiscon.exe,whoami.exe
+Windows.UI.dll,Windows.UI.Immersive.dll,Windows.UI.Logon.dll,Windows.UI.XamlHost.dll
+
+; Windows.UI.Xaml.dll exist in all Language folders.
++mui(en-US,%WB_PE_LANG%)
+Windows.UI.Xaml.dll
+-mui
 
 ; 1709 uses Xaml.Resources.dll,1803 uses Xaml.Resources.rs4.dll and 1809 uses Xaml.Resources.rs5.dll, ...
 ; Keep both for compatibility with both versions
 ;Windows.UI.Xaml.Resources.dll,Windows.UI.Xaml.Resources.*.dll
 
 Windows.UI.Xaml.Resources%VER_CNAME%dll
+
+; for WinXShell
+CoreMessaging.dll,CoreUIComponents.dll,InputHost.dll,rmclient.dll,TextInputFramework.dll,twinapi.appcore.dll
 
 +ver > 17700
 Windows.UI.Xaml.Controls.dll,Windows.ApplicationModel.dll
@@ -33,22 +50,6 @@ wuceffects.dll
 Windows.Globalization.Fontgroups.dll
 +ver*
 
-Windows.UI.XamlHost.dll
-
-;need install.wim's imageres.dll
-imageres.dll
-AuthExt.dll,InputSwitch.dll,twinapi.appcore.dll,Windows.UI.Immersive.dll
-secedit.exe,seclogon.dll,tscon.exe,tsdiscon.exe,whoami.exe
-
-;need for NoteBook
-batmeter.dll
-
-; Windows.UI.Xaml.dll exist in all Language folders.
-+mui(en-US,%WB_PE_LANG%)
-Windows.UI.Xaml.dll
--mui
-
-CoreMessaging.dll,CoreUIComponents.dll,InputHost.dll,MrmCoreR.dll,rmclient.dll,TextInputFramework.dll
 \Windows\SystemResources\Windows.UI.Logon
 
 

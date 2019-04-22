@@ -30,6 +30,7 @@ Windows.UI.Xaml.Resources%VER_CNAME%dll
 Windows.UI.Xaml.Controls.dll,Windows.ApplicationModel.dll
 +ver > 18300
 wuceffects.dll
+Windows.Globalization.Fontgroups.dll
 +ver*
 
 Windows.UI.XamlHost.dll

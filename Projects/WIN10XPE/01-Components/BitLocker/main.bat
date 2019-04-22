@@ -1,12 +1,22 @@
 rem ==========update filesystem==========
 rem Explorer BitLocker integration
+
+rem full feature
+rem call AddFiles "@\Windows\System32\#nbde*.exe,fve*.exe,bde*.dll,fve*.dll,BitLocker*.*,EhStor*.*"
+
 call AddFiles "@\Windows\System32\#nbdeunlock.exe,fvenotify.exe"
 
+if "x%opt[shell.app]%"=="xwinxshell" (
+  rem auto contextmenu
+  call AddFiles "@\Windows\System32\#nStructuredQuery.dll,Windows.Storage.Search.dll"
+)
+
 rem ==========update registry==========
-call RegCopy HKLM\System\ControlSet001\Services\BDESVC
-reg add HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /ve /t REG_EXPAND_SZ /d "@%%SystemRoot%%\System32\bdeunlock.exe,-100" /f
-reg add HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /v AppliesTo /d System.Volume.BitLockerProtection:=6 /f
-reg add HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /v DefaultAppliesTo /d "" /f
+rem call RegCopy HKLM\System\ControlSet001\Services\BDESVC
+call RegCopy HKLM\Software\Classes\Drive\shell\unlock-bde
 reg add HKLM\Tmp_software\Classes\Drive\shell\unlock-bde /v Icon /d bdeunlock.exe /f
-reg add HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /v MultiSelectModel /d Single /f
-reg add HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde\command /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\System32\bdeunlock.exe %%1" /f
+
+if "x%opt[shell.app]%"=="xwinxshell" (
+  reg delete HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /v AppliesTo /f
+  reg delete HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /v DefaultAppliesTo /f
+)

@@ -27,7 +27,9 @@ if "x%WB_PE_LANG%"=="xzh-CN" (
 if "x%WB_PE_LANG%"=="xru-RU" (
   call :KEEP_FILES \Windows\Fonts\ "cour.ttf,courbd.ttf,courbi.ttf,courer.fon,lucon.ttf,serifer.fon"
 )
-
+if "x%WB_PE_LANG%"=="xko-KR" (
+  call :KEEP_FILES \Windows\Fonts\ "gulim.ttc,malgun.ttf"
+)
 del /a /f /q "%X_WIN%\Fonts\*.*"
 
 

@@ -5,6 +5,27 @@ if not "x%opt[shell.show_thisPC]%"=="xfalse" (
     reg add "HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" /v {20D04FE0-3AEA-1069-A2D8-08002B30309D} /t REG_DWORD /d 1 /f
 )
 
+rem remove folders in My Computer View
+set _MyComView=HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace
+
+rem remove "downloads"
+reg delete %_MyComView%\{088e3905-0323-4b02-9826-5d99428e115f} /f
+rem remove "Pictures"
+reg delete %_MyComView%\{24ad3ad4-a569-4530-98e1-ab02f9417aa8} /f
+rem remove "Music"
+reg delete %_MyComView%\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de} /f
+rem remove "Videos"
+reg delete %_MyComView%\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a} /f
+rem remove "3D Objects"
+reg delete %_MyComView%\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A} /f
+
+rem remove "MyDocuments"
+reg delete %_MyComView%\{d3162b92-9365-467a-956b-92703aca08af} /f
+rem remove "Desktop"
+rem reg delete %_MyComView%\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641} /f
+
+set _MyComView=
+
 rem Wallpaper
 if "x%opt[shell.wallpaper]%"=="x" goto :EOF
 copy /y "%opt[shell.wallpaper]%" "%X_SYS%\winre.jpg"

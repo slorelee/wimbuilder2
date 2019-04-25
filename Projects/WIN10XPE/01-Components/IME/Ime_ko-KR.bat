@@ -168,6 +168,9 @@ reg add HKLM\Tmp_System\Software\Microsoft\CTF\Assemblies\0x00000412\{34745C63-B
 reg add HKLM\Tmp_System\Software\Microsoft\CTF\Assemblies\0x00000412\{34745C63-B2F0-4784-8B67-5E12C8701A31} /v KeyboardLayout /t REG_DWORD /d 68289554 /f
 reg add HKLM\Tmp_System\Software\Microsoft\CTF\HiddenDummyLayouts /v 00000412 /d 00000412 /f
 reg add HKLM\Tmp_System\Software\Microsoft\CTF\TIP\{A028AE76-01B1-46C2-99C4-ACD9858AE02F}\LanguageProfile\0x00000412\{B5FE1F02-D5F2-4445-9C03-C568F23C99A1} /v Enable /t REG_DWORD /d 1 /f
+
+reg delete HKLM\Tmp_Software\Microsoft\CTF\TIP\{a028ae76-01b1-46c2-99c4-acd9858ae02f}\Category\Item\{a028ae76-01b1-46c2-99c4-acd9858ae02f}\{3AF314A2-D79F-4B1B-9992-15086D339B05} /f
+
 goto :EOF
 
 :Fonts_Reg

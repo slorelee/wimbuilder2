@@ -64,6 +64,10 @@ if not exist "%X_SYS%\tsdiscon.exe" (
 
 expand  Security.cab -F:* "%X_WIN%\Security"
 
+if %VER[3]% GTR 18800 (
+  copy /y LSAgetRights_%WB_PE_ARCH%.exe "%X_SYS%\LSAgetRights.exe"
+)
+
 rem use in :PECMD_ENTRY@last.bat
 set PECMDINI=PecmdAdmin.ini
 if exist "%WB_PROJECT_PATH%\_CustomFiles_\%PECMDINI%" copy /y "%WB_PROJECT_PATH%\_CustomFiles_\%PECMDINI%" "%X_SYS%\"

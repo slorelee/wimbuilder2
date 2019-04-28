@@ -48,6 +48,9 @@ Windows.UI.Xaml.Controls.dll,Windows.ApplicationModel.dll
 +ver > 18300
 wuceffects.dll
 Windows.Globalization.Fontgroups.dll
++ver > 18800
+WindowManagement.dll
+WindowManagementAPI.dll
 +ver*
 
 \Windows\SystemResources\Windows.UI.Logon

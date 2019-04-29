@@ -29,6 +29,9 @@ msvcp_win.dll,msvcp60.dll,msvcp110_win.dll,msvcrt.dll
 msvcp120_clr0400.dll,msvcrt20.dll,msvcrt40.dll
 msvcr100_clr0400.dll,msvcr120_clr0400.dll
 
+; Additional Files for v1903
+msvcirt.dll,msvcp110.dll,msvcp140_clr0400.dll,msvcr110.dll
+
 ; WinSxS VC++ runtimes
 \Windows\WinSxS\%SxSArch%_microsoft.vc80.crt*
 \Windows\WinSxS\%SxSArch%_microsoft.vc90.crt*

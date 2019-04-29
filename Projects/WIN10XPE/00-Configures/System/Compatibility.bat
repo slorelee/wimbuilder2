@@ -6,6 +6,7 @@ rem System
 call AddFiles "%f0%" :end_sys_files
 goto :end_sys_files
 @\Windows\System32\
+nsi.dll
 sti.dll
 :end_sys_files
 

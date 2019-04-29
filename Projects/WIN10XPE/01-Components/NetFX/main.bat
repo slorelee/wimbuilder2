@@ -43,6 +43,10 @@ goto :end_files
 @\Windows\%SysDir%\
 mscoree.dll,mscorier.dll,mscories.dll
 msvcp120_clr0400.dll,msvcr100_clr0400.dll,msvcr120_clr0400.dll
+
+; Additional Files for v1903
+msvcp140_clr0400.dll,ucrtbase_clr0400.dll,vcruntime140_clr0400.dll
+
 netfxperf.dll
 PresentationCFFRasterizerNative_v0300.dll
 PresentationHost.exe,PresentationHostProxy.dll

@@ -26,6 +26,11 @@ SndVol.exe,SndVolSSO.dll,stobject.dll,tsbyuv.dll,WMADMOD.DLL,WMADMOE.DLL,WMASF.D
 ; some characters in volume mixer dialog need malgun.ttf, but origin malgun.ttf is too big
 ; \Windows\Fonts\malgun.ttf
 
++ver > 18300
+SysFxUI.dll
+WMALFXGFXDSP.dll
++ver*
+
 +if "x%opt[audio.win_events]%"="xall"
 \Windows\Media\*.wav
 -if

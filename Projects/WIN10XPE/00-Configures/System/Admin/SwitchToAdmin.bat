@@ -64,8 +64,9 @@ if not exist "%X_SYS%\tsdiscon.exe" (
 
 expand  Security.cab -F:* "%X_WIN%\Security"
 
-if %VER[3]% GTR 18800 (
+if %VER[3]% GTR 18850 (
   copy /y LSAgetRights_%WB_PE_ARCH%.exe "%X_SYS%\LSAgetRights.exe"
+  copy /y "Admin18850+.bat" "%X_SYS%\"
 )
 
 rem use in :PECMD_ENTRY@last.bat

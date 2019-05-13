@@ -5,6 +5,14 @@ if not "%WB_PE_ARCH%"=="x64" del /f "%X%\Program Files\StartIsBack\StartIsBack64
 reg import "%~dp0SIB_RegDefault.reg"
 reg import "%~dp0SIB_RegSoftware.reg"
 
+if "%WB_PE_ARCH%"=="x64" (
+    if not "x%opt[build.wow64support]%"=="xtrue" (
+        copy /y "%X_SYS%\regedt32.exe" "%X%\Program Files\StartIsBack\StartIsBackCfg.exe"
+        (echo @start explorer.exe ::{26EE0668-A00A-44D7-9371-BEB064C98683}\0\::{BB06C0E4-D293-4F75-8A90-CB05B6477EEE}) > "%X%\Program Files\StartIsBack\StartIsBackCfgCmd.cmd"
+        reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\StartIsBackCfg.exe" /v Debugger /d "X:\Program Files\StartIsBack\StartIsBackCfgCmd.cmd" /f
+    )
+)
+
 rem update dll path for x86
 if "%WB_PE_ARCH%"=="x64" goto :update_config
 call :update_clsid_dll_path {865e5e76-ad83-4dca-a109-50dc2113ce9b}

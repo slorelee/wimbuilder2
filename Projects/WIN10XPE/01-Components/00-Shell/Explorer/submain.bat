@@ -53,6 +53,13 @@ Windows.StateRepositoryBroker.dll,Windows.StateRepositoryClient.dll
 shellstyle.dll
 en-US\shellstyle.dll.mui
 
++ver >= 18885
+CoreMessaging.dll,CoreUIComponents.dll,rmclient.dll,twinapi.appcore.dll,InputHost.dll,TextInputFramework.dll
+
+WindowManagement.dll
+WindowManagementAPI.dll
+Windows.UI.dll
+
 ; remove ver check (add with any ver)
 +ver*
 

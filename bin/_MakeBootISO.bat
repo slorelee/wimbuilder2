@@ -7,6 +7,16 @@ if "x%ISO_DIR%"=="x" (
   goto :ON_ERROR
 )
 
+
+rem call _PreISO_
+set "WB_PROJECT_PATH=Projects\%WB_PROJECT%"
+if exist "%WB_PROJECT_PATH%\_CustomFiles_\_PreISO_.bat" (
+  pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
+  call _PreISO_.bat
+  popd
+)
+
+
 rem auto create the _ISO_
 
 call :MKPATH "%ISO_DIR%\sources\"

@@ -14,6 +14,14 @@ rem SYSTEM_PATH
 rem set X=%WB_X_DRIVE%
 set X_WIN=%X%\Windows
 set X_SYS=%X_WIN%\System32
+
+rem call prepare.bat before mounting
+if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
+    pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
+    call _Prepare_.bat :BEFORE_WIM_MOUNT
+    popd
+)
+
 rem ===================================
 rem reduce the wim file before mounting it
 cd /d za-Slim
@@ -22,6 +30,14 @@ rem ===================================
 goto :EOF
 
 :BEFORE_HIVE_LOAD
+
+rem call prepare.bat before hive load
+if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
+    pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
+    call _Prepare_.bat :BEFORE_HIVE_LOAD
+    popd
+)
+
 if "x%opt[system.admin_enabled]%"=="xtrue" (
     set opt[build.registry.software]=full
 )

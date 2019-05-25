@@ -137,6 +137,11 @@ call :FULLREG SOFTWARE
 call :FULLREG SYSTEM
 call :FULLREG COMPONENTS
 call :FULLREG DRIVERS
+
+
+if exist "_CustomFiles_\final.bat" (
+    call "_CustomFiles_\final.bat"
+)
 goto :EOF
 
 :FULLREG

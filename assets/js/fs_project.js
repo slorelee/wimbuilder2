@@ -72,7 +72,11 @@ var Project = {
 
                     var item = { "id" : cid , "parent" : pid, "text" : name,
                      "state": {opened: state_opened, checked: state_selected} };
-                    arr.push(item);
+                     if (cid == '_CustomFiles_') {
+                        arr.unshift(item)
+                    } else {
+                        arr.push(item);
+                    }
                     get_sub_patches(rootdir, cid, cid, arr);
                 }
                 fenum.moveNext();

@@ -285,6 +285,9 @@ function dump_patches_selected() {
         str += patches_selected[patch_id] + "\r\n";
     }
     str = str.replace(/\//g, "\\");
+    if (str.indexOf("\r\n_CustomFiles_\r\n") != -1) {
+        str = "_CustomFiles_\r\n" + str.replace("\r\n_CustomFiles_\r\n", "\r\n");
+    }
     save_text_file(tmp_folder + "\\_patches_selected.txt", str);
     return str;
 }

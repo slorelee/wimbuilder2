@@ -7,7 +7,7 @@ if "x%_WB_TMP_DIR%"=="x" goto :EOF
 
 if not exist "%_WB_TMP_DIR%\_AddFiles.txt" goto :EOF
 
-call wimextract "%WB_SRC%" %WB_SRC_INDEX% @"%_WB_TMP_DIR%\_AddFiles.txt" --dest-dir="%_WB_MNT_DIR%" --no-acls --nullglob
+call wimextract "%WB_SRC%" %WB_SRC_INDEX% @"%_WB_TMP_DIR%\_AddFiles.txt" --dest-dir="%_WB_MNT_PATH%" --no-acls --nullglob
 
 type nul>"%_WB_TMP_DIR%\_AddFiles.txt"
 set AddFiles_Mode=

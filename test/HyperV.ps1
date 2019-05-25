@@ -30,7 +30,7 @@ if( $env:WB_ROOT -eq $null){
     #$VMISOFile="C:\Users\noelBlanc\Documents\wb\Win10XPE\Win10XPE_x64.ISO"
     break
 }else{
-    $VMISOFile=join-path $env:WB_ROOT "_Factory_\BOOTPE.iso"
+    $VMISOFile=join-path $env:WB_ROOT "\_Factory_\BOOTPE.iso"
 }
 
 if (-not (test-path $VMISOFile)){

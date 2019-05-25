@@ -108,7 +108,7 @@ function update_wim_info() {
         src_info = 'source.wim[-]:-(-,-,-)';
     } else if (src_key != last_src_key) {
         var n = get_file_name($wb_src);
-        src_info = n + '[' + $wb_src_index + ']:' + exec_cmd('\"%WB_ROOT%\\bin\\GetWimInfo.cmd\" \"' + $wb_src + '\" ' + $wb_src_index);
+        src_info = n + '[' + $wb_src_index + ']:' + exec_cmd('\"GetWimInfo.cmd\" \"' + $wb_src + '\" ' + $wb_src_index);
         last_src_key = $wb_src + '[' + $wb_src_index + ']';
         _last_src_info = src_info;
     }
@@ -119,7 +119,7 @@ function update_wim_info() {
         base_info = 'base.wim[-]:-(-,-,-)';
     } else if (base_key != last_base_key) {
         var n = get_file_name($wb_base);
-        base_info = n + '[' + $wb_base_index + ']:' + exec_cmd('\"%WB_ROOT%\\bin\\GetWimInfo.cmd\" \"' + $wb_base + '\" ' + $wb_base_index);
+        base_info = n + '[' + $wb_base_index + ']:' + exec_cmd('\"GetWimInfo.cmd\" \"' + $wb_base + '\" ' + $wb_base_index);
         last_base_key = $wb_base + '[' + $wb_base_index + ']';
         _last_base_info = base_info;
     }

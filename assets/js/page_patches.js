@@ -289,13 +289,27 @@ function dump_patches_selected() {
     return str;
 }
 
+function str_replace(str, src, rep) {
+    while (str.indexOf(src) != -1) {
+        str = str.replace(src, rep);
+    }
+    return str;
+}
+
 function dump_patches_opt() {
     var options = $obj_project.patches_opt;
     var tmp_folder = get_tmp_folder($obj_project.name);
-    var str = '';
+    var str = '', opt_str = '', rep_str = '';
     for(var key in options) {
-        str += "set \"opt[" + key + "]=" + options[key] + "\"\r\n";
+        opt_str = "set \"opt[" + key + "]=" + options[key] + "\"\r\n";
+        rep_str = opt_str.replace($wb_root + '\\', "%%WB_ROOT%%\\");
+
+        if (opt_str != rep_str) {
+            opt_str = 'call ' + rep_str;
+        }
+        str += opt_str;
     }
+    //str = str_replace(str, $wb_root + '\\', "%%WB_ROOT%%\\");
     save_text_file(tmp_folder + "\\_patches_opt.bat", str);
     return str;
 }

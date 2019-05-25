@@ -2,14 +2,14 @@
 cd /d "%~dp0"
 title WimBuilder(%cd%)
 
-set "WB_ROOT=%~dp0"
+set "WB_ROOT=%cd%"
 set "PATH_ORG=%PATH%"
 rem ======set bin PATH======
-set "PATH=%WB_ROOT%bin;%PATH%"
+set "PATH=%WB_ROOT%\bin;%PATH%"
 if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
-  set "PATH=%WB_ROOT%bin\x64;%WB_ROOT%bin\x86;%PATH%"
+  set "PATH=%WB_ROOT%\bin\x64;%WB_ROOT%\bin\x86;%PATH%"
 ) else (
-  set "PATH=%WB_ROOT%bin\x86;%PATH%"
+  set "PATH=%WB_ROOT%\bin\x86;%PATH%"
 )
 rem ========================
 
@@ -58,11 +58,11 @@ if not ERRORLEVEL 1 goto :MAIN_ENTRY
 copy /y i18n\%LocaleID%.vbs i18n\0.vbs
 
 :MAIN_ENTRY
-set "Factory=%WB_ROOT%_Factory_"
-set "ISO_DIR=%WB_ROOT%_ISO_"
+set "Factory=_Factory_"
+set "ISO_DIR=%WB_ROOT%\_ISO_"
 
 rem ======set macros PATH======
-set "PATH=%WB_ROOT%lib\macros;%PATH%"
+set "PATH=%WB_ROOT%\lib\macros;%PATH%"
 rem ========================
 
 rem mount winre.wim/boot.wim with wimlib, otherwise dism

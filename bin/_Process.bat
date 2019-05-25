@@ -37,13 +37,18 @@ call :cecho PHRASE "%TIMER_START% - Building Start ..."
 
 if "x%WB_BASE%"=="x" call :NO_ENV_CONF WB_BASE
 set _WB_BASE_EXTRACTED=0
-set "_WB_MNT_DIR=%Factory%\target\%WB_PROJECT%\mounted"
+set "_WB_TAR_DIR=%Factory%\target\%WB_PROJECT%"
+set "_WB_MNT_DIR=%_WB_TAR_DIR%\mounted"
+
 call :GETNAME "%WB_BASE%"
-set "_WB_PE_WIM=%Factory%\target\%WB_PROJECT%\%RET_GETNAME%"
+set "_WB_PE_WIM=%_WB_TAR_DIR%\%RET_GETNAME%"
 
 call :MKPATH "%Factory%\target\%WB_PROJECT%\"
 
-set "_WB_TMP_DIR=%Factory%\tmp\%WB_PROJECT%"
+rem full path for macro(s)
+set "_WB_MNT_PATH=%WB_ROOT%\%_WB_MNT_DIR%"
+set "_WB_TMP_DIR=%WB_ROOT%\%Factory%\tmp\%WB_PROJECT%"
+
 call :MKPATH "%_WB_TMP_DIR%\"
 if exist "%_WB_TMP_DIR%\_AddFiles.txt" (
   rem type nul>"%_WB_TMP_DIR%\_AddFiles.txt"
@@ -191,16 +196,15 @@ if exist "%WB_PROJECT_PATH%\prepare.bat" (
     call "%WB_PROJECT_PATH%\prepare.bat" :BEFORE_HIVE_LOAD
 )
 
-pushd "%WB_PROJECT_PATH%"
-
 call PERegPorter.bat Src LOAD 1>nul
 call PERegPorter.bat Tmp LOAD 1>nul
 
 rem =========================================================
 rem apply project patches
-call ApplyProjectPatches.bat "%cd%"
+call ApplyProjectPatches.bat "%WB_PROJECT_PATH%"
 rem =========================================================
 
+cd /d "%WB_ROOT%"
 call :CLEANUP 0
 call WIM_Exporter "%_WB_PE_WIM%"
 

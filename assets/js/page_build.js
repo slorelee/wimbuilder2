@@ -226,8 +226,8 @@ function exec_build(no_confirm, keep) {
     _in_building = 'exec_build';
     var logfile = _log_path + '\\last_wimbuilder.log';
     create_folder_cascade(_log_path);
-    var oExec = wsh.exec('NSudoC.exe -UseCurrentConsole -Wait -U:T "' + $wb_root + '\\bin\\_process.bat" 1>"' + logfile + '" 2>&1');
-    //var oExec = wsh.exec('cmd /c """' + $wb_root + '\\bin\\_process.bat"" 1>""' + logfile + '"" 2>&1"');
+    var oExec = wsh.exec('NSudoC.exe -UseCurrentConsole -Wait -U:T _process.bat 1>"' + logfile + '" 2>&1');
+    //var oExec = wsh.exec('cmd /c _process.bat 1>"' + logfile + '" 2>&1');
     window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
     update_output_by_log(oExec);
 }
@@ -248,11 +248,11 @@ function make_iso(keep, mode) {
     _in_makeiso = 'doing';
     if (mode == 'exec') {
         structure_env(1);
-        var oExec = wsh.exec('"' + $wb_root + '\\bin\\_MakeBootISO.bat"');
+        var oExec = wsh.exec('_MakeBootISO.bat');
         window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
         update_output(oExec);
     } else {
-        wsh.run('cmd /d /c "' + $wb_root + '\\bin\\_MakeBootISO.bat"', 1, true);
+        wsh.run('cmd /d /c _MakeBootISO.bat', 1, true);
     }
     if ($wb_auto_testiso) {
         wait_and_test();

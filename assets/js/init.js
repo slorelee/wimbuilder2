@@ -8,7 +8,7 @@ var $wb_root = null;
         alert(msg);
         self.close();
     }
-    $wb_root = $wb_root.substring(0, $wb_root.length - 1);
+    //$wb_root = $wb_root.substring(0, $wb_root.length - 1);
 })();
 
 page_init();
@@ -18,7 +18,7 @@ i18n_trans();
 
 function page_init() {
     if ($wb_root == '') return;
-    create_folder_cascade(eformat("%WB_ROOT%_Factory_\\tmp"));
+    create_folder_cascade(eformat("_Factory_\\tmp"));
     if ($wb_base == "winre.wim" && fso.FileExists($wb_src)) {
         $('#menu_project').click();
         update_wim_info();

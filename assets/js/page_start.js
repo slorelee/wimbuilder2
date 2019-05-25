@@ -151,7 +151,7 @@ $('#wb_auto_winre').click(function(){
 $('#wb_use_testwim').click(function(){
     var use_testwim = $(this).prop('checked');
     if (use_testwim) {
-      $('#wb_base').val($wb_root + '\\test\\boot.wim');
+      $('#wb_base').val('test\\boot.wim');
       $wb_base_index = 1;
       $('#wb_base_idx_opt').val($wb_base_index);
     } else {

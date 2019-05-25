@@ -3,7 +3,7 @@ set GetLastError=1
 set "BUILD_WIM=%~dp1build\boot.wim"
 if exist "%BUILD_WIM%" del /q "%BUILD_WIM%"
 call :MKPATH "%BUILD_WIM%"
-call WB_LOG "[%WB_PROJECT%] --- EXPORT [%~1:%WB_BASE_INDEX%] -%%gt:%% [%BUILD_WIM%]"
+call WB_LOG "[%WB_PROJECT%] --- EXPORT [%~1:%WB_BASE_INDEX%] -%%gt:%% [%_WB_TAR_DIR%\build\boot.wim]"
 
 if "x%USE_WIMLIB%"=="x1" (
     wimlib-imagex.exe capture "%_WB_MNT_DIR%" "%BUILD_WIM%" "%WB_PROJECT%" "%WB_PROJECT%" --boot --flags=9 --compress=XPRESS --verbose

@@ -46,9 +46,17 @@ var Project = {
                 var cid = pdir + '/' + name;
                 if (pid == '#') cid = name;
                 if (fso.FileExists(cdir + '/' + name + '/main.html')) {
-                    var i18n = load_utf8_file(cdir + '/' + name + '/' + $lang + '.js');
                     var state_opened = false;
                     var state_selected = true;
+                    var def_conf = load_utf8_file(cdir + '/' + name + '/en-US.js');
+                    var i18n = load_utf8_file(cdir + '/' + name + '/' + $lang + '.js');
+
+                    // fallback
+                    if (i18n == '') {
+                        i18n = def_conf;
+                    } else {
+                        i18n = def_conf + '\r\n' + i18n;
+                    }
                     if (i18n != '') {
                         var patch_name = null;
                         var patch_opened = null;

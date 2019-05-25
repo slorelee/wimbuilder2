@@ -15,7 +15,15 @@ var Patch = {
         };
         patch.desc = patch.load_desc();
         patch.html = patch.load_html();
+        var def_conf = load_utf8_file(patch.path + '/en-US.js');
         var i18n = load_utf8_file(patch.path + '/' + $lang + '.js');
+
+        // fallback
+        if (i18n == '') {
+            i18n = def_conf;
+        } else {
+            i18n = def_conf + '\r\n' + i18n;
+        }
         if (i18n != '') {
             var patch_i18n = null;
             eval(i18n);

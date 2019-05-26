@@ -67,6 +67,7 @@ function do_quick_build() {
         return;
     }
 
+    $('#menu_patch').click();
     $('#menu_build').click();
 
     var mode = 'exec';

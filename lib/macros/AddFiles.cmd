@@ -20,13 +20,20 @@ rem       :end_files
 echo [MACRO]AddFiles %*
 if "x%_WB_TMP_DIR%"=="x" goto :EOF
 
+if "x%ADDFILES_SYSRES%"=="x" (
+    set ADDFILES_SYSRES=0
+    if exist "%X%\Windows\SystemResources\shell32.dll.mun" set ADDFILES_SYSRES=1
+)
+
 if "x%ADDFILES_INITED%"=="x" (
     wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\System32\%WB_PE_LANG%\ >"%_WB_TMP_DIR%\_AddFiles_SYSMUI.txt"
     if "x%WB_PE_ARCH%"=="xx64" (
         wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\SysWOW64\%WB_PE_LANG%\ >>"%_WB_TMP_DIR%\_AddFiles_SYSMUI.txt"
     )
     rem *.mun files present from 19H1
-    wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\SystemResources\ >"%_WB_TMP_DIR%\_AddFiles_SYSRES.txt"
+    if %ADDFILES_SYSRES% EQU 1 (
+        wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\SystemResources\ >"%_WB_TMP_DIR%\_AddFiles_SYSRES.txt"
+    )
     set ADDFILES_INITED=1
 )
 

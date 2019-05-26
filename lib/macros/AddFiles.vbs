@@ -41,9 +41,15 @@ tmp_dir = env("_WB_TMP_DIR")
 Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYSMUI.txt", ForReading)
 txt_sysmui = vbCrLf & f.ReadAll() & vbCrLf
 f.Close()
-Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYSRES.txt", ForReading)
-txt_sysres = vbCrLf & f.ReadAll() & vbCrLf
-f.Close()
+
+txt_sysres = env("ADDFILES_SYSRES")
+If txt_sysres = "1" Then
+  Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYSRES.txt", ForReading)
+  txt_sysres = vbCrLf & f.ReadAll() & vbCrLf
+  f.Close()
+Else
+  txt_sysres = ""
+End If
 
 
 Dim regEx_mui, regEx_sysres
@@ -239,9 +245,12 @@ Sub addfile(fn)
     Exit Sub
   End If
   outs = outs & g_path & fn & vbCrLf
+
   'append mun file
-  munfile = valid_munfile(g_path & fn)
-  If munfile <> "" Then outs = outs & munfile & vbCrLf
+  If txt_sysres <> "" Then
+    munfile = valid_munfile(g_path & fn)
+    If munfile <> "" Then outs = outs & munfile & vbCrLf
+  End If
 
   If g_mui = "" Then
       'append mui file

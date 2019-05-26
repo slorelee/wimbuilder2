@@ -20,7 +20,23 @@ rem call RegCopy HKLM\System\ControlSet001\Services\BDESVC
 call RegCopy HKLM\Software\Classes\Drive\shell\unlock-bde
 reg add HKLM\Tmp_software\Classes\Drive\shell\unlock-bde /v Icon /d bdeunlock.exe /f
 
+set _Need_Fix_Menu=0
 if "x%opt[shell.app]%"=="xwinxshell" (
-  reg delete HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /v AppliesTo /f
-  reg delete HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /v DefaultAppliesTo /f
+  set _Need_Fix_Menu=1
 )
+
+rem fix for 20H1
+if %VER[3]% GTR 18800 (
+  set _Need_Fix_Menu=1
+)
+
+if %_Need_Fix_Menu% EQU 1 call :FIXED_DRIVE_MENU
+set _Need_Fix_Menu=
+
+goto :EOF
+
+
+:FIXED_DRIVE_MENU
+reg delete HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /v AppliesTo /f
+reg delete HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /v DefaultAppliesTo /f
+goto :EOF

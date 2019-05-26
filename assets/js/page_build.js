@@ -226,7 +226,7 @@ function exec_build(no_confirm, keep) {
     _in_building = 'exec_build';
     var logfile = _log_path + '\\last_wimbuilder.log';
     create_folder_cascade(_log_path);
-    var oExec = wsh.exec('NSudoC.exe -UseCurrentConsole -Wait -U:T _process.bat 1>"' + logfile + '" 2>&1');
+    var oExec = wsh.exec('cmd /c NSudoC.exe -UseCurrentConsole -Wait -U:T _process.bat 1>"' + logfile + '" 2>&1');
     //var oExec = wsh.exec('cmd /c _process.bat 1>"' + logfile + '" 2>&1');
     window.setTimeout(function(){wsh.AppActivate('Wim Builder');}, 500);
     update_output_by_log(oExec);

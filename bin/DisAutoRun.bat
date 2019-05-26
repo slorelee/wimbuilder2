@@ -1,6 +1,6 @@
 rem Disable execution of AutoRun commands from registry
 set NeedCmdWarpper=0
-reg query "HKCR\SOFTWARE\Microsoft\Command Processor" /v Autorun 1>nul 2>nul
+reg query "HKCU\SOFTWARE\Microsoft\Command Processor" /v Autorun 1>nul 2>nul
 if %errorlevel% EQU 0 set "NeedCmdWarpper=1" && goto :LoadCmdWarpper
 reg query "HKLM\SOFTWARE\Microsoft\Command Processor" /v Autorun 1>nul 2>nul
 if %errorlevel% EQU 0 set "NeedCmdWarpper=1"

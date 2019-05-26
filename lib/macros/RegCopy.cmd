@@ -16,6 +16,10 @@ if "x%REGCOPY_SKIP_SOFTWARE%"=="x1" (
   if not "%chk_key%"=="%src_key%" goto :EOF
 )
 
+set "chk_key=%src_key:HKLM\Src_SYSTEM\=%"
+if "x%REGCOPY_SKIP_SYSTEM%"=="x1" (
+  if not "%chk_key%"=="%src_key%" goto :EOF
+)
 
 echo [MACRO]RegCopy %*
 

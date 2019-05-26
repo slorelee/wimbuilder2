@@ -50,6 +50,12 @@ if "x%opt[build.registry.software]%"=="xfull" (
   call AddFiles \Windows\System32\config\SOFTWARE
   set REGCOPY_SKIP_SOFTWARE=1
 )
+
+if "x%opt[build.registry.system]%"=="xtrue" (
+  set opt[build.registry.system]=full
+  call AddFiles \Windows\System32\config\SYSTEM
+  set REGCOPY_SKIP_SYSTEM=1
+)
 goto :EOF
 
 :DONE

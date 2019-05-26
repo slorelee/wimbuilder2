@@ -6,6 +6,10 @@ rem call AddFiles "@\Windows\System32\#nbde*.exe,fve*.exe,bde*.dll,fve*.dll,BitL
 
 call AddFiles "@\Windows\System32\#nbdeunlock.exe,fvenotify.exe"
 
+if not "%opt[build.wim]%"=="winre" (
+  call AddFiles "@\Windows\System32\#nbdeui.dll,fveapi.dll,fvecerts.dll,fveui.dll"
+)
+
 if "x%opt[shell.app]%"=="xwinxshell" (
   rem auto contextmenu
   call AddFiles "@\Windows\System32\#nStructuredQuery.dll,Windows.Storage.Search.dll"

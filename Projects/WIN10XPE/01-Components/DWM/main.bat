@@ -10,8 +10,8 @@ themeservice.dll,themeui.dll,twinapi.appcore.dll,twinui.dll,ubpm.dll,uDWM.dll,wd
 Windows.Gaming.Input.dll,Windows.UI.Immersive.dll
 CoreMessaging.dll,CoreUIComponents.dll,ISM.dll,rmclient.dll
 
-; already in winre.wim, add for winpe.wim(ADK)
-+if "x%opt[build.adk]%"="xtrue"
+; already in winre.wim, add for others, like winpe.wim(ADK)
++if "%opt[build.wim]%" <> "winre"
 d2d1.dll,d3d10warp.dll,D3DCompiler_47.dll,DXCore.dll
 -if
 

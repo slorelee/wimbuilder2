@@ -11,6 +11,9 @@ set opt[build.wim]=customed
 if "%WB_BASE%"=="winre.wim" (
   set opt[build.wim]=winre
 )
+if "x%opt[build.adk]%"=="xtrue" (
+  set opt[build.wim]=winpe
+)
 
 if "x%opt[build.wow64support]%"=="xtrue" (
   if not "x%WB_PE_ARCH%"=="xx64" set opt[build.wow64support]=false

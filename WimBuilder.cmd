@@ -59,7 +59,7 @@ copy /y i18n\%LocaleID%.vbs i18n\0.vbs
 
 :MAIN_ENTRY
 set "Factory=_Factory_"
-set "ISO_DIR=%WB_ROOT%\_ISO_"
+set "ISO_DIR=_ISO_"
 
 rem ======set macros PATH======
 set "PATH=%WB_ROOT%\lib\macros;%PATH%"

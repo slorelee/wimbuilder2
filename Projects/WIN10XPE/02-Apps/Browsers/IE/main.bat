@@ -25,11 +25,15 @@ if "x%WB_PE_ARCH%"=="xx64" (
 call AddFiles %0 :end_files
 goto :end_files
 
-
 ;---------------------------------------------------
 ;              Internet Explorer
 ;---------------------------------------------------
 \Program Files\Internet Explorer
+
+;Catalog
+@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
+Microsoft-Windows-InternetExplorer-inetcore-Package~*.cat
+Microsoft-Windows-InternetExplorer-onecoreuap-Package~*.cat
 
 @windows\system32\
 Macromed\Flash\activex.vch

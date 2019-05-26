@@ -16,6 +16,16 @@ goto :end_files
 batmeter.dll
 +ver*
 
+@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
++if "x%opt[shell.app]%"<>"xwinxshell"
++ver >= 17763
+Microsoft-Windows-Client-Desktop-Required-Package*.cat
+Microsoft-Windows-Client-Desktop-Required-WOW64-Package*.cat
++ver*
+Microsoft-Windows-Client-Features-Package*.cat
+Microsoft-Windows-Client-Features-WOW64-Package*.cat
+-if
+
 @\Windows\System32\
 
 ; resources for desktop background contextmenu

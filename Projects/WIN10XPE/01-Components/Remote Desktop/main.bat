@@ -2,6 +2,13 @@ rem ==========update filesystem==========
 call AddFiles %0 :end_files
 goto :end_files
 
+@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
++ver < 17763
+Microsoft-Windows-RemoteDesktop-*.cat
++ver >= 17763
+Microsoft-Windows-TerminalServices-CommandLineTools-Package~*.cat
++ver*
+
 @\Windows\System32\
 cngcredui.dll,CredentialUIBroker.exe,credssp.dll,credui.dll,cryptui.dll
 d2d1.dll,d3d10warp.dll,d3d11.dll,dcomp.dll,DWrite.dll,dxgi.dll

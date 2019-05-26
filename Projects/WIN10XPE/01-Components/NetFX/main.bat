@@ -5,13 +5,11 @@ call X2X
 
 set "_PFDir=Program Files"
 if "x%WB_PE_ARCH%"=="xx64" set "_PFDir=Program Files (x86)"
-set SysDir=System32
-call :Sys_Files
+call :Sys_Files System32
 set _PFDir=
 rem =================WOW64 Support=================
 if not "x%opt[build.wow64support]%"=="xtrue" goto :UDPATE_REGISTY
-set SysDir=SysWOW64
-call :Sys_Files
+call :Sys_Files SysWOW64
 
 :UDPATE_REGISTY
 
@@ -30,12 +28,20 @@ call RegCopy HKLM\Software\WOW6432Node\Microsoft\NET Framework Setup
 goto :EOF
 
 :Sys_Files
+set SysDir=%1
 call AddFiles "%f0%" :end_files
 goto :end_files
 
 +if "%SysDir%"<>"SysWOW64"
 \%_PFDir%\Microsoft.NET
 \Windows\Microsoft.NET
+
+@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
+Microsoft-Windows-NetFx4-US-OC-Package~*.cat
++ver >= 17763
+Microsoft-Windows-NetFx-Shared-Package~*.cat
++ver*
+
 -if
 
 \Windows\%SysDir%\??-??\PresentationHost.exe.mui
@@ -58,4 +64,5 @@ sxstrace.exe
 FntCache.dll
 -if
 :end_files
+set SysDir=
 goto :EOF

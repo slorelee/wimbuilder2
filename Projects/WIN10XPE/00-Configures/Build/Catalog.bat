@@ -12,8 +12,6 @@ goto :EOF
 
 :CATALOG_ADDFILES
 
-if exist "%X_SYS%\mstsc.exe" set opt[component.mstsc]=true
-
 call AddFiles %0 :end_files
 goto :end_files
 
@@ -22,15 +20,6 @@ goto :end_files
 Microsoft-Windows-Basic-Http-Minio-Package~*.cat
 Microsoft-Windows-SMB1-Package~*.cat
 Microsoft-Windows-DataCenterBridging-Package~*.cat
-
-+if "x%opt[shell.app]%"<>"xwinxshell"
-+ver >= 17763
-Microsoft-Windows-Client-Desktop-Required-Package*.cat
-Microsoft-Windows-Client-Desktop-Required-WOW64-Package*.cat
-+ver*
-Microsoft-Windows-Client-Features-Package*.cat
-Microsoft-Windows-Client-Features-WOW64-Package*.cat
--if
 
 +ver < 17763
 Microsoft-Windows-Client-Drivers-drivers-Package~*.cat
@@ -63,11 +52,6 @@ Microsoft-Windows-WCN-net-Package~*.cat
 Microsoft-Windows-WCN-WOW64-net-Package~*.cat
 -if
 
-+if "x%opt[component.ie]%"="xtrue"
-Microsoft-Windows-InternetExplorer-inetcore-Package~*.cat
-Microsoft-Windows-InternetExplorer-onecoreuap-Package~*.cat
--if
-
 +ver >= 17763
 LanguageFeatures-WordBreaking-*.cat
 Microsoft-Windows-SecureStartup-Subsystem-base-Package~*.cat
@@ -85,37 +69,11 @@ Multimedia-RestrictedCodecsExt-Package~*.cat
 +ver*
 -if
 
-+if "x%opt[component.netfx]%"="xtrue"
-Microsoft-Windows-NetFx4-US-OC-Package~*.cat
-+ver >= 17763
-Microsoft-Windows-NetFx-Shared-Package~*.cat
-+ver*
--if
-
 +if "x%opt[support.photo]%"="xtrue"
 Microsoft-Windows-PhotoBasic-Feature-Package~*.cat
 +ver >= 17763
 Microsoft-Windows-PhotoBasic-PictureTools-Package~*.cat
 +ver*
--if
-
-+if "x%opt[component.search]%"="xtrue"
-Microsoft-Windows-SearchEngine-Client-Package~*.cat
-+ver >= 17763
-WindowsSearchEngineSKU-Group-Package~*.cat
-+ver*
--if
-
-+if "x%opt[component.mstsc]%"="xtrue"
-+ver < 17763
-Microsoft-Windows-RemoteDesktop-*.cat
-+ver >= 17763
-Microsoft-Windows-TerminalServices-CommandLineTools-Package~*.cat
-+ver*
--if
-
-+if "x%opt[component.MTP]%"="xtrue"
-Microsoft-Windows-WPD-UltimatePortableDeviceFeature-Feature-Package~*.cat
 -if
 
 :end_files

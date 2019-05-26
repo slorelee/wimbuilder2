@@ -32,7 +32,7 @@
 <script>
 (function() {
     if (!$patch_loaded) {
-       var patch_fpath = $obj_project.full_path + '/' + _patches_selected_node;
+       var patch_fpath = $obj_project.uri + '/' + _patches_selected_node;
        $('#sib_preview_layout').css('background', 'url(' + patch_fpath + '/assets/wp.png)');
        update_sib_preview();
        update_sib_opacity();
@@ -67,7 +67,7 @@ function update_sib_opacity(prop) {
 function update_sib_preview() {
     var skin_name = $('input:radio[name="SIB.skin"]:checked').val();
     var flyout_style = $('input:checkbox[name="SIB.programs.flyout"]').prop('checked');
-    var patch_fpath = $obj_project.full_path + '/' + _patches_selected_node;
+    var patch_fpath = $obj_project.uri + '/' + _patches_selected_node;
     var skin_type = 'a';
     var flyout_dy = '60px';
     if (skin_name == 'Plain10') {

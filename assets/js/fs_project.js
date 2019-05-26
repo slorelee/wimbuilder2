@@ -4,8 +4,10 @@ var Project = {
         var project = {};
         project.name = name;
         project.path = Project.root_path + '/' + name;
+        project.uri = project.path;
         project.wb_root = $wb_root.replace(/\\/g, '/');
         project.full_path = project.wb_root + '/' + project.path;
+        project.full_uri = project.full_path;
         project.full_path = project.full_path.replace(/\//g, '\\');
         function load_file(file) {
             return load_text_file(project.path + '/' + file);

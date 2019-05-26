@@ -1,6 +1,5 @@
 if not "x%opt[build.source]%"=="xlight" goto :EOF
 
-@echo on
 set SxSListFile=SlimWinSxSList.txt
 if "x%opt[slim.ultra]%"=="xtrue" (
   set SxSListFile=SlimWinSxSList_Ultra.txt

@@ -23,6 +23,19 @@ if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
 )
 
 rem ===================================
+rem update options
+
+if "x%opt[system.admin_enabled]%"=="xtrue" (
+    set opt[build.registry.software]=full
+)
+if "x%opt[component.netfx]%"=="xtrue" (
+    set opt[build.registry.software]=full
+)
+if "x%opt[build.registry.system]%"=="xtrue" (
+    set opt[build.registry.system]=full
+)
+
+rem ===================================
 rem reduce the wim file before mounting it
 cd /d za-Slim
 call SlimWim.bat
@@ -38,23 +51,14 @@ if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
     popd
 )
 
-if "x%opt[system.admin_enabled]%"=="xtrue" (
-    set opt[build.registry.software]=full
-)
-
-if "x%opt[component.netfx]%"=="xtrue" (
-    set opt[build.registry.software]=full
-)
-
 if "x%opt[build.registry.software]%"=="xfull" (
-  call AddFiles \Windows\System32\config\SOFTWARE
-  set REGCOPY_SKIP_SOFTWARE=1
+    call AddFiles \Windows\System32\config\SOFTWARE
+    set REGCOPY_SKIP_SOFTWARE=1
 )
 
-if "x%opt[build.registry.system]%"=="xtrue" (
-  set opt[build.registry.system]=full
-  call AddFiles \Windows\System32\config\SYSTEM
-  set REGCOPY_SKIP_SYSTEM=1
+if "x%opt[build.registry.system]%"=="xfull" (
+    call AddFiles \Windows\System32\config\SYSTEM
+    set REGCOPY_SKIP_SYSTEM=1
 )
 goto :EOF
 

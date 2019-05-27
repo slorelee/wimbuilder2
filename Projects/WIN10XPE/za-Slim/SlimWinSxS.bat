@@ -1,4 +1,10 @@
-if not "x%opt[build.source]%"=="xlight" goto :EOF
+if "x%opt[build.source]%"=="xlight" goto :DEAL_WINSXS
+
+if "x%opt[build.registry.software]%"=="xfull" set Merge_WinSxS=1
+rem if "x%opt[build.registry.system]%"=="xfull" set Merge_WinSxS=1
+if not "x%Merge_WinSxS%"=="x1" goto :EOF
+
+:DEAL_WINSXS
 
 set SxSListFile=SlimWinSxSList.txt
 if "x%opt[slim.ultra]%"=="xtrue" (
@@ -22,5 +28,8 @@ TXT.replace(/%Language%/g, SxSLang);
 rd /s /q "%_WB_TMP_DIR%\SlimWinSxS"
 wimlib-imagex.exe extract "%WB_ROOT%\%_WB_PE_WIM%" %WB_BASE_INDEX% @"%SxSListFile%" --dest-dir="%_WB_TMP_DIR%\SlimWinSxS" --no-acls --nullglob
 
-(echo delete '\Windows\WinSxs' --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
+if not "x%Merge_WinSxS%"=="x1" (
+  (echo delete '\Windows\WinSxs' --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
+)
+set Merge_WinSxS=
 (echo add "%_WB_TMP_DIR%\SlimWinSxS" \)>>"%_WB_TMP_DIR%\SlimPatch.txt"

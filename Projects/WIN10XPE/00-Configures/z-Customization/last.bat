@@ -11,20 +11,10 @@ if "x%opt[system.darktheme]%"=="xtrue" (
 
 if not exist "%X_SYS%\WindowsPowerShell\v1.0\powershell.exe" (
     rem use cmd.exe on directorybackground than powershell.exe
-    rem Directory background context menu
-    reg delete HKLM\Tmp_Software\Classes\Directory\background\shell\Powershell /v ShowBasedOnVelocityId /f
-    reg add HKLM\Tmp_Software\Classes\Directory\background\shell\Powershell /v HideBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
-    reg delete HKLM\Tmp_Software\Classes\Directory\background\shell\cmd /v HideBasedOnVelocityId /f
-    reg add HKLM\Tmp_Software\Classes\Directory\background\shell\cmd /v ShowBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
-    rem always show the menu item
-    reg delete HKLM\Tmp_Software\Classes\Directory\background\shell\cmd /v Extended /f
 
-    rem Directory context menu
-    reg delete HKLM\Tmp_Software\Classes\Directory\shell\Powershell /v ShowBasedOnVelocityId /f
-    reg add HKLM\Tmp_Software\Classes\Directory\shell\Powershell /v HideBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
-    reg delete HKLM\Tmp_Software\Classes\Directory\shell\cmd /v HideBasedOnVelocityId /f
-    reg add HKLM\Tmp_Software\Classes\Directory\shell\cmd /v ShowBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
-
+    call :SHOW_CMD_CONTEXTMENU Directory\background
+    call :SHOW_CMD_CONTEXTMENU Directory
+    call :SHOW_CMD_CONTEXTMENU Drive
 )
 
 rem // Shortcuts with 'shortcut' name and transparent icon
@@ -39,4 +29,15 @@ if "x%opt[tweak.shortcut.nonosuffix]%"=="xtrue" (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer /v link /t REG_BINARY /d 16000000 /f
 )
 
+goto :EOF
 
+:SHOW_CMD_CONTEXTMENU
+reg delete HKLM\Tmp_Software\Classes\%1\shell\Powershell /v ShowBasedOnVelocityId /f
+reg add HKLM\Tmp_Software\Classes\%1\shell\Powershell /v HideBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
+reg delete HKLM\Tmp_Software\Classes\%1\shell\cmd /v HideBasedOnVelocityId /f
+reg add HKLM\Tmp_Software\Classes\%1\shell\cmd /v ShowBasedOnVelocityId /t REG_DWORD /d 0x639bc8 /f
+rem add icon
+reg add HKLM\Tmp_Software\Classes\%1\shell\cmd /v Icon /d cmd.exe /f
+rem always show the menu item
+rem reg delete HKLM\Tmp_Software\Classes\%1\shell\cmd /v Extended /f
+goto :EOF

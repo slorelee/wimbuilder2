@@ -30,11 +30,6 @@ set "LOGFILE=%Factory%\log\%WB_PROJECT%\%LOGSUFFIX%.log"
 call :MKPATH "%LOGFILE%"
 rem type nul>"%LOGFILE%"
 
-echo WimBuilder - v%WB_VER_STR%
-set TIMER_START=
-for /f "delims=" %%t in ('cscript.exe //nologo bin\Timer.vbs') do set TIMER_START=%%t
-call :cecho PHRASE "%TIMER_START% - Building Start ..."
-
 if "x%WB_BASE%"=="x" call :NO_ENV_CONF WB_BASE
 set _WB_BASE_EXTRACTED=0
 set "_WB_TAR_DIR=%Factory%\target\%WB_PROJECT%"
@@ -49,6 +44,8 @@ rem full path for macro(s)
 set "_WB_MNT_PATH=%WB_ROOT%\%_WB_MNT_DIR%"
 set "_WB_TMP_DIR=%WB_ROOT%\%Factory%\tmp\%WB_PROJECT%"
 
+set "WB_PROJECT_PATH=%WB_ROOT%\Projects\%WB_PROJECT%"
+
 call :MKPATH "%_WB_TMP_DIR%\"
 if exist "%_WB_TMP_DIR%\_AddFiles.txt" (
   rem type nul>"%_WB_TMP_DIR%\_AddFiles.txt"
@@ -60,10 +57,21 @@ if exist "%_WB_TMP_DIR%\_patches_opt.bat" (
   call "%_WB_TMP_DIR%\_patches_opt.bat"
 )
 
+rem call prepare.bat before mounting
+if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
+    pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
+    call _Prepare_.bat :BEFORE_WIM_BUILD
+    popd
+)
+
+echo WimBuilder - v%WB_VER_STR%
+set TIMER_START=
+for /f "delims=" %%t in ('cscript.exe //nologo bin\Timer.vbs') do set TIMER_START=%%t
+call :cecho PHRASE "%TIMER_START% - Building Start ..."
+
 echo.
 rem ";" can't be pass to CALL LABEL, so use a ":" for it
 call :CLOG 97:104m "[%WB_PROJECT%] --- build information"
-set "WB_PROJECT_PATH=%WB_ROOT%\Projects\%WB_PROJECT%"
 set WB_
 echo.
 

@@ -20,14 +20,6 @@
     <link rel="stylesheet" href="assets/css/switch.css" />
     <link rel="stylesheet" href="assets/htakit/css/uikit-tab.css" />
     <link rel="stylesheet" href="assets/css/alert.css" />
-    <style type="text/css">
-        #statusbar {
-            position: fixed;right: 0;top: 100%;
-            height: 30px;width: 100%;
-            transform: translate(0,-100%);
-            background-color: #191818;color: white;
-        }
-    </style>
 </head>
 
 <body  onbeforeunload="window_beforeunload()">
@@ -421,8 +413,33 @@ if ($IE_VER == '9+') {
 <![endif]-->
 
 </div>
+
+<style type="text/css">
+    #statusbar {
+        position: fixed;right: 0;top: 100%;
+        height: 30px;width: 100%;
+        transform: translate(0,-100%);
+        background-color: #191818;color: white;
+    }
+    #status_text_div {
+        float:right;margin-top:-10px;
+        margin-right: 5px;
+    }
+</style>
+
+<!--[if lt IE 9]>
+<style type="text/css">
+    #statusbar {
+        left: 150px;bottom: 0px;right: auto;top: auto;
+    }
+    #status_text_div {
+        margin-right: 155px;
+    }
+</style>
+<![endif]-->
+
 <div id="statusbar">
-    <div style="float:right;margin-top:-10px;"><p id="status_text"></p></div>
+    <div id="status_text_div"><p id="status_text"></p></div>
 </div>
 
 <script src="assets/js/i18n.js"></script>

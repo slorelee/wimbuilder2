@@ -64,16 +64,16 @@ function save_text_file(filename, text) {
 
 function create_folder_cascade(path) {
     if (fso.FolderExists(path)) return;
-    var arr = path.split("\\");
+    var folders = path.split("\\");
     var chk_path = '';
     var need_create = false;
-    for (var i in arr) {
-        chk_path += arr[i] + "\\";
+    folders.forEach(function(folder) {
+        chk_path += folder + "\\";
         if (need_create || !fso.FolderExists(chk_path)) {
             fso.CreateFolder(chk_path);
             need_create = true;
         }
-    }
+    });
 }
 
 function get_file_dir(path) {

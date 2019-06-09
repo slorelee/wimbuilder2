@@ -1,4 +1,4 @@
-rem Call this by Projects\<ProjectName>\prepare.bat
+rem Call this by Projects\[ProjectName]\prepare.bat
 if "x%~1"=="x" goto :EOF
 call %1
 goto :EOF
@@ -6,6 +6,7 @@ goto :EOF
 :BEFORE_WIM_BUILD
 rem ===================================
 if "x%opt[custom.cmd_mode]%"=="xtrue" (
+    rem dummy line - DON'T DELETE THIS LINE
     %opt[custom.cmd_mode_code]%
 )
 rem ===================================

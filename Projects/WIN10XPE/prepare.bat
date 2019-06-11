@@ -25,7 +25,7 @@ if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
 rem ===================================
 rem update options
 
-if "x%opt[system.admin_enabled]%"=="xtrue" (
+if "x%opt[account.admin_enabled]%"=="xtrue" (
     set opt[build.registry.software]=full
 )
 if "x%opt[component.netfx]%"=="xtrue" (

@@ -1,0 +1,75 @@
+<div style="mergin:5px;padding:5px;color:#000;">
+<!--
+<link id="jquery-ui-theme" href="assets/vendor/jquery-ui/themes/hotsneaks/jquery-ui.theme.min.css" rel="stylesheet">
+-->
+<style type="text/css">
+  .left_label {
+      display:inline-block;
+      width: 50%;
+  }
+  .right_val {
+      display:inline-block;
+      width: 40%;
+  }
+</style>
+
+<style>
+fieldset {
+  /*background: rgba(255,255,255,.3);
+  border-color: rgba(255,255,255,.6);*/
+  border-style: solid;
+  border-width: 2px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  padding: 2px 10px;
+  margin-bottom: 2px;
+  width:360px;
+  font-size:0.8em;
+}
+
+fieldset legend {
+  color: #302A2A;
+  font: bold 16px/2 Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  text-align: left;
+  text-shadow: 2px 2px 2px rgb(88, 126, 156);
+}
+</style>
+
+<fieldset>
+<legend>    SYSTEM account    </legend>
+<label class="left_label">Logon Password:</label>
+<input type="text" name="account.SYSTEM_logon_pass" class="right_val opt_item" value=""/><br/>
+<br/>
+</fieldset>
+
+<fieldset>
+<legend>    <label><input type="checkbox" name="account.admin_enabled" class="opt_item">Enable Administrator account</label>    </legend>
+<label class="left_label">Logon Password(Admin):</label>
+<input type="text" name="account.admin_logon_pass" class="right_val opt_item" value=""/><br/>
+<label class="left_label">Account Password:</label>
+<input type="text" name="account.admin_password" class="right_val opt_item" value=""/><br/>
+<br/>
+<label><input type="checkbox" name="account.admin_autologon" class="opt_item" checked>As auto logon account</label>
+<!-- Spinner -->
+<label class="left_label" style="width:70%;">Auto logon after second(s):</label>
+<input id="autologon_countdown" name="account.autologon_countdown" min="0" max="60" value="5" class="opt_item" style="width:30px">
+<br/><span>Background</span><br/>
+<input type="radio" class="opt_item" name="account.admin_screen" value="none" /> <span>None</span>
+<input type="radio" class="opt_item" name="account.admin_screen" title="%ProjectDir%\_CustomFiles_\screen.jpg" value="screen.jpg" /> screen.jpg
+<input type="radio" class="opt_item" name="account.admin_screen" value="wallpaper" checked="checked" /> use wallpaper image
+
+<div class="alert alert-warning" style="margin-top:5px" id="admin_info">If enabled, will use the full SOFTWARE hive;<br/>The switching will be black screen for seconds without DWM</div>
+</fieldset>
+
+
+</div>
+
+<script>
+(function() {
+    $("#autologon_countdown").spinner();
+})();
+
+</script>

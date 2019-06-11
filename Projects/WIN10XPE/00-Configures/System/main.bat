@@ -44,12 +44,6 @@ reg add HKLM\Tmp_System\ControlSet001\Control\Power /v CustomizeDuringSetup /t R
 rem // Disable Fast Startup
 reg add "HKLM\Tmp_System\ControlSet001\Control\Session Manager\Power" /v HiberbootEnabled /t REG_DWORD /d 0 /f
 
-if "x%opt[system.admin_enabled]%"=="xtrue" (
-  pushd Admin
-  call SwitchToAdmin.bat
-  popd
-)
-
 if "x%opt[system.high_compatibility]%"=="xtrue" (
   call Compatibility.bat
 )

@@ -84,21 +84,35 @@ reg add HKLM\Tmp_System\ControlSet001\Services\gpsvc /v Start /t REG_DWORD /d 3 
 rem ACLRegKey Tmp_System\ControlSet001\Services\TrustedInstaller
 reg add HKLM\Tmp_System\ControlSet001\Services\TrustedInstaller /v Start /t REG_DWORD /d 3 /f
 
-if %opt[system.admin_countdown]% GTR 0 (
+if %opt[account.autologon_countdown]% GTR 0 (
   rem Enable Mouse Cursor (EnableCursorSuppression=0) or use Exec = Winpeshl.exe in PecmdAdmin.ini
   reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\System /v EnableCursorSuppression /t REG_DWORD /d 0 /f
   call TextReplace "%X_SYS%\PecmdAdmin.ini" "CALL ADMIN#r#n//CALL SWITCHTOADMINQUESTION" "#//CALL ADMIN#r#nCALL SWITCHTOADMINQUESTION"
-  call TextReplace "%X_SYS%\PecmdAdmin.ini" "#YN *3000 $N" "#YN *%opt[system.admin_countdown]%000 $N"
+  call TextReplace "%X_SYS%\PecmdAdmin.ini" "#YN *3000 $N" "#YN *%opt[account.autologon_countdown]%000 $N"
 )
 
+rem update UI_LogonPE.jcfg
+if not "x%_UI_LogonPE_jcfg%"=="x" (
+  if "x%opt[account.admin_autologon]%"=="xtrue" (
+    call TextReplace "%_UI_LogonPE_jcfg%" "#qlogon_user#q:#qSYSTEM#q" "#qlogon_user#q:#qAdministrator#q"
+  )
+  if %opt[account.autologon_countdown]% GTR 0 (
+    call TextReplace "%_UI_LogonPE_jcfg%" "#qauto_logon_second#q:0" "#qauto_logon_second#q:%opt[account.autologon_countdown]%"
+  )
+  if not "x%opt[account.admin_logon_pass]%"=="x" (
+    call TextReplace "%_UI_LogonPE_jcfg%" "#qshadow#q:#qAdministrator:;\\nSYSTEM:;#q" "#qshadow#q:#qAdministrator:%opt[account.admin_logon_pass]%;\\nSYSTEM:%opt[account.SYSTEM_logon_pass]%;#q"
+  )
+)
+set _UI_LogonPE_jcfg=
+
 rem Screen image
-if "x%opt[system.admin_screen]%"=="x" goto :EOF
-if "x%opt[system.admin_screen]%"=="xnone" goto :EOF
+if "x%opt[account.admin_screen]%"=="x" goto :EOF
+if "x%opt[account.admin_screen]%"=="xnone" goto :EOF
 if not exist "%X%\Windows\Web\Screen\" mkdir "%X%\Windows\Web\Screen"
 
-if "x%opt[system.admin_screen]%"=="xwallpaper" (
+if "x%opt[account.admin_screen]%"=="xwallpaper" (
   copy /y "%opt[shell.wallpaper]%" "%X%\Windows\Web\Screen\img100.jpg"
   goto :EOF
 )
 
-copy /y "%WB_PROJECT_PATH%\_CustomFiles_\%opt[system.admin_screen]%" "%X%\Windows\Web\Screen\img100.jpg"
+copy /y "%WB_PROJECT_PATH%\_CustomFiles_\%opt[account.admin_screen]%" "%X%\Windows\Web\Screen\img100.jpg"

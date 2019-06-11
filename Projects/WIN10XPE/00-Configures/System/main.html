@@ -56,20 +56,6 @@ fieldset legend {
 </fieldset>
 
 <fieldset>
-<legend>Administrator Options</legend>
-<!-- Spinner -->
-<label><input type="checkbox" name="system.admin_enabled" class="opt_item">Enable Administrator account</label><br/>
-<label class="left_label" style="width:70%;">Switch to Administrator for(sec):</label>
-<input id="admin_countdown" name="system.admin_countdown" min="0" max="60" value="5" class="opt_item" style="width:30px">
-<br/><span>Background</span><br/>
-<input type="radio" class="opt_item" name="system.admin_screen" value="none" /> <span>None</span>
-<input type="radio" class="opt_item" name="system.admin_screen" title="%ProjectDir%\_CustomFiles_\screen.jpg" value="screen.jpg" /> screen.jpg
-<input type="radio" class="opt_item" name="system.admin_screen" value="wallpaper" checked="checked" /> use wallpaper image
-
-<div class="alert alert-warning" style="margin-top:5px" id="admin_info">If enabled, will use the full SOFTWARE hive;<br/>The switching will be black screen for seconds without DWM</div>
-</fieldset>
-
-<fieldset>
 <legend>Power Options</legend>
   <table>
     <tr><td /><td>On Battery&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Plugged In&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
@@ -105,7 +91,6 @@ fieldset legend {
 (function() {
     $("#fbwf_select").selectmenu();
     $("#fbwf_select").selectmenu( "option", "width", '40%' );
-    $("#admin_countdown").spinner();
     $("#volume_level").spinner();
     $("#off_disp_bat").spinner();
     $("#off_disp_plug").spinner();

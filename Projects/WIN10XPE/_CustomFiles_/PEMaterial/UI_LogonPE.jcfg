@@ -1,0 +1,13 @@
+{
+  "name":"UI_Logon",
+  "title":"wxsLogon",
+  "nobaricon":true,
+  "customstyle":true,
+  "style":2415919104,
+  "startup_win":"max",
+  "OnEscKey":"none",
+  "==========":"==========",
+  "shadow":"Administrator:;\\nSYSTEM:;",
+  "logon_user":"SYSTEM",
+  "auto_logon_second":0
+}

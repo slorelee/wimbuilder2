@@ -61,6 +61,8 @@ if not exist "%X_SYS%\dwm.exe" (
 
 rem startup with pecmd.exe
 :PECMD_ENTRY
+if not "x%PE_LOADER%"=="x" goto :STARTUP_ENTRY_END
+
 if not exist "%X%\Windows\System32\pecmd.exe" goto :STARTNET_ENTRY
 if not "x%PECMDINI%"=="x" (
     reg add HKLM\Tmp_System\Setup /v CmdLine /d "Pecmd.exe Main %%Windir%%\System32\%PECMDINI%" /f

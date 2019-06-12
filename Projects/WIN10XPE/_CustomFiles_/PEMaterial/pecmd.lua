@@ -4,6 +4,7 @@ local logon_user = 'SYSTEM'
 local explorer_shell = false
 
 -- declare functions
+local t -- alias i18n.t()
 local set_progress, LINK
 shel = exec
 
@@ -49,7 +50,7 @@ end
 
 local function Shortcuts()
   if File.exists('X:\\Windows\\Temp\\Shortcuts.txt') then return 1 end
-  set_progress('Prepare shortcuts ...')
+  set_progress(t('Prepare shortcuts ...'))
   local path = '%Programs%\\Administrative Tools'
   LINK(path .. '\\Computer Management.lnk', 'compmgmt.msc')
   LINK(path .. '\\Device Manager.lnk', 'devmgmt.msc')
@@ -79,7 +80,7 @@ local function RunShell()
 end
 
 local function LoadShell()
-  set_progress('load shell ...')
+  set_progress(t('load shell ...'))
   exec('ctfmon.exe')
   RunShell()
   exec('WinXShell.exe -daemon')
@@ -98,6 +99,7 @@ local function PostShell()
   WaitShell()
   sui:hide()
   File.delete('%HOMEPROFILE%\\Desktop\\desktop.ini')
+  File.delete('%HOMEPROFILE%\\Desktop\\shutdown.bat') -- no need this file if there is WinXShell.exe's UI_Shutdown
   exec('/wait /hide', 'cmd.exe /c del /q "%APPDATA%\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\*.lnk"')
   Taskbar:Pin('%ProgramFiles%\\WinXShell\\WinXShell.exe', 'UI_Shutdown', '-ui -jcfg wxsUI\\UI_Shutdown.zip\\full.jcfg -blur 5', 'shell32.dll', 27)
   Taskbar:Pin('Explorer.exe')
@@ -114,13 +116,13 @@ local function Logon()
 end
 
 local function InitAdmin()
-  set_progress('Prepare for Administrator ...')
+  set_progress(t('Prepare for Administrator ...'))
   --File.delete('X:\\Users\\Default\\NTUSER.DAT')
   os.execute('del /q X:\\Users\\Default\\NTUSER.DAT')
   --exec('/wait /hide', 'cmd.exe /c copy /y X:\\Windows\\System32\\config\\Default X:\\Users\\Default\\NTUSER.DAT')
   os.execute('copy /y X:\\Windows\\System32\\config\\Default X:\\Users\\Default\\NTUSER.DAT')
 
-  set_progress('Update registry ...')
+  set_progress(t('Update registry ...'))
   local regkey = [[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon]]
   reg_write(regkey, 'AutoAdminLogon', 1, winapi.REG_DWORD)
   reg_write(regkey, 'DefaultUserName', 'Administrator')
@@ -136,17 +138,19 @@ local function InitAdmin()
 
   -- // REGI HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-18\ProfileImagePath=X:\Users\Administrator
 
-  set_progress('Update database ...')
+  set_progress(t('Update database ...'))
   -- // Force the administrator name whatever language
   exec('/wait /hide', [[secedit.exe /configure /db %WinDir%\security\database\unattend.sdb /cfg %WinDir%\security\templates\unattend.inf /log %WinDir%\security\logs\unattend.log]])
 
-  set_progress('start services ...')
+  set_progress(t('Start services ...'))
   call_dll('Netapi32.dll','NetJoinDomain', nil, 'WORKGROUP', nil, nil, nil, 32)
   exec('/wait /hide', 'sc start seclogon')
 
   if File.exists('X:\\Windows\\System32\\Admin18850+.bat') then
     exec('/wait /hide', 'X:\\Windows\\System32\\Admin18850+.bat')
   end
+
+  set_progress(t('Ready to logon ...'))
   exec('/wait /hide', 'tsdiscon.exe')
 end
 
@@ -177,6 +181,10 @@ end
 
 local function main()
   app:call('cd', 'X:\\PEMaterial')
+  require('locales.i18n')
+  i18n.load()
+  t = i18n.t
+
   -- call by UI_Logon
   if _G.caller == 'UI_Logon' then
     logon_user = _G.logon_user
@@ -204,7 +212,7 @@ function set_progress(text)
 end
 
 function LINK(lnk, target, param, icon, index, showcmd)
-  set_progress('create shortcut:' .. app:call('envstr',lnk))
+  set_progress(t('Create shortcut:') .. app:call('envstr',lnk))
   link(lnk, target, param, icon, index, showcmd)
 end
 -- ===============================================

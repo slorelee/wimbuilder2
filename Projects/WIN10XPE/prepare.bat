@@ -25,6 +25,11 @@ if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
 rem ===================================
 rem update options
 
+call CheckPatch "00-Configures\x-Account"
+if %errorlevel% NEQ 0 (
+  set opt[account.admin_enabled]=false
+)
+
 if "x%opt[account.admin_enabled]%"=="xtrue" (
     set opt[build.registry.software]=full
 )

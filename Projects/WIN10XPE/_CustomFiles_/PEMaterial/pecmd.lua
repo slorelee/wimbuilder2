@@ -104,6 +104,7 @@ local function PostShell()
   Taskbar:Pin('%ProgramFiles%\\WinXShell\\WinXShell.exe', 'UI_Shutdown', '-ui -jcfg wxsUI\\UI_Shutdown.zip\\full.jcfg -blur 5', 'shell32.dll', 27)
   Taskbar:Pin('Explorer.exe')
   Taskbar:Pin('cmd.exe')
+  Startmenu:Pin('notepad.exe')
 end
 
 
@@ -181,7 +182,6 @@ end
 
 local function main()
   app:call('cd', 'X:\\PEMaterial')
-  require('locales.i18n')
   i18n.load()
   t = i18n.t
 

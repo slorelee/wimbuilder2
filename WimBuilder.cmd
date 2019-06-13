@@ -6,7 +6,10 @@ set "WB_ROOT=%cd%"
 set "PATH_ORG=%PATH%"
 rem ======set bin PATH======
 set "PATH=%WB_ROOT%\bin;%PATH%"
+
+set WB_ARCH=x86
 if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+  set WB_ARCH=x64
   set "PATH=%WB_ROOT%\bin\x64;%WB_ROOT%\bin\x86;%PATH%"
 ) else (
   set "PATH=%WB_ROOT%\bin\x86;%PATH%"

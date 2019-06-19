@@ -50,6 +50,8 @@ C_*.NLS,KBD*.dll
 +ver > 18300
 DXCore.dll
 umpdc.dll
++ver > 18800
+TextShaping.dll
 +ver*
 
 ; comctl32.dll.mui,comdlg32.dll.mui and mlang.dll.mui exist in all Language folders

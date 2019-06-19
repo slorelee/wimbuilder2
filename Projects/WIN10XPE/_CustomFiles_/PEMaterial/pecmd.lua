@@ -65,7 +65,7 @@ local function Shortcuts()
   LINK('%Desktop%\\PENetwork.lnk', '%ProgramFiles%\\PENetwork\\PENetwork.exe')
 
   if File.exists('X:\\Windows\\System32\\seclogon.dll') then
-    LINK('%Desktop%\\SwitchUser.lnk', '%ProgramFiles%\\WinXShell\\WinXShell.exe', '-script ' .. os.getenv('logon_script') .. ' -user #SwitchUser#', 'imageres.dll', 319)
+    LINK('%Desktop%\\SwitchUser.lnk', '%ProgramFiles%\\WinXShell\\WinXShell.exe', '-script ' .. script_file .. ' -user #SwitchUser#', 'imageres.dll', 319)
   end
   exec('/hide', 'cmd.exe /c echo done>X:\\Windows\\Temp\\Shortcuts.txt')
 end
@@ -128,7 +128,7 @@ local function InitAdmin()
   reg_write(regkey, 'AutoAdminLogon', 1, winapi.REG_DWORD)
   reg_write(regkey, 'DefaultUserName', 'Administrator')
   reg_write(regkey, 'DefaultPassword', '')
-  reg_write(regkey, 'Userinit', 'userinit.exe,X:\\Program Files\\WinXShell\\WinXShell.exe -script ' .. os.getenv('logon_script') .. ' -user Administrator')
+  reg_write(regkey, 'Userinit', 'userinit.exe,X:\\Program Files\\WinXShell\\WinXShell.exe -script ' .. script_file .. ' -user Administrator')
   if File.exists('X:\\Windows\\explorer.exe') then
     reg_write(regkey, 'Shell', 'explorer.exe')
   else
@@ -159,7 +159,7 @@ local function Loader()
   local os_inited = OSInit()
 
   -- call UI_logon
-  os.setenv('logon_script', get_option('-script'))
+  os.setenv('logon_script', script_file)
   local user_opt = get_option('-user') or ''
   if user_opt == '#SwitchUser#' then
     local un = os.getenv('USERNAME')
@@ -172,7 +172,7 @@ local function Loader()
     end
   end
   if user_opt ~= '' then user_opt = '-user ' .. user_opt end
-  exec('/wait', 'WinXShell.exe -ui ' .. user_opt .. ' -jcfg X:\\PEMaterial\\UI_LogonPE.jcfg')
+  exec('/wait', 'WinXShell.exe -ui ' .. user_opt .. ' -jcfg ' .. script_path .. '\\UI_LogonPE.jcfg')
   os.setenv('logon_script', '')
 
   if os_inited == 1 then return end
@@ -181,7 +181,13 @@ local function Loader()
 end
 
 local function main()
-  app:call('cd', 'X:\\PEMaterial')
+  if _G.caller == nil then
+    script_file = get_option('-script')
+  else
+    script_file = os.getenv('logon_script')
+  end
+  script_path = string.match(script_file, "(.+)\\")
+  app:call('cd', script_path)
   i18n.load()
   t = i18n.t
 

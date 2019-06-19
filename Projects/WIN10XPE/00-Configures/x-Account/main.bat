@@ -1,5 +1,5 @@
 rem update UI_LogonPE.jcfg
-set "_UI_LogonPE_jcfg=%X%\PEMaterial\UI_LogonPE.jcfg"
+set "_UI_LogonPE_jcfg=%X_PEMaterial%\UI_LogonPE.jcfg"
 if not exist "%_UI_LogonPE_jcfg%" set _UI_LogonPE_jcfg=
 
 if not "x%_UI_LogonPE_jcfg%"=="x" (

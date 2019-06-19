@@ -25,10 +25,9 @@ rem http://theoven.org/index.php?topic=2768.0 (>= v1.0.1)
 rem http://theoven.org/index.php?topic=2726.msg31375#msg31375 (v1.0.0)
 
 DrvInstPatch_%WB_ARCH%.exe p "%X_SYS%\drvinst.exe"
-if %errorlevel% NEQ 0 (
+if %errorlevel% NEQ 1 (
   goto :AssemblePatch
 )
-if %VER[3]% GTR 18908 goto :AssemblePatch
 
 if "%PATCH_MODE%"=="local" pause
 goto :EOF

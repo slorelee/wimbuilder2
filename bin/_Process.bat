@@ -1,7 +1,7 @@
 @echo off
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-cd /d "%WB_ROOT%"
+cd /d "%WB_ROOT%\"
 title WimBuilder(%cd%)
 
 if "x%_WB_EXEC_MODE%"=="x1" set WB_RUNAS_TI=1
@@ -212,7 +212,7 @@ rem apply project patches
 call ApplyProjectPatches.bat "%WB_PROJECT_PATH%"
 rem =========================================================
 
-cd /d "%WB_ROOT%"
+cd /d "%WB_ROOT%\"
 call :CLEANUP 0
 call WIM_Exporter "%_WB_PE_WIM%"
 

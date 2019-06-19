@@ -3,6 +3,8 @@ cd /d "%~dp0"
 title WimBuilder(%cd%)
 
 set "WB_ROOT=%cd%"
+if "x%WB_ROOT:~-1%"=="x\" set WB_ROOT=%WB_ROOT:~0,-1%
+
 set "PATH_ORG=%PATH%"
 rem ======set bin PATH======
 set "PATH=%WB_ROOT%\bin;%PATH%"

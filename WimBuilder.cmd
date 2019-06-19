@@ -70,6 +70,8 @@ rem ======set macros PATH======
 set "PATH=%WB_ROOT%\lib\macros;%PATH%"
 rem ========================
 
+set "V=%WB_ROOT%\vendor"
+
 rem mount winre.wim/boot.wim with wimlib, otherwise dism
 set USE_WIMLIB=0
 if not "%PROCESSOR_ARCHITECTURE%"=="AMD64" goto :Normal_Start

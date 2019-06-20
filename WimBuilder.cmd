@@ -18,6 +18,8 @@ if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
 )
 rem ========================
 
+call EnvCheck.bat
+
 rem run with Administrators right
 IsAdmin.exe
 

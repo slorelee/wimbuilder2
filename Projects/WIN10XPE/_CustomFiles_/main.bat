@@ -2,6 +2,11 @@ set "X_PEMaterial=%X%\PEMaterial"
 
 if exist PEMaterial (
   xcopy /Y /E PEMaterial "%X_PEMaterial%\"
+  set PE_LOADER=LUA
+)
+call CheckPatch "00-Configures\z-PECMD"
+if "%HasPatch%"=="true"  (
+  set PE_LOADER=PECMD
 )
 
 call :Apply_MyCutom

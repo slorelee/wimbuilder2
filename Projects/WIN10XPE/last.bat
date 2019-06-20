@@ -59,10 +59,25 @@ if not exist "%X_SYS%\dwm.exe" (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v Composition /t REG_DWORD /d 0 /f
 )
 
+rem ==========Startup Entry==========
+
+call :DELEX "/f /q /a" "%X_SYS%\WallpaperHost.exe"
+
+if "x%PE_LOADER%"=="xLUA" goto :LUA_ENTRY
+if "x%PE_LOADER%"=="xPECMD" goto :PECMD_ENTRY
+goto :STARTNET_ENTRY
+
+rem startup with LUA
+:LUA_ENTRY
+
+copy /y "%X_PEMaterial%\winpeshl.ini" "%X_SYS%\"
+echo .>"%X_SYS%\startnet.cmd"
+
+reg add HKLM\Tmp_System\Setup /v CmdLine /d "X:\Program Files\WinXShell\WinXShell.exe -regist -script %X_PEMaterial%\Pecmd.lua" /f
+goto :STARTUP_ENTRY_END
+
 rem startup with pecmd.exe
 :PECMD_ENTRY
-if not "x%PE_LOADER%"=="x" goto :STARTUP_ENTRY_END
-
 if not exist "%X%\Windows\System32\pecmd.exe" goto :STARTNET_ENTRY
 if not "x%PECMDINI%"=="x" (
     reg add HKLM\Tmp_System\Setup /v CmdLine /d "Pecmd.exe Main %%Windir%%\System32\%PECMDINI%" /f
@@ -79,11 +94,8 @@ goto :end_files
 windows\system32\taskkill.exe
 :end_files
 
-
-set "X32=%X%\Windows\System32"
 call :DELEX "/f /q /a" "%X%\setup.exe"
-call :DELEX "/f /q /a" "%X32%\winpeshl.ini"
-call :DELEX "/f /q /a" "%X32%\WallpaperHost.exe"
+call :DELEX "/f /q /a" "%X_SYS%\winpeshl.ini"
 
 rem update startnet.cmd
 call OpenTextFile JS %X32%\startnet.cmd %0 :end_startnet_edit

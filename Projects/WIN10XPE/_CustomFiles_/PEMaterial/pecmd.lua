@@ -42,7 +42,7 @@ local function PreShell()
   end
   os.setenv('HOMEPROFILE', homeprofile) -- only for PE
   os.setenv('Desktop', homeprofile .. '\\Desktop')
-  os.setenv('Programs', homeprofile .. [[\\AppData\Roaming\Microsoft\Windows\Start Menu\Programs]])
+  os.setenv('Programs', homeprofile .. [[\AppData\Roaming\Microsoft\Windows\Start Menu\Programs]])
   if File.exists('X:\\Windows\\explorer.exe') then
     explorer_shell = true
   end

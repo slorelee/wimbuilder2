@@ -15,7 +15,7 @@ echo.>"%_WB_TMP_DIR%\SlimPatch.txt"
 call SlimWinSxS.bat
 
 call CheckPatch "za-Slim"
-if %errorlevel% NEQ 0 (
+if %errorlevel% EQU 0 (
   if not "x%opt[build.source]%"=="xlight" (
     goto :EOF
   ) else (

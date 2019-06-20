@@ -29,7 +29,7 @@ rem ===================================
 rem update options
 
 call CheckPatch "00-Configures\x-Account"
-if %errorlevel% NEQ 0 (
+if %errorlevel% EQU 0 (
   set opt[account.admin_enabled]=false
 )
 

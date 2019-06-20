@@ -48,6 +48,9 @@ local function PreShell()
   end
 end
 
+local function CustomShortcuts()
+end
+
 local function Shortcuts()
   if File.exists('X:\\Windows\\Temp\\Shortcuts.txt') then return 1 end
   set_progress(t('Prepare shortcuts ...'))
@@ -67,6 +70,9 @@ local function Shortcuts()
   if File.exists('X:\\Windows\\System32\\seclogon.dll') then
     LINK('%Desktop%\\SwitchUser.lnk', '%ProgramFiles%\\WinXShell\\WinXShell.exe', '-script ' .. script_file .. ' -user #SwitchUser#', 'imageres.dll', 319)
   end
+
+  CustomShortcuts()
+
   exec('/hide', 'cmd.exe /c echo done>X:\\Windows\\Temp\\Shortcuts.txt')
 end
 
@@ -82,6 +88,9 @@ end
 local function LoadShell()
   set_progress(t('load shell ...'))
   exec('ctfmon.exe')
+
+  -- RunBeforeShell
+
   RunShell()
   exec('WinXShell.exe -daemon')
 end

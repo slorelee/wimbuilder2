@@ -4,7 +4,7 @@ copy /y 7z-Register.reg "%X_PF%\7-Zip\"
 call :REMOVE_LANGFILES
 
 call Link "#pDesktop#p\7-zip" "#pProgramFiles#p\7-zip\7zFM.exe"
-call RunBeforeShell "reg import #qX:\Program Files\7-Zip\7z-Register.reg#q"
+call RunBeforeShell "reg import #qX:\Program Files\7-Zip\7z-Register.reg#q" "/wait /hide"
 rem call Shortcuts "StartMenu,Desktop,PintTaskbar,PinStartMenu"
 goto :EOF
 

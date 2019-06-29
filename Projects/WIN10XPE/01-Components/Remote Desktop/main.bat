@@ -46,5 +46,7 @@ reg add HKLM\Tmp_System\ControlSet001\Control\Lsa /v "Security Packages" /t REG_
 
 reg add HKLM\Tmp_System\ControlSet001\Control\Lsa\OSConfig /v "Security Packages" /t REG_MULTI_SZ /d kerberos\0msv1_0\0tspkg\0pku2u\0livessp\0wdigest\0schannel /f
 reg add "HKLM\Tmp_System\ControlSet001\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+rem Disable Network Level Authentication(NLA)
+reg add "HKLM\Tmp_System\ControlSet001\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
 
-call TerminalServer.bat
+call TermService.bat

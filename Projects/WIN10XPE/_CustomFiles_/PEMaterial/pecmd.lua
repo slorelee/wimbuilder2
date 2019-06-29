@@ -164,7 +164,7 @@ local function InitAdmin()
   exec('/wait /hide', [[secedit.exe /configure /db %WinDir%\security\database\unattend.sdb /cfg %WinDir%\security\templates\unattend.inf /log %WinDir%\security\logs\unattend.log]])
 
   set_progress(t('Start services ...'))
-  call_dll('Netapi32.dll','NetJoinDomain', nil, 'WORKGROUP', nil, nil, nil, 32)
+  -- call_dll('Netapi32.dll','NetJoinDomain', nil, 'WORKGROUP', nil, nil, nil, 32)
   exec('/wait /hide', 'sc start seclogon')
 
   if File.exists('X:\\Windows\\System32\\Admin18850+.bat') then

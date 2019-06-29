@@ -10,6 +10,9 @@ if "%HasPatch%"=="true"  (
 )
 
 copy /y PEMaterial\unattend.xml "%X_SYS%\"
+if "%WB_PE_ARCH%"=="x86" (
+  call TextReplace "%X_SYS%\unattend.xml" "processorArchitecture=#qamd64#q" "processorArchitecture=#qx86#q"
+)
 
 call :Apply_MyCutom
 goto :EOF

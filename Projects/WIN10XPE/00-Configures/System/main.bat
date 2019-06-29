@@ -15,9 +15,6 @@ Windows\System32\powercpl.dll
 \Windows\Fonts\segoeui.ttf
 :end_files
 
-rem copy /y "X_SYS\startnet_%WB_PE_ARCH%.exe" "%X_SYS%\startnet.exe"
-copy /y "X_SYS\SetWG_%WB_PE_ARCH%.exe" "%X_SYS%\SetWG.exe"
-
 rem ==========update registry==========
 
 rem [ChangeReg]

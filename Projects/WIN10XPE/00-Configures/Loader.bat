@@ -42,11 +42,6 @@ goto :end_startnet_edit
 
 TXT.before('wpeinit').insert('set USERPROFILE=X:\\Users\\Default');
 TXT.append('\r\n\
-if exist %SystemRoot%\\System32\\SetWG.exe (\r\n\
-    start SetWG.exe WORKGROUP\r\n\
-)\r\n\
-');
-TXT.append('\r\n\
 if exist %SystemRoot%\\System32\\IME_Cmd.cmd (\r\n\
     call %SystemRoot%\\System32\\IME_Cmd.cmd\r\n\
     @echo on\r\n\

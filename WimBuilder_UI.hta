@@ -183,15 +183,14 @@ if ($IE_VER == '9+') {
 
 <span style="font-weight:bold;color:#000;" class="i18n-text">Select the install.wim file if it needed</span><br/>
 <input type="text" id="wb_src" style="width:450px" value="D:\WB_Workspace\mnt\install.wim" />
-<select id='wb_src_idx_opt'>
-  <option value ="-1">-</option>
-  <option value ="1">1</option>
-  <option value ="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-</select>
+<script>
+    document.write('<select id="wb_src_idx_opt">');
+    document.write('  <option value ="-1">-</option>');
+    for (var i = 1; i < 100; i++) {
+        document.write('<option value="' + i + '">' + i + '</option>');
+    }
+    document.write('</select>');
+</script>
 
 <a href="#" id="wb_src_wim_btn" class="ibutton browse i18n-title"
     title="Select the install.wim file if it needed">Wim</a>

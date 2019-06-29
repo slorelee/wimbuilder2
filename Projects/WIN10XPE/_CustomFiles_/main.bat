@@ -9,6 +9,8 @@ if "%HasPatch%"=="true"  (
   set PE_LOADER=PECMD
 )
 
+copy /y PEMaterial\unattend.xml "%X_SYS%\"
+
 call :Apply_MyCutom
 goto :EOF
 

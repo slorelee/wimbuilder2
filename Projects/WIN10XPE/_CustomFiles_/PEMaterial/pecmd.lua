@@ -13,16 +13,26 @@ local function OSInit()
   if File.exists('X:\\Windows\\Temp\\OSInited.txt') then return 1 end
   --set_progress('%{System configuration, Please Wait...}')
 
-  -- show cursor
+  -- show cursor, and wpeinit.exe
   exec('/wait', '%WinDir%\\System32\\winpeshl.exe')
+
   -- // Load Display drivers
   exec('/wait /hide', [[Drvload.exe %WinDir%\inf\basicdisplay.inf %WinDir%\inf\basicrender.inf %WinDir%\inf\c_display.inf %WinDir%\inf\display.inf %WinDir%\inf\displayoverride.inf]])
   -- // Try resolution(s)
   Screen:DispTest({'1152x864', '1366x768', '1024x768'})
 
   File.delete('X:\\Users\\Public\\Desktop\\desktop.ini')
-  exec('/hide', 'cmd.exe /c echo done>X:\\Windows\\Temp\\OSInited.txt')
+  local f = io.open('X:\\Windows\\Temp\\OSInited.txt', 'w+');f:write('done');f:close();
   return 0
+end
+
+local function CustomOSInit()
+  if File.exists('X:\\Windows\\Temp\\CustomOSInited.txt') then return 1 end
+
+  set_progress(t('Prepare for system ...'))
+  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\OSInit.bat')
+
+  local f = io.open('X:\\Windows\\Temp\\CustomOSInited.txt', 'w+');f:write('done');f:close();
 end
 
 local function PreShell()
@@ -73,7 +83,7 @@ local function Shortcuts()
 
   CustomShortcuts()
 
-  exec('/hide', 'cmd.exe /c echo done>X:\\Windows\\Temp\\Shortcuts.txt')
+  local f = io.open('X:\\Windows\\Temp\\Shortcuts.txt', 'w+');f:write('done');f:close();
 end
 
 local function RunShell()
@@ -118,6 +128,7 @@ end
 
 
 local function Logon()
+  CustomOSInit()
   PreShell()
   Shortcuts()
   LoadShell()

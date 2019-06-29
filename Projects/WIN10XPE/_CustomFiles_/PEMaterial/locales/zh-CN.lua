@@ -1,4 +1,5 @@
 i18n_str = {
+  ['Prepare for system ...'] = '正在准备系统 ...',
   ['Prepare shortcuts ...'] = '准备快捷方式 ...',
   ['Create shortcut:'] = '创建快捷方式:',
   ['load shell ...'] = '加载桌面 ...',

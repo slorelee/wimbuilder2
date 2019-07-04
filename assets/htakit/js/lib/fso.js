@@ -29,6 +29,17 @@ function get_subdirs(parentdir) {
     return arr;
 }
 
+function get_files(parentdir) {
+    var arr = new Array();
+    var folder = fso.GetFolder(parentdir);
+    var fenum = new Enumerator(folder.Files);
+    for (var i = 0 ; !fenum.atEnd();i++) {
+        arr.push(fenum.item().Name);
+        fenum.moveNext();
+    }
+    return arr;
+}
+
 function load_text_file(filename, format) {
     if (!fso.FileExists(filename)) return '';
     if (format == null) format = TristateFalse;

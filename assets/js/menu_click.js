@@ -13,6 +13,7 @@ $('#menu_project').click(function(){
 $('#menu_patch').click(function(){
     switch_page('patch');
     $('#patch_project_name').text(selected_project);
+    update_preset_list();
     show_patches_settings();
 });
 

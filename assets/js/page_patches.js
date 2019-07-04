@@ -1,4 +1,5 @@
 var _patches_selected_node = null;
+var $patches_preset_inited = null;
 var $patches_opt = null;
 var $patch_loaded = false;
 
@@ -192,6 +193,27 @@ function edit_menu_action(file) {
   Run(editor, '\"' + file + '\"', style);
 }
 
+function update_preset_list() {
+    if ($patches_preset_inited) return;
+
+    var preset_selected = null;
+    $('#patch_preset').empty();
+    $obj_project.presets.forEach(function(preset) {
+        if ($obj_project.preset == preset) {
+            $('#patch_preset').append('   <option selected="selected">' + preset.slice(0, -3) + '</option>');
+            preset_selected = true;
+        } else {
+            $('#patch_preset').append('   <option>' + preset.slice(0, -3) + '</option>');
+        }
+    });
+    if (!preset_selected) {
+        $('#patch_preset').append('   <option>-</option>');
+    } else {
+        $('#patch_preset').append('   <option selected="selected">-</option>');
+    }
+    $patches_preset_inited = true;
+}
+
 function show_patches_settings() {
     var jstree_data = { "plugins" : ["checkbox", "contextmenu"],
     "checkbox": {
@@ -326,7 +348,9 @@ $('#patch_preset').change(function(){
     project = Project.New(selected_project, preset);
     $obj_project = project;
     $obj_patches = null;
+    $patches_preset = preset;
     _patches_selected_node = null;
+
     $('#menu_patch').click();
 });
 

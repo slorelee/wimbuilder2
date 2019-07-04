@@ -52,6 +52,7 @@ function regist_event() {
             project = Project.New(name);
             $obj_project = project;
             $obj_patches = null;
+            $patches_preset_inited = null;
         }
         $('#project_desc').html('<p>' + project.desc.replace(/\r\n/g, '<br/>') + '</p>');
         if (project.desc) {

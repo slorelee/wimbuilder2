@@ -26,8 +26,11 @@ var Project = {
         if (preset) {
             $patches_preset = preset;
         }
+        project.presets = get_files(project.path + '/_Assets_/preset');
+        project.preset = '-';
         if ($patches_preset != '') {
             eval(load_file('_Assets_/preset/' + $patches_preset + '.js'));
+            project.preset = $patches_preset;
         }
         if (typeof(patches_state_init) == 'function') {
             project.patches_state_init = patches_state_init;

@@ -22,6 +22,9 @@ DataExchange.dll,dcomp.dll,d3d11.dll,dxgi.dll
 ; CopyProgress
 chartv.dll,OneCoreUAPCommonProxyStub.dll
 
+;filter
+StructuredQuery.dll
+
 :end_files
 goto :EOF
 

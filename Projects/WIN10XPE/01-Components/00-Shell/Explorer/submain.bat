@@ -18,7 +18,7 @@ desktop.ini
 \Windows\??-??\explorer.exe.mui
 
 @\Windows\System32\
-comctl32.dll
+;comctl32.dll
 actxprxy.dll,AppHelp.dll,AppResolver.dll,atlthunk.dll,avifil32.dll,clip.exe,Clipc.dll
 control.exe,comsvcs.dll,CoreMessaging.dll,CoreUIComponents.dll,cscapi.dll
 ctfmon.exe,desk.cpl,edputil.dll
@@ -40,18 +40,11 @@ VEEventDispatcher.dll
 cdp.dll,dsreg.dll
 
 +ver > 17700
-; shellstyle.dll(.mui) is now in \Windows\resources\themes\aero\shell\normalcolor
-\Windows\resources\Themes\aero\shell
-
 +if "%opt[slim.ultra]%" <> "true"
 ; dll for StateRepository (AppRepository). The StateRepository service is not registered in the Registry
 StateRepository.core.dll,Windows.StateRepository.dll
 Windows.StateRepositoryBroker.dll,Windows.StateRepositoryClient.dll
 -if
-
-+ver <= 17700 or (ver > 18334 and ver < 18800) or ver > 18836
-shellstyle.dll
-en-US\shellstyle.dll.mui
 
 +ver >= 18885
 CoreMessaging.dll,CoreUIComponents.dll,rmclient.dll,twinapi.appcore.dll,InputHost.dll,TextInputFramework.dll
@@ -75,14 +68,7 @@ hdwwiz.cpl,hdwwiz.exe
 timedate.cpl,main.cpl,intl.cpl
 
 ; Browse Folder
-ExplorerFrame.dll
-
-; DragAndDrop (d2d1.dll,ksuser.dll already in Winre.wim)
-DataExchange.dll,dcomp.dll,d3d11.dll,dxgi.dll
-;d2d1.dll,ksuser.dll
-
-; CopyProgress
-chartv.dll,OneCoreUAPCommonProxyStub.dll
+;ExplorerFrame.dll
 
 ; Previous version tab
 twext.dll
@@ -120,6 +106,8 @@ appinfo.dll,appinfoext.dll,objsel.dll
 winver.exe
 
 :end_files
+
+call SharedPatch NewBrowseDlg
 
 rem ==========update registry==========
 

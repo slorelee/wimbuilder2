@@ -3,8 +3,8 @@ Title=Network
 Type=XPEPlugin
 Description=Network
 Author=ChriSR
-Date=2018.09.13
-Version=001
+Date=2019.04.09
+Version=002
 
 :main
 rem ==========update filesystem==========
@@ -201,6 +201,7 @@ rem //In Winre.wim call RegCopy HKLM\System\ControlSet001\Services\wdiwifi
 rem //Partial in Winre.wim call RegCopy HKLM\System\ControlSet001\Services\WinSock
 rem //Partial in Winre.wim call RegCopy HKLM\System\ControlSet001\Services\WinSock2
 rem // mrxsmb10
+call _mrxsmb10.bat
 if exist "%X%\Windows\System32\drivers\mrxsmb10.sys" (
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DependOnService /t REG_MULTI_SZ /d mrxsmb /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Description /d "@%%systemroot%%\system32\wkssvc.dll,-1005" /f
@@ -217,6 +218,13 @@ reg add HKLM\Tmp_System\Setup\AllowStart\dnscache /f
 reg add HKLM\Tmp_System\Setup\AllowStart\nlasvc /f
 reg add HKLM\Tmp_System\Setup\AllowStart\wcmsvc /f
 reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 /v Settings /t REG_BINARY /d 30000000feffffff02000000030000003e0000002800000000000000f2030000900600001a0400006000000001000000 /f
+
+rem // netprofm service is required for wlansvc and wcmsvc service in 1903! even disabled and not started.
+call RegCopyEx Services netprofm
+reg add HKLM\Tmp_System\ControlSet001\Services\netprofm /v Start /t REG_DWORD /d 4 /f
+
+call _networklist.bat
+call _discovery.bat
 
 rem built-in network drivers
 if not "x%opt[network.builtin_drivers]%"=="xtrue" goto :EOF

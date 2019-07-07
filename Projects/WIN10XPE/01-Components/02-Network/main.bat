@@ -17,8 +17,10 @@ goto :end_files
 ;\Windows\INF\vwifibus.sys
 
 @\Windows\System32\drivers\
-lltdio.sys,mrxsmb10.sys,rspndr.sys,tcpipreg.sys,vwififlt.sys,WdiWiFi.sys
+ipfltdrv.sys,lltdio.sys,mrxsmb10.sys,rspndr.sys,tcpipreg.sys,vwififlt.sys,WdiWiFi.sys
++mui
 http.sys,ipnat.sys,mslldp.sys,ndiscap.sys,ndisimplatform.sys,nwifi.sys,tunnel.sys,wfplwfs.sys
+-mui
 
 @\Windows\System32\DriverStore\FileRepository\
 netlldp.inf*,netnwifi.inf*
@@ -80,8 +82,6 @@ wkspbrokerax.dll,wksprtps.dll
 nlahc.dll
 ; Ndis
 ndishc.dll
-; Airplane mode
-RMapi.dll
 ; Security Components
 Keymgr.dll,Msaudite.dll
 ; Service Control
@@ -93,20 +93,27 @@ ubpm.dll
 ; Van NetStatus
 VAN.dll
 WlanRadioManager.dll
+; Airplane mode
+RMapi.dll
+;
 ; WcmSvc (in Winre.wim: nlaapi.dll)
 wcmapi.dll,wcmcsp.dll,wcmsvc.dll,NetworkUXBroker.dll
+;
 ; WcncSvc
 WcnApi.dll,wcncsvc.dll,WcnEapAuthProxy.dll,WcnEapPeerProxy.dll,WcnNetsh.dll,wcnwiz.dll
+;
 ; EapHost (in Winre.wim Eap3Host.exe,eapp3hst.dll,eappcfg.dll,eappgnui.dll,eapphost.dll,eappprxy.dll,eapprovp.dll,eapsvc.dll,keyiso.dll,ttlsauth.dll,ttlscfg.dll)
 cngcredui.dll,cngprovider.dll
+;
 ; Wlan (additional: wlangpui.dll,wlandlg.dll,WLanConn.dll,wlanpref.dll,wlanutil.dll,provcore.dll)
-mobilenetworking.dll,wlanapi.dll,wlancfg.dll,WLanConn.dll,wlanext.exe,WLanHC.dll,wlanhlp.dll
-WlanMediaManager.dll,WlanMM.dll,wlanmsm.dll,wlansec.dll,wlansvc.dll,wlansvcpal.dll,wlanui.dll
+mobilenetworking.dll,wlanapi.dll,wlancfg.dll,WLanConn.dll,wlandlg.dll,wlanext.exe,WLanHC.dll,wlanhlp.dll
+WlanMediaManager.dll,WlanMM.dll,wlanmsm.dll,wlanpref.dll,wlansec.dll,wlansvc.dll,wlansvcpal.dll,wlanui.dll,wlanutil.dll
 ; Wlan password (additional: fdProxy.dll,webcheck.dll)
 fdWCN.dll,fontext.dll,fundisc.dll,Windows.Globalization.dll,winhttp.dll
+;
 ; Net event
 netevent.dll
-
+;
 wbem\nlasvc.mof
 wbem\wlan.mof
 \Windows\SystemResources\Windows.UI.Cred\Windows.UI.Cred.pri
@@ -115,7 +122,7 @@ wbem\wlan.mof
 :end_files
 
 rem ==========update registry==========
-call RegCopy HKLM\System\ControlSet001\Services\BDESVC
+rem call RegCopy HKLM\System\ControlSet001\Services\BDESVC
 rem [Network_Registry]
 if not "x%opt[build.registry.software]%"=="xfull" (
   call RegCopy HKLM\Software\Microsoft\wcmsvc
@@ -177,12 +184,16 @@ rem //-
 call RegCopy HKLM\System\ControlSet001\Services\bowser
 call RegCopy HKLM\System\ControlSet001\Services\Browser
 call RegCopy HKLM\System\ControlSet001\Services\dot3svc
+rem //reg add HKLM\Tmp_System\ControlSet001\Services\dot3svc /v Start /t REG_DWORD /d 2 /f
 call RegCopy HKLM\System\ControlSet001\Services\EapHost
 call RegCopy HKLM\System\ControlSet001\Services\EventLog\System\Browser
 call RegCopy HKLM\System\ControlSet001\Services\EventLog\System\Microsoft-Windows-WLAN-AutoConfig
 call RegCopy HKLM\System\ControlSet001\Services\IPNAT
+call RegCopy HKLM\System\ControlSet001\Services\IpFilterDriver
 rem //Partial in Winre.wim call RegCopy HKLM\System\ControlSet001\Services\HTTP
+call RegCopy HKLM\System\ControlSet001\Services\HTTP\Parameters\UrlAclInfo
 rem //In Winre.wim call RegCopy HKLM\System\ControlSet001\Services\NativeWifiP
+rem //-
 call RegCopy HKLM\System\ControlSet001\Services\NdisCap
 rem //In Winre.wim call RegCopy HKLM\System\ControlSet001\Services\NlaSvc
 call RegCopy HKLM\System\ControlSet001\Services\SharedAccess
@@ -191,6 +202,8 @@ reg add HKLM\Tmp_System\ControlSet001\Services\TCPIPTUNNEL /v NdisMajorVersion /
 reg add HKLM\Tmp_System\ControlSet001\Services\TCPIPTUNNEL /v NdisMinorVersion /t REG_DWORD /d 40 /f
 reg add HKLM\Tmp_System\ControlSet001\Services\TCPIPTUNNEL /v DriverMajorVersion /t REG_DWORD /d 0 /f
 reg add HKLM\Tmp_System\ControlSet001\Services\TCPIPTUNNEL /v DriverMinorVersion /t REG_DWORD /d 0 /f
+rem // Telephony service
+call RegCopy HKLM\System\ControlSet001\Services\TapiSrv
 rem //In Winre.wim call RegCopy HKLM\System\ControlSet001\Services\tdx
 rem //In Winre.wim call RegCopy HKLM\System\ControlSet001\Services\vwifibus
 reg add HKLM\Tmp_System\ControlSet001\Services\vwifibus /v Owners /t REG_MULTI_SZ /d netvwifibus.inf /f
@@ -200,7 +213,7 @@ rem //In Winre.wim call RegCopy HKLM\System\ControlSet001\Services\wcncsvc
 rem //In Winre.wim call RegCopy HKLM\System\ControlSet001\Services\wdiwifi
 rem //Partial in Winre.wim call RegCopy HKLM\System\ControlSet001\Services\WinSock
 rem //Partial in Winre.wim call RegCopy HKLM\System\ControlSet001\Services\WinSock2
-rem // mrxsmb10
+rem // SMB v1.0 service.
 call _mrxsmb10.bat
 if exist "%X%\Windows\System32\drivers\mrxsmb10.sys" (
   reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DependOnService /t REG_MULTI_SZ /d mrxsmb /f

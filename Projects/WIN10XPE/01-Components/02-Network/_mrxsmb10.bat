@@ -1,5 +1,6 @@
 if exist "%X%\Windows\System32\drivers\mrxsmb10.sys" goto :EOF
 
+rem Extract mrxsmb10.sys from WinSxS
 call AddFiles "\Windows\WinSxS\*_microsoft-windows-smb10-minirdr_*\mrxsmb10.sys"
 
 for /f "delims=" %%i in ('dir /b "%X%\Windows\WinSxS\*_microsoft-windows-smb10-minirdr_*"') do (

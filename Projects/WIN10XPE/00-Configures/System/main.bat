@@ -15,6 +15,8 @@ Windows\System32\powercpl.dll
 \Windows\Fonts\segoeui.ttf
 :end_files
 
+call AddDrivers winusb.inf
+
 rem ==========update registry==========
 
 rem [ChangeReg]

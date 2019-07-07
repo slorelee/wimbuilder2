@@ -1,3 +1,5 @@
+goto :EOF
+
 call AddFiles %0 :end_files
 goto :end_files
 ; Seems Not required nlmgp.dll,nlmproxy.dll,nlmsprep.dll

@@ -86,7 +86,7 @@ call RegCopyEx Services "RdpVideoMiniport,CertPropSvc"
 call RegCopyEx Services "ipHlpSvc,ipFilterdriver"
 
 reg import TermService_RegSystem.txt
-reg import TermService_ProductOptions.txt
+rem reg import TermService_ProductOptions.txt
 
 rem EnableTermServiceFeature
 if 1==1 (

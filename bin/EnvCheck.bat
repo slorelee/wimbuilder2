@@ -1,6 +1,14 @@
 @echo off
 
 set MISSING_FILES=0
+
+if not exist "%WB_ROOT%\bin\x64\7za.exe" (
+    copy "%WB_ROOT%\vendor\7za\7za_x64.exe" "%WB_ROOT%\bin\x64\7za.exe"
+)
+if not exist "%WB_ROOT%\bin\x86\7za.exe" (
+    copy "%WB_ROOT%\vendor\7za\7za_x86.exe" "%WB_ROOT%\bin\x86\7za.exe"
+)
+
 call :CHECK_FILE 7za.exe x64
 call :CHECK_FILE 7za.exe x86
 

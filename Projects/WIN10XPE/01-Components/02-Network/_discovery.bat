@@ -1,3 +1,5 @@
+if not "x%opt[network.function_discovery]%"=="xtrue" goto :EOF
+
 rem // Function Discovery Provider Host and Publication and SSDP Discovery services
 call RegCopyEx Services "fdPHost,FDResPub,SSDPSRV"
 

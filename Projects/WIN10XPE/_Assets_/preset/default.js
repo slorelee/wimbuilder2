@@ -26,6 +26,7 @@ var $patches_opt = {
     "IE.custom_settings":true,
     "IE.home_page":"about:blank",
     "component.winphotoviewer":true,
+    "network.function_discovery":true,
     "network.builtin_drivers":true,
     "slim.mui":true,
     "slim.winboot":false,

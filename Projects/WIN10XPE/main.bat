@@ -22,8 +22,8 @@ if "x%opt[build.wow64support]%"=="xtrue" (
 
 set opt[support.wow64]=%opt[build.wow64support]%
 
-call CheckPatch "01-Components\02-Network"
-set opt[support.network]=%HasPatch%
+rem call CheckPatch "01-Components\02-Network"
+rem set opt[support.network]=%HasPatch%
 
 call CheckPatch "01-Components\03-Audio"
 set opt[support.audio]=%HasPatch%

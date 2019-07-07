@@ -3,6 +3,10 @@ call ACLRegKey Tmp_Software
 call ACLRegKey Tmp_Default
 rem call ACLRegKey Tmp_Drivers
 
+rem make things easy with Everyone
+rem AFAIK, FDResPub service needs the right(LOCAL SERVICE), otherwise fail to start
+SetACL.exe -on "HKLM\Tmp_SYSTEM" -ot reg -actn ace -ace "n:Everyone;p:full"
+
 call RegCopy HKLM\Software\Classes\AppID
 call ACLRegKey HKLM\Software\Classes\AppID
 

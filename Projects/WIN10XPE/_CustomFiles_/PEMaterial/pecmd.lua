@@ -124,6 +124,7 @@ local function PostShell()
   Taskbar:Pin('Explorer.exe')
   Taskbar:Pin('cmd.exe')
   Startmenu:Pin('notepad.exe')
+  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\Runner.bat Startup')
 end
 
 

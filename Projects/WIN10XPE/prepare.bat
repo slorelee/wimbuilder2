@@ -30,13 +30,22 @@ rem update options
 
 call CheckPatch "00-Configures\x-Account"
 if %errorlevel% EQU 0 (
-  set opt[account.admin_enabled]=false
+    set opt[account.admin_enabled]=false
+)
+
+call CheckPatch "01-Components\02-Network"
+set opt[support.network]=%HasPatch%
+if "opt[support.network]"=="false" (
+    opt[network.function_discovery]=false
 )
 
 if "x%opt[account.admin_enabled]%"=="xtrue" (
     set opt[build.registry.software]=full
 )
 if "x%opt[component.netfx]%"=="xtrue" (
+    set opt[build.registry.software]=full
+)
+if "x%opt[network.function_discovery]%"=="xtrue" (
     set opt[build.registry.software]=full
 )
 if "x%opt[build.registry.system]%"=="xtrue" (

@@ -1,7 +1,8 @@
 @echo off
 cd /d "%~dp0"
-if not exist OSInit goto :EOF
-cd /d OSInit
+if "x%~1"=="x" goto :EOF
+if not exist "%~1" goto :EOF
+cd /d "%~1"
 
 for /f %%i in ('dir /b *.*') do (
   call :ExecDispatcher "%%~i"

@@ -30,7 +30,7 @@ local function CustomOSInit()
   if File.exists('X:\\Windows\\Temp\\CustomOSInited.txt') then return 1 end
 
   set_progress(t('Prepare for system ...'))
-  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\OSInit.bat')
+  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\Runner.bat OSInit')
 
   local f = io.open('X:\\Windows\\Temp\\CustomOSInited.txt', 'w+');f:write('done');f:close();
 end

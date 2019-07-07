@@ -35,8 +35,8 @@ if %errorlevel% EQU 0 (
 
 call CheckPatch "01-Components\02-Network"
 set opt[support.network]=%HasPatch%
-if "opt[support.network]"=="false" (
-    opt[network.function_discovery]=false
+if "%opt[support.network]%"=="false" (
+    set opt[network.function_discovery]=false
 )
 
 if "x%opt[account.admin_enabled]%"=="xtrue" (

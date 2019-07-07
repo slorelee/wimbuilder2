@@ -1,6 +1,7 @@
 cd /d "%~dp0"
-if not exist X_%WB_PE_ARCH% goto :EOF
-call X2X
+
+call V2X WinXShell
+if not exist "%X%\Program Files\WinXShell" goto :EOF
 
 rem Grant right for Administrator
 call _ACLRegKey Tmp_Software\Classes\ms-settings

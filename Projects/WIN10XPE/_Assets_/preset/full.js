@@ -19,6 +19,7 @@ var $patches_opt = {
     "tweak.shortcut.nosuffix":true,
     "component.MMC":true,
     "component.DWM":true,
+    "component.taskmgr":true,
     "component.bitlocker":true,
     "component.search":true,
     "component.vcruntime":true,
@@ -29,8 +30,11 @@ var $patches_opt = {
     "component.snippingtool":true,
     "component.accessibility":true,
     "component.termservice":true,
+    "patch.drvinst":true,
     "IME.indicator":true,
     "IME.system_ime":true,
+    "IME.ms_pinyin":true,
+    "IME.ms_wubi":true,
     "IE.x64_component":"x64+x86",
     "IE.custom_settings":true,
     "IE.home_page":"about:blank",
@@ -52,6 +56,7 @@ function patches_state_init() {
     select_tree_node('_CustomFiles_');
     open_tree_node('00-Configures');
     open_tree_node('01-Components');
+    uncheck_tree_node('za-Slim');
     //uncheck_tree_node('za-SlimExtra');
 }
 

@@ -11,10 +11,10 @@ INIT-->
 -->
   <fieldset>
     <legend>Build source: </legend>
-    <label for="bt-1">Full Winre.wim</label>
-    <input type="radio" name="build.source" class="opt_item" value="full" id="bt-1">
-    <label for="bt-2">Winre.wim with light WinSxS</label>
-    <input type="radio" name="build.source" class="opt_item" value="light" id="bt-2" checked>
+    <label for="opt_bs-f">Full Winre.wim</label>
+    <input type="radio" name="build.source" class="opt_item" value="full" id="opt_bs-f">
+    <label for="opt_bs-l">Winre.wim with light WinSxS</label>
+    <input type="radio" name="build.source" class="opt_item" value="light" id="opt_bs-l" checked>
   </fieldset>
 
   <div style="margin:10px 2px;padding:5px;border: 1px solid #c0c0c0;">
@@ -42,7 +42,14 @@ INIT-->
   </div>
 <script>
 (function() {
-    $(':radio[id^=bt-]').checkboxradio();
+    if (!$patch_loaded) {
+        if ($patches_opt["build.source"]=='full') {
+            $('#opt_bs-f').prop('checked', true);
+        } else {
+            $('#opt_bs-l').prop('checked', true);
+        }
+    }
+    $(':radio[id^=opt_bs-]').checkboxradio();
 })();
 </script>
 </div>

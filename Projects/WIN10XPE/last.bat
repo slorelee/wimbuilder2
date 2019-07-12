@@ -1,3 +1,4 @@
+if "x%opt[build.last_filereg_disabled]%"=="xtrue" goto :EOF
 
 rem incompatible with StartIsBack(SYSTEM account)
 if exist "%X%\Program Files\StartIsBack\" ( 
@@ -41,6 +42,6 @@ goto :EOF
 
 :FULLREG
 if exist "%~dp0%1" (
-   xcopy /E /Y "%~dp0%1" %X%\Windows\System32\Config\
+   xcopy /E /Y "%~dp0%1" "%X%\Windows\System32\Config\"
 )
 goto :EOF

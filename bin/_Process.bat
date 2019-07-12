@@ -204,8 +204,10 @@ if exist "%WB_PROJECT_PATH%\prepare.bat" (
     call "%WB_PROJECT_PATH%\prepare.bat" :BEFORE_HIVE_LOAD
 )
 
-call PERegPorter.bat Src LOAD 1>nul
-call PERegPorter.bat Tmp LOAD 1>nul
+if not "x%opt[build.load_hive_demand]%"=="xtrue" (
+  call PERegPorter.bat Src LOAD 1>nul
+  call PERegPorter.bat Tmp LOAD 1>nul
+)
 
 rem =========================================================
 rem apply project patches

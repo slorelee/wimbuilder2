@@ -9,6 +9,9 @@ if "x%opt[custom.cmd_mode]%"=="xtrue" (
     rem dummy line - DON'T DELETE THIS LINE
     %opt[custom.cmd_mode_code]%
 )
+
+set "_CUSTOMFILES_=%WB_PROJECT_PATH%\_CustomFiles_"
+
 rem ===================================
 goto :EOF
 

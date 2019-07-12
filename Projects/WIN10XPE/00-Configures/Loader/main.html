@@ -1,0 +1,93 @@
+<div style="mergin:5px;padding:5px;color:#000;">
+<!--
+<link id="jquery-ui-theme" href="assets/vendor/jquery-ui/themes/hotsneaks/jquery-ui.theme.min.css" rel="stylesheet">
+-->
+
+<style>
+fieldset {
+  /*background: rgba(255,255,255,.3);
+  border-color: rgba(255,255,255,.6);*/
+  border-style: solid;
+  border-width: 2px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  padding: 2px 10px;
+  margin: 2px 20px 2px 10px;
+  /* font-size:0.8em; */
+}
+
+fieldset legend {
+  color: #302A2A;
+  font: bold 16px/2 Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  text-align: left;
+  text-shadow: 2px 2px 2px rgb(88, 126, 156);
+}
+</style>
+
+
+<fieldset>
+<legend>    PE Loader    </legend>
+<table><tr>
+<td style="width:20%"><label><input type="radio" class="opt_item" name="loader.name" value="lua" /> Lua</label></td>
+<td style="width:20%"><label><input type="radio" class="opt_item" name="loader.name" value="pecmd" checked /> PECMD</label></td>
+<td style="width:40%"><label><input type="radio" class="opt_item" name="loader.name" value="system" /> SYSTEM(startnet.cmd)</label></td>
+</tr></table>
+</fieldset>
+
+<div style="margin:20px 10px">
+    <div style="margin-bottom:10px">PEMaterial Path X:\ <input type="text" style="width:50%" class="opt_item" name="loader.PEMaterial" value="PEMaterial" /></div>
+    <button class="pure-button" onclick="OpenFolder($obj_project.path + '\\_CustomFiles_\\PEMaterial\\')">Open PEMaterial</button>
+    <button class="pure-button" onclick="OpenFolder($obj_project.path + '\\_CustomFiles_\\PEMaterial\\Autoruns')">Open Autoruns</button>
+</div>
+
+<div id="peloader_tab">
+    <div class="tab tab0">
+
+<div>
+Use the small simple lua to manage the startup phase.<br/>
+which one is open-source full functional strong programmability,
+with the expansibility modern design.
+</div>
+<br/><br/>
+<button class="pure-button" onclick="edit_menu_action($obj_project.path + '\\_CustomFiles_\\PEMaterial\\pecmd.lua')">Edit pecmd.lua</button>
+
+    </div>
+
+    <div class="tab tab1">
+
+<div>
+Use the popular PECMD.exe to manage the startup phase.
+<br/><br/>
+<button class="pure-button" onclick="edit_menu_action($obj_project.path + '\\_CustomFiles_\\PEMaterial\\pecmd.ini')">Edit Pecmd.ini</button>
+<button class="pure-button" onclick="edit_menu_action($obj_project.path + '\\_CustomFiles_\\PEMaterial\\PecmdAdmin.ini')">Edit PecmdAdmin.ini</button>
+
+
+</div>
+
+    </div>
+
+    <div class="tab tab2">
+
+<div>
+Use SYSTEM's startnet.cmd to manage the startup phase.
+<br/><br/>
+<button class="pure-button" onclick="edit_menu_action($obj_project.path + '\\_CustomFiles_\\startnet.cmd')">Edit startnet.cmd</button>
+</div>
+
+    </div>
+</div>
+
+
+<script>
+(function init() {
+    if (!$patch_loaded) {
+      $("#peloader_tab").ultab({header:['Lua', 'PECMD', 'System']});
+    } else {
+      $("#peloader_tab").ultab(true);
+    }
+})();
+
+</script>

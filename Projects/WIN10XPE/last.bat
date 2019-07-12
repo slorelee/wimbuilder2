@@ -22,7 +22,6 @@ if not exist "%X_SYS%\dwm.exe" (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v Composition /t REG_DWORD /d 0 /f
 )
 
-call 00-Configures\Loader.bat
 call za-Slim\Cleanup.bat
 
 rem use prepared HIVE files

@@ -102,7 +102,10 @@ local function LoadShell()
   -- RunBeforeShell
 
   RunShell()
-  exec('WinXShell.exe -daemon')
+
+  if explorer_shell then
+    exec('WinXShell.exe -daemon')
+  end
 end
 
 local function WaitShell()

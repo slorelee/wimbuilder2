@@ -16,11 +16,13 @@ set "X_PF=%X%\Program Files"
 set X_WIN=%X%\Windows
 set X_SYS=%X_WIN%\System32
 
+set "_CUSTOMFILES_=%WB_PROJECT_PATH%\_CustomFiles_"
+
 call V2X -init
 
 rem call prepare.bat before mounting
-if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
-    pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
+if exist "%_CUSTOMFILES_%\_Prepare_.bat" (
+    pushd "%_CUSTOMFILES_%\"
     call _Prepare_.bat :BEFORE_WIM_MOUNT
     popd
 )
@@ -62,8 +64,8 @@ goto :EOF
 :BEFORE_HIVE_LOAD
 
 rem call prepare.bat before hive load
-if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
-    pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
+if exist "%_CUSTOMFILES_%\_Prepare_.bat" (
+    pushd "%_CUSTOMFILES_%\"
     call _Prepare_.bat :BEFORE_HIVE_LOAD
     popd
 )

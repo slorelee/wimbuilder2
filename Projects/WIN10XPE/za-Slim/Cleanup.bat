@@ -1,6 +1,10 @@
 rem delete useless files
 call :DELEX /q "%X_SYS%\edgehtml.dll"
 
+if not exist "%X_SYS%\MdSched.exe" (
+    call :DELEX /q "%X%\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Memory Diagnostics Tool.lnk"
+)
+
 rem remove usless mui & mun files
 set Check_SysWOW64=0
 if "x%opt[support.wow64]%"=="xtrue" set Check_SysWOW64=1

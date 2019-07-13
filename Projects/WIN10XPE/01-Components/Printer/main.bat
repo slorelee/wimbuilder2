@@ -5,13 +5,16 @@ rem devices and printers
 call AddDrivers "c_pnpprinters.inf,c_printer.inf,PrintQueue.inf,printupg.inf,usbprint.inf"
 
 rem base drivers
-call AddDrivers "ntprint4.inf,ntprint.inf,ntprint4.inf,tsprint.inf,wsdprint.inf"
+call AddDrivers "ntprint.inf,ntprint4.inf,tsprint.inf,wsdprint.inf"
+call AddDrivers "prnms003.inf"
 
 call AddFiles %0 :end_files
 goto :end_files
 
 \Windows\splwow64.exe
 \Windows\PrintDialog
+
+\Windows\Inf\prn*.inf
 
 \Windows\System32\drivers\usbprint.sys
 @\Windows\System32\driverstore\en-US
@@ -43,34 +46,88 @@ prn*.cat
 \Windows\System32\DriverStore\FileRepository\prn*.inf*
 
 @\Windows\System32\
-;Printers
-spool\tools\Microsoft Print To PDF\
-spool\tools\Microsoft XPS Document Writer\
 
-ApMon.dll,AppMon.dll,bidispl.dll,compstui.dll,DafPrintProvider.dll,defaultdevicemanager.dll,defaultprinterprovider.dll
+DafPrintProvider.dll
 DevDispItemProvider.dll,DeveloperOptionsSettingsHandlers.dll,deviceassociation.dll
-DeviceCenter.dll,DeviceDisplayStatusManager.dll,DeviceDriverRetrievalClient.dll
+DeviceCenter.dll,DeviceDisplayStatusManager.dll
 DeviceEject.exe,DeviceElementSource.dll,DeviceEnroller.exe,DevicesFlowBroker.dll,DeviceMetadataRetrievalClient.dll
-DevicePairing.dll,DevicePairingFolder.dll,DevicePairingProxy.dll,DevicePairingWizard.exe
-deviceregistration.dll,DeviceSetupManager.dll,DeviceSetupManagerAPI.dll,DeviceSetupStatusProvider.dll
-DeviceSoftwareInstallationClient.dll,DeviceUxRes.dll,devinv.dll,DevPropMgr.dll,DevQueryBroker.dll,efswrt.dll
-FaxPrinterInstaller.dll,FdDevQuery.dll,fdPnp.dll,fdprint.dll,fdWNet.dll,fdWSD.dll,findnetprinters.dll
-fundisc.dll,fxsapi.dll,FXSMON.dll,FXSRESM.dll,gpprnext.dll,hgprint.dll,icm32.dll,icmui.dll
-inetpp.dll,inetppui.dll,IPPMon.dll,localspl.dll,localui.dll,mgmtapi.dll
-newdev.exe,ntprint.dll,ntprint.exe,OpcServices.dll,pcl.sep,print.exe
+DevicePairing.dll,DevicePairingFolder.dll,DevicePairing.dll,DevicePairingProxy.dll,DevicePairingWizard.exe
+deviceregistration.dll
+DeviceUxRes.dll,devinv.dll,DevPropMgr.dll,DevQueryBroker.dll,efswrt.dll
+FaxPrinterInstaller.dll,fdPnp.dll,fdWNet.dll,fdWSD.dll
+fxsapi.dll,FXSMON.dll,FXSRESM.dll,gpprnext.dll,hgprint.dll,icm32.dll,icmui.dll
+inetppui.dll,IPPMon.dll,localspl.dll,localui.dll,mgmtapi.dll
+newdev.exe,ntprint.dll,ntprint.exe,pcl.sep,print.exe
 PrintBrmUi.exe,PrintDialogHost.exe,PrintDialogs.dll,printfilterpipelineprxy.dll,printfilterpipelinesvc.exe
 PrintIsolationHost.exe,PrintIsolationProxy.dll,printmanagement.msc,PrintPlatformConfig.dll,PrintRenderAPIHost.DLL
 printui.dll,printui.exe,PrintWSDAHost.dll,prncache.dll,prnfldr.dll,prnntfy.dll,prntvpt.dll,pscript.sep
 puiapi.dll,puiobj.dll,rasadhlp.dll,RepCurUser.cmd,ReSpooler.cmd,serialui.dll,spoolss.dll,spoolsv.exe,srclient.dll
-srcore.dll,sysprint.sep,sysprtj.sep,tcpmon.ini,umb.dll,usbmon.dll,webservices.dll,win32spl.dll
+srcore.dll,sysprint.sep,sysprtj.sep,tcpmon.dll,tcpmon.ini,tcpmonui.dll,umb.dll,usbmon.dll,webservices.dll,win32spl.dll
 Windows.Devices.Printers.dll,Windows.Devices.Printers.Extensions.dll
 Windows.Graphics.dll,Windows.Graphics.Printing.3D.dll,Windows.Graphics.Printing.dll
 Windows.Internal.Shell.Broker.dll,WLIDNSP.DLL,WlS0WndH.dll,WSDApi.dll,WSDMon.dll,wsdprintproxy.dll,WSDScanProxy.dll
-XpsDocumentTargetPrint.dll,XpsFilt.dll,XpsGdiConverter.dll,XpsPrint.dll,XpsRasterService.dll,XPSServiceS.DLL,XPSSHHDR.dll
+XpsDocumentTargetPrint.dll,XpsFilt.dll,XpsGdiConverter.dll,XpsPrint.dll,XPSSHHDR.dll
 xwizard.exe,xwizards.dll,xwtpdui.dll,xwtpw32.dll
+
+;V1803
+coloradapterclient.dll
+
+;Document and Device
+defaultdevicemanager.dll
+defaultprinterprovider.dll
+fundisc.dll
+FdDevQuery.dll
+fdprint.dll
+DDOIProxy.dll
+RemoveDeviceContextHandler.dll
+DeviceDisplayStatusManager.dll
+
+;mof: "wmi win32_printer"
+wbem\win32_printer.mof
+;mof get-printer
+wbem\PrintManagementProvider.*
+
+;"printer option" menu
+compstui.dll
+
+;Sharing printers on Local Network
+findnetprinters.dll
+wsnmp32.dll
+
+;Printer PDF
+spool\tools\Microsoft Print To PDF\
+spool\tools\Microsoft XPS Document Writer\
+DeviceSetupManager.dll
+DeviceSetupManagerAPI.dll
+DeviceSetupStatusProvider.dll
+DeviceDriverRetrievalClient.dll
+
+;V1809 dsmsvc
+DeviceSoftwareInstallationClient.dll
+
+;Printer XPS
+;V1809
+ApMon.dll,AppMon.dll,bidispl.dll
+;Absence in V1803 and V1809???
+xpsrchvw.exe
+
+;Print on Internet
+inetpp.dll
+
+;For PDF and XPS
+OpcServices.dll
+xpsservices.dll
+XpsRasterService.dll
+
 :end_files
 
 call DoAddFiles
+
+rem ; V1709
+SetACL.exe -on "%X_SYS%\spool\PRINTERS" -ot file -actn ace -ace "n:Everyone;p:full;s:y"
+
+; V1803
+rem prn*.inf
 
 rem ==========update registry==========
 
@@ -88,6 +145,9 @@ call RegCopyEx Services Spooler
 rem remove usbprint if this is additional component
 call RegCopyEx Services usbprint
 
+rem avoid error: "the printer driver is not compatible with a policy on your computer which disable NT4.0 driver"
+reg add "HKLM\Tmp_Software\Policies\Microsoft\Windows NT\Printers" /v KmPrintersAreBlocked /t REG_DWORD /d 0 /f
+
 rem update spoolsv.exe binary
 binmay.exe -u "%X_SYS%\spoolsv.exe" -s u:SystemSetupInProgress -r u:DisableSpoolsvInWinPE
 fc /b "%X_SYS%\spoolsv.exe.org" "%X_SYS%\spoolsv.exe"
@@ -95,8 +155,11 @@ del /f /q "%X_SYS%\spoolsv.exe.org"
 
 rem EnablePrintFeature
 if 1==1 (
+  echo X:\windows\system32\wbem\mofcomp.exe X:\windows\system32\wbem\win32_printer.mof
+  echo X:\windows\system32\wbem\mofcomp.exe X:\windows\system32\wbem\PrintManagementProvider.mof
   echo ntprint.exe
   echo net start spooler
   echo PnPutil.exe -i -a "%%Windir%%\inf\usbprint.inf"
+  echo drvload.exe "%%Windir%%\inf\printqueue.inf"
 )>"%X_PEMaterial%\EnablePrintFeature.bat"
 rem call link "%X_PEMaterial%\EnablePrintFeature.bat" "%X_Desktop%\EnablePrintFeature.lnk"

@@ -4,7 +4,7 @@ rem      V2X.cmd name [-extract|-copy|-xcopy|version] ...
 
 rem for /f "delims==" %%i in ('set _V_') do set %%i=
 
-if "x%_V_Arch%"=="x" call :INIT_VARCHS
+if "x%_V_xArch%"=="x" call :INIT_VARCHS
 if /i "x%~1"=="x-init" goto :EOF
 
 set "_V_Name=%~1"
@@ -33,13 +33,14 @@ popd
 goto :EOF
 
 :INIT_VARCHS
-set _V_Arch=%WB_PE_ARCH%
+set _V_xArch=%WB_PE_ARCH%
+set _V_Arch=%_V_xArch:~-2,2%
 set _V64=
 set _Vx64=
 set _V-x64=
 set _V_x64=
 
-if "%_V_Arch%"=="x64" (
+if "%_V_xArch%"=="x64" (
     set _V64=64
     set _Vx64=x64
     set _V-x64=-x64

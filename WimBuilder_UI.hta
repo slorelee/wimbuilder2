@@ -287,17 +287,10 @@ if ($IE_VER == '9+') {
     <select id="patch_preset" width="300">
         <option selected="selected">default</option>
         <option>custom</option>
-        <option>custom1</option>
-        <option>custom2</option>
-        <option>custom3</option>
-        <option>custom4</option>
         <option>lite</option>
-        <option>lite1</option>
-        <option>lite2</option>
-        <option>lite3</option>
-        <option>lite4</option>
         <option>-</option>
     </select>
+    <button class="ibutton browse i18n-title i18n-text" onclick="OpenFolder($obj_project.path + '\\_Assets_\\preset\\')">Browse...</button>
     </div>
     <div id="patches_area">
         <div id="patches_list" style="overflow:auto">

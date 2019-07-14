@@ -47,6 +47,13 @@ if "x%opt[account.admin_enabled]%"=="xtrue" (
 if "x%opt[component.netfx]%"=="xtrue" (
     set opt[build.registry.software]=full
 )
+
+call CheckPatch "01-Components\Devices and Printers"
+if "x%HasPatch%_%opt[component.printer]%"=="xtrue_true" (
+    set opt[build.registry.software]=full
+    set opt[patch.drvinst]=true
+)
+
 if "x%opt[network.function_discovery]%"=="xtrue" (
     set opt[build.registry.software]=full
 )

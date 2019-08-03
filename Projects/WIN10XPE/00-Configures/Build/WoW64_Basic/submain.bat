@@ -99,6 +99,8 @@ ieframe.dll,mshtml.dll
 
 :end_files
 
+if not exist "%X%\Program Files (x86)\Common Files\" mkdir "%X%\Program Files (x86)\Common Files"
+
 rem ==========update registry==========
 
 rem [Reg_WoW64]

@@ -1,15 +1,5 @@
 set "f0=%~f0"
 
-rem ==========update file system==========
-
-rem System
-call AddFiles "%f0%" :end_sys_files
-goto :end_sys_files
-@\Windows\System32\
-nsi.dll
-sti.dll
-:end_sys_files
-
 rem System32/SysWOW64
 call :_Compatibility %WB_PE_ARCH% System32
 if "x%opt[build.wow64support]%"=="xtrue" (
@@ -25,10 +15,25 @@ rem ==========update file system==========
 call AddFiles "%f0%" :end_files
 goto :end_files
 
+;Here for both System32 and SysWOW64
 @\Windows\%SysDir%\
 
+; AFAIK Tencent QQ(x86) required
+avicap32.dll
+rasman.dll
+
+;Here for System32 only
++if "%SysDir%"="System32"
+nsi.dll
+sti.dll
+-if
+
+;Here for SysWOW64 only
++if "%SysDir%"="SysWOW64"
 ; PowerPoint 2007 Preview(F5) page switch
 hlink.dll
+-if
+
 :end_files
 
 rem ==========update registry==========

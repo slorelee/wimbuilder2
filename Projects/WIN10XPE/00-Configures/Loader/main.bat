@@ -19,7 +19,7 @@ if "%WB_PE_ARCH%"=="x86" (
 )
 
 rem add PECMD always
-call V2X PECMD -Copy "Pecmd_%_V_xARCH%.exe" "%X_SYS%\Pecmd.exe"
+call V2X PECMD -Copy "Pecmd_%_Vx8664%.exe" "%X_SYS%\Pecmd.exe"
 call X2X
 
 if "%PE_LOADER%"=="LUA" goto :LOADER_LUA
@@ -44,7 +44,7 @@ goto :EOF
 
 :LOADER_PECMD
 if not exist "%X_SYS%\Pecmd.exe" (
-  call V2X PECMD -Copy "Pecmd_%_V_xARCH%.exe" "%X_SYS%\Pecmd.exe"
+  call V2X PECMD -Copy "Pecmd_%_Vx8664%.exe" "%X_SYS%\Pecmd.exe"
 )
 
 rd /s /q "%X_PEMaterial%\locales"

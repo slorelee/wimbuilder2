@@ -1,4 +1,4 @@
-call V2X 7-Zip -Extract "7z*-%_V_xARCH%.exe" "%X_PF%\7-Zip\"
+call V2X 7-Zip -Extract "7z*-%_Vx8664%.exe" "%X_PF%\7-Zip\"
 copy /y 7z-Register.reg "%X_PF%\7-Zip\"
 
 call :REMOVE_LANGFILES

@@ -1,5 +1,5 @@
 call V2X HotSwap -Extract "HotSwap_*.ZIP" "%X%\Temp\HotSwap\"
-copy /y "%X%\Temp\HotSwap\%_V_ARCH%bit\HotSwap^!.EXE" "%X_SYS%\"
+copy /y "%X%\Temp\HotSwap\%_V3264%bit\HotSwap^!.EXE" "%X_SYS%\"
 rd /s /q "%X%\Temp\HotSwap\"
 
 call AddFiles \Windows\system32\systray.exe

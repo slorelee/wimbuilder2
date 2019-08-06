@@ -32,6 +32,8 @@ StartTileData.dll,stobject.dll,StorageUsage.dll,systemcpl.dll,TDLMigration.dll,T
 twinapi.appcore.dll,twinapi.dll,twinui.appcore.dll,twinui.pcshell.dll,UIAnimation.dll,UIRibbon.dll,UIRibbonRes.dll
 Windows.Gaming.Input.dll,Windows.Internal.Shell.Broker.dll,Windows.Networking.Connectivity.dll,WorkFoldersShell.dll,zipfldr.dll
 windows.immersiveshell.serviceprovider.dll
+credssp.dll,mblctr.exe,TextShaping.dll
+Windows.Globalization.dll
 
 +ver <= 17000
 VEEventDispatcher.dll

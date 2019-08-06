@@ -24,13 +24,16 @@ goto :end_files
 @\Windows\%SysDir%\
 ; VC++ runtimes
 ; already in winre.wim but add for SysWOW64
-msvcp_win.dll,msvcp60.dll,msvcp110_win.dll,msvcrt.dll
+msvcirt.dll,msvcp_win.dll,msvcp60.dll,msvcp110_win.dll,msvcrt.dll
+ucrtbase.dll
 
 msvcp120_clr0400.dll,msvcrt20.dll,msvcrt40.dll
 msvcr100_clr0400.dll,msvcr120_clr0400.dll
 
 ; Additional Files for v1903
-msvcirt.dll,msvcp110.dll,msvcp140_clr0400.dll,msvcr110.dll
+msvcp110.dll,msvcp140_clr0400.dll,msvcr110.dll
+ucrtbase_clr0400.dll
+ucrtbase_enclave.dll
 
 ; WinSxS VC++ runtimes
 \Windows\WinSxS\%SxSArch%_microsoft.vc80.crt*

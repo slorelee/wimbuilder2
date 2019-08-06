@@ -11,7 +11,10 @@ goto :end_files
 mmc.exe,mmcbase.dll,mmcndmgr.dll,mmcshext.dll
 ; mmc resources
 filemgmt.dll
-
+OnDemandConnRouteHelper.dll
++mui
+wbem\servdeps.dll
+-mui
 :end_files
 
 rem ==========update registry==========

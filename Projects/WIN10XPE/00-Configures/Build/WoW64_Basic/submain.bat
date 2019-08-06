@@ -70,7 +70,8 @@ FirewallAPI.dll,fltlib.dll,fwbase.dll,fwpolicyiomgr.dll,FWPUCLNT.DLL,gdi32.dll,g
 iertutil.dll,imm32.dll,InputHost.dll,iphlpapi.dll,kernel.appcore.dll,kernel32.dll,kernelbase.dll,linkinfo.dll,logoncli.dll
 mfperfhelper.dll,mfc42.dll,mpr.dll,msacm32.dll,msacm32.drv,msasn1.dll,mscms.dll,mscories.dll
 msctf.dll,msdelta.dll,msi.dll,msimg32.dll,msIso.dll,mskeyprotect.dll,msls31.dll,msv1_0.dll,msvbvm60.dll,msvcp60.dll,msvcp_win.dll,msvcp110_win.dll,msvcrt.dll,msvcrt40.dll
-msvfw32.dll,mswsock.dll,msxml3.dll,msxml3r.dll,msxml6.dll,msxml6r.dll,ncrypt.dll,ncryptprov.dll,ncryptsslp.dll,netapi32.dll,netutils.dll,normaliz.dll,ntasn1.dll,ntdll.dll
+msvfw32.dll,mswsock.dll,msxml3.dll,msxml3r.dll,msxml6.dll,msxml6r.dll,ncrypt.dll,ncryptprov.dll,ncryptsslp.dll
+net.exe,net1.exe,netmsg.dll,netapi32.dll,netutils.dll,normaliz.dll,ntasn1.dll,ntdll.dll
 ntdsapi.dll,ntlanman.dll,ntmarta.dll,ntshrui.dll,odbc32.dll,ole32.dll,oleacc.dll,oleaccrc.dll,oleaut32.dll,oledlg.dll,olepro32.dll
 OnDemandConnRouteHelper.dll,OneCoreUAPCommonProxyStub.dll,pdh.dll,policymanager.dll,powrprof.dll,profapi.dll,propsys.dll,psapi.dll
 rasadhlp.dll,rasapi32.dll,reg.exe,regedt32.exe,regsvr32.exe,riched20.dll,riched32.dll,rmclient.dll,rpcrt4.dll,rsaenh.dll,rtutils.dll

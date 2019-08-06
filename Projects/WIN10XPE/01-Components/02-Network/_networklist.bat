@@ -2,8 +2,9 @@ goto :EOF
 
 call AddFiles %0 :end_files
 goto :end_files
-; Seems Not required nlmgp.dll,nlmproxy.dll,nlmsprep.dll
+
 @\Windows\System32\
+nlmgp.dll,nlmproxy.dll,nlmsprep.dll
 networklist\
 Wbem\netprofm.mof
 ImplatSetup.dll,netprofm.dll,netprofmsvc.dll,npmproxy.dll,pnidui.dll

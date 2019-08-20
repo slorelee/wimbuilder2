@@ -35,7 +35,11 @@ if not exist "%ISO_DIR%\boot\etfsboot.com" (
 )
 
 copy /y "%Factory%\target\%WB_PROJECT%\build\boot.wim" "%ISO_DIR%\sources\boot.wim"
-oscdimg.exe -b"%ISO_DIR%\boot\etfsboot.com" -h -l"%WB_ISO_LABEL%" -m -u2 "%ISO_DIR%" "%Factory%\%WB_ISO_NAME%.iso"
+if exist "%ISO_DIR%\efi\Microsoft\boot\efisys.bin" (
+  oscdimg.exe -bootdata:2#p0,e,b"%ISO_DIR%\boot\etfsboot.com"#pEF,e,b"%ISO_DIR%\efi\Microsoft\boot\efisys.bin" -h -l"%WB_ISO_LABEL%" -m -u2 -udfver102 "%ISO_DIR%" "%Factory%\%WB_ISO_NAME%.iso"
+) else (
+  oscdimg.exe -b"%ISO_DIR%\boot\etfsboot.com" -h -l"%WB_ISO_LABEL%" -m -u2 -udfver102 "%ISO_DIR%" "%Factory%\%WB_ISO_NAME%.iso"
+)
 echo \033[96mISO Created -* %Factory%\%WB_ISO_NAME%.iso | cmdcolor.exe
 if ERRORLEVEL 1 (
   echo make boot iso failed.

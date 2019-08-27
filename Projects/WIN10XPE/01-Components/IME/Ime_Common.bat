@@ -46,6 +46,8 @@ Windows.Networking.HostName.dll
 TextInputMethodFormatter.dll,WordBreakers.dll
 Language*.dll
 Windows.UI.Core.TextInput.dll
++ver > 18960
+Windows.Web.dll
 +ver*
 
 :end_files

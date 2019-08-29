@@ -10,6 +10,7 @@ End If
 'Next
 
 Dim g_path, g_mui, g_mui_list, g_ver, g_if_level, g_if_cond(100)
+Dim flag_syswow64, g_syswow64
 
 Dim code_file, code_word, out_file
 
@@ -51,6 +52,8 @@ Else
   txt_sysres = ""
 End If
 
+flag_syswow64 = env("ADDFILES_SYSWOW64")
+g_syswow64 = ""
 
 Dim regEx_mui, regEx_sysres
 Set regEx_mui = New RegExp
@@ -163,6 +166,12 @@ Sub parser(line)
   ElseIf Left(line, 3) = "-if" Then
     g_if_level = g_if_level - 1
     Exit Sub
+  ElseIf Left(line, 9) = "+syswow64" Then
+    If flag_syswow64 = "1" Then g_syswow64 = "\Windows\SysWOW64\"
+    Exit Sub
+  ElseIf Left(line, 9) = "-syswow64" Then
+    g_syswow64 = ""
+    Exit Sub
   End If
 
   If Left(line, 5) = "+ver*" Then g_ver = "":Exit Sub
@@ -241,9 +250,17 @@ Sub addfile(fn)
 
   'ignore g_path
   If Left(fn, 1) = "\" Then
+    'ignore SysWOW64 files
+    If flag_syswow64 <> "1" Then
+      If InStr(1, fn, "\Windows\SysWOW64\") = 1 Then Exit Sub
+    End If
     outs = outs & fn & vbCrLf
     Exit Sub
   End If
+
+  'ignore SysWOW64 files
+  If flag_syswow64 <> "1" And g_path = "\Windows\SysWOW64\" Then Exit Sub
+
   outs = outs & g_path & fn & vbCrLf
 
   'append mun file
@@ -252,10 +269,18 @@ Sub addfile(fn)
     If munfile <> "" Then outs = outs & munfile & vbCrLf
   End If
 
+  If g_syswow64 <> "" Then
+    outs = outs & g_syswow64 & fn & vbCrLf
+  End If
+
   If g_mui = "" Then
       'append mui file
       muifile = valid_muifile(g_path & fn)
       If muifile <> "" Then outs = outs & muifile & vbCrLf
+      If g_syswow64 <> "" Then
+        muifile = valid_muifile(g_syswow64 & fn)
+        If muifile <> "" Then outs = outs & muifile & vbCrLf
+      End If
       Exit Sub
   End If
 
@@ -268,12 +293,14 @@ Sub addfile(fn)
   ext = "\" & fn & ext & vbCrLf
   If InStr(g_mui_list, ",") = 0 Then
     outs = outs & g_path & g_mui_list & ext
+    If g_syswow64 <> "" Then outs = outs & g_syswow64 & g_mui_list & ext
     Exit Sub
   End If
 
   mui_arr = Split(g_mui_list, ",")
   For i = 0 To Ubound(mui_arr)
     outs = outs & g_path & mui_arr(i) & ext
+    If g_syswow64 <> "" Then outs = outs & g_syswow64 & mui_arr(i) & ext
   Next
 
 End Sub

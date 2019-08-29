@@ -17,10 +17,12 @@ if "x%opt[build.adk]%"=="xtrue" (
 
 if "x%opt[build.wow64support]%"=="xtrue" (
   if not "x%WB_PE_ARCH%"=="xx64" set opt[build.wow64support]=false
-  set ADDFILES_SKIP_WOW64=1
 )
 
 set opt[support.wow64]=%opt[build.wow64support]%
+if "%opt[support.wow64]%"=="true" (
+  set ADDFILES_SYSWOW64=1
+)
 
 rem call CheckPatch "01-Components\02-Network"
 rem set opt[support.network]=%HasPatch%

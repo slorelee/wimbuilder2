@@ -31,6 +31,10 @@ if "x%opt[component.netfx]%"=="xtrue" (
   call :ApplySubPatch ".\NetFX"
 )
 
+if "x%opt[component.MSI]%"=="xtrue" (
+  call :ApplySubPatch ".\MSI"
+)
+
 if "x%opt[patch.drvinst]%"=="xtrue" (
   call :ApplySubPatch ".\Patch_drvinst"
 )

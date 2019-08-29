@@ -3,6 +3,10 @@ rem ==========update filesystem==========
 call AddFiles %0 :end_files
 goto :end_files
 
+@\Windows\System32\
+setx.exe
+@-
+
 ; ncsi.dll.mui is not included in winre.wim
 \Windows\System32\??-??\ncsi.dll.mui
 

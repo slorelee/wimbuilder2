@@ -1,7 +1,11 @@
 @echo off
 set DrvRepo=%SystemRoot%\System32\DriverStore\FileRepository
 call :InstDriver wpdmtp.inf
-pause
+if not "x%Autoruns_Runner%"=="x1" (
+  pause
+  goto :EOF
+)
+set RunOnce=1
 goto :EOF
 
 :InstDriver

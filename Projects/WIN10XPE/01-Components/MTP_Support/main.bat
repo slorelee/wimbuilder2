@@ -58,3 +58,6 @@ call RegCopy HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\
 rem [optional]call SharedPatch NewBrowseDlg
 rem put mtp_support.bat on Desktop
 call X2X
+if exist "%X_Startup%" (
+  move "%X_Desktop%\mtp_support.bat" "%X_Startup%\"
+)

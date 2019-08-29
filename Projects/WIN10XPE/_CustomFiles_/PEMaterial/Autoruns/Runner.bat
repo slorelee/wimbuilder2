@@ -1,5 +1,6 @@
 @echo off
 pushd "%~dp0"
+set Autoruns_Runner=1
 if "x%~1"=="x" goto :RUN_END
 if not exist "%~1" goto :RUN_END
 cd /d "%~1"

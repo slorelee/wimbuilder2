@@ -9,6 +9,8 @@ echo PE_LOADER=%PE_LOADER%
 
 if "x%opt[loader.PEMaterial]%"=="x" set opt[loader.PEMaterial]=PEMaterial
 set "X_PEMaterial=%X%\%opt[loader.PEMaterial]%"
+set "X_OSInit=%X_PEMaterial%\Autoruns\OSInit"
+set "X_Startup=%X_PEMaterial%\Autoruns\Startup"
 
 if exist "%_CUSTOMFILES_%\PEMaterial" (
   xcopy /Y /E "%_CUSTOMFILES_%\PEMaterial" "%X_PEMaterial%\"

@@ -31,10 +31,10 @@ set _pecmd_shell_head=
 call TextReplace "%X_SYS%\pecmd.ini" #//ARCH_%WB_PE_ARCH%_ ""
 
 if not "x%opt[support.audio]%"=="xtrue" (
-    call TextReplace "%X_SYS%\pecmd.ini" "CALL AudioInit" "#// CALL AudioInit"
+    ren "%X_Startup%\AudioInit.bat" AudioInit.bat.skipped
 )
 if not "x%opt[support.network]%"=="xtrue" (
-    call TextReplace "%X_SYS%\pecmd.ini" "CALL NetInit" "#// CALL NetInit"
+    ren "%X_Startup%\NetInit.bat" NetInit.bat.skipped
 )
 
 goto :STARTUP_ENTRY_END

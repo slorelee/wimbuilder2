@@ -17,8 +17,7 @@ call RegCopy HKLM\System\ControlSet001\Control\NetworkUXManager
 call RegCopy "HKLM\Software\Microsoft\Windows NT\CurrentVersion\NetworkList"
 
 reg add HKLM\Tmp_System\Setup\AllowStart\netprofm /f
-rem needs startup with SetupInProgress=0
-reg add HKLM\Tmp_System\ControlSet001\Services\netprofm /v Start /t REG_DWORD /d 4 /f
+reg add HKLM\Tmp_System\ControlSet001\Services\netprofm /v Start /t REG_DWORD /d 3 /f
 
 set Netprofm_SID=S-1-5-80-3635958274-2059881490-2225992882-984577281-633327304
 set NlaSvc_SID=S-1-5-80-3141615172-2057878085-1754447212-2405740020-3916490453

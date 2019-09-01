@@ -1,4 +1,4 @@
-goto :EOF
+if not "x%opt[network.sharecenter]%"=="xtrue" goto :EOF
 
 call AddFiles %0 :end_files
 goto :end_files

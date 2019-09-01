@@ -29,17 +29,6 @@ call TextReplace "%X_SYS%\pecmd.ini" #//%_pecmd_shell_head% "" g
 set _pecmd_shell_head=
 
 call TextReplace "%X_SYS%\pecmd.ini" #//ARCH_%WB_PE_ARCH%_ ""
-
-if not "x%opt[support.audio]%"=="xtrue" (
-    ren "%X_Startup%\AudioInit.bat" AudioInit.bat.skipped
-)
-if not "x%opt[support.network]%"=="xtrue" (
-    ren "%X_Startup%\NetInit.bat" NetInit.bat.skipped
-) else (
-    rem init network on booting
-    call TextReplace "%X_SYS%\unattend.xml" "EnableNetwork>false</EnableNetwork" "EnableNetwork>true</EnableNetwork"
-)
-
 goto :STARTUP_ENTRY_END
 
 :STARTNET_ENTRY
@@ -55,6 +44,17 @@ if "x%opt[slim.ultra]%"=="xtrue" (
     call TextReplace "%X_SYS%\startnet.cmd" "wpeinit" "rem wpeinit"
 )
 :STARTUP_ENTRY_END
+
+if not "x%opt[support.audio]%"=="xtrue" (
+    ren "%X_Startup%\AudioInit.bat" AudioInit.bat.skipped
+)
+if not "x%opt[support.network]%"=="xtrue" (
+    ren "%X_Startup%\NetInit.bat" NetInit.bat.skipped
+) else (
+    rem init network on booting
+    call TextReplace "%X_SYS%\unattend.xml" "EnableNetwork>false</EnableNetwork" "EnableNetwork>true</EnableNetwork"
+)
+
 goto :EOF
 
 :DELEX

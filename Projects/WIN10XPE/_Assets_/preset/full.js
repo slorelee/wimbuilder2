@@ -23,6 +23,7 @@ var $patches_opt = {
     "component.bitlocker":true,
     "component.search":true,
     "component.vcruntime":true,
+    "component.MSI":false,              // can't logon with Admin
     "component.netfx":true,
     "component.MTP":true,
     "component.mspaint":true,
@@ -39,6 +40,7 @@ var $patches_opt = {
     "IE.custom_settings":true,
     "IE.home_page":"about:blank",
     "network.function_discovery":true,
+    "network.networklist_and_sharecenter":true,
     "network.builtin_drivers":true,
     "audio.win_events":"all",
     "slim.mui":true,

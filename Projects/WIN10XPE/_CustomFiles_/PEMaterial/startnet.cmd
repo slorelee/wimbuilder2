@@ -1,5 +1,7 @@
 @echo off
 set USERPROFILE=X:\Users\Default
+set Desktop=%USERPROFILE%\Desktop
+set "Programs=%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"
 wpeinit.exe
 call "X:\PEMaterial\Autoruns\Runner.bat" OSInit
 

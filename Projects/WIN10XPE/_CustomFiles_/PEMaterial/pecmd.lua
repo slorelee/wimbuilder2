@@ -101,6 +101,7 @@ local function LoadShell()
 
   -- RunBeforeShell
 
+  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\Runner.bat Startup\\BeforeShell')
   RunShell()
 
   if explorer_shell then

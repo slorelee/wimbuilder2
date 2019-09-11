@@ -7,6 +7,8 @@ if exist %SystemRoot%\System32\IME_Cmd.cmd (
     call %SystemRoot%\System32\IME_Cmd.cmd
 )
 
+call "X:\PEMaterial\Autoruns\Runner.bat" Startup\BeforeShell
+
 if exist "%windir%\explorer.exe" (
   start explorer.exe
   if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (

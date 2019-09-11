@@ -11,6 +11,7 @@ if "x%opt[loader.PEMaterial]%"=="x" set opt[loader.PEMaterial]=PEMaterial
 set "X_PEMaterial=%X%\%opt[loader.PEMaterial]%"
 set "X_OSInit=%X_PEMaterial%\Autoruns\OSInit"
 set "X_Startup=%X_PEMaterial%\Autoruns\Startup"
+set "X_BeforeShell=%X_PEMaterial%\Autoruns\Startup\BeforeShell"
 
 if exist "%_CUSTOMFILES_%\PEMaterial" (
   xcopy /Y /E "%_CUSTOMFILES_%\PEMaterial" "%X_PEMaterial%\"
@@ -23,6 +24,10 @@ if "%WB_PE_ARCH%"=="x86" (
 rem add PECMD always
 call V2X PECMD -Copy "Pecmd_%_Vx8664%.exe" "%X_SYS%\Pecmd.exe"
 call X2X
+
+rem init for LUALINK, LUAPIN
+call LuaLink -init "%X_Startup%\BeforeShell\Shortcuts.lua"
+call LuaPin -init "%X_Startup%\PinShortcuts.lua"
 
 if "%PE_LOADER%"=="LUA" goto :LOADER_LUA
 if "%PE_LOADER%"=="PECMD" goto :LOADER_PECMD

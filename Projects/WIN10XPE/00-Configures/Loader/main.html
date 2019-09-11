@@ -74,7 +74,7 @@ Use the popular PECMD.exe to manage the startup phase.
 <div>
 Use SYSTEM's startnet.cmd to manage the startup phase.
 <br/><br/>
-<button class="pure-button" onclick="edit_menu_action($obj_project.path + '\\_CustomFiles_\\startnet.cmd')">Edit startnet.cmd</button>
+<button class="pure-button" onclick="edit_menu_action($obj_project.path + '\\_CustomFiles_\\PEMaterial\\startnet.cmd')">Edit startnet.cmd</button>
 </div>
 
     </div>
@@ -85,6 +85,11 @@ Use SYSTEM's startnet.cmd to manage the startup phase.
 (function init() {
     if (!$patch_loaded) {
       $("#peloader_tab").ultab({header:['Lua', 'PECMD', 'System']});
+      if (!$patches_opt["loader.name"] || $patches_opt["loader.name"] == 'pecmd') {
+        $("#peloader_tab li:eq(1)").click();
+      } else if ($patches_opt["loader.name"] == 'system') {
+        $("#peloader_tab li:eq(2)").click();
+      }
     } else {
       $("#peloader_tab").ultab(true);
     }

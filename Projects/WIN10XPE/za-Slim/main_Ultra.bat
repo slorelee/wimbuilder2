@@ -3,36 +3,6 @@ echo Ultra Sliming...
 
 call SharedPatch CustomCompmgmt
 
-rem init code page
-set WB_PE_CODEPAGE=
-for /f "tokens=3" %%i in ('reg query HKLM\Tmp_SYSTEM\ControlSet001\Control\Nls\CodePage /v ACP') do (
-  set WB_PE_CODEPAGE=%%i
-)
-if "x%WB_PE_CODEPAGE%"=="x" set WB_PE_CODEPAGE=437
-echo Got code page: %WB_PE_CODEPAGE%
-
-call :KEEP_FILES \Windows\Fonts\ "app%WB_PE_CODEPAGE%.fon,consola.ttf,marlett.ttf,micross.ttf,tahoma.ttf,segmdl2.ttf,tahoma.ttf,tahomabd.ttf"
-call :KEEP_FILES \Windows\Fonts\ "svgafix.fon,svgasys.fon,vga%WB_PE_CODEPAGE%.fon,vgafix.fon,vgafixr.fon,vgaoem.fon,vgasys.fon,vgasysr.fon"
-if "x%WB_PE_LANG%"=="xen-US" (
-  call :KEEP_FILES \Windows\Fonts\ "segoeui.ttf,segoeuib.ttf,segoeuii.ttf"
-)
-if "x%WB_PE_LANG%"=="xzh-CN" (
-  call :KEEP_FILES \Windows\Fonts\ "msyh.ttc,s8514fix.fon,s8514oem.fon,s8514sys.fon"
-  call :KEEP_FILES \Windows\Fonts\ "segoeuib.ttf,seguisbi.ttf,seguisym.ttf,simsun.ttc,wingding.ttf"
-  del "%X%\[KEEP]\Windows\Fonts\tahomabd.ttf"
-
-  rem volume mixer
-  call :KEEP_FILE \Windows\Fonts\Malgun.ttf
-)
-if "x%WB_PE_LANG%"=="xru-RU" (
-  call :KEEP_FILES \Windows\Fonts\ "cour.ttf,courbd.ttf,courbi.ttf,courer.fon,lucon.ttf,serifer.fon"
-)
-if "x%WB_PE_LANG%"=="xko-KR" (
-  call :KEEP_FILES \Windows\Fonts\ "gulim.ttc,malgun.ttf"
-)
-del /a /f /q "%X_WIN%\Fonts\*.*"
-
-
 for %%i in (DVD,EFI,Misc,PCAT,PXE) do (
   rd /q /s "%X_WIN%\Boot\%%i"
 )
@@ -46,41 +16,6 @@ rem )
 
 del /q "%X_SYS%\Boot\winresume.*"
 del /q "%X_SYS%\Boot\%WB_PE_LANG%\winresume.*"
-
-:SLIM_CATALOG
-del /a /f /q "%X_SYS%\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\*~en-US~*"
-
-rem HyperV-,Package_
-for %%i in (HyperV-) do (
-  del /a /f /q "%X_SYS%\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\%%i*"
-)
-
-for %%i in (ATBroker,MDAC,Multilingual,Hyper-V,International,Rejuv,Rejuvenation,WCN,ServicingStack) do (
-  del /a /f /q "%X_SYS%\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\*-%%i-*"
-)
-
-for %%i in (BootEnvironment-Dvd,OneCore-TroubleShooting,OneCore-Multimedia) do (
-  del /a /f /q "%X_SYS%\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\*-%%i-*"
-)
-
-if not "x%opt[support.wow64]%"=="xtrue" (
-  for %%i in (WOW64) do (
-    del /a /f /q "%X_SYS%\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\*-%%i-*"
-  )
-)
-
-if not "x%opt[support.audio]%"=="xtrue" (
-  for %%i in (AudioDriversCore,MMECoreBase,MMECoreWdmAudio,AudioCore,AudioDrivers) do (
-    del /a /f /q "%X_SYS%\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\*-%%i-*"
-  )
-)
-
-if not "x%opt[support.network]%"=="xtrue" (
-  for %%i in (Network,WiFi) do (
-    del /a /f /q "%X_SYS%\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\*-%%i-*"
-  )
-)
-:END_SLIM_CATALOG
 
 rem del files
 if not "x%opt[support.audio]%"=="xtrue" (
@@ -124,25 +59,6 @@ if not "x%WB_PE_LANG%"=="xen-US" (
   rd /s /q "%X_SYS%\wbem\en-US"
 )
 
-rd /q /s "%X_SYS%\AdvancedInstallers"
-
-del /a /f /q "%X_SYS%\config\BBI"
-del /a /f /q "%X_SYS%\config\BCD-Template"
-del /a /f /q "%X_SYS%\config\ELAM"
-
-rd /q /s "%X_SYS%\config\Journal"
-rd /q /s "%X_SYS%\config\RegBack"
-rd /q /s "%X_SYS%\config\TxR"
-rd /q /s "%X_SYS%\config\systemprofile"
-
-rd /q /s "%X_SYS%\DiagSvcs"
-rd /q /s "%X_SYS%\migration"
-rd /q /s "%X_SYS%\SMI"
-rd /q /s "%X_SYS%\WindowsPowerShell"
-
-rd /q /s "%X_SYS%\wbem\Repository"
-md "%X_SYS%\wbem\Repository"
-
 rem rd /q /s "%X_SYS%\WindowsPowerShell\v1.0\Modules\Storage"
 rem rd /q /s "%X_SYS%\WindowsPowerShell\v1.0\Modules\StorageBusCache"
 rem rd /q /s "%X_SYS%\WindowsPowerShell\v1.0\Modules\iSCSI"
@@ -180,29 +96,6 @@ del /a /f /q "%X_SYS%\Faultrep.dll"
 del /a /f /q "%X_SYS%\fdWCN.dll"
 del /a /f /q "%X_SYS%\FlightSettings.dll"
 
-if "x%opt[shell.app]%"=="xwinxshell" (
-  del /a /f /q "%X_WIN%\SystemResources\ieframe.dll.mun"
-  del /a /f /q "%X_SYS%\ieframe.dll"
-  del /a /f /q "%X_SYS%\%WB_PE_LANG%\ieframe.dll.mui"
-)
-
-call :KEEP_FILE \Windows\System32\KBDUS.DLL
-rem TODO: other %WB_PE_LANG%
-if "x%WB_PE_LANG%"=="xru-RU" (
-  call :KEEP_FILE \Windows\System32\KBDRU.DLL
-)
-del /a /f /q "%X_SYS%\KB*.DLL"
-
-call :KEEP_FILES \Windows\System32\ "kd.dll,kdcom.dll"
-del /a /f /q "%X_SYS%\kd*.dll"
-
-del /a /f /q "%X_SYS%\migapp.xml"
-del /a /f /q "%X_SYS%\migcore.dll"
-del /a /f /q "%X_SYS%\migisol.dll"
-del /a /f /q "%X_SYS%\migres.dll"
-del /a /f /q "%X_SYS%\migstore.dll"
-del /a /f /q "%X_SYS%\migsys.dll"
-
 del /a /f /q "%X_SYS%\ReserveManager.dll"
 del /a /f /q "%X_SYS%\reseteng.dll"
 del /a /f /q "%X_SYS%\ResetEngine.dll"
@@ -215,9 +108,7 @@ del /a /f /q "%X_SYS%\setupplatform.cfg"
 del /a /f /q "%X_SYS%\setupplatform.dll"
 del /a /f /q "%X_SYS%\setupplatform.exe"
 
-del /a /f /q "%X_SYS%\SFCN.dat"
-del /a /f /q "%X_SYS%\SFL*.dat"
-del /a /f /q "%X_SYS%\SFPAT*.inf"
+
 
 if exist "%X_SYS%\StartTileData.dll" del /a /f /q "%X_SYS%\StartTileData.dll"
 

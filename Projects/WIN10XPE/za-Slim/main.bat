@@ -110,6 +110,30 @@ if "x%opt[slim.dism]%"=="xtrue" (
   del /f /a /q "%X_SYS%\dism.exe"
 )
 
+if "x%opt[slim.ieframedll]%"=="xtrue" (
+  del /a /f /q "%X_WIN%\SystemResources\ieframe.dll.mun"
+  del /a /f /q "%X_SYS%\ieframe.dll"
+  del /a /f /q "%X_SYS%\%WB_PE_LANG%\ieframe.dll.mui"
+)
+
+if "x%opt[slim.winboot]%"=="xtrue" (
+    rem del /f /a /q "%X_WIN%\BootDebuggerFiles.ini"
+    rd /s /q "%X_WIN%\Boot\EFI"
+    rd /s /q "%X_WIN%\Boot\DVD"
+    rd /s /q "%X_WIN%\Boot\PCAT"
+    rd /s /q "%X_WIN%\Boot\Misc"
+    del /f /a /q "%X_WIN%\Boot\Fonts\cht_boot.ttf"
+    del /f /a /q "%X_WIN%\Boot\Fonts\chs_boot.ttf"
+    del /f /a /q "%X_WIN%\Boot\Fonts\jpn_boot.ttf"
+    del /f /a /q "%X_WIN%\Boot\Fonts\kor_boot.ttf"
+    del /f /a /q "%X_WIN%\Boot\Fonts\msjh_boot.ttf"
+    del /f /a /q "%X_WIN%\Boot\Fonts\msjhn_boot.ttf.ttf"
+    rd /s /q "%X_WIN%\Boot\PXE\*.com"
+    rd /s /q "%X_WIN%\Boot\PXE\*.n12"
+    rd /s /q "%X_WIN%\Boot\PXE\WdsConfig.inf"
+)
+
+call Slim_Safely.bat
 call main_Ultra.bat
 
 rem already removed in _pre_wim.bat

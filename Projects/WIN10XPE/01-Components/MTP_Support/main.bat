@@ -56,8 +56,4 @@ rem explorer Portable device
 rem Portable Devices ::{35786D3C-B075-49b9-88DD-029876E11C01}
 call RegCopy HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders
 rem [optional]call SharedPatch NewBrowseDlg
-rem put mtp_support.bat on Desktop
-call X2X
-if exist "%X_Startup%" (
-  move "%X_Desktop%\mtp_support.bat" "%X_Startup%\"
-)
+

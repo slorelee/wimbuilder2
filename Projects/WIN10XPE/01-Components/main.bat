@@ -34,6 +34,10 @@ if "x%opt[component.MSI]%"=="xtrue" (
   call :ApplySubPatch ".\MSI"
 )
 
+if "x%opt[component.RNDIS]%"=="xtrue" (
+  call :ApplySubPatch ".\RNDIS"
+)
+
 if "x%opt[patch.drvinst]%"=="xtrue" (
   call :ApplySubPatch ".\Patch_drvinst"
 )

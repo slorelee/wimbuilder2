@@ -25,6 +25,7 @@ rem ==========update registry==========
 
 call RegCopyEx Services "eventlog\Application\MsiInstaller"
 call RegCopyEx Services "msiserver,TrustedInstaller"
+reg add HKLM\Tmp_System\ControlSet001\Services\TrustedInstaller /v Start /t REG_DWORD /d 3 /f
 
 call RegCopyEx Classes ".msi,.msp,IMsiServer,Msi.Package,Msi.Patch"
 call RegCopyEx Classes WindowsInstaller.Installer

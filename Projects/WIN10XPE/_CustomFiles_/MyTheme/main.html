@@ -1,0 +1,57 @@
+<div style="mergin:5px;padding:5px;color:#000;">
+<style>
+fieldset {
+  border-style: solid;
+  border-width: 2px;
+  padding: 5px 10px;
+  margin-bottom: 2px;
+  width:360px;
+  font-size:0.8em;
+}
+
+fieldset legend {
+  color: #302A2A;
+  font: bold 16px/2 Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  text-align: left;
+  text-shadow: 2px 2px 2px rgb(88, 126, 156);
+}
+</style>
+
+<fieldset>
+<legend>Theme Set:</legend>
+<label><input type="radio" class="opt_item" name="mytheme.theme_id" value="1" checked /> Theme Pack 1</label>
+<label><input type="radio" class="opt_item" name="mytheme.theme_id" value="2" /> Theme Pack 2</label>
+<script>
+    if ($lang != 'zh-CN') document.write('<br/>');
+</script>
+<label><input type="radio" class="opt_item" name="mytheme.theme_id" value="3" /> Theme Pack 3</label>
+<label><input type="radio" class="opt_item" name="mytheme.theme_id" value="4" /> Theme Pack 4</label>
+</fieldset>
+
+<fieldset>
+<legend>Thumb:</legend>
+<input type="image" id="mytheme_thumb" src="MyPic1.jpg" width="360" height="270" />
+</fieldset>
+
+
+</div>
+
+<script>
+function load_thumbimage(file) {
+  var img = $obj_patch.path + '/' + file;
+  $('#mytheme_thumb').attr('src', img);
+}
+
+(function() {
+    if (!$patch_loaded) {
+        var n = $patches_opt['mytheme.theme_id'];
+        load_thumbimage('MyPic' + n + '.jpg');
+    }
+})();
+
+$("input:radio[name='mytheme.theme_id']").change(function() {
+  var n = $(this).val();
+  load_thumbimage('MyPic' + n + '.jpg');
+});
+</script>

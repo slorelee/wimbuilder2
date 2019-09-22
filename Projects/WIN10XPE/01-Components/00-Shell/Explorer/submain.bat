@@ -75,6 +75,9 @@ timedate.cpl,main.cpl,intl.cpl
 ; Previous version tab
 twext.dll
 
+; Shell extension for Windows Script Host
+\Windows\System32\wshext.dll
+
 ; Eject usb
 DeviceCenter.dll,DeviceEject.exe,StorageContextHandler.dll
 

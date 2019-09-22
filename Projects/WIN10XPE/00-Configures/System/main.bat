@@ -12,8 +12,11 @@ setx.exe
 
 \Windows\System32\??-??\Windows.CloudStore.dll.mui
 
-; Possible Addition  \Windows\System32\umpoext.dll \Windows\System32\umpowmi.dll \Windows\System32\??-??\umpoext.dll.mui
-; Power management - In Winre.wim system32: powercfg.cpl,powrprof.dll,workerdd.dll
+; Possible Addition   \Windows\System32\umpowmi.dll
+\Windows\System32\umpoext.dll
+
+; Power management - In Winre.wim system32:powrprof.dll,workerdd.dll
+Windows\System32\powercfg.cpl
 Windows\System32\powercpl.dll
 
 \Windows\Fonts\segoeui.ttf

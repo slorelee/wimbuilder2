@@ -14,6 +14,7 @@ netcenter.dll,netdiagfx.dll,hgcpl.dll
 
 ; Firewall
 hnetmon.dll,nettrace.dll,nshhttp.dll,nshipsec.dll,PeerDistSh.dll,rpcnsh.dll,whhelper.dll,wwancfg.dll
+PortableDeviceApi.dll
 
 :end_files
 

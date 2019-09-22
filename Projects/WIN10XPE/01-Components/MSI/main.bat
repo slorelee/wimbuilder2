@@ -4,12 +4,15 @@ rem ==========update filesystem==========
 call AddFiles %0 :end_files
 goto :end_files
 
+\Windows\AppPatch\msimain.sdb
+\Windows\AppPatch\sysmain.sdb
 \Windows\Installer\
 
 @\Windows\System32\
 +syswow64
 msi.dll,msiexec.exe,msihnd.dll
 msiltcfg.dll,msimsg.dll,msisip.dll
+;mscoree.dll,pcacli.dll,RstrtMgr.dll,srpapi.dll
 -syswow64
 
 wbem\msi.mof

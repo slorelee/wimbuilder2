@@ -5,7 +5,7 @@ goto :end_files
 
 @\Windows\System32\
 ; Theme and dwm
-dwm.exe,dwmcore.dll,dwminit.dll,dwmredir.dll,hotplug.dll
+dwm.exe,dwmcore.dll,dwmghost.dll,dwminit.dll,dwmredir.dll,hotplug.dll
 themeservice.dll,themeui.dll,twinapi.appcore.dll,twinui.dll,ubpm.dll,uDWM.dll,wdi.dll
 Windows.Gaming.Input.dll,Windows.UI.Immersive.dll
 CoreMessaging.dll,CoreUIComponents.dll,ISM.dll,rmclient.dll

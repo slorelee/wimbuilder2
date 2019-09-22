@@ -4,7 +4,7 @@ rem Explorer BitLocker integration
 rem full feature
 rem call AddFiles "@\Windows\System32\#nbde*.exe,fve*.exe,bde*.dll,fve*.dll,BitLocker*.*,EhStor*.*"
 
-call AddFiles "@\Windows\System32\#nbdeunlock.exe,fvenotify.exe"
+call AddFiles "@\Windows\System32\#nbdesvc.dll,bdeunlock.exe,fvenotify.exe"
 
 if not "%opt[build.wim]%"=="winre" (
   call AddFiles "@\Windows\System32\#nbdeui.dll,fveapi.dll,fvecerts.dll,fveui.dll"

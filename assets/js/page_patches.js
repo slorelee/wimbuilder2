@@ -1,7 +1,7 @@
 var _patches_selected_node = null;
 var $patches_preset_inited = null;
-var $patches_opt = null;
 var $patch_loaded = false;
+var $obj_patch = null;
 
 function init_radio_opt(elem, patches_opt) {
     var key = $(elem).attr('name');
@@ -127,22 +127,26 @@ function patch_onselect(id) {
     var patch = null;
     var content = null;
     var need_init = false;
-    $patches_opt = $obj_project.patches_opt;
+
+    update_patches_opt($patches_opt);
     if (id in $obj_patches) {
-        content = $obj_patches[id];
+        $obj_patch = $obj_patches[id];
+        content = $obj_patch.content;
         $patch_loaded = true;
+        patch = $obj_patches[id];
     } else {
         patch = Patch.New($obj_project, id);
+        $obj_patch = patch;
         $patch_loaded = false;
         var html = patch.html;
         if ($IE_VER != '9+') {
             html = html.replace(/onoffswitch-checkbox/g, 'onoffswitch-checkbox_DIS');
         }
         content = $(html);
-        $obj_patches[id] = content;
+        patch.content = content;
+        $obj_patches[id] = patch;
         need_init = true;
     }
-    update_patches_opt($patches_opt);
     $('#patch_html').html(content);
     if (need_init) init_patches_opt($patches_opt, $obj_project.wb_root + '/' + patch.path);
     //show_patches_opt($patches_opt);

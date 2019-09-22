@@ -1,6 +1,6 @@
 var Project = {
     root_path: "Projects",
-    New:function(name, preset) {
+    New:function(name, preset, lazy) {
         var project = {};
         project.name = name;
         project.path = Project.root_path + '/' + name;
@@ -36,7 +36,9 @@ var Project = {
             project.patches_state_init = patches_state_init;
         }
         project.patches_opt = $patches_opt;
-        project.patches_tree_data = Project.GetPatches(project.path);;
+        if (!lazy) {
+            project.patches_tree_data = Project.GetPatches(project.path);
+        }
         return project;
     },
     GetPatches:function(rootdir) {

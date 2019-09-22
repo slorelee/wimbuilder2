@@ -49,9 +49,13 @@ function regist_event() {
         
         var project = $obj_project;
         if (last_selected_project != selected_project) {
-            project = Project.New(name);
+            project = Project.New(name, null, true);
             $obj_project = project;
+            $patches_opt = project.patches_opt;
+            $patches_var = {};
+            project.patches_tree_data = Project.GetPatches(project.path);
             $obj_patches = null;
+            $obj_patch = null;
             $patches_preset_inited = null;
         }
         $('#project_desc').html('<p>' + project.desc.replace(/\r\n/g, '<br/>') + '</p>');

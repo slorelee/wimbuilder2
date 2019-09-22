@@ -164,9 +164,11 @@ local function InitAdmin()
 
   -- // REGI HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-18\ProfileImagePath=X:\Users\Administrator
 
-  set_progress(t('Update database ...'))
-  -- // Force the administrator name whatever language
-  exec('/wait /hide', [[secedit.exe /configure /db %WinDir%\security\database\unattend.sdb /cfg %WinDir%\security\templates\unattend.inf /log %WinDir%\security\logs\unattend.log]])
+  -- // update NewAdministratorName
+  if File.exists([[X:\Windows\security\templates\unattend.inf]]) then
+    set_progress(t('Update database ...'))
+    exec('/wait /hide', [[secedit.exe /configure /db %WinDir%\security\database\unattend.sdb /cfg %WinDir%\security\templates\unattend.inf /log %WinDir%\security\logs\unattend.log]])
+  end
 
   set_progress(t('Start services ...'))
   -- call_dll('Netapi32.dll','NetJoinDomain', nil, 'WORKGROUP', nil, nil, nil, 32)

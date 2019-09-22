@@ -62,7 +62,6 @@ if not exist "%X_SYS%\tsdiscon.exe" (
   echo \033[97;101mERROR Switch to Admin needs tsdiscon.exe present in Education, Professional or Enterprise edition | cmdcolor.exe
 )
 
-expand  Security.cab -F:* "%X_WIN%\Security"
 
 if %VER[3]% GTR 18850 (
   copy /y LSAgetRights_%WB_PE_ARCH%.exe "%X_SYS%\LSAgetRights.exe"
@@ -72,6 +71,13 @@ if %VER[3]% GTR 18850 (
 rem use in :PECMD_ENTRY@last.bat
 set PECMDINI=PecmdAdmin.ini
 if exist "%WB_PROJECT_PATH%\_CustomFiles_\%PECMDINI%" copy /y "%WB_PROJECT_PATH%\_CustomFiles_\%PECMDINI%" "%X_SYS%\"
+
+if not "x%opt[account.custom_admin_name]%"=="x%opt[account.localized_admin_name]%" (
+  expand Security.cab -F:* "%X_WIN%\Security"
+  call TextReplace "%X_WIN%\Security\Templates\unattend.inf" "#qAdministrator#q" "#q%opt[account.custom_admin_name]%#q"
+  if exist "%X_SYS%\PecmdAdmin.ini" call TextReplace "%X_SYS%\%PECMDINI%" "DefaultUserName=Administrator" "DefaultUserName=%opt[account.custom_admin_name]%"
+  if not "x%_UI_LogonPE_jcfg%"=="x" call TextReplace "%_UI_LogonPE_jcfg%" "'DefaultUserName', 'Administrator'" "'DefaultUserName', '%opt[account.custom_admin_name]%'"
+)
 
 rem ==========update registry==========
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\CoreMessagingRegistrar

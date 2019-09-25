@@ -77,7 +77,12 @@ reg add HKLM\Tmp_System\ControlSet001\Control\Lsa /v LmCompatibilityLevel /t REG
 rem // Allow network users to access without password > Also display Share with in Context Menu!
 reg add HKLM\Tmp_System\ControlSet001\Control\Lsa /v LimitBlankPasswordUse /t REG_DWORD /d 0 /f
 
-:if "x%opt[build.registry.software]%"=="xfull" (
+
+reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-18" /v ProfileImagePath /d X:\Users\Default /f
+rem // Disable Telemetry
+reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection /v AllowTelemetry /t REG_DWORD /d 0 /f
+
+if "x%opt[build.registry.software]%"=="xfull" (
   call :EditReg_FullSoftware
 )
 

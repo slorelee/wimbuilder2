@@ -1,3 +1,22 @@
+rem // Disable Telemetry
+rem reg add HKLM\Tmp_System\ControlSet001\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener /v Start /t REG_DWORD /d 0 /f
+rem reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection /v AllowTelemetry /t REG_DWORD /d 0 /f
+rem //-
+rem // Disable Diagnostic Telemetry Service (DiagTrack and diagnosticshub.standardcollector.service are disabled)
+
+rd /s /q "%X_WIN%\DiagTrack"
+rd /s /q "%X_SYS%\DiagSvcs"
+del /f /a /q "%X_SYS%\diagER.dll"
+del /f /a /q "%X_SYS%\diagtrack.dll"
+
+rem //-
+rem // WMI Repository will be rebuilt, refresh at startup
+rd /s /q "%X_SYS%\wbem\AutoRecover"
+rd /s /q "%X_SYS%\wbem\Logs"
+rd /s /q "%X_SYS%\wbem\Repository"
+rd /s /q "%X_SYS%\wbem\tmf"
+rd /s /q "%X_SYS%\wbem\xml"
+
 rem replace small files
 
 if "x%opt[slim.font.mingliu]%"=="xtrue" (

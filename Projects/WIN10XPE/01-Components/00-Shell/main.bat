@@ -4,7 +4,8 @@ call AddFiles %0 :end_files
 goto :end_files
 
 ; Computer Management shortcut
-\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Computer Management.lnk
+; write menu command in registry directly
+; \ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Computer Management.lnk
 
 ; Battery icon should be optional, skip now
 +ver < 0
@@ -33,6 +34,9 @@ Display.dll
 themecpl.dll
 
 :end_files
+
+rem Computer Management Command
+reg add HKLM\Tmp_software\Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\shell\Manage\command /ve /d "mmc.exe compmgmt.msc /s" /f
 
 rem fix blank shortcut icons
 reg add HKLM\Tmp_Software\Policies\Microsoft\Windows\Explorer /v EnableShellShortcutIconRemotePath /t REG_DWORD /d 1 /f

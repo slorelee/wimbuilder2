@@ -174,8 +174,8 @@ local function InitAdmin()
   -- call_dll('Netapi32.dll','NetJoinDomain', nil, 'WORKGROUP', nil, nil, nil, 32)
   exec('/wait /hide', 'sc start seclogon')
 
-  if File.exists('X:\\Windows\\System32\\Admin18850+.bat') then
-    exec('/wait /hide', 'X:\\Windows\\System32\\Admin18850+.bat')
+  if File.exists('X:\\Windows\\System32\\PreCreateAdminProfile.bat') then
+    exec('/wait /hide', 'X:\\Windows\\System32\\PreCreateAdminProfile.bat')
   end
 
   set_progress(t('Ready to logon ...'))

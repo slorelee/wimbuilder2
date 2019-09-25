@@ -67,9 +67,9 @@ if %VER[3]% GTR 18850 (
   copy /y UsrClass.dat "%X%\Users\Default\AppData\Local\Microsoft\Windows\"
 )
 
-if 1==0 (
+if "x%opt[account.precreate_admin_profile]%"=="xtrue" (
   copy /y LSAgetRights_%WB_PE_ARCH%.exe "%X_SYS%\LSAgetRights.exe"
-  copy /y "Admin18850+.bat" "%X_SYS%\"
+  copy /y "PreCreateAdminProfile.bat" "%X_SYS%\"
 )
 
 rem use in :PECMD_ENTRY@last.bat
@@ -84,7 +84,7 @@ if not "x%opt[account.custom_admin_name]%"=="x" (
   if exist "%X_PEMaterial%\pecmd.lua" call TextReplace "%X_PEMaterial%\pecmd.lua" "'DefaultUserName', 'Administrator'" "'DefaultUserName', '%opt[account.custom_admin_name]%'"
 
   if /i not "%opt[account.custom_admin_name]%"=="Administrator" (
-    if exist "%X_SYS%\Admin18850+.bat" call TextReplace "%X_SYS%\Admin18850+.bat" "Administrator" "%opt[account.custom_admin_name]%" g
+    if exist "%X_SYS%\PreCreateAdminProfile.bat" call TextReplace "%X_SYS%\PreCreateAdminProfile.bat" "Administrator" "%opt[account.custom_admin_name]%" g
   )
 )
 

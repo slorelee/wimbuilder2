@@ -47,6 +47,8 @@ prn*.cat
 
 @\Windows\System32\
 
+spool\
+
 DafPrintProvider.dll
 DevDispItemProvider.dll,DeveloperOptionsSettingsHandlers.dll,deviceassociation.dll
 DeviceCenter.dll,DeviceDisplayStatusManager.dll
@@ -95,8 +97,8 @@ findnetprinters.dll
 wsnmp32.dll
 
 ;Printer PDF
-spool\tools\Microsoft Print To PDF\
-spool\tools\Microsoft XPS Document Writer\
+;spool\tools\Microsoft Print To PDF\
+;spool\tools\Microsoft XPS Document Writer\
 DeviceSetupManager.dll
 DeviceSetupManagerAPI.dll
 DeviceSetupStatusProvider.dll

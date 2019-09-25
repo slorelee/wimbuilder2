@@ -9,7 +9,7 @@ if not "x%_UI_LogonPE_jcfg%"=="x" (
 )
 
 if "x%opt[account.admin_enabled]%"=="xtrue" (
-  pushd ..\System\Admin
+  pushd Admin
   call SwitchToAdmin.bat
   popd
 )

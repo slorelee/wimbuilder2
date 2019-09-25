@@ -62,8 +62,12 @@ if not exist "%X_SYS%\tsdiscon.exe" (
   echo \033[97;101mERROR Switch to Admin needs tsdiscon.exe present in Education, Professional or Enterprise edition | cmdcolor.exe
 )
 
-
 if %VER[3]% GTR 18850 (
+  rem Can not Create the Administrator's Profile if this file is absent
+  copy /y UsrClass.dat "%X%\Users\Default\AppData\Local\Microsoft\Windows\"
+)
+
+if 1==0 (
   copy /y LSAgetRights_%WB_PE_ARCH%.exe "%X_SYS%\LSAgetRights.exe"
   copy /y "Admin18850+.bat" "%X_SYS%\"
 )

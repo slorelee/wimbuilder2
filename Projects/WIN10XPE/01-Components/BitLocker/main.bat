@@ -10,7 +10,7 @@ if not "%opt[build.wim]%"=="winre" (
   call AddFiles "@\Windows\System32\#nbdeui.dll,fveapi.dll,fvecerts.dll,fveui.dll"
 )
 
-if "x%opt[shell.app]%"=="xwinxshell" (
+if "x%opt[shell.app]%"=="xexplorer" (
   rem auto contextmenu
   call AddFiles "@\Windows\System32\#nStructuredQuery.dll,Windows.Storage.Search.dll"
 )
@@ -20,16 +20,13 @@ rem call RegCopy HKLM\System\ControlSet001\Services\BDESVC
 call RegCopy HKLM\Software\Classes\Drive\shell\unlock-bde
 reg add HKLM\Tmp_software\Classes\Drive\shell\unlock-bde /v Icon /d bdeunlock.exe /f
 
-set _Need_Fix_Menu=0
+set _Need_Fix_Menu=1
+if exist "%X_SYS%\Windows.Storage.Search.dll" (
+  set _Need_Fix_Menu=0
+)
 if "x%opt[shell.app]%"=="xwinxshell" (
   set _Need_Fix_Menu=1
 )
-
-rem fix for 20H1
-if %VER[3]% GTR 18800 (
-  set _Need_Fix_Menu=1
-)
-
 if %_Need_Fix_Menu% EQU 1 call :FIXED_DRIVE_MENU
 set _Need_Fix_Menu=
 

@@ -34,6 +34,18 @@ function show_projects() {
     }
 }
 
+function reload_project(name, preset) {
+    var project = Project.New(name, preset, true);
+    $obj_project = project;
+    $patches_opt = project.patches_opt;
+    $patches_var = {};
+    project.patches_tree_data = Project.GetPatches(project.path);
+    $obj_patches = null;
+    $obj_patch = null;
+    $patches_preset_inited = null;
+    return project;
+}
+
 function regist_event() {
     $('.project-button').click(function(){
         var name = $(this).attr('id');
@@ -49,14 +61,7 @@ function regist_event() {
         
         var project = $obj_project;
         if (last_selected_project != selected_project) {
-            project = Project.New(name, null, true);
-            $obj_project = project;
-            $patches_opt = project.patches_opt;
-            $patches_var = {};
-            project.patches_tree_data = Project.GetPatches(project.path);
-            $obj_patches = null;
-            $obj_patch = null;
-            $patches_preset_inited = null;
+            project = reload_project(name);
         }
         $('#project_desc').html('<p>' + project.desc.replace(/\r\n/g, '<br/>') + '</p>');
         if (project.desc) {

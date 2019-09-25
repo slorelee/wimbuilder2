@@ -349,9 +349,7 @@ $('#patch_preset').change(function(){
     //reload project with the preset
     var preset = $(this).children("option:selected").text();
     if (preset == '-') return;
-    project = Project.New(selected_project, preset);
-    $obj_project = project;
-    $obj_patches = null;
+    reload_project(selected_project, preset);
     $patches_preset = preset;
     _patches_selected_node = null;
 

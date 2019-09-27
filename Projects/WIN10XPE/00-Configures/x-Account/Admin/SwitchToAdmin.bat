@@ -88,6 +88,9 @@ if not "x%opt[account.custom_admin_name]%"=="x" (
   )
 )
 
+move /y "%X_PEMaterial%\LogonAdmin.bat" "%X_SYS%\"
+move /y "%X_PEMaterial%\SwitchUser.bat" "%X_SYS%\"
+
 rem ==========update registry==========
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\CoreMessagingRegistrar
 reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CoreMessagingRegistrar /f

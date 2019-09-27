@@ -9,6 +9,11 @@ set "PATH_ORG=%PATH%"
 rem ======set bin PATH======
 set "PATH=%WB_ROOT%\bin;%PATH%"
 
+set PROCESSOR_ARCHITECTURE=AMD64
+if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
+  set PROCESSOR_ARCHITECTURE=x86
+)
+
 set WB_ARCH=x86
 if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
   set WB_ARCH=x64

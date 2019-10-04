@@ -27,6 +27,7 @@ goto :EOF
 
 :AddDriver
 if "x%2"=="xREG" goto :AddDriver_Reg
+if "x%2"=="xDRIVERS" goto :AddDriver_Reg
 
 rem ==========update filesystem==========
 set "_AddDriver_INF=%~1"
@@ -48,6 +49,10 @@ rem wildcard(*) check
 set _AddDriver_Wildcard=0
 echo "%~1"|find "*" 1>nul
 if %errorlevel% EQU 0 set _AddDriver_Wildcard=1
+
+if "x%_AddDrivers_TYPE%"=="xDRIVERS" goto :REGCOPY_FROM_DRIVERS
+
+:REGCOPY_FROM_SYSTEM
 if %_AddDriver_Wildcard% EQU 0 (
     call RegCopy "HKLM\SYSTEM\DriverDatabase\DriverInfFiles\%~1"
 ) else (
@@ -57,6 +62,7 @@ set _AddDriver_UserDriver=%errorlevel%
 call RegCopy HKLM\SYSTEM\DriverDatabase\DriverPackages "%~1*"
 if %_AddDriver_UserDriver% EQU 0 goto :EOF
 
+:REGCOPY_FROM_DRIVERS
 if %_AddDriver_Wildcard% EQU 0 (
     call RegCopy "HKLM\Drivers\DriverDatabase\DriverInfFiles\%~1"
 ) else (

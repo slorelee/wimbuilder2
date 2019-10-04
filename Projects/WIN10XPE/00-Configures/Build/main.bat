@@ -12,7 +12,7 @@ call ACLRegKey HKLM\Software\Classes\AppID
 
 rem set "RunAs"="Interactive User" -* "RunAs"=""
 for /F %%i IN ('Reg Query HKLM\Tmp_Software\Classes\AppID /s /f "Interactive User" ^|Findstr Tmp_Software') do (
-  Reg Add "%%i" /v RunAs /d "" /F >nul 2>nul
+    Reg Add "%%i" /v RunAs /d "" /F >nul 2>nul
 )
 
 call RegCopy HKLM\Software\Classes\CLSID
@@ -34,10 +34,16 @@ rem call RegCopy HKLM\Software\Classes\Unknown
 rem has high cost performance to copy all DriverDatabase items,
 rem just 4MB SYSTEM size(608KB compressed)
 call RegCopy SYSTEM\DriverDatabase
-rem just 3MB DRIVERS size(500KB compressed)
-call RegCopy DRIVERS\DriverDatabase
-rem skip RegCopy in AddDrivers macro
-set AddDrivers_TYPE=FILE
+
+set AddDrivers_TYPE=DRIVERS
+
+rem TODO:use the DRIVERS hive if opt[build.registry.drivers]=replace
+if not "x%opt[build.registry.drivers]%"=="xnotset" (
+    rem just 3MB DRIVERS size(500KB compressed)
+    call RegCopy DRIVERS\DriverDatabase
+    rem skip RegCopy in AddDrivers macro
+    set AddDrivers_TYPE=FILE
+)
 
 if "x%opt[build.registry.system]%"=="xmerge" (
     call RegCopy SYSTEM\ControlSet001

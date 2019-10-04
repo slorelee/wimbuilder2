@@ -32,6 +32,13 @@ INIT-->
       </ul>
     </div>
 
+    <fieldset>
+    <legend>Use install.wim's DRIVERS hive: </legend>
+    <label><input type="radio" class="opt_item" name="build.registry.drivers" value="notset" /> Not Set</label>
+    <label><input type="radio" class="opt_item" name="build.registry.drivers" value="replace" /> Replace</label>
+    <label><input type="radio" class="opt_item" name="build.registry.drivers" value="merge" checked/> Merge</label>
+    </fieldset>
+
     <label title="Make sure that the required drivers\*.sys will be added" ><input type="checkbox" name="build.registry.system" class="opt_item" /> <font color='red'><b>Merge full install.wim's SYSTEM(ControlSet001) hive</b></font></label><br/>
   </div>
 

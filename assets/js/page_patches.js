@@ -350,6 +350,7 @@ $('#patch_preset').change(function(){
     var preset = $(this).children("option:selected").text();
     if (preset == '-') return;
     reload_project(selected_project, preset);
+    $patches_preset_inited = true;
     $patches_preset = preset;
     _patches_selected_node = null;
 

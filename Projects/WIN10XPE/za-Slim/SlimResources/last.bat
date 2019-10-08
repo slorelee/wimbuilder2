@@ -4,7 +4,7 @@ set V=D:\dev\WimBuilder2\vendor
 set WB_ARCH=x64
 )
 
-set "WINXSHELL=%V%\WinXShell\X_%WB_ARCH%\Program Files\WinXShell\WinXShell.exe"
+set "WINXSHELL=%V%\WinXShell\X_PF\WinXShell\WinXShell_%WB_ARCH%.exe"
 if not exist "%WINXSHELL%" goto :EOF
 
 set "Icons=%X_WIN%\Resources\Icons"

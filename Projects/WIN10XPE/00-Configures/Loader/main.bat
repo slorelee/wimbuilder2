@@ -40,7 +40,6 @@ goto :EOF
 
 :LOADER_LUA
 call V2X WinXShell
-set _WINXSHELL_COPYED=1
 
 del /f /q "%X_PEMaterial%\Pecmd.ini"
 del /f /q "%X_PEMaterial%\PecmdAdmin.ini"

@@ -45,6 +45,7 @@ del /f /q "%X_PEMaterial%\Pecmd.ini"
 del /f /q "%X_PEMaterial%\PecmdAdmin.ini"
 del /f /q "%X_PEMaterial%\startnet.cmd"
 
+del /f /q /a "%X_SYS%\winpeshl.ini"
 copy /y "%X_PEMaterial%\winpeshl.ini" "%X_SYS%\"
 goto :EOF
 
@@ -58,6 +59,8 @@ del /f /q "%X_PEMaterial%\pecmd.lua"
 
 move /y "%X_PEMaterial%\Pecmd.ini" "%X_SYS%\"
 move /y "%X_PEMaterial%\PecmdAdmin.ini" "%X_SYS%\"
+
+del /f /q /a "%X_SYS%\winpeshl.ini"
 move /y "%X_PEMaterial%\winpeshl.ini" "%X_SYS%\"
 
 call TextReplace "%X_SYS%\pecmd.ini" "X:\\PEMaterial\\" "X:\%opt[loader.PEMaterial]%\" g

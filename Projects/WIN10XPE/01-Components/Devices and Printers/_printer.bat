@@ -47,7 +47,9 @@ prn*.cat
 
 @\Windows\System32\
 
+;Windows Photo Viewer needs them too
 spool\
+coloradapterclient.dll,efswrt.dll,icm32.dll,mscms.dll,photowiz.dll,shimgvw.dll
 
 DafPrintProvider.dll
 DevDispItemProvider.dll,DeveloperOptionsSettingsHandlers.dll,deviceassociation.dll
@@ -121,6 +123,10 @@ OpcServices.dll
 xpsservices.dll
 XpsRasterService.dll
 
+
+;add for EnablePrintFeature.bat
+timeout.exe
+
 :end_files
 
 call DoAddFiles
@@ -163,5 +169,9 @@ if 1==1 (
   echo net start spooler
   echo PnPutil.exe -i -a "%%Windir%%\inf\usbprint.inf"
   echo drvload.exe "%%Windir%%\inf\printqueue.inf"
+  echo.
+  echo echo Printer^(s^) will work in 2 minutes later ...
+  echo timeout.exe /T 5
 )>"%X_PEMaterial%\EnablePrintFeature.bat"
-rem call link "%X_PEMaterial%\EnablePrintFeature.bat" "%X_Desktop%\EnablePrintFeature.lnk"
+
+call LinkToDesktop -paramlist "#{@printui.dll,12007}.lnk" "[[X:\%opt[loader.PEMaterial]%\EnablePrintFeature.bat]], '', 'shell32.dll', 16"

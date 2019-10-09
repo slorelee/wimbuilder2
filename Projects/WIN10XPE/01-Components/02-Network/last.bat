@@ -18,3 +18,7 @@ if not "x%WLANSVC_DEPEND_SERV%"=="x%WLANSVC_NEW_DEPEND%" (
   echo update Wlansvc's DependOnService from [%WLANSVC_DEPEND_SERV%] To [%WLANSVC_NEW_DEPEND%]
   reg add HKLM\Tmp_SYSTEM\ControlSet001\services\Wlansvc /v DependOnService /t REG_MULTI_SZ /d "%WLANSVC_NEW_DEPEND%" /f
 )
+
+if "x%opt[network.hide_system_tray_icon]%"=="xtrue" (
+    reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v HideSCANetwork /t REG_DWORD /d 1 /f
+)

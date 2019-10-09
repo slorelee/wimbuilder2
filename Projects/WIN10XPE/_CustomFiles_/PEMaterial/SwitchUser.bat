@@ -17,7 +17,7 @@ if exist "X:\Windows\Temp\SYSTEM_LOADER" (
 
 rem for PECMD
 if exist "X:\Windows\System32\PecmdAdmin.ini" (
-  LogonAdmin.bat
+  LogonAdmin.bat PECMD
 )
 
 rem for LUA

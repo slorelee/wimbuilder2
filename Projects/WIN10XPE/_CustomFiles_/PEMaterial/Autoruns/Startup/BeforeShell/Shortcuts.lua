@@ -21,6 +21,6 @@ LINK('%Desktop%\\Internet Explorer.lnk', '%ProgramFiles%\\Internet Explorer\\iex
 LINK('%Desktop%\\PENetwork.lnk', '%ProgramFiles%\\PENetwork\\PENetwork.exe')
 
 if File.exists('X:\\Windows\\System32\\seclogon.dll') then
-  LINK('%Desktop%\\SwitchUser.lnk', 'X:\\Windows\\System32\\SwitchUser.bat', '', 'imageres.dll', 319)
+  LINK('%Desktop%\\#{@shutdownux.dll,3052}.lnk', 'X:\\Windows\\System32\\SwitchUser.bat', '', 'imageres.dll', 319)
 end
 

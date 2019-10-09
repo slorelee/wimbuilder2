@@ -3,7 +3,7 @@
 @Echo OFF
 call :REGIST_IME_DLLS %SystemRoot%\System32
 call :REGIST_IME_DLLS %SystemRoot%\SysWOW64
-Start Ctfmon.exe
+PECMD.EXE EXEC -su ctfmon.exe
 Goto :EOF
 
 :REGIST_IME_DLLS

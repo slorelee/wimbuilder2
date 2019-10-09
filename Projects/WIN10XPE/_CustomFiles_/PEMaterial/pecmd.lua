@@ -80,7 +80,7 @@ end
 
 local function LoadShell()
   set_progress(t('load shell ...'))
-  exec('ctfmon.exe')
+  exec('PECMD.EXE EXEC -su ctfmon.exe')
 
   -- RunBeforeShell
 

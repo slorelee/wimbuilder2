@@ -148,8 +148,6 @@ call REGCOPY HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer
 call REGCOPY HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer
 call REGCOPY HKLM\Software\Microsoft\Windows\CurrentVersion\CloudStore
 
-reg import "%~dp0Explorer_RegDefault.reg"
-reg import "%~dp0Explorer_RegSoftware.reg"
 reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v shell /d explorer.exe /f
 
 rem =====================Reg_ShellHWDetection=====================

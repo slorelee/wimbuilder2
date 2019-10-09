@@ -46,5 +46,8 @@ if not "x%opt[build.registry.software]%"=="xfull" (
     call RegCopy HKLM\SOFTWARE\Classes\DesktopBackground\Shell
 )
 
+reg import Shell_RegDefault.reg
+reg import Shell_RegDefault.reg
+
 call Explorer\submain.bat
 call WinXShell\submain.bat

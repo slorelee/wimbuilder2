@@ -102,6 +102,12 @@ ieframe.dll,mshtml.dll
 
 if not exist "%X%\Program Files (x86)\Common Files\" mkdir "%X%\Program Files (x86)\Common Files"
 
+rem need KnwonDlls for smss.exe
+if %VER[3]% LSS 16299 (
+  copy /y Win10WoW64Support-Native.exe "%X_SYS%\"
+  reg import Win10WoW64Support-Native-reg.reg
+)
+
 rem ==========update registry==========
 
 rem [Reg_WoW64]

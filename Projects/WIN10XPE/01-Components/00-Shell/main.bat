@@ -46,6 +46,5 @@ if not "x%opt[build.registry.software]%"=="xfull" (
     call RegCopy HKLM\SOFTWARE\Classes\DesktopBackground\Shell
 )
 
-call V2X PinTool
 call Explorer\submain.bat
 call WinXShell\submain.bat

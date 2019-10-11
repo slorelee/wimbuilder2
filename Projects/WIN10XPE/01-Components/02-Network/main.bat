@@ -119,6 +119,11 @@ wbem\wlan.mof
 \Windows\SystemResources\Windows.UI.Cred\Windows.UI.Cred.pri
 \Windows\SystemResources\Windows.UI.Cred\pris\Windows.UI.Cred*
 
+; add for PENetwork(x64)
+@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
+Microsoft-Windows-Client-Features-Package*.cat
+Microsoft-Windows-Client-Features-WOW64-Package*.cat
+
 :end_files
 
 rem ==========update registry==========

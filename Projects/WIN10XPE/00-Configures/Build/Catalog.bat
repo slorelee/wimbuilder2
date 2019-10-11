@@ -21,14 +21,13 @@ Microsoft-Windows-Basic-Http-Minio-Package~*.cat
 Microsoft-Windows-SMB1-Package~*.cat
 Microsoft-Windows-DataCenterBridging-Package~*.cat
 
-+ver < 17763
+;built-in network drivers
 Microsoft-Windows-Client-Drivers-drivers-Package~*.cat
 Microsoft-Windows-Client-Drivers-net-Package~*.cat
 Microsoft-Windows-Client-Drivers-Package~*.cat
 Microsoft-Windows-Client-Drivers-Package-net~*.cat
 Microsoft-Windows-Desktop-Shared-Drivers-*.cat
 Microsoft-Client-Features-Classic-WOW64-*.cat
-+ver*
 
 +if "x%opt[slim.ultra]%"<>"xtrue"
 ; For updates

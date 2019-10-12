@@ -32,6 +32,9 @@ if "x%WB_PE_LANG%"=="xzh-CN" (
   rem volume mixer
   call :KEEP_FILE \Windows\Fonts\Malgun.ttf
 )
+if "x%WB_PE_LANG%"=="xzh-TW" (
+  call :KEEP_FILES \Windows\Fonts\ "mingliub.ttc,mingliu.ttc,kaiu.ttf,msjh.ttc,msjhbd.ttc,msjhl.ttc"
+)
 if "x%WB_PE_LANG%"=="xru-RU" (
   call :KEEP_FILES \Windows\Fonts\ "cour.ttf,courbd.ttf,courbi.ttf,courer.fon,lucon.ttf,serifer.fon"
 )

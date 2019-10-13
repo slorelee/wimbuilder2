@@ -263,11 +263,13 @@ if "%WB_PE_ARCH%"=="x64" (
 )
 call AddDrivers "netbc64.inf,netrtwlane.inf,netrtwlane_13.inf,netrtwlanu.inf"
 
-if %VER[3]% LEQ 17700 goto :EOF
+if %VER[3]% LEQ 17700 goto :END_NETDRIVERS
 
 if "%WB_PE_ARCH%"=="x64" (
   call AddDrivers "netwtw02,netwtn06.inf"
 ) else (
   call AddDrivers netwtn02.inf
 )
+
+:END_NETDRIVERS
 call DoAddFiles

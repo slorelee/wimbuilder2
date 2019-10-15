@@ -26,7 +26,7 @@ ELSCore.dll,IconCodecService.dll,imageres.dll,InfDefaultInstall.exe
 InputSwitch.dll,mfperfhelper.dll
 MrmCoreR.dll,mscories.dll,MsCtfMonitor.dll,msutb.dll,mycomput.dll,policymanager.dll,pdh.dll,PhotoMetadataHandler.dll,pnputil.exe
 ProximityCommon.dll,ProximityCommonPal.dll,ProximityService.dll,ProximityServicePal.dll
-rmclient.dll,rshx32.dll,sendmail.dll
+rmclient.dll,sendmail.dll
 SettingSyncCore.dll,SharedStartModel.dll,ShellCommonCommonProxyStub.dll,shfolder.dll,shutdown.exe
 StartTileData.dll,stobject.dll,StorageUsage.dll,systemcpl.dll,TDLMigration.dll,TextInputFramework.dll,thumbcache.dll
 twinapi.appcore.dll,twinapi.dll,twinui.appcore.dll,twinui.pcshell.dll,UIAnimation.dll,UIRibbon.dll,UIRibbonRes.dll

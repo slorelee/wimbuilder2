@@ -7,6 +7,18 @@ goto :end_files
 comctl32.dll
 ExplorerFrame.dll
 
+; File(s)/Folder(s)/RecyleBin property
++ver < 16299
+actxprxy.dll
+apphelp.dll
++ver*
+
+;"Security" tab
+rshx32.dll
+
+;"Security" tab - change Owner
+;comsvcs.dll
+
 +ver > 17700
 ; shellstyle.dll(.mui) is now in \Windows\resources\themes\aero\shell\normalcolor
 \Windows\resources\Themes\aero\shell
@@ -26,8 +38,20 @@ chartv.dll,OneCoreUAPCommonProxyStub.dll
 StructuredQuery.dll
 
 :end_files
+
+rem ;For "Security" tab (rshx32.dll)
+reg add HKLM\Tmp_SOFTWARE\Classes\*\shellex\PropertySheetHandlers\{1f2e5c40-9550-11ce-99d2-00aa006e086c} /f
+reg add HKLM\Tmp_SOFTWARE\Classes\Directory\shellex\PropertySheetHandlers\{1f2e5c40-9550-11ce-99d2-00aa006e086c} /f
+rem reg add HKLM\Tmp_SOFTWARE\Classes\Drive\shellex\PropertySheetHandlers\{1f2e5c40-9550-11ce-99d2-00aa006e086c}] /f
+
+rem ;For "Security" tab - change Owner
+reg add HKLM\Tmp_SOFTWARE\Classes\new /ve /d "New Moniker" /f
+reg add HKLM\Tmp_SOFTWARE\Classes\new\CLSID /ve /d "{ecabafc6-7f19-11d2-978e-0000f8757e2a}" /f
+
 goto :EOF
 
 rem explorerframe.dll CLSID
 rem HKLM\SOFTWARE\Classes\CLSID\{056440FD-8568-48e7-A632-72157243B55B} required
 rem already added by RegCopy HKLM\SOFTWARE\Classes\CLSID
+
+rem reg import FileProperty.reg

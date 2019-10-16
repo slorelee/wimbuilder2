@@ -50,7 +50,13 @@ call :DEL_DRVSTORES "wdmaudio,wdmaudiocoresystem,wdma_usb,wnetvsc,ykinx64"
 
 del /a /f /q "%X_SYS%\adtschema.dll"
 del /a /f /q "%X_SYS%\advpack.dll"
-del /a /f /q "%X_SYS%\aepic.dll"
+
+if %VER[3]%  LSS 18800 (
+  del /a /f /q "%X_SYS%\aepic.dll"
+) else if not exist "%X_WIN%\explorer.exe" (
+  del /a /f /q "%X_SYS%\aepic.dll"
+)
+
 del /a /f /q "%X_SYS%\authui.dll"
 del /a /f /q "%X_SYS%\avrt.dll"
 del /a /f /q "%X_SYS%\bcdprov.dll"

@@ -1,14 +1,6 @@
 if not "x%opt[slim.safe]%"=="xtrue" goto :EOF
 echo Safely Sliming...
 
-rem init code page
-set WB_PE_CODEPAGE=
-for /f "tokens=3" %%i in ('reg query HKLM\Tmp_SYSTEM\ControlSet001\Control\Nls\CodePage /v ACP') do (
-  set WB_PE_CODEPAGE=%%i
-)
-if "x%WB_PE_CODEPAGE%"=="x" set WB_PE_CODEPAGE=437
-echo Got code page: %WB_PE_CODEPAGE%
-
 call :_Slim_font
 call :_Slim_keyboard
 call :_Slim_migration

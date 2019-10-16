@@ -37,6 +37,10 @@ Microsoft-Windows-WPD-UltimatePortableDeviceFeature-Feature-Package~*.cat
 @windows\system32\
 drivers\UMDF\
 wpd*,WUDF*,PortableDevice*
+
+; copy file(s) (PC -> Phone)
+vaultcli.dll
+
 :end_files
 
 call DoAddFiles

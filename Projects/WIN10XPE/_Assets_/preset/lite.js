@@ -23,12 +23,14 @@ var $patches_opt = {
     "slim.mui":true,
     "slim.winboot":true,
     "slim.font.mingliu":true,
+    "slim.ieframedll":true,
     "slim.jscript":true,
     "slim.hta":true,
     "slim.wmi":true,
     "slim.speech":true,
     "slim.small_fonts":true,
     "slim.small_imageresdll":true,
+    "slim.safe":true,
     "slim.ultra":true,
     "_._._":""
 };

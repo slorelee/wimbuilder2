@@ -23,9 +23,10 @@ var $patches_opt = {
     "component.bitlocker":true,
     "component.search":true,
     "component.vcruntime":true,
-    "component.MSI":false,              // can't logon with Admin
+    "component.MSI":true,
     "component.netfx":true,
     "component.MTP":true,
+    "component.RNDIS":true,
     "component.mspaint":true,
     "component.winphotoviewer":true,
     "component.snippingtool":true,

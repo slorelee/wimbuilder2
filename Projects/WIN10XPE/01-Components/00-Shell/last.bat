@@ -33,8 +33,8 @@ copy /y "%opt[shell.wallpaper]%" "%X_SYS%\winpe.jpg"
 if not exist "%X%\Windows\Web\Wallpaper\Windows\" mkdir "%X%\Windows\Web\Wallpaper\Windows"
 copy /y "%opt[shell.wallpaper]%" "%X%\Windows\Web\Wallpaper\Windows\img0.jpg"
 
-rem reg add "HKLM\Tmp_Default\Control Panel\Desktop" /v Wallpaper /d X:\Windows\Web\Wallpaper\Windows\img0.jpg /f
-rem reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\Desktop\General" /v WallpaperSource /d X:\Windows\Web\Wallpaper\Windows\img0.jpg /f
+reg add "HKLM\Tmp_Default\Control Panel\Desktop" /v Wallpaper /d X:\Windows\Web\Wallpaper\Windows\img0.jpg /f
+reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\Desktop\General" /v WallpaperSource /d X:\Windows\Web\Wallpaper\Windows\img0.jpg /f
 reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\WinPE" /v CustomBackground /t REG_EXPAND_SZ /d X:\Windows\Web\Wallpaper\Windows\img0.jpg /f
 
 rem // 0=Always combine, hide labels, 1=Combine when taskbar is full,2=Never combine
@@ -53,10 +53,4 @@ if not exist "%X_SYS%\ieframe.dll" (
     reg delete HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Display\command /v DelegateExecute /f
     reg add HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Personalize\command /d "WinXShell.exe ms-settings:personalization-background" /f
     reg delete HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Personalize\command /v DelegateExecute /f
-)
-
-if exist "%X_SYS%\PinTool.exe" (
-    if  exist "%X_SYS%\pecmd.ini" (
-        call TextReplace "%X_SYS%\pecmd.ini" "#// EXEC #pWinDir#p\System32\PinTool.exe" "EXEC #pWinDir#p\System32\PinTool.exe"
-    )
 )

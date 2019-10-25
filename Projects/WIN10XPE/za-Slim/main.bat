@@ -24,13 +24,15 @@ if "x%opt[slim.font.mingliu]%"=="xtrue" (
 )
 
 if "x%opt[slim.small_fonts]%"=="xtrue" (
-  for /f "delims=" %%i in ('dir /b SmallFonts') do (
-    if exist "%X_WIN%\Fonts\%%i" copy /Y "%~dp0SmallFonts\%%i" "%X_WIN%\Fonts\"
+  for /f "delims=" %%i in ('dir /b "%V%\CustomResources\SmallFonts"') do (
+    if exist "%X_WIN%\Fonts\%%i" copy /Y "%V%\CustomResources\SmallFonts\%%i" "%X_WIN%\Fonts\"
   )
 )
 
 if "x%opt[slim.small_imageresdll]%"=="xtrue" (
-    if exist "%~dp0small_imageres.dll" xcopy  /E /Y "%~dp0SmallFonts\small_imageres.dll"  %X_SYS%\imageres.dll
+  if "%opt[support.wow64]%"=="true" (
+    if not exist "%X_WIN%\SystemResources\imageres.dll.mun" xcopy  /E /Y "%V%\CustomResources\SmallDlls\imageres.dll"  "%X_WIN%\SysWOW64\imageres.dll"
+  )
 )
 
 set opt[component.hta]=false

@@ -10,6 +10,9 @@ diskmgmt.msc
 dmdlgs.dll,dmdskmgr.dll,dmdskres.dll,dmdskres2.dll,dmintf.dll
 dmocx.dll,dmutil.dll,dmvdsitf.dll,dmview.ocx,hhsetup.dll
 
+;Drive Optimizer (already in winre.wim)
+;defragproxy.dll,defragres.dll,defragsvc.dll
+
 :end_files
 
 rem ==========update registry==========

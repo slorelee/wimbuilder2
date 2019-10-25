@@ -64,4 +64,5 @@ del /f /q /a "%X_SYS%\winpeshl.ini"
 move /y "%X_PEMaterial%\winpeshl.ini" "%X_SYS%\"
 
 call TextReplace "%X_SYS%\pecmd.ini" "X:\\PEMaterial\\" "X:\%opt[loader.PEMaterial]%\" g
+call TextReplace "%X_SYS%\PecmdAdmin.ini" "X:\\PEMaterial\\" "X:\%opt[loader.PEMaterial]%\" g
 goto :EOF

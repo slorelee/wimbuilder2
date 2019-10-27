@@ -24,6 +24,7 @@ rasman.dll
 
 ;Here for System32 only
 +if "%SysDir%"="System32"
+findstr.exe
 nsi.dll
 sti.dll
 -if

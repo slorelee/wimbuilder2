@@ -26,6 +26,16 @@ http.sys,ipnat.sys,mslldp.sys,ndiscap.sys,ndisimplatform.sys,nwifi.sys,tunnel.sy
 netlldp.inf*,netnwifi.inf*
 netvwifibus.inf*,netvwififlt.inf*,netvwifimp.inf*
 
+; add cat files for driver files
+@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
++ver >= 17763
+Microsoft-Windows-Client-Desktop-Required-Package*.cat
++ver >= 16299 and ver < 17763
+Microsoft-Windows-Client-Features-Package*.cat
++ver >= 14393 and ver < 16299
+Microsoft-Windows-NetIO-Package~*.cat
++ver*
+
 ; Folder
 \ProgramData\Microsoft\WwanSvc
 \Windows\L2Schemas
@@ -119,11 +129,6 @@ wbem\wlan.mof
 \Windows\SystemResources\Windows.UI.Cred\Windows.UI.Cred.pri
 \Windows\SystemResources\Windows.UI.Cred\pris\Windows.UI.Cred*
 
-; add for PENetwork(x64)
-@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
-Microsoft-Windows-Client-Features-Package*.cat
-Microsoft-Windows-Client-Features-WOW64-Package*.cat
-
 :end_files
 
 rem ==========update registry==========
@@ -159,12 +164,13 @@ call RegCopy HKLM\System\ControlSet001\Services\WlanSvc
 
 reg add HKLM\Tmp_System\ControlSet001\Services\WlanSvc /v DependOnService /t REG_MULTI_SZ /d nativewifip\0RpcSs\0Ndisuio\0wcmsvc /f
 
-if %VER[3]% GTR 17000 (
+rem if %VER[3]% GTR 17000 (
   reg add HKLM\Tmp_System\ControlSet001\Services\WlanSvc /v ErrorControl /t REG_DWORD /d 1 /f
   reg add HKLM\Tmp_System\ControlSet001\Services\WlanSvc /v ImagePath /t REG_EXPAND_SZ /d "%%SystemRoot%%\System32\Svchost.exe -k LocalSystemNetworkRestricted -p" /f
   reg add HKLM\Tmp_System\ControlSet001\Services\WlanSvc /v Start /t REG_DWORD /d 2 /f
   reg add HKLM\Tmp_System\ControlSet001\Services\WlanSvc /v Type /t REG_DWORD /d 32 /f
-)
+rem )
+
 rem // wfplwfs
 call RegCopy HKLM\System\ControlSet001\Control\Network\{4d36e974-e325-11ce-bfc1-08002be10318}\{3BFD7820-D65C-4C1B-9FEA-983A019639EA}
 call RegCopy HKLM\System\ControlSet001\Control\Network\{4d36e974-e325-11ce-bfc1-08002be10318}\{B70D6460-3635-4D42-B866-B8AB1A24454C}

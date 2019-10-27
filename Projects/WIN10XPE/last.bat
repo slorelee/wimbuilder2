@@ -1,3 +1,7 @@
+rem update lua scripts for escape characters
+call LuaLink -done
+call LuaPin -done
+
 if "x%opt[build.last_filereg_disabled]%"=="xtrue" goto :EOF
 
 rem incompatible with StartIsBack(SYSTEM account)
@@ -23,10 +27,6 @@ if not exist "%X_SYS%\dwm.exe" (
 )
 
 call za-Slim\Cleanup.bat
-
-rem update lua scripts for escape characters
-call LuaLink -done
-call LuaPin -done
 
 rem use prepared HIVE files
 call PERegPorter.bat Tmp UNLOAD 1>nul

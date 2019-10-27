@@ -18,6 +18,8 @@ set X_SYS=%X_WIN%\System32
 set X_Desktop=%X%\Users\Default\Desktop
 set "_CUSTOMFILES_=%WB_PROJECT_PATH%\_CustomFiles_"
 
+call "%WB_PROJECT_PATH%\shared\InitLoader.bat"
+
 call V2X -init
 
 rem call prepare.bat before mounting

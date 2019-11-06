@@ -134,7 +134,7 @@ call DoAddFiles
 rem ; V1709
 SetACL.exe -on "%X_SYS%\spool\PRINTERS" -ot file -actn ace -ace "n:Everyone;p:full;s:y"
 
-; V1803
+rem ; V1803
 rem prn*.inf
 
 rem ==========update registry==========
@@ -156,6 +156,11 @@ call RegCopyEx Services usbprint
 rem avoid error: "the printer driver is not compatible with a policy on your computer which disable NT4.0 driver"
 reg add "HKLM\Tmp_Software\Policies\Microsoft\Windows NT\Printers" /v KmPrintersAreBlocked /t REG_DWORD /d 0 /f
 
+rem register WNF_DEP_OOBE_COMPLETE notification for v1903 and later
+if %VER[3]% GTR 18300 (
+  reg add "HKLM\tmp_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Notifications\Data" /v 41960B29A3BC0C75 /t REG_BINARY /d 0100000001000000 /f
+)
+
 rem update spoolsv.exe binary
 binmay.exe -u "%X_SYS%\spoolsv.exe" -s u:SystemSetupInProgress -r u:DisableSpoolsvInWinPE
 fc /b "%X_SYS%\spoolsv.exe.org" "%X_SYS%\spoolsv.exe"
@@ -163,14 +168,21 @@ del /f /q "%X_SYS%\spoolsv.exe.org"
 
 rem EnablePrintFeature
 if 1==1 (
+  echo @echo off
   echo X:\windows\system32\wbem\mofcomp.exe X:\windows\system32\wbem\win32_printer.mof
   echo X:\windows\system32\wbem\mofcomp.exe X:\windows\system32\wbem\PrintManagementProvider.mof
-  echo ntprint.exe
+  echo.
   echo net start spooler
   echo PnPutil.exe -i -a "%%Windir%%\inf\usbprint.inf"
   echo drvload.exe "%%Windir%%\inf\printqueue.inf"
   echo.
-  echo echo Printer^(s^) will work in 2 minutes later ...
+  echo.
+  echo echo  __________________________________________________________
+  echo echo ^^^|                                                          ^^^|
+  echo echo ^^^|%opt[_message.wait_for_printers]%^^^|
+  echo echo ^^^|__________________________________________________________^^^|
+  echo.
+  echo.
   echo timeout.exe /T 5
 )>"%X_PEMaterial%\EnablePrintFeature.bat"
 

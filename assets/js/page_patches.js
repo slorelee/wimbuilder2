@@ -200,20 +200,21 @@ function edit_menu_action(file) {
 function update_preset_list() {
     if ($patches_preset_inited) return;
 
-    var preset_selected = null;
+    var preset_selected = false;
     $('#patch_preset').empty();
     $obj_project.presets.forEach(function(preset) {
-        if ($obj_project.preset == preset) {
-            $('#patch_preset').append('   <option selected="selected">' + preset.slice(0, -3) + '</option>');
+        var preset_name = preset.slice(0, -3);
+        if ($obj_project.preset == preset_name) {
+            $('#patch_preset').append('   <option selected>' + preset_name + '</option>');
             preset_selected = true;
         } else {
-            $('#patch_preset').append('   <option>' + preset.slice(0, -3) + '</option>');
+            $('#patch_preset').append('   <option>' + preset_name + '</option>');
         }
     });
-    if (!preset_selected) {
+    if (preset_selected) {
         $('#patch_preset').append('   <option>-</option>');
     } else {
-        $('#patch_preset').append('   <option selected="selected">-</option>');
+        $('#patch_preset').append('   <option selected>-</option>');
     }
     $patches_preset_inited = true;
 }

@@ -15,6 +15,9 @@ $('#menu_patch').click(function(){
     $('#patch_project_name').text(selected_project);
     update_preset_list();
     show_patches_settings();
+    if ($wb_opt_build) {
+        do_quick_build($wb_opt_build);
+    }
 });
 
 $('#menu_build').click(function(){

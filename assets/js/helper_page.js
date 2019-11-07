@@ -46,7 +46,7 @@ function auto_save_settings() {
 }
 
 
-function do_quick_build() {
+function do_quick_build(mode) {
     var jump_page = '';
     if ($wb_base == 'winre.wim') {
         if (!$('#wb_auto_winre').prop('checked')) {
@@ -67,12 +67,13 @@ function do_quick_build() {
         return;
     }
 
-    $('#menu_patch').click();
+    if (mode == null) $('#menu_patch').click();
     $('#menu_build').click();
 
-    var mode = 'exec';
-    if ($('#quick_build_mode_run').prop('checked')) mode = 'run';
-
+    if (mode == null) {
+        mode = 'exec';
+        if ($('#quick_build_mode_run').prop('checked')) mode = 'run';
+    }
     cleanup(false, mode != 'exec');
 
     window.setTimeout(function(){wait_and_build(mode);}, 500);

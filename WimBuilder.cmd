@@ -2,6 +2,9 @@
 cd /d "%~dp0"
 title WimBuilder(%cd%)
 
+if /i "x%1"=="x-h" goto :SHOW_HELP
+if /i "x%1"=="x--help" goto :SHOW_HELP
+
 set "WB_ROOT=%cd%"
 if "x%WB_ROOT:~-1%"=="x\" set WB_ROOT=%WB_ROOT:~0,-1%
 
@@ -79,6 +82,9 @@ rem ========================
 
 set "V=%WB_ROOT%\vendor"
 
+call :PARSE_OPTIONS %*
+rem set WB_OPT_
+
 rem mount winre.wim/boot.wim with wimlib, otherwise dism
 set USE_WIMLIB=0
 if not "%PROCESSOR_ARCHITECTURE%"=="AMD64" goto :Normal_Start
@@ -88,3 +94,43 @@ goto :EOF
 
 :Normal_Start
 start WimBuilder_UI.hta %*
+goto :EOF
+
+
+:SHOW_HELP
+echo Usage: %~nx0 [-h^|--help] [^<Options^>...]
+echo.
+echo ^<Options^>
+echo    --verbose
+echo    --build^|--build-with-log
+echo    --project {name}
+echo    --preset {preset}
+echo    --make-iso
+rem echo    --close-ui
+echo.
+goto :EOF
+
+:PARSE_OPTIONS
+
+if /i "x%1"=="x" goto :EOF
+if /i "x%1"=="x--build" (
+  set WB_OPT_BUILD=CMD
+) else if /i "x%1"=="x--build-with-log" (
+  set WB_OPT_BUILD=LOG
+) else if /i "x%1"=="x--verbose" (
+  set WB_OPT_VERBOSE=1
+) else if /i "x%1"=="x--project" (
+  set WB_OPT_PROJECT=%2
+  SHIFT
+) else if /i "x%1"=="x--preset" (
+  set WB_OPT_PRESET=%2
+  SHIFT
+) else if /i "x%1"=="x--make-iso" (
+  set WB_OPT_MAKE_ISO=1
+) else if /i "x%1"=="x--close-ui" (
+  set WB_OPT_CLOSE_UI=1
+)
+SHIFT
+goto :PARSE_OPTIONS
+
+goto :EOF

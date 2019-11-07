@@ -49,7 +49,10 @@ function start_page_init() {
     $('#wb_base_idx_opt').val($wb_base_index);
     check_wim_file();
     _auto_saved_settings = get_current_settings();
-    auto_save_trigger = true;
+
+    // disable auto save options with build option
+    if ($wb_opt_build == null) auto_save_trigger = true;
+
     user_trigger = true;
     if (!$wb_auto_config_created) {
         $_wb_first_run = true;

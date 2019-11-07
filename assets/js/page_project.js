@@ -61,7 +61,7 @@ function regist_event() {
         
         var project = $obj_project;
         if (last_selected_project != selected_project) {
-            project = reload_project(name);
+            project = reload_project(name, $wb_opt_preset);
         }
         $('#project_desc').html('<p>' + project.desc.replace(/\r\n/g, '<br/>') + '</p>');
         if (project.desc) {

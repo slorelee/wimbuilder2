@@ -1,11 +1,10 @@
 call V2X 7-Zip -Extract "7z*-%_Vx8664%.exe" "%X_PF%\7-Zip\"
-copy /y 7z-Register.reg "%X_PF%\7-Zip\"
+copy /y 7z-Register.reg "%X_Startup%\BeforeShell\"
 
 call :REMOVE_LANGFILES
 
-call Link "#pDesktop#p\7-zip" "#pProgramFiles#p\7-zip\7zFM.exe"
-call RunBeforeShell "reg import #qX:\Program Files\7-Zip\7z-Register.reg#q" "/wait /hide"
-rem call Shortcuts "StartMenu,Desktop,PintTaskbar,PinStartMenu"
+call LinkToDesktop "7-Zip.lnk" "#pProgramFiles#p\7-Zip\7zFM.exe"
+call LinkToStartMenu "7-Zip\7-Zip File Manager.lnk" "#pProgramFiles#p\7-Zip\7zFM.exe"
 goto :EOF
 
 :REMOVE_LANGFILES

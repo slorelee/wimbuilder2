@@ -3,6 +3,8 @@ var $patches_preset_inited = null;
 var $patch_loaded = false;
 var $obj_patch = null;
 
+var _patch_updater = [];
+
 function init_radio_opt(elem, patches_opt) {
     var key = $(elem).attr('name');
     if (key in patches_opt) {
@@ -87,8 +89,21 @@ function init_patches_opt(patches_opt, patch_full_path) {
   });
 }
 
+function patch_updater_register(func) {
+    _patch_updater.push(func);
+}
+
+function patch_updater_execute() {
+    if (_patch_updater.length == 0) return;
+    _patch_updater.forEach(function(func) {
+        func();
+    });
+    _patch_updater.length = 0;
+}
+
 function update_patches_opt(patches_opt) {
- $(".opt_item").each(function() {
+  patch_updater_execute();
+  $(".opt_item").each(function() {
     var type = $(this)[0].tagName.toLowerCase();
     if (type == 'input') type = $(this).attr('type');
     if (typeof(type) == 'undefined') {

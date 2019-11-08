@@ -93,16 +93,16 @@ function patch_updater_register(func) {
     _patch_updater.push(func);
 }
 
-function patch_updater_execute() {
+function patch_updater_execute(keep_updater) {
     if (_patch_updater.length == 0) return;
     _patch_updater.forEach(function(func) {
         func();
     });
-    _patch_updater.length = 0;
+    if (!keep_updater) _patch_updater.length = 0;
 }
 
-function update_patches_opt(patches_opt) {
-  patch_updater_execute();
+function update_patches_opt(patches_opt, keep_updater) {
+  patch_updater_execute(keep_updater);
   $(".opt_item").each(function() {
     var type = $(this)[0].tagName.toLowerCase();
     if (type == 'input') type = $(this).attr('type');

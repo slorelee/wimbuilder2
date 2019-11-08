@@ -22,7 +22,7 @@ $('#menu_patch').click(function(){
 
 $('#menu_build').click(function(){
     if ($obj_project) {
-        update_patches_opt($obj_project.patches_opt);
+        update_patches_opt($obj_project.patches_opt, true);
     }
     $wb_show_quick_build = true;
     switch_page('build');

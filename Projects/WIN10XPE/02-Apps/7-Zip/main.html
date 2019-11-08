@@ -1,1 +1,74 @@
-<a href="https://www.7-zip.org/">7-zip</a><br/>
+<!-- test with brower(chrome, IE, ...)
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script>var $patches_var = [];var $patches_opt = [];function set_default_option(a,b){}</script>
+<script src="en-US.js"></script>
+-->
+
+<a href="https://www.7-zip.org/">7-zip</a>
+<br/>
+<br/>
+
+<style>
+    fieldset legend {
+        color: #302A2A;
+        font: bold 16px/2 Verdana, Geneva, sans-serif;
+        font-weight: bold;
+        text-align: left;
+        text-shadow: 2px 2px 2px rgb(88, 126, 156);
+    }
+
+    #_7zip_assoc td {
+        width: 100px;
+    }
+
+    #_7zip_assoc input {
+        margin-right: 5px;
+    }
+</style>
+
+<fieldset>
+<legend>Associate with 7-Zip</legend>
+<div>
+<table id="_7zip_assoc" cellspacing="10" boarder="1">
+</table>
+</div>
+</fieldset>
+
+<script>
+    (function () {
+        if (!$patch_loaded) {
+            fill_assoc_ext();
+        }
+    })();
+
+    function fill_assoc_ext() {
+        var exts = $patches_var['7-zip.ui_assoc_exts'].split(',')
+        var n = 0, html = '';
+        var select_ext_str =  ',' + $patches_opt['7-zip.selected_assoc_exts'] + ',';
+        for (i = 0; i < 20; i++) {
+            html += "<tr>";
+            for (j = 0; j < 3; j++) {
+                var item_checked = '';
+                if (select_ext_str.indexOf(',' + exts[n] + ',') >= 0) item_checked = 'checked';
+                html += '<td><label><input type="checkbox" name="_7zip_assoc_ext" tag="' +
+                    exts[n] + '" ' + item_checked + '/>.' + exts[n] + '</label></td>';
+                n++;
+                if (n == exts.length) break;
+            }
+            html += "</tr>";
+            if (n == exts.length) break;
+        }
+        $('#_7zip_assoc').html(html);
+    }
+
+    function _7zip_assoc_updater() {
+        var ext_str =
+            ($("#_7zip_assoc input[name='_7zip_assoc_ext']:checked").parent().map(function () {
+                return $(this).text().slice(1); // remove first '.'.   ('.xxx' => 'xxx')
+            }).get().join(','));
+        // if (ext_str == '') ext_str = 'none';
+        set_option('7-zip.selected_assoc_exts', ext_str);
+    }
+
+    patch_updater_register(_7zip_assoc_updater);
+</script>

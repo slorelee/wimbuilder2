@@ -1,6 +1,7 @@
 call V2X 7-Zip -Extract "7z*-%_Vx8664%.exe" "%X_PF%\7-Zip\"
 copy /y 7z-Register.reg "%X_Startup%\BeforeShell\"
 
+call AssocExt.bat
 call :REMOVE_LANGFILES
 
 call LinkToDesktop "7-Zip.lnk" "#pProgramFiles#p\7-Zip\7zFM.exe"

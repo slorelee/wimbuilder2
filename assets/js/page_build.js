@@ -245,6 +245,7 @@ function make_iso(keep, mode) {
     }
     if (!keep) {
         $('#build_stdout').empty();
+        dump_patches_opt();
     } else {
         $('#build_stdout').append('<br/>Creating ISO...<br/>');
     }

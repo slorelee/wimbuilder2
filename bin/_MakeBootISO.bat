@@ -7,15 +7,30 @@ if "x%ISO_DIR%"=="x" (
   goto :ON_ERROR
 )
 
-
-rem call _PreISO_
-set "WB_PROJECT_PATH=Projects\%WB_PROJECT%"
-if exist "%WB_PROJECT_PATH%\_CustomFiles_\_PreISO_.bat" (
-  pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
-  call _PreISO_.bat
-  popd
+if "x%WB_PROJECT%"=="x" (
+  echo Can't find the WB_PROJECT.
+  goto :ON_ERROR
 )
 
+if "x%_WB_TMP_DIR%"=="x" (
+  set "_WB_TMP_DIR=%WB_ROOT%\%Factory%\tmp\%WB_PROJECT%"
+)
+
+rem load patches options
+if exist "%_WB_TMP_DIR%\_patches_opt.bat" (
+  call "%_WB_TMP_DIR%\_patches_opt.bat"
+)
+
+rem call _CustomISO_
+set "WB_PROJECT_PATH=Projects\%WB_PROJECT%"
+if "x%_CustomISO_FILE%"=="x" set _CustomISO_FILE=_CustomISO_.bat
+if exist "%WB_PROJECT_PATH%\_CustomFiles_\%_CustomISO_FILE%" (
+  pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
+  call %_CustomISO_FILE% PreISO
+  popd
+) else (
+  set _CustomISO_FILE=
+)
 
 rem auto create the _ISO_
 
@@ -35,17 +50,34 @@ if not exist "%ISO_DIR%\boot\etfsboot.com" (
 )
 
 copy /y "%Factory%\target\%WB_PROJECT%\build\boot.wim" "%ISO_DIR%\sources\boot.wim"
-if exist "%ISO_DIR%\efi\Microsoft\boot\efisys.bin" (
-  oscdimg.exe -bootdata:2#p0,e,b"%ISO_DIR%\boot\etfsboot.com"#pEF,e,b"%ISO_DIR%\efi\Microsoft\boot\efisys.bin" -h -l"%WB_ISO_LABEL%" -m -u2 -udfver102 "%ISO_DIR%" "%Factory%\%WB_ISO_NAME%.iso"
+
+set EFI_BIN=efisys.bin
+if not "x%_CustomISO_FILE%"=="x" (
+  pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
+  call %_CustomISO_FILE% MakeISO
+  popd
+)
+
+if exist "%ISO_DIR%\efi\Microsoft\boot\%EFI_BIN%" (
+  oscdimg.exe -bootdata:2#p0,e,b"%ISO_DIR%\boot\etfsboot.com"#pEF,e,b"%ISO_DIR%\efi\Microsoft\boot\%EFI_BIN%" -h -l"%WB_ISO_LABEL%" -m -u2 -udfver102 "%ISO_DIR%" "%Factory%\%WB_ISO_NAME%.iso"
 ) else (
   oscdimg.exe -b"%ISO_DIR%\boot\etfsboot.com" -h -l"%WB_ISO_LABEL%" -m -u2 -udfver102 "%ISO_DIR%" "%Factory%\%WB_ISO_NAME%.iso"
 )
 echo \033[96mISO Created -* %Factory%\%WB_ISO_NAME%.iso | cmdcolor.exe
+set "WB_ISO_PATH=%WB_ROOT%\%Factory%\%WB_ISO_NAME%.iso"
 if ERRORLEVEL 1 (
+  set WB_ISO_PATH=
   echo make boot iso failed.
 ) else (
   echo make boot iso successfully.
 )
+
+if not "x%_CustomISO_FILE%"=="x" (
+  pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
+  call %_CustomISO_FILE% PostISO "%WB_ISO_PATH%"
+  popd
+)
+
 if "x%_WB_EXEC_MODE%"=="x1" goto :EOF
 pause
 goto :EOF

@@ -9,6 +9,7 @@ var Project = {
         project.full_path = project.wb_root + '/' + project.path;
         project.full_uri = project.full_path;
         project.full_path = project.full_path.replace(/\//g, '\\');
+        project.style = project.path + '/_Assets_/style.css';
         function load_file(file) {
             return load_text_file(project.path + '/' + file);
         };

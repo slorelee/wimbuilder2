@@ -10,7 +10,13 @@ $('#menu_project').click(function(){
     show_projects();
 });
 
+function load_patch_shared_style() {
+    if (!$obj_project) return;
+    $('#patch_shared_style_holder').html('<link rel="stylesheet" href="' + $obj_project.style + '"/>');
+}
+
 $('#menu_patch').click(function(){
+    load_patch_shared_style();
     switch_page('patch');
     $('#patch_project_name').text(selected_project);
     update_preset_list();

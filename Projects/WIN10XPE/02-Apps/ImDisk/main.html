@@ -1,3 +1,43 @@
-<b>ImDisk Virtual Disk Driver</b><br/>
+<div>
+    <b>ImDisk Virtual Disk Driver</b><br />
     <a href="http://www.ltr-data.se/opencode.html/#ImDisk">http://www.ltr-data.se/opencode.html/#ImDisk</a>
-    
+    <br/>
+    <br/>
+    <style>
+        fieldset {
+            width: 360px;
+        }
+    </style>
+    <fieldset>
+            <legend><label><input type="checkbox" name="imdisk.ramdisk" class="opt_item">    Create RAM disk</legend>
+            <label class="left_label">Ramdisk Drive:</label>
+            <!-- Selectmenu -->
+            <select id="imdisk_drive_select" name="imdisk.drive_letter" width="40%" class="opt_item">
+                <option>A:</option>
+                <option selected="selected">B:</option>
+                <option >R:</option>
+                <option >U:</option>
+                <option>V:</option>
+                <option>W:</option>
+                <option>Y:</option>
+                <option>Z:</option>
+            </select>
+        <label class="left_label">Ramdisk Size(MB):</label>
+        <!-- Selectmenu -->
+        <select id="imdisk_size_select" name="imdisk.disk_size" width="40%" class="opt_item">
+            <option>8192</option>
+            <option>4096</option>
+            <option selected="selected">2048</option>
+            <option>1024</option>
+            <option>512</option>
+        </select>
+        <div style="height:10px" />
+</div>
+<script>
+        (function() {
+            $("#imdisk_drive_select").selectmenu();
+            $("#imdisk_drive_select").selectmenu("option", "width", '40%');
+            $("#imdisk_size_select").selectmenu();
+            $("#imdisk_size_select").selectmenu("option", "width", '40%');
+        })();
+</script>

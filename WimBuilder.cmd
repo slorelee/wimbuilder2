@@ -2,8 +2,10 @@
 cd /d "%~dp0"
 title WimBuilder(%cd%)
 
-if /i "x%1"=="x-h" goto :SHOW_HELP
-if /i "x%1"=="x--help" goto :SHOW_HELP
+set WB_OPT_HELP=
+call :PARSE_OPTIONS %*
+rem set WB_OPT_
+if /i "x%WB_OPT_HELP%"=="x1" goto :SHOW_HELP
 
 set "WB_ROOT=%cd%"
 if "x%WB_ROOT:~-1%"=="x\" set WB_ROOT=%WB_ROOT:~0,-1%
@@ -82,9 +84,6 @@ rem ========================
 
 set "V=%WB_ROOT%\vendor"
 
-call :PARSE_OPTIONS %*
-rem set WB_OPT_
-
 rem mount winre.wim/boot.wim with wimlib, otherwise dism
 set USE_WIMLIB=0
 if not "%PROCESSOR_ARCHITECTURE%"=="AMD64" goto :Normal_Start
@@ -103,22 +102,57 @@ echo.
 echo ^<Options^>
 echo    --verbose
 echo    --build^|--build-with-log
-echo    --project {name}
-echo    --preset {preset}
+echo    --source-folder FOLDER^|DRIVE
+echo    --source-wim SOURCE_WIM_FILE
+echo    --source-index INDEX
+echo    --base-wim BASE_WIM_FILE
+echo    --base-index INDEX
+echo    --project PROJECT
+echo    --preset PRESET
 echo    --make-iso
-rem echo    --close-ui
+echo    --close-ui
 echo.
+echo Examples:
+echo.
+echo    %~nx0 --build --make-iso --close-ui
+echo    %~nx0 --source-folder I: --source-index 1 --build --preset full --make-iso --close-ui
+echo    %~nx0 --source-wim "D:\win10v1903\sources\install.wim" --source-index 4 --build --preset full --make-iso --close-ui
+echo    %~nx0 --source-folder H: --source-index 1 --base-wim "D:\BOOTPE\boot.wim" --preset lite --build-with-log --make-iso
 goto :EOF
 
 :PARSE_OPTIONS
 
 if /i "x%1"=="x" goto :EOF
-if /i "x%1"=="x--build" (
+if /i "x%1"=="x-h" (
+  set WB_OPT_HELP=1
+  goto :EOF
+) else if /i "x%1"=="x--help" (
+  set WB_OPT_HELP=1
+  goto :EOF
+) else if /i "x%1"=="x--build" (
   set WB_OPT_BUILD=CMD
 ) else if /i "x%1"=="x--build-with-log" (
   set WB_OPT_BUILD=LOG
 ) else if /i "x%1"=="x--verbose" (
   set WB_OPT_VERBOSE=1
+) else if /i "x%1"=="x--source-driver" (
+  set "WB_SRC_FOLDER=%~2"
+  SHIFT
+) else if /i "x%1"=="x--source-folder" (
+  set "WB_SRC_FOLDER=%~2"
+  SHIFT
+) else if /i "x%1"=="x--source-wim" (
+  set "WB_SRC_WIM=%~2"
+  SHIFT
+) else if /i "x%1"=="x--source-index" (
+  set WB_SRC_INDEX=%2
+  SHIFT
+) else if /i "x%1"=="x--base-wim" (
+  set "WB_BASE_WIM=%~2"
+  SHIFT
+) else if /i "x%1"=="x--base-index" (
+  set WB_BASE_INDEX=%2
+  SHIFT
 ) else if /i "x%1"=="x--project" (
   set WB_OPT_PROJECT=%2
   SHIFT

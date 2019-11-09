@@ -54,7 +54,7 @@ function start_page_init() {
     if ($wb_opt_build == null) auto_save_trigger = true;
 
     user_trigger = true;
-    if (!$wb_auto_config_created) {
+    if ($wb_opt_build == null && !$wb_auto_config_created) {
         $_wb_first_run = true;
         $('#page_start_info').show();
     }

@@ -193,14 +193,18 @@ function run_build(no_confirm, keep) {
 
     var cmd_mode = '/k';
     if ($wb_auto_makeiso) cmd_mode = '/c';
+    if ($wb_opt_closeui) cmd_mode = '/c';
     structure_env(0);
     dump_patches_selected();
     dump_patches_opt();
 
     _in_building = 'run_build';
     wsh.run('cmd /d ' + cmd_mode + ' "' + $wb_root + '\\bin\\_process.bat"', 1, true);
+    _in_building = 'done';
     if ($wb_auto_makeiso) {
         make_iso(true, 'exec'); //show result in OUTPUT textarea if auto makeiso
+    } else  if ($wb_opt_closeui) {
+        wait_and_close(); // close directly
     }
 }
 
@@ -257,6 +261,9 @@ function make_iso(keep, mode) {
     if ($wb_auto_testiso) {
         wait_and_test();
     }
+    if ($wb_opt_closeui) {
+        wait_and_close();
+    }
 }
 
 function test_iso() {
@@ -281,6 +288,21 @@ function wait_and_test() {
         return;
     }
     test_iso();
+}
+
+function wait_and_close() {
+    var wait_cond = true;
+    if ($wb_opt_makeiso == true) {
+        wait_cond = (_in_makeiso != 'done');
+    } else {
+        wait_cond = (_in_building != 'done');
+    }
+    if (wait_cond) {
+        //waiting
+        window.setTimeout(function(){wait_and_close();}, 2000);
+        return;
+    }
+    window.close();
 }
 
 function sleep(n) {
@@ -326,8 +348,11 @@ function update_output_by_log(oExec, finished) {
     build_stdout.scrollTop(build_stdout[0].scrollHeight);
     if (oExec.status != 0) {
         if (finished == 1) {
+            _in_building = 'done';
             if ($wb_auto_makeiso) {
                window.setTimeout(function(){make_iso(true, 'exec');}, 1000);
+            } else  if ($wb_opt_closeui) {
+                wait_and_close(); // close directly
             }
         } else {
             window.setTimeout(function(){update_output_by_log(oExec, 1);}, 100);

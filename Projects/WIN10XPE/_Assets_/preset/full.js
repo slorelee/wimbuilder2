@@ -46,10 +46,12 @@ var $patches_opt = {
     "audio.win_events":"all",
     "slim.mui":true,
     "slim.winboot":false,
-    "slim.font.mingliu":true,
+    "slim.font.mingliu":false,
+    "slim.wbem_repository":false,
     "slim.jscript":false,
     "slim.hta":false,
     "slim.wmi":false,
+    "slim.speech":false,
     "slim.ultra":false,
     "_._._":""
 };

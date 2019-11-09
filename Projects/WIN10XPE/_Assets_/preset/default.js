@@ -28,13 +28,7 @@ var $patches_opt = {
     "IE.home_page":"about:blank",
     "network.function_discovery":true,
     "network.builtin_drivers":true,
-    "slim.mui":true,
     "slim.winboot":false,
-    "slim.font.mingliu":true,
-    "slim.jscript":false,
-    "slim.hta":false,
-    "slim.wmi":false,
-    "slim.ultra":false,
     "_._._":""
 };
 

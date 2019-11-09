@@ -1,13 +1,13 @@
 <fieldset>
 <legend>Remove:</legend>
 <div style="margin:3px;font-size:.8em;">
-  <input type="checkbox" name="slim.mui" class="opt_item" checked /> other MUI files<br/>
-  <input type="checkbox" name="slim.winboot" class="opt_item" /> Boot [\Windows\Boot]<br/>
-  <input type="checkbox" name="slim.font.mingliu" class="opt_item" checked /> mingliu.ttc (27 MB)<br/>
-  <input type="checkbox" name="slim.wbem_repository" class="opt_item" checked /> wbem\Repository<br/>
+  <label><input type="checkbox" name="slim.mui" class="opt_item" /> other MUI files</label><br/></label>
+  <label><input type="checkbox" name="slim.winboot" class="opt_item" /> Boot [\Windows\Boot]</label><br/>
+  <label><input type="checkbox" name="slim.font.mingliu" class="opt_item" /> mingliu.ttc (27 MB)</label><br/>
+  <label><input type="checkbox" name="slim.wbem_repository" class="opt_item" /> wbem\Repository</label><br/>
   <br/>
   <fieldset>
-  <legend><input type="checkbox" name="slim.ieframedll" class="opt_item" /> ieframe.dll (14 MB)</legend>
+  <legend><label><input type="checkbox" name="slim.ieframedll" class="opt_item" /> ieframe.dll (14 MB)</label></legend>
     <div style="margin:3px 16px">
       <li>The Open File Containning Menu of shortcuts won't work. (WinXShell.exe will fix it)</li>
       <li>The ms-settings URI won't work.(Taskbar Settings, Date and Time contextmenus can't work)</li>
@@ -15,23 +15,23 @@
   </div>
   </fieldset>
   <br/>
-  <input type="checkbox" name="slim.jscript" class="opt_item" checked /> JScript<br/>
-  <input type="checkbox" name="slim.hta" class="opt_item" checked /> HTA<br/>
-  <input type="checkbox" name="slim.wmi" class="opt_item" checked /> WMI<br/>
-  <input type="checkbox" name="slim.speech" class="opt_item" checked /> Speech(TTS engine)<br/>
+  <label><input type="checkbox" name="slim.jscript" class="opt_item" /> JScript</label><br/>
+  <label><input type="checkbox" name="slim.hta" class="opt_item" /> HTA</label><br/>
+  <label><input type="checkbox" name="slim.wmi" class="opt_item" /> WMI</label><br/>
+  <label><input type="checkbox" name="slim.speech" class="opt_item" /> Speech(TTS engine)</label><br/>
 </div>
 </fieldset>
 
 <fieldset>
 <legend>Replace with:</legend>
 <div style="margin:3px;font-size:.8em;">
-  <input type="checkbox" name="slim.small_fonts" class="opt_item" /> use small fonts<br/>
-  <input type="checkbox" name="slim.small_imageresdll" class="opt_item" /> use small imageres.dll<br/>
+    <label><input type="checkbox" name="slim.small_fonts" class="opt_item" /> use small fonts</label><br/>
+    <label><input type="checkbox" name="slim.small_imageresdll" class="opt_item" /> use small imageres.dll</label><br/>
 </div>
 </fieldset>
 
 <fieldset>
-<legend><input type="checkbox" name="slim.safe" class="opt_item" /> Slim-Safely</legend>
+<legend><label><input type="checkbox" name="slim.safe" class="opt_item" /> Slim-Safely</label></legend>
 <div style="margin:3px;font-size:.8em;">
   <span>
     Remove the system files that won't destabilize the other components.(fonts, keyboard's dlls, migration tools, etc).
@@ -40,7 +40,7 @@
 </fieldset>
 
 <fieldset>
-<legend><input type="checkbox" name="slim.ultra" class="opt_item" /> Ultra-Slim(experimental)</legend>
+<legend><label><input type="checkbox" name="slim.ultra" class="opt_item" /> Ultra-Slim(experimental)</label></legend>
 <div style="margin:3px;font-size:.8em;">
   <span>
     Remove more system files(infrequently used, unavailable) to make wim in small size.

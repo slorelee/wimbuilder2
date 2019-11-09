@@ -11,11 +11,13 @@ del /f /a /q "%X_SYS%\diagtrack.dll"
 
 rem //-
 rem // WMI Repository will be rebuilt, refresh at startup
-rd /s /q "%X_SYS%\wbem\AutoRecover"
-rd /s /q "%X_SYS%\wbem\Logs"
-rd /s /q "%X_SYS%\wbem\Repository"
-rd /s /q "%X_SYS%\wbem\tmf"
-rd /s /q "%X_SYS%\wbem\xml"
+if "x%opt[slim.wbem_repository]%"=="xtrue" (
+  rd /s /q "%X_SYS%\wbem\AutoRecover"
+  rd /s /q "%X_SYS%\wbem\Logs"
+  rd /s /q "%X_SYS%\wbem\Repository"
+  rd /s /q "%X_SYS%\wbem\tmf"
+  rd /s /q "%X_SYS%\wbem\xml"
+)
 
 rem replace small files
 

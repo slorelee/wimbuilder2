@@ -15,4 +15,7 @@ netrndis.inf_loc,rndiscmp.inf_loc
 
 call AddDrivers "netrndis.inf,rndiscmp.inf"
 
+rem some devices need
+call AddDrivers wceisvista.inf
+
 call DoAddFiles

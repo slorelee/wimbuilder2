@@ -7,7 +7,7 @@ local explorer_shell = false
 local t -- alias i18n.t()
 local set_progress, LINK
 local log
-shel = exec
+-- shel = exec
 
 
 local function OSInit()
@@ -70,7 +70,7 @@ local function Shortcuts()
 end
 
 local function RunShell()
-  if logon_user ~= 'SYSTEM' then return end
+  -- if logon_user ~= 'SYSTEM' then return end
   if explorer_shell then
     shel('explorer.exe')
   else

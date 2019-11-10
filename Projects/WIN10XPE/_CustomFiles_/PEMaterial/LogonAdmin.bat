@@ -16,9 +16,9 @@ if "x%~1"=="xLUA" (
   reg add "%regkey%" /v Userinit /d "userinit.exe,X:\Windows\System32\startnet.cmd -init ADMIN" /f
 )
 
-if exist X:\Windows\explorer.exe (
-    reg add "%regkey%" /v Shell /d explorer.exe /f
-) else (
+rem disable AutoRestartShell
+reg add "%regkey%" /v AutoRestartShell /t REG_DWORD 0 /f
+if not exist X:\Windows\explorer.exe (
     reg add "%regkey%" /v Shell /d "X:\Program Files\WinXShell\WinXShell.exe -regist -winpe" /f
 )
 

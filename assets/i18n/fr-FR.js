@@ -3,7 +3,7 @@
 $i18n = {
   "Getting Started":"Démarrage",
   "Project":"Projet",
-  "Patches":"Fonctionnalités",
+  "Customize":"Personnaliser",
   "Building":"Building",
   "About":"A Propos",
   "Quick build":"Quick build",

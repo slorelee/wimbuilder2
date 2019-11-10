@@ -3,7 +3,7 @@
 $i18n = {
   "Getting Started":"준비 착수",
   "Project":"프로젝트",
-  "Patches":"패치",
+  "Customize":"정제",
   "Building":"빌드",
   "About":"정보",
   "Quick build":"빠른 빌드",

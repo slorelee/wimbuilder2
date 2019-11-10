@@ -3,7 +3,7 @@
 $i18n = {
   "Getting Started":"准备",
   "Project":"工程",
-  "Patches":"补丁",
+  "Customize":"定制",
   "Building":"构建",
   "About":"关于",
   "Quick build":"快速构建",

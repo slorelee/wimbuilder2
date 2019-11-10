@@ -18,7 +18,12 @@ if "x%opt[shell.app]%"=="xexplorer" (
 rem ==========update registry==========
 rem call RegCopy HKLM\System\ControlSet001\Services\BDESVC
 call RegCopy HKLM\Software\Classes\Drive\shell\unlock-bde
-reg add HKLM\Tmp_software\Classes\Drive\shell\unlock-bde /v Icon /d bdeunlock.exe /f
+reg add HKLM\Tmp_Software\Classes\Drive\shell\unlock-bde /v Icon /d bdeunlock.exe /f
+
+rem remove unsupported menu
+if "x%opt[build.registry.software]%"=="xfull" (
+  reg delete HKLM\Tmp_Software\Classes\Drive\shell\encrypt-bde-elev /f
+)
 
 set _Need_Fix_Menu=1
 if exist "%X_SYS%\Windows.Storage.Search.dll" (

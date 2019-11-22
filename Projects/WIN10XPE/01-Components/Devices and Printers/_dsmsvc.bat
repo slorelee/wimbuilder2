@@ -14,3 +14,6 @@ DevPropMgr.dll
 
 call RegCopy HKLM\SYSTEM\ControlSet001\Services\DsmSvc
 reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\DsmSvc /f
+
+rem display info
+call RegCopy "HKLM\Software\Microsoft\Windows NT\CurrentVersion\DeviceDisplayObjects"

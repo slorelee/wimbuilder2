@@ -113,7 +113,7 @@ rem ==========update registry==========
 rem [Reg_WoW64]
 rem //RegImportFile,%ScriptDir%\WoW64_RegSoftware.txt
 call RegCopy HKLM\Software\Classes\Wow6432Node\CLSID
-call RegCopy HKLM\Software\Classes\Wow6432Node\Interface
+rem call RegCopy HKLM\Software\Classes\Wow6432Node\Interface
 ::-
 call RegCopy HKLM\Software\Classes\WOW6432Node\DirectShow
 call RegCopy "HKLM\Software\Classes\WOW6432Node\Media Type"

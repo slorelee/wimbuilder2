@@ -43,6 +43,27 @@ for /f %%i in ('dir /a-d /b "%X_WIN%\SysWOW64\%WB_PE_LANG%\*.mui"') do (
 rem cleanup registry
 if %Check_SysWOW64% EQU 0 call :REMOVE_WOW64_REG
 
+call :REMOVE_SERV_REG AudioEndpointBuilder AudioEndpointBuilder.dll
+rem call :REMOVE_SERV_REG Audiosrv audiosrv.dll
+call :REMOVE_SERV_REG Dhcp dhcpcore.dll
+call :REMOVE_SERV_REG diagnosticshub.standardcollector.service DiagSvcs\DiagnosticsHub.StandardCollector.Service.exe
+call :REMOVE_SERV_REG DiagTrack diagtrack.dll
+call :REMOVE_SERV_REG Dnscache dnsapi.dll
+call :REMOVE_SERV_REG Eaphost eapsvc.dll
+call :REMOVE_SERV_REG Netlogon netlogon.dll
+call :REMOVE_SERV_REG Netman netman.dll
+rem call :REMOVE_SERV_REG netprofm netprofmsvc.dll
+call :REMOVE_SERV_REG NetSetupSvc NetSetupSvc.dll
+call :REMOVE_SERV_REG RasAuto rasauto.dll
+call :REMOVE_SERV_REG RasMan rasman.dll
+call :REMOVE_SERV_REG TimeBrokerSvc TimeBrokerServer.dll
+call :REMOVE_SERV_REG TrustedInstaller ..\servicing\TrustedInstaller.exe
+call :REMOVE_SERV_REG VSS vssvc.exe
+call :REMOVE_SERV_REG wbengine wbengine.exe
+call :REMOVE_SERV_REG wcncsvc wcncsvc.dll
+call :REMOVE_SERV_REG wisvc flightsettings.dll
+call :REMOVE_SERV_REG WlanSvc wlansvc.dll
+
 set Check_SysWOW64=
 goto :EOF
 
@@ -53,6 +74,10 @@ if "x%opt[build.registry.software]%"=="xfull" (
     reg delete HKLM\Tmp_Software\Wow6432Node /f
     rem HKLM\Software\Microsoft\Windows\CurrentVersion\SideBySide\Winners,x86;wow64
 )
+goto :EOF
+
+:REMOVE_SERV_REG
+if not exist "%X_SYS%\%~2" reg delete "HKLM\Tmp_SYSTEM\ControlSet001\Services\%~1" /f
 goto :EOF
 
 :DELEX

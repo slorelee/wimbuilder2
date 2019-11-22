@@ -17,6 +17,15 @@ rem )
 del /q "%X_SYS%\Boot\winresume.*"
 del /q "%X_SYS%\Boot\%WB_PE_LANG%\winresume.*"
 
+rem keep files
+if "x%opt[support.network]%"=="xtrue" (
+  call :KEEP_FILE \Windows\System32\eapproxy.dll
+)
+
+if "x%opt[support.admin]%"=="xtrue" (
+  call :KEEP_FILES \Windows\System32\ "CredProv2faHelper.dll,CredProvDataModel.dll,credprovhost.dll,credprovs.dll,credprovslegacy.dll,Faultrep.dll,WerFault.exe"
+)
+
 rem del files
 if not "x%opt[support.audio]%"=="xtrue" (
   del /a /f /q "%X_SYS%\*Audio*.*"

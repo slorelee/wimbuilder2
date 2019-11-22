@@ -2,11 +2,11 @@
 if "x%~1"=="x" goto :EOF
 set "project_path=%~1"
 
+set _WB_WALK_CMD=main.bat
 call :apply_patch "%project_path%\main.bat"
 
 if not exist "%_WB_TMP_DIR%\_patches_selected.txt" goto :EOF
 
-set _WB_WALK_CMD=main.bat
 for /f "usebackq delims=" %%i in ("%_WB_TMP_DIR%\_patches_selected.txt") do (
     call :apply_patch "%project_path%\%%i\main.bat"
 )

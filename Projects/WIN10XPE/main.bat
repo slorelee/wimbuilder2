@@ -30,7 +30,16 @@ rem set opt[support.network]=%HasPatch%
 call CheckPatch "01-Components\03-Audio"
 set opt[support.audio]=%HasPatch%
 
-if not "x%opt[build.main_filereg_disabled]%"=="xtrue" (
-  call X2X
+call shared\InitCodePage.bat
+
+if "x%opt[build.main_filereg_disabled]%"=="xtrue" goto :EOF
+
+call CheckPatch "za-Slim"
+if "x%HasPatch%"=="xtrue" (
+  pushd za-Slim
+  call Slim_Ultra.bat
+  popd
 )
+
+ call X2X
 

@@ -33,6 +33,10 @@ sti.dll
 +if "%SysDir%"="SysWOW64"
 ; PowerPoint 2007 Preview(F5) page switch
 hlink.dll
+
+; LENOVO BIOS Updater
+lz32.dll
+
 -if
 
 :end_files

@@ -112,6 +112,9 @@ winver.exe
 
 :end_files
 
+rem display folders/shortcuts name with language
+attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"
+
 call SharedPatch NewBrowseDlg
 
 rem ==========update registry==========

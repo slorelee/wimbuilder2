@@ -312,7 +312,8 @@ function get_tmp_folder(project) {
 
 function patches_opt_stringify() {
     var str = JSON.stringify($obj_project.patches_opt);
-    str = str.replace(/(\".+?\":.+?),/g, "$1,<br\/>");
+    str = str.replace(/("[^"]+?":".*?",)/g, "$1<br\/>");
+    str = str.replace(/("[^"]+?":[^"]+?,)/g, "$1<br\/>");
     return str;
 }
 

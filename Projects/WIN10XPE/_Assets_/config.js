@@ -1,8 +1,4 @@
-var $patches_preset = 'default';
+set_default_preset('default');
+set_default_preset('custom');
 
-if (fso.FileExists(project.full_path + '/_Assets_/preset/custom.js')) {
-    $patches_preset = 'custom';
-}
-
-// $patches_preset = 'lite';
-
+init_current_preset(project);

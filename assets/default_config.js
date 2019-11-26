@@ -21,6 +21,8 @@ var $wb_base_index = '1';
 var $wb_skip_project_page = false;
 var $wb_default_project = '';
 
+var $wb_save_current_preset = true;
+
 var $wb_x_subst = true;
 var $wb_x_drv = 'auto';
 

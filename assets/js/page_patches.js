@@ -5,6 +5,8 @@ var $obj_patch = null;
 
 var _patch_updater = [];
 
+var _jstree_selected_node = null;
+
 function init_radio_opt(elem, patches_opt) {
     var key = $(elem).attr('name');
     if (key in patches_opt) {
@@ -310,10 +312,11 @@ function get_tmp_folder(project) {
     return tmp_path;
 }
 
-function patches_opt_stringify() {
+function patches_opt_stringify(line) {
     var str = JSON.stringify($obj_project.patches_opt);
-    str = str.replace(/("[^"]+?":".*?",)/g, "$1<br\/>");
-    str = str.replace(/("[^"]+?":[^"]+?,)/g, "$1<br\/>");
+    if (line == null) line = "<br\/>";
+    str = str.replace(/("[^"]+?":".*?",)/g, "$1" + line);
+    str = str.replace(/("[^"]+?":[^"]+?,)/g, "$1" + line);
     return str;
 }
 
@@ -360,6 +363,79 @@ function dump_patches_opt() {
     return str;
 }
 
+
+function get_nodetree_status(node, arr, patches_undetermined){
+    node.forEach(function(item) {
+        get_node_status(item, arr, patches_undetermined);
+    });
+}
+
+// "state":{"loaded":true,"opened":false,"selected":false,"disabled":false,"checked":true}
+function get_node_status(node, arr, undetermined_arr){
+    //alert(JSON.stringify(node));
+
+    if (node['state']['checked']) {
+        arr.push(':C:' + node['id']);
+    } else {
+        var i = undetermined_arr.indexOf(node['id']);
+        if (i > -1) {
+            undetermined_arr.splice(i, 1);
+            get_nodetree_status(node['children'], arr, undetermined_arr);
+        } else {
+            arr.push(':U:' + node['id']);
+        }
+    }
+
+    if (node['state']['selected']) {
+        _jstree_selected_node = node['id'];
+        arr.push(':S:' + node['id']);
+    }
+
+    if (node['state']['opened']) {
+        arr.push(':O:' + node['id']);
+    }
+}
+
+function get_jstree_status(){
+    var patches_undetermined = $('#patches_tree').jstree(true).get_undetermined();
+    var patches_json = $('#patches_tree').jstree(true).get_json();
+    var arr = [];
+    _jstree_selected_node = '';
+    get_nodetree_status(patches_json, arr, patches_undetermined);
+    if (_jstree_selected_node == '') {
+        if (_patches_selected_node) {
+            arr.push(':S:' + _patches_selected_node);
+        }
+    }
+    var str = arr.join("\");\r\n") + "\");\r\n";
+    str = str.replace(/:O:/g, 'open_tree_node(\"');
+    str = str.replace(/:S:/g, 'select_tree_node(\"');
+    str = str.replace(/:C:/g, 'check_tree_node(\"');
+    str = str.replace(/:U:/g, 'uncheck_tree_node(\"');
+    return str;
+}
+
+function save_current_preset(collected){
+    if (!$obj_project) return;
+    if (!$wb_save_current_preset) return;
+
+    if (!collected) {
+        update_patches_opt($obj_project.patches_opt, true);
+    }
+
+    // patches_opt
+    var str = "var $patches_opt = {\r\n";
+    str = str + patches_opt_stringify("\r\n").slice(1, -1) + ",\r\n";
+    str = str.replace(/"_[^"]+?":.+?,\r\n/g, "");
+    str = str + '"_._._":""' + "\r\n}\r\n\r\n";
+
+    // function patches_state_init() {
+    str = str + "function patches_state_init() {\r\n";
+    str = str + get_jstree_status();
+    str = str + "}\r\n";
+
+    save_text_file($obj_project.current_preset_path, str);
+}
 
 $('#patch_preset').change(function(){
     if (!$obj_project) return;

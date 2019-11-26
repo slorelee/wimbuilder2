@@ -1,3 +1,5 @@
+var $patches_preset = null;
+
 var Project = {
     root_path: "Projects",
     New:function(name, preset, lazy) {
@@ -10,6 +12,7 @@ var Project = {
         project.full_uri = project.full_path;
         project.full_path = project.full_path.replace(/\//g, '\\');
         project.style = project.path + '/_Assets_/style.css';
+        project.current_preset_path = '';
         function load_file(file) {
             return load_text_file(project.path + '/' + file);
         };
@@ -22,7 +25,7 @@ var Project = {
         project.desc = project.load_desc();
         project.html = project.load_html();
         var $patches_opt = {};
-        var $patches_preset = 'default';
+        $patches_preset = 'default';
         eval(load_file('_Assets_/config.js'));
         if (preset) {
             $patches_preset = preset;
@@ -94,6 +97,22 @@ var Project = {
         get_sub_patches(rootdir, rootdir, '#', arr);
         return arr;
     }
+}
+
+function set_default_preset(project, preset) {
+    if (fso.FileExists(project.full_path + '/_Assets_/preset/' + preset + '.js')) {
+        $patches_preset = preset;
+    }
+}
+
+function init_current_preset(project) {
+    if (!$wb_save_current_preset) return;
+    project.current_preset_path = project.full_path + '/_Assets_/preset/current.js';
+    if (!fso.FileExists(project.current_preset_path)) {
+        fso.CopyFile(project.full_path + '/_Assets_/preset/' + $patches_preset + '.js',
+        project.current_preset_path);
+    }
+    $patches_preset = 'current';
 }
 
 function pj_button(name) {

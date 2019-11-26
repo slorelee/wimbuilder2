@@ -13,6 +13,7 @@ function build_page_init() {
         var opts = patches_opt_stringify();
         msg += '<br/><br/>' + opts;
         $('#build_stdout').append(msg);
+        save_current_preset(true);
     } else {
         $('#build_stdout').append(i18n_t('No project to build.'));
     }

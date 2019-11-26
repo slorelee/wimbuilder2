@@ -24,6 +24,9 @@ var $wb_default_project = '';
 var $wb_x_subst = true;
 var $wb_x_drv = 'auto';
 
+var $wb_waitfor_options = 2000;
+var $wb_waitfor_build = 2000;
+
 var $wb_auto_makeiso = false;
 var $wb_auto_testiso = false;
 var $wb_test_cmd = '';

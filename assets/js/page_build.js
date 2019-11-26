@@ -202,7 +202,9 @@ function run_build(no_confirm, keep) {
     wsh.run('cmd /d ' + cmd_mode + ' "' + $wb_root + '\\bin\\_process.bat"', 1, true);
     _in_building = 'done';
     if ($wb_auto_makeiso) {
-        make_iso(true, 'exec'); //show result in OUTPUT textarea if auto makeiso
+        window.setTimeout(function(){
+            make_iso(true, 'exec'); //show result in OUTPUT textarea if auto makeiso
+        }, $wb_waitfor_build);
     } else  if ($wb_opt_closeui) {
         wait_and_close(); // close directly
     }

@@ -22,7 +22,9 @@ $('#menu_patch').click(function(){
     update_preset_list();
     show_patches_settings();
     if ($wb_opt_build) {
-        do_quick_build($wb_opt_build);
+        window.setTimeout(function(){
+            do_quick_build($wb_opt_build);
+        }, $wb_waitfor_options);
     }
 });
 

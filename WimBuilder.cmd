@@ -88,11 +88,11 @@ rem mount winre.wim/boot.wim with wimlib, otherwise dism
 set USE_WIMLIB=0
 if not "%PROCESSOR_ARCHITECTURE%"=="AMD64" goto :Normal_Start
 if exist "%windir%\SysWOW64\mshta.exe" goto :Normal_Start
-start mshta "%~dp0WimBuilder_UI.hta" %*
+start %WB_START_OPT% mshta "%~dp0WimBuilder_UI.hta" %*
 goto :EOF
 
 :Normal_Start
-start WimBuilder_UI.hta %*
+start %WB_START_OPT% WimBuilder_UI.hta %*
 goto :EOF
 
 
@@ -110,7 +110,9 @@ echo    --base-index INDEX
 echo    --project PROJECT
 echo    --preset PRESET
 echo    --make-iso
-echo    --close-ui
+echo    --close-ui (the option will append --wait option by default)
+echo    --wait
+echo    --nowait
 echo.
 echo Examples:
 echo.
@@ -163,6 +165,11 @@ if /i "x%1"=="x-h" (
   set WB_OPT_MAKE_ISO=1
 ) else if /i "x%1"=="x--close-ui" (
   set WB_OPT_CLOSE_UI=1
+  set WB_START_OPT=/wait
+) else if /i "x%1"=="x--wait" (
+  set WB_START_OPT=/wait
+) else if /i "x%1"=="x--nowait" (
+  set WB_START_OPT=
 )
 SHIFT
 goto :PARSE_OPTIONS

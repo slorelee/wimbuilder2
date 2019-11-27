@@ -22,8 +22,10 @@ $('#menu_patch').click(function(){
     update_preset_list();
     show_patches_settings();
     if ($wb_opt_build) {
+        var tmp_opt_build = $wb_opt_build;
+        $wb_opt_build = null; // avoid duplicate build
         window.setTimeout(function(){
-            do_quick_build($wb_opt_build);
+            do_quick_build(tmp_opt_build );
         }, $wb_waitfor_options);
     }
 });

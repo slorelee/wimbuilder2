@@ -5,6 +5,7 @@ var $obj_patch = null;
 
 var _patch_updater = [];
 
+var _saved_current_preset = true;
 var _jstree_selected_node = null;
 
 function init_radio_opt(elem, patches_opt) {
@@ -303,6 +304,7 @@ function show_patches_settings() {
            $obj_project.patches_state_init();
         }
     }
+    _saved_current_preset = false;
 }
 
 function get_tmp_folder(project) {
@@ -418,6 +420,7 @@ function get_jstree_status(){
 function save_current_preset(collected){
     if (!$obj_project) return;
     if (!$wb_save_current_preset) return;
+    if (_saved_current_preset) return;
 
     if (!collected) {
         update_patches_opt($obj_project.patches_opt, true);
@@ -435,6 +438,7 @@ function save_current_preset(collected){
     str = str + "}\r\n";
 
     save_text_file($obj_project.current_preset_path, str);
+    _saved_current_preset = true;
 }
 
 $('#patch_preset').change(function(){

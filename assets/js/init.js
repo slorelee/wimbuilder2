@@ -50,6 +50,7 @@ function analyze_options(env) {
         } else {
             $wb_opt_build = 'run';
         }
+        $wb_save_current_preset = false;
         $wb_skip_project_page = true;
         $wb_auto_testiso = false;
     } else {

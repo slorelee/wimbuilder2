@@ -105,6 +105,9 @@ reg add HKLM\Tmp_System\ControlSet001\Services\gpsvc /v Start /t REG_DWORD /d 3 
 rem ACLRegKey Tmp_System\ControlSet001\Services\TrustedInstaller
 reg add HKLM\Tmp_System\ControlSet001\Services\TrustedInstaller /v Start /t REG_DWORD /d 3 /f
 
+call RegCopy "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication"
+call RegCopy "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+
 if %opt[account.autologon_countdown]% GTR 0 (
   rem Enable Mouse Cursor (EnableCursorSuppression=0) or use Exec = Winpeshl.exe in PecmdAdmin.ini
   reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\System /v EnableCursorSuppression /t REG_DWORD /d 0 /f

@@ -45,7 +45,6 @@ if "%opt[support.network]%"=="false" (
 
 if "x%opt[account.admin_enabled]%"=="xtrue" (
     set opt[support.admin]=true
-    set opt[build.registry.software]=full
 )
 if "x%opt[component.netfx]%"=="xtrue" (
     set opt[build.registry.software]=full

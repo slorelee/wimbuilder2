@@ -24,6 +24,8 @@ rem use JFX's generic patcher
 rem http://theoven.org/index.php?topic=2768.0 (>= v1.0.1)
 rem http://theoven.org/index.php?topic=2726.msg31375#msg31375 (v1.0.0)
 
+if %VER[3]% LSS 15063 goto :AssemblePatch
+
 DrvInstPatch_%WB_ARCH%.exe p "%X_SYS%\drvinst.exe"
 if %errorlevel% NEQ 1 (
   goto :AssemblePatch
@@ -40,6 +42,10 @@ if %VER[3]% GTR 17700 set VER_NAME=win10.rs5later
 if %VER[3]% GTR 18908 set VER_NAME=win10.18908later
 call :Drvinst_%VER_NAME%_%WB_PE_ARCH%
 if "%PATCH_MODE%"=="local" pause
+goto :EOF
+
+:Drvinst_10.0.14393_x64
+call :PATCH 8BD8 85C0 7508 8B06
 goto :EOF
 
 :Drvinst_10.0.15063_x64

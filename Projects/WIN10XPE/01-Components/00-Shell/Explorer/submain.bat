@@ -19,7 +19,7 @@ desktop.ini
 
 @\Windows\System32\
 ;comctl32.dll
-actxprxy.dll,AppHelp.dll,AppResolver.dll,atlthunk.dll,avifil32.dll,clip.exe,Clipc.dll
+AppHelp.dll,AppResolver.dll,atlthunk.dll,avifil32.dll,clip.exe,Clipc.dll
 control.exe,comsvcs.dll,CoreMessaging.dll,CoreUIComponents.dll,cscapi.dll
 ctfmon.exe,desk.cpl,edputil.dll
 ELSCore.dll,IconCodecService.dll,imageres.dll,InfDefaultInstall.exe

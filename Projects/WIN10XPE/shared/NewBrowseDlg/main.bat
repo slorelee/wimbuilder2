@@ -34,6 +34,9 @@ DataExchange.dll,dcomp.dll,d3d11.dll,dxgi.dll
 ; CopyProgress
 chartv.dll,OneCoreUAPCommonProxyStub.dll
 
+; Overwrite confirmation dialog
+actxprxy.dll
+
 ;filter
 StructuredQuery.dll
 

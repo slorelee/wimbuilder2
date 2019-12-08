@@ -1,4 +1,6 @@
-=== WimBuilder2 v2019.11.11 ===
+# 更新历史记录
+
+## WimBuilder2 v2019.11.11
 这是一个主要更新。添加和改善了以下内容:
 
 * 新增 Ghost15支持补丁。(_CustomFiles_\MyCustom_Samples\Requirements_Ghost15.bat)
@@ -32,7 +34,7 @@
 * 其他细节更新。
 
 
-=== WimBuilder2 v2019.10.10 ===
+## WimBuilder2 v2019.10.10
 这是一个主要更新。添加和改善了以下内容:
 
 * 新增 LinkToDesktop, LinkToStartMenu, PinToStartMenu, PinToTaskbar 宏命令。
@@ -63,4 +65,4 @@
 * 更新 vendor\StartIsBack为2.8.9版本。
 * 新增 doc\History.txt本说明文件。
 
-=== WimBuilder2 v2019.09.01.1c7003cc ===
+## WimBuilder2 v2019.09.01.1c7003cc

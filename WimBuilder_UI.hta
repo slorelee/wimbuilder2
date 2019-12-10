@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/switch.css" />
     <link rel="stylesheet" href="assets/htakit/css/uikit-tab.css" />
     <link rel="stylesheet" href="assets/css/alert.css" />
+    <link rel="stylesheet" href="assets/css/themes.css" />
 </head>
 
 <body  onbeforeunload="window_beforeunload()">
@@ -79,6 +80,10 @@ if ($IE_VER == '0') {
 <script src="assets/info.js"></script>
 <script src="config.js"></script>
 <script src="auto_config.js"></script>
+
+<div id="theme_div">
+    <canvas id="theme_canvas"></canvas>
+</div>
 
 <div>
   <input type="file" style="display:none" id="$f" /> <!-- gobal OpenFileDialog element -->
@@ -468,5 +473,6 @@ if ($IE_VER == '9+') {
 <script src="assets/js/page_build.js"></script>
 <script src="assets/js/menu_click.js"></script>
 <script src="assets/js/init.js"></script>
+<script src="assets/themes/themes.js"></script>
 </body>
 </html>

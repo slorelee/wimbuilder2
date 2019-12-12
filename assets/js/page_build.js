@@ -1,7 +1,7 @@
 var x_auto_drive = '-';
 var _in_cleanup = 'pre';
 var _in_makeiso = 'pre';
-var _in_building = '';
+var _in_building = 'done';
 var _stdout_len = 0;
 var _log_path = '';
 
@@ -177,6 +177,11 @@ function cleanup(no_confirm, no_activate) {
 function pre_build(mode, no_confirm, keep) {
     if (selected_project == null) {
         alert(i18n_t('Please select a project for building.'));
+        return 1;
+    }
+
+    if (_in_building != 'done') {
+        alert(i18n_t('A project has been found running.'));
         return 1;
     }
 

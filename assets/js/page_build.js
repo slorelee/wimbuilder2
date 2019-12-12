@@ -174,32 +174,40 @@ function cleanup(no_confirm, no_activate) {
     window.setTimeout(function(){_cleanup(no_activate);}, 100);
 }
 
-//WshHide 0;WshNormalFocus 1;WshMinimizedNoFocus 6
-function run_build(no_confirm, keep) {
+function pre_build(mode, no_confirm, keep) {
     if (selected_project == null) {
         alert(i18n_t('Please select a project for building.'));
-        return;
+        return 1;
     }
 
     x_drive_detect();
     if (x_drive_exists() == 1) {
         if (!no_confirm) {
-            this.build_action = 'run_build';
+            this.build_action = mode;
             x_drive_confirm();
-            return;
+            return 1;
         }
     }
 
     if (!keep) $('#build_stdout').empty();
 
-    var cmd_mode = '/k';
-    if ($wb_auto_makeiso) cmd_mode = '/c';
-    if ($wb_opt_closeui) cmd_mode = '/c';
-    structure_env(0);
+    var exec_mode = 0;
+    if (mode == 'exec_build') exec_mode = 1;
+    structure_env(exec_mode);
     dump_patches_selected();
     dump_patches_opt();
 
-    _in_building = 'run_build';
+    _in_building = mode;
+    return 0;
+}
+
+//WshHide 0;WshNormalFocus 1;WshMinimizedNoFocus 6
+function run_build(no_confirm, keep) {
+    if (pre_build('run_build', no_confirm, keep)) return;
+
+    var cmd_mode = '/k';
+    if ($wb_auto_makeiso) cmd_mode = '/c';
+    if ($wb_opt_closeui) cmd_mode = '/c';
     var oExec = wsh.exec('wincmd.exe /d ' + cmd_mode + ' "' + $wb_root + '\\bin\\_process.bat"');
     wait_build(oExec);
 }
@@ -226,25 +234,8 @@ function wait_build(oExec, finished) {
 }
 
 function exec_build(no_confirm, keep) {
-    if (selected_project == null) {
-        alert(i18n_t('Please select a project for building.'));
-        return;
-    }
+    if (pre_build('exec_build', no_confirm, keep)) return;
 
-    x_drive_detect();
-    if (x_drive_exists() == 1) {
-        if (!no_confirm) {
-            this.build_action = 'exec_build';
-            x_drive_confirm();
-            return;
-        }
-    }
-
-    if (!keep) $('#build_stdout').empty();
-    structure_env(1);
-    dump_patches_selected();
-    dump_patches_opt();
-    _in_building = 'exec_build';
     var logfile = _log_path + '\\last_wimbuilder.log';
     create_folder_cascade(_log_path);
     var oExec = wsh.exec('cmd /c NSudoC.exe -UseCurrentConsole -Wait -U:T _process.bat 1>"' + logfile + '" 2>&1');

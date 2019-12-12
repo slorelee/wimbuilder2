@@ -222,12 +222,13 @@ function update_preset_list() {
     $('#patch_preset').empty();
     $obj_project.presets.forEach(function(preset) {
         var preset_name = preset.slice(0, -3);
+        var select_tag = '';
         if ($obj_project.preset == preset_name) {
-            $('#patch_preset').append('   <option selected>' + preset_name + '</option>');
+            select_tag = 'selected';
             preset_selected = true;
-        } else {
-            $('#patch_preset').append('   <option>' + preset_name + '</option>');
         }
+        $('#patch_preset').append('   <option value="' + preset_name +'" ' +
+            select_tag + '>' + i18n_t(preset_name) + '</option>');
     });
     if (preset_selected) {
         $('#patch_preset').append('   <option>-</option>');
@@ -444,7 +445,7 @@ function save_current_preset(collected){
 $('#patch_preset').change(function(){
     if (!$obj_project) return;
     //reload project with the preset
-    var preset = $(this).children("option:selected").text();
+    var preset = $(this).children("option:selected").val();
     if (preset == '-') return;
     reload_project(selected_project, preset);
     $patches_preset_inited = true;

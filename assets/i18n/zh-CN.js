@@ -31,6 +31,11 @@ $i18n = {
 
   "Current project:":"当前工程:",
   "Patch Preset:":"预设:",
+  "current":"当前",
+  "custom":"自定义",
+  "default":"默认",
+  "demand":"手动",
+  "full":"全功能",
   "OpenFolder":"打开文件夹",
   "Edit main.bat":"编辑 main.bat",
   "Edit last.bat":"编辑 last.bat",

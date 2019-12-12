@@ -63,6 +63,7 @@ $i18n = {
 
   "Please startup with WimBuilder.cmd.":"请通过WimBuilder.cmd启动。",
   "No project to build.":"未选择构建工程。",
+  "A project has been found running.":"已经有工程正在运行。",
   "Do you want to build the [%s] project?":"是否要对[%s]工程进行构建？",
   "Please select a project for building.":"请选择构建工程。",
   "The system cannot find the file specified.":"系统找不到指定的文件。",

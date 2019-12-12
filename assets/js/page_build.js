@@ -200,15 +200,29 @@ function run_build(no_confirm, keep) {
     dump_patches_opt();
 
     _in_building = 'run_build';
-    wsh.run('cmd /d ' + cmd_mode + ' "' + $wb_root + '\\bin\\_process.bat"', 1, true);
-    _in_building = 'done';
-    if ($wb_auto_makeiso) {
-        window.setTimeout(function(){
-            make_iso(true, 'exec'); //show result in OUTPUT textarea if auto makeiso
-        }, $wb_waitfor_build);
-    } else  if ($wb_opt_closeui) {
-        wait_and_close(); // close directly
+    var oExec = wsh.exec('wincmd.exe /d ' + cmd_mode + ' "' + $wb_root + '\\bin\\_process.bat"');
+    wait_build(oExec);
+}
+
+function wait_build(oExec, finished) {
+    if (oExec.status == 0) {
+        window.setTimeout(function(){wait_build(oExec);}, 2000);
+        return;
     }
+
+    if (finished == 1) {
+        _in_building = 'done';
+        if ($wb_auto_makeiso) {
+            window.setTimeout(function(){
+                make_iso(true, 'exec'); //show result in OUTPUT textarea if auto makeiso
+            }, $wb_waitfor_build);
+        } else if ($wb_opt_closeui) {
+            wait_and_close(); // close directly
+        }
+    } else {
+        window.setTimeout(function(){wait_build(oExec, 1);}, 200);
+    }
+    return;
 }
 
 function exec_build(no_confirm, keep) {

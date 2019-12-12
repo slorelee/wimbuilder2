@@ -23,7 +23,7 @@ var $wb_opt_closeui = null;
         self.close();
     }
     //$wb_root = $wb_root.substring(0, $wb_root.length - 1);
-
+    $wb_host_lang = env('WB_HOST_LANG');
     analyze_options(env);
 })();
 

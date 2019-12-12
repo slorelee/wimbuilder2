@@ -53,10 +53,12 @@ if not exist "%windir%\System32\findstr.exe" set findcmd=find
 for /f "tokens=2 delims=='; " %%i in ('%findcmd% "$lang" config.js') do (
   set LocaleID=%%i
 )
+
+for /f "delims=" %%i in ('cscript.exe //nologo "%I18N_SCRIPT%" init') do set WB_HOST_LANG=%%i
+if "x%WB_HOST_LANG%"=="x" set WB_HOST_LANG=en-US
+
 if not "x%LocaleID%"=="x" goto :SKIP_AUTO_LANG
-set LocaleID=0
-for /f "delims=" %%i in ('cscript.exe //nologo "%I18N_SCRIPT%" init') do set LocaleID=%%i
-if "x%LocaleID%"=="x" set LocaleID=0
+set LocaleID=%WB_HOST_LANG%
 
 :SKIP_AUTO_LANG
 set I18N_LCID=%LocaleID%

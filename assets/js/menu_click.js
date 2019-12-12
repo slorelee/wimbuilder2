@@ -16,6 +16,11 @@ function load_patch_shared_style() {
 }
 
 $('#menu_patch').click(function(){
+    if (!$obj_project) {
+        switch_page('patch');
+        return;
+    }
+
     load_patch_shared_style();
     switch_page('patch');
     $('#patch_project_name').text(selected_project);

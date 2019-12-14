@@ -17,8 +17,15 @@ InputMethod\CHT
 ChtCangjieDS.dll
 ChtQuickDS.dll
 ;
+@\Windows\System32\
 ; zh-HK Cantonese IME not working
-;\Windows\System32\ChtHkStrokeDS.dll
+;ChtHkStrokeDS.dll
+ContactHarvesterDS.dll
+UserDataLanguageUtil.dll
+UserDataPlatformHelperUtil.dll
+UserLanguageProfileCallback.dll
+Pimstore.dll
+
 :end_files
 
 rem =================WOW64 Support=================
@@ -27,6 +34,9 @@ call AddFiles %0 :end_wow64_files
 goto :end_wow64_files
 \Windows\SysWOW64\MSWB70404.dll
 \Windows\SysWOW64\NL7Data0404.dll
+
+\Windows\SysWOW64\Pimstore.dll
+
 ; Bopomofo IME
 \Windows\SysWOW64\IME\IMETC
 :end_wow64_files

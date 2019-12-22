@@ -17,8 +17,17 @@ if not exist "%X_SYS%\dwm.exe" (
 
 call za-Slim\Cleanup.bat
 
+if "x%opt[registry.software.compress]%"=="xtrue" (
+    reg save HKLM\Tmp_Software "%X_SYS%\config\SOFTWARE.hiv" /y /c
+)
+
 rem use prepared HIVE files
 call PERegPorter.bat Tmp UNLOAD 1>nul
+
+if "x%opt[registry.software.compress]%"=="xtrue" (
+    del /f /q /a "%X_SYS%\config\SOFTWARE"
+    ren "%X_SYS%\config\SOFTWARE.hiv" SOFTWARE
+)
 
 call :FULLREG DEFAULT
 call :FULLREG SOFTWARE

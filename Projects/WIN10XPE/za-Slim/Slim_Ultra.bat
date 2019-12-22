@@ -19,7 +19,7 @@ del /q "%X_SYS%\Boot\%WB_PE_LANG%\winresume.*"
 
 rem keep files
 if "x%opt[support.network]%"=="xtrue" (
-  call :KEEP_FILE \Windows\System32\eapproxy.dll
+  call :KEEP_FILE \Windows\System32\eappprxy.dll
 )
 
 if "x%opt[support.admin]%"=="xtrue" (

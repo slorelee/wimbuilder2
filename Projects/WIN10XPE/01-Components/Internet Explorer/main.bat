@@ -119,6 +119,8 @@ WindowsCodecsExt.dll
 
 +ver > 18300
 DXCore.dll
++ver > 19500
+IEProxyDesktop.dll
 +ver*
 
 :end_files
@@ -365,6 +367,8 @@ xmllite.dll
 
 +ver > 18300
 DXCore.dll
++ver > 19500
+IEProxyDesktop.dll
 +ver*
 
 :end_wow64_files

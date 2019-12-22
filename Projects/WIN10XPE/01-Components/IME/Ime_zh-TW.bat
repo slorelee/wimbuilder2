@@ -62,10 +62,20 @@ reg add HKLM\Tmp_Default\Software\Microsoft\CTF\SortOrder\Language /v 00000000 /
 rem //- Default input Mode, eng="0x00000001" cht="0x00000000"
 reg add HKLM\Tmp_Default\Software\Microsoft\IME\15.0\IMETC /v "Default Input Mode" /d "0x00000001" /f
 rem //-
-rem // Bopomofo, Quick, Cangjie IME, these three IMEs can work
-reg add HKLM\Tmp_Default\Software\Microsoft\CTF\TIP\{B115690A-EA02-48D5-A231-E3578D2FDF80}\LanguageProfile\0x00000404\{B2F9C502-1742-11D4-9790-0080C882687E} /v Enable /t REG_DWORD /d 1 /f
-reg add HKLM\Tmp_Default\Software\Microsoft\CTF\TIP\{531fdebf-9b4c-4a43-a2aa-960e8fcdc732}\LanguageProfile\0x00000404\{6024B45F-5C54-11D4-B921-0080C882687E} /v Enable /t REG_DWORD /d 1 /f
-reg add HKLM\Tmp_Default\Software\Microsoft\CTF\TIP\{531fdebf-9b4c-4a43-a2aa-960e8fcdc732}\LanguageProfile\0x00000404\{4BDF9F03-C7D3-11D4-B2AB-0080C882687E} /v Enable /t REG_DWORD /d 1 /f
+rem // New Phonetic(Bopomofo), Quick, Cangjie IME, these three IMEs can work
+
+if "x%opt[IME.ms_NewPhonetic]%"=="xtrue" (
+  reg add HKLM\Tmp_Default\Software\Microsoft\CTF\TIP\{B115690A-EA02-48D5-A231-E3578D2FDF80}\LanguageProfile\0x00000404\{B2F9C502-1742-11D4-9790-0080C882687E} /v Enable /t REG_DWORD /d 1 /f
+)
+
+if "x%opt[IME.ms_Quick]%"=="xtrue" (
+  reg add HKLM\Tmp_Default\Software\Microsoft\CTF\TIP\{531fdebf-9b4c-4a43-a2aa-960e8fcdc732}\LanguageProfile\0x00000404\{6024B45F-5C54-11D4-B921-0080C882687E} /v Enable /t REG_DWORD /d 1 /f
+)
+
+if "x%opt[IME.ms_Cangjie]%"=="xtrue" (
+  reg add HKLM\Tmp_Default\Software\Microsoft\CTF\TIP\{531fdebf-9b4c-4a43-a2aa-960e8fcdc732}\LanguageProfile\0x00000404\{4BDF9F03-C7D3-11D4-B2AB-0080C882687E} /v Enable /t REG_DWORD /d 1 /f
+)
+
 rem //-
 rem //  Not working IME, set enable=0 to hide
 rem // "Hong Kong Cantonese","old Quick","old Cangjie","Chinese Traditional DaYi","Chinese Traditional Array" IME

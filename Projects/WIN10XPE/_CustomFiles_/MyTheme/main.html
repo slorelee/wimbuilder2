@@ -22,8 +22,9 @@ fieldset legend {
 <legend>Theme Set:</legend>
 <label><input type="radio" class="opt_item" name="mytheme.theme_id" value="1" checked /> Theme Pack 1</label>
 <label><input type="radio" class="opt_item" name="mytheme.theme_id" value="2" /> Theme Pack 2</label>
+<div id="mytheme_id_br" />
 <script>
-    if ($lang != 'zh-CN') document.write('<br/>');
+  if ($lang == 'zh-CN') $("#mytheme_id_br").css('display', 'none');
 </script>
 <label><input type="radio" class="opt_item" name="mytheme.theme_id" value="3" /> Theme Pack 3</label>
 <label><input type="radio" class="opt_item" name="mytheme.theme_id" value="4" /> Theme Pack 4</label>

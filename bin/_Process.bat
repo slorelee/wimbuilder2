@@ -13,6 +13,10 @@ if "x%WB_RUNAS_TI%"=="x" (
 
 title WimBuilder(%cd%)
 
+if "x%_WB_EXEC_MODE%"=="x1" (
+  title WimBuilder^(%cd%^) - Don't close this console window while building
+)
+
 call DisAutoRun
 
 rem ======generate logfile name======

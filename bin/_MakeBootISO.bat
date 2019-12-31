@@ -1,5 +1,9 @@
 @echo off
 
+if "x%_WB_EXEC_MODE%"=="x1" (
+  title WimBuilder^(%~nx0^) - Don't Close this console window while building
+)
+
 set WB_ISO_LABEL=BOOTPE
 set WB_ISO_NAME=%WB_ISO_LABEL%
 if "x%ISO_DIR%"=="x" (

@@ -2,6 +2,10 @@
 SETLOCAL ENABLEDELAYEDEXPANSION
 title WimBuilder(%cd%)
 
+if "x%_WB_EXEC_MODE%"=="x1" (
+  title WimBuilder^(%cd%^) - Don't close this console window while building
+)
+
 if "x%WB_PROJECT%"=="x" goto :EOF
 if "x%_WB_MNT_DIR%"=="x" (
   set "_WB_MNT_DIR=%Factory%\target\%WB_PROJECT%\mounted"

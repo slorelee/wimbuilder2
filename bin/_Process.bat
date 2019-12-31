@@ -34,6 +34,9 @@ set "LOGFILE=%Factory%\log\%WB_PROJECT%\%LOGSUFFIX%.log"
 call :MKPATH "%LOGFILE%"
 rem type nul>"%LOGFILE%"
 
+set BUILD_LOGTIME=%LOGSUFFIX%
+set "BUILD_LOGNAME=%BUILD_LOGTIME%_Build[LOG]_%WB_PROJECT%.log"
+
 if "x%WB_BASE%"=="x" call :NO_ENV_CONF WB_BASE
 set _WB_BASE_EXTRACTED=0
 set "_WB_TAR_DIR=%Factory%\target\%WB_PROJECT%"
@@ -77,6 +80,8 @@ echo.
 rem ";" can't be pass to CALL LABEL, so use a ":" for it
 call :CLOG 97:104m "[%WB_PROJECT%] --- build information"
 set WB_
+echo.
+set BUILD_
 echo.
 
 rem extract winre.wim from install.wim
@@ -229,6 +234,12 @@ for /f "delims=" %%t in ('cscript.exe //nologo "%WB_ROOT%\bin\Timer.vbs"') do se
 set TIMER_ELAPSED=
 for /f "delims=" %%t in ('cscript.exe //nologo "%WB_ROOT%\bin\Timer.vbs" "%TIMER_START%" "%TIMER_END%"') do set TIMER_ELAPSED=%%t
 call :cecho PHRASE "%TIMER_END% - Building completed in %TIMER_ELAPSED% seconds."
+
+if "x%BUILD_LOGNAME%"=="x" goto :EOF
+if not "x%_WB_EXEC_MODE%"=="x1" goto :EOF
+pushd "%WB_ROOT%\_Factory_\log\%WB_PROJECT%\"
+copy /y /b %BUILD_LOGTIME%.log+last_wimbuilder.log "%BUILD_LOGNAME%"
+popd
 
 goto :EOF
 

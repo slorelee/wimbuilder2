@@ -454,6 +454,8 @@ if not "x%opt[IE.home_page]%"=="x" (
     call :_IE_HomePage "%opt[IE.home_page]%"
 )
 
+call LinkToDesktop "Internet Explorer.lnk" "#pProgramFiles#p\Internet Explorer\iexplore.exe"
+
 goto :EOF
 
 :_IE_HomePage

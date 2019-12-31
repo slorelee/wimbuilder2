@@ -1,10 +1,3 @@
-require('lua_helper.lua_helper')
-
-local function LINK(lnk, target, param, icon, index, showcmd)
-  link(lnk, target, param, icon, index, showcmd)
-end
-
-
 -- =======================================================================
 
 -- local path = '%Programs%\\Administrative Tools'
@@ -15,12 +8,12 @@ end
 
 -- LINK('%Programs%\\System Tools\\#{@shell32.dll,22022}.lnk', 'cmd.exe')
 
-LINK('%Desktop%\\Explorer.lnk', 'Explorer.exe')
-LINK('%Desktop%\\#{@shell32.dll,22022}.lnk', 'cmd.exe')
-LINK('%Desktop%\\Internet Explorer.lnk', '%ProgramFiles%\\Internet Explorer\\iexplore.exe')
-LINK('%Desktop%\\PENetwork.lnk', '%ProgramFiles%\\PENetwork\\PENetwork.exe')
+-- LINK('%Desktop%\\Explorer.lnk', 'Explorer.exe')
+-- LINK('%Desktop%\\#{@shell32.dll,22022}.lnk', 'cmd.exe')
+-- LINK('%Desktop%\\Internet Explorer.lnk', '%ProgramFiles%\\Internet Explorer\\iexplore.exe')
 
-if File.exists('X:\\Windows\\System32\\seclogon.dll') then
-  LINK('%Desktop%\\#{@shutdownux.dll,3052}.lnk', 'X:\\Windows\\System32\\SwitchUser.bat', '', 'imageres.dll', 319)
-end
+
+-- if File.exists('X:\\Windows\\System32\\seclogon.dll') then
+--   LINK('%Desktop%\\#{@shutdownux.dll,3052}.lnk', 'X:\\Windows\\System32\\SwitchUser.bat', '', 'imageres.dll', 319)
+-- end
 

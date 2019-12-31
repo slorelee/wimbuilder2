@@ -7,9 +7,6 @@ del /a /q "X:\Users\Default\Desktop\desktop.ini"
 del /a /q "X:\Users\Public\Desktop\desktop.ini"
 del /a /q "%USERPROFILE%\Desktop\desktop.ini"
 
-rem -- no need this file if there is WinXShell.exe's UI_Shutdown
-del /a /q "%USERPROFILE%\Desktop\shutdown.bat"
-
 rem -- clear Pinned icons by other User (Switch User)
 del /a /q "%APPDATA%\Microsoft\Internet Explorer\Quick Launch\User Pinned\StartMenu\*.lnk"
 del /a /q "%APPDATA%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\*.lnk"

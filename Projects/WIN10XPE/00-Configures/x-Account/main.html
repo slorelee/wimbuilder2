@@ -19,6 +19,10 @@ fieldset {
 
 <fieldset>
 <legend>    <label><input type="checkbox" name="account.admin_enabled" class="opt_item">Enable Administrator account</label>    </legend>
+<div class="alert alert-warning" style="margin-top:5px" id="admin_info">
+  This option needs tsdiscon.exe, select the right index of install.wim for this. (like Pro Edition).<br/>
+  The switching will be black screen for seconds without DWM
+</div>
 <label class="left_label">Administrator Name:</label>
 <input type="text" name="account.custom_admin_name" class="right_val opt_item" value="Administrator"/><br/>
 <label class="left_label">Logon Password(Admin):</label>
@@ -34,8 +38,6 @@ fieldset {
 <input type="radio" class="opt_item" name="account.admin_screen" value="none" /> <span>None</span>
 <input type="radio" class="opt_item" name="account.admin_screen" title="%ProjectDir%\_CustomFiles_\screen.jpg" value="screen.jpg" /> screen.jpg
 <input type="radio" class="opt_item" name="account.admin_screen" value="wallpaper" checked="checked" /> use wallpaper image
-
-<div class="alert alert-warning" style="margin-top:5px" id="admin_info">The switching will be black screen for seconds without DWM</div>
 </fieldset>
 
 

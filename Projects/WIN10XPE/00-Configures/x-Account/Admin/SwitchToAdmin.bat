@@ -60,6 +60,7 @@ WindowManagementAPI.dll
 
 if not exist "%X_SYS%\tsdiscon.exe" (
   echo \033[97;101mERROR Switch to Admin needs tsdiscon.exe present in Education, Professional or Enterprise edition | cmdcolor.exe
+  sleep 5
 )
 
 if %VER[3]% GTR 18850 (

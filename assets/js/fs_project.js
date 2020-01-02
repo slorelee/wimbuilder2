@@ -22,6 +22,9 @@ var Project = {
         project.load_html = function() {
             return load_file('_Assets_/intro.html');
         };
+        project.load_presets = function() {
+            return get_files(project.path + '/_Assets_/preset');
+        };
         project.desc = project.load_desc();
         project.html = project.load_html();
         var $patches_opt = {};
@@ -30,7 +33,7 @@ var Project = {
         if (preset) {
             $patches_preset = preset;
         }
-        project.presets = get_files(project.path + '/_Assets_/preset');
+        project.presets = project.load_presets();
         project.preset = '-';
         if ($patches_preset != '') {
             eval(load_file('_Assets_/preset/' + $patches_preset + '.js'));
@@ -113,6 +116,16 @@ function init_current_preset(project) {
         project.current_preset_path);
     }
     $patches_preset = 'current';
+}
+
+function saveas_current_preset(project, name) {
+    if (!$wb_save_current_preset) return;
+    if (fso.FileExists(project.current_preset_path)) {
+        fso.CopyFile(project.current_preset_path, project.full_path + '/_Assets_/preset/' + name + '.js');
+        // update presets
+        project.presets = project.load_presets();
+        update_preset_list(true);
+    }
 }
 
 function pj_button(name) {

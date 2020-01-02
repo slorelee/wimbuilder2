@@ -1,3 +1,18 @@
+#preset_browse, #preset_saveas {
+    color: #fff;
+    background-color: #1878d6;
+}
+
+#preset_browse:before {
+    content: "\EC51";
+    font-family: Segoe MDL2 Assets;
+}
+
+#preset_saveas:before {
+    content: "\E792";
+    font-family: Segoe MDL2 Assets;
+}
+
 #patches_area {
     padding-top: 20px;
 }

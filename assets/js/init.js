@@ -85,6 +85,7 @@ function analyze_options(env) {
 page_init();
 start_page_init();
 project_page_init();
+patches_page_init();
 i18n_trans();
 
 function page_init() {

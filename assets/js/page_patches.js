@@ -8,6 +8,55 @@ var _patch_updater = [];
 var _saved_current_preset = true;
 var _jstree_selected_node = null;
 
+function patches_page_init() {
+    var dialog, form,
+      name = $("#preset_saveas_name"),
+      namelist = $("#preset_name_list");
+
+    function saveAsPreset() {
+      var valid = true;
+      if ( valid ) {
+        if (!$wb_save_current_preset) return false;
+        save_current_preset(true);
+        saveas_current_preset($obj_project, name.val());
+        dialog.dialog("close");
+      }
+      return valid;
+    }
+
+    dialog = $("#preset-saveas-dialog").dialog({
+      autoOpen: false, height: 400, width: 420, modal: true,
+      title: i18n_t('SaveAs Preset'),
+      buttons: [
+        {
+          text: i18n_t('Save'),
+          click: function() {
+            saveAsPreset();
+        }},
+        {
+          text: i18n_t('Cancel'),
+          click: function() {
+            dialog.dialog("close"); 
+        }}]
+    });
+
+    form = dialog.find("form").on("submit", function(event) {
+      event.preventDefault();
+      saveAsPreset();
+    });
+
+    $("#preset_saveas").button().on("click", function() {
+      dialog.dialog("open");
+      namelist.empty();
+      var presets_str = "";
+      $obj_project.presets.forEach(function(preset) {
+        var preset_name = preset.slice(0, -3);
+        presets_str += preset_name + " (" + i18n_t(preset_name) + ")\r\n";
+      });
+      namelist.text(presets_str);
+    });
+}
+
 function init_radio_opt(elem, patches_opt) {
     var key = $(elem).attr('name');
     if (key in patches_opt) {
@@ -215,8 +264,8 @@ function edit_menu_action(file) {
   Run(editor, '\"' + file + '\"', style);
 }
 
-function update_preset_list() {
-    if ($patches_preset_inited) return;
+function update_preset_list(force) {
+    if (!force && $patches_preset_inited) return;
 
     var preset_selected = false;
     $('#patch_preset').empty();

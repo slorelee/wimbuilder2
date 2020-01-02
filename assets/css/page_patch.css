@@ -1,3 +1,21 @@
+.pure-form-input input[type=password], .pure-form-input input[type=email], .pure-form-input input[type=text], .pure-form-input select, .pure-form-input textarea {
+    padding: .5em .6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+.pure-form-input input[type=text]:focus,.pure-form-input select:focus,.pure-form-input textarea:focus {
+    outline:0;border-color:#129FEA
+}
+
+.pure-form-input input[type=file]:focus, .pure-form-input input[type=checkbox]:focus, .pure-form-input input[type=radio]:focus {
+    outline:#129FEA auto 1px
+}
+
 #preset_browse, #preset_saveas {
     color: #fff;
     background-color: #1878d6;

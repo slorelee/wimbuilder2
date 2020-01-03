@@ -9,6 +9,8 @@ rd /s /q "%X_SYS%\DiagSvcs"
 del /f /a /q "%X_SYS%\diagER.dll"
 del /f /a /q "%X_SYS%\diagtrack.dll"
 
+if "x%opt[slim.winre_sources]%"=="xtrue" rd /s /q "%X%\sources"
+
 rem //-
 rem // WMI Repository will be rebuilt, refresh at startup
 if "x%opt[slim.wbem_repository]%"=="xtrue" (

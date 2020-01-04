@@ -4,16 +4,17 @@ function load_theme_css(theme) {
   $("<link>").attr({
     rel: "stylesheet",
     type: "text/css",
-    href: "assets/themes/" + theme + "/" + theme + ".css"
+    href: "assets/themes/" + theme + "/css.css"
   }).appendTo("head");
 }
 
 function load_theme(theme, force) {
   if (!force && _loaded_theme != '') return;
-  if (!fso.FileExists('assets/themes/' + theme + '/' + theme + '.js')) return;
+  var js_file = 'assets/themes/' + theme + '/js.js';
+  if (!fso.FileExists(js_file)) return;
 
   load_theme_css(theme);
-  document.write('<script src="assets/themes/' + theme + '/' + theme + '.js"></script>');
+  document.write('<script src="' + js_file + '"></script>');
   _loaded_theme = theme;
 }
 

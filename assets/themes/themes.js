@@ -1,6 +1,5 @@
-var _loaded_theme = '';
-var _theme_path = '';
-
+var $theme_name = '';
+var $theme_path = '';
 var $theme_canvas = null;
 
 function load_theme_css(theme) {
@@ -12,7 +11,7 @@ function load_theme_css(theme) {
 }
 
 function load_theme(theme, force) {
-  if (!force && _loaded_theme != '') return;
+  if (!force && $theme_name != '') return;
   var js_file = 'assets/themes/' + theme + '/js.js';
   if (!fso.FileExists(js_file)) return;
 
@@ -20,8 +19,8 @@ function load_theme(theme, force) {
 
   load_theme_css(theme);
   document.write('<script src="' + js_file + '"></script>');
-  _loaded_theme = theme;
-  _theme_path = 'assets/themes/' + theme;
+  $theme_name = theme;
+  $theme_path = 'assets/themes/' + theme;
 }
 
 function themes_loader() {

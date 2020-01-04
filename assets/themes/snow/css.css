@@ -26,3 +26,39 @@ select, option, input[type=text] {
         color-stop(0.84, rgb(23,82,145))
     );
 }
+
+/* update text color */
+body {
+  color: white;
+}
+
+select, option, input[type=text] {
+  color: black;
+}
+
+#patches_list, #patch_html  {
+  color: white;
+}
+
+#patch_html fieldset legend {
+  color: white;
+}
+
+body .uk-tab > * > a {
+  color: lightgray;
+}
+
+/* Hover + Focus */
+body .uk-tab > * > a:hover,
+body .uk-tab > * > a:focus {
+  color: lightsteelblue;
+}
+
+/* Active */
+body .uk-tab > .uk-active > a {
+  color: white;
+}
+
+.box {
+  color: black;
+}

@@ -1,0 +1,45 @@
+#theme_div {
+  display:block;
+}
+
+#theme_canvas {
+  position:absolute;top:0;left:0;
+  background-size:cover;
+  background-image:url('bk1.jpg');
+}
+
+/* update text color for bk1.jpg */
+body {
+  color: white;
+}
+
+select, option, input[type=text] {
+  color: black;
+}
+
+#patches_list, #patch_html  {
+  color: white;
+}
+
+#patch_html fieldset legend {
+  color: white;
+}
+
+body .uk-tab > * > a {
+  color: lightgray;
+}
+
+/* Hover + Focus */
+body .uk-tab > * > a:hover,
+body .uk-tab > * > a:focus {
+  color: lightsteelblue;
+}
+
+/* Active */
+body .uk-tab > .uk-active > a {
+  color: white;
+}
+
+.box {
+  color: black;
+}

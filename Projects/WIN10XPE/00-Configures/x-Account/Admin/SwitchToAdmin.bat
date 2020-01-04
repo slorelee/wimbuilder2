@@ -112,7 +112,6 @@ call RegCopy "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
 if %opt[account.autologon_countdown]% GTR 0 (
   rem Enable Mouse Cursor (EnableCursorSuppression=0) or use Exec = Winpeshl.exe in PecmdAdmin.ini
   reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\System /v EnableCursorSuppression /t REG_DWORD /d 0 /f
-  call TextReplace "%X_SYS%\PecmdAdmin.ini" "CALL ADMIN#r#n//CALL SWITCHTOADMINQUESTION" "#//CALL ADMIN#r#nCALL SWITCHTOADMINQUESTION"
   call TextReplace "%X_SYS%\PecmdAdmin.ini" "#YN *3000 $N" "#YN *%opt[account.autologon_countdown]%000 $N"
 )
 

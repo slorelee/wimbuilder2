@@ -8,7 +8,7 @@
 
 
 var flakes = [],
-    canvas = document.getElementById("theme_canvas"),
+    canvas = $theme_canvas[0],
     ctx = canvas.getContext("2d"),
     flakeCount = 200,
     mX = -100,
@@ -107,23 +107,4 @@ canvas.addEventListener("mousemove", function(e) {
     mY = e.clientY
 });
 
-function resize_theme_canvas(dy) {
-    var dw = window.innerWidth - document.body.clientWidth;
-    var ch = document.body.offsetHeight;
-    if (!dy) dy = 0;
-    if (ch < window.innerHeight) ch = window.innerHeight;
-    if (dw > 0) ch += (15 + dy);
-    canvas.width = window.innerWidth - dw;
-    canvas.height = ch;
-}
-
-window.addEventListener("resize",function(){
-    resize_theme_canvas();
-})
-
 snow_init();
-
-$('.pure-menu-link').click(function(){
-    resize_theme_canvas(-15);
-    resize_theme_canvas();
-});

@@ -1,4 +1,7 @@
 var _loaded_theme = '';
+var _theme_path = '';
+
+var $theme_canvas = null;
 
 function load_theme_css(theme) {
   $("<link>").attr({
@@ -13,9 +16,12 @@ function load_theme(theme, force) {
   var js_file = 'assets/themes/' + theme + '/js.js';
   if (!fso.FileExists(js_file)) return;
 
+  init_theme_canvas();
+
   load_theme_css(theme);
   document.write('<script src="' + js_file + '"></script>');
   _loaded_theme = theme;
+  _theme_path = 'assets/themes/' + theme;
 }
 
 function themes_loader() {
@@ -29,4 +35,30 @@ function themes_loader() {
 themes_loader();
 if ($wb_settings['theme'] != '') {
   load_theme($wb_settings['theme']);
+}
+
+
+function resize_theme_canvas(dy) {
+  var dw = window.innerWidth - document.body.clientWidth;
+  var ch = document.body.offsetHeight;
+  if (!dy) dy = 0;
+  if (ch < window.innerHeight) ch = window.innerHeight;
+  if (dw > 0) ch += (15 + dy);
+  $theme_canvas[0].width = window.innerWidth - dw;
+  $theme_canvas[0].height = ch;
+}
+
+function init_theme_canvas() {
+  $theme_canvas = $("#theme_canvas");
+
+  window.addEventListener("resize", function () {
+    resize_theme_canvas();
+  })
+
+  $('.pure-menu-link').click(function () {
+    resize_theme_canvas(-15);
+    resize_theme_canvas();
+  });
+
+  resize_theme_canvas();
 }

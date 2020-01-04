@@ -1,5 +1,29 @@
 # 更新历史记录
 
+## WimBuilder2 v2020.01.01
+这是一个主要更新。添加和改善了以下内容:
+
+* 修复 繁体输入法不可用问题。 (感谢 @2012bear1alex1 测试与反馈)
+* 新增 输入法新增繁体输入法(注音，速成，仓颉)选项。
+* 修复 强力精简选项导致无线网络不能正常问题。
+* 改进 对20H2预览版支持。补档修复IE闪退问题。 (感谢 @James)
+* 调整 lua 函数(LINK, , PinToTaskbar, PinToStartmenu)到WinXShell\lua_helper\shell_helper.lua。
+* 调整 默认桌面，任务栏，开始菜单图标创建为自定义批处理生成(可删除)。
+   `Projects/WIN10XPE/_CustomFiles_/MyCustom/Last/_CustomDesktopItems.bat`
+* 改进 使用 构建(日志) 方式时，将保留历史构建日志文件。 (感谢 @Lancelot)
+* 新增 "预设另存为 ..." 按钮。
+* 调整 界面的显示样式。
+* 改进 wim文件卸载时，清理挂载点。 (感谢 @星体投射)
+* 新增 删除\sources文件夹精简选项。
+* 修复 SYSTEM用户无法使用开始菜单关机按钮问题。
+* 修复 当自动登录的确认时间设置为0秒时，无法正常登录问题。 (感谢 @Lancelot 测试与反馈)
+* 改进 启用Administrator帐户时，提示对install.wim的版本要求。 (感谢 @Lancelot 测试与反馈)
+* 修复 非中文系统下查看"我的主题"定制选项时出错问题。 (感谢 @Lancelot 测试与反馈)
+* 新增 主题设置选项(`$wb_settings['theme'] = '<主题名>'`@ config.js )。
+* 新增 `snow`主题(v2019.12.12版彩蛋)，`picture`主题(静态背景图)。
+* 新增 `春节(the_spring_festival)`主题(http://hello.wimbuilder.world 市场下载)。
+
+
 ## WimBuilder2 v2019.12.12
 这是一个常规更新。添加和改善了以下内容:
 
@@ -19,6 +43,7 @@
 * 修复 当构建时间过长时，页面弹出脚本运行缓慢的对话框的问题。
 * 改进 提供运行系统语言变量，界面语言与系统不符时，个别选项的默认值将使用英文资源，确保可以正常构建。
        (繁体中文系统下，可以通过在config.js中设置语言为zh-CN来使用简体中文界面。)
+
 
 ## WimBuilder2 v2019.11.11
 这是一个主要更新。添加和改善了以下内容:

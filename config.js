@@ -2,6 +2,8 @@ $width = 1200;
 $height = 800;
 $wb_auto_save_window_size = true;
 
+$wb_settings['theme'] = '';
+
 $lang = '';
 
 $wb_src_folder = '';

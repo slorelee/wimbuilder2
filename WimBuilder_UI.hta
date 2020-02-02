@@ -137,6 +137,7 @@ if ($IE_VER == '9+') {
             <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_project">Project</a></li>
             <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_patch">Customize</a></li>
             <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_build">Building</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_settings">Settings</a></li>
             <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_about">About</a></li>
         </ul>
     </div>
@@ -406,10 +407,19 @@ if ($IE_VER == '9+') {
     </div>
     <div>
         <button class="pure-button pre-button" onclick="$('#menu_patch').click()">&lt;pre</button>
-        <button class="pure-button next-button" onclick="$('#menu_about').click()">next&gt;</button>
+        <button class="pure-button next-button" onclick="$('#menu_settings').click()">next&gt;</button>
     </div>
 </div>
 <!-- ############################# page_building End ############################# -->
+
+<!-- ############################# page_settings Start ############################# -->
+<div id="page_settings" class="content_page">
+    <div>
+        <button class="pure-button pre-button" onclick="$('#menu_build').click()">&lt;pre</button>
+        <button class="pure-button next-button" onclick="$('#menu_about').click()">next&gt;</button>
+    </div>
+</div>
+<!-- ############################# page_settings End ############################# -->
 
 <!-- ############################# page_about Start ############################# -->
 <div id="page_about" class="content_page">

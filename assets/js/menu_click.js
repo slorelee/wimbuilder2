@@ -44,6 +44,10 @@ $('#menu_build').click(function(){
     build_page_init();
 });
 
+$('#menu_settings').click(function(){
+    switch_page('settings');
+});
+
 $('#menu_about').click(function(){
     switch_page('about');
 });

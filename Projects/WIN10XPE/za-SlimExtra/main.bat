@@ -96,7 +96,8 @@ call :KEEP_FILE \Windows\System32\d3d10warp.dll
 del /a /f /q "%X_SYS%\d3d10*.dll"
 
 del /a /f /q "%X_SYS%\d3d11on12.dll"
-del /a /f /q "%X_SYS%\D3D12.dll"
+rem keep d3d12.dll for taskmgr.exe
+rem del /a /f /q "%X_SYS%\D3D12.dll"
 del /a /f /q "%X_SYS%\d3d8thk.dll"
 del /a /f /q "%X_SYS%\d3d9.dll"
 

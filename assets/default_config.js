@@ -6,9 +6,10 @@ var $lang = ''; //auto
 var $wb_auto_config_created = false;
 var $wb_auto_save_window_size = true;
 
-var $wb_settings = {};
-$wb_settings['enable_theme_loader'] = true;
-$wb_settings['theme'] = '';
+var $ui_settings = {};
+$ui_settings['lang'] = '';
+$ui_settings['enable_theme_loader'] = true;
+$ui_settings['theme'] = '';
 
 var $wb_show_quick_build = false;
 

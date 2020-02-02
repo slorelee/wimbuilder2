@@ -4,8 +4,8 @@ $wb_auto_save_window_size = true;
 
 $lang = '';
 
-$wb_settings['lang'] = $lang;
-$wb_settings['theme'] = '';
+$ui_settings['lang'] = $lang;
+$ui_settings['theme'] = '';
 
 $wb_src_folder = '';
 $wb_src = '';

@@ -24,7 +24,7 @@ function load_theme(theme, force) {
 }
 
 function themes_loader() {
-  if (!$wb_settings['enable_theme_loader']) return;
+  if (!$ui_settings['enable_theme_loader']) return;
   var file = 'assets/themes/loader.js';
   if (fso.FileExists(file)) {
     document.write('<script src="' + file + '"></script>');
@@ -32,8 +32,8 @@ function themes_loader() {
 }
 
 themes_loader();
-if ($wb_settings['theme'] != '') {
-  load_theme($wb_settings['theme']);
+if ($ui_settings['theme'] != '') {
+  load_theme($ui_settings['theme']);
 }
 
 

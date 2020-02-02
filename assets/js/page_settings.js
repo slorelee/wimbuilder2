@@ -14,20 +14,20 @@ function settings_page_apply() {
     var lang_opt = $('#ui_lang').val();
     var theme_opt = $('#ui_theme').val();
 
-    $wb_settings['theme'] = theme_opt;
-    //load_theme($wb_settings['theme'], true);
+    $ui_settings['theme'] = theme_opt;
+    //load_theme($ui_settings['theme'], true);
 }
 
 function update_lang_list() {
     $('#ui_lang').empty();
-    $('#ui_lang').append('   <option value="Auto">'
+    $('#ui_lang').append('   <option value="">'
         + i18n_t('Auto') + ' (' + $lang + ')' + '</option>');
     var items = get_files('assets\\i18n');
     var opt_selected = false;
     items.forEach(function(item) {
         var name = item.slice(0, -3);
         var select_tag = '';
-        if ($wb_settings['lang'] == name) {
+        if ($ui_settings['lang'] == name) {
             select_tag = 'selected';
             opt_selected = true;
         }
@@ -48,7 +48,7 @@ function update_theme_list() {
     items.pop(); // remove '_items_'
     items.forEach(function(item) {
         var select_tag = '';
-        if ($wb_settings['theme'] == item) {
+        if ($ui_settings['theme'] == item) {
             select_tag = 'selected';
             opt_selected = true;
         }

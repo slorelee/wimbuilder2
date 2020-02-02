@@ -46,6 +46,7 @@ $('#menu_build').click(function(){
 
 $('#menu_settings').click(function(){
     switch_page('settings');
+    settings_page_init();
 });
 
 $('#menu_about').click(function(){

@@ -418,6 +418,32 @@ if ($IE_VER == '9+') {
         <button class="pure-button pre-button" onclick="$('#menu_build').click()">&lt;pre</button>
         <button class="pure-button next-button" onclick="$('#menu_about').click()">next&gt;</button>
     </div>
+    <br/>
+    <style>
+        #settings_form label {
+            display:inline-block;
+            width: 20%;
+        }
+        #settings_form select {
+            width: 30%;
+        }
+    </style>
+    <div id="settings_form" class="pure-form">
+        <div>
+            <label>Language :</label>
+            <select id='ui_lang'>
+            </select>
+        </div>
+
+        <div>
+            <label>Theme :</label>
+            <select id='ui_theme'>
+            </select>
+        </div>
+        <br/><br/>
+        <button class="pure-button button-green" style="margin-left: 40%;" class="i18n-text" onclick="settings_page_apply()">Apply</button>
+
+    </div>
 </div>
 <!-- ############################# page_settings End ############################# -->
 
@@ -497,6 +523,7 @@ if ($IE_VER == '9+') {
 <script src="assets/js/page_project.js"></script>
 <script src="assets/js/page_patches.js"></script>
 <script src="assets/js/page_build.js"></script>
+<script src="assets/js/page_settings.js"></script>
 <script src="assets/js/menu_click.js"></script>
 <script src="assets/js/init.js"></script>
 <script src="assets/themes/themes.js"></script>

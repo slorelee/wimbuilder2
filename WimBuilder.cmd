@@ -50,10 +50,10 @@ set "I18N_SCRIPT=%~dp0i18n\i18n_.wsf"
 
 set findcmd=findstr
 if not exist "%windir%\System32\findstr.exe" set findcmd=find
-for /f "tokens=2 delims=='; " %%i in ('%findcmd% "$lang" config.js') do (
-  set LocaleID=%%i
+for /f "tokens=1,2 delims==';[] " %%i in ('%findcmd% "$lang" config.js') do (
+  set LocaleID[%%i]=%%j
 )
-
+set LocaleID=%LocaleID[$lang]%
 for /f "delims=" %%i in ('cscript.exe //nologo "%I18N_SCRIPT%" init') do set WB_HOST_LANG=%%i
 if "x%WB_HOST_LANG%"=="x" set WB_HOST_LANG=en-US
 

@@ -7,3 +7,7 @@
     height: 60px;
     line-height: 60px;
 }
+
+#patch_html fieldset legend {
+    font-size: 40px;
+}

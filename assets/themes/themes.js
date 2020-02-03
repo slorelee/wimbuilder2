@@ -3,11 +3,7 @@ var $theme_path = '';
 var $theme_canvas = null;
 
 function load_theme_css(theme) {
-  $("<link>").attr({
-    rel: "stylesheet",
-    type: "text/css",
-    href: "assets/themes/" + theme + "/css.css"
-  }).appendTo("head");
+  load_css("assets/themes/" + theme + "/css.css");
 }
 
 function load_theme(theme, force) {

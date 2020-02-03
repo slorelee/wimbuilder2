@@ -35,3 +35,11 @@ function wbcode(id) {
     elem.innerHTML = tmp;
     //elem.id  = '';
 }
+
+function load_css(file) {
+    $("<link>").attr({
+        rel: "stylesheet",
+        type: "text/css",
+        href: file,
+    }).appendTo("head");
+}

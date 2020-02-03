@@ -24,6 +24,15 @@ $("#ui_theme").change(function() {
     settings_changed_action();
 });
 
+$("#ui_dpi").change(function() {
+    $ui_settings['dpi'] = $(this).val();
+    if ($ui_settings['dpi'] == '') {
+        dpi_adapt('100');
+    } else {
+        dpi_adapt($ui_settings['dpi']);
+    }
+});
+
 $("#settings_restart_yes").click(function() {
     Run('WimBuilder.cmd');
     window.close();

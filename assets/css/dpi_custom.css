@@ -1,0 +1,9 @@
+.jstree-default .jstree-node {
+    font-size: 60px;
+    line-height: 60px;
+}
+
+.jstree-default .jstree-anchor {
+    height: 60px;
+    line-height: 60px;
+}

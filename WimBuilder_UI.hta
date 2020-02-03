@@ -438,6 +438,18 @@ if ($IE_VER == '9+') {
             <label>Theme :</label>
             <select id='ui_theme'></select>
         </div>
+
+        <div>
+            <label>DPI :</label>
+            <select id='ui_dpi'>
+                <option value ="">-</option>
+                <option value ="100">100%</option>
+                <option value ="125">125%</option>
+                <option value="high">High</option>
+                <option value="custom">Custom</option>
+            </select>
+        </div>
+
         <br /><br />
         <button class="pure-button button-green" style="display:none;margin-left:40%;" class="i18n-text"
             onclick="settings_page_apply()">Apply</button>
@@ -526,9 +538,16 @@ if ($IE_VER == '9+') {
             (window.screen.height - h) / 2);
     }
     i18n_init();
+    dpi_adapt($ui_settings['dpi']);
     window_onload();
     if ($IE_VER != '9+') {
         $("#menu_fixed").css('height', $height - 42);
+    }
+
+    function dpi_adapt(scale) {
+        if (scale != '') {
+            load_css('assets/css/dpi_' + scale + '.css');
+        }
     }
 
     function window_beforeunload() {

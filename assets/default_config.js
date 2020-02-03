@@ -10,6 +10,7 @@ var $ui_settings = {};
 $ui_settings['lang'] = '';
 $ui_settings['enable_theme_loader'] = true;
 $ui_settings['theme'] = '';
+$ui_settings['dpi'] ='';
 
 var $wb_show_quick_build = false;
 

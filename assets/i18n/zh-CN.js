@@ -5,6 +5,7 @@ $i18n = {
   "Project":"工程",
   "Customize":"定制",
   "Building":"构建",
+  "Settings":"设置",
   "About":"关于",
   "Quick build":"快速构建",
   "build(cmd)":"CMD模式",
@@ -70,6 +71,15 @@ $i18n = {
   "Please select a project:":"请选择工程:",
   "Project Information":"工程信息",
 
+  "Language :":"语言 :",
+  "Theme :":"主题 :",
+  "Auto":"自动",
+  "None":"无",
+  "High":"高",
+  "Custom":"自定义",
+  "Restart to apply changes to your settings?":"立即重新启动以应用最新设置？",
+  "Yes":"是",
+  "No":"否",
 
   "Please startup with WimBuilder.cmd.":"请通过WimBuilder.cmd启动。",
   "No project to build.":"未选择构建工程。",

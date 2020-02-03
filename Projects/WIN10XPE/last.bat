@@ -2,6 +2,7 @@ rem update lua scripts for escape characters
 call LuaLink -done
 call LuaPin -done
 
+if "x%opt[build.unmount_wim_demand]%"=="xtrue" set _WB_UNMOUNT_DEMAND=1
 if "x%opt[build.last_filereg_disabled]%"=="xtrue" goto :EOF
 
 rem New Menu
@@ -21,6 +22,8 @@ if "x%opt[registry.software.compress]%"=="xtrue" (
     reg save HKLM\Tmp_Software "%X_SYS%\config\SOFTWARE.hiv" /y /c
 )
 
+if "x%opt[build.unmount_wim_demand]%"=="xtrue" goto :REPLACE_FULLREG_END
+
 rem use prepared HIVE files
 call PERegPorter.bat Tmp UNLOAD 1>nul
 
@@ -35,6 +38,7 @@ call :FULLREG SYSTEM
 call :FULLREG COMPONENTS
 call :FULLREG DRIVERS
 
+:REPLACE_FULLREG_END
 
 if exist "_CustomFiles_\final.bat" (
     call "_CustomFiles_\final.bat"

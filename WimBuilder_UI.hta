@@ -431,18 +431,16 @@ if ($IE_VER == '9+') {
     <div id="settings_form" class="pure-form">
         <div>
             <label>Language :</label>
-            <select id='ui_lang'>
-            </select>
+            <select id='ui_lang'></select>
         </div>
 
         <div>
             <label>Theme :</label>
-            <select id='ui_theme'>
-            </select>
+            <select id='ui_theme'></select>
         </div>
-        <br/><br/>
-        <button class="pure-button button-green" style="margin-left: 40%;" class="i18n-text" onclick="settings_page_apply()">Apply</button>
-
+        <br /><br />
+        <button class="pure-button button-green" style="display:none;margin-left:40%;" class="i18n-text"
+            onclick="settings_page_apply()">Apply</button>
     </div>
 </div>
 <!-- ############################# page_settings End ############################# -->
@@ -489,6 +487,30 @@ if ($IE_VER == '9+') {
     }
 </style>
 <![endif]-->
+
+<div>
+    <style>
+        #settings_float_menu {
+            display: none;
+            position: fixed;
+            bottom: 2.2em;
+            right: 0.3em;
+            width: 460px;
+            height: 4.2em;
+            background: rgb(48, 48, 48);
+            opacity: 0.85;
+            color: white;
+            box-shadow: -3px 3px 3px black;
+        }
+    </style>
+    <div id="settings_float_menu">
+        <div style="font-size: 1.3em;" class="i18n-text">Restart to apply changes to your settings?</div>
+        <div style="float: right;margin:5px 8px 0px 0px;">
+            <button id="settings_restart_yes" style="height:2em;" class="i18n-text pure-button button-lightblue">Yes</button>
+            <button id="settings_restart_no" style="height:2em;" class="i18n-text pure-button">No</button>
+        </div>
+    </div>
+</div>
 
 <div id="statusbar">
     <div id="status_text_div"><p id="status_text"></p></div>

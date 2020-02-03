@@ -11,6 +11,10 @@ function BrowseFile(elem) {
 
 function get_current_settings() {
     var text = '';
+    var settings_keys = Object.keys($ui_settings);
+    settings_keys.forEach(function(key, i) {
+        text += '$ui_settings[\'' + key + '\'] = \"' + $ui_settings[key] + "\";\r\n";
+    })
     text += '$wb_auto_config_created=' + $wb_auto_config_created + ";\r\n";
     text += '$wb_show_quick_build=' + $wb_show_quick_build + ";\r\n";
     text += '$width=' + $width + ";\r\n";

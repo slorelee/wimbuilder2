@@ -11,11 +11,30 @@ function settings_page_init() {
 
 function settings_page_apply() {
     //$('#ui_lang').find("option:selected")
-    var lang_opt = $('#ui_lang').val();
-    var theme_opt = $('#ui_theme').val();
-
-    $ui_settings['theme'] = theme_opt;
     //load_theme($ui_settings['theme'], true);
+}
+
+$("#ui_lang").change(function() {
+    $ui_settings['lang'] = $(this).val();
+    settings_changed_action();
+});
+
+$("#ui_theme").change(function() {
+    $ui_settings['theme'] = $(this).val();
+    settings_changed_action();
+});
+
+$("#settings_restart_yes").click(function() {
+    Run('WimBuilder.cmd');
+    window.close();
+});
+
+$("#settings_restart_no").click(function() {
+    $("#settings_float_menu").hide();
+});
+
+function settings_changed_action(){
+    $("#settings_float_menu").show();
 }
 
 function update_lang_list() {

@@ -224,9 +224,10 @@ call ApplyProjectPatches.bat "%WB_PROJECT_PATH%"
 rem =========================================================
 
 cd /d "%WB_ROOT%\"
+if "x%_WB_UNMOUNT_DEMAND%"=="x1" goto :UNMOUNT_END
 call :CLEANUP 0
 call WIM_Exporter "%_WB_PE_WIM%"
-
+:UNMOUNT_END
 
 set TIMER_END=
 for /f "delims=" %%t in ('cscript.exe //nologo "%WB_ROOT%\bin\Timer.vbs"') do set TIMER_END=%%t

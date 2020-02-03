@@ -2,6 +2,7 @@ var $i18n = {};
 
 function i18n_init() {
     if (typeof($lang) == "undefined") return;
+    $lang = $ui_settings['lang'];
     if ($lang == '') {
         var env = wsh.Environment("PROCESS");
         $lang = env('WB_UI_LANG');

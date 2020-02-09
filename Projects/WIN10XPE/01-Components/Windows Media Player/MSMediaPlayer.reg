@@ -1,0 +1,472 @@
+Windows Registry Editor Version 5.00
+
+; converted from MSMediaPlayer.Script by ConvScript.py
+;//-
+[HKEY_LOCAL_MACHINE\Tmp_Default\Software\Microsoft\MediaPlayer\Preferences]
+"AcceptedPrivacyStatement"=dword:00000001
+"MetadataRetrieval"=dword:00000000
+"SilentAcquisition"=dword:00000000
+"UsageTracking"=dword:00000000
+"DisableMRUMusic"=dword:00000000
+"DisableMRUPictures"=dword:00000000
+"DisableMRUVideo"=dword:00000000
+"DisableMRUPlaylists"=dword:00000000
+"LaunchIndex"=dword:00000001
+"SQMLaunchIndex"=dword:00000001
+"AppColorLimited"=dword:00000000
+"AutoMetadataCurrentDownloadXXXCount"=dword:00000000
+"AutoMetadataCurrent500ServerErrorCount"=dword:00000000
+"AutoMetadataCurrent503ServerErrorCount"=dword:00000000
+"AutoMetadataCurrentOtherServerErrorCount"=dword:00000000
+"AutoMetadataCurrentNetworkErrorCount"=dword:00000000
+"AutoMetadataLastResetTime"=dword:1d66060f
+"MediaLibraryCreateNewDatabase"=dword:00000001
+"SyncPlaylistsAdded"=dword:00000001
+"LibraryHMENodesVisible"=dword:00000001
+"LibraryForceShowColumns"=dword:00000000
+"LastContainerV12"="{70C02500-7C6F-11D3-9FB6-00105AA620BB}"
+"LastContainerMode"=dword:00000000
+"UsageLoggerRanOnce"=dword:00000001
+"TranscodedFilesCacheSize"=dword:00000800
+"TranscodedFilesCacheDefaultSizeSet"=dword:00000001
+"EverLoadedServices"=dword:00000001
+"FirstRun"=dword:00000000
+"NextLaunchIndex"=dword:00000002
+"XV11"="192"
+"YV11"="108"
+"WidthV11"="1536"
+"HeightV11"="864"
+"Maximized"="0"
+"Volume"=dword:00000032
+"ModeShuffle"=dword:00000000
+"ModeLoop"=dword:00000000
+"Mute"=dword:00000000
+"Balance"=dword:00000000
+"CurrentEffectType"="Bars"
+"CurrentEffectPreset"=dword:00000003
+"VideoZoom"=dword:00000064
+"ShrinkToFit"=dword:00000000
+"StretchToFit"=dword:00000001
+"ShowEffects"=dword:00000001
+"ShowFullScreenPlaylist"=dword:00000000
+"NowPlayingQuickHide"=dword:00000000
+"ShowTitles"=dword:00000001
+"ShowCaptions"=dword:00000000
+"NowPlayingPlaylist"=dword:00000001
+"NowPlayingMetadata"=dword:00000001
+"NowPlayingSettings"=dword:00000000
+"CurrentDisplayView"="VizView"
+"CurrentSettingsView"="EQView"
+"CurrentMetadataView"="MediaInfoView"
+"CurrentDisplayPreset"=dword:00000000
+"CurrentSettingsPreset"=dword:00000000
+"CurrentMetadataPreset"=dword:00000000
+"UserDisplayView"="VizView"
+"UserWMPDisplayView"="VizView"
+"UserWMPSettingsView"="EQView"
+"UserWMPMetadataView"="MediaInfoView"
+"UserDisplayPreset"=dword:00000000
+"UserWMPDisplayPreset"=dword:00000000
+"UserWMPSettingsPreset"=dword:00000000
+"UserWMPMetadataPreset"=dword:00000000
+"UserWMPShowSettings"=dword:00000000
+"UserWMPShowMetadata"=dword:00000000
+"ShowAlbumArt"=dword:00000000
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Microsoft\MediaPlayer\PREFERENCES]
+"RemoteSharingEnabled"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Drivers32]
+"midimapper"="midimap.dll"
+"wave"="wdmaud.drv"
+"midi"="wdmaud.drv"
+"mixer"="wdmaud.drv"
+"aux"="wdmaud.drv"
+"wave1"="wdmaud.drv"
+"midi1"="wdmaud.drv"
+"mixer1"="wdmaud.drv"
+"aux1"="wdmaud.drv"
+;//--
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\WMP]
+"InstallDir"="X:\Program Files\Windows Media Player\wmplayer.exe"
+"Version"="%WMPVarResult%"
+@="X:\Program Files\Windows Media Player\wmplayer.exe"
+"Language"="1033"
+;//--
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\WMP\shell]
+@="play"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\WMP\DefaultIcon]
+;@ REG_EXPAND_SZ "X:\Program Files\Windows Media Player\wmplayer.exe"
+@=hex(2):22,00,58,00,3a,00,5c,00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,00,20,00,46,00,69,00,6c,00,65,00,73,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,20,00,4d,00,65,00,64,00,69,00,61,00,20,00,50,00,6c,00,61,00,79,00,65,00,72,00,5c,00,77,00,6d,00,70,00,6c,00,61,00,79,00,65,00,72,00,2e,00,65,00,78,00,65,00,22,00
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\WMP\shell\play\command]
+;@ REG_EXPAND_SZ "X:\Program Files\Windows Media Player\wmplayer.exe" "%1"
+@=hex(2):22,00,58,00,3a,00,5c,00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,00,20,00,46,00,69,00,6c,00,65,00,73,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,20,00,4d,00,65,00,64,00,69,00,61,00,20,00,50,00,6c,00,61,00,79,00,65,00,72,00,5c,00,77,00,6d,00,70,00,6c,00,61,00,79,00,65,00,72,00,2e,00,65,00,78,00,65,00,22,00,20,00,22,00,25,00,31,00,22,00
+;//-- Associate file types
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.wav]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.wmv]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.wma]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mp3]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.asf]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.avi]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.divx]
+@="WMP"
+;//RegWrite,HKLM,0x1,Tmp_Software\Classes\.flv,,WMP
+;//RegWrite,HKLM,0x1,Tmp_Software\Classes\.flv4,,WMP
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.m4v]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mov]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mpg]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mp4]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mkv]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.flac]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.ts]
+@="WMP"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.m2ts]
+@="WMP"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_System\ControlSet001\Services\EventLog\System\WMPNetworkSvc]
+"ProviderGuid"="{6A2DC7C1-930A-4FB5-BB44-80B30AEBED6C}"
+
+[HKEY_LOCAL_MACHINE\Tmp_System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\RestrictedServices\Static\System]
+"WMPNetworkSvc-2"="V2.0|Action=Block|Dir=In|Protocol=6|App=%programfileS%\Windows Media Player\wmpnetwk.exe|Svc=WMPNetworkSvc|Name=@FirewallAPI.dll,-31702|"
+"WMPNetworkSvc-1"="V2.0|Action=Allow|Dir=In|LPort=554|LPort=8554|Protocol=6|App=%programfileS%\Windows Media Player\wmpnetwk.exe|Svc=WMPNetworkSvc|Name=@FirewallAPI.dll,-31700|Desc=@FirewallAPI.dll,-31701|"
+
+[HKEY_LOCAL_MACHINE\Tmp_System\ControlSet001\Services\WMPNetworkSvc]
+"DisplayName"="@%programfiles%\Windows Media Player\wmpnetwk.exe,-101"
+"ErrorControl"=dword:00000001
+;"ImagePath" REG_EXPAND_SZ "%programfiles%\Windows Media Player\wmpnetwk.exe"
+"ImagePath"=hex(2):22,00,25,00,70,00,72,00,6f,00,67,00,72,00,61,00,6d,00,66,00,69,00,6c,00,65,00,73,00,25,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,20,00,4d,00,65,00,64,00,69,00,61,00,20,00,50,00,6c,00,61,00,79,00,65,00,72,00,5c,00,77,00,6d,00,70,00,6e,00,65,00,74,00,77,00,6b,00,2e,00,65,00,78,00,65,00,22,00
+"Start"=dword:00000002
+"Type"=dword:00000010
+"Description"="@%programfiles%\Windows Media Player\wmpnetwk.exe,-102"
+;"DependOnService" REG_MULTI_SZ http,WSearch
+"DependOnService"=hex(7):68,00,74,00,74,00,70,00,00,00,57,00,53,00,65,00,61,00,72,00,63,00,68,00,00,00,00,00
+"ObjectName"="NT AUTHORITY\NetworkService"
+"ServiceSidType"=dword:00000001
+;"RequiredPrivileges" REG_MULTI_SZ SeChangeNotifyPrivilege,SeCreateGlobalPrivilege,SeImpersonatePrivilege
+"RequiredPrivileges"=hex(7):53,00,65,00,43,00,68,00,61,00,6e,00,67,00,65,00,4e,00,6f,00,74,00,69,00,66,00,79,00,50,00,72,00,69,00,76,00,69,00,6c,00,65,00,67,00,65,00,00,00,53,00,65,00,43,00,72,00,65,00,61,00,74,00,65,00,47,00,6c,00,6f,00,62,00,61,00,6c,00,50,00,72,00,69,00,76,00,69,00,6c,00,65,00,67,00,65,00,00,00,53,00,65,00,49,00,6d,00,70,00,65,00,72,00,73,00,6f,00,6e,00,61,00,74,00,65,00,50,00,72,00,69,00,76,00,69,00,6c,00,65,00,67,00,65,00,00,00,00,00
+"FailureActions"=hex:80,51,01,00,00,00,00,00,00,00,00,00,03,00,00,00,14,00,00,00,01,00,00,00,30,75,00,00,01,00,00,00,30,75,00,00,00,00,00,00,00,00,00,00
+"DelayedAutostart"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\Tmp_System\ControlSet001\Services\WMPNetworkSvc\Security]
+"Security"=hex:01,00,14,80,8c,00,00,00,98,00,00,00,14,00,00,00,30,00,00,00,02,00,1c,00,01,00,00,00,02,80,14,00,ff,01,0f,00,01,01,00,00,00,00,00,01,00,00,00,00,02,00,5c,00,04,00,00,00,00,00,14,00,fd,01,02,00,01,01,00,00,00,00,00,05,12,00,00,00,00,00,18,00,ff,01,0f,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,00,00,14,00,9d,01,02,00,01,01,00,00,00,00,00,05,04,00,00,00,00,00,14,00,8d,01,02,00,01,01,00,00,00,00,00,05,06,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Microsoft\Windows\CurrentVersion\Parental Controls\HTTPExemptions]
+"X:\Program Files\Windows Media Player\Wmpconfig.exe"="X:\Program Files\Windows Media Player\Wmpconfig.exe"
+"X:\Program Files\Windows Media Player\Wmpsideshowgadget.exe"="X:\Program Files\Windows Media Player\Wmpsideshowgadget.exe"
+"X:\Program Files\Windows Media Player\Wmpshare.exe"="X:\Program Files\Windows Media Player\Wmpshare.exe"
+"X:\Program Files\Windows Media Player\Wmpnetwk.exe"="X:\Program Files\Windows Media Player\Wmpnetwk.exe"
+"X:\Program Files\Windows Media Player\wmplayer.exe"="X:\Program Files\Windows Media Player\wmplayer.exe"
+"X:\Program Files\Windows Media Player\Wmpenc.exe"="X:\Program Files\Windows Media Player\Wmpenc.exe"
+"X:\Program Files\Windows Media Player\Wmlaunch.exe"="X:\Program Files\Windows Media Player\Wmlaunch.exe"
+"X:\Program Files\Windows Media Player\Wmprph.exe"="X:\Program Files\Windows Media Player\Wmprph.exe"
+"X:\Program Files\Windows Media Player\Wmpnscfg.exe"="X:\Program Files\Windows Media Player\Wmpnscfg.exe"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_System\ControlSet001\Control\Network\LightweightCallHandlers\PNIDUI\OnPrivateNetworkAvailable\WMP_OnPrivateNetworkAvailable]
+;"ExeName" REG_EXPAND_SZ "%programfiles%\Windows Media Player\wmpnscfg.exe"
+"ExeName"=hex(2):22,00,25,00,70,00,72,00,6f,00,67,00,72,00,61,00,6d,00,66,00,69,00,6c,00,65,00,73,00,25,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,20,00,4d,00,65,00,64,00,69,00,61,00,20,00,50,00,6c,00,61,00,79,00,65,00,72,00,5c,00,77,00,6d,00,70,00,6e,00,73,00,63,00,66,00,67,00,2e,00,65,00,78,00,65,00,22,00
+"Cardinality"=dword:00000000
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Audio\shell\Enqueue]
+@="&Add to Windows Media Player list"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9800
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,30,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Audio\shell\Enqueue\command]
+"DelegateExecute"="{45597c98-80f6-4549-84ff-752cf55e2d29}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Audio\shell\Play]
+@="&Play with Windows Media Player"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9801
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,31,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Audio\shell\Play\command]
+"DelegateExecute"="{ed1d0fdf-4414-470a-a56d-cfb68623fc58}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Audio\shellex\ContextMenuHandlers\PlayTo]
+@="{7AD84985-87B4-4a16-BE58-8B72A5B390F7}"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Image\shell\Enqueue]
+@="&Add to Windows Media Player list"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9800
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,30,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Image\shell\Enqueue\command]
+"DelegateExecute"="{45597c98-80f6-4549-84ff-752cf55e2d29}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Image\shell\Play]
+@="&Play with Windows Media Player"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9801
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,31,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Image\shell\Play\command]
+"DelegateExecute"="{ed1d0fdf-4414-470a-a56d-cfb68623fc58}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Image\shellex\ContextMenuHandlers\PlayTo]
+@="{7AD84985-87B4-4a16-BE58-8B72A5B390F7}"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Video\shell\Enqueue]
+@="&Add to Windows Media Player list"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9800
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,30,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Video\shell\Enqueue\command]
+"DelegateExecute"="{45597c98-80f6-4549-84ff-752cf55e2d29}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Video\shell\Play]
+@="&Play with Windows Media Player"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9801
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,31,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Video\shell\Play\command]
+"DelegateExecute"="{ed1d0fdf-4414-470a-a56d-cfb68623fc58}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Stack.Video\shellex\ContextMenuHandlers\PlayTo]
+@="{7AD84985-87B4-4a16-BE58-8B72A5B390F7}"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\audio\DefaultIcon]
+;@ REG_EXPAND_SZ %SystemRoot%\system32\shell32.dll,-16824
+@=hex(2):25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,73,00,68,00,65,00,6c,00,6c,00,33,00,32,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,00,31,00,36,00,38,00,32,00,34,00
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\audio\OpenWithList\wmplayer.exe]
+@=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\audio\shell\Enqueue]
+@="&Add to Windows Media Player list"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9800
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,30,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\audio\shell\Enqueue\command]
+"DelegateExecute"="{45597c98-80f6-4549-84ff-752cf55e2d29}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\audio\shell\Play]
+@="&Play with Windows Media Player"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9801
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,31,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\audio\shell\Play\command]
+"DelegateExecute"="{ed1d0fdf-4414-470a-a56d-cfb68623fc58}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\audio\shellex\ContextMenuHandlers\PlayTo]
+@="{7AD84985-87B4-4a16-BE58-8B72A5B390F7}"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Audio\shell\Enqueue]
+@="&Add to Windows Media Player list"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9800
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,30,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Audio\shell\Enqueue\command]
+"DelegateExecute"="{45597c98-80f6-4549-84ff-752cf55e2d29}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Audio\shell\Play]
+@="&Play with Windows Media Player"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9801
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,31,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Audio\shell\Play\command]
+"DelegateExecute"="{ed1d0fdf-4414-470a-a56d-cfb68623fc58}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Audio\shellex\ContextMenuHandlers\PlayTo]
+@="{7AD84985-87B4-4a16-BE58-8B72A5B390F7}"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Image\shell\Enqueue]
+@="&Add to Windows Media Player list"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9800
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,30,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Image\shell\Enqueue\command]
+"DelegateExecute"="{45597c98-80f6-4549-84ff-752cf55e2d29}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Image\shell\Play]
+@="&Play with Windows Media Player"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9801
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,31,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Image\shell\Play\command]
+"DelegateExecute"="{ed1d0fdf-4414-470a-a56d-cfb68623fc58}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Image\shellex\ContextMenuHandlers\PlayTo]
+@="{7AD84985-87B4-4a16-BE58-8B72A5B390F7}"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Video\shell\Enqueue]
+@="&Add to Windows Media Player list"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9800
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,30,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Video\shell\Enqueue\command]
+"DelegateExecute"="{45597c98-80f6-4549-84ff-752cf55e2d29}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Video\shell\Play]
+@="&Play with Windows Media Player"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9801
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,31,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Video\shell\Play\command]
+"DelegateExecute"="{ed1d0fdf-4414-470a-a56d-cfb68623fc58}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\Directory.Video\shellex\ContextMenuHandlers\PlayTo]
+@="{7AD84985-87B4-4a16-BE58-8B72A5B390F7}"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\video]
+"ThumbnailCutoff"=dword:00000001
+"Treatment"=dword:00000003
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\video\DefaultIcon]
+;@ REG_EXPAND_SZ %SystemRoot%\system32\shell32.dll,-16825
+@=hex(2):25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,73,00,68,00,65,00,6c,00,6c,00,33,00,32,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,00,31,00,36,00,38,00,32,00,35,00
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\video\OpenWithList\wmplayer.exe]
+"OpenWithExclude"="QT:MOV"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\video\shell\Enqueue]
+@="&Add to Windows Media Player list"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9800
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,30,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\video\shell\Enqueue\command]
+"DelegateExecute"="{45597c98-80f6-4549-84ff-752cf55e2d29}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\video\shell\Play]
+@="&Play with Windows Media Player"
+;"MUIVerb" REG_EXPAND_SZ @%SystemRoot%\system32\unregmp2.exe,-9801
+"MUIVerb"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,75,00,6e,00,72,00,65,00,67,00,6d,00,70,00,32,00,2e,00,65,00,78,00,65,00,2c,00,2d,00,39,00,38,00,30,00,31,00
+"NeverDefault"=""
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\video\shell\Play\command]
+"DelegateExecute"="{ed1d0fdf-4414-470a-a56d-cfb68623fc58}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\video\shellex\ContextMenuHandlers\PlayTo]
+@="{7AD84985-87B4-4a16-BE58-8B72A5B390F7}"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\SystemFileAssociations\video\shellex\ContextMenuHandlers\ShellVideoSlideshow]
+@="{E598560B-28D5-46aa-A14A-8A3BEA34B576}"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\AppID\{ed1d0fdf-4414-470a-a56d-cfb68623fc58}]
+@="Play with Windows Media Player"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\CLSID\{ed1d0fdf-4414-470a-a56d-cfb68623fc58}]
+@="Play with Windows Media Player"
+;//Win10 x64 RegWrite - Overwrote existing key ""%ProgramFiles(x86)%\Windows Media Player\wmplayer.exe" /Play" with different data
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\CLSID\{ed1d0fdf-4414-470a-a56d-cfb68623fc58}\LocalServer32]
+;@ REG_EXPAND_SZ "%ProgramFiles%\Windows Media Player\wmplayer.exe" /Play
+@=hex(2):22,00,25,00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,00,46,00,69,00,6c,00,65,00,73,00,25,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,20,00,4d,00,65,00,64,00,69,00,61,00,20,00,50,00,6c,00,61,00,79,00,65,00,72,00,5c,00,77,00,6d,00,70,00,6c,00,61,00,79,00,65,00,72,00,2e,00,65,00,78,00,65,00,22,00,20,00,2f,00,50,00,6c,00,61,00,79,00
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\CLSID\{ed1d0fdf-4414-470a-a56d-cfb68623fc58}\SupportedProtocols]
+"rtspt"=""
+"dlna-playsingle"=""
+"rtspu"=""
+"rtsp"=""
+"mms"=""
+"http"=""
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\CLSID\{7AD84985-87B4-4a16-BE58-8B72A5B390F7}]
+@="Play To menu"
+"ContextMenuOptIn"=""
+;//Win10 x64 RegWrite - Overwrote existing key "x:\Windows\System32\playtomenu.dll" with different data
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\CLSID\{7AD84985-87B4-4a16-BE58-8B72A5B390F7}\InProcServer32]
+@="@%SystemRoot%\System32\Windows.Media.Streaming.dll"
+"ThreadingModel"="Apartment"
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\AppID\{45597c98-80f6-4549-84ff-752cf55e2d29}]
+@="Add to Windows Media Player list"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\CLSID\{45597c98-80f6-4549-84ff-752cf55e2d29}]
+@="Add to Windows Media Player list"
+;//Win10 x64  RegWrite - Overwrote existing key ""%ProgramFiles(x86)%\Windows Media Player\wmplayer.exe" /Enqueue" with different data
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\CLSID\{45597c98-80f6-4549-84ff-752cf55e2d29}\LocalServer32]
+;@ REG_EXPAND_SZ "%ProgramFiles%\Windows Media Player\wmplayer.exe" /Enqueue
+@=hex(2):22,00,25,00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,00,46,00,69,00,6c,00,65,00,73,00,25,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,20,00,4d,00,65,00,64,00,69,00,61,00,20,00,50,00,6c,00,61,00,79,00,65,00,72,00,5c,00,77,00,6d,00,70,00,6c,00,61,00,79,00,65,00,72,00,2e,00,65,00,78,00,65,00,22,00,20,00,2f,00,45,00,6e,00,71,00,75,00,65,00,75,00,65,00
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\CLSID\{45597c98-80f6-4549-84ff-752cf55e2d29}\SupportedProtocols]
+"rtspt"=""
+"dlna-playsingle"=""
+"rtspu"=""
+"rtsp"=""
+"mms"=""
+"http"=""
+;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\Local Settings\MuiCache\167\52C64B7E]
+"@%SystemRoot%\system32\unregmp2.exe,-9991"="&Play"
+"@%SystemRoot%\system32\wmploc.dll,-102"="Windows Media Player"
+"@%SystemRoot%\system32\unregmp2.exe,-9916"="Windows Media Player Skin Package"
+"@%systemroot%\syswow64\unregmp2.exe,-155"="Play digital media including music, videos, CDs, and DVDs."
+"@%SystemRoot%\system32\wmploc.dll,-29400"="Windows Media Player is your digital music software that puts you in control of your music experience."
+"@%SystemRoot%\system32\unregmp2.exe,-4"="Windows Media Player"
+"@%SystemRoot%\system32\unregmp2.exe,-9925"="MP3 Format Sound"
+"@wmploc.dll,-102"="Windows Media Player"
+"@%SystemRoot%\system32\unregmp2.exe,-9800"="&Add to Windows Media Player list"
+"@%SystemRoot%\system32\unregmp2.exe,-9801"="&Play with Windows Media Player"
+"@%SystemRoot%\system32\wmploc.dll,-128"="Microsoft Windows Media Player"
+"@%Programfiles%\Windows Media Player\wmpnetwk.exe,-102"="Shares Windows Media Player libraries to other networked players and media devices using Universal Plug and Play"
+"@%SystemRoot%\system32\wpdbusenum.dll,-101"="Enforces group policy for removable mass-storage devices. Enables applications such as Windows Media Player and Image Import Wizard to transfer and synchronize content using removable mass-storage devices."
+"@%systemroot%\system32\mmcss.dll,-101"="Enables relative prioritization of work based on system-wide task priorities. This is intended mainly for multimedia applications.  If this service is stopped, individual tasks resort to their default priority."
+"@%SystemRoot%\System32\hidserv.dll,-102"="Activates and maintains the use of hot buttons on keyboards, remote controls, and other multimedia devices. It is recommended that you keep this service running."
+;//-
+;//scope visualization
+
+[HKEY_LOCAL_MACHINE\Tmp_Default\Software\Microsoft\MediaPlayer\Preferences]
+"PlayerModeAlbumArtSelected"=dword:00000000

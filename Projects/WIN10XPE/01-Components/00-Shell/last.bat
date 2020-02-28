@@ -5,6 +5,10 @@ if not "x%opt[shell.show_thisPC]%"=="xfalse" (
     reg add "HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" /v {20D04FE0-3AEA-1069-A2D8-08002B30309D} /t REG_DWORD /d 1 /f
 )
 
+if not "x%opt[desktop.iconsize]%"=="x" (
+    reg add "HKLM\Tmp_Default\Software\Microsoft\Windows\Shell\Bags\1\Desktop" /v IconSize /t REG_DWORD /d %opt[desktop.iconsize]% /f
+)
+
 rem remove folders in My Computer View
 set _MyComView=HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace
 

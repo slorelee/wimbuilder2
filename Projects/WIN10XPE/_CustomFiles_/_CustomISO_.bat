@@ -17,6 +17,15 @@ if not "x%opt[iso.attended_boot]%"=="xtrue" (
   ren "%WB_ROOT%\%ISO_DIR%\boot\bootfix.bin.bak" bootfix.bin
 )
 
+
+if not "x%opt[iso.edit_bcd]%"=="xtrue" goto :EOF
+set BCD_BOOTMENUPOLICY=Standard
+if "x%opt[iso.loading_progress]%"=="xtrue" (
+  set BCD_BOOTMENUPOLICY=Legacy
+)
+"%SystemRoot%\sysnative\cmd.exe" /c bcdedit.exe /store "%WB_ROOT%\%ISO_DIR%\boot\bcd" /set {default} bootmenupolicy %BCD_BOOTMENUPOLICY%
+del /a "%WB_ROOT%\%ISO_DIR%\boot\bcd.LOG*"
+
 goto :EOF
 
 rem ===================================

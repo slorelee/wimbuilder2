@@ -21,14 +21,14 @@ Windows\System32\powercpl.dll
 
 \Windows\Fonts\segoeui.ttf
 
-+VER > 19550
++ver > 19550
 @\Windows\Fonts\
 +if "%WB_PE_LANG%"="zh-CN" Or "%WB_PE_LANG%"="zh-TW"
 mingliu.ttc
 msyh.ttc
 simsun.ttc
 -if
-+VER*
++ver*
 
 :end_files
 

@@ -58,3 +58,5 @@ if not exist "%X_SYS%\ieframe.dll" (
     reg add HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Personalize\command /d "WinXShell.exe ms-settings:personalization-background" /f
     reg delete HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Personalize\command /v DelegateExecute /f
 )
+
+call WinXShell\sublast.bat

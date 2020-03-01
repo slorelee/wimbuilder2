@@ -31,7 +31,7 @@ rem reg delete %_MyComView%\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641} /f
 set _MyComView=
 
 rem Wallpaper
-if "x%opt[shell.wallpaper]%"=="x" goto :EOF
+if "x%opt[shell.wallpaper]%"=="x" goto :END_WALLPAPER
 copy /y "%opt[shell.wallpaper]%" "%X_SYS%\winre.jpg"
 copy /y "%opt[shell.wallpaper]%" "%X_SYS%\winpe.jpg"
 if not exist "%X%\Windows\Web\Wallpaper\Windows\" mkdir "%X%\Windows\Web\Wallpaper\Windows"
@@ -40,6 +40,7 @@ copy /y "%opt[shell.wallpaper]%" "%X%\Windows\Web\Wallpaper\Windows\img0.jpg"
 reg add "HKLM\Tmp_Default\Control Panel\Desktop" /v Wallpaper /d X:\Windows\Web\Wallpaper\Windows\img0.jpg /f
 reg add "HKLM\Tmp_Default\Software\Microsoft\Internet Explorer\Desktop\General" /v WallpaperSource /d X:\Windows\Web\Wallpaper\Windows\img0.jpg /f
 reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\WinPE" /v CustomBackground /t REG_EXPAND_SZ /d X:\Windows\Web\Wallpaper\Windows\img0.jpg /f
+:END_WALLPAPER
 
 rem // 0=Always combine, hide labels, 1=Combine when taskbar is full,2=Never combine
 set TaskbarCombineType=2

@@ -35,3 +35,9 @@ attrib +s "%_Programs_Path%\Accessories"
 attrib +s "%_Programs_Path%\System Tools"
 
 set _Programs_Path=
+
+if "x%opt[shell.startmenu]%"=="x" set opt[shell.startmenu]=auto
+if "%opt[shell.startmenu]%"=="auto" (
+  if "x%opt[shell.app]%"=="xexplorer" set opt[shell.startmenu]=StartIsBack
+  if "x%opt[shell.app]%"=="xwinxshell" set opt[shell.startmenu]=ClassicShell
+)

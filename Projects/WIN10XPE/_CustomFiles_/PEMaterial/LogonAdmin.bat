@@ -37,6 +37,8 @@ echo Start services ...
 rem -- call_dll('Netapi32.dll','NetJoinDomain', nil, 'WORKGROUP', nil, nil, nil, 32)
 sc start seclogon
 
+if exist "%WinDir%\System32\PreCreateAdminProfile.bat" call PreCreateAdminProfile.bat
+
 echo Ready to logon ...
 tsdiscon.exe
 goto :EOF

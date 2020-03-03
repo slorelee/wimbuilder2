@@ -176,7 +176,7 @@ function update_patches_opt(patches_opt, keep_updater) {
         var key = $(this).attr('name');
         patches_opt[key] = $(this).val();
     } else if (type == 'select') {
-        var val = $(this).children("option:selected").text();
+        var val = $(this).children("option:selected").val();
         patches_opt[key] = val;
     } else if  (type == 'spinbutton') {
         patches_opt[key] = $(this).spinner("value");

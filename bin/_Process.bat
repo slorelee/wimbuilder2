@@ -1,6 +1,10 @@
 @echo off
 SETLOCAL ENABLEDELAYEDEXPANSION
 
+set "WB_ROOT=%APP_ROOT%"
+set "WB_ARCH=%APP_ARCH%"
+set "WB_HOST_LANG=%APP_HOST_LANG%"
+
 cd /d "%WB_ROOT%\"
 title WimBuilder(%cd%)
 

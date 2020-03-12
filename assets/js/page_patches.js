@@ -16,7 +16,7 @@ function patches_page_init() {
     function saveAsPreset() {
       var valid = true;
       if ( valid ) {
-        if (!$wb_save_current_preset) return false;
+        if (!$app_save_current_preset) return false;
         save_current_preset(true);
         saveas_current_preset($obj_project, name.val());
         dialog.dialog("close");
@@ -215,7 +215,7 @@ function patch_onselect(id) {
         need_init = true;
     }
     $('#patch_html').html(content);
-    if (need_init) init_patches_opt($patches_opt, $obj_project.wb_root + '/' + patch.path);
+    if (need_init) init_patches_opt($patches_opt, $obj_project.app_root + '/' + patch.path);
     //show_patches_opt($patches_opt);
 }
 
@@ -403,14 +403,14 @@ function dump_patches_opt() {
     var str = '', opt_str = '', rep_str = '';
     for(var key in options) {
         opt_str = "set \"opt[" + key + "]=" + options[key] + "\"\r\n";
-        rep_str = opt_str.replace($wb_root + '\\', "%%WB_ROOT%%\\");
+        rep_str = opt_str.replace($app_root + '\\', "%%APP_ROOT%%\\");
 
         if (opt_str != rep_str) {
             opt_str = 'call ' + rep_str;
         }
         str += opt_str;
     }
-    //str = str_replace(str, $wb_root + '\\', "%%WB_ROOT%%\\");
+    //str = str_replace(str, $app_root + '\\', "%%APP_ROOT%%\\");
     save_text_file(tmp_folder + "\\_patches_opt.bat", str);
     return str;
 }
@@ -469,7 +469,7 @@ function get_jstree_status(){
 
 function save_current_preset(collected){
     if (!$obj_project) return;
-    if (!$wb_save_current_preset) return;
+    if (!$app_save_current_preset) return;
     if (_saved_current_preset) return;
 
     if (!collected) {

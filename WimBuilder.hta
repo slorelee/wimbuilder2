@@ -2,13 +2,13 @@
 <!--WimBuilder_UI.hta-->
 <html>
 <head>
-    <HTA:Application id="oWimBuilderUI"
-        applicationname="WimBuilderUI"
-        icon="assets\builder.ico" />
+    <HTA:Application id="oAPP"
+        applicationname="APP"
+        icon="assets\app.ico" />
 
     <title>Wim Builder</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- <script>var $wb_commandline = oWimBuilderUI.commandline;</script> -->
+    <!-- <script>var $app_commandline = oAPP.commandline;</script> -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="assets/vendor/pure-min.css" />
     <link rel="stylesheet" href="assets/vendor/jstree/themes/default/style.min.css" />
@@ -69,15 +69,16 @@ if ($IE_VER == '0') {
 <script src="assets/vendor/marked.min.js"></script>
 <script src="assets/vendor/jquery-ui/jquery-ui.min.js"></script>
 <script src="assets/htakit/js/htakit.js"></script>
+<script src="assets/app.js"></script>
 <script src="assets/js/fs_project.js"></script>
 <script src="assets/js/fs_patch.js"></script>
+<script src="assets/js/app.js"></script>
 <script src="assets/js/helper_html.js"></script>
 <script src="assets/js/helper_i18n.js"></script>
 <script src="assets/js/helper_page.js"></script>
 <script src="assets/js/helper_patch.js"></script>
 <script src="assets/js/definition.js"></script>
 <script src="assets/default_config.js"></script>
-<script src="assets/info.js"></script>
 <script src="config.js"></script>
 <script src="auto_config.js"></script>
 
@@ -131,14 +132,10 @@ if ($IE_VER == '9+') {
 }
 </script>
     <div class="pure-menu">
-        <a class="pure-menu-heading" href="#">WimBuilder</a>
-        <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_start">Getting Started</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_project">Project</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_patch">Customize</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_build">Building</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_settings">Settings</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_about">About</a></li>
+        <a class="pure-menu-heading" href="#">
+            <script>document.write($app_name)</script>
+        </a>
+        <ul id="app_menu_items" class="pure-menu-list">
         </ul>
     </div>
 </div>
@@ -530,7 +527,7 @@ if ($IE_VER == '9+') {
 
 <script src="assets/js/i18n.js"></script>
 <script type="text/javascript">
-    document.title = document.title + " - v" + $wb_verstr;
+    document.title = $app_title + " - v" + $app_verstr;
     function window_onload() {
         var w = $width, h = $height; 
         window.resizeTo(w, h);
@@ -551,7 +548,7 @@ if ($IE_VER == '9+') {
     }
 
     function window_beforeunload() {
-        if ($wb_auto_save_window_size) {
+        if ($app_auto_save_window_size) {
             var w = window.outerWidth, h = window.outerHeight;
             if (typeof(w) == 'number') $width = w;
             if (typeof(h) == 'number') $height = h;

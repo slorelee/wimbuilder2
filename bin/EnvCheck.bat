@@ -2,11 +2,11 @@
 
 set MISSING_FILES=0
 
-if not exist "%WB_ROOT%\bin\x64\7za.exe" (
-    copy "%WB_ROOT%\vendor\7za\7za_x64.exe" "%WB_ROOT%\bin\x64\7za.exe"
+if not exist "%APP_ROOT%\bin\x64\7za.exe" (
+    copy "%APP_ROOT%\vendor\7za\7za_x64.exe" "%APP_ROOT%\bin\x64\7za.exe"
 )
-if not exist "%WB_ROOT%\bin\x86\7za.exe" (
-    copy "%WB_ROOT%\vendor\7za\7za_x86.exe" "%WB_ROOT%\bin\x86\7za.exe"
+if not exist "%APP_ROOT%\bin\x86\7za.exe" (
+    copy "%APP_ROOT%\vendor\7za\7za_x86.exe" "%APP_ROOT%\bin\x86\7za.exe"
 )
 
 call :CHECK_FILE 7za.exe x64
@@ -21,7 +21,7 @@ set MISSING_FILES=
 goto :EOF
 
 :CHECK_FILE
-set "chkfile=%WB_ROOT%\bin\%2\%1"
+set "chkfile=%APP_ROOT%\bin\%2\%1"
 if not exist "%chkfile%" (
     echo \033[91m Missing: %chkfile%|cmdcolor.exe
     set MISSING_FILES=1

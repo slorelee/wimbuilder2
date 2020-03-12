@@ -1,30 +1,32 @@
 @echo off
 cd /d "%~dp0"
-title WimBuilder(%cd%)
+title %~n0(%cd%)
 
-set WB_OPT_HELP=
+set "APP_NAME=%~n0"
+
+set APP_OPT_HELP=
 call :PARSE_OPTIONS %*
-rem set WB_OPT_
-if /i "x%WB_OPT_HELP%"=="x1" goto :SHOW_HELP
+rem set APP_OPT_
+if /i "x%APP_OPT_HELP%"=="x1" goto :SHOW_HELP
 
-set "WB_ROOT=%cd%"
-if "x%WB_ROOT:~-1%"=="x\" set WB_ROOT=%WB_ROOT:~0,-1%
+set "APP_ROOT=%cd%"
+if "x%APP_ROOT:~-1%"=="x\" set APP_ROOT=%APP_ROOT:~0,-1%
 
 set "PATH_ORG=%PATH%"
 rem ======set bin PATH======
-set "PATH=%WB_ROOT%\bin;%PATH%"
+set "PATH=%APP_ROOT%\bin;%PATH%"
 
 set PROCESSOR_ARCHITECTURE=AMD64
 if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
   set PROCESSOR_ARCHITECTURE=x86
 )
 
-set WB_ARCH=x86
+set APP_ARCH=x86
 if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
-  set WB_ARCH=x64
-  set "PATH=%WB_ROOT%\bin\x64;%WB_ROOT%\bin\x86;%PATH%"
+  set APP_ARCH=x64
+  set "PATH=%APP_ROOT%\bin\x64;%APP_ROOT%\bin\x86;%PATH%"
 ) else (
-  set "PATH=%WB_ROOT%\bin\x86;%PATH%"
+  set "PATH=%APP_ROOT%\bin\x86;%PATH%"
 )
 rem ========================
 
@@ -54,15 +56,15 @@ for /f "tokens=1,2 delims==';[] " %%i in ('%findcmd% "$lang" config.js') do (
   set LocaleID[%%i]=%%j
 )
 set LocaleID=%LocaleID[$lang]%
-for /f "delims=" %%i in ('cscript.exe //nologo "%I18N_SCRIPT%" init') do set WB_HOST_LANG=%%i
-if "x%WB_HOST_LANG%"=="x" set WB_HOST_LANG=en-US
+for /f "delims=" %%i in ('cscript.exe //nologo "%I18N_SCRIPT%" init') do set APP_HOST_LANG=%%i
+if "x%APP_HOST_LANG%"=="x" set APP_HOST_LANG=en-US
 
 if not "x%LocaleID%"=="x" goto :SKIP_AUTO_LANG
-set LocaleID=%WB_HOST_LANG%
+set LocaleID=%APP_HOST_LANG%
 
 :SKIP_AUTO_LANG
 set I18N_LCID=%LocaleID%
-set WB_UI_LANG=%LocaleID%
+set APP_UI_LANG=%LocaleID%
 if not exist i18n\%LocaleID%.vbs (
     set I18N_LCID=0
     goto :MAIN_ENTRY
@@ -77,24 +79,20 @@ if not ERRORLEVEL 1 goto :MAIN_ENTRY
 copy /y i18n\%LocaleID%.vbs i18n\0.vbs
 
 :MAIN_ENTRY
-set "Factory=_Factory_"
-set "ISO_DIR=_ISO_"
+
+call :APP_ENV
 
 rem ======set macros PATH======
-set "PATH=%WB_ROOT%\lib\macros;%PATH%"
+set "PATH=%APP_ROOT%\lib\macros;%PATH%"
 rem ========================
 
-set "V=%WB_ROOT%\vendor"
-
-rem mount winre.wim/boot.wim with wimlib, otherwise dism
-set USE_WIMLIB=0
 if not "%PROCESSOR_ARCHITECTURE%"=="AMD64" goto :Normal_Start
 if exist "%windir%\SysWOW64\mshta.exe" goto :Normal_Start
-start %WB_START_OPT% mshta "%~dp0WimBuilder_UI.hta" %*
+start %APP_START_OPT% mshta "%~dp0%APP_NAME%.hta" %*
 goto :EOF
 
 :Normal_Start
-start %WB_START_OPT% WimBuilder_UI.hta %*
+start %APP_START_OPT% %APP_NAME%.hta %*
 goto :EOF
 
 
@@ -175,5 +173,16 @@ if /i "x%1"=="x-h" (
 )
 SHIFT
 goto :PARSE_OPTIONS
-
 goto :EOF
+
+
+:APP_ENV
+set "Factory=_Factory_"
+set "ISO_DIR=_ISO_"
+
+set "V=%APP_ROOT%\vendor"
+
+rem mount winre.wim/boot.wim with wimlib, otherwise dism
+set USE_WIMLIB=0
+goto :EOF
+

@@ -7,8 +7,8 @@ var Project = {
         project.name = name;
         project.path = Project.root_path + '/' + name;
         project.uri = project.path;
-        project.wb_root = $wb_root.replace(/\\/g, '/');
-        project.full_path = project.wb_root + '/' + project.path;
+        project.app_root = $app_root.replace(/\\/g, '/');
+        project.full_path = project.app_root + '/' + project.path;
         project.full_uri = project.full_path;
         project.full_path = project.full_path.replace(/\//g, '\\');
         project.style = project.path + '/_Assets_/style.css';
@@ -109,7 +109,7 @@ function set_default_preset(project, preset) {
 }
 
 function init_current_preset(project) {
-    if (!$wb_save_current_preset) return;
+    if (!$app_save_current_preset) return;
     project.current_preset_path = project.full_path + '/_Assets_/preset/current.js';
     if (!fso.FileExists(project.current_preset_path)) {
         fso.CopyFile(project.full_path + '/_Assets_/preset/' + $patches_preset + '.js',
@@ -119,7 +119,7 @@ function init_current_preset(project) {
 }
 
 function saveas_current_preset(project, name) {
-    if (!$wb_save_current_preset) return;
+    if (!$app_save_current_preset) return;
     if (fso.FileExists(project.current_preset_path)) {
         fso.CopyFile(project.current_preset_path, project.full_path + '/_Assets_/preset/' + name + '.js');
         // update presets

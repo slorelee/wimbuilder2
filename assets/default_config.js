@@ -3,8 +3,8 @@ var $height = 800;
 
 var $lang = ''; //auto
 
-var $wb_auto_config_created = false;
-var $wb_auto_save_window_size = true;
+var $app_auto_config_created = false;
+var $app_auto_save_window_size = true;
 
 var $ui_settings = {};
 $ui_settings['lang'] = '';
@@ -12,6 +12,8 @@ $ui_settings['enable_theme_loader'] = true;
 $ui_settings['theme'] = '';
 $ui_settings['dpi'] ='';
 
+var $app_default_project = '';
+var $app_save_current_preset = true;
 var $wb_show_quick_build = false;
 
 var $wb_straight_mode = '1';
@@ -25,9 +27,6 @@ var $wb_src_index = '1';
 var $wb_base_index = '1';
 
 var $wb_skip_project_page = false;
-var $wb_default_project = '';
-
-var $wb_save_current_preset = true;
 
 var $wb_x_subst = true;
 var $wb_x_drv = 'auto';

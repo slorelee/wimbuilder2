@@ -22,15 +22,15 @@ param ([string] $VmName = "TestIso" )
 #parameters from UI : $VmName       "TestIso" = default value for my test
 
 # use environment variable of WimBuilder
-if( $env:WB_ROOT -eq $null){
-    # error : $env:WB_ROOT not found
-    write-host -ForegroundColor Red "error : WB_ROOT not found"
+if( $env:APP_ROOT -eq $null){
+    # error : $env:APP_ROOT not found
+    write-host -ForegroundColor Red "error : APP_ROOT not found"
     # for my tests...
     #$VMISOFile="C:\Users\noelBlanc\Documents\MicroWinpeBuilder-1809-en\winpe10V1809.ISO"
     #$VMISOFile="C:\Users\noelBlanc\Documents\wb\Win10XPE\Win10XPE_x64.ISO"
     break
 }else{
-    $VMISOFile=join-path $env:WB_ROOT "\_Factory_\BOOTPE.iso"
+    $VMISOFile=join-path $env:APP_ROOT "\_Factory_\BOOTPE.iso"
 }
 
 if (-not (test-path $VMISOFile)){

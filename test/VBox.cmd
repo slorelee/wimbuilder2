@@ -39,8 +39,8 @@ if ERRORLEVEL 1 (
   echo ERROR:Could not find a registered machine named '%vm%'.
   goto :ERR_DONE
 )
-echo Mount ISO:"%WB_ROOT%\_Factory_\BOOTPE.iso"
-VBoxManage.exe storageattach "%vm%" --storagectl %stor_dvd% --type dvddrive --medium "%WB_ROOT%\_Factory_\BOOTPE.iso"
+echo Mount ISO:"%APP_ROOT%\_Factory_\BOOTPE.iso"
+VBoxManage.exe storageattach "%vm%" --storagectl %stor_dvd% --type dvddrive --medium "%APP_ROOT%\_Factory_\BOOTPE.iso"
 VBoxManage.exe startvm "%vm%"
 if ERRORLEVEL 1 goto :ERR_DONE
 rem ping -n 3 127.1 1>nul

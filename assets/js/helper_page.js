@@ -19,10 +19,15 @@ function get_current_settings() {
             text += '$ui_settings[\'' + key + '\']=' + $ui_settings[key] + ";\r\n";
         }
     })
-    text += '$wb_auto_config_created=' + $wb_auto_config_created + ";\r\n";
-    text += '$wb_show_quick_build=' + $wb_show_quick_build + ";\r\n";
     text += '$width=' + $width + ";\r\n";
     text += '$height=' + $height + ";\r\n";
+
+    if (selected_project != null) $app_default_project = selected_project;
+    text += '$app_default_project="' + $app_default_project + "\";\r\n";
+    text += '$app_auto_config_created=' + $app_auto_config_created + ";\r\n";
+
+    text += '$wb_show_quick_build=' + $wb_show_quick_build + ";\r\n";
+
     text += '$wb_src_folder="' + $wb_src_folder + "\";\r\n";
     text += '$wb_src="' + $wb_src + "\";\r\n";
     text += '$wb_base="' + $wb_base + "\";\r\n";
@@ -30,10 +35,6 @@ function get_current_settings() {
     text += '$wb_auto_winre=' + $("#wb_auto_winre").prop("checked") + ";\r\n";
     text += '$wb_src_index="' + $wb_src_index + "\";\r\n";
     text += '$wb_base_index="' + $wb_base_index + "\";\r\n";
-
-    if (selected_project != null) $wb_default_project = selected_project;
-    text += '$wb_default_project="' + $wb_default_project + "\";\r\n";
-    text += '$wb_skip_project_page=' + $wb_skip_project_page + ";\r\n";
 
     text += '$wb_x_subst=' + $wb_x_subst + ";\r\n";
     text += '$wb_x_drv="' + $wb_x_drv + "\";\r\n";
@@ -45,11 +46,11 @@ function get_current_settings() {
 
 function auto_save_settings() {
     if (!auto_save_trigger) return;
-    $wb_auto_config_created = true;
+    $app_auto_config_created = true;
     var current_settings = get_current_settings();
     if (current_settings != _auto_saved_settings) {
         _auto_saved_settings = current_settings;
-        save_text_file($wb_root + '\\auto_config.js', current_settings);
+        save_text_file($app_root + '\\auto_config.js', current_settings);
     }
 }
 

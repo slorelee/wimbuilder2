@@ -1,5 +1,19 @@
 var _current_page = '';
 
+menu_init();
+
+function menu_init() {
+    const items = Object.keys($app_menu);
+    var html = '';
+    items.forEach(function(item) {
+        var text = $app_menu[item];
+        if (text == '') text = item;
+        html += '<li class="pure-menu-item"><a href="#" class="pure-menu-link i18n-text" id="menu_' + 
+            item.toLowerCase() + '">' + text + '</a></li>';
+    });
+    $('#app_menu_items').append(html);
+}
+
 $('#menu_start').click(function(){
     switch_page('start');
     start_page_init();

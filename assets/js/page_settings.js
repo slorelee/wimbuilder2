@@ -49,7 +49,7 @@ function settings_changed_action(){
 function update_lang_list() {
     $('#ui_lang').empty();
     $('#ui_lang').append('   <option value="">'
-        + i18n_t('Auto') + ' (' + $wb_host_lang + ')' + '</option>');
+        + i18n_t('Auto') + ' (' + $app_host_lang + ')' + '</option>');
     var items = get_files('assets\\i18n');
     var opt_selected = false;
     items.forEach(function(item) {

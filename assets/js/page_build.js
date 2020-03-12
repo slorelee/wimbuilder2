@@ -46,7 +46,7 @@ $("#wb_test_cmd").change(function() {
 });
 
 function check_iso_template() {
-    var iso_path = eformat('%WB_ROOT%\\_ISO_');
+    var iso_path = eformat('%APP_ROOT%\\_ISO_');
     if (!fso.FolderExists(iso_path)) {
         fso.CreateFolder(iso_path);
     }
@@ -93,7 +93,7 @@ function x_drive_exists() {
 
 function structure_env(mode) {
     var env = wsh.Environment("PROCESS");
-    env('WB_VER_STR') = $wb_verstr;
+    env('WB_VER_STR') = $app_verstr;
     env('WB_STRAIGHT_MODE') = $wb_straight_mode;
 
     env('WB_WORKSPACE') = $wb_workspace;
@@ -213,7 +213,7 @@ function run_build(no_confirm, keep) {
     var cmd_mode = '/k';
     if ($wb_auto_makeiso) cmd_mode = '/c';
     if ($wb_opt_closeui) cmd_mode = '/c';
-    var oExec = wsh.exec('wincmd.exe /d ' + cmd_mode + ' "' + $wb_root + '\\bin\\_process.bat"');
+    var oExec = wsh.exec('wincmd.exe /d ' + cmd_mode + ' "' + $app_root + '\\bin\\_process.bat"');
     wait_build(oExec);
 }
 
@@ -286,7 +286,7 @@ function test_iso() {
 
     var name = cmd.split(' ')[0];
     var param = cmd.substr(name.length + 1);
-    name = $wb_root + '\\test\\' + name;
+    name = $app_root + '\\test\\' + name;
     if (fso.FileExists(name)) {
         wsh.run('"' + name + '" ' + param, 1, false);
     } else {

@@ -1,5 +1,7 @@
 @echo off
 
+ set "WB_ROOT=%APP_ROOT%"
+
 if "x%_WB_EXEC_MODE%"=="x1" (
   title WimBuilder^(%~nx0^) - Don't Close this console window while building
 )

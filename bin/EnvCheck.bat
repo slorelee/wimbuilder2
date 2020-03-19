@@ -9,6 +9,13 @@ if not exist "%APP_ROOT%\bin\x86\7za.exe" (
     copy "%APP_ROOT%\vendor\7za\7za_x86.exe" "%APP_ROOT%\bin\x86\7za.exe"
 )
 
+if not exist "%APP_ROOT%\bin\x64\aria2c.exe" (
+    copy "%APP_ROOT%\vendor\aria2\aria2c_x64.exe" "%APP_ROOT%\bin\x64\aria2c.exe"
+)
+if not exist "%APP_ROOT%\bin\x86\aria2c.exe" (
+    copy "%APP_ROOT%\vendor\aria2\aria2c_x86.exe" "%APP_ROOT%\bin\x86\aria2c.exe"
+)
+
 call :CHECK_FILE 7za.exe x64
 call :CHECK_FILE 7za.exe x86
 

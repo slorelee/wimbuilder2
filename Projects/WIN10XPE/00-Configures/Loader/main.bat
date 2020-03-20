@@ -2,7 +2,7 @@ call "%WB_PROJECT_PATH%\shared\InitLoader.bat"
 
 if exist "%_CUSTOMFILES_%\PEMaterial" (
   xcopy /Y /E "%_CUSTOMFILES_%\PEMaterial" "%X_PEMaterial%\"
-  copy /y "%_CUSTOMFILES_%\PEMaterial\unattend.xml" "%X_SYS%\"
+  move /y "%X_PEMaterial%\unattend.xml" "%X_SYS%\"
 )
 if "%WB_PE_ARCH%"=="x86" (
   call TextReplace "%X_SYS%\unattend.xml" "processorArchitecture=#qamd64#q" "processorArchitecture=#qx86#q"

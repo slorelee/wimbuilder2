@@ -55,6 +55,9 @@ if not "x%opt[support.network]%"=="xtrue" (
     call TextReplace "%X_SYS%\unattend.xml" "EnableNetwork>false</EnableNetwork" "EnableNetwork>true</EnableNetwork"
 )
 
+call :DELEX "/f /q /a" "%X_PEMaterial%\LogonAdmin.bat"
+call :DELEX "/f /q /a" "%X_PEMaterial%\SwitchUser.bat"
+
 goto :EOF
 
 :DELEX

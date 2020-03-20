@@ -38,6 +38,8 @@ set _Vx8664=%_V_xArch%
 set _V8664=86
 set _V3264=32
 set _V64=
+set _V-64=
+set _V_64=
 set _Vx64=
 set _V-x64=
 set _V_x64=
@@ -46,6 +48,8 @@ if "%_V_xArch%"=="x64" (
     set _V8664=64
     set _V3264=64
     set _V64=64
+    set _V-64=-64
+    set _V_64=_64
     set _Vx64=x64
     set _V-x64=-x64
     set _V_x64=_x64

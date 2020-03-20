@@ -31,7 +31,7 @@ local function CustomOSInit()
   if File.exists('X:\\Windows\\Temp\\CustomOSInited.txt') then return 1 end
 
   set_progress(t('Prepare for system ...'))
-  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\Runner.bat OSInit')
+  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\PEStartupMain.bat OSInit')
 
   local f = io.open('X:\\Windows\\Temp\\CustomOSInited.txt', 'w+');f:write('done');f:close();
 end
@@ -84,7 +84,7 @@ local function LoadShell()
 
   -- RunBeforeShell
 
-  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\Runner.bat Startup\\BeforeShell')
+  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\PEStartupMain.bat BeforeShell')
   RunShell()
 
   if explorer_shell then
@@ -99,7 +99,7 @@ end
 local function PostShell()
   WaitShell()
   sui:hide()
-  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\Runner.bat Startup')
+  exec('/hide', 'cmd.exe /c ' .. script_path .. '\\Autoruns\\PEStartupMain.bat PostShell')
 end
 
 

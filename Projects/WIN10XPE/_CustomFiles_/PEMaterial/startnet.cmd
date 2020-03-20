@@ -21,7 +21,7 @@ goto :EOF
 :OSInit
 echo "%~nx0" > "X:\Windows\Temp\SYSTEM_LOADER"
 wpeinit.exe
-call "X:\PEMaterial\Autoruns\Runner.bat" OSInit
+call "X:\PEMaterial\Autoruns\PEStartupMain.bat" OSInit
 goto :EOF
 
 :PreShell
@@ -33,7 +33,7 @@ if exist %SystemRoot%\System32\IME_Cmd.cmd (
     call %SystemRoot%\System32\IME_Cmd.cmd
 )
 
-call "X:\PEMaterial\Autoruns\Runner.bat" Startup\BeforeShell
+call "X:\PEMaterial\Autoruns\PEStartupMain.bat" BeforeShell
 goto :EOF
 
 :RunShell
@@ -53,7 +53,7 @@ goto :EOF
 
 :PostShell
 if "x%USERNAME%"=="xSYSTEM" echo SYSTEM > "X:\Windows\Temp\SYSTEM_UserInited"
-call "X:\PEMaterial\Autoruns\Runner.bat" Startup
+call "X:\PEMaterial\Autoruns\PEStartupMain.bat" PostShell
 goto :EOF
 
 :UserLogon

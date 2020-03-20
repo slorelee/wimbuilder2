@@ -2,7 +2,6 @@
 call ComputerName.bat
 reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-18" /v ProfileImagePath /d X:\Users\Default /f
 
-@echo on
 set _fbwf_size=%opt[config.fbwf.cache]%
 if "x%_fbwf_size%"=="x" set _fbwf_size=1024
 if "x%_fbwf_size%"=="x128GB" goto :USE_WES_FBWF

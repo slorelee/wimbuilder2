@@ -1,0 +1,26 @@
+call app pull http://download.documentfoundation.org/libreoffice/portable/6.4.1/LibreOfficePortable_6.4.1_MultilingualStandard.paf.exe
+set APP_VER=6.4
+
+set "f0=%~f0"
+call :BUILD "%APP_FILE%"
+goto :EOF
+
+:BUILD
+call :Requirements
+if exist "%_Loc%\PortableApps\LibreOffice\" goto :EOF
+call V2X "%APP_CACHE%" -extract "%APP_FILE%" "%_Loc%\PortableApps\LibreOffice\"
+goto :EOF
+
+:Requirements
+call AddFiles "%f0%" :end_files
+goto :end_files
+@\Windows\%SysWOW64%\
+dciman32.dll,ddraw.dll,GdiPlus.dll,glu32.dll,msimg32.dll
+opengl32.dll,usp10.dll,setupapi.dll,WS2_32.DLL,ws2help.dll,wsock32.dll
+
++if %APP_VER% > 5.2
+wer.dll
+-if
+:end_files
+goto :EOF
+

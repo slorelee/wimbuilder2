@@ -1,4 +1,10 @@
 _Factory_
 _ISO_
+_U_
 vendor*
 auto_config.js
+bin/7z.*
+bin/*/7z.*
+bin/*/aria2c.*
+**/preset/current.js
+*.code-workspace

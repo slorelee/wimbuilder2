@@ -7,15 +7,10 @@ goto :end_files
 ; write menu command in registry directly
 ; \ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Computer Management.lnk
 
-; Battery icon should be optional, skip now
-+ver < 0
 ; Battery icon - In Winre.wim inf: hidbatt.inf,cmbatt.inf - drivers: battc.sys,HidBatt.sys,CmBatt.sys - system32: umpo.dll,umpnpmgr.dll
-
 \Windows\INF\battery.inf
 \Windows\INF\c_battery.inf
-@\Windows\System32\
-batmeter.dll
-+ver*
+\Windows\System32\batmeter.dll
 
 @\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
 +if "x%opt[shell.app]%"<>"xwinxshell"

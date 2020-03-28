@@ -27,6 +27,10 @@ reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CoreMessagingRegistrar /f
 
 call REGCOPY HKLM\Software\Microsoft\Windows\DWM
 reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v OneCoreNoBootDWM /t REG_DWORD /d 0 /f
+
+rem No shadow effect, so force ColorPrevalence to 1
+reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v ColorPrevalence /t REG_DWORD /d 1 /f
+
 reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v Composition /t REG_DWORD /d 1 /f
 reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v ColorizationGlassAttribute /t REG_DWORD /d 0 /f
 reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v ColorPrevalence /t REG_DWORD /d 1 /f

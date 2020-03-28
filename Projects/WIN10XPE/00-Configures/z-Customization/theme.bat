@@ -9,39 +9,34 @@ Version=001
 if "x%opt[theme.title_color]%"=="x" goto :EOF
 if "x%opt[theme.title_color]%"=="x0" goto :EOF
 
+rem reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v ColorPrevalence /t REG_DWORD /d 1 /f
+rem reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v ColorPrevalence /t REG_DWORD /d 1 /f
+
 rem // Auto Color
 if "x%opt[theme.title_color]%"=="x1" (
   reg add "HKLM\Tmp_Default\Control Panel\Desktop" /v AutoColorization /t REG_DWORD /d 1 /f
-  reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v ColorPrevalence /t REG_DWORD /d 1 /f
-  reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v ColorPrevalence /t REG_DWORD /d 1 /f
-  reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v ColorPrevalence /t REG_DWORD /d 1 /f
   goto :EOF
 )
 
 rem // Custom Windows Title Bars and Taskbar color section
 reg add "HKLM\Tmp_Default\Control Panel\Desktop" /v AutoColorization /t REG_DWORD /d 0 /f
 rem //-
-Set=SystemProtectedUserDataRegKey=Microsoft\Windows\CurrentVersion\SystemProtectedUserData\S-1-5-21-1391200042-3413667948-2666945708-500\AnyoneRead\Colors
+Set SystemProtectedUserDataRegKey=Microsoft\Windows\CurrentVersion\SystemProtectedUserData\S-1-5-21-1391200042-3413667948-2666945708-500\AnyoneRead\Colors
 reg add HKLM\Tmp_Software\%SystemProtectedUserDataRegKey% /v StartColor /t REG_DWORD /d 0 /f
 reg add HKLM\Tmp_Software\%SystemProtectedUserDataRegKey% /v AccentColor /t REG_DWORD /d 0 /f
 rem //-
 reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v ColorizationGlassAttribute /t REG_DWORD /d 0 /f
 reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v EnableAeroPeek /t REG_DWORD /d 1 /f
 reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v AccentColor /t REG_DWORD /d 47615 /f
-reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v ColorPrevalence /t REG_DWORD /d 1 /f
 reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v ColorizationColorBalance /t REG_DWORD /d 89 /f
 reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v ColorizationAfterglowBalance /t REG_DWORD /d 10 /f
 reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v ColorizationBlurBalance /t REG_DWORD /d 1 /f
 reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v EnableWindowColorization /t REG_DWORD /d 1 /f
-rem //-
-reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v ColorPrevalence /t REG_DWORD /d 1 /f
-reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v ColorPrevalence /t REG_DWORD /d 1 /f
-rem //-
 
 rem // Win10 color accent palette Col 3, Line 1 Blue(default)
 Set AccentColor=0xffd77800
- set Colorization=0xc40078d7
- Set AccentPalette=a6,d8,ff,00,76,b9,ed,00,42,9c,e3,00,00,78,d7,00,00,5a,9e,00,00,42,75,00,00,26,42,00,f7,63,0c,00
+Set Colorization=0xc40078d7
+Set AccentPalette=a6,d8,ff,00,76,b9,ed,00,42,9c,e3,00,00,78,d7,00,00,5a,9e,00,00,42,75,00,00,26,42,00,f7,63,0c,00
 Set StartColorMenu=0xff9e5a00
 Set AccentColorMenu=0xffd77800
 
@@ -158,7 +153,7 @@ if "%opt[theme.title_color]%"=="15" (
   Set AccentColorMenu=0xff457584
 )
 rem //-
-set AccentPalette=%AccentPalette:,=%
+Set AccentPalette=%AccentPalette:,=%
 reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v AccentColor /t REG_DWORD /d %AccentColor% /f
 reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v ColorizationColor /t REG_DWORD /d %Colorization% /f
 reg add HKLM\Tmp_Default\SOFTWARE\Microsoft\Windows\DWM /v ColorizationAfterglow /t REG_DWORD /d %Colorization% /f

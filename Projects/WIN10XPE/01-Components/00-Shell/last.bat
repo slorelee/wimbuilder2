@@ -1,9 +1,14 @@
+rem Apply Theme Color for Taskbar
+if "x%opt[shell.use_theme_color]%"=="xfalse" (
+    reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v ColorPrevalence /t REG_DWORD /d 0 /f
+) else (
+    reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v ColorPrevalence /t REG_DWORD /d 1 /f
+)
 
 rem Windows(Taskbar) Light Theme
 if "x%opt[shell.light_theme]%"=="xtrue" (
     rem check WB_PE_VER GEQ 18362
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v SystemUsesLightTheme /t REG_DWORD /d 1 /f
-    reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v ColorPrevalence /t REG_DWORD /d 0 /f
 ) else (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v SystemUsesLightTheme /t REG_DWORD /d 0 /f
 )

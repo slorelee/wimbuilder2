@@ -18,5 +18,7 @@ goto :EOF
 
 :LINK_DONE
 if "x%LUALINK_FILE%"=="x" goto :EOF
+call TextReplace "%LUALINK_FILE%" #{# "(" g
+call TextReplace "%LUALINK_FILE%" #}# ")" g
 call TextReplace "%LUALINK_FILE%" #sp "%%%%" g
 goto :EOF

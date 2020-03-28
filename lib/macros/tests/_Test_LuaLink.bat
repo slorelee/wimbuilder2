@@ -12,6 +12,8 @@ call LinkToDesktop WinXShell.lnk "X:\Program Files\WinXShell\WinXShell.exe"
 call LinkToDesktop Tools\PENetwork.lnk "%%%%%%%%ProgramFiles%%%%%%%%\PENetwork\PENetwork.exe"
 call LinkToDesktop -paramlist "UI_Shutdown.lnk" "[[%%%%%%%%ProgramFiles%%%%%%%%\WinXShell\WinXShell.exe]], '-ui -jcfg wxsUI\\UI_Shutdown.zip\\full.jcfg -blur 5', 'shell32.dll', 27"
 
+call LinkToDesktop -paramlist "LoadExternalMaterial.lnk" "[[#pProgramFiles#p\WinXShell\WinXShell.exe]], [=[-code app:run#{#'/hide',[[%X_PEMaterial%\Autoruns\PEStartupMain.bat]]#}#]=], 'imageres.dll', 152"
+
 call LinkToStartMenu "SystemTools\Reg Editor.lnk" regedit.exe
 call LinkToStartMenu "File Manager.lnk" explorer.exe
 call LinkToStartMenu Tools\PENetwork.lnk "%%%%%%%%ProgramFiles%%%%%%%%\PENetwork\PENetwork.exe"

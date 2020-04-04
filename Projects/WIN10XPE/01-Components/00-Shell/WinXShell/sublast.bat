@@ -1,4 +1,9 @@
 if not "x%opt[shell.app]%"=="xwinxshell" goto :EOF
+
+if "x%opt[shell.light_theme]%"=="xtrue" (
+  binmay.exe -U "%X%\Program Files\WinXShell\WinXShell.jcfg" -s "t:\"theme\":  \"dark\"," -r "t:\"theme\": \"light\","
+)
+
 set "_MenuEXE=%X%\Program Files\Classic Shell\ClassicStartMenu.exe"
 if not exist "%_MenuEXE%" goto :EOF
 
@@ -11,4 +16,4 @@ binmay.exe -u "%_MenuEXE%" -s "%_UStr_explorer%" -r "%_UStr_WinXShell%"
 fc /b "%_MenuEXE%.org" "%_MenuEXE%"
 del /f /q "%_MenuEXE%.org"
 
-binmay.exe -U "%X%\Program Files\WinXShell\WinXShell.jcfg" -s "t:\"start_icon\": \"custom\"," -r "t:\"start_icon\":  \"empty\","
+binmay.exe -U "%X%\Program Files\WinXShell\WinXShell.jcfg" -s "t:\"start_icon\": \"theme\"," -r "t:\"start_icon\": \"empty\","

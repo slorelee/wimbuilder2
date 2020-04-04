@@ -92,6 +92,8 @@ reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5
 rem // Disable Telemetry
 reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection /v AllowTelemetry /t REG_DWORD /d 0 /f
 
+reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "Segoe UI (TrueType)" /d segoeui.ttf /f
+
 if "x%opt[build.registry.software]%"=="xfull" (
   call :EditReg_FullSoftware
 )

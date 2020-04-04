@@ -36,6 +36,8 @@ function get_current_settings() {
     text += '$wb_src_index="' + $wb_src_index + "\";\r\n";
     text += '$wb_base_index="' + $wb_base_index + "\";\r\n";
 
+    text += '$wb_skip_project_page=' + $wb_skip_project_page + ";\r\n";
+
     text += '$wb_x_subst=' + $wb_x_subst + ";\r\n";
     text += '$wb_x_drv="' + $wb_x_drv + "\";\r\n";
     text += '$wb_auto_makeiso=' + $wb_auto_makeiso + ";\r\n";

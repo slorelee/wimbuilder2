@@ -56,9 +56,6 @@ if "x%HasPatch%_%opt[component.printer]%"=="xtrue_true" (
     set opt[patch.drvinst]=true
 )
 
-if "x%opt[network.function_discovery]%"=="xtrue" (
-    set opt[build.registry.software]=full
-)
 if "x%opt[build.registry.system]%"=="xtrue" (
     set opt[build.registry.system]=merge
 )

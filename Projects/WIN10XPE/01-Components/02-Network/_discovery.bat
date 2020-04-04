@@ -15,3 +15,6 @@ fdPHost.dll,fdProxy.dll,FDResPub.dll,fdSSDP.dll,fdWSD.dll,WSDApi.dll
 ; SSDP Discovery services
 ssdpapi.dll,ssdpsrv.dll
 :end_files
+
+call RegCopy "HKLM\Software\Microsoft\Function Discovery"
+call RegCopy "HKLM\Software\Microsoft\UPnP Device Host"

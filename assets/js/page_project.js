@@ -28,7 +28,7 @@ function show_projects() {
     if (default_in_list) {
         $('#pj_' + $app_default_project).click();
         if ($wb_skip_project_page) $('#menu_patch').click();
-    } else if (dirs.length == 1 && $wb_default_project == '' && selected_project == null) {
+    } else if (dirs.length == 1 && $app_default_project == '' && selected_project == null) {
         $('#pj_' + dirs[0]).click();
         if ($wb_skip_project_page) $('#menu_patch').click();
     }

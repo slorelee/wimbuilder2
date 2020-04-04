@@ -12,6 +12,7 @@ function patches_state_init() {
     uncheck_tree_node('01-Components');
     uncheck_tree_node('01-Drivers');
     uncheck_tree_node('02-Apps');
+    uncheck_tree_node('02-PEMaterial');
     uncheck_tree_node('za-Slim');
     //uncheck_tree_node('za-SlimExtra');
     open_tree_node('00-Configures');

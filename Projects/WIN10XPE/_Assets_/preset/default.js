@@ -37,6 +37,7 @@ function patches_state_init() {
     select_tree_node('_CustomFiles_');
     open_tree_node('00-Configures');
     uncheck_tree_node('02-Apps');
+    uncheck_tree_node('02-PEMaterial');
     uncheck_tree_node('01-Components');
     check_tree_node('01-Components/00-Shell');
     check_tree_node('01-Components/IME');

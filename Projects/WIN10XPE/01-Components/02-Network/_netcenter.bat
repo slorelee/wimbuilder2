@@ -16,6 +16,10 @@ netcenter.dll,netdiagfx.dll,hgcpl.dll
 hnetmon.dll,nettrace.dll,nshhttp.dll,nshipsec.dll,PeerDistSh.dll,rpcnsh.dll,whhelper.dll,wwancfg.dll
 PortableDeviceApi.dll
 
+; Wizard: Set up a new connection or network
+connect.dll,eappcfg.dll,HNetCfgClient.dll,IDStore.dll,rasgcw.dll,SyncCenter.dll
+wcnwiz.dll,wlidprov.dll,WWanAPI.dll,wwapi.dll,xwizards.dll,xwreg.dll,xwtpw32.dll
+
 :end_files
 
 rem Network and Sharing Center Service

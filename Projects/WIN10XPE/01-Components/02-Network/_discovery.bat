@@ -18,3 +18,6 @@ ssdpapi.dll,ssdpsrv.dll
 
 call RegCopy "HKLM\Software\Microsoft\Function Discovery"
 call RegCopy "HKLM\Software\Microsoft\UPnP Device Host"
+
+rem Network facilities
+call RegCopyEx Classes NetworkExplorerPlugins

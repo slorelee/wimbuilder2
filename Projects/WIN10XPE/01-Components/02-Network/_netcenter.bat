@@ -26,3 +26,6 @@ rem Network and Sharing Center Service
 call RegCopyEx Services upnphost
 rem //-- Add Network Icon To File Explorer Navagation Pane
 call RegCopy HKLM\SOFTWARE\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}
+
+rem Wizard: Set up a new connection or network
+call RegCopy "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\XWizards"

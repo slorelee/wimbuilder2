@@ -85,6 +85,9 @@ call RegCopyEx Services rdbss
 call RegCopyEx Services "RdpVideoMiniport,CertPropSvc"
 call RegCopyEx Services "ipHlpSvc,ipFilterdriver"
 
+rem Contextmenu for computers in Network
+call RegCopyEx Classes NetServer
+
 reg import TermService_RegSystem.txt
 rem reg import TermService_ProductOptions.txt
 

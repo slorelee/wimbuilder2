@@ -2,3 +2,14 @@
      <button class="pure-button pure-button-primary" onclick="OpenFolder($app_root + '/' + $obj_patch.path)">
           <label class="browse" /></button>
 </div>
+
+
+  <fieldset>
+  <legend><label><input type="checkbox" name="PEMApp.chrome" class="opt_item" /> Chrome</label></legend>
+  <label><input type="radio" class="opt_item" name="PEMApp.chrome.type" value="INST" checked="checked" /> Installer</label>
+  <label><input type="radio" class="opt_item" name="PEMApp.chrome.type" value="APP" /> Portable</label>
+  <br/>
+  <br/>
+  Download Url:
+  <input type="text" name="PEMApp.chrome.dl_url" class="opt_item" style="width:98%;" value="" />
+  </fieldset>

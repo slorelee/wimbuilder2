@@ -13,7 +13,7 @@ if exist "%V%\%APP_CACHE%\%APP_FILE%" (
     goto :EOF
 )
 
-aria2c.exe -c "%~1" -o "%V%\%APP_CACHE%\%~2"
+aria2c.exe -c "%~1" -d "%V%\%APP_CACHE%" -o "%APP_FILE%"
 if exist "%V%\%APP_CACHE%\%APP_FILE%" (
     set Downloads[%APP_FILE%]=OK
 ) else (

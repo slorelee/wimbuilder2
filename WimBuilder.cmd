@@ -126,10 +126,10 @@ goto :EOF
 
 if /i "x%1"=="x" goto :EOF
 if /i "x%1"=="x-h" (
-  set WB_OPT_HELP=1
+  set APP_OPT_HELP=1
   goto :EOF
 ) else if /i "x%1"=="x--help" (
-  set WB_OPT_HELP=1
+  set APP_OPT_HELP=1
   goto :EOF
 ) else if /i "x%1"=="x--build" (
   set WB_OPT_BUILD=CMD
@@ -165,11 +165,11 @@ if /i "x%1"=="x-h" (
   set WB_OPT_MAKE_ISO=1
 ) else if /i "x%1"=="x--close-ui" (
   set WB_OPT_CLOSE_UI=1
-  set WB_START_OPT=/wait
+  set APP_START_OPT=/wait
 ) else if /i "x%1"=="x--wait" (
-  set WB_START_OPT=/wait
+  set APP_START_OPT=/wait
 ) else if /i "x%1"=="x--nowait" (
-  set WB_START_OPT=
+  set APP_START_OPT=
 )
 SHIFT
 goto :PARSE_OPTIONS

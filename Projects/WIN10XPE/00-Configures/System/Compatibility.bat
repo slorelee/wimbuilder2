@@ -37,6 +37,11 @@ hlink.dll
 ; LENOVO BIOS Updater
 lz32.dll
 
++ver > 18300
+; OpenOffice, LibreOffice, ... (Open file)
+shellstyle.dll
++ver*
+
 -if
 
 :end_files

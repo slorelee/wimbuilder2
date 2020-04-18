@@ -5,19 +5,18 @@ goto :end_files
 
 @\Windows\System32\
 setx.exe
-@-
 
 ; ncsi.dll.mui is not included in winre.wim
 \Windows\System32\??-??\ncsi.dll.mui
 
 \Windows\System32\??-??\Windows.CloudStore.dll.mui
 
-; Possible Addition   \Windows\System32\umpowmi.dll
-\Windows\System32\umpoext.dll
+; Possible Addition umpowmi.dll
+umpoext.dll
 
 ; Power management - In Winre.wim system32:powrprof.dll,workerdd.dll
-Windows\System32\powercfg.cpl
-Windows\System32\powercpl.dll
+powercfg.cpl
+powercpl.dll
 
 \Windows\Fonts\segoeui.ttf
 

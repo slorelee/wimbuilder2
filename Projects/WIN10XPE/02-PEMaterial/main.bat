@@ -1,4 +1,4 @@
-@echo on
+
 set "PEM.Loc=%X%\PEMaterial"
 if "x%opt[material.location]%"=="x_ISO_" set "PEM.Loc=%WB_ROOT%\_ISO_\PEMaterial"
 if "x%opt[material.location]%"=="x_U_" set "PEM.Loc=%WB_ROOT%\_U_\PEMaterial"

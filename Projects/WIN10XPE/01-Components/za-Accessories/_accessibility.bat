@@ -9,6 +9,10 @@ Date=2018.05.30
 rem ==========update filesystem==========
 call AddFiles %0 :end_files
 goto :end_files
+
+; shortcuts
+\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessibility\
+
 @windows\system32\
 
 ; In Common Osk Paint Wordpad

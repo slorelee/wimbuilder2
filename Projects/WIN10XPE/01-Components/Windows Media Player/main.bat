@@ -34,6 +34,8 @@ History008=Lancelot Add to Yomi - Date:2020.01.13
 call AddFiles %0 :end_files
 goto :end_files
 
+call AddFiles "\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Windows Media Player.lnk"
+
 ;[Require_FileList]
 \Program Files\Windows Media Player\
 @\Windows\System32\

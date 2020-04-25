@@ -21,6 +21,7 @@ dialer.exe,tapilua.dll,tapiperf.dll,tapiui.dll,telephon.cpl
 ; tapiservice
 tapisrv.dll
 
+rasdial.exe
 rasphone.exe
 :end_files
 

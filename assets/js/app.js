@@ -94,4 +94,23 @@ function page_init() {
 
 function app_mode_init() {
     document.title += ' [' + i18n_t($ui_settings['mode']) + i18n_t(' Mode') + ']';
+
+    if ($ui_settings['mode'] == 'Beginner') {
+        $('#wb_src_prompt').text(i18n_t('Please select the mounted Windows ISO drive(eg. H:\\)'));
+
+        $('#wb_install_prompt').hide();
+        $('#wb_src').attr("readonly",true);
+        $('#wb_src_wim_btn').hide();
+
+        $('#wb_auto_winre').hide();
+        $('#label_wb_auto_winre').hide();
+        
+        $('#wb_base_prompt').hide();
+        $('#wb_base').attr("readonly",true);
+        $('#wb_base_idx_opt').attr("disabled",true);
+        $('#wb_base_wim_btn').hide();
+
+        $('#wb_use_testwim').hide();
+        $('#label_wb_use_testwim').hide();
+    }
 }

@@ -20,6 +20,7 @@ $i18n = {
   "Please configure the base infomation:":"请设置基本信息:",
   "Set the build workspace":"设置工作空间位置",
   "Select build workspace folder:":"选择工作空间位置:",
+  "Please select the mounted Windows ISO drive(eg. H:\\)":"请选择Windows镜像所加载的驱动器(例如 H:\\)",
   "Please select the Windows ISO folder/drive, or the 'sources' folder(auto detect)":"请选择Windows镜像路径，或者sources目录(智能识别)",
   "Select the image path or the 'sources' folder":"请选择Windows镜像路径，或者sources目录",
   "Auto extract the winre.wim":"自动提取winre.wim",

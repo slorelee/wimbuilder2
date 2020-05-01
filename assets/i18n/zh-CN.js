@@ -1,6 +1,10 @@
 ﻿$('body').css("font-family", "'Microsoft YaHei', 'Microsoft JhengHei', SimSun");
 
 $i18n = {
+  "Beginner":"入门",
+  "Professional":"专家",
+  "Developer":"开发",
+  " Mode":"模式",
   "Getting Started":"准备",
   "Project":"工程",
   "Customize":"定制",
@@ -71,6 +75,13 @@ $i18n = {
   "Please select a project:":"请选择工程:",
   "Project Information":"工程信息",
 
+  "Mode :":"模式 :",
+  "<strong>Beginner</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--- Just started using this software. Make the options be kind. Avoid failure due to incorrect option settings.":
+      "<strong>入门</strong> --- 刚开始使用本软件。将隐藏一些复杂选项，使得选项友好，避免因选项设定不正确导致失败。",
+  "<strong>Professional</strong> --- Knows this software well. Shows more options.":
+      "<strong>专家</strong> --- 清楚如何使用本软件及各选项含义。将提供更多选项。",
+  "<strong>Developer</strong> &nbsp;&nbsp;&nbsp;&nbsp;---  Knows the codes of this software, Shows the options for developer.":
+      "<strong>开发</strong> ---  清楚本软件的结构及代码, 将提供面向开发者的选项。",
   "Language :":"语言 :",
   "Theme :":"主题 :",
   "Auto":"自动",

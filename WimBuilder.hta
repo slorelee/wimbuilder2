@@ -427,6 +427,25 @@ if ($IE_VER == '9+') {
     </style>
     <div id="settings_form" class="pure-form">
         <div>
+            <label class="i18n-text">Mode :</label>
+            <label><input type="radio" name="app.mode" value="Beginner" checked />
+                &nbsp;<span class="i18n-text">Beginner</span>
+            </label>
+            <label><input type="radio" name="app.mode" value="Professional" />
+                &nbsp;<span class="i18n-text">Professional</span>
+            </label>
+            <label><input type="radio" name="app.mode" value="Developer" />
+                &nbsp;<span class="i18n-text">Developer</span>
+            </label>
+        </div>
+        <div class="alert alert-info i18n-html">
+            <span class="i18n-html"><strong>Beginner</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--- Just started using this software. Make the options be kind. Avoid failure due to incorrect option settings.</span><br/>
+            <span class="i18n-html"><strong>Professional</strong> --- Knows this software well. Shows more options.</span><br/>
+            <span class="i18n-html"><strong>Developer</strong> &nbsp;&nbsp;&nbsp;&nbsp;---  Knows the codes of this software, Shows the options for developer.</span>
+        </div>
+        <br/>
+
+        <div>
             <label class="i18n-text">Language :</label>
             <select id='ui_lang'></select>
         </div>

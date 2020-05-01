@@ -71,6 +71,7 @@ function app_init() {
     start_page_init();
     project_page_init();
     patches_page_init();
+    app_mode_init();
 }
 
 function page_init() {
@@ -89,4 +90,8 @@ function page_init() {
     }
 
     $('#menu_start').click();
+}
+
+function app_mode_init() {
+    document.title += ' [' + i18n_t($ui_settings['mode']) + i18n_t(' Mode') + ']';
 }

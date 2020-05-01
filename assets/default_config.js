@@ -7,6 +7,7 @@ var $app_auto_config_created = false;
 var $app_auto_save_window_size = true;
 
 var $ui_settings = {};
+$ui_settings['mode'] = 'Beginner';
 $ui_settings['lang'] = '';
 $ui_settings['enable_theme_loader'] = true;
 $ui_settings['theme'] = '';

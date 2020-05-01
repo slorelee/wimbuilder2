@@ -3,6 +3,8 @@ var _settings_page_inited = false;
 function settings_page_init() {
     if (_settings_page_inited) return;
 
+    $("input[name='app.mode'][value='" + $ui_settings['mode'] + "']").prop("checked", true);
+
     update_lang_list();
     update_theme_list();
 
@@ -13,6 +15,11 @@ function settings_page_apply() {
     //$('#ui_lang').find("option:selected")
     //load_theme($ui_settings['theme'], true);
 }
+
+$("#settings_form input:radio[name='app.mode']").change(function() {
+    $ui_settings['mode'] = $(this).val();
+    settings_changed_action();
+});
 
 $("#ui_lang").change(function() {
     $ui_settings['lang'] = $(this).val();

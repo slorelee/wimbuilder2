@@ -62,6 +62,15 @@ fieldset {
 
 <script>
 (function() {
+  if (!$patch_loaded) {
+    if ($ui_settings['mode'] == 'Beginner') {
+      $("#fbwf_select option[value='128GB']").remove();
+      $("#fbwf_select option[value='8192']").remove();
+    }
+  }
+})();
+
+(function() {
     $("#fbwf_select").selectmenu();
     $("#fbwf_select").selectmenu( "option", "width", '40%' );
     $("#volume_level").spinner();

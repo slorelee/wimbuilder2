@@ -1,3 +1,7 @@
+.beginner-show {
+  display: block;
+}
+
 .beginner-hide {
   display: none;
 }

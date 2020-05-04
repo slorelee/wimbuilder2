@@ -28,6 +28,9 @@ Microsoft-Windows-Client-Features-WOW64-Package*.cat
 ; resources for Computer Management
 mycomput.dll
 
+; resources for This PC's Properties
+systemcpl.dll
+
 ; resources for desktop background contextmenu
 Display.dll
 themecpl.dll

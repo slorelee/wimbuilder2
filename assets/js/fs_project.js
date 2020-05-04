@@ -65,24 +65,25 @@ var Project = {
                     var def_conf = load_utf8_file(cdir + '/' + name + '/en-US.js');
                     var i18n = load_utf8_file(cdir + '/' + name + '/' + $lang + '.js');
 
+                    var patch_name = null;
+                    var patch_opened = null;
+                    var patch_selected = null;
                     // fallback
                     if (i18n == '') {
                         i18n = def_conf;
                     } else {
                         i18n = def_conf + '\r\n' + i18n;
                     }
-                    if (i18n != '') {
-                        var patch_name = null;
-                        var patch_opened = null;
-                        var patch_selected = null;
-                        eval(i18n);
-                        if (patch_name != null) name = patch_name;
-                        if (patch_opened != null) state_opened = patch_opened;
-                        if (patch_selected != null) state_selected = patch_selected;
+                    if (i18n != '') eval(i18n);
+
+                    if (patch_name != null) {
+                        name = patch_name;
                     } else {
                         var pos = name.indexOf('-');
                         if (pos >= 0) name = name.substring(pos + 1);
                     }
+                    if (patch_opened != null) state_opened = patch_opened;
+                    if (patch_selected != null) state_selected = patch_selected;
 
                     var item = { "id" : cid , "parent" : pid, "text" : name,
                      "state": {opened: state_opened, checked: state_selected} };

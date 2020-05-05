@@ -49,6 +49,7 @@ $i18n = {
   "New Name:":"新预设名:",
   "Saved Presets:":"已有预设:",
   "Save":"保存",
+  "This preset couldn't work in Beginner Mode.":"此预设无法在入门模式下使用。",
   "OpenFolder":"打开文件夹",
   "Edit main.bat":"编辑 main.bat",
   "Edit last.bat":"编辑 last.bat",

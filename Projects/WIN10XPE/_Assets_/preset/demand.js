@@ -5,6 +5,11 @@ var $patches_opt = {
     "_._._":""
 };
 
+if ($ui_settings['mode'] == 'Beginner') {
+    $patches_opt = {};
+    alert(i18n_t("This preset couldn't work in Beginner Mode."));
+}
+
 //advanced operation
 function patches_state_init() {
     uncheck_tree_node('_CustomFiles_');

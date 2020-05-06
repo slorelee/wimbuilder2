@@ -43,6 +43,9 @@ goto :end_wow64_files
 
 
 :UDPATE_REGISTY
+rem added for New Phonetic(Bopomofo)
+call RegCopyEx Classes ImeCommonAPIClassFactory1028
+
 reg add "HKLM\Tmp_Default\Keyboard Layout\Preload" /v 1 /d 00000404 /f
 reg add "HKLM\Tmp_Default\Keyboard Layout\Preload" /v 2 /d 00000409 /f
 reg add HKLM\Tmp_Default\Software\Microsoft\CTF\Assemblies\0x00000404\{34745C63-B2F0-4784-8B67-5E12C8701A31} /v Default /d {B115690A-EA02-48D5-A231-E3578D2FDF80} /f

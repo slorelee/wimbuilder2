@@ -90,3 +90,7 @@ if 0 EQU 1 (
   reg add HKLM\Tmp_Software\Classes\mpg123\Shell\Open /v Icon /d "%%SystemRoot%%\Windows\shell32.dll /f,-16824"
   reg add HKLM\Tmp_Software\Classes\mpg123\Shell\Open\Command /ve /d "hiderun.exe mpg123.exe -q #$q%%1#$q" /f
 )
+
+rem // Microphone (Identified by noelBlanc)
+call RegCopyEx Services camsvc
+call AddFiles "@\Windows\System32\#nCapabilityAccessManager.dll,CapabilityAccessManagerClient.dll"

@@ -68,6 +68,7 @@ var Project = {
                     var patch_name = null;
                     var patch_opened = null;
                     var patch_selected = null;
+                    var patch_hidden = false;
                     // fallback
                     if (i18n == '') {
                         i18n = def_conf;
@@ -75,6 +76,11 @@ var Project = {
                         i18n = def_conf + '\r\n' + i18n;
                     }
                     if (i18n != '') eval(i18n);
+
+                    if (patch_hidden) {
+                        fenum.moveNext();
+                        continue;
+                    }
 
                     if (patch_name != null) {
                         name = patch_name;

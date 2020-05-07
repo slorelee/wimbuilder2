@@ -10,7 +10,7 @@ fieldset {
 }
 </style>
 
-<fieldset>
+<fieldset class="beginner-hide">
 <legend>    SYSTEM account    </legend>
 <label class="left_label">Logon Password:</label>
 <input type="text" name="account.SYSTEM_logon_pass" class="right_val opt_item" value=""/><br/>
@@ -23,12 +23,15 @@ fieldset {
   This option needs tsdiscon.exe, select the right index of install.wim for this. (like Pro Edition).<br/>
   The switching will be black screen for seconds without DWM
 </div>
+
+<div class="beginner-hide">
 <label class="left_label">Administrator Name:</label>
 <input type="text" name="account.custom_admin_name" class="right_val opt_item" value="Administrator"/><br/>
 <label class="left_label">Logon Password(Admin):</label>
 <input type="text" name="account.admin_logon_pass" class="right_val opt_item" value=""/><br/>
 <label class="left_label">Account Password:</label>
 <input type="text" name="account.admin_password" class="right_val opt_item" value=""/><br/>
+</div>
 <br/>
 <label><input type="checkbox" name="account.admin_autologon" class="opt_item" checked>As auto logon account</label>
 <!-- Spinner -->

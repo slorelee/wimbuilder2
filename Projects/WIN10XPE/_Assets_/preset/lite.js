@@ -27,7 +27,7 @@ var $patches_opt = {
     "slim.small_fonts":true,
     "slim.small_imageresdll":true,
     "slim.safe":true,
-    "slim.ultra":true,
+    "slim.extra":true,
     "_._._":""
 };
 

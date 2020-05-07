@@ -29,7 +29,7 @@ Microsoft-Windows-Client-Drivers-Package-net~*.cat
 Microsoft-Windows-Desktop-Shared-Drivers-*.cat
 Microsoft-Client-Features-Classic-WOW64-*.cat
 
-+if "x%opt[slim.ultra]%"<>"xtrue"
++if "x%opt[slim.extra]%"<>"xtrue"
 ; For updates
 Package_*
 -if

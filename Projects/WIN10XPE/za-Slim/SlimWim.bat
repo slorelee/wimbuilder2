@@ -28,7 +28,7 @@ if not "x%opt[build.wow64support]%"=="xtrue" (
   (echo delete "\Windows\SysWOW64" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
 )
 
-if "x%opt[slim.ultra]%"=="xtrue" (
+if "x%opt[slim.extra]%"=="xtrue" (
   set opt[build.catalog]=light
   (echo delete "\Windows\DiagTrack" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
   (echo delete "\Windows\servicing" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"

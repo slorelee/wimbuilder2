@@ -160,7 +160,7 @@ if "x%opt[slim.winboot]%"=="xtrue" (
 )
 
 call Slim_Safely.bat
-call Slim_Ultra.bat
+call Slim_Extra.bat
 
 rem already removed in _pre_wim.bat
 goto :EOF

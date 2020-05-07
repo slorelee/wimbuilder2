@@ -42,7 +42,7 @@ VEEventDispatcher.dll
 cdp.dll,dsreg.dll
 
 +ver > 17700
-+if "%opt[slim.ultra]%" <> "true"
++if "%opt[slim.extra]%" <> "true"
 ; dll for StateRepository (AppRepository). The StateRepository service is not registered in the Registry
 StateRepository.core.dll,Windows.StateRepository.dll
 Windows.StateRepositoryBroker.dll,Windows.StateRepositoryClient.dll

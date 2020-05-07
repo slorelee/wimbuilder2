@@ -7,8 +7,8 @@ if not "x%Merge_WinSxS%"=="x1" goto :EOF
 :DEAL_WINSXS
 
 set SxSListFile=SlimWinSxSList.txt
-if "x%opt[slim.ultra]%"=="xtrue" (
-  set SxSListFile=SlimWinSxSList_Ultra.txt
+if "x%opt[slim.extra]%"=="xtrue" (
+  set SxSListFile=SlimWinSxSList_Extra.txt
 )
 copy /y "%SxSListFile%" "%_WB_TMP_DIR%\"
 set "SxSListFile=%_WB_TMP_DIR%\%SxSListFile%"

@@ -52,7 +52,7 @@ var $patches_opt = {
     "slim.hta":false,
     "slim.wmi":false,
     "slim.speech":false,
-    "slim.ultra":false,
+    "slim.extra":false,
     "_._._":""
 };
 

@@ -1,5 +1,5 @@
-if not "x%opt[slim.ultra]%"=="xtrue" goto :EOF
-echo Ultra Sliming...
+if not "x%opt[slim.extra]%"=="xtrue" goto :EOF
+echo Extra Sliming...
 
 call SharedPatch CustomCompmgmt
 

@@ -37,7 +37,7 @@ if "x%opt[build.main_filereg_disabled]%"=="xtrue" goto :EOF
 call CheckPatch "za-Slim"
 if "x%HasPatch%"=="xtrue" (
   pushd za-Slim
-  call Slim_Ultra.bat
+  call Slim_Extra.bat
   popd
 )
 

@@ -62,7 +62,6 @@ function patches_state_init() {
     open_tree_node('00-Configures');
     open_tree_node('01-Components');
     uncheck_tree_node('za-Slim');
-    //uncheck_tree_node('za-SlimExtra');
 }
 
 

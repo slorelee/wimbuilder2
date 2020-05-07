@@ -43,7 +43,6 @@ function patches_state_init() {
     check_tree_node('01-Components/IME');
     check_tree_node('01-Components/za-Accessories');
     open_tree_node('01-Components');
-    uncheck_tree_node('za-SlimExtra');
 }
 
 

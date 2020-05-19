@@ -42,6 +42,7 @@ goto :end_files
 
 @windows\system32\
 ; Not required with build 16299 \Windows\System32\SetWoW64.exe(loadWoW64.exe)
+ntdll.dll
 wow64.dll,wow64cpu.dll,wow64win.dll,wowreg32.exe
 
 @windows\SysWOW64\

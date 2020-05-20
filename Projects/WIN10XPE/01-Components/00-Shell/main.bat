@@ -35,6 +35,12 @@ systemcpl.dll
 Display.dll
 themecpl.dll
 
+; Microsoft FTP Folder
+msieftp.dll,shdocvw.dll
+
+; Add Network Location
+shwebsvc.dll
+
 :end_files
 
 rem Computer Management Command

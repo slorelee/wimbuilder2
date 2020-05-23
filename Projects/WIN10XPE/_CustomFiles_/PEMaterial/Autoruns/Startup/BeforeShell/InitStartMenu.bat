@@ -1,8 +1,8 @@
 rem display startmenu folders/shortcuts name with language
 
-set RunOnce=1
+if "x%USERNAME%"=="xSYSTEM" set RunOnce=1
 
-set "_Programs_Path=X:\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"
+set "_Programs_Path=%Programs%"
 attrib +s "%_Programs_Path%\Accessibility"
 attrib +s "%_Programs_Path%\Accessories"
 attrib +s "%_Programs_Path%\System Tools"

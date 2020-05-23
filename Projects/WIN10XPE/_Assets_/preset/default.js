@@ -21,8 +21,6 @@ var $patches_opt = {
     "component.vcruntime":true,
     "component.mspaint":true,
     "component.winphotoviewer":true,
-    "IME.indicator":true,
-    "IME.system_ime":true,
     "IE.x64_component":"x64+x86",
     "IE.custom_settings":true,
     "IE.home_page":"about:blank",

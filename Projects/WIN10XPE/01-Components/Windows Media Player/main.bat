@@ -34,7 +34,7 @@ History008=Lancelot Add to Yomi - Date:2020.01.13
 call AddFiles %0 :end_files
 goto :end_files
 
-call AddFiles "\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Windows Media Player.lnk"
+;\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Windows Media Player.lnk
 
 ;[Require_FileList]
 \Program Files\Windows Media Player\
@@ -257,3 +257,6 @@ wuaueng.dll
 rem ==========update registry==========
 
 reg import MSMediaPlayer.reg
+
+rem link to X:\ProgramFiles\Windows Media Player\wmplayer.exe
+call LuaLink -paramlist "[[X:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Windows Media Player.lnk]], [[#pProgramFiles#p\Windows Media Player\wmplayer.exe]], '/prefetch:1'"

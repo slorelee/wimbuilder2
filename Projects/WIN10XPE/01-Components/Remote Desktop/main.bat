@@ -2,6 +2,8 @@ rem ==========update filesystem==========
 call AddFiles %0 :end_files
 goto :end_files
 
+\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Remote Desktop Connection.lnk
+
 @\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
 +ver < 17763
 Microsoft-Windows-RemoteDesktop-*.cat

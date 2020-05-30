@@ -10,8 +10,8 @@ $i18n = {
   "build(cmd)":"CMD 형식",
   "build(log)":"로그 형식",
   "Browse...":"탐색...",
-  "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
-      "<strong>중요</strong>:사용자는 \"config.js\"에 기본 디폴트 설정을 해 놓을 수 있다, 그리고 사용자가 선택한 값들은 \"auto_config.js\" 에 자동저장되며，다음번 실행할때 빠르게 시작할 수 있게 해줍니다. 나중에 세팅값을 수정하고 싶으면, 좌측 네비게이션 메뉴를 이용해서 이 페이지를 보면 됩니다.",
+  "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'AppData\\auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
+      "<strong>중요</strong>:사용자는 \"config.js\"에 기본 디폴트 설정을 해 놓을 수 있다, 그리고 사용자가 선택한 값들은 \"AppData\\auto_config.js\" 에 자동저장되며，다음번 실행할때 빠르게 시작할 수 있게 해줍니다. 나중에 세팅값을 수정하고 싶으면, 좌측 네비게이션 메뉴를 이용해서 이 페이지를 보면 됩니다.",
   "Please configure the base infomation:":"기본정보 설정:",
   "Set the build workspace":"빌드 공간 지정",
   "Select build workspace folder:":"빌드 공간 폴더 선택:",

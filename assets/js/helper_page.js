@@ -52,7 +52,7 @@ function auto_save_settings() {
     var current_settings = get_current_settings();
     if (current_settings != _auto_saved_settings) {
         _auto_saved_settings = current_settings;
-        save_text_file($app_root + '\\auto_config.js', current_settings);
+        save_text_file($app_root + '\\AppData\\auto_config.js', current_settings);
     }
 }
 

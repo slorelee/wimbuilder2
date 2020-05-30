@@ -15,8 +15,8 @@ $i18n = {
   "build(cmd)":"CMD模式",
   "build(log)":"日志模式",
   "Browse...":"浏览...",
-  "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
-      "<strong>温馨提示</strong>:您可以在\"config.js\"文件中配置默认路径，程序也会自动将选择的设定保存到\"auto_config.js\"中，以便于快速开始。您可以通过左侧的导航菜单再次改变这些设定。",
+  "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'AppData\\auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
+      "<strong>温馨提示</strong>:您可以在\"config.js\"文件中配置默认路径，程序也会自动将选择的设定保存到\"AppData\\auto_config.js\"中，以便于快速开始。您可以通过左侧的导航菜单再次改变这些设定。",
   "<strong>INFO</strong>:Current mode is 'Beginner', you can change the mode in 'Settings' page.":
       "<strong>温馨提示</strong>:当前处于入门模式，您可以在[设定]页面更改模式。",
   "Please configure the base infomation:":"请设置基本信息:",

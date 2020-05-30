@@ -10,8 +10,8 @@ $i18n = {
   "run(cmd)":"run(cmd)",
   "exec(log)":"exec(log)",
   "Browse...":"Browse...",
-  "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
-      "<strong>INFO</strong>:Vous pouvez définir les paramètres par défaut dans 'config.js'. Votre sélection sera automatiquement enregistrée dans 'auto_config.js'. Vous commencerez ainsi plus rapidement la prochaine fois. Si vous souhaitez ensuite modifier ces paramètres, utilisez le menu de navigition sur le côté gauche pour afficher cette page.",
+  "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'AppData\\auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
+      "<strong>INFO</strong>:Vous pouvez définir les paramètres par défaut dans 'config.js'. Votre sélection sera automatiquement enregistrée dans 'AppData\\auto_config.js'. Vous commencerez ainsi plus rapidement la prochaine fois. Si vous souhaitez ensuite modifier ces paramètres, utilisez le menu de navigition sur le côté gauche pour afficher cette page.",
   "Please configure the base infomation:":"Veuillez configurer les informations de base:",
   "Set the build workspace":"Définir l'espace de travail",
   "Select build workspace folder:":"Sélectionnez le dossier de l'espace de travail:",

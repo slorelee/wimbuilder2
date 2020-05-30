@@ -49,7 +49,55 @@ var Project = {
         return project;
     },
     GetPatches:function(rootdir) {
-        function get_sub_patches(rootdir, pdir, pid, arr) {
+        function init_patch(rootdir, pdir, pid, cdir, name, arr, type) {
+            var cid = pdir + '/' + name;
+            if (pid == '#') cid = name;
+
+            if (type == 'link' && !fso.FileExists(cdir + '/' + name + '/main.html')) {
+                return;
+            }
+            var state_opened = false;
+            var state_selected = true;
+            var def_conf = load_utf8_file(cdir + '/' + name + '/en-US.js');
+            var i18n = load_utf8_file(cdir + '/' + name + '/' + $lang + '.js');
+
+            var patch_name = null;
+            var patch_opened = null;
+            var patch_selected = null;
+            var patch_hidden = false;
+            // fallback
+            if (i18n == '') {
+                i18n = def_conf;
+            } else {
+                i18n = def_conf + '\r\n' + i18n;
+            }
+            if (i18n != '') eval(i18n);
+
+            if (patch_hidden) {
+                return null;
+            }
+
+            if (patch_name != null) {
+                name = patch_name;
+            } else {
+                var pos = name.indexOf('-');
+                if (pos >= 0) name = name.substring(pos + 1);
+            }
+            if (patch_opened != null) state_opened = patch_opened;
+            if (patch_selected != null) state_selected = patch_selected;
+
+            cdir = cid;
+            if (type == 'link') cid = cid + ".LINK";
+            var item = { "id" : cid , "parent" : pid, "text" : name,
+                "state": {opened: state_opened, checked: state_selected} };
+            if (cid == '_CustomFiles_') {
+                arr.unshift(item);
+            } else {
+                arr.push(item);
+            }
+            get_sub_patches(rootdir, cdir, cid, arr, type);
+        };
+        function get_sub_patches(rootdir, pdir, pid, arr, type) {
             var cdir = rootdir + '/' + pdir;
             if (pid == '#') cdir = pdir;
 
@@ -57,48 +105,13 @@ var Project = {
             var fenum = new Enumerator(folder.SubFolders);
             for (var i = 0 ; !fenum.atEnd();i++) {
                 var name = fenum.item().Name;
-                var cid = pdir + '/' + name;
-                if (pid == '#') cid = name;
                 if (fso.FileExists(cdir + '/' + name + '/main.html')) {
-                    var state_opened = false;
-                    var state_selected = true;
-                    var def_conf = load_utf8_file(cdir + '/' + name + '/en-US.js');
-                    var i18n = load_utf8_file(cdir + '/' + name + '/' + $lang + '.js');
-
-                    var patch_name = null;
-                    var patch_opened = null;
-                    var patch_selected = null;
-                    var patch_hidden = false;
-                    // fallback
-                    if (i18n == '') {
-                        i18n = def_conf;
-                    } else {
-                        i18n = def_conf + '\r\n' + i18n;
-                    }
-                    if (i18n != '') eval(i18n);
-
-                    if (patch_hidden) {
-                        fenum.moveNext();
-                        continue;
-                    }
-
-                    if (patch_name != null) {
-                        name = patch_name;
-                    } else {
-                        var pos = name.indexOf('-');
-                        if (pos >= 0) name = name.substring(pos + 1);
-                    }
-                    if (patch_opened != null) state_opened = patch_opened;
-                    if (patch_selected != null) state_selected = patch_selected;
-
-                    var item = { "id" : cid , "parent" : pid, "text" : name,
-                     "state": {opened: state_opened, checked: state_selected} };
-                     if (cid == '_CustomFiles_') {
-                        arr.unshift(item)
-                    } else {
-                        arr.push(item);
-                    }
-                    get_sub_patches(rootdir, cid, cid, arr);
+                    init_patch(rootdir, pdir, pid, cdir, name, arr, type);
+                } else if (fso.FileExists(cdir + '/' + name + '/link')) {
+                    var linkrootdir = rootdir.replace('Projects/', 'AppData/Projects/');
+                    var linkpdir = pdir.replace('Projects/', 'AppData/Projects/');
+                    var linkcdir = cdir.replace('Projects/', 'AppData/Projects/');
+                    init_patch(linkrootdir, linkpdir, pid, linkcdir, name, arr, 'link');
                 }
                 fenum.moveNext();
             }

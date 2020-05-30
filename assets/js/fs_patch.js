@@ -4,6 +4,9 @@ var Patch = {
         patch.project = project;
         patch.name = name;
         patch.path = project.path + '/' + name;
+        if (name.substr(-5, 5) == '.LINK') {
+            patch.path = "AppData/" + patch.path.slice(0, -5);
+        }
         function load_file(file) {
             return load_text_file(patch.path + '/' + file);
         };

@@ -8,16 +8,27 @@ call :apply_patch "%project_path%\main.bat"
 if not exist "%_WB_TMP_DIR%\_patches_selected.txt" goto :EOF
 
 for /f "usebackq delims=" %%i in ("%_WB_TMP_DIR%\_patches_selected.txt") do (
-    call :apply_patch "%project_path%\%%i\main.bat"
+    call :apply_link_patch "%project_path%\%%i"
 )
 
 set _WB_WALK_CMD=last.bat
 for /f "usebackq delims=" %%i in ("%_WB_TMP_DIR%\_patches_selected.txt") do (
-    call :apply_patch "%project_path%\%%i\last.bat"
+    call :apply_link_patch "%project_path%\%%i"
 )
 
 call :apply_patch "%project_path%\last.bat"
 
+goto :EOF
+
+:apply_link_patch
+set "_pt_path=%~1"
+if not "x%_pt_path:~-5%"=="x.LINK" (
+    call :apply_patch "%_pt_path%\%_WB_WALK_CMD%"
+    goto :EOF
+)
+set "_pt_path=%_pt_path:~0,-5%"
+set "_pt_path=%_pt_path:\Projects\=\AppData\Projects\%"
+call :apply_patch "%_pt_path%\%_WB_WALK_CMD%"
 goto :EOF
 
 :apply_patch

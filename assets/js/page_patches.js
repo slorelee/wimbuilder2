@@ -243,6 +243,13 @@ function deselect_tree_node(id) {
   $('#patches_tree').jstree(true).deselect_node(id);
 }
 
+function linkpath(path) {
+  if (path.indexOf('.LINK') == -1) return path;
+  path = path.replace('.LINK', '');
+  path = path.replace('\\Projects\\', '\\AppData\\Projects\\');
+  return path;
+}
+
 var _editor_notice_done = false;
 function edit_menu_action(file) {
   var editor = $obj_project.full_path + '/_CustomFiles_/editor.cmd';
@@ -254,6 +261,7 @@ function edit_menu_action(file) {
       _editor_notice_done = true;
     }
   }
+  file = linkpath(file);
   if (!fso.FileExists(file)) return;
   var style = 0;
   if (!fso.FileExists(editor)) {
@@ -321,7 +329,8 @@ function show_patches_settings() {
                 "action": function(data) {
                     var inst = $.jstree.reference(data.reference),
                     obj = inst.get_node(data.reference);
-                    OpenFolder($obj_project.full_path + '/' + obj.id);
+                    var path = $obj_project.full_path + '/' + obj.id;
+                    OpenFolder(linkpath(path));
                 }
             },
             "EditMain": {

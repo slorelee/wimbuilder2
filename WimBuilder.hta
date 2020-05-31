@@ -316,7 +316,7 @@ if ($IE_VER == '9+') {
         <option selected="selected" class="i18n-text" value="default">default</option>
         <option>-</option>
     </select>
-    <button id="preset_browse" class="ui-button i18n-title" title="Browse..." onclick="OpenFolder($obj_project.path + '\\_Assets_\\preset\\')"></button>
+    <button id="preset_browse" class="ui-button i18n-title" title="Browse..." onclick="OpenFolder('AppData\\' + $obj_project.path + '\\_Assets_\\preset\\')"></button>
     <button id="preset_saveas" class="ui-button i18n-title" title="Save As..." ></button>
     </div>
     <div id="patches_area">

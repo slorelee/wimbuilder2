@@ -9,10 +9,13 @@ var Project = {
         project.uri = project.path;
         project.app_root = $app_root.replace(/\\/g, '/');
         project.full_path = project.app_root + '/' + project.path;
+        project.appdata_full_path = project.app_root + '/AppData/' + project.path;
         project.full_uri = project.full_path;
         project.full_path = project.full_path.replace(/\//g, '\\');
         project.style = project.path + '/_Assets_/style.css';
         project.current_preset_path = '';
+        var appdata_preset_path = 'AppData/' + project.path + '/_Assets_/preset';
+        create_folder_cascade(appdata_preset_path.replace(/\//g, '\\'));
         function load_file(file) {
             return load_text_file(project.path + '/' + file);
         };
@@ -23,8 +26,21 @@ var Project = {
             return load_file('_Assets_/intro.html');
         };
         project.load_presets = function() {
-            return get_files(project.path + '/_Assets_/preset');
+            var arr = get_files(project.path + '/_Assets_/preset');
+            arr = arr.concat(get_files(appdata_preset_path));
+            arr.sort();
+            return arr;
         };
+        project.preset_path = function(preset) {
+            var path = project.path + '/_Assets_/preset/' + preset + '.js';
+            if (fso.FileExists('AppData/' + path)) {
+                return 'AppData/' + path;
+            }
+            return path;
+        };
+        project.full_preset_path = function(preset) {
+            return project.app_root + '/' + project.preset_path(preset);
+        }
         project.desc = project.load_desc();
         project.html = project.load_html();
         var $patches_opt = {};
@@ -36,7 +52,7 @@ var Project = {
         project.presets = project.load_presets();
         project.preset = '-';
         if ($patches_preset != '') {
-            eval(load_file('_Assets_/preset/' + $patches_preset + '.js'));
+            eval(load_text_file(project.full_preset_path($patches_preset)));
             project.preset = $patches_preset;
         }
         if (typeof(patches_state_init) == 'function') {
@@ -123,16 +139,18 @@ var Project = {
 }
 
 function set_default_preset(project, preset) {
-    if (fso.FileExists(project.full_path + '/_Assets_/preset/' + preset + '.js')) {
+    if (fso.FileExists(project.appdata_full_path + '/_Assets_/preset/' + preset + '.js')) {
+        $patches_preset = preset;
+    } else if (fso.FileExists(project.full_path + '/_Assets_/preset/' + preset + '.js')) {
         $patches_preset = preset;
     }
 }
 
 function init_current_preset(project) {
     if (!$app_save_current_preset) return;
-    project.current_preset_path = project.full_path + '/_Assets_/preset/current.js';
+    project.current_preset_path = project.appdata_full_path + '/_Assets_/preset/current.js';
     if (!fso.FileExists(project.current_preset_path)) {
-        fso.CopyFile(project.full_path + '/_Assets_/preset/' + $patches_preset + '.js',
+        fso.CopyFile(project.full_preset_path($patches_preset),
         project.current_preset_path);
     }
     $patches_preset = 'current';
@@ -141,7 +159,7 @@ function init_current_preset(project) {
 function saveas_current_preset(project, name) {
     if (!$app_save_current_preset) return;
     if (fso.FileExists(project.current_preset_path)) {
-        fso.CopyFile(project.current_preset_path, project.full_path + '/_Assets_/preset/' + name + '.js');
+        fso.CopyFile(project.current_preset_path, project.appdata_full_path + '/_Assets_/preset/' + name + '.js');
         // update presets
         project.presets = project.load_presets();
         update_preset_list(true);

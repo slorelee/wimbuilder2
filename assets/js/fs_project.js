@@ -52,7 +52,8 @@ var Project = {
         project.presets = project.load_presets();
         project.preset = '-';
         if ($patches_preset != '') {
-            eval(load_text_file(project.full_preset_path($patches_preset)));
+            var str = load_text_file(project.full_preset_path($patches_preset));
+            eval(expand_opt_val(str));
             project.preset = $patches_preset;
         }
         if (typeof(patches_state_init) == 'function') {

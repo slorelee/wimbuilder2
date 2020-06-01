@@ -378,6 +378,8 @@ function patches_opt_stringify(line) {
     if (line == null) line = "<br\/>";
     str = str.replace(/("[^"]+?":".*?",)/g, "$1" + line);
     str = str.replace(/("[^"]+?":[^"]+?,)/g, "$1" + line);
+    var env_path = $app_root.replace('\\', '\\\\');
+    str = str_replace(str, env_path, '%APP_ROOT%');
     return str;
 }
 
@@ -396,13 +398,6 @@ function dump_patches_selected() {
         str = "_CustomFiles_\r\n" + str.replace("\r\n_CustomFiles_\r\n", "\r\n");
     }
     save_text_file(tmp_folder + "\\_patches_selected.txt", str);
-    return str;
-}
-
-function str_replace(str, src, rep) {
-    while (str.indexOf(src) != -1) {
-        str = str.replace(src, rep);
-    }
     return str;
 }
 

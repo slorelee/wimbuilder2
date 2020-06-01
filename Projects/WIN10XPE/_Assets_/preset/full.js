@@ -14,7 +14,6 @@ var $patches_opt = {
     "system.workgroup": "WORKGROUP",
     "system.high_compatibility":true,
     "shell.app":"explorer",
-    "shell.wallpaper": project.full_path + "\\_CustomFiles_\\wallpaper.jpg",
     "tweak.shortcut.noarrow":false,
     "tweak.shortcut.nosuffix":true,
     "component.MMC":true,

@@ -11,7 +11,6 @@ var $patches_opt = {
     "config.fbwf.cache": "2048",
     "config.computername": "LITEPE",
     "shell.app":"explorer",
-    "shell.wallpaper": project.full_path + "\\_CustomFiles_\\wallpaper.jpg",
     "tweak.shortcut.noarrow":false,
     "tweak.shortcut.nosuffix":true,
     "component.MMC":true,

@@ -50,10 +50,17 @@ if not "x%opt[SIB.style.opaque]%"=="xfalse" (
 )
 set SIB_KEY=
 
-if not exist "%X%\ProgramData\Microsoft\User Account Pictures\" (
-    mkdir "%X%\ProgramData\Microsoft\User Account Pictures"
-)
-copy /y "%WB_ROOT%\AppData\_CustomFiles_\user-200.png" "%X%\ProgramData\Microsoft\User Account Pictures\"
+rem Account Pictures
+set "_AccPic_Path=%X%\ProgramData\Microsoft\User Account Pictures"
+if not exist "%_AccPic_Path%\" mkdir "%_AccPic_Path%"
+rem copy /y "%WB_ROOT%\AppData\_CustomFiles_\user-200.png" "%_AccPic_Path%\"
+copy /y "%WB_ROOT%\AppData\_CustomFiles_\AccountPictures\*.*" "%_AccPic_Path%\"
+rem 2.9 and later
+call RegCopyEx Classes ".accountpicture-ms,accountpicturefile"
+set "_AccPic_Path=%X%\Users\Default\AppData\Roaming\Microsoft\Windows\AccountPictures"
+if not exist "%_AccPic_Path%\" mkdir "%_AccPic_Path%"
+copy /y "%WB_ROOT%\AppData\_CustomFiles_\AccountPictures\*.*" "%_AccPic_Path%\"
+set _AccPic_Path=
 goto :EOF
 
 :update_clsid_dll_path

@@ -53,7 +53,7 @@ set SIB_KEY=
 if not exist "%X%\ProgramData\Microsoft\User Account Pictures\" (
     mkdir "%X%\ProgramData\Microsoft\User Account Pictures"
 )
-copy /y user-200.png "%X%\ProgramData\Microsoft\User Account Pictures\"
+copy /y "%WB_ROOT%\AppData\_CustomFiles_\user-200.png" "%X%\ProgramData\Microsoft\User Account Pictures\"
 goto :EOF
 
 :update_clsid_dll_path

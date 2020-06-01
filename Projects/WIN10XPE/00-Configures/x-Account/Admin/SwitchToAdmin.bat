@@ -139,4 +139,4 @@ if "x%opt[account.admin_screen]%"=="xwallpaper" (
   goto :EOF
 )
 
-copy /y "%WB_PROJECT_PATH%\_CustomFiles_\%opt[account.admin_screen]%" "%X%\Windows\Web\Screen\img100.jpg"
+copy /y "%WB_ROOT%\AppData\_CustomFiles_\%opt[account.admin_screen]%" "%X%\Windows\Web\Screen\img100.jpg"

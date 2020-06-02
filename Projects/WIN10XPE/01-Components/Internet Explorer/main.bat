@@ -116,6 +116,7 @@ Windows.Media.dll
 Windows.Media.MediaControl.dll
 Windows.UI.dll
 WindowsCodecsExt.dll
+mlang.dll
 
 +ver > 18300
 DXCore.dll

@@ -1,5 +1,6 @@
 if "x%opt[component.taskmgr]%"=="xtrue" (
   call AddFiles \Windows\System32\taskmgr.exe
+  call AddFiles \Windows\System32\d3d12.dll
 )
 
 if "x%opt[component.bitlocker]%"=="xtrue" (

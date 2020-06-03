@@ -378,7 +378,7 @@ function patches_opt_stringify(line) {
     if (line == null) line = "<br\/>";
     str = str.replace(/("[^"]+?":".*?",)/g, "$1" + line);
     str = str.replace(/("[^"]+?":[^"]+?,)/g, "$1" + line);
-    var env_path = $app_root.replace('\\', '\\\\');
+    var env_path = $app_root.replace(/\\/g, '\\\\');
     str = str_replace(str, env_path, '%APP_ROOT%');
     return str;
 }

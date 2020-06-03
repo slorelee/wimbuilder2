@@ -21,7 +21,7 @@ function expand_opt_val(val, raw) {
     var env_path = $app_root;
     if (typeof(val) != 'string') return val;
     if (!raw) {
-        env_path = $app_root.replace('\\', '\\\\');
+        env_path = $app_root.replace(/\\/g, '\\\\');
     }
     return str_replace(val, '%APP_ROOT%', env_path);
 }

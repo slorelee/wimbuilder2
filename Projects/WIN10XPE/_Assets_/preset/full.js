@@ -26,6 +26,7 @@ var $patches_opt = {
     "component.netfx":true,
     "component.MTP":true,
     "component.RNDIS":true,
+    "component.wordpad":true,
     "component.mspaint":true,
     "component.winphotoviewer":true,
     "component.snippingtool":true,

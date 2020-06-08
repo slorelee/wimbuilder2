@@ -3,7 +3,7 @@ var _current_page = '';
 menu_init();
 
 function menu_init() {
-    const items = Object.keys($app_menu);
+    var items = Object.keys($app_menu);
     var html = '';
     items.forEach(function(item) {
         var text = $app_menu[item];

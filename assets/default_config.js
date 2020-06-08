@@ -13,6 +13,10 @@ $ui_settings['enable_theme_loader'] = true;
 $ui_settings['theme'] = '';
 $ui_settings['dpi'] ='';
 
+if (eformat('x%APP_HOST_WIN%') != 'x10') {
+    $ui_settings['enable_theme_loader'] = false;
+}
+
 var $app_default_project = '';
 var $app_save_current_preset = true;
 var $wb_show_quick_build = false;

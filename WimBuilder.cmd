@@ -46,6 +46,8 @@ if not ERRORLEVEL 1 (
 if "x%~1"=="xrunas" (SHIFT)
 
 call DisAutoRun
+set APP_HOST_WIN=UNKNOWN
+if exist "%windir%\SystemResources\" set APP_HOST_WIN=10
 
 rem init i18n file
 set "I18N_SCRIPT=%~dp0i18n\i18n_.wsf"

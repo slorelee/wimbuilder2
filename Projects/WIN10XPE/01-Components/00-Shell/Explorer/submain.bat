@@ -55,6 +55,9 @@ WindowManagement.dll
 WindowManagementAPI.dll
 Windows.UI.dll
 
++ver >= 20150
+dmenrollengine.dll
+
 ; remove ver check (add with any ver)
 +ver*
 

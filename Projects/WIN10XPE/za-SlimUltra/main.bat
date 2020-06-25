@@ -394,6 +394,7 @@ for /f "delims=" %%i in ('dir /b /ad "%X_SYS%\DriverStore\FileRepository\%~1*"')
   echo rd /s /q "%X_SYS%\DriverStore\FileRepository\%%i"
   rd /s /q "%X_SYS%\DriverStore\FileRepository\%%i"
 )
+del /a /f /q "%X_SYS%\DriverStore\%WB_PE_LANG%\%~1.inf_loc"
 goto :EOF
 
 :DEL_SYSFILES

@@ -64,6 +64,22 @@ call :REMOVE_SERV_REG wcncsvc wcncsvc.dll
 call :REMOVE_SERV_REG wisvc flightsettings.dll
 call :REMOVE_SERV_REG WlanSvc wlansvc.dll
 
+call :REMOVE_SERV_REG Appinfo appinfo.dll
+call :REMOVE_SERV_REG Audiosrv audiosrv.dll
+call :REMOVE_SERV_REG BFE bfe.dll
+call :REMOVE_SERV_REG EFS efssvc.dll
+call :REMOVE_SERV_REG EventLog wevtsvc.dll
+call :REMOVE_SERV_REG FontCache FntCache.dll
+call :REMOVE_SERV_REG KeyIso keyiso.dll
+call :REMOVE_SERV_REG lmhosts lmhsvc.dll
+call :REMOVE_SERV_REG NlaSvc nlasvc.dll
+call :REMOVE_SERV_REG PolicyAgent polstore.dll
+call :REMOVE_SERV_REG ProfSvc profsvc.dll
+call :REMOVE_SERV_REG sacsvr sacsvr.dll
+call :REMOVE_SERV_REG SstpSvc sstpsvc.dll
+call :REMOVE_SERV_REG W32Time w32time.dll
+call :REMOVE_SERV_REG WerSvc wersvc.dll
+
 set Check_SysWOW64=
 goto :EOF
 

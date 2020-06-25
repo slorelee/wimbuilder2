@@ -72,9 +72,9 @@ goto :EOF
 rem ==============================================
 rd /q /s "%X_SYS%\AdvancedInstallers"
 
-del /a /f /q "%X_SYS%\config\BBI"
-del /a /f /q "%X_SYS%\config\BCD-Template"
-del /a /f /q "%X_SYS%\config\ELAM"
+rem del /a /f /q "%X_SYS%\config\BBI"
+rem del /a /f /q "%X_SYS%\config\BCD-Template"
+rem del /a /f /q "%X_SYS%\config\ELAM"
 
 rd /q /s "%X_SYS%\config\Journal"
 rd /q /s "%X_SYS%\config\RegBack"

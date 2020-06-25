@@ -167,6 +167,17 @@ function saveas_current_preset(project, name) {
     }
 }
 
+function remove_tree_node(items, id) {
+    var i = items.length - 1;
+    var item = null;
+    for(i;i>=0;i--) {
+        item = items[i];
+        if (item['id'].indexOf(id) == 0) {
+            items.splice(i, 1);
+        }
+    }
+}
+
 function pj_button(name) {
     return '<button ' + ' id="pj_' + name + '"' +
         ' class="pure-button pure-button-primary project-button">' +

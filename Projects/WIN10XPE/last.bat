@@ -21,6 +21,9 @@ call za-Slim\Cleanup.bat
 if "x%opt[registry.software.compress]%"=="xtrue" (
     reg save HKLM\Tmp_Software "%X_SYS%\config\SOFTWARE.hiv" /y /c
 )
+if "x%opt[registry.system.compress]%"=="xtrue" (
+    reg save HKLM\Tmp_SYSTEM "%X_SYS%\config\SYSTEM.hiv" /y /c
+)
 
 if "x%opt[build.unmount_wim_demand]%"=="xtrue" goto :REPLACE_FULLREG_END
 
@@ -30,6 +33,10 @@ call PERegPorter.bat Tmp UNLOAD 1>nul
 if "x%opt[registry.software.compress]%"=="xtrue" (
     del /f /q /a "%X_SYS%\config\SOFTWARE"
     ren "%X_SYS%\config\SOFTWARE.hiv" SOFTWARE
+)
+if "x%opt[registry.system.compress]%"=="xtrue" (
+    del /f /q /a "%X_SYS%\config\SYSTEM"
+    ren "%X_SYS%\config\SYSTEM.hiv" SYSTEM
 )
 
 call :FULLREG DEFAULT

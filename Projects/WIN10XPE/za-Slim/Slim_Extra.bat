@@ -86,7 +86,7 @@ del /a /f /q "%X_SYS%\CompPkgSrv.exe"
 call :KEEP_FILE \Windows\System32\credui.dll
 del /a /f /q "%X_SYS%\CredProv*.*"
 
-call :KEEP_FILES \Windows\System32\ "C_1251.NLS,C_1252.NLS,C_437.NLS"
+call :KEEP_FILES \Windows\System32\ "C_1252.NLS,C_437.NLS"
 call :KEEP_FILE \Windows\System32\C_%WB_PE_CODEPAGE%.NLS
 del /a /f /q "%X_SYS%\C_*.NLS"
 

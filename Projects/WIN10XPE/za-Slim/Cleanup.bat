@@ -80,6 +80,42 @@ call :REMOVE_SERV_REG SstpSvc sstpsvc.dll
 call :REMOVE_SERV_REG W32Time w32time.dll
 call :REMOVE_SERV_REG WerSvc wersvc.dll
 
+call :REMOVE_SERV_REG bttflt drivers\bttflt.sys
+call :REMOVE_SERV_REG cht4vbd drivers\cht4vx64.sys
+call :REMOVE_SERV_REG dmvsc drivers\dmvsc.sys
+call :REMOVE_SERV_REG Dnscache dnsapi.dll
+call :REMOVE_SERV_REG fdc drivers\fdc.sys
+call :REMOVE_SERV_REG Filetrace drivers\filetrace.sys
+call :REMOVE_SERV_REG flpydisk drivers\flpydisk.sys
+call :REMOVE_SERV_REG fvevol drivers\fvevol.sys
+call :REMOVE_SERV_REG gpsvc gpapi.dll
+call :REMOVE_SERV_REG hyperkbd drivers\hyperkbd.sys
+call :REMOVE_SERV_REG HyperVideo drivers\HyperVideo.sys
+call :REMOVE_SERV_REG IKEEXT ikeext.dll
+call :REMOVE_SERV_REG iScsiPrt drivers\msiscsi.sys
+call :REMOVE_SERV_REG kdnic drivers\kdnic.sys
+call :REMOVE_SERV_REG LanmanServer srvsvc.dll
+call :REMOVE_SERV_REG MSiSCSI iscsidsc.dll
+call :REMOVE_SERV_REG NetBIOS drivers\netbios.sys
+call :REMOVE_SERV_REG NetBT drivers\netbt.sys
+call :REMOVE_SERV_REG netvsc drivers\netvsc.sys
+call :REMOVE_SERV_REG PerfDisk perfdisk.dll
+call :REMOVE_SERV_REG PerfNet perfnet.dll
+call :REMOVE_SERV_REG PerfOS perfos.dll
+call :REMOVE_SERV_REG PerfProc perfproc.dll
+call :REMOVE_SERV_REG PolicyAgent polstore.dll
+call :REMOVE_SERV_REG sfloppy drivers\sfloppy.sys
+call :REMOVE_SERV_REG srv2 srvsvc.dll
+call :REMOVE_SERV_REG srvnet drivers\srvnet.sys
+call :REMOVE_SERV_REG storflt drivers\vmstorfl.sys
+call :REMOVE_SERV_REG storqosflt drivers\storqosflt.sys
+call :REMOVE_SERV_REG storvsc drivers\storvsc.sys
+call :REMOVE_SERV_REG svsvc svsvc.dll
+call :REMOVE_SERV_REG TPM drivers\tpm.sys
+call :REMOVE_SERV_REG usbser drivers\usbser.sys
+call :REMOVE_SERV_REG vmbus drivers\vmbus.sys
+call :REMOVE_SERV_REG drivers\VMBusHID.sys
+
 set Check_SysWOW64=
 goto :EOF
 

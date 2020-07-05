@@ -486,6 +486,10 @@ function save_current_preset(collected){
     str = str.replace(/"_[^"]+?":.+?,\r\n/g, "");
     str = str + '"_._._":""' + "\r\n}\r\n\r\n";
 
+    if (typeof($obj_project.patches_node_init) == 'function') {
+        str = str + $obj_project.patches_node_init + "\r\n\r\n";
+    }
+
     // function patches_state_init() {
     str = str + "function patches_state_init() {\r\n";
     str = str + get_jstree_status();

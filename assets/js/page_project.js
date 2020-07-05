@@ -39,7 +39,7 @@ function reload_project(name, preset) {
     $obj_project = project;
     $patches_opt = project.patches_opt;
     $patches_var = {};
-    project.patches_tree_data = Project.GetPatches(project.path);
+    project.patches_tree_data = Project.GetPatches(project);
     $obj_patches = null;
     $obj_patch = null;
     $patches_preset_inited = null;

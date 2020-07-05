@@ -56,16 +56,19 @@ var Project = {
             eval(expand_opt_val(str));
             project.preset = $patches_preset;
         }
+        if (typeof(patches_node_init) == 'function') {
+            project.patches_node_init = patches_node_init;
+        }
         if (typeof(patches_state_init) == 'function') {
             project.patches_state_init = patches_state_init;
         }
         project.patches_opt = $patches_opt;
         if (!lazy) {
-            project.patches_tree_data = Project.GetPatches(project.path);
+            project.patches_tree_data = Project.GetPatches(project);
         }
         return project;
     },
-    GetPatches:function(rootdir) {
+    GetPatches:function(project) {
         function init_patch(rootdir, pdir, pid, cdir, name, arr, type) {
             var cid = pdir + '/' + name;
             if (pid == '#') cid = name;
@@ -134,7 +137,11 @@ var Project = {
             }
         };
         var arr = new Array();
+        var rootdir = project.path;
         get_sub_patches(rootdir, rootdir, '#', arr);
+        if (typeof(project.patches_node_init) == 'function') {
+            arr = project.patches_node_init(arr);
+        }
         return arr;
     }
 }

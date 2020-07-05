@@ -464,10 +464,10 @@ function get_jstree_status(){
         }
     }
     var str = arr.join("\");\r\n") + "\");\r\n";
-    str = str.replace(/:O:/g, 'open_tree_node(\"');
-    str = str.replace(/:S:/g, 'select_tree_node(\"');
-    str = str.replace(/:C:/g, 'check_tree_node(\"');
-    str = str.replace(/:U:/g, 'uncheck_tree_node(\"');
+    str = str.replace(/:O:/g, '    open_tree_node(\"');
+    str = str.replace(/:S:/g, '    select_tree_node(\"');
+    str = str.replace(/:C:/g, '    check_tree_node(\"');
+    str = str.replace(/:U:/g, '    uncheck_tree_node(\"');
     return str;
 }
 
@@ -485,6 +485,7 @@ function save_current_preset(collected){
     str = str + patches_opt_stringify("\r\n").slice(1, -1) + ",\r\n";
     str = str.replace(/"_[^"]+?":.+?,\r\n/g, "");
     str = str + '"_._._":""' + "\r\n}\r\n\r\n";
+    str = str.replace(/\r\n\"/g, "\r\n    \"");
 
     if (typeof($obj_project.patches_node_init) == 'function') {
         str = str + $obj_project.patches_node_init + "\r\n\r\n";

@@ -24,6 +24,7 @@ set "_USER_CUSTOMFILES_=%WB_USER_PROJECT_PATH%\_CustomFiles_"
 call "%WB_PROJECT_PATH%\shared\InitLoader.bat"
 
 call V2X -init
+call App init _Cache_
 
 rem call _Prepare_.bat before mounting
 if exist "%_USER_CUSTOMFILES_%\_Prepare_.bat" (

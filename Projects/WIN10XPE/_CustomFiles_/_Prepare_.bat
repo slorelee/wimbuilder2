@@ -11,7 +11,15 @@ if "x%opt[custom.cmd_mode]%"=="xtrue" (
 )
 
 set "_CUSTOMFILES_=%WB_PROJECT_PATH%\_CustomFiles_"
+set "WB_USER_PROJECT_PATH=%WB_ROOT%\AppData\Projects\%WB_PROJECT%"
+set "_USER_CUSTOMFILES_=%WB_USER_PROJECT_PATH%\_CustomFiles_"
+call "%WB_PROJECT_PATH%\shared\CheckUserFiles.bat"
 
+if exist "%_USER_CUSTOMFILES_%\_Prepare_.bat" (
+    pushd "%_USER_CUSTOMFILES_%\"
+    call _Prepare_.bat :BEFORE_WIM_BUILD
+    popd
+)
 rem ===================================
 goto :EOF
 

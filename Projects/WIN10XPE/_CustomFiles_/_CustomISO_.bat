@@ -1,4 +1,8 @@
 if "x%~1"=="x" goto :EOF
+if exist "%_USER_CUSTOMFILES_%\_CustomISO_.bat" (
+    call "%_USER_CUSTOMFILES_%\_CustomISO_.bat" %*
+    goto :EOF
+)
 call :%1 "%~2"
 goto :EOF
 

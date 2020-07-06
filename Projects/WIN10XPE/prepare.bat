@@ -18,13 +18,16 @@ set X_SYS=%X_WIN%\System32
 set X_Desktop=%X%\Users\Default\Desktop
 set "_CUSTOMFILES_=%WB_PROJECT_PATH%\_CustomFiles_"
 
+set "WB_USER_PROJECT_PATH=%WB_ROOT%\AppData\Projects\%WB_PROJECT%"
+set "_USER_CUSTOMFILES_=%WB_USER_PROJECT_PATH%\_CustomFiles_"
+
 call "%WB_PROJECT_PATH%\shared\InitLoader.bat"
 
 call V2X -init
 
-rem call prepare.bat before mounting
-if exist "%_CUSTOMFILES_%\_Prepare_.bat" (
-    pushd "%_CUSTOMFILES_%\"
+rem call _Prepare_.bat before mounting
+if exist "%_USER_CUSTOMFILES_%\_Prepare_.bat" (
+    pushd "%_USER_CUSTOMFILES_%\"
     call _Prepare_.bat :BEFORE_WIM_MOUNT
     popd
 )
@@ -70,8 +73,8 @@ goto :EOF
 :BEFORE_HIVE_LOAD
 
 rem call prepare.bat before hive load
-if exist "%_CUSTOMFILES_%\_Prepare_.bat" (
-    pushd "%_CUSTOMFILES_%\"
+if exist "%_USER_CUSTOMFILES_%\_Prepare_.bat" (
+    pushd "%_USER_CUSTOMFILES_%\"
     call _Prepare_.bat :BEFORE_HIVE_LOAD
     popd
 )

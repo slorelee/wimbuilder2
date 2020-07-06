@@ -443,9 +443,9 @@ if "x%opt[build.wow64support]%"=="xtrue" (
 )
 
 if "x%opt[IE.custom_settings]%"=="xtrue" (
-    if exist "%WB_PROJECT_PATH%\_CustomFiles_\IE_Settings.bat" (
+    if exist "%_USER_CUSTOMFILES_%\IE_Settings.bat" (
         pushd
-        call "%WB_PROJECT_PATH%\_CustomFiles_\IE_Settings.bat"
+        call "%_USER_CUSTOMFILES_%\IE_Settings.bat"
         popd
     )
 )

@@ -3,7 +3,7 @@ call LuaLink -done
 call LuaPin -done
 
 if "x%opt[build.unmount_wim_demand]%"=="xtrue" set _WB_UNMOUNT_DEMAND=1
-if "x%opt[build.last_filereg_disabled]%"=="xtrue" goto :EOF
+if "x%opt[build.last_filereg_disabled]%"=="xtrue" goto :REPLACE_FULLREG_END
 
 rem New Menu
 if %VER[3]% LSS 18300 (

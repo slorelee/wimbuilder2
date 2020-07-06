@@ -8,8 +8,8 @@ function i18n_init() {
         $lang = env('WB_UI_LANG');
         if ($lang == '') $lang = navigator.language || navigator.userLanguage;
     }
-    var i18n_file = 'assets/i18n/' + $lang + '.js';
-    if (fso.FileExists(i18n_file)) {
+    var i18n_file = 'i18n/' + $lang + '.js';
+    if (fso.FileExists('assets/' + i18n_file)) {
         document.write('<script src="' + i18n_file + '"><\/script>');
     }
 }

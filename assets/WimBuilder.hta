@@ -10,19 +10,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- <script>var $app_commandline = oAPP.commandline;</script> -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="assets/vendor/pure-min.css" />
-    <link rel="stylesheet" href="assets/vendor/jstree/themes/default/style.min.css" />
-    <link rel="stylesheet" href="assets/vendor/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="vendor/pure-min.css" />
+    <link rel="stylesheet" href="vendor/jstree/themes/default/style.min.css" />
+    <link rel="stylesheet" href="vendor/jquery-ui/jquery-ui.min.css">
 
-    <link rel="stylesheet" href="assets/css/side-menu.css" />
-    <link rel="stylesheet" href="assets/css/page.css" />
-    <link rel="stylesheet" href="assets/css/page_patch.css" />
-    <link rel="stylesheet" href="assets/css/ibutton.css" />
-    <link rel="stylesheet" href="assets/css/switch.css" />
-    <link rel="stylesheet" href="assets/htakit/css/uikit-tab.css" />
-    <link rel="stylesheet" href="assets/css/alert.css" />
-    <link rel="stylesheet" href="assets/css/themes.css" />
-    <link rel="stylesheet" href="assets/css/mode.css" />
+    <link rel="stylesheet" href="css/side-menu.css" />
+    <link rel="stylesheet" href="css/page.css" />
+    <link rel="stylesheet" href="css/page_patch.css" />
+    <link rel="stylesheet" href="css/ibutton.css" />
+    <link rel="stylesheet" href="css/switch.css" />
+    <link rel="stylesheet" href="htakit/css/uikit-tab.css" />
+    <link rel="stylesheet" href="css/alert.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/mode.css" />
 </head>
 
 <body  onbeforeunload="window_beforeunload()">
@@ -37,8 +37,8 @@
 
  <!--[if lt IE 9]>
     <script>$IE_VER = '8';</script>
-    <script src="assets/js/ES5_fix.js"></script>
-    <script src="assets/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/ES5_fix.js"></script>
+    <script src="vendor/jquery-1.12.4.min.js"></script>
     <style>
         /* overwrite onoffswitch css */
         .onoffswitch-label {
@@ -49,39 +49,39 @@
 
  <!--[if gte IE 9]>
       <script>$IE_VER = '9+';</script>
-      <script src="assets/vendor/jquery-3.3.1.min.js"></script>
+      <script src="vendor/jquery-3.3.1.min.js"></script>
 <![endif]-->
 
 <script>
 // Edage
 if ($IE_VER == '0') {
     $IE_VER = '9+';
-    document.write('<script src="assets/vendor/jquery-3.3.1.min.js"><\/script>');
+    document.write('<script src="vendor/jquery-3.3.1.min.js"><\/script>');
     /*
     var head_script = document.createElement("script");
     head_script.type = "text/javascript";
-    head_script.src = "assets/vendor/jquery-3.3.1.min.js";
+    head_script.src = "vendor/jquery-3.3.1.min.js";
     document.getElementsByTagName('head')[0].appendChild(head_script);
     */
 }
 </script>
 
-<script src="assets/vendor/jstree/jstree.min.js"></script>
-<script src="assets/vendor/marked.min.js"></script>
-<script src="assets/vendor/jquery-ui/jquery-ui.min.js"></script>
-<script src="assets/htakit/js/htakit.js"></script>
-<script src="assets/app.js"></script>
-<script src="assets/js/fs_project.js"></script>
-<script src="assets/js/fs_patch.js"></script>
-<script src="assets/js/app.js"></script>
-<script src="assets/js/helper_html.js"></script>
-<script src="assets/js/helper_i18n.js"></script>
-<script src="assets/js/helper_page.js"></script>
-<script src="assets/js/helper_patch.js"></script>
-<script src="assets/js/definition.js"></script>
-<script src="assets/default_config.js"></script>
-<script src="config.js"></script>
-<script src="AppData/auto_config.js"></script>
+<script src="vendor/jstree/jstree.min.js"></script>
+<script src="vendor/marked.min.js"></script>
+<script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+<script src="htakit/js/htakit.js"></script>
+<script src="app.js"></script>
+<script src="js/fs_project.js"></script>
+<script src="js/fs_patch.js"></script>
+<script src="js/app.js"></script>
+<script src="js/helper_html.js"></script>
+<script src="js/helper_i18n.js"></script>
+<script src="js/helper_page.js"></script>
+<script src="js/helper_patch.js"></script>
+<script src="js/definition.js"></script>
+<script src="default_config.js"></script>
+<script src="../config.js"></script>
+<script src="../AppData/auto_config.js"></script>
 
 <div id="theme_div">
     <canvas id="theme_canvas"></canvas>
@@ -157,7 +157,7 @@ if ($IE_VER == '9+') {
 <div id="page_header">
 <div id="quick_build" style="display:none;float:right;margin:5px 10px 0px 0px">
     <a href="#" title="Quick build" class="i18n-title" onclick="do_quick_build();"
-       style="display:inline-block;height:48px;width:48px;background-image:url(assets/img/play.png)" ></a>
+       style="display:inline-block;height:48px;width:48px;background-image:url(img/play.png)" ></a>
     <div style="display:inline-block;height:48px;">
     <label for="quick_build_mode_run">
         <input type="radio" name="quick_build_mode" id="quick_build_mode_run" /><span class="i18n-text">build(cmd)</span><br/>
@@ -549,7 +549,7 @@ if ($IE_VER == '9+') {
     <div id="status_text_div"><p id="status_text"></p></div>
 </div>
 
-<script src="assets/js/i18n.js"></script>
+<script src="js/i18n.js"></script>
 <script type="text/javascript">
     document.title = $app_title + " - v" + $app_verstr;
     function window_onload() {
@@ -568,13 +568,13 @@ if ($IE_VER == '9+') {
 
     function dpi_adapt(scale) {
         if (scale != '') {
-            load_css('assets/css/dpi_' + scale + '.css');
+            load_css('css/dpi_' + scale + '.css');
         }
     }
 
     function mode_adapt(mode) {
         if (mode != '') {
-            load_css('assets/css/mode_' + mode + '.css');
+            load_css('css/mode_' + mode + '.css');
         }
     }
 
@@ -588,13 +588,13 @@ if ($IE_VER == '9+') {
         save_current_preset();
     }
 </script>
-<script src="assets/js/page_start.js"></script>
-<script src="assets/js/page_project.js"></script>
-<script src="assets/js/page_patches.js"></script>
-<script src="assets/js/page_build.js"></script>
-<script src="assets/js/page_settings.js"></script>
-<script src="assets/js/menu_click.js"></script>
-<script src="assets/js/init.js"></script>
-<script src="assets/themes/themes.js"></script>
+<script src="js/page_start.js"></script>
+<script src="js/page_project.js"></script>
+<script src="js/page_patches.js"></script>
+<script src="js/page_build.js"></script>
+<script src="js/page_settings.js"></script>
+<script src="js/menu_click.js"></script>
+<script src="js/init.js"></script>
+<script src="themes/themes.js"></script>
 </body>
 </html>

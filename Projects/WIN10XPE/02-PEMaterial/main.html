@@ -60,7 +60,7 @@
 (function() {
     if (!$patch_loaded) {
         $('#pem_apps img').each(function(){
-            $(this).attr('src', $obj_patch.path + '/' + $(this).attr('src'));
+            $(this).attr('src', '../' + $obj_patch.path + '/' + $(this).attr('src'));
         });
     }
 })();

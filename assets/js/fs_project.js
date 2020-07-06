@@ -6,13 +6,13 @@ var Project = {
         var project = {};
         project.name = name;
         project.path = Project.root_path + '/' + name;
-        project.uri = project.path;
+        project.uri = '../' + project.path;
         project.app_root = $app_root.replace(/\\/g, '/');
         project.full_path = project.app_root + '/' + project.path;
         project.appdata_full_path = project.app_root + '/AppData/' + project.path;
         project.full_uri = project.full_path;
         project.full_path = project.full_path.replace(/\//g, '\\');
-        project.style = project.path + '/_Assets_/style.css';
+        project.style = '../' + project.path + '/_Assets_/style.css';
         project.current_preset_path = '';
         var appdata_preset_path = 'AppData/' + project.path + '/_Assets_/preset';
         create_folder_cascade(appdata_preset_path.replace(/\//g, '\\'));

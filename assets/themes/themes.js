@@ -3,26 +3,26 @@ var $theme_path = '';
 var $theme_canvas = null;
 
 function load_theme_css(theme) {
-  load_css("assets/themes/" + theme + "/css.css");
+  load_css("themes/" + theme + "/css.css");
 }
 
 function load_theme(theme, force) {
   if (!force && $theme_name != '') return;
-  var js_file = 'assets/themes/' + theme + '/js.js';
-  if (!fso.FileExists(js_file)) return;
+  var js_file = 'themes/' + theme + '/js.js';
+  if (!fso.FileExists('assets/' + js_file)) return;
 
   init_theme_canvas();
 
   load_theme_css(theme);
   document.write('<script src="' + js_file + '"></script>');
   $theme_name = theme;
-  $theme_path = 'assets/themes/' + theme;
+  $theme_path = 'themes/' + theme;
 }
 
 function themes_loader() {
   if (!$ui_settings['enable_theme_loader']) return;
-  var file = 'assets/themes/loader.js';
-  if (fso.FileExists(file)) {
+  var file = 'themes/loader.js';
+  if (fso.FileExists('assets/' + file)) {
     document.write('<script src="' + file + '"></script>');
   }
 }

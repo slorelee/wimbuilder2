@@ -17,6 +17,7 @@ if not exist "%X_SYS%\dwm.exe" (
 )
 
 call za-Slim\Cleanup.bat
+if exist "%opt[slim.hive]%" call "%opt[slim.hive]%"
 
 if "x%opt[registry.software.compress]%"=="xtrue" (
     reg save HKLM\Tmp_Software "%X_SYS%\config\SOFTWARE.hiv" /y /c

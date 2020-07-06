@@ -3,7 +3,11 @@ if "x%opt[system.workgroup]%"=="x" (
 )
 
 call :SUB_SLIM SlimResources
-call :SUB_SLIM SlimRegistry
+rem call :SUB_SLIM SlimRegistry
+
+if "x%opt[slim.hive]%"=="xtrue" (
+    set opt[slim.hive]=za-Slim\SlimRegistry\last.bat
+)
 goto :EOF
 
 :SUB_SLIM

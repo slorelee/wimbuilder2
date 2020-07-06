@@ -50,7 +50,7 @@ set APP_HOST_WIN=UNKNOWN
 if exist "%windir%\SystemResources\" set APP_HOST_WIN=10
 
 rem init i18n file
-set "I18N_SCRIPT=%~dp0i18n\i18n_.wsf"
+set "I18N_SCRIPT=%~dp0lib\i18n\i18n_.wsf"
 
 set findcmd=findstr
 if not exist "%windir%\System32\findstr.exe" set findcmd=find
@@ -67,18 +67,18 @@ set LocaleID=%APP_HOST_LANG%
 :SKIP_AUTO_LANG
 set I18N_LCID=%LocaleID%
 set APP_UI_LANG=%LocaleID%
-if not exist i18n\%LocaleID%.vbs (
+if not exist lib\i18n\%LocaleID%.vbs (
     set I18N_LCID=0
     goto :MAIN_ENTRY
 )
 
-set "I18N_SCRIPT=%~dp0i18n\i18n.wsf"
-if not exist i18n\0.vbs goto :UPDATE_I18NRES
-fc /b i18n\%LocaleID%.vbs i18n\0.vbs>nul
+set "I18N_SCRIPT=%~dp0lib\i18n\i18n.wsf"
+if not exist lib\i18n\0.vbs goto :UPDATE_I18NRES
+fc /b lib\i18n\%LocaleID%.vbs lib\i18n\0.vbs>nul
 if not ERRORLEVEL 1 goto :MAIN_ENTRY
 
 :UPDATE_I18NRES
-copy /y i18n\%LocaleID%.vbs i18n\0.vbs
+copy /y lib\i18n\%LocaleID%.vbs lib\i18n\0.vbs
 
 :MAIN_ENTRY
 

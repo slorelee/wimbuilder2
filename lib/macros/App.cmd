@@ -4,6 +4,7 @@ goto :EOF
 :PULL
 shift
 set "APP_URL=%~1"
+set APP_FILE=
 if not "x%2"=="x" set "APP_FILE=%~2"
 if "x%APP_FILE%"=="x" set "APP_FILE=%~nx1"
 call :INFO "%APP_FILE%"

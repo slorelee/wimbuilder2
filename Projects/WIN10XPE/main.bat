@@ -41,17 +41,33 @@ set opt[support.audio]=%HasPatch%
 call shared\InitCodePage.bat
 
 echo.
-echo \033[97;44mAvailable Environment Variables:|cmdcolor.exe
+echo \033[97;44mAvailable Environment Variables\033[97;45m(For Developer):|cmdcolor.exe
 set WB_
+set VER[3]
 echo.
 echo X=%X%
 set X_
 echo.
+set _CUSTOMFILES_
+set _USER_
 echo V=%V%
+echo %%V%%\%%APP_CACHE%%=%V%\%APP_CACHE%
 echo.
 set APP_
 echo.
 set _V
+echo.
+echo Mounted KEYs of %WB_SRC%'s HIVEs
+echo   - HKEY_LOCAL_MACHINE\Src_DEFAULT
+echo   - HKEY_LOCAL_MACHINE\Src_DRIVERS
+echo   - HKEY_LOCAL_MACHINE\Src_SOFTWARE
+echo   - HKEY_LOCAL_MACHINE\Src_SYSTEM
+echo.
+echo Mounted KEYs of %WB_BASE%'s HIVEs
+echo   - HKEY_LOCAL_MACHINE\Tmp_DEFAULT
+echo   - HKEY_LOCAL_MACHINE\Tmp_DRIVERS
+echo   - HKEY_LOCAL_MACHINE\Tmp_SOFTWARE
+echo   - HKEY_LOCAL_MACHINE\Tmp_SYSTEM
 echo.
 
 if "x%opt[build.main_filereg_disabled]%"=="xtrue" goto :EOF

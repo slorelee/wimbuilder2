@@ -15,6 +15,9 @@ if "x%WB_RUNAS_TI%"=="x" (
   goto :EOF
 )
 
+echo \033[97;41m W \033[97;42m i \033[97;43m m \033[97;44m B \033[97;45m u \033[97;46m i \033[97;100m l \033[97;101m d \033[97;102m e \033[97;104m r \033[97;105m - \033[97;104mv%WB_VER_STR%|cmdcolor.exe
+echo.
+
 title WimBuilder(%cd%)
 
 if "x%_WB_EXEC_MODE%"=="x1" (
@@ -75,7 +78,6 @@ if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
     popd
 )
 
-echo WimBuilder - v%WB_VER_STR%
 set TIMER_START=
 for /f "delims=" %%t in ('cscript.exe //nologo bin\Timer.vbs') do set TIMER_START=%%t
 call :cecho PHRASE "%TIMER_START% - Building Start ..."

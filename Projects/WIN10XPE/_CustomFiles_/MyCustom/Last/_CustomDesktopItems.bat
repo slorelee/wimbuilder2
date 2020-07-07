@@ -1,3 +1,7 @@
+if exist "%_USER_CUSTOMFILES_%\MyCustom\Last\%~nx0" (
+    goto :EOF
+)
+
 rem -- Remove desktop.ini
 rem del /a /q "%X%\Users\Default\Desktop\desktop.ini"
 rem del /a /q "%X%\Users\Public\Desktop\desktop.ini"

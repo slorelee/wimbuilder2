@@ -2,7 +2,6 @@ set APP_NAME=Explorer++
 call App pull https://explorerplusplus.com/software/explorer++_1.3.5_x%_V8664%.zip
 call :BUILD
 
-set APP_FILE=
 if "%WB_PE_LANG%"=="zh-CN" (
     call App pull https://explorerplusplus.com/software/translations/explorer++_1.3.5_ZH.zip
     call :LANG 4 

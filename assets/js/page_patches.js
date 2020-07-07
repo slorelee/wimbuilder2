@@ -250,6 +250,12 @@ function linkpath(path) {
   return path;
 }
 
+function userpath(path) {
+  upath = path.replace('\\Projects\\', '\\AppData\\Projects\\');
+  if (fso.FileExists(upath)) return upath;
+  return path;
+}
+
 var _editor_notice_done = false;
 function edit_menu_action(file) {
   // var editor = $obj_project.full_path + '/_CustomFiles_/editor.cmd';

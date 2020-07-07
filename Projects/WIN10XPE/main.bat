@@ -1,7 +1,15 @@
 @echo off
 echo %cd%
 
+echo.
+echo \033[97;44mBuild Options:|cmdcolor.exe
 set opt
+
+echo.
+echo \033[97;44mBuild Selection:|cmdcolor.exe
+type "%_WB_TMP_DIR%\_patches_selected.txt"
+echo.
+
 rem Dism /Get-Packages /Image:"%_WB_MNT_DIR%"
 
 cd /d "%~dp0"
@@ -31,6 +39,20 @@ call CheckPatch "01-Components\03-Audio"
 set opt[support.audio]=%HasPatch%
 
 call shared\InitCodePage.bat
+
+echo.
+echo \033[97;44mAvailable Environment Variables:|cmdcolor.exe
+set WB_
+echo.
+echo X=%X%
+set X_
+echo.
+echo V=%V%
+echo.
+set APP_
+echo.
+set _V
+echo.
 
 if "x%opt[build.main_filereg_disabled]%"=="xtrue" goto :EOF
 

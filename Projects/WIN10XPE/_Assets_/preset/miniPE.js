@@ -38,6 +38,10 @@ var $patches_opt = {
     "_._._":""
 };
 
+if ($ui_settings['mode'] == 'Beginner') {
+    $patches_opt = {};
+    alert(i18n_t("This preset couldn't work in Beginner Mode."));
+}
 
 function patches_node_init(arr) {
     // alert($patches_preset);

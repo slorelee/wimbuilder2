@@ -252,7 +252,7 @@ function linkpath(path) {
 
 var _editor_notice_done = false;
 function edit_menu_action(file) {
-  var editor = $obj_project.full_path + '/_CustomFiles_/editor.cmd';
+  // var editor = $obj_project.full_path + '/_CustomFiles_/editor.cmd';
   if ($_wb_first_run) {
     if (!_editor_notice_done) {
       var msg = i18n_t('Will open file with notepad.exe, You can edit [%s] file to change the editor.');
@@ -263,13 +263,7 @@ function edit_menu_action(file) {
   }
   file = linkpath(file);
   if (!fso.FileExists(file)) return;
-  var style = 0;
-  if (!fso.FileExists(editor)) {
-    editor = 'notepad.exe';
-    style = 1;
-  }
-  file = file.replace(/\//g, '\\');
-  Run(editor, '\"' + file + '\"', style);
+  open_edit(file);
 }
 
 function update_preset_list(force) {

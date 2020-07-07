@@ -9,6 +9,18 @@ function BrowseFile(elem) {
     $(elem).val(f.value);
 }
 
+function open_edit(file) {
+    var editor = $obj_project.full_path + '/_CustomFiles_/editor.cmd';
+    if (!fso.FileExists(file)) return;
+    var style = 0;
+    if (!fso.FileExists(editor)) {
+      editor = 'notepad.exe';
+      style = 1;
+    }
+    file = file.replace(/\//g, '\\');
+    Run(editor, '\"' + file + '\"', style);
+}
+
 function get_current_settings() {
     var text = '';
     var settings_keys = Object.keys($ui_settings);

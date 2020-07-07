@@ -2,6 +2,8 @@ cd /d "%~dp0"
 
 call V2X WinXShell
 if not exist "%X%\Program Files\WinXShell" goto :EOF
+md "%X%\Program Files\WinXShell\%WB_PE_LANG%"
+copy /y "%X_SYS%\%WB_PE_LANG%\systemcpl.dll.mui" "%X%\Program Files\WinXShell\%WB_PE_LANG%\"
 
 rem Grant right for Administrator
 call _ACLRegKey Tmp_Software\Classes\ms-settings

@@ -30,8 +30,10 @@ res = LoadHashToDict("remote.md5", objRemoteMD5)
 
 For Each file In objLocalMD5
     'remove same files from objRemoteMD5
-    If objLocalMD5.Item(file) = objRemoteMD5.Item(file) Then
-        objRemoteMD5.Remove(file)
+    If objRemoteMD5.Exists(file) Then
+        If objLocalMD5.Item(file) = objRemoteMD5.Item(file) Then
+            objRemoteMD5.Remove(file)
+        End If
     End If
 Next
 
@@ -54,7 +56,7 @@ Function LoadHashToDict(filename, dict)
   Do
     inLine = inStream.ReadLine
     If Left(inLine, 1) <> "" And Left(inLine, 1) <> "/" And _
-        Left(inLine, 1) <> "S" And Left(inLine, 1) <> " " And _
+        Left(inLine, 1) <> "S" And Left(inLine, 1) <> vbTab And _
           Left(inLine, 3) <> "End" And  Left(inLine, 3) <> "Err" Then
             arr = Split(inLine, " ", 2)
             'If dict.Exists(arr(1)) Then

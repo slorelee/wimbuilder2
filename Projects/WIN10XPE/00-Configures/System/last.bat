@@ -3,6 +3,8 @@ call ComputerName.bat
 reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-18" /v ProfileImagePath /d X:\Users\Default /f
 
 set _fbwf_size=%opt[config.fbwf.cache]%
+call :X_DRVTYPE_EXFAT
+
 if "x%_fbwf_size%"=="x" set _fbwf_size=1024
 if "x%_fbwf_size%"=="x128GB" goto :USE_WES_FBWF
 
@@ -25,3 +27,16 @@ rem NumLock on/off
 if not "x%opt[system.numlock]%"=="xfalse" (
     reg add "HKLM\Tmp_Default\Control Panel\Keyboard" /v InitialKeyboardIndicators /d 2 /f
 )
+goto :EOF
+
+:X_DRVTYPE_EXFAT
+http://bbs.wuyou.net/forum.php?mod=viewthread&tid=421466
+by zhuma12345678
+
+if not "x%opt[config.x_drive_type]%"=="xexFAT" goto :EOF
+if not exist "%WB_ROOT%\%ISO_DIR%\boot\" mkdir "%WB_ROOT%\%ISO_DIR%\boot\"
+copy /y boot.sdi "%WB_ROOT%\%ISO_DIR%\boot\"
+reg add HKLM\Tmp_SYSTEM\ControlSet001\Services\exfat /v Start /t REG_DWORD /d 0 /f
+if "x%_fbwf_size%"=="x" set _fbwf_size=128GB
+
+goto :EOF

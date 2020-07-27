@@ -21,15 +21,14 @@ ChsWubi.lex
 InputMethod\CHS
 MSWB70804.dll,NL7Data0804.dll,NL7Lexicons0804.dll,NL7Models0804.dll
 NOISE.CHS,chs_singlechar_pinyin.dat,ChsStrokeDS.dll
-:end_files
 
-rem =================WOW64 Support=================
-if not "x%opt[build.wow64support]%"=="xtrue" goto :UDPATE_REGISTY
-call AddFiles %0 :end_wow64_files
-goto :end_wow64_files
+; rem =================WOW64 Support=================
++if "x%opt[build.wow64support]%"="xtrue"
 \Windows\SysWOW64\InputMethod\CHS
 \Windows\SysWOW64\chs_singlechar_pinyin.dat
-:end_wow64_files
+-if
+
+:end_files
 
 :UDPATE_REGISTY
 
@@ -54,6 +53,9 @@ rem ; Microsoft Wubi
 if "x%opt[IME.ms_wubi]%"=="xtrue" (
     reg add HKLM\Tmp_Software\Microsoft\CTF\TIP\{6A498709-E00B-4C45-A018-8F9E4081AE40}\LanguageProfile\0x00000804\{82590C13-F4DD-44F4-BA1D-8667246FDF8E} /v Enable /t REG_DWORD /d 1 /f
 )
+
+rem Default Mode for CHSIMEs: 0 - Chinese, 1 - English
+reg add "HKLM\Tmp_DEFAULT\Software\Microsoft\InputMethod\Settings\CHS" /v "Default Mode" /t REG_DWORD /d 1 /f
 
 goto :EOF
 

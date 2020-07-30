@@ -4,6 +4,7 @@ rem [Catalog_AddFiles_Info]
 rem Use signtool.exe to find Catalogs ex: Signtool verify /kp /v /a X:\Windows\System32\drivers\*.sys > B:\SignDrivers.txt
 
 if "x%opt[build.full_catalog]%"=="xtrue" set opt[build.catalog]=full
+if "x%opt[build.full_catalog]%"=="xfalse" set opt[build.catalog]=light
 
 if not "x%opt[build.catalog]%"=="xfull" goto :CATALOG_ADDFILES
 rem Full Catalogs

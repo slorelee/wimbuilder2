@@ -26,7 +26,11 @@ TXT.replace(/%Language%/g, SxSLang);
 
 :update_list
 rd /s /q "%_WB_TMP_DIR%\SlimWinSxS"
-wimlib-imagex.exe extract "%WB_ROOT%\%_WB_PE_WIM%" %WB_BASE_INDEX% @"%SxSListFile%" --dest-dir="%_WB_TMP_DIR%\SlimWinSxS" --no-acls --nullglob
+if "x%opt[build.registry.software]%"=="xfull" (
+  wimlib-imagex.exe extract "%WB_SRC%" %WB_SRC_INDEX% @"%SxSListFile%" --dest-dir="%_WB_TMP_DIR%\SlimWinSxS" --no-acls --nullglob
+) else (
+  wimlib-imagex.exe extract "%WB_ROOT%\%_WB_PE_WIM%" %WB_BASE_INDEX% @"%SxSListFile%" --dest-dir="%_WB_TMP_DIR%\SlimWinSxS" --no-acls --nullglob
+)
 
 if not "x%Merge_WinSxS%"=="x1" (
   (echo delete '\Windows\WinSxs' --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"

@@ -20,7 +20,10 @@ if exist fbwf_%_fbwf_size%.cfg (
   echo Enable %_fbwf_size% MB cache size with Windows Embedded Standard's fbwf driver
   copy /y fbwf_%_fbwf_size%.cfg "%X_WIN%\fbwf.cfg"
   copy /y fbwf.sys "%X_SYS%\drivers\fbwf.sys"
+  rem support exFAT boot.sdi
+  reg add HKLM\Tmp_SYSTEM\ControlSet001\Services\exfat /v Start /t REG_DWORD /d 0 /f
 )
+
 set _fbwf_size=
 
 rem NumLock on/off
@@ -30,13 +33,14 @@ if not "x%opt[system.numlock]%"=="xfalse" (
 goto :EOF
 
 :X_DRVTYPE_EXFAT
-http://bbs.wuyou.net/forum.php?mod=viewthread&tid=421466
-by zhuma12345678
+rem http://bbs.wuyou.net/forum.php?mod=viewthread&tid=421466
+rem by zhuma12345678
 
 if not "x%opt[config.x_drive_type]%"=="xexFAT" goto :EOF
 if not exist "%WB_ROOT%\%ISO_DIR%\boot\" mkdir "%WB_ROOT%\%ISO_DIR%\boot\"
 copy /y boot.sdi "%WB_ROOT%\%ISO_DIR%\boot\"
-reg add HKLM\Tmp_SYSTEM\ControlSet001\Services\exfat /v Start /t REG_DWORD /d 0 /f
 if "x%_fbwf_size%"=="x" set _fbwf_size=128GB
+if "x%_fbwf_size%"=="x128GB" goto :EOF
+if %_fbwf_size% LSS 4096 set _fbwf_size=128GB
 
 goto :EOF

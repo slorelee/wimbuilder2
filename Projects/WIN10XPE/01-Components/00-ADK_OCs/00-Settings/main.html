@@ -1,0 +1,29 @@
+<div style="margin:10px 5px;font-size:1.2em;">
+  <fieldset>
+  <legend><label>ADK Path:</label></legend>
+  <div>
+  <input type="text" name="adk.wpe_path" class="opt_item" style="width:98%;" value="C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment" />
+  </div>
+  </fieldset>
+  <br/>
+
+  <div>
+	<label class="left_label">Default Language:</label>
+	<!-- Selectmenu -->
+	<select id="adk_lang_select" name="adk.lang" width="40%" class="opt_item">
+		<option value="-" >-</option>
+		<option value="en-US" selected="selected">en-US</option>
+		<option value="fr-FR" >fr-FR</option>
+		<option value="ja-JP" >ja-JP</option>
+		<option value="ko-KR" >ko-KR</option>
+		<option value="zh-CN">zh-CN</option>
+		<option value="zh-TW">zh-TW</option>
+	</select>
+  </div>
+</div>
+
+<script>
+(function() {
+    $("#adk_lang_select").selectmenu();
+})();
+</script>

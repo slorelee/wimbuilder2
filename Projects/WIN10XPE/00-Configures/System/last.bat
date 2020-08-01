@@ -36,9 +36,7 @@ goto :EOF
 rem http://bbs.wuyou.net/forum.php?mod=viewthread&tid=421466
 rem by zhuma12345678
 
-if not "x%opt[config.x_drive_type]%"=="xexFAT" goto :EOF
-if not exist "%WB_ROOT%\%ISO_DIR%\boot\" mkdir "%WB_ROOT%\%ISO_DIR%\boot\"
-copy /y boot.sdi "%WB_ROOT%\%ISO_DIR%\boot\"
+if not "x%opt[iso.x_exFAT]%"=="xtrue" goto :EOF
 if "x%_fbwf_size%"=="x" set _fbwf_size=128GB
 if "x%_fbwf_size%"=="x128GB" goto :EOF
 if %_fbwf_size% LSS 4096 set _fbwf_size=128GB

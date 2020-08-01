@@ -21,6 +21,11 @@ if not "x%opt[iso.attended_boot]%"=="xtrue" (
   ren "%WB_ROOT%\%ISO_DIR%\boot\bootfix.bin.bak" bootfix.bin
 )
 
+if "x%opt[iso.x_exFAT]%"=="xtrue" (
+  xcopy /d /c /y "%WB_ROOT%\Projects\%WB_PROJECT%\zz-ISO\boot.sdi" "%WB_ROOT%\%ISO_DIR%\boot\boot.sdi"
+) else (
+  xcopy /E /Y "%WB_SRC_FOLDER%\boot\boot.sdi" "%WB_ROOT%\%ISO_DIR%\boot\boot.sdi"
+)
 
 if not "x%opt[iso.edit_bcd]%"=="xtrue" goto :EOF
 set BCD_BOOTMENUPOLICY=Standard

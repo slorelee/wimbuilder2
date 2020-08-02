@@ -1,8 +1,35 @@
 @echo off
-set updater_url=https://github.com/slorelee/wimbuilder2/releases/download/update
-set source_url=https://github.com/slorelee/wimbuilder2/raw/master
+if "x%REMOTE_URL%"=="x" set REMOTE_URL=https://github.com/slorelee/wimbuilder2/releases/download/update
+if "x%SOURCE_URL%"=="x" set SOURCE_URL=https://github.com/slorelee/wimbuilder2/raw/master
+
+if "x%1"=="x--help" set UPT_HELP=1
+if "x%1"=="x-h" set UPT_HELP=1
+if not "x%UPT_HELP%"=="x1" goto :END_HELP
+
+echo.
+echo Usage:
+echo   %~n0 [OPTIONS] [--file ^<file^>|--dir ^<dir^>]
+echo OPTIONS
+echo   -h,--help    show help
+echo   --silent     update silently
+pause
+goto :EOF
+:END_HELP
+
+goto :END_OPT_PARSER
+
+:OPT_PARSER
+if "x%~1"=="x" goto :EOF
+if /i "%~1"=="--file" set "UPT_FILE=%~2" & shift
+if /i "%~1"=="--dir" set "UPT_DIR=%~2" & shift
+if /i "%~1"=="--silent" set UPT_SILENT=1
+shift
+goto :OPT_PARSER
+
+:END_OPT_PARSER
 
 cd /d "%~dp0"
+set TMP_UPT=_Factory_\tmp
 if "x%TMP_UPDATER%"=="x1" goto :UPDATE_MAIN
 
 if exist "x64\" (
@@ -15,7 +42,6 @@ if exist "x64\" (
 )
 
 set "APP_ROOT=%cd%"
-set TMP_UPT=_Factory_\tmp
 if not exist "%TMP_UPT%\" md "%TMP_UPT%"
 
 set APP_ARCH=x64
@@ -30,14 +56,14 @@ if exist "bin\fciv.zip" set PULL_ACTION=0
 if exist "bin\fciv.zip.aria2" set PULL_ACTION=1
 if "x%PULL_ACTION%"=="x1" (
   echo Downloading^(fciv.exe^) ...
-  aria2c.exe -c "%updater_url%/fciv.zip" -d bin
+  aria2c.exe -c "%REMOTE_URL%/fciv.zip" -d bin
 )
 7z.exe e bin\fciv.zip fciv.exe -obin
 :END_FCIV
 
 if not exist "bin\%~n0.vbs" (
   echo Downloading^(%~n0.vbs^) ...
-  aria2c.exe -c "%updater_url%/%~n0.vbs" -d bin
+  aria2c.exe -c "%REMOTE_URL%/%~n0.vbs" -d bin
 )
 
 if not exist "bin\fciv.exe" set ERROR_EXIT=1
@@ -64,27 +90,36 @@ set TMP_UPDATER=1
 set "TMP_UPT=%APP_ROOT%\%TMP_UPT%"
 cd /d "%TMP_UPT%"
 title Updater
+
+echo %TMP_UPT%
+echo REMOTE_URL=%REMOTE_URL%
+echo SOURCE_URL=%SOURCE_URL%
+echo.
+
+call :OPT_PARSER %*
+
 echo Updating ...
 echo.
 echo PHASE 1:Create local.MD5 manifest ...
-echo %TMP_UPT%
+
 if exist "%TMP_UPT%\local.md5" goto :END_LOCAL_MD5
-echo Detect Projects ...
-fciv.exe -add "%APP_ROOT%\Projects" -r -bp "%APP_ROOT%" > "%TMP_UPT%\local.md5"
-echo Detect assets ...
-fciv.exe -add "%APP_ROOT%\assets" -r -bp "%APP_ROOT%" >> "%TMP_UPT%\local.md5"
-echo Detect bin ...
-fciv.exe -add "%APP_ROOT%\bin" -r -bp "%APP_ROOT%" >> "%TMP_UPT%\local.md5"
-echo Detect macros ...
-fciv.exe -add "%APP_ROOT%\lib\macros" -bp "%APP_ROOT%" >> "%TMP_UPT%\local.md5"
-fciv.exe -add "%APP_ROOT%\config.js" -wp >> "%TMP_UPT%\local.md5"
-fciv.exe -add "%APP_ROOT%\WimBuilder.cmd" -wp >> "%TMP_UPT%\local.md5"
+
+if not "x%UPT_FILE%"=="x" goto :END_LOCAL_MD5
+if not "x%UPT_DIR%"=="x" goto :END_LOCAL_MD5
+
+echo. > "%TMP_UPT%\local.md5"
+call :UPDATE_DETECT_DIR Projects -r
+call :UPDATE_DETECT_DIR assets -r
+call :UPDATE_DETECT_DIR bin -r
+call :UPDATE_DETECT_DIR lib\macros
+call :UPDATE_DETECT config.js
+call :UPDATE_DETECT WimBuilder.cmd
 
 :END_LOCAL_MD5
 echo PHASE 2:Download remote.MD5 manifest ...
 
 if exist "%TMP_UPT%\remote.md5" goto :END_REMOTE_MD5
-set "remote_md5=%updater_url%/remote.md5"
+set "remote_md5=%REMOTE_URL%/remote.md5"
 echo.
 echo Download: %remote_md5%
 aria2c.exe -c "%remote_md5%" -d "%TMP_UPT%" -o remote.md5
@@ -97,15 +132,48 @@ if not exist "%TMP_UPT%\remote.md5" (
 
 echo PHASE 3:Get update file list ...
 del /f /a /q "%TMP_UPT%\updatefile.list"
-cscript //nologo "%TMP_UPT%\%~n0.vbs" %*
+
+if not "x%UPT_FILE%"=="x" call :UPDATE_FILE
+if not "x%UPT_DIR%"=="x" call :UPDATE_DIR
+
+if not exist "%TMP_UPT%\updatefile.list" call :UPDATE_DIFF %*
 echo.
 echo Update File(s):
 type "%TMP_UPT%\updatefile.list"
 echo.
 
+if not "x%UPT_SILENT%"=="x1" (
+    echo Press any key to update ...
+    pause > nul
+)
+
 echo PHASE 4:Donwload updated file(s) ...
 for /f "usebackq delims=" %%i in ("%TMP_UPT%\updatefile.list") do (
     echo Download: %%i
-    aria2c.exe -c "%source_url%/%%i" -d "%APP_ROOT%" -o "%%i" --allow-overwrite=true 
+    aria2c.exe -c "%SOURCE_URL%/%%i" -d "%APP_ROOT%" -o "%%i" --allow-overwrite=true 
 )
 pause
+goto :EOF
+
+:UPDATE_DETECT_DIR
+echo Detect %~1 ...
+fciv.exe -add "%APP_ROOT%\%~1" %~2 -bp "%APP_ROOT%" >> "%TMP_UPT%\local.md5"
+goto :EOF
+
+:UPDATE_DETECT
+echo Detect %~1 ...
+fciv.exe -add "%APP_ROOT%\%~1" -wp >> "%TMP_UPT%\local.md5"
+goto :EOF
+
+:UPDATE_FILE
+(echo %UPT_FILE%) > "%TMP_UPT%\updatefile.list"
+goto :EOF
+
+:UPDATE_DIR
+cscript //nologo "%TMP_UPT%\%~n0.vbs" --dir "%UPT_DIR%"
+goto :EOF
+
+:UPDATE_DIFF
+cscript //nologo "%TMP_UPT%\%~n0.vbs" %*
+goto :EOF
+

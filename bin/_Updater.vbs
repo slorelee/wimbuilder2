@@ -10,22 +10,25 @@ Const ForAppending = 8
 
 Dim argCount:argCount = Wscript.Arguments.Count
 
-If argCount = 0 Then
-  'Wscript.Quit(1)
+Dim optDir
+If argCount > 1 Then
+    If  Wscript.Arguments(0) = "--dir" Then
+      optDir = Wscript.Arguments(1)
+    End If
 End If
 
-Dim inFile, outFile, inStream, outStream, inLine, FileSys, WshShell
+Dim inFile, outFile, inStream, outStream, inLine, FSO, WshShell
 'inFile = Wscript.Arguments(0)
 'outFile = Wscript.Arguments(0) & "_"
 
 Set WshShell = Wscript.CreateObject("Wscript.Shell")
-Set FileSys = CreateObject("Scripting.FileSystemObject")
+Set FSO = CreateObject("Scripting.FileSystemObject")
 
 Set objLocalMD5 = CreateObject("Scripting.Dictionary")
 Set objRemoteMD5 = CreateObject("Scripting.Dictionary")
 
 Dim res
-res = LoadHashToDict("local.md5", objLocalMD5)
+If optDir = "" Then res = LoadHashToDict("local.md5", objLocalMD5)
 res = LoadHashToDict("remote.md5", objRemoteMD5)
 
 For Each file In objLocalMD5
@@ -37,6 +40,14 @@ For Each file In objLocalMD5
     End If
 Next
 
+If optDir <> "" Then
+    For Each file In objRemoteMD5
+        If InStr(1, file, optDir, vbTextCompare) <> 1 Then
+            objRemoteMD5.Remove(file)
+        End If
+    Next
+End If
+
 Dim outstr
 outstr = vbCrLf
 For Each file In objRemoteMD5
@@ -47,12 +58,13 @@ outstr = Replace(outstr, "\", "/")
 outstr = Replace(outstr, vbCrLf & "projects/", vbCrLf & "Projects/")
 outstr = Replace(outstr, vbCrLf & "wimbuilder.cmd" & vbCrLf, vbCrLf & "WimBuilder.cmd" & vbCrLf)
 
-Set outStream = FileSys.CreateTextFile("updatefile.list", OverwriteIfExist)
+Set outStream = FSO.CreateTextFile("updatefile.list", OverwriteIfExist)
 outStream.Write outstr
 outStream.Close
 
 Function LoadHashToDict(filename, dict)
-  Set inStream = FileSys.OpenTextFile(filename, ForReading, FailIfNotExist)
+  If Not FSO.FileExists(filename) Then Exit Function
+  Set inStream = FSO.OpenTextFile(filename, ForReading, FailIfNotExist)
   Do
     inLine = inStream.ReadLine
     If Left(inLine, 1) <> "" And Left(inLine, 1) <> "/" And _

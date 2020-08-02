@@ -96,6 +96,9 @@ $i18n = {
   "Yes":"是",
   "No":"否",
 
+  "Update":"更新",
+  "Restart":"重新启动",
+
   "Please startup with WimBuilder.cmd.":"请通过WimBuilder.cmd启动。",
   "No project to build.":"未选择构建工程。",
   "A project has been found running.":"已经有工程正在运行。",

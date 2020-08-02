@@ -480,7 +480,9 @@ if ($IE_VER == '9+') {
 
 <!-- ############################# page_about Start ############################# -->
 <div id="page_about" class="content_page">
-    <button class="pure-button button-lightblue" onclick="self.close()">closeMe</button>
+    <button class="pure-button button-lightblue i18n-text" onclick="update_me()">Update</button>
+    <button class="pure-button button-green i18n-text" onclick="restart_me()">Restart</button>
+    <!-- <button class="pure-button button-lightblue" onclick="self.close()">closeMe</button>  -->
     <br/><br/>
     Project:<a herf="https://github.com/slorelee/wimbuilder2">https://github.com/slorelee/wimbuilder2</a><br/>
     Chinese:<a herf="http://bbs.wuyou.net/forum.php?mod=viewthread&tid=411399">http://bbs.wuyou.net/forum.php?mod=viewthread&tid=411399</a><br/>
@@ -593,6 +595,7 @@ if ($IE_VER == '9+') {
 <script src="js/page_patches.js"></script>
 <script src="js/page_build.js"></script>
 <script src="js/page_settings.js"></script>
+<script src="js/page_about.js"></script>
 <script src="js/menu_click.js"></script>
 <script src="js/init.js"></script>
 <script src="themes/themes.js"></script>

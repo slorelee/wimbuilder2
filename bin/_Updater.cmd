@@ -8,10 +8,12 @@ if not "x%UPT_HELP%"=="x1" goto :END_HELP
 
 echo.
 echo Usage:
-echo   %~n0 [OPTIONS] [--file ^<file^>|--dir ^<dir^>]
+echo   %~n0 [OPTIONS] [--file ^<file^>^|--dir ^<dir^>]
 echo OPTIONS
 echo   -h,--help    show help
 echo   --silent     update silently
+echo   --local      create local.md5 only
+echo   --dryrun     check only
 pause
 goto :EOF
 :END_HELP
@@ -23,6 +25,8 @@ if "x%~1"=="x" goto :EOF
 if /i "%~1"=="--file" set "UPT_FILE=%~2" & shift
 if /i "%~1"=="--dir" set "UPT_DIR=%~2" & shift
 if /i "%~1"=="--silent" set UPT_SILENT=1
+if /i "%~1"=="--local" set UPT_LOCAL=1
+if /i "%~1"=="--dryrun" set UPT_DRYRUN=1
 shift
 goto :OPT_PARSER
 
@@ -74,7 +78,7 @@ if "x%ERROR_EXIT%"=="x1" (
     goto :EOF
 )
 
-copy /y "%~0" "%TMP_UPT%\" 1>nul
+copy /y "%~dpn0.cmd" "%TMP_UPT%\" 1>nul
 copy /y "%~dpn0.vbs" "%TMP_UPT%\" 1>nul
 
 del /f /a /q "%TMP_UPT%\local.md5"
@@ -116,6 +120,9 @@ call :UPDATE_DETECT config.js
 call :UPDATE_DETECT WimBuilder.cmd
 
 :END_LOCAL_MD5
+if "x%UPT_LOCAL%%UPT_SILENT%"=="x11" goto :EOF
+if "x%UPT_LOCAL%"=="x1" pause && goto :EOF
+
 echo PHASE 2:Download remote.MD5 manifest ...
 
 if exist "%TMP_UPT%\remote.md5" goto :END_REMOTE_MD5
@@ -141,6 +148,11 @@ echo.
 echo Update File(s):
 type "%TMP_UPT%\updatefile.list"
 echo.
+
+if "x%UPT_DRYRUN%"=="x1" (
+    pause
+    goto :EOF
+)
 
 if not "x%UPT_SILENT%"=="x1" (
     echo Press any key to update ...

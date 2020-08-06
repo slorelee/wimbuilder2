@@ -17,7 +17,7 @@ if "x%~1"=="xLUA" (
 )
 
 rem disable AutoRestartShell
-reg add "%regkey%" /v AutoRestartShell /t REG_DWORD 0 /f
+reg add "%regkey%" /v AutoRestartShell /t REG_DWORD /d 0 /f
 if not exist X:\Windows\explorer.exe (
     reg add "%regkey%" /v Shell /d "X:\Program Files\WinXShell\WinXShell.exe -regist -winpe" /f
 )

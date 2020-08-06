@@ -10,5 +10,6 @@ var $app_menu = {
     'patch':'Customize',
     'build':'Building',
     'settings':'Settings',
+    'advanced':'Advanced',
     'about':'About',
 }

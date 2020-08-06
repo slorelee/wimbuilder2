@@ -10,6 +10,7 @@ $i18n = {
   "Customize":"定制",
   "Building":"构建",
   "Settings":"设置",
+  "Advanced":"高级",
   "About":"关于",
   "Quick build":"快速构建",
   "build(cmd)":"CMD模式",
@@ -95,6 +96,11 @@ $i18n = {
   "Restart to apply changes to your settings?":"立即重新启动以应用最新设置？",
   "Yes":"是",
   "No":"否",
+
+　　"Commands":"命令",
+　　"Reserved":"保留",
+　　"Clear":"清空",
+　　"Load":"加载",
 
   "Update":"更新",
   "Restart":"重新启动",

@@ -63,6 +63,11 @@ $('#menu_settings').click(function(){
     settings_page_init();
 });
 
+$('#menu_advanced').click(function(){
+    switch_page('advanced');
+    advanced_page_init();
+});
+
 $('#menu_about').click(function(){
     switch_page('about');
 });

@@ -478,6 +478,28 @@ if ($IE_VER == '9+') {
 </div>
 <!-- ############################# page_settings End ############################# -->
 
+<!-- ############################# page_advanced Start ############################# -->
+<div id="page_advanced" class="content_page">
+<div id="adv_tab">
+    <div class="tab tab0">
+        <button class="pure-button button-green i18n-text" onclick="clean_advcmd()">Clear</button>
+        <button class="pure-button button-maroon i18n-text" onclick="load_advcmd()">Load</button>
+        <button class="pure-button button-orange i18n-text" onclick="save_advcmd()">Save</button>
+        <button class="pure-button pure-button-primary i18n-text" style="margin-left:50px;" onclick="exec_advcmd()">Execute</button>
+        <br/>
+        <textarea id="adv_cmdtext" style="overflow:scroll;margin-top:10px" onkeydown="return advcmd_save_event();"></textarea>
+    </div>
+    <div class="tab tab1">
+    </div>
+</div>
+<script type="text/javascript">
+    $("#adv_tab").ultab({header:['Commands', 'Reserved']})
+</script>
+
+</div>
+<!-- ############################# page_advanced End ############################# -->
+
+
 <!-- ############################# page_about Start ############################# -->
 <div id="page_about" class="content_page">
     <button class="pure-button button-lightblue i18n-text" onclick="update_me()">Update</button>
@@ -595,6 +617,7 @@ if ($IE_VER == '9+') {
 <script src="js/page_patches.js"></script>
 <script src="js/page_build.js"></script>
 <script src="js/page_settings.js"></script>
+<script src="js/page_advanced.js"></script>
 <script src="js/page_about.js"></script>
 <script src="js/menu_click.js"></script>
 <script src="js/init.js"></script>

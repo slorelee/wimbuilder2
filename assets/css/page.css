@@ -37,3 +37,10 @@ display:block;
     background-color: #000000;
     color: #fff;
 }
+
+#adv_cmdtext {
+    height: 400px;
+    width: 95%;
+    background-color: #000000;
+    color: #fff;
+}

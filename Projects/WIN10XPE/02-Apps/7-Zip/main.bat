@@ -1,5 +1,10 @@
+if exist "%X_PF%\7-Zip\7z.exe" goto :EOF
+
 call V2X 7-Zip -Extract "7z*-%_Vx8664%.exe" "%X_PF%\7-Zip\"
 copy /y 7z-Register.reg "%X_Startup%\BeforeShell\"
+
+reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\7z.exe" /ve /d "X:\Program Files\7-Zip\7z.exe" /f
+reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\7z.exe" /v Path /d "X:\Program Files\7-Zip" /f
 
 call AssocExt.bat
 call :REMOVE_LANGFILES

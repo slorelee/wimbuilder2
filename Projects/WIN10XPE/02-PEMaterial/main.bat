@@ -11,9 +11,24 @@ if "x%opt[material.load_mode]%"=="xdemand" (
 set SysWOW64=SysWOW64
 if "x%WB_PE_ARCH%"=="xx86" set SysWOW64=System32
 
-reg add "HKLM\tmp_DEFAULT\Environment" /v c7z /d "X:\Program Files\7-Zip\7z.exe" /f
+call :ADD_7ZIP
 
 rem templates
 if not exist "%PEM.Loc%\Installers\" mkdir "%PEM.Loc%\Installers\"
 if not exist "%PEM.Loc%\PortableApps\" mkdir "%PEM.Loc%\PortableApps\"
 if not exist "%PEM.Loc%\Program Files\" mkdir "%PEM.Loc%\Program Files\"
+
+goto :EOF
+
+:ADD_7ZIP
+set "_7z_Patch=%WB_PROJECT_PATH%\02-Apps\7-Zip"
+echo \033[96mApplying Patch:%_7z_Patch% | cmdcolor.exe
+if not exist "%_7z_Patch%" goto :EOF
+pushd "%_7z_Patch%"
+call main.bat
+popd
+set _7z_Patch=
+
+reg add "HKLM\tmp_DEFAULT\Environment" /v c7z /d "X:\Program Files\7-Zip\7z.exe" /f
+
+goto :EOF

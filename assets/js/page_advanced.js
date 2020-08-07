@@ -24,7 +24,9 @@ function save_advcmd() {
 function exec_advcmd() {
     save_advcmd();
     var env = wsh.Environment("PROCESS");
-    env('WB_PROJECT') = selected_project;
+    if (selected_project != null) {
+        env('WB_PROJECT') = selected_project;
+    }
     Run(advcmd_file);
 }
 

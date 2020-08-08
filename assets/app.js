@@ -1,5 +1,5 @@
 var $app_name = 'WimBuilder';
-var $app_verstr = '2020.07.07.0b2036a9';
+var $app_verstr = '2020.08.08.88126c75';
 var $app_title = 'Wim Builder';
 
 var $app_opt = 'support';

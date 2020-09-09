@@ -25,6 +25,15 @@ var Project = {
         project.load_html = function() {
             return load_file('_Assets_/intro.html');
         };
+        project.load_config = function() {
+            var jscfg = load_file('_Assets_/config.js')
+            if (jscfg == '') {
+               set_default_preset(project, 'custom');
+               init_current_preset(project);
+            } else {
+              eval(jscfg);
+            }
+        };
         project.load_presets = function() {
             var arr = get_files(project.path + '/_Assets_/preset');
             arr = arr.concat(get_files(appdata_preset_path));
@@ -45,7 +54,7 @@ var Project = {
         project.html = project.load_html();
         var $patches_opt = {};
         $patches_preset = 'default';
-        eval(load_file('_Assets_/config.js'));
+        project.load_config();
         if (preset) {
             $patches_preset = preset;
         }
@@ -158,8 +167,12 @@ function init_current_preset(project) {
     if (!$app_save_current_preset) return;
     project.current_preset_path = project.appdata_full_path + '/_Assets_/preset/current.js';
     if (!fso.FileExists(project.current_preset_path)) {
-        fso.CopyFile(project.full_preset_path($patches_preset),
-        project.current_preset_path);
+        var preset_path = project.full_preset_path($patches_preset);
+        if (fso.FileExists(preset_path)) {
+            fso.CopyFile(preset_path, project.current_preset_path);
+        } else {
+            save_text_file(project.current_preset_path, '// created by init_current_preset');
+        }
     }
     $patches_preset = 'current';
 }

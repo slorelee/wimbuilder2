@@ -455,6 +455,8 @@ function get_node_status(node, arr, undetermined_arr){
 function get_jstree_status(){
     var patches_undetermined = $('#patches_tree').jstree(true).get_undetermined();
     var patches_json = $('#patches_tree').jstree(true).get_json();
+    if (patches_json == '') return '';
+
     var arr = [];
     _jstree_selected_node = '';
     get_nodetree_status(patches_json, arr, patches_undetermined);
@@ -481,9 +483,12 @@ function save_current_preset(collected){
     }
 
     // patches_opt
+    var patches_opt_str = patches_opt_stringify("\r\n").slice(1, -1);
     var str = "var $patches_opt = {\r\n";
-    str = str + patches_opt_stringify("\r\n").slice(1, -1) + ",\r\n";
-    str = str.replace(/"_[^"]+?":.+?,\r\n/g, "");
+    if (patches_opt_str != '') {
+        str = str + patches_opt_str + ",\r\n";
+        str = str.replace(/"_[^"]+?":.+?,\r\n/g, "");
+    }
     str = str + '"_._._":""' + "\r\n}\r\n\r\n";
     str = str.replace(/\r\n\"/g, "\r\n    \"");
 

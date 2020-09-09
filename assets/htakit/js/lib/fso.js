@@ -31,6 +31,7 @@ function get_subdirs(parentdir) {
 
 function get_files(parentdir) {
     var arr = new Array();
+    if (!fso.FolderExists(parentdir)) return arr;
     var folder = fso.GetFolder(parentdir);
     var fenum = new Enumerator(folder.Files);
     for (var i = 0 ; !fenum.atEnd();i++) {

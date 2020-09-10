@@ -61,6 +61,11 @@ dmenrollengine.dll
 ; remove ver check (add with any ver)
 +ver*
 
++if "%VER[3.4]%"="19041.450"
+shell32.dll
+SHCore.dll
+-if
+
 ; Advanced system setting
 sysdm.cpl,DeviceProperties.exe,SystemPropertiesAdvanced.exe,SystemPropertiesComputerName.exe
 systempropertieshardware.exe,systempropertiesperformance.exe

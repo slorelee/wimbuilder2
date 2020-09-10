@@ -10,13 +10,15 @@ if exist %~dp0%BIN_ARCH%\wimlib-imagex.exe (
 rem wimlib-imagex.exe can't show some characters
 
 set WIM_DESC=Unknown
-set WIM_VER=
 set WIM_ARCH=
+set WIM_VER=
+set WIM_BUILD=
 set WIM_LANG=
 for /f "tokens=1,2 delims=:(" %%i in ('DismX /Get-WimInfo /WimFile:"%~1" /Index:%~2 /English') do (
   if "%%i"=="Description " set WIM_DESC=%%j
   if "%%i"=="Architecture " set WIM_ARCH=%%j
   if "%%i"=="Version " set WIM_VER=%%j
+  if "%%i"=="ServicePack Build " set WIM_BUILD=%%j
   if "x!LANG_FLAG!"=="x1" (
     set WIM_LANG=%%i
     set LANG_FLAG=
@@ -26,8 +28,9 @@ for /f "tokens=1,2 delims=:(" %%i in ('DismX /Get-WimInfo /WimFile:"%~1" /Index:
 
 set "WIM_ARCH=%WIM_ARCH: =%"
 set "WIM_VER=%WIM_VER: =%"
+set "WIM_BUILD=%WIM_BUILD: =%"
 rem here is TAB, not SPACE 
 set "WIM_LANG=%WIM_LANG:	=%"
 set "WIM_LANG=%WIM_LANG: =%"
 
-echo %WIM_DESC% (%WIM_VER%,%WIM_ARCH%,%WIM_LANG%)
+echo %WIM_DESC% (%WIM_VER%.%WIM_BUILD%,%WIM_ARCH%,%WIM_LANG%)

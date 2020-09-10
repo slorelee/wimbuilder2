@@ -23,6 +23,15 @@ if "x%opt[build.adk]%"=="xtrue" (
   set opt[build.wim]=winpe
 )
 
+if /i "%WB_BASE%"=="test\boot.wim" (
+  for /f "tokens=3 usebackq" %%i in (`reg query "HKLM\Src_SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v CurrentBuild`) do set /a VER[3]=%%i
+)
+
+echo Update WB_PE_BUILD, VER[] environment variables with %WB_SRC%
+for /f "tokens=3 usebackq" %%i in (`reg query "HKLM\Src_SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v UBR`) do set /a WB_PE_BUILD=%%i
+set VER[4]=%WB_PE_BUILD%
+set VER[3.4]=%VER[3]%.%VER[4]%
+
 if "x%opt[build.wow64support]%"=="xtrue" (
   if not "x%WB_PE_ARCH%"=="xx64" set opt[build.wow64support]=false
 )
@@ -44,6 +53,8 @@ echo.
 echo \033[97;44mAvailable Environment Variables\033[97;45m(For Developer):|cmdcolor.exe
 set WB_
 set VER[3]
+set VER[4]
+set VER[3.4]
 echo.
 echo X=%X%
 set X_

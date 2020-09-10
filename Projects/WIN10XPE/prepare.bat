@@ -9,6 +9,8 @@ rem ===================================
 rem set Enviroment
 rem BUILD_NUMBER
 for /f "tokens=3 delims=." %%v in ("%WB_PE_VER%") do set VER[3]=%%v
+set VER[4]=%WB_PE_BUILD%
+set VER[3.4]=%VER[3]%.%VER[4]%
 rem ===================================
 rem SYSTEM_PATH
 rem set X=%WB_X_DRIVE%

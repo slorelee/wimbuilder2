@@ -111,7 +111,7 @@ call :cecho PHRASE "PHRASE:Get WIM image INFO"
 for /f "tokens=1,2 delims=:(" %%i in ('DismX /Get-WimInfo /WimFile:"%WB_BASE%" /Index:%WB_BASE_INDEX% /English') do (
   if "%%i"=="Architecture " set WB_PE_ARCH=%%j
   if "%%i"=="Version " set WB_PE_VER=%%j
-  if "%%i"=="ServicePack Build " set WB_PE_BUIID=%%j
+  if "%%i"=="ServicePack Build " set WB_PE_BUILD=%%j
   if "x!LANG_FLAG!"=="x1" (
     set WB_PE_LANG=%%i
     set LANG_FLAG=
@@ -126,7 +126,7 @@ if "x%WB_PE_LANG%"=="x" (
 
 set "WB_PE_ARCH=%WB_PE_ARCH: =%"
 set "WB_PE_VER=%WB_PE_VER: =%"
-set "WB_PE_BUIID=%WB_PE_BUIID: =%"
+set "WB_PE_BUILD=%WB_PE_BUILD: =%"
 rem here is TAB, not SPACE 
 set "WB_PE_LANG=%WB_PE_LANG:	=%"
 set "WB_PE_LANG=%WB_PE_LANG: =%"

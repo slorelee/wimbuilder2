@@ -126,6 +126,9 @@ if "x%UPT_LOCAL%"=="x1" pause && goto :EOF
 echo PHASE 2:Download remote.MD5 manifest ...
 
 if exist "%TMP_UPT%\remote.md5" goto :END_REMOTE_MD5
+
+if not "x%UPT_FILE%"=="x" goto :SKIP_REMOTE_MD5
+
 set "remote_md5=%REMOTE_URL%/remote.md5"
 echo.
 echo Download: %remote_md5%
@@ -136,6 +139,7 @@ if not exist "%TMP_UPT%\remote.md5" (
     pause
     goto :EOF
 )
+:SKIP_REMOTE_MD5
 
 echo PHASE 3:Get update file list ...
 del /f /a /q "%TMP_UPT%\updatefile.list"

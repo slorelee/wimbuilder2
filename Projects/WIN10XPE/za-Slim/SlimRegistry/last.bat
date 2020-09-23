@@ -26,3 +26,9 @@ reg import RemoveInvaildItems_Reg.txt
 
 set dp0=
 popd
+
+if not exist "%X_SYS%\wow64.dll" goto :EOF
+rem Computer Management Command
+reg add HKLM\Tmp_software\Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\shell\Manage\command /ve /d "mmc.exe compmgmt.msc /s /64" /f
+reg add "HKLM\Tmp_SOFTWARE\Classes\mscfile\shell\open\command" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\system32\mmc.exe \"%%1\" %%* /64" /f
+reg add "HKLM\Tmp_SOFTWARE\Classes\mscfile\shell\RunAs\command" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\system32\mmc.exe \"%%1\" %%* /64" /f

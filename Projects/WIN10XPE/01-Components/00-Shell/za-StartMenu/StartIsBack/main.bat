@@ -5,6 +5,22 @@ call V2X StartIsBack -extract StartIsBackPlusPlus_setup[v*].exe "%X_PF%\StartIsB
 if not exist "%X%\Program Files\StartIsBack\StartIsBack64.dll" goto :EOF
 if not "%WB_PE_ARCH%"=="x64" del /f "%X%\Program Files\StartIsBack\StartIsBack64.dll"
 
+rem Support SIB v2.9.4
+reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\ImmersiveShell /v TabletMode /t REG_DWORD /d 0 /f
+
+rem call AddFiles %0 :end_files
+goto :end_files
+
+@\Windows\System32\
+authui.dll
+nrtapi.dll
+shdocvw.dll
+shutdownux.dll
+sud.dll
+van.dll
+
+:end_files
+
 reg import "%~dp0SIB_RegDefault.reg"
 reg import "%~dp0SIB_RegSoftware.reg"
 
@@ -35,6 +51,10 @@ set SIB_KEY=HKLM\Tmp_Default\Software\StartIsBack
 reg add %SIB_KEY% /v AlterStyle /d "X:\Program Files\StartIsBack\Styles\%opt[SIB.skin]%.msstyles" /f
 reg add %SIB_KEY% /v TaskbarStyle /d "X:\Program Files\StartIsBack\Styles\%opt[SIB.skin]%.msstyles" /f
 
+if "x%opt[SIB.skin]%"=="xPlain10" (
+    reg add %SIB_KEY% /v TaskbarStyle /d "X:\Program Files\StartIsBack\Styles\Windows 10.msstyles" /f
+)
+
 rem // StartIsBack Display as flyout menu (Windows XP style) value 0/1
 if not "x%opt[SIB.programs.flyout]%"=="xfalse" (
     reg add %SIB_KEY% /v AllProgramsFlyout /t REG_DWORD /d 1 /f
@@ -47,6 +67,9 @@ if not "x%opt[SIB.style.opaque]%"=="xfalse" (
     reg add %SIB_KEY% /v StartMenuColor  /t REG_DWORD /d 0xffffffff /f
     reg add %SIB_KEY% /v StartMenuBlur   /t REG_DWORD /d 2 /f
     reg add %SIB_KEY% /v StartMenuAlpha  /t REG_DWORD /d 255 /f
+    reg add %SIB_KEY% /v TaskbarColor  /t REG_DWORD /d 0xffffffff /f
+    reg add %SIB_KEY% /v TaskbarBlur   /t REG_DWORD /d 0 /f
+    reg add %SIB_KEY% /v TaskbarAlpha  /t REG_DWORD /d 255 /f
 )
 set SIB_KEY=
 

@@ -28,9 +28,9 @@ MrmCoreR.dll,mscories.dll,MsCtfMonitor.dll,msutb.dll,mycomput.dll,policymanager.
 ProximityCommon.dll,ProximityCommonPal.dll,ProximityService.dll,ProximityServicePal.dll
 rmclient.dll,sendmail.dll
 SettingSyncCore.dll,SharedStartModel.dll,ShellCommonCommonProxyStub.dll,shfolder.dll,shutdown.exe
-StartTileData.dll,stobject.dll,StorageUsage.dll,systemcpl.dll,TDLMigration.dll,TextInputFramework.dll,thumbcache.dll
+StartTileData.dll,sti.dll,stobject.dll,StorageUsage.dll,systemcpl.dll,TDLMigration.dll,TextInputFramework.dll,thumbcache.dll
 twinapi.appcore.dll,twinapi.dll,twinui.appcore.dll,twinui.pcshell.dll,UIAnimation.dll,UIRibbon.dll,UIRibbonRes.dll
-Windows.Gaming.Input.dll,Windows.Internal.Shell.Broker.dll,Windows.Networking.Connectivity.dll,WorkFoldersShell.dll,zipfldr.dll
+Windows.Gaming.Input.dll,Windows.Internal.Shell.Broker.dll,Windows.Networking.Connectivity.dll,WorkFoldersShell.dll,wpdshext.dll,zipfldr.dll
 windows.immersiveshell.serviceprovider.dll
 credssp.dll,mblctr.exe,TextShaping.dll
 Windows.Globalization.dll

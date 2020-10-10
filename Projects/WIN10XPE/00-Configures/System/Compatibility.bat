@@ -47,3 +47,6 @@ shellstyle.dll
 :end_files
 
 rem ==========update registry==========
+
+rem --no-sandbox option
+reg add "HKLM\Tmp_Software\Policies\Google\Chrome" /v "AudioSandboxEnabled" /t REG_DWORD /d 0 /f

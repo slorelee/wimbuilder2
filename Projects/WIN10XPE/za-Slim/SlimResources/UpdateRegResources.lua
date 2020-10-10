@@ -1,4 +1,3 @@
-require('lua_helper.lua_helper')
 
 local lang = os.getenv('WB_PE_LANG')
 local x_sys = os.getenv('X_SYS')

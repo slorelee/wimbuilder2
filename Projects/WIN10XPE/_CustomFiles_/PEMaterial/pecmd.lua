@@ -1,4 +1,3 @@
-require('lua_helper.lua_helper')
 
 local logon_user = 'SYSTEM'
 local explorer_shell = false

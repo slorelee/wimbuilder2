@@ -21,6 +21,7 @@ goto :end_files
 Microsoft-Windows-Basic-Http-Minio-Package~*.cat
 Microsoft-Windows-SMB1-Package~*.cat
 Microsoft-Windows-DataCenterBridging-Package~*.cat
+Microsoft-Windows-DataCenterBridging-Opt-Package*.cat
 
 ;built-in network drivers
 Microsoft-Windows-Client-Drivers-drivers-Package~*.cat
@@ -55,9 +56,15 @@ Microsoft-Windows-WCN-WOW64-net-Package~*.cat
 +ver >= 17763
 LanguageFeatures-WordBreaking-*.cat
 Microsoft-Windows-SecureStartup-Subsystem-base-Package~*.cat
+
++ver >= 19401
+Microsoft-OneCore-IsolatedUserMode-Package*.cat
+Microsoft-Windows-EnterpriseClientSync-Host-Opt-Package*.cat
+
 +ver*
 
 +if "x%opt[support.media]%"="xtrue"
+Microsoft-OneCore-Multimedia-MFPMP*.cat
 Microsoft-Windows-Media-Format-multimedia-Package~*.cat
 Microsoft-Windows-Multimedia-RestrictedCodecs-multimedia-Package~*.cat
 Microsoft-Windows-Multimedia-RestrictedCodecs-WOW64-multimedia-Package~*.cat

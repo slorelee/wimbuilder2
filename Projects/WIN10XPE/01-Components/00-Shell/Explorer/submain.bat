@@ -35,17 +35,19 @@ windows.immersiveshell.serviceprovider.dll
 credssp.dll,mblctr.exe,TextShaping.dll
 Windows.Globalization.dll
 
-+ver <= 17000
-VEEventDispatcher.dll
-
 +ver > 17000
-cdp.dll,dsreg.dll
+cdp.dll
+coloradapterclient.dll
+dsreg.dll
+VEEventDispatcher.dll
 
 +ver > 17700
 +if "%opt[slim.extra]%" <> "true"
 ; dll for StateRepository (AppRepository). The StateRepository service is not registered in the Registry
 StateRepository.core.dll,Windows.StateRepository.dll
-Windows.StateRepositoryBroker.dll,Windows.StateRepositoryClient.dll
+Windows.StateRepositoryBroker.dll
+Windows.StateRepositoryCore.dll
+Windows.StateRepositoryClient.dll
 -if
 
 +ver >= 18885

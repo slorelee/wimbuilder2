@@ -16,7 +16,7 @@ cd /d "%~dp0"
 
 
 set opt[build.wim]=customed
-if "%WB_BASE%"=="winre.wim" (
+if "%WB_BASE%"=="_Factory_\target\%WB_PROJECT%\winre.wim" (
   set opt[build.wim]=winre
 )
 if "x%opt[build.adk]%"=="xtrue" (

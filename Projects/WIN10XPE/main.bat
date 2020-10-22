@@ -1,6 +1,14 @@
 @echo off
 echo %cd%
 
+set opt[build.wim]=customed
+if "%WB_BASE%"=="_Factory_\target\%WB_PROJECT%\winre.wim" (
+  set opt[build.wim]=winre
+)
+if "x%opt[build.adk]%"=="xtrue" (
+  set opt[build.wim]=winpe
+)
+
 echo.
 echo \033[97;44mBuild Options:|cmdcolor.exe
 set opt
@@ -15,13 +23,6 @@ rem Dism /Get-Packages /Image:"%_WB_MNT_DIR%"
 cd /d "%~dp0"
 
 
-set opt[build.wim]=customed
-if "%WB_BASE%"=="_Factory_\target\%WB_PROJECT%\winre.wim" (
-  set opt[build.wim]=winre
-)
-if "x%opt[build.adk]%"=="xtrue" (
-  set opt[build.wim]=winpe
-)
 
 if /i "%WB_BASE%"=="test\boot.wim" (
   for /f "tokens=3 usebackq" %%i in (`reg query "HKLM\Src_SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v CurrentBuild`) do set /a VER[3]=%%i

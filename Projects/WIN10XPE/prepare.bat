@@ -17,6 +17,7 @@ rem set X=%WB_X_DRIVE%
 set "X_PF=%X%\Program Files"
 set X_WIN=%X%\Windows
 set X_SYS=%X_WIN%\System32
+set X_WOW64=%X_WIN%\SysWOW64
 set X_Desktop=%X%\Users\Default\Desktop
 set "_CUSTOMFILES_=%WB_PROJECT_PATH%\_CustomFiles_"
 

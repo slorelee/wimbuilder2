@@ -27,6 +27,7 @@ function exec_advcmd() {
     if (selected_project != null) {
         env('WB_PROJECT') = selected_project;
     }
+    app_env_init();
     Run(advcmd_file);
 }
 

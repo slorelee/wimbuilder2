@@ -72,6 +72,7 @@ function app_init() {
     project_page_init();
     patches_page_init();
     app_mode_init();
+    app_env_init();
 }
 
 function page_init() {
@@ -101,5 +102,17 @@ function app_mode_init() {
         $('#wb_src').attr("readonly", true);
         $('#wb_base').attr("readonly", true);
         $('#wb_base_idx_opt').attr("disabled", true);
+    }
+}
+
+function app_env_init() {
+    var env = wsh.Environment("PROCESS");
+    var k = $ui_settings['update_source'];
+    if (k == 'custom') {
+        env('REMOTE_URL') = $ui_settings['custom_remote_url'];
+        env('SOURCE_URL') = $ui_settings['custom_source_url'];
+    } else {
+        env('REMOTE_URL') = $update_sources[k]['remote_url'];
+        env('SOURCE_URL') = $update_sources[k]['source_url'];
     }
 }

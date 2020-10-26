@@ -14,11 +14,15 @@ function clean_advcmd() {
 
 function load_advcmd() {
     $('#adv_cmdtext').empty();
-    $('#adv_cmdtext').append(load_text_file(advcmd_file, false));
+    var text = load_text_file(advcmd_file, false);
+    text = text.replace(/\r\n/g, "\r");
+    $('#adv_cmdtext').append(text);
 }
 
 function save_advcmd() {
-    save_text_file(advcmd_file, $('#adv_cmdtext').text());
+    var text = $('#adv_cmdtext').text();
+    text = text.replace(/\r/g, "\r\n");
+    save_text_file(advcmd_file, text);
 }
 
 function exec_advcmd() {

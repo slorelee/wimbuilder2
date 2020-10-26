@@ -85,7 +85,7 @@ $i18n = {
       "<strong>入门</strong> --- 刚开始使用本软件。将隐藏一些复杂选项，使得选项友好，避免因选项设定不正确导致失败。",
   "<strong>Professional</strong> --- Knows this software well. Shows more options.":
       "<strong>专家</strong> --- 清楚如何使用本软件及各选项含义。将提供更多选项。",
-  "<strong>Developer</strong> &nbsp;&nbsp;&nbsp;&nbsp;---  Knows the codes of this software, Shows the options for developer.":
+  "<strong>Developer</strong> &nbsp;&nbsp;&nbsp;&nbsp;--- Knows the codes of this software, Shows the options for developer.":
       "<strong>开发</strong> ---  清楚本软件的结构及代码, 将提供面向开发者的选项。",
   "Language :":"语言 :",
   "Theme :":"主题 :",

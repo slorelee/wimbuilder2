@@ -4,6 +4,9 @@ call V2X StartIsBack -extract StartIsBackPlusPlus_setup[v*].exe "%X_PF%\StartIsB
 
 if not exist "%X%\Program Files\StartIsBack\StartIsBack64.dll" goto :EOF
 if not "%WB_PE_ARCH%"=="x64" del /f "%X%\Program Files\StartIsBack\StartIsBack64.dll"
+del /f "%X%\Program Files\StartIsBack\StartIsBackARM64.dll" 2> nul
+del /f "%X%\Program Files\StartIsBack\startscreen.exe" 2> nul
+del /f "%X%\Program Files\StartIsBack\UpdateCheck.exe" 2> nul
 
 rem Support SIB v2.9.4
 reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\ImmersiveShell /v TabletMode /t REG_DWORD /d 0 /f
@@ -29,6 +32,7 @@ reg add HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell /v Use
 
 if "%WB_PE_ARCH%"=="x64" (
     if not "x%opt[build.wow64support]%"=="xtrue" (
+        del /f "%X%\Program Files\StartIsBack\StartIsBack32.dll"
         copy /y "%X_SYS%\regedt32.exe" "%X%\Program Files\StartIsBack\StartIsBackCfg.exe"
         (echo @start explorer.exe ::{26EE0668-A00A-44D7-9371-BEB064C98683}\0\::{BB06C0E4-D293-4F75-8A90-CB05B6477EEE}) > "%X%\Program Files\StartIsBack\StartIsBackCfgCmd.cmd"
         reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\StartIsBackCfg.exe" /v Debugger /d "X:\Program Files\StartIsBack\StartIsBackCfgCmd.cmd" /f

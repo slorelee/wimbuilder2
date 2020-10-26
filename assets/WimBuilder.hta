@@ -470,6 +470,23 @@ if ($IE_VER == '9+') {
                 <option value="custom" class="i18n-text">Custom</option>
             </select>
         </div>
+        <br /><br />
+        <div>
+            <label class="i18n-text">Update :</label>
+            <select id='ui_update'>
+                <option value ="github">GitHub</option>
+                <option value ="gitee">Gitee</option>
+                <option value ="wimbuilder">WimBuilder</option>
+                <option value="custom" class="i18n-text">Custom</option>
+            </select>
+            <br />
+            <div>
+                <label style="padding-left: 20px;">REMOTE_URL :</label>
+                <input type="text" style="margin-left:-20px;width:70%" id="ui_update_remote_url" value="http://"/><br/>
+                <label style="padding-left: 20px;">SOURCE_URL :</label>
+                <input type="text" style="margin-left:-20px;width:70%" id="ui_update_source_url" value="http://"/><br/>
+            </div>
+        </div>
 
         <br /><br />
         <button class="pure-button button-green" style="display:none;margin-left:40%;" class="i18n-text"

@@ -7,7 +7,7 @@ function settings_page_init() {
 
     update_lang_list();
     update_theme_list();
-
+    init_update_settings();
     _settings_page_inited = true;
 }
 
@@ -38,6 +38,19 @@ $("#ui_dpi").change(function() {
     } else {
         dpi_adapt($ui_settings['dpi']);
     }
+});
+
+$("#ui_update").change(function() {
+    $ui_settings['update_source'] = $(this).val();
+    init_update_settings(true);
+});
+
+$('#ui_update_remote_url').change(function() {
+    $ui_settings['custom_remote_url'] = $(this).val();
+});
+
+$('#ui_update_source_url').change(function() {
+    $ui_settings['custom_source_url'] = $(this).val();
 });
 
 $("#settings_restart_yes").click(function() {
@@ -94,4 +107,27 @@ function update_theme_list() {
     if (!opt_selected) {
         $('#ui_theme').find("option").eq(0).prop("selected", true);
     }
+}
+
+function init_update_settings(self) {
+    var k = $ui_settings['update_source'];
+
+    if (!self) {
+        $("#ui_update option[value='" + k + "']").prop("selected", true);
+    }
+    if (k == 'custom') {
+        $('#ui_update_remote_url').val($ui_settings['custom_remote_url']);
+        $('#ui_update_source_url').val($ui_settings['custom_source_url']);
+    } else {
+        $('#ui_update_remote_url').val($update_sources[k]['remote_url']);
+        $('#ui_update_source_url').val($update_sources[k]['source_url']);
+    }
+    enable_custom_update_urls(k);
+}
+
+function enable_custom_update_urls(opt) {
+    var enabled = false;
+    if (opt == 'custom') enabled = true;
+    $('#ui_update_remote_url').attr('readonly', !enabled);
+    $('#ui_update_source_url').attr('readonly', !enabled);
 }

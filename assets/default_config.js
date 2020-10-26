@@ -12,6 +12,10 @@ $ui_settings['lang'] = '';
 $ui_settings['enable_theme_loader'] = true;
 $ui_settings['theme'] = '';
 $ui_settings['dpi'] ='';
+$ui_settings['update_source'] = 'github';
+
+$ui_settings['custom_remote_url'] = 'https://';
+$ui_settings['custom_source_url'] = 'https://';
 
 if (eformat('x%APP_HOST_WIN%') != 'x10') {
     $ui_settings['enable_theme_loader'] = false;

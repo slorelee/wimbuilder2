@@ -258,9 +258,9 @@ function userpath(path) {
 
 var _editor_notice_done = false;
 function edit_menu_action(file) {
-  // var editor = $obj_project.full_path + '/_CustomFiles_/editor.cmd';
   if ($_wb_first_run) {
     if (!_editor_notice_done) {
+      var editor = $app_root + '\\AppData\\editor.cmd';
       var msg = i18n_t('Will open file with notepad.exe, You can edit [%s] file to change the editor.');
       msg = msg.replace('%s', editor);
       alert(msg);

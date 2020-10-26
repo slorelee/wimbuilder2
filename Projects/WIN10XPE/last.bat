@@ -26,19 +26,19 @@ if "x%opt[registry.system.compress]%"=="xtrue" (
     reg save HKLM\Tmp_SYSTEM "%X_SYS%\config\SYSTEM.hiv" /y /c
 )
 
-if "x%opt[build.unmount_wim_demand]%"=="xtrue" goto :REPLACE_FULLREG_END
-
 set _dll_drive=
 for /f "tokens=3 delims=: " %%i in ('reg query HKLM\Tmp_Software\Classes\CLSID\{0000002F-0000-0000-C000-000000000046}\InprocServer32 /ve') do set _dll_drive=%%x
 if /i "x%_dll_drive%"=="xX" goto :C2X_PATH_END
 
 echo Update registry (C:\ =^> X:\) ...
 rem Case Insensitive Search for 'C:\'
-regfind -p HKEY_LOCAL_MACHINE\tmp_SOFTWARE -y C:\ -r X:\
-regfind -p HKEY_LOCAL_MACHINE\tmp_SYSTEM -y C:\ -r X:\
+regfind -p HKEY_LOCAL_MACHINE\Tmp_Software -y C:\ -r X:\
+regfind -p HKEY_LOCAL_MACHINE\Tmp_Software -y C:\ -r X:\
 
 :C2X_PATH_END
 set _dll_drive=
+
+if "x%opt[build.unmount_wim_demand]%"=="xtrue" goto :REPLACE_FULLREG_END
 
 rem use prepared HIVE files
 call PERegPorter.bat Tmp UNLOAD 1>nul

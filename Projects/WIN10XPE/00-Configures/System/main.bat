@@ -3,6 +3,8 @@ rem ==========update filesystem==========
 call AddFiles %0 :end_files
 goto :end_files
 
+\Windows\Cursors\aero_arrow.cur
+
 @\Windows\System32\
 setx.exe
 

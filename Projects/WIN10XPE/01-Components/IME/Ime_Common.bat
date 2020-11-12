@@ -48,6 +48,8 @@ Language*.dll
 Windows.UI.Core.TextInput.dll
 +ver > 18960
 Windows.Web.dll
++ver >= 20251
+ime_textinputhelpers.dll
 +ver*
 
 :end_files

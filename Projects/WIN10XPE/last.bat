@@ -27,7 +27,7 @@ if "x%opt[registry.system.compress]%"=="xtrue" (
 )
 
 set _dll_drive=
-for /f "tokens=3 delims=: " %%i in ('reg query HKLM\Tmp_Software\Classes\CLSID\{0000002F-0000-0000-C000-000000000046}\InprocServer32 /ve') do set _dll_drive=%%x
+for /f "tokens=3 delims=: " %%i in ('reg query HKLM\Tmp_Software\Classes\CLSID\{0000002F-0000-0000-C000-000000000046}\InprocServer32 /ve') do set _dll_drive=%%i
 if /i "x%_dll_drive%"=="xX" goto :C2X_PATH_END
 
 echo Update registry (C:\ =^> X:\) ...

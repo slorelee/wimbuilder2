@@ -1,10 +1,14 @@
 @echo off
 
+set SYSTEM_LOADER=1
+
 if "x%~1"=="x" call :OSInit
 call :UserLogon "%~1"
 call :PreShell "%~1"
 call :RunShell
 call :PostShell
+
+set SYSTEM_LOADER=
 
 if not "x%USERNAME%"=="xSYSTEM" goto :EOF
 
@@ -19,12 +23,14 @@ if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (
 goto :EOF
 
 :OSInit
+echo OSInit ...
 echo "%~nx0" > "X:\Windows\Temp\SYSTEM_LOADER"
 wpeinit.exe
 call "X:\PEMaterial\Autoruns\PEStartupMain.bat" OSInit
 goto :EOF
 
 :PreShell
+echo PreShell ...
 if "x%~1"=="x" set USERPROFILE=X:\Users\Default
 set Desktop=%USERPROFILE%\Desktop
 set "Programs=%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"
@@ -37,6 +43,7 @@ call "X:\PEMaterial\Autoruns\PEStartupMain.bat" BeforeShell
 goto :EOF
 
 :RunShell
+echo RunShell ...
 if exist "%windir%\explorer.exe" (
     if "x%USERNAME%"=="xSYSTEM" start explorer.exe
     if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (
@@ -52,6 +59,7 @@ if exist "%windir%\explorer.exe" (
 goto :EOF
 
 :PostShell
+echo PostShell ...
 if "x%USERNAME%"=="xSYSTEM" echo SYSTEM > "X:\Windows\Temp\SYSTEM_UserInited"
 call "X:\PEMaterial\Autoruns\PEStartupMain.bat" PostShell
 goto :EOF

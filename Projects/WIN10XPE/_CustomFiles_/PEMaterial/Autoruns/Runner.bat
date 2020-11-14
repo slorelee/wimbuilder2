@@ -18,6 +18,9 @@ popd
 goto :EOF
 
 :ExecDispatcher
+if "x%SYSTEM_LOADER%"=="x1" (
+  echo ExecDispatcher "%~1"
+)
 echo ExecDispatcher "%~1" >> "%RUNLOG%"
 set RunOnce=0
 cd /d "%_f1%"

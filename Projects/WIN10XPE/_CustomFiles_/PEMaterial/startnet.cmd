@@ -35,8 +35,12 @@ if "x%~1"=="x" set USERPROFILE=X:\Users\Default
 set Desktop=%USERPROFILE%\Desktop
 set "Programs=%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"
 
-if exist %SystemRoot%\System32\IME_Cmd.cmd (
-    call %SystemRoot%\System32\IME_Cmd.cmd
+if exist "%windir%\System32\ctfmon.exe" (
+    if "x%USERNAME%"=="xSYSTEM" (
+        start ctfmon.exe
+    ) else (
+        start PECMD.exe EXEC -su ctfmon.exe
+    )
 )
 
 call "X:\PEMaterial\Autoruns\PEStartupMain.bat" BeforeShell
@@ -44,13 +48,16 @@ goto :EOF
 
 :RunShell
 echo RunShell ...
+set SHELL_NAME=
 if exist "%windir%\explorer.exe" (
+    set SHELL_NAME=Explorer
     if "x%USERNAME%"=="xSYSTEM" start explorer.exe
     if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (
         start "wxsDaemon" "%ProgramFiles%\WinXShell\WinXShell.exe" -regist -daemon
     )
 ) else (
     if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (
+        set SHELL_NAME=WinXShell
         if "x%USERNAME%"=="xSYSTEM" (
             start "WinXShell" "%ProgramFiles%\WinXShell\WinXShell.exe" -regist -winpe
         )
@@ -61,6 +68,9 @@ goto :EOF
 :PostShell
 echo PostShell ...
 if "x%USERNAME%"=="xSYSTEM" echo SYSTEM > "X:\Windows\Temp\SYSTEM_UserInited"
+if not "x%SHELL_NAME%"=="x" (
+    "%ProgramFiles%\WinXShell\WinXShell.exe" -luacode Taskbar:WaitForReady()
+)
 call "X:\PEMaterial\Autoruns\PEStartupMain.bat" PostShell
 goto :EOF
 

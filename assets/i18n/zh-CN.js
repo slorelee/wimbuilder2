@@ -105,6 +105,7 @@ $i18n = {
 
   "Update":"更新",
   "Restart":"重新启动",
+  "Will update from %s, you can change the update source in [Settings] page.":"即将从 %s 源进行更新。你可以在设置页面修改更新选项。",
 
   "Please startup with WimBuilder.cmd.":"请通过WimBuilder.cmd启动。",
   "No project to build.":"未选择构建工程。",

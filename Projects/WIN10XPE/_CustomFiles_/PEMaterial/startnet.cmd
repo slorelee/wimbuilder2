@@ -1,11 +1,5 @@
 @echo off
 
-rem hide this console window
-if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (
-  title PE_STARTNET_WINDOW
-  "%ProgramFiles%\WinXShell\WinXShell.exe" -luacode "HideWindow('ConsoleWindowClass', 'PE_STARTNET_WINDOW')"
-)
-
 if "x%~1"=="x" call :OSInit
 call :UserLogon "%~1"
 call :PreShell "%~1"
@@ -13,8 +7,14 @@ call :RunShell
 call :PostShell
 
 if not "x%USERNAME%"=="xSYSTEM" goto :EOF
-echo SYSTEM account inited
-cmd.exe
+
+rem hide this console window
+if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (
+  "%ProgramFiles%\WinXShell\WinXShell.exe" -luacode "HideWindow('ConsoleWindowClass')"
+) else (
+  echo SYSTEM account inited
+  cmd.exe
+)
 
 goto :EOF
 

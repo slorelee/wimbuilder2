@@ -1,5 +1,15 @@
 if exist "%X%\Windows\System32\drivers\mrxsmb10.sys" goto :EOF
 
+call AddFiles %0 :end_files
+goto :end_files
+
+@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
+Microsoft-Windows-SMB1Client-D-Opt-Package~*.cat
+Microsoft-Windows-SMB1Deprecation-Group-Package~*.cat
+Microsoft-Windows-SMB1-Package~*.cat
+Microsoft-Windows-SMB1Server-D-Opt-Package~*.cat
+:end_files
+
 rem Extract mrxsmb10.sys from WinSxS
 call AddFiles "\Windows\WinSxS\*_microsoft-windows-smb10-minirdr_*\mrxsmb10.sys"
 

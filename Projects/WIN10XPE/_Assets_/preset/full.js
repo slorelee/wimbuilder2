@@ -1,5 +1,5 @@
 var $patches_opt = {
-    "build.source":"full",
+    "build.source":"light",
     "build.registry.software":"full",
     "build.full_catalog":true,
     "build.catalog":"full",
@@ -26,6 +26,8 @@ var $patches_opt = {
     "component.netfx":true,
     "component.MTP":true,
     "component.RNDIS":true,
+    "component.PPPoE":true,
+    "component.printer":true,
     "component.wordpad":true,
     "component.mspaint":true,
     "component.winphotoviewer":true,
@@ -45,6 +47,7 @@ var $patches_opt = {
     "network.builtin_drivers":true,
     "audio.win_events":"all",
     "slim.mui":true,
+    "slim.winre_sources":false,
     "slim.winboot":false,
     "slim.font.mingliu":false,
     "slim.wbem_repository":false,
@@ -61,7 +64,6 @@ function patches_state_init() {
     select_tree_node('_CustomFiles_');
     open_tree_node('00-Configures');
     open_tree_node('01-Components');
-    uncheck_tree_node('za-Slim');
 }
 
 

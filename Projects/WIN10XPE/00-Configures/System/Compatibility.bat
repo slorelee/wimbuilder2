@@ -42,6 +42,9 @@ lz32.dll
 shellstyle.dll
 +ver*
 
+; 32-bit Web Browsers
+Windows.FileExplorer.Common.dll
+
 -if
 
 :end_files

@@ -42,8 +42,10 @@ lz32.dll
 shellstyle.dll
 +ver*
 
++ver > 19000
 ; 32-bit Web Browsers
 Windows.FileExplorer.Common.dll
++ver*
 
 -if
 

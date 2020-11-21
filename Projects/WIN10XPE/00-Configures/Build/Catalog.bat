@@ -56,7 +56,7 @@ Microsoft-Windows-WCN-WOW64-net-Package~*.cat
 LanguageFeatures-WordBreaking-*.cat
 Microsoft-Windows-SecureStartup-Subsystem-base-Package~*.cat
 
-+ver >= 19401
++ver >= 19041
 Microsoft-OneCore-IsolatedUserMode-Package*.cat
 Microsoft-Windows-EnterpriseClientSync-Host-Opt-Package*.cat
 

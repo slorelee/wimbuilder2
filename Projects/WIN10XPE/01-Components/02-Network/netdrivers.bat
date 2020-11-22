@@ -21,4 +21,18 @@ if "%WB_PE_ARCH%"=="x64" (
 )
 
 :END_NETDRIVERS
+
+call AddFiles %0 :end_files
+goto :end_files
+
+@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
+;built-in network drivers
+Microsoft-Windows-Client-Drivers-drivers-Package~*.cat
+Microsoft-Windows-Client-Drivers-net-Package~*.cat
+Microsoft-Windows-Client-Drivers-Package~*.cat
+Microsoft-Windows-Client-Drivers-Package-net~*.cat
+Microsoft-Windows-Desktop-Shared-Drivers-*.cat
+Microsoft-Client-Features-Classic-WOW64-*.cat
+:end_files
+
 call DoAddFiles

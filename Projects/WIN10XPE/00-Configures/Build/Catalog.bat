@@ -22,14 +22,6 @@ Microsoft-Windows-Basic-Http-Minio-Package~*.cat
 Microsoft-Windows-DataCenterBridging-Package~*.cat
 Microsoft-Windows-DataCenterBridging-Opt-Package*.cat
 
-;built-in network drivers
-Microsoft-Windows-Client-Drivers-drivers-Package~*.cat
-Microsoft-Windows-Client-Drivers-net-Package~*.cat
-Microsoft-Windows-Client-Drivers-Package~*.cat
-Microsoft-Windows-Client-Drivers-Package-net~*.cat
-Microsoft-Windows-Desktop-Shared-Drivers-*.cat
-Microsoft-Client-Features-Classic-WOW64-*.cat
-
 +if "x%opt[slim.extra]%"<>"xtrue"
 ; For updates
 Package_*

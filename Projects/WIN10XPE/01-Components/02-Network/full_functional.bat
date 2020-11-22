@@ -1,3 +1,4 @@
+if not "x%opt[network.full_functional]%"=="xtrue" goto :EOF
 goto :main
 Title=Network
 Type=XPEPlugin
@@ -243,5 +244,3 @@ if "x%opt[network.networklist_and_sharecenter]%"=="xtrue" (
 call _networklist.bat
 call _discovery.bat
 call _netcenter.bat
-
-call netdrivers.bat

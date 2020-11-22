@@ -37,6 +37,7 @@ goto :end_files
 windows\INF\%_AddDriver_INF%
 \Windows\System32\drivers\%_AddDriver_Name%.sys
 \Windows\System32\DriverStore\FileRepository\%_AddDriver_INF%*
+\Windows\System32\DriverStore\%WB_PE_LANG%\%_AddDriver_INF%_loc
 :end_files
 set _AddDriver_INF=
 set _AddDriver_Name=

@@ -28,6 +28,18 @@ if %WB_ARCH%==x64 (
 )
 
 del /f /q "%X%\Windows\WinSxS\mrxsmb10.sys"
+if exist "%X%\Windows\System32\drivers\mrxsmb10.sys" (
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DependOnService /t REG_MULTI_SZ /d mrxsmb /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Description /d "@%%systemroot%%\system32\wkssvc.dll,-1005" /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DisplayName /d "@%%systemroot%%\system32\wkssvc.dll,-1004" /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v ErrorControl /t REG_DWORD /d 1 /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Group /d Network /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v ImagePath /t REG_EXPAND_SZ /d system32\DRIVERS\mrxsmb10.sys /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Start /t REG_DWORD /d 2 /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Tag /t REG_DWORD /d 6 /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Type /t REG_DWORD /d 2 /f
+  reg add HKLM\Tmp_System\ControlSet001\Services\LanmanWorkstation /v DependOnService /t REG_MULTI_SZ /d Bowser\0MRxSmb10\0MRxSmb20\0NSI /f
+)
 goto :EOF
 
 :WINSXS_SMB10

@@ -226,18 +226,7 @@ rem //Partial in Winre.wim call RegCopy HKLM\System\ControlSet001\Services\WinSo
 rem //Partial in Winre.wim call RegCopy HKLM\System\ControlSet001\Services\WinSock2
 rem // SMB v1.0 service.
 call _mrxsmb10.bat
-if exist "%X%\Windows\System32\drivers\mrxsmb10.sys" (
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DependOnService /t REG_MULTI_SZ /d mrxsmb /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Description /d "@%%systemroot%%\system32\wkssvc.dll,-1005" /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v DisplayName /d "@%%systemroot%%\system32\wkssvc.dll,-1004" /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v ErrorControl /t REG_DWORD /d 1 /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Group /d Network /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v ImagePath /t REG_EXPAND_SZ /d system32\DRIVERS\mrxsmb10.sys /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Start /t REG_DWORD /d 2 /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Tag /t REG_DWORD /d 6 /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\mrxsmb10 /v Type /t REG_DWORD /d 2 /f
-  reg add HKLM\Tmp_System\ControlSet001\Services\LanmanWorkstation /v DependOnService /t REG_MULTI_SZ /d Bowser\0MRxSmb10\0MRxSmb20\0NSI /f
-)
+
 reg add HKLM\Tmp_System\Setup\AllowStart\dnscache /f
 reg add HKLM\Tmp_System\Setup\AllowStart\nlasvc /f
 reg add HKLM\Tmp_System\Setup\AllowStart\wcmsvc /f
@@ -255,27 +244,4 @@ call _networklist.bat
 call _discovery.bat
 call _netcenter.bat
 
-rem built-in network drivers
-if not "x%opt[network.builtin_drivers]%"=="xtrue" goto :EOF
-
-set AddFiles_Mode=merge
-
-if "%WB_PE_ARCH%"=="x64" (
-  call AddDrivers "athw8x.inf,netathr10x.inf,netathrx.inf,netbc63a.inf"
-  call AddDrivers "netwbw02.inf,netwew00.inf,netwew01.inf,netwlv64.inf,netwns64.inf,netwsw00.inf,netwtw04.inf"
-) else (
-  call AddDrivers "athw8.inf,netathr.inf,netathr10.inf,netbc63.inf"
-  call AddDrivers "netwbn02.inf,netwen00.inf,netwen01.inf,netwlv32.inf,netwns32.inf,netwsn00.inf,netwtn04.inf"
-)
-call AddDrivers "netbc64.inf,netrtwlane.inf,netrtwlane_13.inf,netrtwlanu.inf"
-
-if %VER[3]% LEQ 17700 goto :END_NETDRIVERS
-
-if "%WB_PE_ARCH%"=="x64" (
-  call AddDrivers "netwtw02,netwtn06.inf"
-) else (
-  call AddDrivers netwtn02.inf
-)
-
-:END_NETDRIVERS
-call DoAddFiles
+call netdrivers.bat

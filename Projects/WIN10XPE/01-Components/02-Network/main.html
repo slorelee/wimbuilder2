@@ -14,10 +14,34 @@
 <br/>
 <fieldset>
 <legend><label><input type="checkbox" name="network.builtin_drivers" class="opt_item" /> Built-in Network Drivers</label></legend>
-<div style="margin-left:20px">
-<li>Atheros</li>
-<li>Broadcom</li>
-<li>Intel</li>
-<li>Realtek</li>
+
+<div style="margin:5px">
+<label style="width:120px;display:inline-block">
+<input type="radio" class="opt_item" name="network.type_builtin_drivers" value="all" checked="checked" /> All
+</label>
+<button class="pure-button pure-button-primary" 
+  onclick="open_edit($app_root + '\\' + $obj_patch.path + '\\netdrivers_all.txt')">
+  <label class="edit" /> netdrivers_all.txt
+</button>
+<br/>
+<br/>
+<label style="width:120px;display:inline-block">
+<input type="radio" style="width:20px" class="opt_item" name="network.type_builtin_drivers" value="custom" /> Custom
+</label>
+<button class="pure-button pure-button-primary" 
+  onclick="open_netdrivers_custom_file()">
+  <label class="edit" /> netdrivers_custom.txt
+</button>
 </div>
 </fieldset>
+
+<script>
+function open_netdrivers_custom_file() {
+    var custom_file = $obj_project.appdata_full_path + '/netdrivers_custom.txt';
+    if (!fso.FileExists(custom_file)) {
+        var template_file = $app_root + '/' + $obj_patch.path + '/netdrivers_custom.txt';
+        fso.CopyFile(template_file, custom_file);
+    }
+    open_edit(custom_file);
+}
+</script>

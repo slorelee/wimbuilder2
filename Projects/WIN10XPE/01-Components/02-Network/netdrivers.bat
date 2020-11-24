@@ -1,33 +1,39 @@
 rem built-in network drivers
 if not "x%opt[network.builtin_drivers]%"=="xtrue" goto :EOF
 
+set _NETDRIVERS_FILE=netdrivers_all.txt
+if "%opt[network.type_builtin_drivers]%"=="custom" set "_NETDRIVERS_FILE=%WB_USER_PROJECT_PATH%\netdrivers_custom.txt"
+if not exist "%_NETDRIVERS_FILE%" (
+    echo [ERROR] File does not exist^(%_NETDRIVERS_FILE%^).
+    set _NETDRIVERS_FILE=
+    goto :EOF
+)
+
+echo [INFO] Add Network Drivers with %_NETDRIVERS_FILE%.
 set AddFiles_Mode=merge
 
-call :NETDRIVERS_%WB_PE_ARCH%
+set _ADD_NETDRIVERS_START=0
+
+for /f "usebackq eol=; delims=" %%i in ("%_NETDRIVERS_FILE%") do (
+    call :ADDNETDRIVERS "%%i"
+)
+set _ADD_NETDRIVERS_START=
+set _NETDRIVERS_FILE=
+
 goto :END_NETDRIVERS
 
-:NETDRIVERS_x64
-call AddDrivers "athw8x.inf,bcmwdidhdpcie.inf,mrvlpcie8897.inf"
-call AddDrivers "net8185.inf,net8187bv64.inf,net8187se64.inf,net8192se64.inf,net8192su64.inf,net819xp.inf"
-call AddDrivers "netathr10x.inf,netathrx.inf,netbc63a.inf,netbc64.inf,netr28ux.inf,netr28x.inf,netr7364.inf"
-call AddDrivers "netrtwlane.inf,netrtwlane01.inf,netrtwlane_13.inf,netrtwlans.inf,netrtwlanu.inf"
-call AddDrivers "netwbw02.inf,netwew00.inf,netwew01.inf,netwlv64.inf,netwns64.inf"
-call AddDrivers "netwsw00.inf,netwtw02.inf,netwtw04.inf,netwtw06.inf,netwtw08.inf"
+:ADDNETDRIVERS
+if "%~1"==":NETDRIVERS_%WB_PE_ARCH%" set _ADD_NETDRIVERS_START=1&&goto :EOF
+if "%~1"==":END_NETDRIVERS_%WB_PE_ARCH%" set _ADD_NETDRIVERS_START=0&&goto :EOF
+if "%_ADD_NETDRIVERS_START%"=="0" goto :EOF
 
+call AddDrivers "%~1"
 goto :EOF
 
-:NETDRIVERS_x86
-call AddDrivers "athw8.inf,bcmwdidhdpcie.inf,mrvlpcie8897.inf"
-call AddDrivers "net8185.inf,net8187bv32.inf,net8187se86.inf,net8192se32.inf,net8192su32.inf,net819xp.inf"
-call AddDrivers "netathr.inf,netathr10.inf,netbc63.inf,netbc64.inf,netr28.inf,netr28u.inf,netr73.inf"
-call AddDrivers "netrtwlane.inf,netrtwlane01.inf,netrtwlane_13.inf,netrtwlans.inf,netrtwlanu.inf"
-call AddDrivers "netwbn02.inf,netwen00.inf,netwen01.inf,netwlv32.inf,netwns32.inf"
-call AddDrivers "netwsn00.inf,netwtn02.inf,netwtn04.inf"
-
-goto :EOF
 
 :END_NETDRIVERS
 
+rem digitally-signed catalog files (.cat) for network drivers
 call AddFiles %0 :end_files
 goto :end_files
 

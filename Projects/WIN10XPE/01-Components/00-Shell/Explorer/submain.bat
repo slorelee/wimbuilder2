@@ -67,6 +67,7 @@ dmenrollengine.dll
 ;+if %VER[4]% >= 450
 shell32.dll
 SHCore.dll
+KernelBase.dll
 ;-if
 -if
 

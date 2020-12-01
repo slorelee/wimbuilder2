@@ -145,6 +145,10 @@ function patch_updater_register(func) {
     _patch_updater.push(func);
 }
 
+function patch_updater_destory() {
+    _patch_updater.length = 0;
+}
+
 function patch_updater_execute(keep_updater) {
     if (_patch_updater.length == 0) return;
     _patch_updater.forEach(function(func) {
@@ -510,6 +514,7 @@ $('#patch_preset').change(function(){
     //reload project with the preset
     var preset = $(this).children("option:selected").val();
     if (preset == '-') return;
+    patch_updater_destory();
     reload_project(selected_project, preset);
     $patches_preset_inited = true;
     $patches_preset = preset;

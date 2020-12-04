@@ -12,6 +12,8 @@ call PinToTaskbar "X:\Program Files\WinXShell\WinXShell.exe"
 call PinToTaskbar "%%%%%%%%ProgramFiles%%%%%%%%\PENetwork\PENetwork.exe"
 call PinToTaskbar -paramlist "[[%%%%%%%%ProgramFiles%%%%%%%%\WinXShell\WinXShell.exe]], 'UI_Shutdown', '-ui -jcfg wxsUI\\UI_Shutdown.zip\\full.jcfg -blur 5', 'shell32.dll', 27"
 
+call PinToTaskbar -paramlist "[[#pProgramFiles#p\WinXShell\WinXShell.exe]], 'AutoDisp', '-code Screen:Disp#{##}#', 'shell32.dll', 34"
+
 call PinToStartMenu regedit.exe
 call PinToStartMenu "X:\Program Files\WinXShell\WinXShell.exe"
 call PinToStartMenu "%%%%%%%%ProgramFiles%%%%%%%%\PENetwork\PENetwork.exe"

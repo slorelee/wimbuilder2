@@ -19,5 +19,7 @@ goto :EOF
 :PIN_DONE
 if "x%LUAPIN_FILE%"=="x" goto :EOF
 if not exist "%LUAPIN_FILE%" goto :EOF
+call TextReplace "%LUAPIN_FILE%" #{# "(" g
+call TextReplace "%LUAPIN_FILE%" #}# ")" g
 call TextReplace "%LUAPIN_FILE%" #sp "%%%%" g
 goto :EOF

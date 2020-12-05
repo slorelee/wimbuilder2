@@ -5,7 +5,10 @@ call AddDrivers winusb.inf
 call AddFiles %0 :end_files
 goto :end_files
 @\Windows\System32\catroot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
-Microsoft-Windows-Client-Desktop-Required-Package*
+Microsoft-Windows-Client-Desktop-Required-Package*.cat
++ver > 19500
+Microsoft-OneCore-Connectivity-UsbHost-Package~*.cat
++ver*
 \Windows\System32\winusb*
 :end_files
 

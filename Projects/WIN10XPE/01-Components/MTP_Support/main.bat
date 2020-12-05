@@ -33,6 +33,9 @@ goto :end_files
 @windows\system32\catroot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
 ;Microsoft-Windows-WPD*
 Microsoft-Windows-WPD-UltimatePortableDeviceFeature-Feature-Package~*.cat
++ver > 19000
+Microsoft-Windows-Portable-Devices-merged-Package~*.cat
++ver*
 
 @windows\system32\
 drivers\UMDF\

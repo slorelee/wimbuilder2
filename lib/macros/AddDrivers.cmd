@@ -34,15 +34,24 @@ goto :SHIFT_LOOP
 goto :EOF
 
 :AddDriver
+
+rem wildcard(*) check
+set _AddDriver_Wildcard=0
+echo "%~1"|find "*" 1>nul
+if %errorlevel% EQU 0 set _AddDriver_Wildcard=1
+
 if "x%2"=="xREG" goto :AddDriver_Reg
 if "x%2"=="xDRIVERS" goto :AddDriver_Reg
 
 rem ==========update filesystem==========
+if %_AddDriver_Wildcard% EQU 1 goto :END_INF_CHECK
 findstr /i /c:"%~1" "%_WB_TMP_DIR%\_AddDrivers_INF.txt" >nul
 if not "%errorlevel%"=="0" (
     echo [INFO] Driver does not exist^(%~1^).
     goto :EOF
 )
+:END_INF_CHECK
+
 set "_AddDriver_INF=%~1"
 set "_AddDriver_Name=%~n1"
 call AddFiles "%_AddDrivers_FILE%" :end_files
@@ -59,11 +68,6 @@ if "x%2"=="xFILE" goto :EOF
 :AddDriver_Reg
 rem ==========update registry==========
 set _AddDriver_UserDriver=1
-rem wildcard(*) check
-set _AddDriver_Wildcard=0
-echo "%~1"|find "*" 1>nul
-if %errorlevel% EQU 0 set _AddDriver_Wildcard=1
-
 if "x%_AddDrivers_TYPE%"=="xDRIVERS" goto :REGCOPY_FROM_DRIVERS
 
 :REGCOPY_FROM_SYSTEM

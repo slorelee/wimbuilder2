@@ -46,7 +46,7 @@ $("#wb_test_cmd").change(function() {
 });
 
 function check_iso_template() {
-    var iso_path = eformat('%APP_ROOT%\\_ISO_');
+    var iso_path = eformat('%ISO_PATH%');
     if (!fso.FolderExists(iso_path)) {
         fso.CreateFolder(iso_path);
     }

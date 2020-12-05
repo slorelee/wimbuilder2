@@ -5,14 +5,14 @@ set "project_path=%~1"
 set _WB_WALK_CMD=main.bat
 call :apply_patch "%project_path%\main.bat"
 
-if not exist "%_WB_TMP_DIR%\_patches_selected.txt" goto :EOF
+if not exist "%WB_TMP_PATH%\_patches_selected.txt" goto :EOF
 
-for /f "usebackq delims=" %%i in ("%_WB_TMP_DIR%\_patches_selected.txt") do (
+for /f "usebackq delims=" %%i in ("%WB_TMP_PATH%\_patches_selected.txt") do (
     call :apply_link_patch "%project_path%\%%i"
 )
 
 set _WB_WALK_CMD=last.bat
-for /f "usebackq delims=" %%i in ("%_WB_TMP_DIR%\_patches_selected.txt") do (
+for /f "usebackq delims=" %%i in ("%WB_TMP_PATH%\_patches_selected.txt") do (
     call :apply_link_patch "%project_path%\%%i"
 )
 

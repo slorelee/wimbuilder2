@@ -1,6 +1,6 @@
 echo [MACRO]AddFilesByList %1
 
-set "_add_batch=%_WB_TMP_DIR%\_AddFileList.bat"
+set "_add_batch=%WB_TMP_PATH%\_AddFileList.bat"
 
 if 1==1 (
   echo call AddFiles "%%~0" :end_files

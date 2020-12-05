@@ -36,16 +36,16 @@ Set env = wshShell.Environment("Process")
 wim_ver = env("WB_PE_VER")
 wim_lang = env("WB_PE_LANG")
 
-Dim tmp_dir, txt_sysmui, txt_sysres
-tmp_dir = env("_WB_TMP_DIR")
+Dim tmp_path, txt_sysmui, txt_sysres
+tmp_path = env("WB_TMP_PATH")
 
-Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYSMUI.txt", ForReading)
+Set f = fso.OpenTextFile(tmp_path & "\_AddFiles_SYSMUI.txt", ForReading)
 txt_sysmui = vbCrLf & f.ReadAll() & vbCrLf
 f.Close()
 
 txt_sysres = env("ADDFILES_SYSRES")
 If txt_sysres = "1" Then
-  Set f = fso.OpenTextFile(tmp_dir & "\_AddFiles_SYSRES.txt", ForReading)
+  Set f = fso.OpenTextFile(tmp_path & "\_AddFiles_SYSRES.txt", ForReading)
   txt_sysres = vbCrLf & f.ReadAll() & vbCrLf
   f.Close()
 Else

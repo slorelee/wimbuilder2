@@ -1,5 +1,3 @@
-@echo off
-
 rem MACRO:AddFiles
 rem analyze syntax, create _AddFiles.txt for wimlib
 
@@ -18,7 +16,7 @@ rem       ; ...
 rem       :end_files
 
 echo [MACRO]AddFiles %*
-if "x%_WB_TMP_DIR%"=="x" goto :EOF
+if "x%WB_TMP_PATH%"=="x" goto :EOF
 
 if "x%ADDFILES_SYSRES%"=="x" (
     set ADDFILES_SYSRES=0
@@ -26,24 +24,24 @@ if "x%ADDFILES_SYSRES%"=="x" (
 )
 
 if "x%ADDFILES_INITED%"=="x" (
-    wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\System32\%WB_PE_LANG%\ >"%_WB_TMP_DIR%\_AddFiles_SYSMUI.txt"
+    wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\System32\%WB_PE_LANG%\ >"%WB_TMP_PATH%\_AddFiles_SYSMUI.txt"
     if "x%WB_PE_ARCH%"=="xx64" (
-        wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\SysWOW64\%WB_PE_LANG%\ >>"%_WB_TMP_DIR%\_AddFiles_SYSMUI.txt"
+        wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\SysWOW64\%WB_PE_LANG%\ >>"%WB_TMP_PATH%\_AddFiles_SYSMUI.txt"
     )
     rem *.mun files present from 19H1
     if %ADDFILES_SYSRES% EQU 1 (
-        wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\SystemResources\ >"%_WB_TMP_DIR%\_AddFiles_SYSRES.txt"
+        wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\SystemResources\ >"%WB_TMP_PATH%\_AddFiles_SYSRES.txt"
     )
     set ADDFILES_INITED=1
 )
 
 if "x%AddFiles_Mode%"=="xbatch" goto :_AppendFiles
 if "x%AddFiles_Mode%"=="xmerge" goto :_AppendFiles
-type nul>"%_WB_TMP_DIR%\_AddFiles.txt"
+type nul>"%WB_TMP_PATH%\_AddFiles.txt"
 
 :_AppendFiles
 rem CALL AddFiles.vbs
-cscript //nologo  "%~dp0\AddFiles.vbs" %* "%_WB_TMP_DIR%\_AddFiles.txt"
+cscript //nologo  "%~dp0\AddFiles.vbs" %* "%WB_TMP_PATH%\_AddFiles.txt"
 
 if "x%AddFiles_Mode%"=="xbatch" goto :EOF
 if "x%AddFiles_Mode%"=="xmerge" goto :EOF

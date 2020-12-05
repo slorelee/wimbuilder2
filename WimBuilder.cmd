@@ -186,5 +186,13 @@ set "V=%APP_ROOT%\vendor"
 
 rem mount winre.wim/boot.wim with wimlib, otherwise dism
 set USE_WIMLIB=0
+
+if exist UserConfig.cmd call UserConfig.cmd
+
+set "FACTORY_PATH=%APP_ROOT%\%Factory%"
+set "ISO_PATH=%APP_ROOT%\%ISO_DIR%"
+if "[%Factory:~1,1%]"=="[:]" set "FACTORY_PATH=%Factory%"
+if "[%ISO_DIR:~1,1%]"=="[:]" set "ISO_PATH=%ISO_DIR%"
+
 goto :EOF
 

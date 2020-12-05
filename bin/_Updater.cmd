@@ -33,14 +33,14 @@ goto :OPT_PARSER
 :END_OPT_PARSER
 
 cd /d "%~dp0"
-set TMP_UPT=_Factory_\tmp
+set "TMP_UPT=%FACTORY_PATH%\tmp"
 if "x%TMP_UPDATER%"=="x1" goto :UPDATE_MAIN
 
 if exist "x64\" (
   rem bin\
   cd /d "%~dp0..\"
 ) else (
-  rem _Factory_\tmp\
+  rem %FACTORY_PATH%\tmp\
   cd /d "%~dp0..\..\"
   set TMP_UPDATER=1
 )
@@ -85,13 +85,13 @@ del /f /a /q "%TMP_UPT%\local.md5"
 del /f /a /q "%TMP_UPT%\remote.md5"
 del /f /a /q "%TMP_UPT%\fciv.err"
 
-rem execute _Factory_\tmp\%~nx0
+rem execute %FACTORY_PATH%\tmp\%~nx0
 set TMP_UPDATER=1
 "%TMP_UPT%\%~nx0" %*
 
 :UPDATE_MAIN
 
-set "TMP_UPT=%APP_ROOT%\%TMP_UPT%"
+set "TMP_UPT=%FACTORY_PATH%\tmp"
 cd /d "%TMP_UPT%"
 title Updater
 

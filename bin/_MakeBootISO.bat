@@ -18,13 +18,13 @@ if "x%WB_PROJECT%"=="x" (
   goto :ON_ERROR
 )
 
-if "x%_WB_TMP_DIR%"=="x" (
-  set "_WB_TMP_DIR=%WB_ROOT%\%Factory%\tmp\%WB_PROJECT%"
+if "x%WB_TMP_PATH%"=="x" (
+  set "WB_TMP_PATH=%FACTORY_PATH%\tmp\%WB_PROJECT%"
 )
 
 rem load patches options
-if exist "%_WB_TMP_DIR%\_patches_opt.bat" (
-  call "%_WB_TMP_DIR%\_patches_opt.bat"
+if exist "%WB_TMP_PATH%\_patches_opt.bat" (
+  call "%WB_TMP_PATH%\_patches_opt.bat"
 )
 
 rem call _CustomISO_
@@ -70,7 +70,7 @@ if exist "%ISO_DIR%\efi\Microsoft\boot\%EFI_BIN%" (
   oscdimg.exe -b"%ISO_DIR%\boot\etfsboot.com" -h -l"%WB_ISO_LABEL%" -m -u2 -udfver102 "%ISO_DIR%" "%Factory%\%WB_ISO_NAME%.iso"
 )
 echo \033[96mISO Created -* %Factory%\%WB_ISO_NAME%.iso | cmdcolor.exe
-set "WB_ISO_PATH=%WB_ROOT%\%Factory%\%WB_ISO_NAME%.iso"
+set "WB_ISO_PATH=%FACTORY_PATH%\%WB_ISO_NAME%.iso"
 if ERRORLEVEL 1 (
   set WB_ISO_PATH=
   echo make boot iso failed.

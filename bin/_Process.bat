@@ -47,16 +47,18 @@ set "BUILD_LOGNAME=%BUILD_LOGTIME%_Build[LOG]_%WB_PROJECT%.log"
 if "x%WB_BASE%"=="x" call :NO_ENV_CONF WB_BASE
 set _WB_BASE_EXTRACTED=0
 set "_WB_TAR_DIR=%Factory%\target\%WB_PROJECT%"
+set "_WB_TMP_DIR=%Factory%\tmp\%WB_PROJECT%"
 set "_WB_MNT_DIR=%_WB_TAR_DIR%\mounted"
 
 call :GETNAME "%WB_BASE%"
 set "_WB_PE_WIM=%_WB_TAR_DIR%\%RET_GETNAME%"
+set "WB_BASE_PATH=%FACTORY_PATH%\target\%WB_PROJECT%\%RET_GETNAME%"
 
 call :MKPATH "%Factory%\target\%WB_PROJECT%\"
 
-rem full path for macro(s)
-set "_WB_MNT_PATH=%WB_ROOT%\%_WB_MNT_DIR%"
-set "_WB_TMP_DIR=%WB_ROOT%\%Factory%\tmp\%WB_PROJECT%"
+rem full path for macro(s) and project(s)
+set "_WB_MNT_PATH=%FACTORY_PATH%\target\%WB_PROJECT%\mounted"
+set "WB_TMP_PATH=%FACTORY_PATH%\tmp\%WB_PROJECT%"
 
 set "WB_PROJECT_PATH=%WB_ROOT%\Projects\%WB_PROJECT%"
 
@@ -90,8 +92,10 @@ echo.
 set BUILD_
 echo.
 
-rem extract winre.wim from install.wim
+set "_WB_BASE_WIM=%WB_BASE%"
 if /i not "%WB_BASE%"=="winre.wim" goto :PHRASE_GETINFO
+
+rem extract winre.wim from install.wim
 if "x%WB_SRC%"=="x" (
   call :cecho ERROR "mount base wim file failed(can't get winre.wim)."
   call :CLEANUP
@@ -104,11 +108,11 @@ if not exist "%_WB_PE_WIM%" (
   call :CLEANUP
 )
 set _WB_BASE_EXTRACTED=1
-set "WB_BASE=%_WB_PE_WIM%"
+set "_WB_BASE_WIM=%WB_BASE_PATH%"
 
 :PHRASE_GETINFO
 call :cecho PHRASE "PHRASE:Get WIM image INFO"
-for /f "tokens=1,2 delims=:(" %%i in ('DismX /Get-WimInfo /WimFile:"%WB_BASE%" /Index:%WB_BASE_INDEX% /English') do (
+for /f "tokens=1,2 delims=:(" %%i in ('DismX /Get-WimInfo /WimFile:"%_WB_BASE_WIM%" /Index:%WB_BASE_INDEX% /English') do (
   if "%%i"=="Architecture " set WB_PE_ARCH=%%j
   if "%%i"=="Version " set WB_PE_VER=%%j
   if "%%i"=="ServicePack Build " set WB_PE_BUILD=%%j
@@ -173,14 +177,11 @@ call :MKPATH "%_WB_PE_WIM%"
 
 if "%_WB_BASE_EXTRACTED%"=="1" goto :BASE_WIM_PREPARED
 
-call copy /y "%WB_BASE%" "%_WB_PE_WIM%"
+call copy /y "%_WB_BASE_WIM%" "%_WB_PE_WIM%"
+set _WB_BASE_WIM=
 
 :BASE_WIM_PREPARED
 
-
-rem export working paths
-set "WB_TEMP=%_WB_TMP_DIR%"
-set "WB_TMP=%_WB_TMP_DIR%"
 
 rem call prepare.bat before mounting
 if exist "%WB_PROJECT_PATH%\prepare.bat" (
@@ -244,7 +245,7 @@ call :cecho PHRASE "%TIMER_END% - Building completed in %TIMER_ELAPSED% seconds.
 
 if "x%BUILD_LOGNAME%"=="x" goto :EOF
 if not "x%_WB_EXEC_MODE%"=="x1" goto :EOF
-pushd "%WB_ROOT%\_Factory_\log\%WB_PROJECT%\"
+pushd "%FACTORY_PATH%\log\%WB_PROJECT%\"
 copy /y /b %BUILD_LOGTIME%.log+last_wimbuilder.log "%BUILD_LOGNAME%"
 popd
 

@@ -7,9 +7,9 @@ if "x%~1"=="x" goto :EOF
 echo [MACRO]AddDrivers %*
 
 if "x%ADDDRIVERS_INITED%"=="x" (
-    del /s /a /q "%_WB_TMP_DIR%\_AddDrivers_INF.txt"
-    wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\INF\ >"%_WB_TMP_DIR%\_AddDrivers_INF.txt"
-    rem for /f "usebackq delims=" %%i in ("%_WB_TMP_DIR%\_AddDrivers_INF.txt") do mkdir "%_WB_TMP_DIR%\Windows_INF\%%~nxi"
+    del /s /a /q "%WB_TMP_PATH%\_AddDrivers_INF.txt"
+    wimlib-imagex.exe dir "%WB_SRC%" %WB_SRC_INDEX% --path=\Windows\INF\ >"%WB_TMP_PATH%\_AddDrivers_INF.txt"
+    rem for /f "usebackq delims=" %%i in ("%WB_TMP_PATH%\_AddDrivers_INF.txt") do mkdir "%WB_TMP_PATH%\Windows_INF\%%~nxi"
     set ADDDRIVERS_INITED=1
 )
 
@@ -45,7 +45,7 @@ if "x%2"=="xDRIVERS" goto :AddDriver_Reg
 
 rem ==========update filesystem==========
 if %_AddDriver_Wildcard% EQU 1 goto :END_INF_CHECK
-findstr /i /c:"%~1" "%_WB_TMP_DIR%\_AddDrivers_INF.txt" >nul
+findstr /i /c:"%~1" "%WB_TMP_PATH%\_AddDrivers_INF.txt" >nul
 if not "%errorlevel%"=="0" (
     echo [INFO] Driver does not exist^(%~1^).
     goto :EOF

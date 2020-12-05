@@ -1,8 +1,8 @@
-@echo off
+
 echo %cd%
 
 set opt[build.wim]=customed
-if "%WB_BASE%"=="_Factory_\target\%WB_PROJECT%\winre.wim" (
+if "%WB_BASE%"=="winre.wim" (
   set opt[build.wim]=winre
 )
 if "x%opt[build.adk]%"=="xtrue" (
@@ -15,7 +15,7 @@ set opt
 
 echo.
 echo \033[97;44mBuild Selection:|cmdcolor.exe
-type "%_WB_TMP_DIR%\_patches_selected.txt"
+type "%WB_TMP_PATH%\_patches_selected.txt"
 echo.
 
 rem Dism /Get-Packages /Image:"%_WB_MNT_DIR%"
@@ -75,7 +75,7 @@ echo   - HKEY_LOCAL_MACHINE\Src_DRIVERS
 echo   - HKEY_LOCAL_MACHINE\Src_SOFTWARE
 echo   - HKEY_LOCAL_MACHINE\Src_SYSTEM
 echo.
-echo Mounted KEYs of %WB_BASE%'s HIVEs
+echo Mounted KEYs of %WB_BASE_PATH%'s HIVEs
 echo   - HKEY_LOCAL_MACHINE\Tmp_DEFAULT
 echo   - HKEY_LOCAL_MACHINE\Tmp_DRIVERS
 echo   - HKEY_LOCAL_MACHINE\Tmp_SOFTWARE

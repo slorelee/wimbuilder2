@@ -1,6 +1,6 @@
 rem this called by prepare.bat before wim mounted
 
-if "x%_WB_TMP_DIR%"=="x" goto :EOF
+if "x%WB_TMP_PATH%"=="x" goto :EOF
 
 rem check if test\boot.wim
 set _slim_wim_check=%WB_BASE:test\boot.wim=%
@@ -11,7 +11,7 @@ if not "%_slim_wim_check%"=="%WB_BASE%" (
 )
 
 
-echo.>"%_WB_TMP_DIR%\SlimPatch.txt"
+echo.>"%WB_TMP_PATH%\SlimPatch.txt"
 call SlimWinSxS.bat
 
 call CheckPatch "za-Slim"
@@ -24,15 +24,15 @@ if %errorlevel% EQU 0 (
 )
 
 if not "x%opt[build.wow64support]%"=="xtrue" (
-  (echo delete "\Program Files (x86)" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
-  (echo delete "\Windows\SysWOW64" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
+  (echo delete "\Program Files (x86)" --force --recursive)>>"%WB_TMP_PATH%\SlimPatch.txt"
+  (echo delete "\Windows\SysWOW64" --force --recursive)>>"%WB_TMP_PATH%\SlimPatch.txt"
 )
 
 if "x%opt[slim.extra]%"=="xtrue" (
   set opt[build.catalog]=light
-  (echo delete "\Windows\DiagTrack" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
-  (echo delete "\Windows\servicing" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
-  (echo delete "\Windows\System32\downlevel" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt
+  (echo delete "\Windows\DiagTrack" --force --recursive)>>"%WB_TMP_PATH%\SlimPatch.txt"
+  (echo delete "\Windows\servicing" --force --recursive)>>"%WB_TMP_PATH%\SlimPatch.txt"
+  (echo delete "\Windows\System32\downlevel" --force --recursive)>>"%WB_TMP_PATH%\SlimPatch.txt
 )
 
 if "x%opt[slim.mui]%"=="xfalse" goto :SLIM_COMMIT
@@ -45,7 +45,7 @@ call :REMOVE_MUI \Windows\System32
 rem update wim with SlimPatch.txt
 
 echo Wimlib Cleanup and reduce Winre.wim
-wimlib-imagex.exe update "%WB_ROOT%\%_WB_PE_WIM%" %WB_BASE_INDEX%  < "%_WB_TMP_DIR%\SlimPatch.txt"
+wimlib-imagex.exe update "%WB_BASE_PATH%" %WB_BASE_INDEX% < "%WB_TMP_PATH%\SlimPatch.txt"
 if not exist "%X_WIN%\WinSxS\Catalogs\" mkdir "%X_WIN%\WinSxS\Catalogs"
 goto :EOF
 
@@ -59,7 +59,7 @@ goto :EOF
 :_REMOVE_MUI
 for %%i in (%~2) do (
   if not "x%%i"=="x%WB_PE_LANG%" (
-    (echo delete "%~1\%%i" --force --recursive)>>"%_WB_TMP_DIR%\SlimPatch.txt"
+    (echo delete "%~1\%%i" --force --recursive)>>"%WB_TMP_PATH%\SlimPatch.txt"
   )
 )
 goto :EOF

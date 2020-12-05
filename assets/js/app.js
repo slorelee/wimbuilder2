@@ -77,7 +77,7 @@ function app_init() {
 
 function page_init() {
     if ($app_root == '') return;
-    create_folder_cascade(eformat("_Factory_\\tmp"));
+    create_folder_cascade(eformat("%Factory%\\tmp"));
     if ($wb_base == "winre.wim" && fso.FileExists($wb_src)) {
         $('#menu_project').click();
         update_wim_info();

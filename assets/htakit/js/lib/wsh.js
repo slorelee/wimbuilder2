@@ -16,7 +16,8 @@ function eformat(str) {
 
 function exec_cmd(cmd) {
     var env = wsh.Environment("PROCESS");
-    var tmp = "_Factory_\\tmp\\_exec.tmp";
+    var tmp = "%Factory%\\tmp\\_exec.tmp";
+    tmp = eformat(tmp);
     cmd = eformat(cmd);
     wsh.Run(cmd + " 1> \"" + tmp + "\"", 0, true);
     return load_text_file(tmp);

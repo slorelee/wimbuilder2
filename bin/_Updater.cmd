@@ -116,6 +116,7 @@ call :UPDATE_DETECT_DIR Projects -r
 call :UPDATE_DETECT_DIR assets -r
 call :UPDATE_DETECT_DIR bin -r
 call :UPDATE_DETECT_DIR lib\macros
+call :UPDATE_DETECT_DIR test
 call :UPDATE_DETECT config.js
 call :UPDATE_DETECT WimBuilder.cmd
 

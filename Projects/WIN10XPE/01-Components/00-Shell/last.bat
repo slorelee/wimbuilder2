@@ -1,3 +1,5 @@
+call SimplePatchDir "%~dp0ShellSettings"
+
 rem Apply Theme Color for Taskbar
 if "x%opt[shell.use_theme_color]%"=="xfalse" (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v ColorPrevalence /t REG_DWORD /d 0 /f

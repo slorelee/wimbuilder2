@@ -97,6 +97,8 @@ reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "Segoe 
 
 if "x%opt[build.registry.software]%"=="xfull" (
   call :EditReg_FullSoftware
+) else (
+  call _TextAssoc.bat
 )
 
 if "x%opt[system.high_compatibility]%"=="xtrue" (

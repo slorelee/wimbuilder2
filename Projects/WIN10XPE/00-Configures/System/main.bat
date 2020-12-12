@@ -99,6 +99,7 @@ if "x%opt[build.registry.software]%"=="xfull" (
   call :EditReg_FullSoftware
 ) else (
   call _TextAssoc.bat
+  call RegCopy HKLM\SOFTWARE\Classes\.symlink
 )
 
 if "x%opt[system.high_compatibility]%"=="xtrue" (

@@ -88,6 +88,19 @@ del /a /f /q "%X_SYS%\CredProv*.*"
 
 call :KEEP_FILES \Windows\System32\ "C_1252.NLS,C_437.NLS"
 call :KEEP_FILE \Windows\System32\C_%WB_PE_CODEPAGE%.NLS
+
+rem 1250: Central and East European Latin
+rem  852: Slavic (Latin-2)
+if "x%WB_PE_CODEPAGE%"=="x1250" (
+  call :KEEP_FILE \Windows\System32\C_852.NLS
+)
+
+rem 1252: West European Latin
+rem  850: Multilingual (Latin-1)
+if "x%WB_PE_CODEPAGE%"=="x1252" (
+  call :KEEP_FILE \Windows\System32\C_850.NLS
+)
+
 del /a /f /q "%X_SYS%\C_*.NLS"
 
 del /a /f /q "%X_SYS%\csiagent.dll"

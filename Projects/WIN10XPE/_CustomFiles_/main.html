@@ -10,20 +10,18 @@
     </div>
     <br/>
 
-<div style="margin:5px 10px 5px 0px">
-<fieldset>
-<legend><label><input type="checkbox" name="custom.cmd_mode" class="opt_item" /> Change the size of the [1-build(cmd)] Command Prompt window</label></legend>
-<div style="margin-left:20px">
-    <input type="text" name="custom.cmd_mode_code" class="opt_item" style="width:50%;" value="MODE 150,9999" />
+<div style="margin:15px">
+<button class="pure-button button-green" style="color:#ffffff;"
+    onclick="OpenFolder($obj_project.appdata_full_path)">
+    <label class="browse" style="background:rgb(28, 184, 65);" />  [Project](AppData)</button>
 </div>
-</fieldset>
-<br/>
-<label><input type="checkbox" name="custom.restart_explorer_menu" class="opt_item" /> Add Restart Explorer desktop menu:<input type="text" name="custom.restart_explorer_item" class="opt_item" style="width:50%;" value="Restart Explorer" /></label>
-<br/>
-<br/>
-<label><input type="checkbox" name="custom.show_cmd_menu" class="opt_item" /> Always show the Open Command Prompt Here extended menu item</label>
 
+<div style="margin:15px">
+<button class="pure-button button-lightblue" style="color:#ffffff;" 
+    onclick="OpenFolder($obj_project.appdata_full_path + '/_CustomFiles_/')">
+    <label class="browse" style="background:rgb(66, 184, 221);" /> _CustomFiles_(AppData)</button>
 </div>
+
 
 </div>
 

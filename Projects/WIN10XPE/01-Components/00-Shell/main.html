@@ -96,8 +96,12 @@ INIT-->
 
 <div style="padding:5px 0px 0px 3px;">
 <button class="pure-button pure-button-primary" 
-  onclick="open_edit(userpath($obj_project.full_path + '\\_CustomFiles_\\MyCustom\\Last\\_CustomDesktopItems.bat'))">
+  onclick="open_customdesktopitems_file()">
   <label class="edit" /> Customize Icons
+</button>
+<button class="pure-button pure-button-primary"
+   onclick="OpenFolder($obj_project.appdata_full_path)">
+   <label class="browse" />
 </button>
 </div>
 
@@ -196,6 +200,15 @@ INIT-->
 function select_image(elem) {
   var file = BrowseFile(null);
   if (file != '') elem.src = file;
+}
+
+function open_customdesktopitems_file() {
+    var custom_file = $obj_project.appdata_full_path + '/_CustomDesktopItems.bat';
+    if (!fso.FileExists(custom_file)) {
+        var template_file = $app_root + '/' + $obj_patch.path + '/_CustomDesktopItems.bat';
+        fso.CopyFile(template_file, custom_file);
+    }
+    open_edit(custom_file);
 }
 </script>
 </div>

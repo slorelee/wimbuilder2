@@ -1,5 +1,14 @@
 call SimplePatchDir "%~dp0ShellSettings"
 
+rem Desktop/Taskbar Items
+set "_CUSTOMDESKTOPITEMS_FILE=%WB_USER_PROJECT_PATH%\_CustomDesktopItems.bat"
+if not exist "%_CUSTOMDESKTOPITEMS_FILE%" (
+    echo [INFO] File does not exist^(%_CUSTOMDESKTOPITEMS_FILE%^).
+    set _CUSTOMDESKTOPITEMS_FILE=_CustomDesktopItems.bat
+)
+call "%_CUSTOMDESKTOPITEMS_FILE%"
+set _CUSTOMDESKTOPITEMS_FILE=
+
 rem Apply Theme Color for Taskbar
 if "x%opt[shell.use_theme_color]%"=="xfalse" (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v ColorPrevalence /t REG_DWORD /d 0 /f

@@ -1,10 +1,13 @@
 _Factory_
 _ISO_
 _U_
+AppData
+*.link
 vendor*
-auto_config.js
+ReleaseHelper.vbs
+UserConfig.cmd
+assets/themes/the_spring_festival
 bin/7z.*
 bin/*/7z.*
 bin/*/aria2c.*
-**/preset/current.js
 *.code-workspace

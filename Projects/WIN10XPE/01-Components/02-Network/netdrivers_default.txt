@@ -1,4 +1,4 @@
-;all built-in network drivers (+80 MB for the boot.wim)
+;built-in network drivers (+80 MB for the boot.wim)
 ;Do not change this file!!!
 ;If you want to customize the built-in network dirvers, copy one or more driver(s) into netdrivers_custom.txt file.
 

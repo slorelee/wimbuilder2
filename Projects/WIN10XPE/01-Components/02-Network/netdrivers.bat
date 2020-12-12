@@ -1,7 +1,7 @@
 rem built-in network drivers
 if not "x%opt[network.builtin_drivers]%"=="xtrue" goto :EOF
 
-set _NETDRIVERS_FILE=netdrivers_all.txt
+set _NETDRIVERS_FILE=netdrivers_default.txt
 if "%opt[network.type_builtin_drivers]%"=="custom" set "_NETDRIVERS_FILE=%WB_USER_PROJECT_PATH%\netdrivers_custom.txt"
 if not exist "%_NETDRIVERS_FILE%" (
     echo [ERROR] File does not exist^(%_NETDRIVERS_FILE%^).

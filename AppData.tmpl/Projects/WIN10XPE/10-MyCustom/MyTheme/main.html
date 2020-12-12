@@ -20,14 +20,14 @@ fieldset legend {
 
 <fieldset>
 <legend>Theme Set:</legend>
-<label><input type="radio" class="opt_item" name="mytheme.theme_id" value="1" checked /> Theme Pack 1</label>
-<label><input type="radio" class="opt_item" name="mytheme.theme_id" value="2" /> Theme Pack 2</label>
+<label><input type="radio" class="opt_item" name="mycustom.theme_id" value="1" checked /> Theme Pack 1</label>
+<label><input type="radio" class="opt_item" name="mycustom.theme_id" value="2" /> Theme Pack 2</label>
 <div id="mytheme_id_br" />
 <script>
   if ($lang == 'zh-CN') $("#mytheme_id_br").css('display', 'none');
 </script>
-<label><input type="radio" class="opt_item" name="mytheme.theme_id" value="3" /> Theme Pack 3</label>
-<label><input type="radio" class="opt_item" name="mytheme.theme_id" value="4" /> Theme Pack 4</label>
+<label><input type="radio" class="opt_item" name="mycustom.theme_id" value="3" /> Theme Pack 3</label>
+<label><input type="radio" class="opt_item" name="mycustom.theme_id" value="4" /> Theme Pack 4</label>
 </fieldset>
 
 <fieldset>
@@ -46,12 +46,12 @@ function load_thumbimage(file) {
 
 (function() {
     if (!$patch_loaded) {
-        var n = $patches_opt['mytheme.theme_id'];
+        var n = $patches_opt['mycustom.theme_id'];
         load_thumbimage('MyPic' + n + '.jpg');
     }
 })();
 
-$("input:radio[name='mytheme.theme_id']").change(function() {
+$("input:radio[name='mycustom.theme_id']").change(function() {
   var n = $(this).val();
   load_thumbimage('MyPic' + n + '.jpg');
 });

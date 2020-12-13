@@ -41,7 +41,6 @@ echo "%~1"|find "*" 1>nul
 if %errorlevel% EQU 0 set _AddDriver_Wildcard=1
 
 if "x%2"=="xREG" goto :AddDriver_Reg
-if "x%2"=="xDRIVERS" goto :AddDriver_Reg
 
 rem ==========update filesystem==========
 if %_AddDriver_Wildcard% EQU 1 goto :END_INF_CHECK

@@ -26,7 +26,7 @@ set AddFiles_Mode=merge
 
 call SharedPatch WINUSB
 
-call AddDrivers "wpd*.inf,wudf*.inf" FILE
+call AddDrivers "wpd*.inf,wudf*.inf"
 
 call AddFiles %0 :end_files
 goto :end_files
@@ -55,9 +55,6 @@ call RegCopy SYSTEM\ControlSet001\Control\Class\{EEC5AD98-8080-425F-922A-DABF3DE
 rem add services
 call RegCopyEx Services "WPDBusEnum,WpdUpFltr,WudfPf,WUDFRd"
 
-rem winusb.inf (already added by AddDrivers macro, only two items in <1KB)
-rem has high cost performance to copy all DriverDatabase items, just 4MB SYSTEM size(608KB compressed)
-rem call RegCopy SYSTEM\DriverDatabase
 
 rem explorer Portable device
 rem Portable Devices ::{35786D3C-B075-49b9-88DD-029876E11C01}

@@ -7,7 +7,7 @@ if "x%opt[audio.win_events]%"=="x" set opt[audio.win_events]=base
 
 set AddFiles_Mode=merge
 rem ;In Winre.wim \Windows\INF\AudioEndpoint.inf,hdaudbus.inf,hdaudio.inf,hdaudss.inf,wdma_usb.inf,wdmaudio.inf
-call AddDrivers "bda.inf,c_media.inf,gameport.inf,ks.inf,kscaptur.inf,ksfilter.inf,modemcsa.inf,usbvideo.inf,wave.inf" FILE
+call AddDrivers "bda.inf,c_media.inf,gameport.inf,ks.inf,kscaptur.inf,ksfilter.inf,modemcsa.inf,usbvideo.inf,wave.inf"
 
 call AddFiles %0 :end_files
 goto :end_files

@@ -1,7 +1,8 @@
 rem MACRO:AddDrivers
-rem     call AddDrivers athw8x.inf [TYPE]
-rem     call AddDrivers "netathr10x.inf,netathrx.inf" [TYPE]
+rem     call AddDrivers athw8x.inf [TYPE] [REGKEY]
+rem     call AddDrivers "netathr10x.inf,netathrx.inf" [TYPE] [REGKEY]
 rem     TYPE: FILE or REG
+rem     REGKEY: DRIVERS or other
 
 if "x%~1"=="x" goto :EOF
 echo [MACRO]AddDrivers %*
@@ -17,6 +18,9 @@ set "_AddDrivers_FILE=%~dpnx0"
 
 set _AddDrivers_TYPE=%AddDrivers_TYPE%
 if not "x%2"=="x" set _AddDrivers_TYPE=%2
+
+set _AddDrivers_REGKEY=DRIVERS
+if not "x%3"=="x" set _AddDrivers_REGKEY=%3
 
 rem * can't be in for (set)
 rem for %%f in (%~1) do call :AddDriver %%f %2
@@ -66,23 +70,32 @@ if "x%2"=="xFILE" goto :EOF
 
 :AddDriver_Reg
 rem ==========update registry==========
-set _AddDriver_UserDriver=1
-if "x%_AddDrivers_TYPE%"=="xDRIVERS" goto :REGCOPY_FROM_DRIVERS
+if "x%_AddDrivers_REGKEY%"=="xDRIVERS" goto :REGCOPY_FROM_DRIVERS
 
 :REGCOPY_FROM_SYSTEM
-if %_AddDriver_Wildcard% EQU 0 (
-    call RegCopy "HKLM\SYSTEM\DriverDatabase\DriverInfFiles\%~1"
-) else (
-    call RegCopy HKLM\SYSTEM\DriverDatabase\DriverInfFiles "%~1"
-)
+set _AddDriver_UserDriver=1
+call :REGCOPY_DRIVERDATABASE SYSTEM "%~1"
 set _AddDriver_UserDriver=%errorlevel%
-call RegCopy HKLM\SYSTEM\DriverDatabase\DriverPackages "%~1*"
 if %_AddDriver_UserDriver% EQU 0 goto :EOF
 
 :REGCOPY_FROM_DRIVERS
-if %_AddDriver_Wildcard% EQU 0 (
-    call RegCopy "HKLM\Drivers\DriverDatabase\DriverInfFiles\%~1"
-) else (
-    call RegCopy HKLM\Drivers\DriverDatabase\DriverInfFiles "%~1"
+call :REGCOPY_DRIVERDATABASE DRIVERS "%~1"
+goto :EOF
+
+:REGCOPY_DRIVERDATABASE
+if %_AddDriver_Wildcard% EQU 1 (
+    call RegCopy HKLM\%1\DriverDatabase\DriverInfFiles "%~2"
+    call RegCopy HKLM\%1\DriverDatabase\DriverPackages "%~2*"
+    goto :EOF
 )
-call RegCopy HKLM\Drivers\DriverDatabase\DriverPackages "%~1*"
+
+set _AddDriver_INFHASH=
+for /f "tokens=3" %%i in ('reg query HKLM\Src_Drivers\DriverDatabase\DriverInfFiles\%~2 /ve') do set _AddDriver_INFHASH=%%i
+if "x%_AddDriver_INFHASH%"=="x" (
+    echo [ERROR] Regkey does not exist^(HKLM\%1\DriverDatabase\DriverInfFiles\%~2^).
+    errno 1
+    goto :EOF
+)
+call RegCopy "HKLM\%1\DriverDatabase\DriverInfFiles\%~2"
+call RegCopy "HKLM\%1\DriverDatabase\DriverPackages\%_AddDriver_INFHASH%"
+set _AddDriver_INFHASH=

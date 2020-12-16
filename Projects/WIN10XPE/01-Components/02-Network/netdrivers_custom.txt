@@ -4,6 +4,7 @@
 
 :NETDRIVERS_x64
 
+netvwifibus.inf
 netr28ux.inf,netrtwlanu.inf
 
 :END_NETDRIVERS_x64
@@ -11,6 +12,7 @@ netr28ux.inf,netrtwlanu.inf
 
 :NETDRIVERS_x86
 
+netvwifibus.inf
 netr28.inf,netrtwlanu.inf
 
 :END_NETDRIVERS_x86

@@ -237,8 +237,8 @@ rem // netprofm service is required for wlansvc and wcmsvc service in 1903! even
 call RegCopyEx Services netprofm
 reg add HKLM\Tmp_System\ControlSet001\Services\netprofm /v Start /t REG_DWORD /d 4 /f
 
+set opt[network.networklist]=true
 if "x%opt[network.networklist_and_sharecenter]%"=="xtrue" (
-    set opt[network.networklist]=true
     set opt[network.sharecenter]=true
 )
 call _networklist.bat

@@ -33,7 +33,7 @@ if /i "x%_dll_drive%"=="xX" goto :C2X_PATH_END
 echo Update registry (C:\ =^> X:\) ...
 rem Case Insensitive Search for 'C:\'
 regfind -p HKEY_LOCAL_MACHINE\Tmp_Software -y C:\ -r X:\
-regfind -p HKEY_LOCAL_MACHINE\Tmp_Software -y C:\ -r X:\
+rem regfind -p HKEY_LOCAL_MACHINE\Src_System -y C:\ -r X:\
 
 :C2X_PATH_END
 set _dll_drive=

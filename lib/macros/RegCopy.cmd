@@ -3,8 +3,14 @@
 rem MACRO:RegCopy
 rem replace KEY_PATH to Src_XXX, Tmp_XXX and call reg.exe COPY
 rem Usage:
-rem       RegCopy HKLM\System\ControlSet001\Services\NlaSvc
-rem       RegCopy HKLM\Software\Microsoft\Windows\CurrentVersion\SideBySide\Winners *_microsoft.vc90.crt_*
+rem       RegCopy [/-s] HKLM\System\ControlSet001\Services\NlaSvc
+rem       RegCopy [/-s] HKLM\Software\Microsoft\Windows\CurrentVersion\SideBySide\Winners *_microsoft.vc90.crt_*
+
+set _rcopt_subkey=/s
+if /i "x%~1"=="x/-s" (
+  set _rcopt_subkey=
+  shift
+)
 
 set "param_key=%~1"
 if "%param_key:~0,5%"=="HKLM\" set "param_key=%param_key:~5%"
@@ -29,7 +35,7 @@ for /f "delims=" %%A IN ('Reg Query "%src_key%" /s /f "%find_key%"') Do Call :_R
 goto :EOF
 
 :_SimpleCopy
-reg copy "%src_key%" "%tmp_key%" /s /f
+reg copy "%src_key%" "%tmp_key%" %_rcopt_subkey% /f
 goto :EOF
 
 :_RegCopy
@@ -38,6 +44,6 @@ if "%found_key:~0,23%" neq "HKEY_LOCAL_MACHINE\Src_" goto :EOF
 set "tmp_key=HKEY_LOCAL_MACHINE\Tmp_%found_key:~23%"
 rem Reg Query "%found_key%" >nul 2>nul
 ::If Not ErrorLevel 1 Echo Reg Copy "%HKeyOrg%" "%HKeyNew%" /S /F
-reg copy "%found_key%" "%tmp_key%" /S /F
+reg copy "%found_key%" "%tmp_key%" %_rcopt_subkey% /F
 goto :EOF
 

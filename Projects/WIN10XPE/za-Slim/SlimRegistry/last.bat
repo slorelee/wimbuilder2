@@ -12,6 +12,7 @@ pushd "%cd%"
 set "dp0=%~dp0"
 cd /d "%dp0%"
 
+call :CLEANUP_DRIVERS
 call :CLEANUP_SOFTWARE
 
 set dp0=
@@ -25,8 +26,24 @@ reg add "HKLM\Tmp_SOFTWARE\Classes\mscfile\shell\RunAs\command" /ve /t REG_EXPAN
 goto :EOF
 
 
+:CLEANUP_DRIVERS
+if not "x%opt[slim.hive_drivers]%"=="xtrue" goto :EOF
+
+set opt[registry.drivers.compress]=true
+
+rem CleanupDeviceIds.vbs
+if exist RemoveDriverDeviceIds.reg del /q RemoveDriverDeviceIds.reg
+reg export HKLM\Tmp_DRIVERS\DriverDatabase\DeviceIds DriverDeviceIds.reg /y
+cscript //nologo CleanupDeviceIds.vbs "%X%"
+reg import RemoveDriverDeviceIds.reg
+
+rem CleanupDriverFiles.cmd
+call CleanupDriverFiles.cmd
+goto :EOF
+
+
 :CLEANUP_SOFTWARE
-if not "x%opt[slim.software]%"=="xtrue" goto :EOF
+if not "x%opt[slim.hive_software]%"=="xtrue" goto :EOF
 
 set "WINXSHELL=%V%\WinXShell\X_PF\WinXShell\WinXShell_%WB_ARCH%.exe"
 if not exist "%WINXSHELL%" goto :EOF

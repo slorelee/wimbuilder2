@@ -11,13 +11,11 @@ call _ACLRegKey Tmp_Software\Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D
 
 set _ui_opt=-hidewindow
 
-if "%opt[support.network]%"=="false" goto :UI_VOLUME
 if "x%opt[winxshell.ui_wifi.startup]%"=="xtrue" (
     echo "%%ProgramFiles%%\WinXShell\WinXShell.exe" -luacode "wxsUI('UI_WIFI',nil,'%_ui_opt%')"
 ) > "%X_Startup%\Startup_UI_WIFI.bat"
 
 :UI_VOLUME
-if "%opt[support.audio]%"=="false" goto :WXSUI_END
 if "x%opt[winxshell.ui_volume.no_beep]%"=="xtrue" (
   set "_ui_opt=-hidewindow -nobeep"
 )

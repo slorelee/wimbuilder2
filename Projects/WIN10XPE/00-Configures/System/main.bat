@@ -3,6 +3,9 @@ rem ==========update filesystem==========
 call AddFiles %0 :end_files
 goto :end_files
 
+\Windows\Branding\Basebrd\basebrd.dll
+\Windows\Branding\Basebrd\%WB_PE_LANG%\basebrd.dll.mui
+
 \Windows\Cursors\aero_arrow.cur
 
 @\Windows\System32\
@@ -88,6 +91,9 @@ reg add HKLM\Tmp_System\ControlSet001\Control\Lsa /v LmCompatibilityLevel /t REG
 rem // Allow network users to access without password > Also display Share with in Context Menu!
 reg add HKLM\Tmp_System\ControlSet001\Control\Lsa /v LimitBlankPasswordUse /t REG_DWORD /d 0 /f
 
+call RegCopy "HKLM\Software\Microsoft\Windows NT\CurrentVersion\EditionVersion"
+call RegCopy /-s "HKLM\Software\Microsoft\Windows NT\CurrentVersion"
+reg import PEVersion.reg
 
 reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-18" /v ProfileImagePath /d X:\Users\Default /f
 rem // Disable Telemetry

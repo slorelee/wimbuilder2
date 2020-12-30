@@ -19,6 +19,9 @@ if not exist "%X_SYS%\dwm.exe" (
 call za-Slim\Cleanup.bat
 if exist "%opt[slim.hive]%" call "%opt[slim.hive]%"
 
+if "x%opt[registry.drivers.compress]%"=="xtrue" (
+    reg save HKLM\Tmp_DRIVERS "%X_SYS%\config\DRIVERS.hiv" /y /c
+)
 if "x%opt[registry.software.compress]%"=="xtrue" (
     reg save HKLM\Tmp_Software "%X_SYS%\config\SOFTWARE.hiv" /y /c
 )
@@ -43,6 +46,10 @@ if "x%opt[build.unmount_wim_demand]%"=="xtrue" goto :REPLACE_FULLREG_END
 rem use prepared HIVE files
 call PERegPorter.bat Tmp UNLOAD 1>nul
 
+if "x%opt[registry.drivers.compress]%"=="xtrue" (
+    del /f /q /a "%X_SYS%\config\DRIVERS"
+    ren "%X_SYS%\config\DRIVERS.hiv" DRIVERS
+)
 if "x%opt[registry.software.compress]%"=="xtrue" (
     del /f /q /a "%X_SYS%\config\SOFTWARE"
     ren "%X_SYS%\config\SOFTWARE.hiv" SOFTWARE

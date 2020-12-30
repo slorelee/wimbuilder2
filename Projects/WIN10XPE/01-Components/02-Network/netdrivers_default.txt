@@ -4,7 +4,7 @@
 
 
 :NETDRIVERS_x64
-netvwifibus.inf
+netvwifibus.inf,netvwifimp.inf
 athw8x.inf,bcmwdidhdpcie.inf,mrvlpcie8897.inf
 net8185.inf,net8187bv64.inf,net8187se64.inf,net8192se64.inf,net8192su64.inf,net819xp.inf
 netathr10x.inf,netathrx.inf,netbc63a.inf,netbc64.inf,netr28ux.inf,netr28x.inf,netr7364.inf
@@ -14,7 +14,7 @@ netwsw00.inf,netwtw02.inf,netwtw04.inf,netwtw06.inf,netwtw08.inf
 :END_NETDRIVERS_x64
 
 :NETDRIVERS_x86
-netvwifibus.inf
+netvwifibus.inf,netvwifimp.inf
 athw8.inf,bcmwdidhdpcie.inf,mrvlpcie8897.inf
 net8185.inf,net8187bv32.inf,net8187se86.inf,net8192se32.inf,net8192su32.inf,net819xp.inf
 netathr.inf,netathr10.inf,netbc63.inf,netbc64.inf,netr28.inf,netr28u.inf,netr73.inf

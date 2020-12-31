@@ -62,11 +62,18 @@ if not "x%opt[support.network]%"=="xtrue" (
   del /a /f /q "%X_SYS%\wlan*.*"
 )
 
-if not "x%WB_PE_LANG%"=="xen-US" (
-  call :KEEP_FILES \Windows\System32\en-US\ "imageres.dll.mui,taskmgr.exe.mui"
-  del /a /f /q "%X_SYS%\en-US\*.*"
-  rd /s /q "%X_SYS%\wbem\en-US"
-)
+set _REQ_EN_US=1
+if "x%WB_PE_LANG%"=="xko-KR" set _REQ_EN_US=0
+if "x%WB_PE_LANG%"=="xzh-CN" set _REQ_EN_US=0
+if "x%WB_PE_LANG%"=="xzh-TW" set _REQ_EN_US=0
+if "x%_REQ_EN_US%"=="x1" goto :END_EN_US_MUI
+
+call :KEEP_FILES \Windows\System32\en-US\ "imageres.dll.mui,taskmgr.exe.mui"
+del /a /f /q "%X_SYS%\en-US\*.*"
+rd /s /q "%X_SYS%\wbem\en-US"
+
+:END_EN_US_MUI
+set _REQ_EN_US=
 
 rem rd /q /s "%X_SYS%\WindowsPowerShell\v1.0\Modules\Storage"
 rem rd /q /s "%X_SYS%\WindowsPowerShell\v1.0\Modules\StorageBusCache"

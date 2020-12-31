@@ -40,10 +40,23 @@ goto :EOF
 :_Slim_keyboard
 rem ==============================================
 call :KEEP_FILE \Windows\System32\KBDUS.DLL
-rem TODO: other %WB_PE_LANG%
-if "x%WB_PE_LANG%"=="xru-RU" (
-  call :KEEP_FILE \Windows\System32\KBDRU.DLL
+
+set _LocaleId=
+for /f "tokens=3" %%l in ('reg query "HKLM\Tmp_SYSTEM\ControlSet001\Control\CommonGlobUserSettings\Control Panel\International" /v Locale') do (
+  set _LocaleId=%%l
 )
+set _LayoutFile=
+for /f "tokens=4" %%l in ('reg query "HKLM\Tmp_SYSTEM\ControlSet001\Control\Keyboard Layouts\%_LocaleId%" /v "Layout File"') do (
+  set _LayoutFile=%%l
+)
+echo [INFO] Got LocaleId:%_LocaleId%
+echo [INFO] Got LayoutFile:%_LayoutFile%
+if /i "x%_LayoutFile%"=="xKBDUS.DLL" set _LayoutFile=
+if not "x%_LayoutFile%"=="x" (
+  call :KEEP_FILE "\Windows\System32\%_LayoutFile%"
+)
+set _LocaleId=
+set _LayoutFile=
 del /a /f /q "%X_SYS%\KB*.DLL"
 
 call :KEEP_FILES \Windows\System32\ "kd.dll,kdcom.dll"

@@ -50,6 +50,9 @@ if not exist "%WINXSHELL%" goto :EOF
 
 set opt[registry.software.compress]=true
 if exist RemoveInvaildItems_Reg.txt del /q RemoveInvaildItems_Reg.txt
+if exist WinSxS_Manifests.txt del /q WinSxS_Manifests.txt
+dir /b "%X_WIN%\WinSxS\Manifests\*.manifest" > WinSxS_Manifests.txt
+
 if exist RemoveInvaildRegItems.lua (
     "%WINXSHELL%" -console -script "%dp0%RemoveInvaildRegItems.lua"
 ) else (

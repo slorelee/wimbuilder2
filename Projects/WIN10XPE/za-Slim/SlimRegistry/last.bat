@@ -32,10 +32,10 @@ if not "x%opt[slim.hive_drivers]%"=="xtrue" goto :EOF
 set opt[registry.drivers.compress]=true
 
 rem CleanupDeviceIds.vbs
-if exist RemoveDriverDeviceIds.reg del /q RemoveDriverDeviceIds.reg
-reg export HKLM\Tmp_DRIVERS\DriverDatabase\DeviceIds DriverDeviceIds.reg /y
+if exist _RemoveDriverDeviceIds.reg del /q _RemoveDriverDeviceIds.reg
+reg export HKLM\Tmp_DRIVERS\DriverDatabase\DeviceIds _DriverDeviceIds.reg /y
 cscript //nologo CleanupDeviceIds.vbs "%X%"
-reg import RemoveDriverDeviceIds.reg
+reg import _RemoveDriverDeviceIds.reg
 
 rem CleanupDriverFiles.cmd
 call CleanupDriverFiles.cmd

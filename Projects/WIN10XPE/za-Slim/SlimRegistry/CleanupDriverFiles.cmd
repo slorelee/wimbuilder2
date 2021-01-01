@@ -1,12 +1,12 @@
 rem=rem --[=[ 1>nul
 rem -- ==================== batch script ====================
 if not exist "%WINXSHELL%" goto :EOF
-if exist RemoveRegDriverFiles.reg del /q RemoveRegDriverFiles.reg
-if exist RemoveDriverFiles.txt del /q RemoveDriverFiles.txt
+if exist _RemoveRegDriverFiles.reg del /q _RemoveRegDriverFiles.reg
+if exist _RemoveDriverFiles.txt del /q _RemoveDriverFiles.txt
 start /wait "%~nx0" "%WINXSHELL%" -console -script "%~dpnx0" -x "%X%"
-if not exist RemoveRegDriverFiles.reg goto :EOF
-reg import RemoveRegDriverFiles.reg
-for /f "delims=" %%i in (RemoveDriverFiles.txt) do (
+if not exist _RemoveRegDriverFiles.reg goto :EOF
+reg import _RemoveRegDriverFiles.reg
+for /f "delims=" %%i in (_RemoveDriverFiles.txt) do (
   if exist "%X_SYS%\DriverStore\FileRepository\%%i\" (
     echo RemoveDriverFile:FileRepository\%%i
     rd /s /q "%X_SYS%\DriverStore\FileRepository\%%i"
@@ -50,9 +50,9 @@ local function walk_inf_reg(infdir)
   -- table => string
   local str = 'Windows Registry Editor Version 5.00\n\n[-'
   str = str.. table.concat(tbl_reg, ']\n[-') .. ']'
-  write_file('RemoveRegDriverFiles.reg', str)
+  write_file('_RemoveRegDriverFiles.reg', str)
   str = table.concat(tbl_file, '\n')
-  write_file('RemoveDriverFiles.txt', str)
+  write_file('_RemoveDriverFiles.txt', str)
 end
 
 local function main()

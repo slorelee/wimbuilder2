@@ -15,7 +15,7 @@ Const TristateFalse = 0
 Dim fso, f
 Set fso = CreateObject("Scripting.FileSystemObject")
 
-Set f = fso.OpenTextFile("DriverDeviceIds.reg", ForReading, False, TristateTrue)
+Set f = fso.OpenTextFile("_DriverDeviceIds.reg", ForReading, False, TristateTrue)
 deviceids = f.ReadAll()
 f.Close()
 
@@ -63,6 +63,6 @@ Next
 
 Redim Preserve arr_out(n)
 
-Set f = fso.CreateTextFile("RemoveDriverDeviceIds.reg", ForWriting)
+Set f = fso.CreateTextFile("_RemoveDriverDeviceIds.reg", ForWriting)
 f.Write(join(arr_out, vbCrLf))
 f.Close()

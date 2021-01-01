@@ -1,5 +1,28 @@
 # 更新历史记录
 
+## WimBuilder2 v2021.01.01
+这是一个主要更新。添加和改善了以下内容:
+
+* 新增 匈牙利语资源文件(程序界面)。(感谢 @La_Valse)
+* 改进 精简选项。根据ISO的系统语言，保留键盘布局文件与en-US\*.mui文件。(感谢 @La_Valse)
+* 修复 当使用Github源时，【更新】按钮无法正确执行的问题。
+* 改进 提高AddDrivers宏命令执行速度。
+* 修复 当不合并DRIVERS注册表时，MTP和RNDIS功能无法使用的问题。(感谢 @小磊)
+* 新增 网络选项。独立的网络托盘图标选项(不再依赖网络与共享中心组件)。
+* 改进 启动后立即识别当前网络状态。
+* 新增 VirtualBox增强工具。便于在主机与虚拟机中的PE间传输文件。
+* 改进 ReCopy宏命令。新增 `/-s` 选项，指定此选项时，将不复制子项目。
+* 改善 版本号与Copyright的显示信息与install.wim一致。
+* 新增 精简DRIVERS选项。
+* 改进 精简SOFTWARE选项。
+* 更新 WinXShell的UI组件。
+        UI_SystemInfo的界面字体，布局进行调整。
+        UI_WIFI可直接输入回车键进行连接。
+        UI_WIFI的【网络和Internet 设置】可打开【网络连接】页面(更改适配器选项)。
+* 更新 WinXShell的Lua脚本。
+        可使用Lua函数根据分辨率动态调整DPI设置。
+* 改进 可通过UserConfig.cmd定义AppData路径，不需要复制AppData到新版本目录中(需要磁盘支持符号链接)。
+
 ## WimBuilder2 v2020.12.12
 这是一个主要更新。添加和改善了以下内容:
 

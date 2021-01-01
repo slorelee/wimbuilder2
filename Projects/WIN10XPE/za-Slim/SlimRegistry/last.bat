@@ -56,4 +56,7 @@ if exist RemoveInvaildRegItems.lua (
     "%WINXSHELL%" -console -script "%dp0%RemoveInvaildRegItems.bin"
 )
 reg import RemoveInvaildItems_Reg.txt
+
+rem hide "IE History and Feeds Shell Data Source for Windows Search" folder on Desktop
+reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" /v {11016101-E366-4D22-BC06-4ADA335C892B} /t REG_DWORD /d 1 /f
 goto :EOF

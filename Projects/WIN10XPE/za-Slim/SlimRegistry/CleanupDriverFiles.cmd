@@ -7,8 +7,10 @@ start /wait "%~nx0" "%WINXSHELL%" -console -script "%~dpnx0" -x "%X%"
 if not exist RemoveRegDriverFiles.reg goto :EOF
 reg import RemoveRegDriverFiles.reg
 for /f "delims=" %%i in (RemoveDriverFiles.txt) do (
-  echo RemoveDriverFile:FileRepository\%%i
-  rd /s /q "%X_SYS%\DriverStore\FileRepository\%%i"
+  if exist "%X_SYS%\DriverStore\FileRepository\%%i\" (
+    echo RemoveDriverFile:FileRepository\%%i
+    rd /s /q "%X_SYS%\DriverStore\FileRepository\%%i"
+  )
 )
 goto :EOF
 ]=]

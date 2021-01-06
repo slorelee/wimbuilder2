@@ -1,5 +1,6 @@
 echo off
 set GetLastError=1
+set _REWRITE_MODE=
 
 rem %%1 must be "Src" or "Tmp"
 if "x%1"=="x" goto :EOF
@@ -7,10 +8,15 @@ if /i "x%1"=="xSrc" goto :MAIN
 if /i "x%1"=="xTmp"  goto :MAIN
 
 :MAIN
-if /i "x%2"=="xLOAD" goto :REG_PORTER
+if /i "x%2"=="xLOAD" call :REG_PORTER %1 %2
 if /i "x%2"=="xUNLOAD" (
   set "COMMENT_STR=) ^& rem ("
-  goto :REG_PORTER
+  call :REG_PORTER %1 %2
+)
+if /i "x%2"=="xREWRITE" (
+  set "COMMENT_STR=) ^& rem ("
+  set _REWRITE_MODE=1
+  call :REG_PORTER %1 UNLOAD
 )
 
 goto :EOF
@@ -72,7 +78,12 @@ if /i "x%2"=="xUNLOAD" (
   reg query HKLM\%1_SOFTWARE /ve 2>nul 1>&2
   if ERRORLEVEL 1 goto :DEAL_SYSTEM
 )
+if  "%1x%_REWRITE_MODE%"=="Tmpx1" reg save HKLM\Tmp_Software "%X_SYS%\config\SOFTWARE.hiv" /y /c
 (REG %2 HKLM\%1_SOFTWARE %COMMENT_STR% "%FILEPATH%\SOFTWARE")
+if  "%1x%_REWRITE_MODE%"=="Tmpx1" (
+    del /f /q /a "%X_SYS%\config\SOFTWARE"
+    ren "%X_SYS%\config\SOFTWARE.hiv" SOFTWARE
+)
 if ERRORLEVEL 1 set GetLastError=1
 
 :DEAL_SYSTEM
@@ -80,7 +91,12 @@ if /i "x%2"=="xUNLOAD" (
   reg query HKLM\%1_SYSTEM /ve 2>nul 1>&2
   if ERRORLEVEL 1 goto :DEAL_DRIVERS
 )
+if  "%1x%_REWRITE_MODE%"=="Tmpx1" reg save HKLM\Tmp_SYSTEM "%X_SYS%\config\SYSTEM.hiv" /y /c
 (REG %2 HKLM\%1_SYSTEM %COMMENT_STR% "%FILEPATH%\SYSTEM")
+if  "%1x%_REWRITE_MODE%"=="Tmpx1" (
+    del /f /q /a "%X_SYS%\config\SYSTEM"
+    ren "%X_SYS%\config\SYSTEM.hiv" SYSTEM
+)
 if ERRORLEVEL 1 set GetLastError=1
 
 :DEAL_DRIVERS
@@ -88,7 +104,12 @@ if /i "x%2"=="xUNLOAD" (
   reg query HKLM\%1_DRIVERS /ve 2>nul 1>&2
   if ERRORLEVEL 1 goto :DEAL_NTUSER
 )
+if  "%1x%_REWRITE_MODE%"=="Tmpx1" reg save HKLM\Tmp_DRIVERS "%X_SYS%\config\DRIVERS.hiv" /y /c
 (REG %2 HKLM\%1_DRIVERS %COMMENT_STR% "%FILEPATH%\DRIVERS")
+if  "%1x%_REWRITE_MODE%"=="Tmpx1" (
+    del /f /q /a "%X_SYS%\config\DRIVERS"
+    ren "%X_SYS%\config\DRIVERS.hiv" DRIVERS
+)
 if ERRORLEVEL 1 set GetLastError=1
 
 :DEAL_NTUSER
@@ -100,6 +121,7 @@ if /i "x%2"=="xUNLOAD" (
 if ERRORLEVEL 1 set GetLastError=1
 
 :DEAL_END
+set _REWRITE_MODE=
 set FILEPATH=
 set FILEPATH_NTUSER=
 set COMMENT_STR=

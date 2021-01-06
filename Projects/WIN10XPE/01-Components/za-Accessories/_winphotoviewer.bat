@@ -1,8 +1,7 @@
 call AddFiles %0 :end_files
 goto :end_files
 \Program Files\Windows Photo Viewer\
-;only needs spool\drivers, but add all because it very small
-\Windows\System32\spool
+\Windows\System32\spool\drivers\color\
 @\Windows\system32\
 coloradapterclient.dll,efswrt.dll,icm32.dll,mscms.dll,photowiz.dll,shimgvw.dll
 :end_files

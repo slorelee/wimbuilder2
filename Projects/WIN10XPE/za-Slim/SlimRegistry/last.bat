@@ -29,8 +29,6 @@ goto :EOF
 :CLEANUP_DRIVERS
 if not "x%opt[slim.hive_drivers]%"=="xtrue" goto :EOF
 
-set opt[registry.drivers.compress]=true
-
 rem CleanupDeviceIds.vbs
 if exist _RemoveDriverDeviceIds.reg del /q _RemoveDriverDeviceIds.reg
 reg export HKLM\Tmp_DRIVERS\DriverDatabase\DeviceIds _DriverDeviceIds.reg /y
@@ -44,7 +42,7 @@ goto :EOF
 
 :CLEANUP_SOFTWARE
 if not "x%opt[slim.hive_software]%"=="xtrue" goto :EOF
-set opt[registry.software.compress]=true
+
 reg delete "HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing" /f
 
 set "WINXSHELL=%V%\WinXShell\X_PF\WinXShell\WinXShell_%WB_ARCH%.exe"

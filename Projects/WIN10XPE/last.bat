@@ -17,17 +17,6 @@ if not exist "%X_SYS%\dwm.exe" (
 )
 
 call za-Slim\Cleanup.bat
-if exist "%opt[slim.hive]%" call "%opt[slim.hive]%"
-
-if "x%opt[registry.drivers.compress]%"=="xtrue" (
-    reg save HKLM\Tmp_DRIVERS "%X_SYS%\config\DRIVERS.hiv" /y /c
-)
-if "x%opt[registry.software.compress]%"=="xtrue" (
-    reg save HKLM\Tmp_Software "%X_SYS%\config\SOFTWARE.hiv" /y /c
-)
-if "x%opt[registry.system.compress]%"=="xtrue" (
-    reg save HKLM\Tmp_SYSTEM "%X_SYS%\config\SYSTEM.hiv" /y /c
-)
 
 set _dll_drive=
 for /f "tokens=3 delims=: " %%i in ('reg query HKLM\Tmp_Software\Classes\CLSID\{0000002F-0000-0000-C000-000000000046}\InprocServer32 /ve') do set _dll_drive=%%i
@@ -41,23 +30,21 @@ rem regfind -p HKEY_LOCAL_MACHINE\Src_System -y C:\ -r X:\
 :C2X_PATH_END
 set _dll_drive=
 
+if exist "%opt[slim.hive]%" (
+    call "%opt[slim.hive]%"
+    set REG_REWRITE_MODE=1
+)
+
 if "x%opt[build.unmount_wim_demand]%"=="xtrue" goto :REPLACE_FULLREG_END
 
-rem use prepared HIVE files
-call PERegPorter.bat Tmp UNLOAD 1>nul
+if "x%REG_REWRITE_MODE%"=="x1" (
+    set REG_REWRITE_MODE=
+    call PERegPorter.bat Tmp REWRITE 1>nul
+) else (
+    call PERegPorter.bat Tmp UNLOAD 1>nul
+)
 
-if "x%opt[registry.drivers.compress]%"=="xtrue" (
-    del /f /q /a "%X_SYS%\config\DRIVERS"
-    ren "%X_SYS%\config\DRIVERS.hiv" DRIVERS
-)
-if "x%opt[registry.software.compress]%"=="xtrue" (
-    del /f /q /a "%X_SYS%\config\SOFTWARE"
-    ren "%X_SYS%\config\SOFTWARE.hiv" SOFTWARE
-)
-if "x%opt[registry.system.compress]%"=="xtrue" (
-    del /f /q /a "%X_SYS%\config\SYSTEM"
-    ren "%X_SYS%\config\SYSTEM.hiv" SYSTEM
-)
+rem use prepared HIVE files
 
 call :FULLREG DEFAULT
 call :FULLREG SOFTWARE

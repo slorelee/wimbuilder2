@@ -51,6 +51,8 @@ Windows.Globalization.Fontgroups.dll
 +ver > 18800
 WindowManagement.dll
 WindowManagementAPI.dll
++ver > 20000
+pfclient.dll
 +ver*
 
 \Windows\SystemResources\Windows.UI.Logon

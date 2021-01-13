@@ -22,4 +22,5 @@ if not exist "%LUAPIN_FILE%" goto :EOF
 call TextReplace "%LUAPIN_FILE%" #{# "(" g
 call TextReplace "%LUAPIN_FILE%" #}# ")" g
 call TextReplace "%LUAPIN_FILE%" #sp "%%%%" g
+call TextReplace "%LUAPIN_FILE%" #sq #q g
 goto :EOF

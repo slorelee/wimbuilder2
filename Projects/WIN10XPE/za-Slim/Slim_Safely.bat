@@ -39,18 +39,23 @@ goto :EOF
 
 :_Slim_keyboard
 rem ==============================================
-call :KEEP_FILE \Windows\System32\KBDUS.DLL
-
 set _LocaleId=
 for /f "tokens=3" %%l in ('reg query "HKLM\Tmp_SYSTEM\ControlSet001\Control\Nls\Locale" /ve') do (
   set _LocaleId=%%l
 )
+if "x%_LocaleId%"=="x" (
+  echo [WARNING] Failed to get the locale id.
+  goto :EOF
+)
+
 set _LayoutFile=
 for /f "tokens=4" %%l in ('reg query "HKLM\Tmp_SYSTEM\ControlSet001\Control\Keyboard Layouts\%_LocaleId%" /v "Layout File"') do (
   set _LayoutFile=%%l
 )
 echo [INFO] Got LocaleId:%_LocaleId%
 echo [INFO] Got LayoutFile:%_LayoutFile%
+
+call :KEEP_FILE \Windows\System32\KBDUS.DLL
 if /i "x%_LayoutFile%"=="xKBDUS.DLL" set _LayoutFile=
 if not "x%_LayoutFile%"=="x" (
   call :KEEP_FILE "\Windows\System32\%_LayoutFile%"
@@ -58,9 +63,6 @@ if not "x%_LayoutFile%"=="x" (
 set _LocaleId=
 set _LayoutFile=
 del /a /f /q "%X_SYS%\KB*.DLL"
-
-call :KEEP_FILES \Windows\System32\ "kd.dll,kdcom.dll"
-del /a /f /q "%X_SYS%\kd*.dll"
 goto :EOF
 
 
@@ -100,6 +102,14 @@ rd /q /s "%X_SYS%\WindowsPowerShell"
 
 rd /q /s "%X_SYS%\wbem\Repository"
 md "%X_SYS%\wbem\Repository"
+
+rem Key Distrubution Service Provider
+del /a /f /q "%X_SYS%\KdsCli.dll"
+
+rem Kernel Debugger
+call :KEEP_FILES \Windows\System32\ "kd.dll,kdcom.dll"
+del /a /f /q "%X_SYS%\kd*.dll"
+
 goto :EOF
 
 

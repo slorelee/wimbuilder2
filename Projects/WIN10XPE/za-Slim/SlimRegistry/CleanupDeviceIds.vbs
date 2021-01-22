@@ -1,12 +1,15 @@
 Set objArgs = WScript.Arguments
-If objArgs.Count < 1 Then
+If objArgs.Count < 2 Then
     WScript.Echo "[ERROR] CleanupDeviceIds.vbs:Wrong Parmaters."
     WScript.Quit(1)
 End If
 
-Dim dir, infdir
+Dim dir, infdir, infile, outfile
 dir = objArgs.Item(0)
 infdir = dir & "\Windows\INF"
+
+infile = "_Reg" & objArgs.Item(1) & "DeviceIds.reg"
+outfile = "_Remove" & objArgs.Item(1) & "DeviceIds.reg"
 
 Const ForReading = 1, ForWriting = 2, ForAppending = 8
 Const TristateTrue = -1
@@ -15,7 +18,7 @@ Const TristateFalse = 0
 Dim fso, f
 Set fso = CreateObject("Scripting.FileSystemObject")
 
-Set f = fso.OpenTextFile("_DriverDeviceIds.reg", ForReading, False, TristateTrue)
+Set f = fso.OpenTextFile(infile, ForReading, False, TristateTrue)
 deviceids = f.ReadAll()
 f.Close()
 
@@ -63,6 +66,6 @@ Next
 
 Redim Preserve arr_out(n)
 
-Set f = fso.CreateTextFile("_RemoveDriverDeviceIds.reg", ForWriting)
+Set f = fso.CreateTextFile(outfile, ForWriting)
 f.Write(join(arr_out, vbCrLf))
 f.Close()

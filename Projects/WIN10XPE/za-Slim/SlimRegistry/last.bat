@@ -13,6 +13,7 @@ set "dp0=%~dp0"
 cd /d "%dp0%"
 
 call :CLEANUP_DRIVERS
+call :CLEANUP_SYSTEM
 call :CLEANUP_SOFTWARE
 
 set dp0=
@@ -30,15 +31,28 @@ goto :EOF
 if not "x%opt[slim.hive_drivers]%"=="xtrue" goto :EOF
 
 rem CleanupDeviceIds.vbs
-if exist _RemoveDriverDeviceIds.reg del /q _RemoveDriverDeviceIds.reg
-reg export HKLM\Tmp_DRIVERS\DriverDatabase\DeviceIds _DriverDeviceIds.reg /y
-cscript //nologo CleanupDeviceIds.vbs "%X%"
-reg import _RemoveDriverDeviceIds.reg
+if exist _RemoveDriversDeviceIds.reg del /q _RemoveDriversDeviceIds.reg
+reg export HKLM\Tmp_DRIVERS\DriverDatabase\DeviceIds _RegDriversDeviceIds.reg /y
+cscript //nologo CleanupDeviceIds.vbs "%X%" Drivers
+reg import _RemoveDriversDeviceIds.reg
 
-rem CleanupDriverFiles.cmd
 call CleanupDriverFiles.cmd
 goto :EOF
 
+:CLEANUP_SYSTEM
+
+rem DriverDatabase
+if not "x%opt[slim.hive_drivers]%"=="xtrue" goto :EOF
+
+rem CleanupDeviceIds.vbs
+if exist _RemoveSystemDeviceIds.reg del /q _RemoveSystemDeviceIds.reg
+reg export HKLM\Tmp_SYSTEM\DriverDatabase\DeviceIds _RegSystemDeviceIds.reg /y
+cscript //nologo CleanupDeviceIds.vbs "%X%" System
+reg import _RemoveSystemDeviceIds.reg
+
+if not "x%opt[slim.hive_system]%"=="xtrue" goto :EOF
+
+goto :EOF
 
 :CLEANUP_SOFTWARE
 if not "x%opt[slim.hive_software]%"=="xtrue" goto :EOF

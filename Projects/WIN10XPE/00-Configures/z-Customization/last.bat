@@ -23,7 +23,7 @@ if "x%opt[tweak.shortcut.noarrow]%"=="xtrue" (
     reg add "HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v 29 /t REG_EXPAND_SZ /d "%%SystemRoot%%\system32\transparent.ico" /f
 )
 
-if "x%opt[tweak.shortcut.nonosuffix]%"=="xtrue" (
+if "x%opt[tweak.shortcut.nosuffix]%"=="xtrue" (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer /v link /t REG_BINARY /d 00000000 /f
 ) else (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer /v link /t REG_BINARY /d 16000000 /f

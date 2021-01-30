@@ -33,7 +33,9 @@ rem call RegCopy HKLM\Software\Classes\Unknown
 
 rem has high cost performance to copy all DriverDatabase items,
 rem just 4MB SYSTEM size(608KB compressed)
-call RegCopy SYSTEM\DriverDatabase
+if not "x%opt[build.registry.drivers]%"=="xnotset" (
+    call RegCopy SYSTEM\DriverDatabase
+)
 
 set AddDrivers_TYPE=DRIVERS
 

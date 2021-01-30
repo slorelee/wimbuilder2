@@ -39,6 +39,12 @@ INIT-->
     <label><input type="radio" class="opt_item" name="build.registry.drivers" value="merge" checked/> Merge</label>
     </fieldset>
 
+    <fieldset class="beginner-hide">
+    <legend>Merge install.wim's SYSTEM\DriverDatabase</legend>
+    <label><input type="radio" class="opt_item" name="build.registry.system_driverdatabase" value="notset" /> Not Set</label>
+    <label><input type="radio" class="opt_item" name="build.registry.system_driverdatabase" value="merge" checked/> Merge</label>
+    </fieldset>
+
     <div class="beginner-hide">
     <label title="Make sure that the required drivers\*.sys will be added" >
       <input type="checkbox" name="build.registry.system" class="opt_item" />

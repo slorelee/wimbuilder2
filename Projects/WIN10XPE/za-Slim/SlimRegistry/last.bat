@@ -12,6 +12,10 @@ pushd "%cd%"
 set "dp0=%~dp0"
 cd /d "%dp0%"
 
+if "x%opt[slim.hive_components]%"=="xtrue" (
+    copy /y Empty "%X_SYS%\config\COMPONENTS"
+)
+
 call :CLEANUP_DRIVERS
 call :CLEANUP_SYSTEM
 call :CLEANUP_SOFTWARE

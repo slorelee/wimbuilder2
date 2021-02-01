@@ -172,6 +172,7 @@ if 1==1 (
   echo X:\windows\system32\wbem\mofcomp.exe X:\windows\system32\wbem\win32_printer.mof
   echo X:\windows\system32\wbem\mofcomp.exe X:\windows\system32\wbem\PrintManagementProvider.mof
   echo.
+  echo reg add HKLM\SYSTEM\Setup /v SystemSetupInProgress /t REG_DWORD /d 0 /f
   echo net start spooler
   echo PnPutil.exe -i -a "%%Windir%%\inf\usbprint.inf"
   echo drvload.exe "%%Windir%%\inf\printqueue.inf"

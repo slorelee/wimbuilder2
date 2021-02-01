@@ -3,6 +3,8 @@ if not "x%opt[network.function_discovery]%"=="xtrue" goto :EOF
 rem // Function Discovery Provider Host and Publication and SSDP Discovery services
 call RegCopyEx Services "fdPHost,FDResPub,SSDPSRV"
 
+call _ACLRegKey "Tmp_SYSTEM\ControlSet001\Services\FDResPub" Everyone -
+
 call AddFiles %0 :end_files
 goto :end_files
 @\Windows\System32\
@@ -21,3 +23,6 @@ call RegCopy "HKLM\Software\Microsoft\UPnP Device Host"
 
 rem Network facilities
 call RegCopyEx Classes NetworkExplorerPlugins
+
+copy /y StartFDResPub.bat "%X_Startup%\"
+

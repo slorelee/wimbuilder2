@@ -26,7 +26,7 @@ iphlpsvc.dll
 ;drivers
 drivers\terminpt.sys
 drivers\rdpbus.sys
-drivers\rdpdr.sys 
+drivers\rdpdr.sys
 drivers\rdbss.sys
 drivers\rdpvideominiport.sys
 drivers\ipFltdrv.sys
@@ -85,6 +85,9 @@ call RegCopyEx Services rdbss
 call RegCopyEx Services "RdpVideoMiniport,CertPropSvc"
 call RegCopyEx Services "ipHlpSvc,ipFilterdriver"
 
+rem disable the service
+reg add HKLM\Tmp_System\ControlSet001\Services\TermService /v Start /t REG_DWORD /d 4 /f
+
 rem Contextmenu for computers in Network
 call RegCopyEx Classes NetServer
 
@@ -93,6 +96,9 @@ rem reg import TermService_ProductOptions.txt
 
 rem EnableTermServiceFeature
 if 1==1 (
+  echo sc config TermService start= demand
   echo reg add HKLM\SYSTEM\Setup /v SystemSetupInProgress /t REG_DWORD /d 0 /f
+  echo net start TermService
 )>"%X_PEMaterial%\EnableTermServiceFeature.bat"
-rem call link "%X_PEMaterial%\EnableTermServiceFeature.bat" "%X_Desktop%\EnableTermServiceFeature.lnk"
+
+call LinkToDesktop -paramlist EnableTermServiceFeature.lnk "[[%X_PEMaterial%\EnableTermServiceFeature.bat]], '', 'shell32.dll', 17"

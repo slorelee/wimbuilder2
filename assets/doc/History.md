@@ -1,5 +1,28 @@
 # 更新历史记录
 
+## WimBuilder2 v2021.02.02
+这是一个常规更新。添加和改善了以下内容:
+
+* 改进 对20H2版本的支持。
+        修复使用精简SOFTWARE注册表选项时，登录不正常问题。
+* 改进 对21H(2)版本的支持。
+        修正Administrator账户登录界面显示不正常问题。
+        修复最新预览版32位应用程序无法运行问题。
+* 新增 合并　SYSTEM\DriverDatabase　选项。
+* 新增 精简 SYSTEM 注册表(DriverDatabase)选项。
+* 新增 精简 COMPONENTS　注册表选项。
+* 修复 LuaLink，LuaPin宏命令参数中无法使用引号的问题。
+* 修复 去掉`快捷方式`字样选项无效问题。
+* 修复 远程桌面服务与网络托盘状态图标冲突问题。
+* 修复 X盘根目录残留Temp目录问题。
+* 调整 文件资源管理设定的默认值。
+* 更新 删除Classic Shell的自定义皮肤(避免Windows Defender误报)。
+* 更新 WinXShell的UI组件。
+        UI_SystemInfo支持读取OEM信息。
+        修复UI_SystemInfo无法正确显示机器名的问题。
+
+注意: Windows Media Player组件和StartIsBack 2.9.8有冲突， 需要WMP的话，请自行降级 StartIsBack 至 2.9.0 版本。
+
 ## WimBuilder2 v2021.01.01
 这是一个主要更新。添加和改善了以下内容:
 

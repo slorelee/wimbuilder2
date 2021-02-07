@@ -43,6 +43,8 @@ shwebsvc.dll
 
 :end_files
 
+call RegCopy /-s "HKLM\SOFTWARE\Classes\*"
+
 rem Computer Management Command
 reg add HKLM\Tmp_software\Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\shell\Manage\command /ve /d "mmc.exe compmgmt.msc /s" /f
 

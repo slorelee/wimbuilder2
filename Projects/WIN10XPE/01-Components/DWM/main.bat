@@ -25,6 +25,9 @@ rem ==========update registry==========
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\CoreMessagingRegistrar
 reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CoreMessagingRegistrar /f
 
+reg query "HKLM\Tmp_Software\Microsoft\SecurityManager\TransientObjects\%5C%5C.%5CAlpcPort%5CMPCManager" 1>nul
+if ERRORLEVEL 1 reg import TransientObjects_MPCManager.reg
+
 call REGCOPY HKLM\Software\Microsoft\Windows\DWM
 reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v OneCoreNoBootDWM /t REG_DWORD /d 0 /f
 

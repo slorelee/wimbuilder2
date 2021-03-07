@@ -18,13 +18,18 @@ goto :end_files
 ;Here for both System32 and SysWOW64
 @\Windows\%SysDir%\
 
+findstr.exe
+
 ; AFAIK Tencent QQ(x86) required
 avicap32.dll
 rasman.dll
 
+; PotPlayer
+devenum.dll
+EhStorAPI.dll
+
 ;Here for System32 only
 +if "%SysDir%"="System32"
-findstr.exe
 nsi.dll
 sti.dll
 -if
@@ -36,6 +41,9 @@ hlink.dll
 
 ; LENOVO BIOS Updater
 lz32.dll
+
+; Counter-Strike 1.5
+dciman32.dll
 
 +ver > 18300
 ; OpenOffice, LibreOffice, ... (Open file)

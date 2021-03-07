@@ -11,24 +11,24 @@ call AddFiles "%f0%" :end_files
 goto :end_files
 @\Windows\System32\
 credssp.dll
-cryptnet.dll
+;cryptnet.dll
 devenum.dll
-dssenh.dll
+;dssenh.dll
 EhStorAPI.dll
 FntCache.dll
 jscript9.dll
 midimap.dll
-msacm32.dll
-msdmo.dll
+;msacm32.dll
+;msdmo.dll
 ;mshtml.dll
-mskeyprotect.dll
+;mskeyprotect.dll
 OnDemandConnRouteHelper.dll
-perfos.dll
+;perfos.dll
 policymanager.dll
 quartz.dll
-rasadhlp.dll
-riched32.dll
-SensApi.dll
+;rasadhlp.dll
+;riched32.dll
+;SensApi.dll
 :end_files
 
 if exist "%~1" rd /s /q "%~1"

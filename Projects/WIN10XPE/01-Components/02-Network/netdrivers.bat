@@ -45,6 +45,8 @@ Microsoft-Windows-Client-Drivers-Package~*.cat
 Microsoft-Windows-Client-Drivers-Package-net~*.cat
 Microsoft-Windows-Desktop-Shared-Drivers-*.cat
 Microsoft-Client-Features-Classic-WOW64-*.cat
++ver >= 20313
+Microsoft-Windows-Wifi-Client-*.cat
 :end_files
 
 call DoAddFiles

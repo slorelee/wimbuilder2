@@ -3,6 +3,10 @@ set "f0=%~f0"
 set SysDir=System32
 call :Ime_Files
 
+if %VER[3]% GEQ 20313 (
+    del /f /a /q "%X_SYS%\Windows.Networking.Connectivity.dll"
+)
+
 rem =================WOW64 Support=================
 if not "x%opt[build.wow64support]%"=="xtrue" goto :UDPATE_REGISTY
 set SysDir=SysWOW64
@@ -50,6 +54,8 @@ Windows.UI.Core.TextInput.dll
 Windows.Web.dll
 +ver >= 20251
 ime_textinputhelpers.dll
++ver >= 20313
+CorePrivacySettingsStore.dll
 +ver*
 
 :end_files

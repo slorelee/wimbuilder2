@@ -32,6 +32,8 @@ EhStorAPI.dll
 +if "%SysDir%"="System32"
 nsi.dll
 sti.dll
+
+\Windows\Fonts\times.ttf
 -if
 
 ;Here for SysWOW64 only
@@ -54,6 +56,10 @@ shellstyle.dll
 ; 32-bit Web Browsers
 Windows.FileExplorer.Common.dll
 +ver*
+
+;eCloud
+glu32.dll
+opengl32.dll
 
 -if
 

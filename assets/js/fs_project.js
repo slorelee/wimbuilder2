@@ -9,12 +9,12 @@ var Project = {
         project.uri = '../' + project.path;
         project.app_root = $app_root.replace(/\\/g, '/');
         project.full_path = project.app_root + '/' + project.path;
-        project.appdata_full_path = project.app_root + '/AppData/' + project.path;
+        project.appdata_full_path = project.app_root + '/' + $appdata_dir + '/' + project.path;
         project.full_uri = project.full_path;
         project.full_path = project.full_path.replace(/\//g, '\\');
         project.style = '../' + project.path + '/_Assets_/style.css';
         project.current_preset_path = '';
-        var appdata_preset_path = 'AppData/' + project.path + '/_Assets_/preset';
+        var appdata_preset_path = $appdata_dir + '/' + project.path + '/_Assets_/preset';
         create_folder_cascade(appdata_preset_path.replace(/\//g, '\\'));
         function load_file(file) {
             return load_text_file(project.path + '/' + file);
@@ -42,8 +42,8 @@ var Project = {
         };
         project.preset_path = function(preset) {
             var path = project.path + '/_Assets_/preset/' + preset + '.js';
-            if (fso.FileExists('AppData/' + path)) {
-                return 'AppData/' + path;
+            if (fso.FileExists($appdata_dir + '/' + path)) {
+                return $appdata_dir + '/' + path;
             }
             return path;
         };
@@ -141,9 +141,9 @@ var Project = {
                 if (fso.FileExists(cdir + '/' + name + '/main.html')) {
                     init_patch(rootdir, pdir, pid, cdir, name, arr, type, parent_selected);
                 } else if (fso.FileExists(cdir + '/' + name + '/link')) {
-                    var linkrootdir = rootdir.replace('Projects/', 'AppData/Projects/');
-                    var linkpdir = pdir.replace('Projects/', 'AppData/Projects/');
-                    var linkcdir = cdir.replace('Projects/', 'AppData/Projects/');
+                    var linkrootdir = rootdir.replace('Projects/', $appdata_dir + '/Projects/');
+                    var linkpdir = pdir.replace('Projects/', $appdata_dir + '/Projects/');
+                    var linkcdir = cdir.replace('Projects/', $appdata_dir + '/Projects/');
                     init_patch(linkrootdir, linkpdir, pid, linkcdir, name, arr, 'link', parent_selected);
                 }
                 fenum.moveNext();

@@ -179,6 +179,7 @@ goto :EOF
 
 
 :APP_ENV
+set "APPDATA_DIR=AppData"
 set "Factory=_Factory_"
 set "ISO_DIR=_ISO_"
 

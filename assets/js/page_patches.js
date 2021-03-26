@@ -85,7 +85,7 @@ function init_image_opt(elem, patches_opt, patch_full_path) {
             //src = src.replace(/$patch_path/, patch_full_path);
             src = patch_full_path + '/' + src;
         }
-        $(elem).attr('src', src);
+        $(elem).attr('src', eformat(src));
     }
 }
 
@@ -250,12 +250,12 @@ function deselect_tree_node(id) {
 function linkpath(path) {
   if (path.indexOf('.LINK') == -1) return path;
   path = path.replace('.LINK', '');
-  path = path.replace('\\Projects\\', '\\AppData\\Projects\\');
+  path = path.replace('\\Projects\\', '\\' + $appdata_dir + '\\Projects\\');
   return path;
 }
 
 function userpath(path) {
-  upath = path.replace('\\Projects\\', '\\AppData\\Projects\\');
+  upath = path.replace('\\Projects\\', '\\' + $appdata_dir + '\\Projects\\');
   if (fso.FileExists(upath)) return upath;
   return path;
 }
@@ -264,7 +264,7 @@ var _editor_notice_done = false;
 function edit_menu_action(file) {
   if ($_wb_first_run) {
     if (!_editor_notice_done) {
-      var editor = $app_root + '\\AppData\\editor.cmd';
+      var editor = $app_root + '\\' + $appdata_dir + '\\editor.cmd';
       var msg = i18n_t('Will open file with notepad.exe, You can edit [%s] file to change the editor.');
       msg = msg.replace('%s', editor);
       alert(msg);
@@ -384,6 +384,7 @@ function patches_opt_stringify(line) {
     str = str.replace(/("[^"]+?":[^"]+?,)/g, "$1" + line);
     var env_path = $app_root.replace(/\\/g, '\\\\');
     str = str_replace(str, env_path, '%APP_ROOT%');
+    str = str_replace(str, $appdata_dir, '%APPDATA_DIR%');
     return str;
 }
 

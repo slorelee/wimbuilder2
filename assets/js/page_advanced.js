@@ -1,9 +1,10 @@
 var _advanced_page_inited = false;
 
-var advcmd_file = 'AppData\\_Advcmd.cmd';
+var advcmd_file = null;
 
 function advanced_page_init() {
     if (_advanced_page_inited) return;
+    advcmd_file = $appdata_dir + '\\_Advcmd.cmd';
     load_advcmd();
     _advanced_page_inited = true;
 }

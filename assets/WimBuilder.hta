@@ -82,6 +82,7 @@ if ($IE_VER == '0') {
 <script src="default_config.js"></script>
 <script src="../config.js"></script>
 <script src="../AppData/auto_config.js"></script>
+<script src="../AppData.link/auto_config.js"></script>
 
 <div id="theme_div">
     <canvas id="theme_canvas"></canvas>
@@ -317,7 +318,7 @@ if ($IE_VER == '9+') {
         <option selected="selected" class="i18n-text" value="default">default</option>
         <option>-</option>
     </select>
-    <button id="preset_browse" class="ui-button i18n-title" title="Browse..." onclick="OpenFolder('AppData\\' + $obj_project.path + '\\_Assets_\\preset\\')"></button>
+    <button id="preset_browse" class="ui-button i18n-title" title="Browse..." onclick="OpenFolder($appdata_dir + '\\' + $obj_project.path + '\\_Assets_\\preset\\')"></button>
     <button id="preset_saveas" class="ui-button i18n-title" title="Save As..." ></button>
     </div>
     <div id="patches_area">

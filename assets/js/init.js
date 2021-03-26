@@ -1,5 +1,5 @@
 var $app_root = null;
-
+var $appdata_dir = '';
 
 (function startup_check() {
     var env = wsh.Environment("PROCESS");
@@ -11,6 +11,10 @@ var $app_root = null;
     }
     //$app_root = $app_root.substring(0, $app_root.length - 1);
     $app_host_lang = env('APP_HOST_LANG');
+    $appdata_dir = env('APPDATA_DIR');
+    if ($appdata_dir == '') {
+        $appdata_dir = 'AppData';
+    }
     if ($app_opt != null) analyze_options(env);
 })();
 

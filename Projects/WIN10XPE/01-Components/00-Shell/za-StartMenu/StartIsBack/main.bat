@@ -80,15 +80,15 @@ set SIB_KEY=
 rem Account Pictures
 set "_AccPic_Path=%X%\ProgramData\Microsoft\User Account Pictures"
 if not exist "%_AccPic_Path%\" mkdir "%_AccPic_Path%"
-rem copy /y "%WB_ROOT%\AppData\_CustomFiles_\user-200.png" "%_AccPic_Path%\"
-copy /y "%WB_ROOT%\AppData\_CustomFiles_\AccountPictures\*.*" "%_AccPic_Path%\"
+rem copy /y "%WB_ROOT%\%APPDATA_DIR%\_CustomFiles_\user-200.png" "%_AccPic_Path%\"
+copy /y "%WB_ROOT%\%APPDATA_DIR%\_CustomFiles_\AccountPictures\*.*" "%_AccPic_Path%\"
 rem 2.9 and later
 reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.accountpicture-ms /ve /d {9a02e012-6303-4e1e-b9a1-630f802592c5} /f
 reg add HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\AccountPicture /v SourceId /d user-200 /f
 call RegCopyEx Classes ".accountpicture-ms,accountpicturefile"
 set "_AccPic_Path=%X%\Users\Default\AppData\Roaming\Microsoft\Windows\AccountPictures"
 if not exist "%_AccPic_Path%\" mkdir "%_AccPic_Path%"
-copy /y "%WB_ROOT%\AppData\_CustomFiles_\AccountPictures\*.*" "%_AccPic_Path%\"
+copy /y "%WB_ROOT%\%APPDATA_DIR%\_CustomFiles_\AccountPictures\*.*" "%_AccPic_Path%\"
 set _AccPic_Path=
 goto :EOF
 

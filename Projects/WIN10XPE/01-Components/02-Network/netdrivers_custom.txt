@@ -1,6 +1,6 @@
 ;custom built-in network drivers
 ;
-;%WB_ROOT%/AppData/Projects/%WB_PROJECT%/netdrivers_custom.txt
+;%WB_ROOT%/%APPDATA_DIR%/Projects/%WB_PROJECT%/netdrivers_custom.txt
 
 :NETDRIVERS_x64
 

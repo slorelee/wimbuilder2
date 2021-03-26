@@ -1,7 +1,7 @@
 ; === THE CONTENT IS JUST COMMENT ===
 ;
-; Link to the folder which is in the AppData\
+; Link to the folder which is in the %APPDATA_DIR%\
 ;
 ; HERE
-;    ---> AppData\Projects\WIN10XPE\10-MyCustom
+;    ---> %APPDATA_DIR%\Projects\WIN10XPE\10-MyCustom
 ;

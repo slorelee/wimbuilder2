@@ -78,7 +78,7 @@ var Project = {
         return project;
     },
     GetPatches:function(project) {
-        function init_patch(rootdir, pdir, pid, cdir, name, arr, type) {
+        function init_patch(rootdir, pdir, pid, cdir, name, arr, type, parent_selected) {
             var cid = pdir + '/' + name;
             if (pid == '#') cid = name;
 
@@ -113,7 +113,11 @@ var Project = {
                 if (pos >= 0) name = name.substring(pos + 1);
             }
             if (patch_opened != null) state_opened = patch_opened;
-            if (patch_selected != null) state_selected = patch_selected;
+            if (patch_selected != null) {
+                state_selected = patch_selected;
+            } else if (parent_selected == false) {
+                state_selected = false;
+            }
 
             cdir = cid;
             if (type == 'link') cid = cid + ".LINK";
@@ -124,9 +128,9 @@ var Project = {
             } else {
                 arr.push(item);
             }
-            get_sub_patches(rootdir, cdir, cid, arr, type);
+            get_sub_patches(rootdir, cdir, cid, arr, type, state_selected);
         };
-        function get_sub_patches(rootdir, pdir, pid, arr, type) {
+        function get_sub_patches(rootdir, pdir, pid, arr, type, parent_selected) {
             var cdir = rootdir + '/' + pdir;
             if (pid == '#') cdir = pdir;
 
@@ -135,12 +139,12 @@ var Project = {
             for (var i = 0 ; !fenum.atEnd();i++) {
                 var name = fenum.item().Name;
                 if (fso.FileExists(cdir + '/' + name + '/main.html')) {
-                    init_patch(rootdir, pdir, pid, cdir, name, arr, type);
+                    init_patch(rootdir, pdir, pid, cdir, name, arr, type, parent_selected);
                 } else if (fso.FileExists(cdir + '/' + name + '/link')) {
                     var linkrootdir = rootdir.replace('Projects/', 'AppData/Projects/');
                     var linkpdir = pdir.replace('Projects/', 'AppData/Projects/');
                     var linkcdir = cdir.replace('Projects/', 'AppData/Projects/');
-                    init_patch(linkrootdir, linkpdir, pid, linkcdir, name, arr, 'link');
+                    init_patch(linkrootdir, linkpdir, pid, linkcdir, name, arr, 'link', parent_selected);
                 }
                 fenum.moveNext();
             }

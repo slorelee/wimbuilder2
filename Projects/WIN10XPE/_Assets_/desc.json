@@ -4,5 +4,9 @@
     "version" : 1.0,
     "url" : "http://bbs.wuyou.net/forum.php?mod=viewthread&tid=411399",
     "url(English)" : "http://theoven.org/index.php?topic=2390.0",
-    "url(WIN10XPE)" : "http://theoven.org/index.php?topic=2421.0"
+    "url(WIN10XPE)" : "http://theoven.org/index.php?topic=2421.0",
+    ".___________________" : "________________________________________________________",
+    "tested_versions[0]" : "17134.1845, 17763.1613, 18362.418, 18363.418",
+    "tested_versions[1]" : " 19041.508, 19042.685, 19043.906, 21322.1000",
+    "____________________" : "________________________________________________________"
 }

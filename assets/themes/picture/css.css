@@ -8,9 +8,17 @@
   background-image:url('bk1.jpg');
 }
 
-/* update text color for bk1.jpg */
+/* update text/background color for bk1.jpg */
 body {
   color: white;
+}
+
+.jstree-default .jstree-hovered {
+  background: #00b2ff;
+}
+
+.jstree-default .jstree-clicked {
+  background: #00b2ff;
 }
 
 select, option, input[type=text] {

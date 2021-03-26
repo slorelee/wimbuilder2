@@ -34,7 +34,10 @@ $i18n = {
   "Select the extracted install.wim folder:":"选择install.wim的展开目录:",
   "Select the base image(boot.wim/winre.wim or other customed.wim)":"请选择基础映像(boot.wim/winre.wim或者其他自定义wim文件)",
   "Use test\\boot.wim":"使用test\\boot.wim",
-  "<strong>Notice</strong>:Please select the correct wim file, and the image index, otherwise cause build failed.":"<STRONG>请注意</STRONG>:对于不同的工程需要选择适当的wim文件及索引号，否则可能导致构建失败。",
+  "<strong>Notice</strong>:Please select the correct wim file, and the image index, otherwise cause build failed.":
+      "<strong>请注意</strong>:对于不同的工程需要选择适当的wim文件及索引号，否则可能导致构建失败。",
+  "<strong>Notice</strong>:Some updated versions may not boot properly. Please refer to the description of project for the supported version.":
+      "<strong>请注意</strong>:部分更新版本可能无法正常启动，请参考工程的说明信息确认支持构建的版本。",
 
   "Skip when project is selected":"当有工程自动选择时，跳过此页面",
 

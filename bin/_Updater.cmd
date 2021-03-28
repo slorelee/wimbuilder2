@@ -2,6 +2,13 @@
 if "x%REMOTE_URL%"=="x" set REMOTE_URL=https://github.com/slorelee/wimbuilder2/releases/download/update
 if "x%SOURCE_URL%"=="x" set SOURCE_URL=https://github.com/slorelee/wimbuilder2/raw/master
 
+if "x%SOURCE_URL%"=="xhttps://github.com/slorelee/wimbuilder2/raw/master" (
+    set SOURCE_INFO=http://api.github.com/repos/slorelee/wimbuilder2/branches/master
+)
+if "x%SOURCE_URL%"=="xhttps://gitee.com/slorelee/wimbuilder2/raw/master" (
+    set SOURCE_INFO=http://gitee.com/api/v5/repos/slorelee/wimbuilder2/branches/master
+)
+
 if "x%1"=="x--help" set UPT_HELP=1
 if "x%1"=="x-h" set UPT_HELP=1
 if not "x%UPT_HELP%"=="x1" goto :END_HELP
@@ -83,6 +90,7 @@ copy /y "%~dpn0.vbs" "%TMP_UPT%\" 1>nul
 
 del /f /a /q "%TMP_UPT%\local.md5"
 del /f /a /q "%TMP_UPT%\remote.md5"
+del /f /a /q "%TMP_UPT%\source.info"
 del /f /a /q "%TMP_UPT%\fciv.err"
 
 rem execute %FACTORY_PATH%\tmp\%~nx0
@@ -140,6 +148,33 @@ if not exist "%TMP_UPT%\remote.md5" (
     pause
     goto :EOF
 )
+
+if "x%SOURCE_INFO%"=="x" (
+    echo WARNING: Failed to detect the update information.
+    pause
+    goto :EOF
+)
+aria2c.exe -c --rpc-secure=false "%SOURCE_INFO%" -d "%TMP_UPT%" -o source.info
+if not exist "%TMP_UPT%\source.info" (
+    echo ERROR: Failed to download source.info manifest, please try later.
+    pause
+    goto :EOF
+)
+echo.
+echo.
+call :UPDATE_CHECK
+if ERRORLEVEL 2 (
+    echo ERROR: Failed to check the update information.
+    pause
+    goto :EOF
+)
+if ERRORLEVEL 1 (
+    echo WARNING: The remote.MD5 manifest is out of date.
+    pause
+    goto :EOF
+)
+echo.
+echo.
 :SKIP_REMOTE_MD5
 
 echo PHASE 3:Get update file list ...
@@ -170,6 +205,10 @@ for /f "usebackq delims=" %%i in ("%TMP_UPT%\updatefile.list") do (
     aria2c.exe -c "%SOURCE_URL%/%%i" -d "%APP_ROOT%" -o "%%i" --allow-overwrite=true 
 )
 pause
+goto :EOF
+
+:UPDATE_CHECK
+cscript //nologo "%TMP_UPT%\%~n0.vbs" --check
 goto :EOF
 
 :UPDATE_DETECT_DIR

@@ -12,8 +12,16 @@ Dim argCount:argCount = Wscript.Arguments.Count
 
 Dim optDir
 If argCount > 1 Then
-    If  Wscript.Arguments(0) = "--dir" Then
-      optDir = Wscript.Arguments(1)
+    If Wscript.Arguments(0) = "--dir" Then
+        optDir = Wscript.Arguments(1)
+    End If
+End If
+
+Dim optCheck:optCheck = 0
+
+If argCount >= 1 Then
+    If Wscript.Arguments(0) = "--check" Then
+        optCheck = 1
     End If
 End If
 
@@ -23,6 +31,14 @@ Dim inFile, outFile, inStream, outStream, inLine, FSO, WshShell
 
 Set WshShell = Wscript.CreateObject("Wscript.Shell")
 Set FSO = CreateObject("Scripting.FileSystemObject")
+
+If optCheck = 1 Then
+    optCheck = CheckUpdatedTime("remote.md5", "source.info")
+    If optCheck >= 0 Then
+        Wscript.Quit(optCheck)
+    End If
+    Wscript.Quit(2)
+End If
 
 Set objLocalMD5 = CreateObject("Scripting.Dictionary")
 Set objRemoteMD5 = CreateObject("Scripting.Dictionary")
@@ -61,6 +77,49 @@ outstr = Replace(outstr, vbCrLf & "wimbuilder.cmd" & vbCrLf, vbCrLf & "WimBuilde
 Set outStream = FSO.CreateTextFile("updatefile.list", OverwriteIfExist)
 outStream.Write outstr
 outStream.Close
+
+Function GetDateTimeInfo(file, pattern)
+  Dim data, matched
+  Set inStream = FSO.OpenTextFile(file, ForReading, FailIfNotExist)
+  data = inStream.ReadAll
+  inStream.Close
+
+  Set regEx = New RegExp
+  regEx.Pattern = pattern
+  regEx.IgnoreCase = True
+  'regEx.Global = True
+  Set Matches = regEx.Execute(data)
+  matched = ""
+  For Each Match in Matches
+      matched = Match.value
+  Next
+  GetDateTimeInfo = matched
+End Function
+
+Function CheckUpdatedTime(md5file, infofile)
+  Dim data, md5date, infodate
+  CheckUpdatedTime = -1
+  If Not FSO.FileExists(md5file) Then Exit Function
+
+  '// File Checksum Integrity Verifier version 2.05.
+  'Start Time: 03/28/2021 at 18h49'31''
+  md5date = GetDateTimeInfo(md5file, "(\d+/\d+/\d+)")
+  md5date = Right(md5date, 4) & "-" & Left(md5date, 2) & "-" & Mid(md5date, 4, 2)
+  Wscript.Echo "INFO: The updated time of [  " & md5file & " ] is " & md5date
+
+  If Not FSO.FileExists(infofile) Then Exit Function
+  'Gitee:  "date":"2021-03-26T23:29:00+08:00"
+  'Github: "date": "2021-02-02T14:22:22Z"
+  infodate = GetDateTimeInfo(infofile, "(\d+-\d+-\d+)")
+  Wscript.Echo "INFO: The updated time of [ " & infofile & " ] is " & infodate
+
+  If md5date > infodate Then
+    CheckUpdatedTime = 0
+  Else
+    CheckUpdatedTime = 1
+  End If
+
+End Function
 
 Function LoadHashToDict(filename, dict)
   If Not FSO.FileExists(filename) Then Exit Function

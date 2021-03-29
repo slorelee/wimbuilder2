@@ -128,9 +128,14 @@ var Project = {
             } else {
                 arr.push(item);
             }
-            get_sub_patches(rootdir, cdir, cid, arr, type, state_selected);
+            var node_selected = get_sub_patches(rootdir, cdir, cid, arr, type, state_selected);
+            if (node_selected == false) item["state"]["checked"] = false;
+            return node_selected;
         };
         function get_sub_patches(rootdir, pdir, pid, arr, type, parent_selected) {
+            var has_subpatch = false;
+            var state = true;
+            var state_selected = true;
             var cdir = rootdir + '/' + pdir;
             if (pid == '#') cdir = pdir;
 
@@ -139,15 +144,21 @@ var Project = {
             for (var i = 0 ; !fenum.atEnd();i++) {
                 var name = fenum.item().Name;
                 if (fso.FileExists(cdir + '/' + name + '/main.html')) {
-                    init_patch(rootdir, pdir, pid, cdir, name, arr, type, parent_selected);
+                    state = init_patch(rootdir, pdir, pid, cdir, name, arr, type, parent_selected);
+                    if (state == false) state_selected = false;
+                    has_subpatch = true;
                 } else if (fso.FileExists(cdir + '/' + name + '/link')) {
                     var linkrootdir = rootdir.replace('Projects/', $appdata_dir + '/Projects/');
                     var linkpdir = pdir.replace('Projects/', $appdata_dir + '/Projects/');
                     var linkcdir = cdir.replace('Projects/', $appdata_dir + '/Projects/');
-                    init_patch(linkrootdir, linkpdir, pid, linkcdir, name, arr, 'link', parent_selected);
+                    state = init_patch(linkrootdir, linkpdir, pid, linkcdir, name, arr, 'link', parent_selected);
+                    if (state == false) state_selected = false;
+                    has_subpatch = true;
                 }
                 fenum.moveNext();
             }
+            if (has_subpatch) return state_selected;
+            return parent_selected;
         };
         var arr = new Array();
         var rootdir = project.path;

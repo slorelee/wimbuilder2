@@ -236,6 +236,9 @@ function check_tree_node(id) {
 }
 
 function uncheck_tree_node(id) {
+  if ($('#patches_tree').jstree(true).is_undetermined(id)) {
+    check_tree_node(id);
+  }
   $('#patches_tree').jstree(true).uncheck_node(id);
 }
 

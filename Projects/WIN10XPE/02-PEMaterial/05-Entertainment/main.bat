@@ -1,1 +1,1 @@
-call ..\_Build_.cmd
+call AppBuilder

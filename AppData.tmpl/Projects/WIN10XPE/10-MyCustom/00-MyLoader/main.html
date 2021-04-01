@@ -1,0 +1,74 @@
+<div style="margin:5px;padding:5px;">
+<!--
+<link id="jquery-ui-theme" href="assets/vendor/jquery-ui/themes/hotsneaks/jquery-ui.theme.min.css" rel="stylesheet">
+-->
+
+<style>
+fieldset {
+  margin: 2px 20px 2px 10px;
+}
+</style>
+
+
+<fieldset>
+<legend>    PE Loader    </legend>
+<table><tr>
+<td style="width:20%"><label><input type="radio" class="opt_item" name="loader.name" value="lua" /> Lua</label></td>
+<td style="width:20%"><label><input type="radio" class="opt_item" name="loader.name" value="pecmd" checked /> PECMD</label></td>
+<td style="width:40%"><label><input type="radio" class="opt_item" name="loader.name" value="system" /> SYSTEM(startnet.cmd)</label></td>
+</tr></table>
+</fieldset>
+
+<div id="peloader_tab">
+    <div class="tab tab0">
+
+<div>
+Use the small simple lua to manage the startup phase.<br/>
+which one is open-source full functional strong programmability,
+with the expansibility modern design.
+</div>
+<br/><br/>
+<button class="pure-button button-green" onclick="edit_menu_action($app_root + '\\' + $obj_patch.path + '\\Setup\\pecmd.lua')">Edit pecmd.lua</button>
+
+    </div>
+
+    <div class="tab tab1">
+
+<div>
+Use the popular PECMD.exe to manage the startup phase.
+<br/><br/>
+<button class="pure-button" onclick="edit_menu_action($app_root + '\\' + $obj_patch.path + '\\Setup\\pecmd.ini')">Edit Pecmd.ini</button>
+<button class="pure-button" onclick="edit_menu_action($app_root + '\\' + $obj_patch.path + '\\Setup\\PecmdAdmin.ini')">Edit PecmdAdmin.ini</button>
+
+
+</div>
+
+    </div>
+
+    <div class="tab tab2">
+
+<div>
+Use SYSTEM's startnet.cmd to manage the startup phase.
+<br/><br/>
+<button class="pure-button" onclick="edit_menu_action($app_root + '\\' + $obj_patch.path + '\\Setup\\startnet.cmd')">Edit startnet.cmd</button>
+</div>
+
+    </div>
+</div>
+
+
+<script>
+(function init() {
+    if (!$patch_loaded) {
+      $("#peloader_tab").ultab({header:['Lua', 'PECMD', 'System']});
+      if (!$patches_opt["loader.name"] || $patches_opt["loader.name"] == 'pecmd') {
+        $("#peloader_tab li:eq(1)").click();
+      } else if ($patches_opt["loader.name"] == 'system') {
+        $("#peloader_tab li:eq(2)").click();
+      }
+    } else {
+      $("#peloader_tab").ultab(true);
+    }
+})();
+
+</script>

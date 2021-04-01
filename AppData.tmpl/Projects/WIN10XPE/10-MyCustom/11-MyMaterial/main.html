@@ -1,0 +1,68 @@
+<div style="margin:15px">
+<button class="pure-button  button-green" style="color:#ffffff;"
+     onclick="OpenFolder($app_root + '\\' + $appdata_dir + '\\vendor\\_PEMaterial_\\')"> Open [AppData]\vendor\_PEMaterial_</button>
+
+<fieldset>
+    <legend>Location</legend>
+    <table>
+        <tr>
+            <td style="width:15%">
+                <label><input type="radio" class="opt_item" name="material.location" value="X:" checked /> X:\</label>
+            </td>
+            <td style="width:20%">
+                <label><input type="radio" class="opt_item" name="material.location" value="_ISO_" /> _ISO_\</label>
+            </td>
+            <td style="width:15%">
+                <label><input type="radio" class="opt_item" name="material.location" value="_U_" /> _U_\</label>
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <button class="pure-button pure-button-primary" onclick="OpenFolder(eformat('%ISO_PATH%'))"><label class="browse" /> _ISO_</button>
+    <button class="pure-button pure-button-primary" onclick="OpenFolder($app_root + '\\_U_\\')"><label class="browse" /> _U_</button>
+</fieldset>
+
+<fieldset>
+    <legend>PEStartup.bat</legend>
+	<button class="pure-button" onclick="edit_menu_action($app_root + '\\' + $appdata_dir + '\\vendor\\_PEMaterial_\\PEStartup.bat')">Edit PEStartup.bat</button>
+</fieldset>
+
+<fieldset>
+    <legend>Load Mode</legend>
+    <table>
+        <tr>
+            <td style="width:60%">
+                <label><input type="radio" class="opt_item" name="material.load_mode" value="auto" checked /> Auto</label>
+            </td>
+            <td>
+            <label><input type="radio" class="opt_item" name="material.load_mode" value="demand" /> Demand</label>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+
+<fieldset>
+    <legend>Contents</legend>
+    <div style="margin-left:36px">
+        <li>Application Installers</li>
+        <li>Portable Applications</li>
+        <li>Drivers</li>
+    </div>
+</fieldset>
+<br/>
+<br/>
+<div id="pem_apps">
+    <img  src="/_assets_/BOOTICE_48x48.png" />
+</div>
+
+</div>
+
+<script>
+(function() {
+    if (!$patch_loaded) {
+        $('#pem_apps img').each(function(){
+            $(this).attr('src', '../' + $obj_patch.path + '/' + $(this).attr('src'));
+        });
+    }
+})();
+</script>

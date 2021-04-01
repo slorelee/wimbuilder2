@@ -2,7 +2,6 @@ rem=rem --[=[ 1>nul
 rem -- ==================== batch script ====================
 echo [MACRO]%~n0 %*
 set "f0=%~f0"&&set "dp0=%~dp0"&&set "_Loc=%dp0%"
-set "WINXSHELL=%V%\WinXShell\X_PF\WinXShell\WinXShell_%WB_ARCH%.exe"
 if not exist "%WINXSHELL%" goto :EOF
 
 start /wait "%~nx0" "%WINXSHELL%" -script "%f0%" -subkey %~1 -inf %~2 -log "%WB_TMP_PATH%\RegCopyDeviceIds.log" 

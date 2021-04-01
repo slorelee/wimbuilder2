@@ -1,5 +1,13 @@
+echo [MACRO]X2X %*
 set "X2X_EXCLUDE=%~dps0X2X_EXCLUDE.txt"
 set _X2X_PUSHED=0
+
+call :CHECK_EXCLUDE_FILE "%X2X_EXCLUDE%"
+
+if "x%~1"=="x-done" (
+    if exist "%X%\X2X_EXCLUDE.txt" del /a /f /q "%X%\X2X_EXCLUDE.txt"
+    goto :EOF
+)
 
 if not "x%~1"=="x" (
     if exist "%~1\" (
@@ -57,4 +65,16 @@ if exist X_Desktop\ (
 
 rem X_WOW, X_WOW64
 rem X.wim(x64,x86)
+goto :EOF
+
+
+:CHECK_EXCLUDE_FILE
+if not "x%_X2X_CHECKED%"=="x" goto :EOF
+set _X2X_CHECKED=1
+if "x%~1"=="x%X2X_EXCLUDE: =%" goto :EOF
+echo [WARNING] Can not get the short path of "%~1", try to use "%X%\".
+sleep 3
+set "X2X_EXCLUDE=%X%\X2X_EXCLUDE.txt"
+if not exist "%X2X_EXCLUDE%" copy /y "%~dps0X2X_EXCLUDE.txt" "%X%\"
+
 goto :EOF

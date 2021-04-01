@@ -183,12 +183,16 @@ set "APPDATA_DIR=AppData"
 set "Factory=_Factory_"
 set "ISO_DIR=_ISO_"
 
-set "V=%APP_ROOT%\vendor"
+set "V_APP=%APP_ROOT%\vendor"
+set "V_USER=%APP_ROOT%\%APPDATA_DIR%\vendor"
+set "V=%V_APP%"
 
 rem mount winre.wim/boot.wim with wimlib, otherwise dism
 set USE_WIMLIB=0
 
 if exist UserConfig.cmd call UserConfig.cmd
+
+set "V_USER=%APP_ROOT%\%APPDATA_DIR%\vendor"
 
 set "FACTORY_PATH=%APP_ROOT%\%Factory%"
 set "ISO_PATH=%APP_ROOT%\%ISO_DIR%"

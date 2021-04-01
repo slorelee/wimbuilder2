@@ -27,12 +27,7 @@ if not "x%_pt_path:~-5%"=="x.LINK" (
     goto :EOF
 )
 set "_pt_path=%_pt_path:~0,-5%"
-if /i "x%APPDATA_DIR%"=="xAppData" (
-set "_pt_path=%_pt_path:\Projects\=\AppData\Projects\%"
-) else (
-    rem can not use %APPDATA_DIR% in replacement
-    set "_pt_path=%_pt_path:\Projects\=\AppData.link\Projects\%"
-)
+call set "_pt_path=%%_pt_path:\Projects\=\%APPDATA_DIR%\Projects\%%"
 call :apply_patch "%_pt_path%\%_WB_WALK_CMD%"
 goto :EOF
 

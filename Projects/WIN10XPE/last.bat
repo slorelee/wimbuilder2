@@ -1,3 +1,5 @@
+call X2X -done
+
 rem update lua scripts for escape characters
 call LuaLink -done
 call LuaPin -done

@@ -1,3 +1,9 @@
+if "x%_Slim_Main%"=="xdone" (
+  echo [INFO] Already done in %WB_PROJECT_PATH%\main.bat
+  goto :EOF
+)
+set _Slim_Main=done
+
 rem // Disable Telemetry
 rem reg add HKLM\Tmp_System\ControlSet001\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener /v Start /t REG_DWORD /d 0 /f
 rem reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection /v AllowTelemetry /t REG_DWORD /d 0 /f

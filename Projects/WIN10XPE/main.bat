@@ -82,14 +82,16 @@ echo   - HKEY_LOCAL_MACHINE\Tmp_SOFTWARE
 echo   - HKEY_LOCAL_MACHINE\Tmp_SYSTEM
 echo.
 
-if "x%opt[build.main_filereg_disabled]%"=="xtrue" goto :EOF
-
 call CheckPatch "za-Slim"
 if "x%HasPatch%"=="xtrue" (
+  echo \033[96mApplying Patch:%WB_PROJECT_PATH%\za-Slim\main.bat | cmdcolor.exe
   pushd za-Slim
-  call Slim_Extra.bat
+  call main.bat
   popd
 )
 
- call X2X
+if "x%opt[build.main_filereg_disabled]%"=="xtrue" goto :EOF
+
+echo %WB_PROJECT_PATH%\main.bat
+call X2X
 

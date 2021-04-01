@@ -62,6 +62,8 @@ set X_
 echo.
 set _CUSTOMFILES_
 set _USER_
+echo V_APP=%V_APP%
+echo V_USER=%V_USER%
 echo V=%V%
 echo %%V%%\%%APP_CACHE%%=%V%\%APP_CACHE%
 echo.

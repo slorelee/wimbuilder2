@@ -6,8 +6,6 @@ set WB_ARCH=x64
 
 rem reg delete "HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\AppX" /f
 
-set "WINXSHELL=%V%\WinXShell\X_PF\WinXShell\WinXShell_%WB_ARCH%.exe"
-
 pushd "%cd%"
 set "dp0=%~dp0"
 cd /d "%dp0%"
@@ -63,7 +61,6 @@ if not "x%opt[slim.hive_software]%"=="xtrue" goto :EOF
 
 reg delete "HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing" /f
 
-set "WINXSHELL=%V%\WinXShell\X_PF\WinXShell\WinXShell_%WB_ARCH%.exe"
 if not exist "%WINXSHELL%" goto :EOF
 if exist _RemoveInvaildItems_Reg.txt del /q _RemoveInvaildItems_Reg.txt
 if exist _WinSxS_Manifests.txt del /q _WinSxS_Manifests.txt

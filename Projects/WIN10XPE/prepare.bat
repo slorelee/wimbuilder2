@@ -28,6 +28,7 @@ call "%WB_PROJECT_PATH%\shared\InitLoader.bat"
 
 call V2X -init
 call App init _Cache_
+set "WINXSHELL=%V_APP%\WinXShell\X_PF\WinXShell\WinXShell_%WB_ARCH%.exe"
 
 rem call _Prepare_.bat before mounting
 if exist "%_USER_CUSTOMFILES_%\_Prepare_.bat" (

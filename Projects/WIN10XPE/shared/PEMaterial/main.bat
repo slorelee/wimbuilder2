@@ -24,7 +24,7 @@ goto :EOF
 
 :ADD_7ZIP
 set "_7z_Patch=%WB_PROJECT_PATH%\02-Apps\7-Zip"
-echo \033[96mApplying Patch:%_7z_Patch% | cmdcolor.exe
+echo \033[96mApplying Patch: %_7z_Patch% | cmdcolor.exe
 if not exist "%_7z_Patch%" goto :EOF
 pushd "%_7z_Patch%"
 call main.bat

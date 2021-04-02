@@ -86,7 +86,7 @@ echo.
 
 call CheckPatch "za-Slim"
 if "x%HasPatch%"=="xtrue" (
-  echo \033[96mApplying Patch:%WB_PROJECT_PATH%\za-Slim\main.bat | cmdcolor.exe
+  echo \033[96mApplying Patch: %WB_PROJECT_PATH%\za-Slim\main.bat | cmdcolor.exe
   pushd za-Slim
   call main.bat
   popd

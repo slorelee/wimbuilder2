@@ -49,7 +49,7 @@ if "x%opt[patch.drvinst]%"=="xtrue" (
 goto :EOF
 
 :ApplySubPatch
-  echo Applying Patch:%~1\main.bat
+  echo Applying Patch: %~1\main.bat
   pushd "%~1"
   call main.bat
   popd

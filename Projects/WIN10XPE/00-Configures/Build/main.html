@@ -15,6 +15,7 @@ INIT-->
     <input type="radio" name="build.source" class="opt_item" value="full" id="opt_bs-f">
     <label for="opt_bs-l">Winre.wim with light WinSxS</label>
     <input type="radio" name="build.source" class="opt_item" value="light" id="opt_bs-l" checked>
+    <div style="margin:5px 0px;" class="alert alert-warning">May cause problems that cannot boot with mixed WinSxS,<br/>The default option is recommended.</div>
   </fieldset>
 
   <div style="margin:10px 2px;padding:5px;border: 1px solid #c0c0c0;">
@@ -57,7 +58,7 @@ INIT-->
   <div style="margin:3px;font-size:.8em;">
     <label><input type="checkbox" name="build.full_catalog" class="opt_item"> Use Full Catalog</label>
     <br/><br/>
-    <label><input type="checkbox" name="build.wow64support" class="opt_item"> WOW64 Support</label>
+    <label><input type="checkbox" name="build.wow64support" class="opt_item beginner_readonly"> WOW64 Support</label>
   </div>
 <script>
 (function() {
@@ -66,6 +67,9 @@ INIT-->
             $('#opt_bs-f').prop('checked', true);
         } else {
             $('#opt_bs-l').prop('checked', true);
+        }
+        if ($ui_settings['mode'] == 'Beginner') {
+            $('#opt_bs-f').prop('disabled', true);
         }
     }
     $(':radio[id^=opt_bs-]').checkboxradio();

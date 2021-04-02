@@ -38,7 +38,7 @@ call set "_not_sub_path=%%_patch_path:%WB_LEAVE_PATCH%=%%"
 if "x%_not_sub_path%"=="x%_patch_path%" (
     if exist "%WB_LEAVE_PATCH%leave_%~nx1" (
         pushd "%WB_LEAVE_PATCH%"
-        echo \033[96mApplying Patch:%WB_LEAVE_PATCH%leave_%~nx1 | cmdcolor.exe
+        echo \033[96mApplying Patch: %WB_LEAVE_PATCH%leave_%~nx1 | cmdcolor.exe
         call "leave_%~nx1"
         popd
     )
@@ -49,6 +49,6 @@ set _patch_path=
 :end_leave_patch
 if not exist "%~1" goto :EOF
 pushd "%~dp1"
-echo \033[96mApplying Patch:%~dpnx1 | cmdcolor.exe
+echo \033[96mApplying Patch: %~dpnx1 | cmdcolor.exe
 call "%~1"
 popd

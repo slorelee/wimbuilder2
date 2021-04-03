@@ -1,6 +1,6 @@
 if not "x%opt[shell.startmenu]%"=="xStartIsBack" goto :EOF
 
-call V2X StartIsBack -extract StartIsBackPlusPlus_setup[v*].exe "%X_PF%\StartIsBack"
+call V2X StartIsBack -extract StartIsBackPlusPlus_setup[v%opt[SIB.version]%].exe "%X_PF%\StartIsBack"
 
 if not exist "%X%\Program Files\StartIsBack\StartIsBack64.dll" goto :EOF
 if not "%WB_PE_ARCH%"=="x64" del /f "%X%\Program Files\StartIsBack\StartIsBack64.dll"

@@ -70,6 +70,13 @@ if %VER[3]% GTR 18850 (
   copy /y UsrClass.dat "%X%\Users\Default\AppData\Local\Microsoft\Windows\"
 )
 
+if %VER[3]% GEQ 19041 (
+  rem Can not create the Administrator's Profile with Windows Embedded Standard's fbwf driver
+  if exist "%X_WIN%\fbwf.cfg" (
+    set opt[account.precreate_admin_profile]=true
+  )
+)
+
 if "x%opt[account.precreate_admin_profile]%"=="xtrue" (
   copy /y LSAgetRights_%WB_PE_ARCH%.exe "%X_SYS%\LSAgetRights.exe"
   copy /y "PreCreateAdminProfile.bat" "%X_SYS%\"

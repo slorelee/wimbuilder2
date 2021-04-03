@@ -38,10 +38,11 @@ if exist "%_USER_CUSTOMFILES_%\_Prepare_.bat" (
 )
 
 rem ===================================
-rem update options
+echo .
+echo Update options
 
 call CheckPatch "00-Configures\x-Account"
-if %errorlevel% EQU 0 (
+if "x%HasPatch%"=="xfalse" (
     set opt[account.admin_enabled]=false
 )
 

@@ -69,6 +69,13 @@ if "x%opt[build.registry.system]%"=="xtrue" (
     set opt[build.registry.system]=merge
 )
 
+call CheckPatch "01-Components\Windows Media Player"
+if "x%HasPatch%"=="xtrue" (
+    echo [INFO] Adapt StartIsBack for Windows Media Player
+    set opt[SIB.version]=2.9.0
+    set opt[SIB.version]
+)
+
 rem ===================================
 rem reduce the wim file before mounting it
 cd /d za-Slim

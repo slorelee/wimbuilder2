@@ -1,5 +1,37 @@
 # 更新历史记录
 
+## WimBuilder2 v2021.04.04
+这是一个主要更新。添加和改善了以下内容:
+
+* 改进 支持更多版本构建(新预览版)。
+        修复新预览版输入法无法正常使用问题。
+        修复新预览版32位应用程序无法运行问题。
+* 改进 支持更多应用软件。
+* 新增 蓝牙组件(设备与打印机\蓝牙)。
+* 修复 搜索文件时，不显示路径的问题。
+* 改善 工程界面显示已经测试过的版本信息。
+* 改善 支持直接使用ESD文件进行构建(构建速度慢，不推荐)。
+* 改善 勾选Windows Media Player组件时，自动使用StartIsBack 2.9.0版本，而非最新版本。
+* 改善 【更新】按钮将效验remote.md5是否有效。
+* 改进 增强【我的定制】项目
+        * 新增 AppData\vendor 目录               (我的定制(后置) 中V2X宏命令将使用此目录下的应用软件)
+        * 新增 AppData\vendor\_Cache_ 目录       (保存 我的定制(后置) 中APP宏命令下载的文件)
+        * 新增 AppData\vendor\_PEMaterial_ 目录  (我的定制(后置) - `我的工具箱` 的数据目录)
+        * 新增 `我的定制(后置) - 启动管理` (10-MyCustom\00-MyLoader) 补丁
+            维护个人 pecmd.lua, Pecmd.ini, PecmdAdmin.ini, startnet.cmd
+        * 新增 `我的定制(后置) - 我的系统` (10-MyCustom\00-MySystem) 补丁
+            可添加额外的系统文件, 个人文件
+        * 新增 `我的定制(后置) - 我的驱动` (10-MyCustom\01-MyDrivers) 补丁
+            将驱动放入指定目录，将**使用Dism命令自动集成驱动**
+        * 新增 `我的定制(后置) - 我的软件` (10-MyCustom\10-MyApps) 补丁
+        * 新增 `我的定制(后置) - 我的工具箱` (10-MyCustom\11-MyMaterial) 补丁
+        * 改善 `我的定制(后置) - 我的开始菜单` (10-MyCustom\MyStartMenu) 补丁
+            将导入同目录的SIB_RegDefault.reg注册表(StartIsBack的个人设定)
+* 其他 细节更新
+
+* 更新 StartIsBack 至 v2.9.9
+* 更新 WinXShell 至 v4.5
+
 ## WimBuilder2 v2021.02.02
 这是一个常规更新。添加和改善了以下内容:
 

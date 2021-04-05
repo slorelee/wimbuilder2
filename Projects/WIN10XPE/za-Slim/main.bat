@@ -1,9 +1,27 @@
-if "x%_Slim_Main%"=="xdone" (
-  echo [INFO] Already done in %WB_PROJECT_PATH%\main.bat
-  goto :EOF
+if "x%_Slim_Main%"=="xreplacement" (
+  goto :REPLACEMENT_ACTION
 )
-set _Slim_Main=done
+goto :DELETION_ACTION
 
+:REPLACEMENT_ACTION
+rem replace small files
+
+if "x%opt[slim.small_fonts]%"=="xtrue" (
+  for /f "delims=" %%i in ('dir /b "%V%\CustomResources\SmallFonts"') do (
+    if exist "%X_WIN%\Fonts\%%i" copy /Y "%V%\CustomResources\SmallFonts\%%i" "%X_WIN%\Fonts\"
+  )
+)
+
+if "x%opt[slim.small_imageresdll]%"=="xtrue" (
+  if "%opt[support.wow64]%"=="true" (
+    if not exist "%X_WIN%\SystemResources\imageres.dll.mun" (
+      if exist "%X_WIN%\SysWOW64\imageres.dll" copy /Y "%V%\CustomResources\SmallDlls\imageres.dll"  "%X_WIN%\SysWOW64\imageres.dll"
+    )
+  )
+)
+goto :EOF
+
+:DELETION_ACTION
 rem // Disable Telemetry
 rem reg add HKLM\Tmp_System\ControlSet001\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener /v Start /t REG_DWORD /d 0 /f
 rem reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection /v AllowTelemetry /t REG_DWORD /d 0 /f
@@ -30,20 +48,6 @@ if "x%opt[slim.wbem_repository]%"=="xtrue" (
 if "x%WB_PE_LANG%"=="xzh-TW" set opt[slim.font.mingliu]=false
 if "x%opt[slim.font.mingliu]%"=="xtrue" (
   del /f /a /q "%X_WIN%\Fonts\mingliu.ttc"
-)
-
-rem replace small files
-
-if "x%opt[slim.small_fonts]%"=="xtrue" (
-  for /f "delims=" %%i in ('dir /b "%V%\CustomResources\SmallFonts"') do (
-    if exist "%X_WIN%\Fonts\%%i" copy /Y "%V%\CustomResources\SmallFonts\%%i" "%X_WIN%\Fonts\"
-  )
-)
-
-if "x%opt[slim.small_imageresdll]%"=="xtrue" (
-  if "%opt[support.wow64]%"=="true" (
-    if not exist "%X_WIN%\SystemResources\imageres.dll.mun" xcopy  /E /Y "%V%\CustomResources\SmallDlls\imageres.dll"  "%X_WIN%\SysWOW64\imageres.dll"
-  )
 )
 
 set opt[component.hta]=false
@@ -169,6 +173,7 @@ call Slim_Safely.bat
 call Slim_Extra.bat
 
 rem already removed in _pre_wim.bat
+set _Slim_Main=replacement
 goto :EOF
 
 call :REMOVE_MUI Windows\Boot\EFI

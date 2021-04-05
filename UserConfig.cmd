@@ -40,7 +40,11 @@ echo [ERROR] Failed to make symbol link^(%WB_USER_APPDATA% --* %~dp0AppData.link
 echo         You needs to copy the folder manually.
 sleep 5
 :FALLBACK_APPDATA
-xcopy /E /Y "AppData.tmpl" "AppData\"
+if not exist "%APPDATA_DIR%" (
+    echo [INFO] The "%APPDATA_DIR%" folder is missing, create one with the template^(AppData.tmpl^).
+    sleep 5
+    xcopy /E /Y "AppData.tmpl" "AppData\"
+)
 
 :END_CONFIG
 set WB_RAMDISK_DIR=

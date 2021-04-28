@@ -47,19 +47,26 @@ lz32.dll
 ; Counter-Strike 1.5
 dciman32.dll
 
+;eCloud
+glu32.dll
+opengl32.dll
+
+;ldplayer
+RESAMPLEDMO.DLL
+
 +ver > 18300
 ; OpenOffice, LibreOffice, ... (Open file)
 shellstyle.dll
-+ver*
 
 +ver > 19000
 ; 32-bit Web Browsers
 Windows.FileExplorer.Common.dll
-+ver*
 
-;eCloud
-glu32.dll
-opengl32.dll
++ver > 20000
+;Tencent QQ(x86), Office 2010
+prxyqry.dll
+
++ver*
 
 -if
 

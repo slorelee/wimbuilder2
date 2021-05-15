@@ -33,6 +33,9 @@ if "x%WB_PE_LANG%"=="xru-RU" (
 if "x%WB_PE_LANG%"=="xko-KR" (
   call :KEEP_FILES \Windows\Fonts\ "gulim.ttc,malgun.ttf"
 )
+if "x%WB_PE_LANG%"=="xja-JP" (
+  call :KEEP_FILES \Windows\Fonts\ "msgothic.ttc,YuGothM.ttc"
+)
 del /a /f /q "%X_WIN%\Fonts\*.*"
 goto :EOF
 

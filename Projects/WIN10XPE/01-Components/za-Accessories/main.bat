@@ -1,5 +1,7 @@
 set AddFiles_Mode=merge
 
+if "x%opt[component.notepad]%"=="xtrue" call _notepad.bat
+
 if "x%opt[component.wordpad]%"=="xtrue" (
   call AddFiles "\Program Files\Windows NT\Accessories\"
   call RegCopyEx Classes ".docx,.odt,.rtf,docxfile,odtfile,rtffile"

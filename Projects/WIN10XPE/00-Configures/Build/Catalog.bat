@@ -52,6 +52,9 @@ Microsoft-Windows-SecureStartup-Subsystem-base-Package~*.cat
 Microsoft-OneCore-IsolatedUserMode-Package*.cat
 Microsoft-Windows-EnterpriseClientSync-Host-Opt-Package*.cat
 
++ver > 20000
+Microsoft-Windows-Desktop-Shared-Drivers-merged-Package*.cat
+
 +ver*
 
 +if "x%opt[support.media]%"="xtrue"

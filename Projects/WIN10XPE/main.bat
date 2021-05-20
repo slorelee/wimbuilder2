@@ -92,8 +92,4 @@ if "x%HasPatch%"=="xtrue" (
   popd
 )
 
-if "x%opt[build.main_filereg_disabled]%"=="xtrue" goto :EOF
-
-echo %WB_PROJECT_PATH%\main.bat
-call X2X
 

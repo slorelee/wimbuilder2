@@ -27,3 +27,5 @@ rasphone.exe
 
 rem winpe-oc-pppoe's configras.cmd (remove exit)
 copy /y configras.cmd "%X_SYS%"
+
+xcopy /y rasphone.pbk "%X%\ProgramData\Microsoft\Network\Connections\pbk\"

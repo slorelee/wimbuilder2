@@ -33,6 +33,18 @@ for /f "tokens=3 usebackq" %%i in (`reg query "HKLM\Src_SOFTWARE\Microsoft\Windo
 set VER[4]=%WB_PE_BUILD%
 set VER[3.4]=%VER[3]%.%VER[4]%
 
+rem Windows.UI.Xaml.Resources.*.dll
+
+set VER_XAMLRES=
+if %VER[3]% GTR 17000 set VER_XAMLRES=rs4
+if %VER[3]% GTR 17700 set VER_XAMLRES=rs5
+if %VER[3]% GTR 18300 set VER_XAMLRES=19h1
+if %VER[3]% GTR 21000 set VER_XAMLRES=21h1
+rem for future version
+if %VER[3]% GTR 22000 set VER_XAMLRES=*
+set VER_XAMLRES=.%VER_XAMLRES%
+if "x%VER_XAMLRES%"=="x." set VER_XAMLRES=
+
 if "x%opt[build.wow64support]%"=="xtrue" (
   if not "x%WB_PE_ARCH%"=="xx64" set opt[build.wow64support]=false
 )

@@ -1,14 +1,5 @@
 rem ==========update filesystem==========
 
-rem add all as default
-set VER_CNAME=*.
-if %VER[3]% GTR 17000 set VER_CNAME=.rs4.
-if %VER[3]% GTR 17700 set VER_CNAME=.rs5.
-if %VER[3]% GTR 18300 set VER_CNAME=.19h1.
-if %VER[3]% GTR 21000 set VER_CNAME=.21h1.
-rem add all for future version
-if %VER[3]% GTR 22000 set VER_CNAME=*.
-
 call AddFiles %0 :end_files
 goto :end_files
 
@@ -41,7 +32,7 @@ Windows.UI.Xaml.dll
 ; Keep both for compatibility with both versions
 ;Windows.UI.Xaml.Resources.dll,Windows.UI.Xaml.Resources.*.dll
 
-Windows.UI.Xaml.Resources%VER_CNAME%dll
+Windows.UI.Xaml.Resources%VER_XAMLRES%.dll
 
 ; for WinXShell
 CoreMessaging.dll,CoreUIComponents.dll,InputHost.dll,rmclient.dll,TextInputFramework.dll,twinapi.appcore.dll

@@ -5,6 +5,7 @@ goto :end_files
 
 @\Windows\System32\
 ; Theme and dwm
+dcomp.dll,d3d11.dll,dxgi.dll
 dwm.exe,dwmcore.dll,dwmghost.dll,dwminit.dll,dwmredir.dll,hotplug.dll
 themeservice.dll,themeui.dll,twinapi.appcore.dll,twinui.dll,ubpm.dll,uDWM.dll,wdi.dll
 Windows.Gaming.Input.dll,Windows.UI.Immersive.dll
@@ -13,6 +14,12 @@ CoreMessaging.dll,CoreUIComponents.dll,ISM.dll,rmclient.dll
 +ver > 18950
 GameInput.dll
 +ver*
+
++if "%VER[3]%" = "19041" Or "%VER[3]%" = "19042" Or "%VER[3]%" = "19043"
+shell32.dll
+SHCore.dll
+KernelBase.dll
+-if
 
 ; already in winre.wim, add for others, like winpe.wim(ADK)
 +if "%opt[build.wim]%" <> "winre"

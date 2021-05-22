@@ -63,7 +63,7 @@ dmenrollengine.dll
 ; remove ver check (add with any ver)
 +ver*
 
-+if "%VER[3]%" = "19041" Or "%VER[3]%" = "19042"
++if "%VER[3]%" = "19041" Or "%VER[3]%" = "19042" Or "%VER[3]%" = "19043"
 ;+if %VER[4]% >= 450
 shell32.dll
 SHCore.dll

@@ -1,0 +1,13 @@
+<div id="creddialog_view" style="padding:20px 10px">
+    <img src="CredDialog.png" />
+</div>
+<script>
+(function() {
+    if (!$patch_loaded) {
+        $('#creddialog_view img').each(function(){
+            $(this).attr('src', '../' + $obj_patch.path + '/' + $(this).attr('src'));
+        });
+    }
+})();
+</script>
+

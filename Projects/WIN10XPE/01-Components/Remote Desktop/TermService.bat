@@ -58,6 +58,10 @@ if not "x%opt[build.registry.software]%"=="xfull" (
   call RegCopy "HKLM\Software\Microsoft\Terminal Server"
 )
 
+rem Disable WDDM Driver (posted by smine)
+rem http://bbs.wuyou.net/forum.php?mod=redirect&goto=findpost&ptid=411399&pid=4304128
+reg add "HKLM\Tmp_Software\Policies\Microsoft\Windows NT\Terminal Services" /v fEnableWddmDriver /t REG_DWORD /d 0 /f
+
 call RegCopy "HKLM\System\ControlSet001\Control\Terminal Server"
 call ACLRegKey "HKLM\System\ControlSet001\Control\Terminal Server\RCM"
 

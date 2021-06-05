@@ -96,6 +96,27 @@ echo   - HKEY_LOCAL_MACHINE\Tmp_SOFTWARE
 echo   - HKEY_LOCAL_MACHINE\Tmp_SYSTEM
 echo.
 
+if "x%opt[build.registry.software]%"=="xfull" (
+    call AddFiles \Windows\System32\config\SOFTWARE
+    set REGCOPY_SKIP_SOFTWARE=1
+)
+
+if "x%WB_SKIP_UFR%"=="x1" goto :END_UPDATE_FILES_ACL
+rem update files ACL Right
+call :cecho PHRASE "PHRASE:updating files' ACL rights"
+if "x%WB_STRAIGHT_MODE%"=="x" pause
+call :techo "Updating...(Please, be patient)"
+call TrustedInstallerRight "%_WB_MNT_DIR%" 1>nul
+if not "%GetLastError%"=="0" call :CLEANUP
+call :techo "Update files with Administrators' FULL ACL rights successfully."
+echo.
+:END_UPDATE_FILES_ACL
+
+if "x%opt[build.load_hive]%"=="xtrue" (
+  call PERegPorter.bat Src LOAD 1>nul
+  call PERegPorter.bat Tmp LOAD 1>nul
+)
+
 call CheckPatch "za-Slim"
 if "x%HasPatch%"=="xtrue" (
   echo \033[96mApplying Patch: %WB_PROJECT_PATH%\za-Slim\main.bat | cmdcolor.exe

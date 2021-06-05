@@ -4,9 +4,6 @@ rem update lua scripts for escape characters
 call LuaLink -done
 call LuaPin -done
 
-if "x%opt[build.unmount_wim_demand]%"=="xtrue" set _WB_UNMOUNT_DEMAND=1
-if "x%opt[build.last_filereg_disabled]%"=="xtrue" goto :REPLACE_FULLREG_END
-
 if not exist "%X_SYS%\dwm.exe" ( 
     reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v OneCoreNoBootDWM /t REG_DWORD /d 1 /f
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v Composition /t REG_DWORD /d 0 /f
@@ -31,8 +28,6 @@ if exist "%opt[slim.hive]%" (
     set REG_REWRITE_MODE=1
 )
 
-if "x%opt[build.unmount_wim_demand]%"=="xtrue" goto :REPLACE_FULLREG_END
-
 if "x%REG_REWRITE_MODE%"=="x1" (
     set REG_REWRITE_MODE=
     call PERegPorter.bat Tmp REWRITE 1>nul
@@ -40,23 +35,11 @@ if "x%REG_REWRITE_MODE%"=="x1" (
     call PERegPorter.bat Tmp UNLOAD 1>nul
 )
 
-rem use prepared HIVE files
-
-call :FULLREG DEFAULT
-call :FULLREG SOFTWARE
-call :FULLREG SYSTEM
-call :FULLREG COMPONENTS
-call :FULLREG DRIVERS
-
-:REPLACE_FULLREG_END
-
-if exist "_CustomFiles_\final.bat" (
-    call "_CustomFiles_\final.bat"
+if "x%opt[build.precommit_wim]%"=="xtrue" (
+  echo call "%WB_USER_PROJECT_PATH%\_CustomFiles_\%opt[build.precommit_wim_script]%"
+  pushd "%WB_USER_PROJECT_PATH%\_CustomFiles_\"
+  call "%opt[build.precommit_wim_script]%"
+  popd
 )
-goto :EOF
 
-:FULLREG
-if exist "%~dp0%1" (
-   xcopy /E /Y "%~dp0%1" "%X%\Windows\System32\Config\"
-)
 goto :EOF

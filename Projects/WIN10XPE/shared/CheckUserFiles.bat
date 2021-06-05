@@ -2,9 +2,11 @@ echo \033[97;104mCheck User Custom Files ...|cmdcolor.exe
 call :ChkUserFile "%_USER_CUSTOMFILES_%\ProductOptions.txt"
 call :ChkUserFile "%_USER_CUSTOMFILES_%\IE_Settings.bat"
 echo.
-call :ChkUserFile "%_USER_CUSTOMFILES_%\_Prepare_.bat"
+call :ChkUserFile "%_USER_CUSTOMFILES_%\%opt[build.preprocess_wim_script]%"
+call :ChkUserFile "%_USER_CUSTOMFILES_%\%opt[build.mount_wim_script]%"
 call :ChkUserFile "%_USER_CUSTOMFILES_%\MyCustom\"
-call :ChkUserFile "%_USER_CUSTOMFILES_%\final.bat"
+call :ChkUserFile "%_USER_CUSTOMFILES_%\%opt[build.precommit_wim_script]%"
+call :ChkUserFile "%_USER_CUSTOMFILES_%\%opt[build.commit_wim_script]%"
 call :ChkUserFile "%_USER_CUSTOMFILES_%\_CustomISO_.bat"
 echo.
 echo.

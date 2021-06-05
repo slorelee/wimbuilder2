@@ -1,10 +1,3 @@
-if "x%~1"=="x" goto :EOF
-
-pushd "%~dp0"
-call %1
-goto :DONE
-
-:BEFORE_WIM_MOUNT
 rem ===================================
 rem set Enviroment
 rem BUILD_NUMBER
@@ -30,12 +23,6 @@ call V2X -init
 call App init _Cache_
 set "WINXSHELL=%V_APP%\WinXShell\X_PF\WinXShell\WinXShell_%WB_ARCH%.exe"
 
-rem call _Prepare_.bat before mounting
-if exist "%_USER_CUSTOMFILES_%\_Prepare_.bat" (
-    pushd "%_USER_CUSTOMFILES_%\"
-    call _Prepare_.bat :BEFORE_WIM_MOUNT
-    popd
-)
 
 rem ===================================
 echo .
@@ -86,23 +73,3 @@ rem reduce the wim file before mounting it
 cd /d za-Slim
 call SlimWim.bat
 rem ===================================
-goto :EOF
-
-:BEFORE_HIVE_LOAD
-
-rem call prepare.bat before hive load
-if exist "%_USER_CUSTOMFILES_%\_Prepare_.bat" (
-    pushd "%_USER_CUSTOMFILES_%\"
-    call _Prepare_.bat :BEFORE_HIVE_LOAD
-    popd
-)
-
-if "x%opt[build.registry.software]%"=="xfull" (
-    call AddFiles \Windows\System32\config\SOFTWARE
-    set REGCOPY_SKIP_SOFTWARE=1
-)
-
-goto :EOF
-
-:DONE
-popd

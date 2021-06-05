@@ -4,20 +4,62 @@
 </div>
 
 <div style="margin:10px">
-<button class="pure-button" style="margin:5px;width:240px"
-  onclick="open_edit($obj_project.appdata_full_path + '/_CustomFiles_/_Prepare_.bat')">
-  <label class="edit" /> _Prepare_.bat
-</button>
-<br/>
-<button class="pure-button" style="margin:5px;width:240px"
-  onclick="open_edit($obj_project.appdata_full_path + '/_CustomFiles_/final.bat')">
-  <label class="edit"/> final.bat
-</button>
-<br/>
-<button class="pure-button" style="margin:5px;width:240px"
-  onclick="open_edit($obj_project.appdata_full_path + '/_CustomFiles_/_CustomISO_.bat')">
-  <label class="edit" /> _CustomISO_.bat
-</button>
+    <fieldset class="beginner-hide">
+    <legend>
+        <label><input type="checkbox" name="build.preprocess_wim" class="opt_item" />
+          Pre-Process WIM file
+        </label>
+    </legend>
+    <input type="text" name="build.preprocess_wim_script" class="opt_item" style="width:60%" />
+    </fieldset>
+
+    <fieldset class="beginner-hide">
+      <legend>Mount WIM file action</legend>
+      <label><input type="radio" class="opt_item" name="build.mount_wim_action" value="built_in" checked /> Built-in</label>
+      <label><input type="radio" class="opt_item" name="build.mount_wim_action" value="none" /> None</label>
+      <label><input type="radio" class="opt_item" name="build.mount_wim_action" value="custom" /> Custom</label>
+      <input type="text" name="build.mount_wim_script" class="opt_item" style="width:50%" />
+    </fieldset>
+
+    <fieldset class="beginner-hide">
+      <legend>
+          <label><input type="checkbox" name="build.load_hive" class="opt_item" /> Load Registry Hive</label>
+      </legend>
+      <div>
+          call PERegPorter.bat Src LOAD<br/>
+          call PERegPorter.bat Tmp LOAD
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>
+        <label><input type="checkbox" name="build.precommit_wim" class="opt_item" />
+            Pre-Commit WIM file
+        </label>
+      </legend>
+      <input type="text" name="build.precommit_wim_script" class="opt_item" style="width:60%" />
+    </fieldset>
+
+    <fieldset class="beginner-hide">
+      <legend>Commit WIM file action</legend>
+      <label><input type="radio" class="opt_item" name="build.commit_wim_action" value="built_in" checked /> Built-in</label>
+      <label><input type="radio" class="opt_item" name="build.commit_wim_action" value="none" /> None</label>
+      <label><input type="radio" class="opt_item" name="build.commit_wim_action" value="custom" /> Custom</label>
+      <input type="text" name="build.commit_wim_script" class="opt_item" style="width:50%" />
+    </fieldset>
+
+    <fieldset>
+      <legend>
+          <label><input type="checkbox" name="build.custom_iso" class="opt_item" />
+            Use Custom ISO Script
+          </label>
+      </legend>
+      <label>_CustomISO_.bat</label>
+      <button class="pure-button" style="margin:5px"
+      onclick="open_edit($obj_project.appdata_full_path + '/_CustomFiles_/_CustomISO_.bat')">
+      <label class="edit"/></button>
+    </fieldset>
+    <br/>
 
 </div>
 

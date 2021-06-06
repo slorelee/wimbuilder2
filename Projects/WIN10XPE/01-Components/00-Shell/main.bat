@@ -41,6 +41,11 @@ msieftp.dll,shdocvw.dll
 ; Add Network Location
 shwebsvc.dll
 
+; Create Shortcut Wizard
+;AppWiz.cpl
+;%WB_PE_LANG%\AppWiz.cpl.mui
+;osbaseln.dll
+
 :end_files
 
 call RegCopy /-s "HKLM\SOFTWARE\Classes\*"

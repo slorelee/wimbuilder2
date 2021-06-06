@@ -73,12 +73,6 @@ if exist "%_WB_TMP_DIR%\_patches_opt.bat" (
   call "%_WB_TMP_DIR%\_patches_opt.bat"
 )
 
-rem call prepare.bat before mounting
-if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
-    pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
-    call _Prepare_.bat :BEFORE_WIM_BUILD
-    popd
-)
 
 set TIMER_START=
 for /f "delims=" %%t in ('cscript.exe //nologo bin\Timer.vbs') do set TIMER_START=%%t
@@ -137,7 +131,6 @@ set "WB_PE_LANG=%WB_PE_LANG: =%"
 
 set WB_PE_
 echo.
-call :cecho PHRASE "PHRASE:Mount WIM image"
 
 rem check X: driver
 set NO_X_SUBST=0
@@ -183,9 +176,32 @@ set _WB_BASE_WIM=
 :BASE_WIM_PREPARED
 
 
-rem call prepare.bat before mounting
+rem call prepare.bat at first
 if exist "%WB_PROJECT_PATH%\prepare.bat" (
-    call "%WB_PROJECT_PATH%\prepare.bat" :BEFORE_WIM_MOUNT
+  echo call "%WB_PROJECT_PATH%\prepare.bat"
+  pushd "%WB_PROJECT_PATH%\"
+  call prepare.bat
+  popd
+)
+
+if "x%opt[build.preprocess_wim]%"=="xtrue" (
+  call :cecho PHRASE "PHRASE:Pre-Process WIM image"
+  echo call "%WB_USER_PROJECT_PATH%\_CustomFiles_\%opt[build.preprocess_wim_script]%"
+  pushd "%WB_USER_PROJECT_PATH%\_CustomFiles_\"
+  call "%opt[build.preprocess_wim_script]%"
+  popd
+)
+
+call :cecho PHRASE "PHRASE:Mount WIM image"
+echo Mount Action:[%opt[build.mount_wim_action]%]
+
+if "x%opt[build.mount_wim_action]%"=="xnone" goto :END_PHRASE_MOUNT_WIM
+if "x%opt[build.mount_wim_action]%"=="xcustom" (
+  echo call "%WB_USER_PROJECT_PATH%\_CustomFiles_\%opt[build.mount_wim_script]%"
+  pushd "%WB_USER_PROJECT_PATH%\_CustomFiles_\"
+  call "%opt[build.mount_wim_script]%"
+  popd
+  goto :END_PHRASE_MOUNT_WIM
 )
 
 call WIM_Mounter "%_WB_PE_WIM%" %WB_BASE_INDEX% "%_WB_MNT_DIR%" base_wim_mounted
@@ -193,6 +209,7 @@ if not "%base_wim_mounted%"=="1" (
   call :cecho ERROR "mount base wim file failed."
   call :CLEANUP
 )
+:END_PHRASE_MOUNT_WIM
 
 rem NOTICE:explorer.exe don't show X:\ when running with Administrators right
 if not "x%NO_X_SUBST%"=="x1" (
@@ -203,35 +220,28 @@ if not "x%NO_X_SUBST%"=="x1" (
   echo SET %%X%%=%_WB_MNT_DIR%
 )
 echo.
-if "x%WB_SKIP_UFR%"=="x1" goto :PROJECT_BUILDING
-rem update files ACL Right
-call :cecho PHRASE "PHRASE:updating files' ACL rights"
-if "x%WB_STRAIGHT_MODE%"=="x" pause
-call :techo "Updating...(Please, be patient)"
-call TrustedInstallerRight "%_WB_MNT_DIR%" 1>nul
-if not "%GetLastError%"=="0" call :CLEANUP
-call :techo "Update files with Administrators' FULL ACL rights successfully."
-echo.
 
 :PROJECT_BUILDING
-
-rem call prepare.bat before hive load
-if exist "%WB_PROJECT_PATH%\prepare.bat" (
-    call "%WB_PROJECT_PATH%\prepare.bat" :BEFORE_HIVE_LOAD
-)
-
-if not "x%opt[build.load_hive_demand]%"=="xtrue" (
-  call PERegPorter.bat Src LOAD 1>nul
-  call PERegPorter.bat Tmp LOAD 1>nul
-)
-
 rem =========================================================
 rem apply project patches
 call ApplyProjectPatches.bat "%WB_PROJECT_PATH%"
 rem =========================================================
 
+call :cecho PHRASE "PHRASE:Commit WIM image"
+
 cd /d "%WB_ROOT%\"
-if "x%_WB_UNMOUNT_DEMAND%"=="x1" goto :UNMOUNT_END
+echo Commit Action:[%opt[build.commit_wim_action]%]
+
+if "x%opt[build.commit_wim_action]%"=="xnone" goto :UNMOUNT_END
+if "x%opt[build.commit_wim_action]%"=="xcustom" (
+  echo call "%WB_USER_PROJECT_PATH%\_CustomFiles_\%opt[build.commit_wim_script]%"
+  pushd "%WB_USER_PROJECT_PATH%\_CustomFiles_\"
+  call "%opt[build.commit_wim_script]%"
+  popd
+  goto :UNMOUNT_END
+)
+
+
 call :CLEANUP 0
 call WIM_Exporter "%_WB_PE_WIM%"
 :UNMOUNT_END

@@ -30,6 +30,10 @@ if exist "%WB_TMP_PATH%\_patches_opt.bat" (
 rem call _CustomISO_
 set "WB_PROJECT_PATH=Projects\%WB_PROJECT%"
 if "x%_CustomISO_FILE%"=="x" set _CustomISO_FILE=_CustomISO_.bat
+
+set "WB_USER_PROJECT_PATH=%WB_ROOT%\%APPDATA_DIR%\Projects\%WB_PROJECT%"
+set "_USER_CUSTOMFILES_=%WB_USER_PROJECT_PATH%\_CustomFiles_"
+
 if exist "%WB_PROJECT_PATH%\_CustomFiles_\%_CustomISO_FILE%" (
   pushd "%WB_PROJECT_PATH%\_CustomFiles_\"
   call %_CustomISO_FILE% PreISO

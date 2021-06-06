@@ -40,12 +40,14 @@
       <input type="text" name="build.precommit_wim_script" class="opt_item" style="width:60%" />
     </fieldset>
 
-    <fieldset class="beginner-hide">
+    <fieldset>
       <legend>Commit WIM file action</legend>
       <label><input type="radio" class="opt_item" name="build.commit_wim_action" value="built_in" checked /> Built-in</label>
       <label><input type="radio" class="opt_item" name="build.commit_wim_action" value="none" /> None</label>
-      <label><input type="radio" class="opt_item" name="build.commit_wim_action" value="custom" /> Custom</label>
-      <input type="text" name="build.commit_wim_script" class="opt_item" style="width:50%" />
+      <label class="beginner-hide"><input type="radio" class="opt_item" name="build.commit_wim_action" value="custom" /> Custom</label>
+      <div class="beginner-hide">
+          <input type="text" name="build.commit_wim_script" class="opt_item" style="width:50%" />
+      </div>
     </fieldset>
 
     <fieldset>

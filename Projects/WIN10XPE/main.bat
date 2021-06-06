@@ -96,6 +96,11 @@ echo   - HKEY_LOCAL_MACHINE\Tmp_SOFTWARE
 echo   - HKEY_LOCAL_MACHINE\Tmp_SYSTEM
 echo.
 
+call CheckPatch "00-Configures\Build"
+if "x%HasPatch%"=="false" (
+    opt[build.registry.software]=merge
+)
+
 if "x%opt[build.registry.software]%"=="xfull" (
     call AddFiles \Windows\System32\config\SOFTWARE
     set REGCOPY_SKIP_SOFTWARE=1

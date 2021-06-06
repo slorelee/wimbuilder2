@@ -28,6 +28,7 @@ var $patches_opt = {
     "component.RNDIS":true,
     "component.PPPoE":true,
     "component.printer":true,
+    "component.bluetooth":true,
     "component.wordpad":true,
     "component.mspaint":true,
     "component.winphotoviewer":true,

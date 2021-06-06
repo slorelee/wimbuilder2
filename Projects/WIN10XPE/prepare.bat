@@ -1,4 +1,10 @@
 rem ===================================
+if "x%opt[build.cmd_mode]%"=="xtrue" (
+    rem dummy line - DON'T DELETE THIS LINE
+    %opt[build.cmd_mode_code]%
+)
+
+rem ===================================
 rem set Enviroment
 rem BUILD_NUMBER
 for /f "tokens=3 delims=." %%v in ("%WB_PE_VER%") do set VER[3]=%%v
@@ -23,6 +29,8 @@ call V2X -init
 call App init _Cache_
 set "WINXSHELL=%V_APP%\WinXShell\X_PF\WinXShell\WinXShell_%WB_ARCH%.exe"
 
+echo.
+call "%WB_PROJECT_PATH%\shared\CheckUserFiles.bat"
 
 rem ===================================
 echo .

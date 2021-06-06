@@ -1,5 +1,3 @@
-goto :EOF
-
 
 call AddFiles %0 :end_files
 goto :end_files

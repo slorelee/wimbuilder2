@@ -166,6 +166,16 @@ binmay.exe -u "%X_SYS%\spoolsv.exe" -s u:SystemSetupInProgress -r u:DisableSpool
 fc /b "%X_SYS%\spoolsv.exe.org" "%X_SYS%\spoolsv.exe"
 del /f /q "%X_SYS%\spoolsv.exe.org"
 
+
+rem https://theoven.org/index?topic=1639.msg39755#msg39755 by noelBlanc
+if "%WB_PE_ARCH%"=="x64" (
+    binmay.exe -u "%X_SYS%\spoolsv.exe" -s "BA C0 D4 01 00 48" -r "BA E8 03 00 00 48"
+) else (
+    binmay.exe -u "%X_SYS%\spoolsv.exe" -s "68 C0 D4 01 00" -r "68 E8 03 00 00"
+)
+fc /b "%X_SYS%\spoolsv.exe.org" "%X_SYS%\spoolsv.exe"
+del /f /q "%X_SYS%\spoolsv.exe.org"
+
 rem EnablePrintFeature
 if 1==1 (
   echo @echo off
@@ -176,15 +186,6 @@ if 1==1 (
   echo net start spooler
   echo PnPutil.exe -i -a "%%Windir%%\inf\usbprint.inf"
   echo drvload.exe "%%Windir%%\inf\printqueue.inf"
-  echo.
-  echo.
-  echo echo  __________________________________________________________
-  echo echo ^^^|                                                          ^^^|
-  echo echo ^^^|%opt[_message.wait_for_printers]%^^^|
-  echo echo ^^^|__________________________________________________________^^^|
-  echo.
-  echo.
-  echo timeout.exe /T 5
 )>"%X_PEMaterial%\EnablePrintFeature.bat"
 
 call LinkToDesktop -paramlist "#{@printui.dll,12007}.lnk" "[[X:\%opt[loader.PEMaterial]%\EnablePrintFeature.bat]], '', 'shell32.dll', 16"

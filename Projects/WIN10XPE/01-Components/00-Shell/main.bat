@@ -46,6 +46,9 @@ shwebsvc.dll
 ;%WB_PE_LANG%\AppWiz.cpl.mui
 ;osbaseln.dll
 
+; Details default folderview layout
+windows.storage.dll
+
 :end_files
 
 call RegCopy /-s "HKLM\SOFTWARE\Classes\*"

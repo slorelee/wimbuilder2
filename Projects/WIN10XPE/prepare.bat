@@ -61,7 +61,7 @@ if "x%opt[build.registry.system]%"=="xtrue" (
     set opt[build.registry.system]=merge
 )
 
-if VER[3] GTR 21000 (
+if %VER[3]% GTR 21000 (
     echo [INFO] Update StartIsBack version for 21H1
     set opt[SIB.version]=2.9.8
     set opt[SIB.version]

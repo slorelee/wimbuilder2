@@ -61,6 +61,11 @@ if "x%opt[build.registry.system]%"=="xtrue" (
     set opt[build.registry.system]=merge
 )
 
+if VER[3] GTR 21000 (
+    echo [INFO] Update StartIsBack version for 21H1
+    set opt[SIB.version]=2.9.8
+    set opt[SIB.version]
+)
 call CheckPatch "01-Components\Windows Media Player"
 if "x%HasPatch%"=="xtrue" (
     echo [INFO] Adapt StartIsBack for Windows Media Player

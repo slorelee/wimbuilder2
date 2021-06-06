@@ -1,0 +1,25 @@
+<br/>
+<input type="text" id="helper_hive_path" style="width:420px" value="" />
+<a href="#" id="helper_hive_selector" class="ibutton browse i18n-text">Browse...</a>
+<br/>
+
+<button class="pure-button button-green" style="color:#ffffff;" 
+    onclick="ConvertHive2Reg($('#helper_hive_path').val());"> Convert</button>
+
+<button class="pure-button .button-rose" style="background:rgb(255, 185, 0);color:#ffffff;"
+    onclick="OpenContainingFolder($('#helper_hive_path').val());"> Open Folder</button>
+
+<script>
+$('#helper_hive_selector').click(function(){
+    BrowseFile('#helper_hive_path');
+});
+
+function ConvertHive2Reg(file) {
+    // structure_env(0);
+    Run('HIVE2REG.cmd', file);
+}
+
+function OpenContainingFolder(file) {
+    OpenFolder(file.slice(0, file.lastIndexOf('\\')));
+}
+</script>

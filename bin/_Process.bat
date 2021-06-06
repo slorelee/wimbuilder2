@@ -82,7 +82,7 @@ if exist "%WB_PROJECT_PATH%\_CustomFiles_\_Prepare_.bat" (
 
 set TIMER_START=
 for /f "delims=" %%t in ('cscript.exe //nologo bin\Timer.vbs') do set TIMER_START=%%t
-call :cecho PHRASE "%TIMER_START% - Building Start ..."
+call :CLOG PHRASE "%TIMER_START% - Building Start ..."
 
 echo.
 rem ";" can't be pass to CALL LABEL, so use a ":" for it
@@ -241,7 +241,7 @@ for /f "delims=" %%t in ('cscript.exe //nologo "%WB_ROOT%\bin\Timer.vbs"') do se
 
 set TIMER_ELAPSED=
 for /f "delims=" %%t in ('cscript.exe //nologo "%WB_ROOT%\bin\Timer.vbs" "%TIMER_START%" "%TIMER_END%"') do set TIMER_ELAPSED=%%t
-call :cecho PHRASE "%TIMER_END% - Building completed in %TIMER_ELAPSED% seconds."
+call :CLOG PHRASE "%TIMER_END% - Building completed in %TIMER_ELAPSED% seconds."
 
 if "x%BUILD_LOGNAME%"=="x" goto :EOF
 if not "x%_WB_EXEC_MODE%"=="x1" goto :EOF

@@ -26,14 +26,14 @@ set GetLastError=0
 set "FILEPATH=%X%\Windows\System32\config"
 set "FILEPATH_NTUSER=%X%\Users\Default"
 
-rem can't read WB_SRC_DIR from cleanup button,
+rem can't read WB_SRC_PATH from cleanup button,
 rem but UNLOAD don't use the FILEPATH, so skip the check.
 if /i "x%2"=="xUNLOAD" goto :PATH_FIX_END
 
 if /i "x%1"=="xSrc" (
-  if "x%WB_SRC_DIR%"=="x" goto :EOF
-  set "FILEPATH=%WB_SRC_DIR%\Windows\System32\config"
-  set "FILEPATH_NTUSER=%WB_SRC_DIR%\Users\Default"
+  if "x%WB_SRC_PATH%"=="x" goto :EOF
+  set "FILEPATH=%WB_SRC_PATH%\Windows\System32\config"
+  set "FILEPATH_NTUSER=%WB_SRC_PATH%\Users\Default"
 )
 :PATH_FIX_END
 

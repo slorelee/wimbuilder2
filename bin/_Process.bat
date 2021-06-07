@@ -157,9 +157,12 @@ if "x%WB_SRC%"=="x" goto :BASE_MOUNT
 rem TODO: check if %WB_SRC% is wim file or folder
 rem if exist "%WB_SRC%\" (echo WB_SRC is src dir) else (echo WB_SRC is src wim)
 
-set "WB_SRC_DIR=%Factory%\target\%WB_PROJECT%\install"
-call :MKPATH "%WB_SRC_DIR%\"
-call wimextract "%WB_SRC%" %WB_SRC_INDEX% @"%WB_ROOT%\bin\SRC_REGFILES.txt" --dest-dir="%WB_SRC_DIR%" --no-acls --nullglob
+set "_WB_SRC_DIR=%Factory%\target\%WB_PROJECT%\install"
+call :MKPATH "%_WB_SRC_DIR%\"
+call wimextract "%WB_SRC%" %WB_SRC_INDEX% @"%WB_ROOT%\bin\SRC_REGFILES.txt" --dest-dir="%_WB_SRC_DIR%" --no-acls --nullglob
+set _WB_SRC_DIR=
+
+set "WB_SRC_PATH=%FACTORY_PATH%\target\%WB_PROJECT%\install"
 
 :BASE_MOUNT
 rem PHRASE:mount WIM

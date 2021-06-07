@@ -109,9 +109,8 @@ md "%X_SYS%\wbem\Repository"
 rem Key Distrubution Service Provider
 del /a /f /q "%X_SYS%\KdsCli.dll"
 
-rem Kernel Debugger
-call :KEEP_FILES \Windows\System32\ "kd.dll,kdcom.dll"
-del /a /f /q "%X_SYS%\kd*.dll"
+rem Network Kernel Debug Extensibility Modules
+rem del /a /f /q "%X_SYS%\kd_*.dll"
 
 goto :EOF
 

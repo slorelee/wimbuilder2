@@ -62,7 +62,6 @@ end
 local function main()
   local hive = get_option('-hive')
   local dir = get_option('-x')
-  dir = dir:sub(2, -2)
   cd_scriptpath()
   walk_inf_reg(dir .. '\\Windows\\INF', hive)
 end

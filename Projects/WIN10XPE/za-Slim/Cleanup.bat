@@ -75,7 +75,13 @@ call :REMOVE_SERV_REG EventLog wevtsvc.dll
 call :REMOVE_SERV_REG FontCache FntCache.dll
 call :REMOVE_SERV_REG KeyIso keyiso.dll
 call :REMOVE_SERV_REG lmhosts lmhsvc.dll
-call :REMOVE_SERV_REG NlaSvc nlasvc.dll
+
+if VER[3] GTR 21000 (
+    call :REMOVE_SERV_REG NlaSvc netprofmsvc.dll
+) else (
+    call :REMOVE_SERV_REG NlaSvc nlasvc.dll
+)
+
 call :REMOVE_SERV_REG PolicyAgent polstore.dll
 call :REMOVE_SERV_REG ProfSvc profsvc.dll
 call :REMOVE_SERV_REG sacsvr sacsvr.dll

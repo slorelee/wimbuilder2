@@ -22,7 +22,20 @@ rem Dism /Get-Packages /Image:"%_WB_MNT_DIR%"
 
 cd /d "%~dp0"
 
+call CheckPatch "00-Configures\Build"
+if "x%HasPatch%"=="false" (
+    opt[build.registry.software]=merge
+)
 
+if "x%opt[build.registry.software]%"=="xfull" (
+    call AddFiles \Windows\System32\config\SOFTWARE
+    set REGCOPY_SKIP_SOFTWARE=1
+)
+
+if "x%opt[build.load_hive]%"=="xtrue" (
+  call PERegPorter.bat Src LOAD 1>nul
+  call PERegPorter.bat Tmp LOAD 1>nul
+)
 
 if /i "%WB_BASE%"=="test\boot.wim" (
   for /f "tokens=3 usebackq" %%i in (`reg query "HKLM\Src_SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v CurrentBuild`) do set /a VER[3]=%%i
@@ -96,16 +109,6 @@ echo   - HKEY_LOCAL_MACHINE\Tmp_SOFTWARE
 echo   - HKEY_LOCAL_MACHINE\Tmp_SYSTEM
 echo.
 
-call CheckPatch "00-Configures\Build"
-if "x%HasPatch%"=="false" (
-    opt[build.registry.software]=merge
-)
-
-if "x%opt[build.registry.software]%"=="xfull" (
-    call AddFiles \Windows\System32\config\SOFTWARE
-    set REGCOPY_SKIP_SOFTWARE=1
-)
-
 if "x%WB_SKIP_UFR%"=="x1" goto :END_UPDATE_FILES_ACL
 rem update files ACL Right
 call :cecho PHRASE "PHRASE:updating files' ACL rights"
@@ -116,11 +119,6 @@ if not "%GetLastError%"=="0" call :CLEANUP
 call :techo "Update files with Administrators' FULL ACL rights successfully."
 echo.
 :END_UPDATE_FILES_ACL
-
-if "x%opt[build.load_hive]%"=="xtrue" (
-  call PERegPorter.bat Src LOAD 1>nul
-  call PERegPorter.bat Tmp LOAD 1>nul
-)
 
 call CheckPatch "za-Slim"
 if "x%HasPatch%"=="xtrue" (

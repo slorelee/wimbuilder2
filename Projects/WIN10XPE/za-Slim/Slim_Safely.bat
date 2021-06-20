@@ -3,6 +3,7 @@ echo Safely Sliming...
 
 call :_Slim_font
 call :_Slim_keyboard
+call :_Slim_nls
 call :_Slim_migration
 call :_Slim_useless
 
@@ -11,8 +12,8 @@ goto :EOF
 
 :_Slim_font
 rem ==============================================
-call :KEEP_FILES \Windows\Fonts\ "app%WB_PE_CODEPAGE%.fon,consola.ttf,marlett.ttf,micross.ttf,tahoma.ttf,segmdl2.ttf,tahoma.ttf,tahomabd.ttf"
-call :KEEP_FILES \Windows\Fonts\ "svgafix.fon,svgasys.fon,vga%WB_PE_CODEPAGE%.fon,vgafix.fon,vgafixr.fon,vgaoem.fon,vgasys.fon,vgasysr.fon"
+call :KEEP_FILES \Windows\Fonts\ "app%WB_PE_OEMCP%.fon,consola.ttf,marlett.ttf,micross.ttf,tahoma.ttf,segmdl2.ttf,tahoma.ttf,tahomabd.ttf"
+call :KEEP_FILES \Windows\Fonts\ "svgafix.fon,svgasys.fon,vga%WB_PE_OEMCP%.fon,vgafix.fon,vgafixr.fon,vgaoem.fon,vgasys.fon,vgasysr.fon"
 if "x%WB_PE_LANG%"=="xen-US" (
   call :KEEP_FILES \Windows\Fonts\ "segoeui.ttf,segoeuib.ttf,segoeuii.ttf"
 )
@@ -68,6 +69,23 @@ set _LayoutFile=
 del /a /f /q "%X_SYS%\KB*.DLL"
 goto :EOF
 
+:_Slim_nls
+if "x%WB_PE_ACP%"=="x*" goto :EOF
+call :KEEP_FILES \Windows\System32\ "C_1252.NLS,C_437.NLS,C_20127.NLS"
+if not "x%WB_PE_ACP%"=="x1252" (
+  call :KEEP_FILE \Windows\System32\C_%WB_PE_ACP%.NLS
+)
+if not "x%WB_PE_OEMCP%"=="x437" (
+  call :KEEP_FILE \Windows\System32\C_%WB_PE_OEMCP%.NLS
+)
+if exist "%X_SYS%\C_20%WB_PE_OEMCP%.NLS" (
+  call :KEEP_FILE \Windows\System32\C_20%WB_PE_OEMCP%.NLS
+)
+if exist "%X_SYS%\C_1251.NLS" (
+  call :KEEP_FILE \Windows\System32\C_1251.NLS
+)
+del /a /f /q "%X_SYS%\C_*.NLS"
+goto :EOF
 
 :_Slim_migration
 rem ==============================================

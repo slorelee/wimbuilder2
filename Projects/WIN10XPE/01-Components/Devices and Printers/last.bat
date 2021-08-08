@@ -1,3 +1,5 @@
+if not exist "%X_SYS%\DeviceSetupManager.dll" goto :EOF
+
 rem DsmSvc Patch Feature
 binmay.exe -u "%X_SYS%\DeviceSetupManager.dll" -s u:SystemSetupInProgress -r u:DisableDeviceSetupMgr
 fc /b "%X_SYS%\DeviceSetupManager.dll.org" "%X_SYS%\DeviceSetupManager.dll"

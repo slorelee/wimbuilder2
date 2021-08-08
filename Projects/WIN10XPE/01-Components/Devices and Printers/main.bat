@@ -1,4 +1,6 @@
-call _dsmsvc.bat
+if "x%opt[component.dsmsvc]%"=="xtrue" (
+    call _dsmsvc.bat
+)
 
 if "x%opt[component.printer]%"=="xtrue" (
     call _printer.bat

@@ -16,8 +16,8 @@ $i18n = {
   "build(cmd)":" cmd mód",
   "build(log)":" naplózás",
   "Browse...":"Tallóz...",
-  "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
-       "<strong>INFO</strong>:Megadhatja az alapértelmezett beállításokat a 'config.js'- ben, és a választásai automatikusan mentődnek az 'auto_config.js'-be, így gyorsan elindul a következő alkalommal. Ha később módosítani szeretné a beállításokat, a bal oldali navigációs menü segítségével jelenítse meg ezt az oldalt.",
+  "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'AppData\\auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
+       "<strong>INFO</strong>:Megadhatja az alapértelmezett beállításokat a 'config.js'- ben, és a választásai automatikusan mentődnek az 'AppData\\auto_config.js'-be, így gyorsan elindul a következő alkalommal. Ha később módosítani szeretné a beállításokat, a bal oldali navigációs menü segítségével jelenítse meg ezt az oldalt.",
   "<strong>INFO</strong>:Current mode is 'Beginner', you can change the mode in 'Settings' page.":
       "<strong>INFO</strong>:A jelenlegi mód 'Kezdő', módosíthatja a módot a Beállítások oldalon",
   "Please configure the base infomation:":"Konfigurálja az alapadatokat:",
@@ -33,8 +33,11 @@ $i18n = {
   "Select the extracted install.wim folder if it needed":"Válaszd ki a kicsomagolt install.wim mappáját, ha szükséges",
   "Select the extracted install.wim folder:":"Válaszd ki a kicsomagolt install.wim mappáját:",
   "Select the base image(boot.wim/winre.wim or other customed.wim)":"Válaszd ki az alap képfájlt (boot.wim/winre.wim vagy más, saját.wim)",
-  "Use test\\boot.wim":" a test\\boot.wim használata",
-  "<strong>Notice</strong>:Please select the correct wim file, and the image index, otherwise cause build failed.":"<STRONG>Notice</STRONG>:Megfelelő wim fájlt és indexet válassz, egyébként hiba keletkezik.",
+  "Use test\\boot.wim":" a teszt\\boot.wim használata",
+  "<strong>Notice</strong>:Please select the correct wim file, and the image index, otherwise cause build failed.":
+      "<strong>Megjegyzés</strong>: Megfelelő wim fájlt és indexet válassz, egyébként hiba keletkezik.",
+  "<strong>Notice</strong>:Some updated versions may not boot properly. Please refer to the description of project for the supported version.":
+      "<strong>Megjegyzés</strong>: Egyes frissített verziók nem mindig indulnak megfelelően. Kérjük, olvasd el a támogatott verziók projektleírását.",
 
   "Skip when project is selected":" Lépd át, ha a projekt már ki van választva.",
 

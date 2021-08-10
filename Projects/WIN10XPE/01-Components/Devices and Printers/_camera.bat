@@ -6,7 +6,7 @@ if not exist "%X_WIN%\Inf\ks.inf" (
 
 rem ks.inf,kscaptur.inf,ksfilter.inf was added by 03-Audio\main.bat
 
-call AddDrivers "c_camera.inf,c_image.inf,usbvideo.inf,WSDScDrv.inf"
+call AddDrivers "c_camera.inf,c_image.inf,usbvideo.inf"
 
 call AddFiles %0 :end_files
 goto :end_files
@@ -29,6 +29,15 @@ kstvtune.ax
 Kswdmcap.ax
 ksxbar.ax
 WebcamUi.dll
+
+;xeoma
+opengl32.dll
+glu32.dll
+dsound.dll
+pdh.dll
+
++ver > 19000
+RESAMPLEDMO.DLL
 
 :end_files
 

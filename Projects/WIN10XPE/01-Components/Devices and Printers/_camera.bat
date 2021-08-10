@@ -1,4 +1,12 @@
-call AddDrivers "c_camera.inf,c_image.inf,dshowext.inf,ks.inf,kscaptur.inf,ksfilter.inf,usbvideo.inf,WSDScDrv.inf"
+if not exist "%X_WIN%\Inf\ks.inf" (
+    pushd "..\03-Audio"
+    call main.bat
+    popd
+)
+
+rem ks.inf,kscaptur.inf,ksfilter.inf was added by 03-Audio\main.bat
+
+call AddDrivers "c_camera.inf,c_image.inf,usbvideo.inf,WSDScDrv.inf"
 
 call AddFiles %0 :end_files
 goto :end_files

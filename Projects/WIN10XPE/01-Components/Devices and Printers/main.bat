@@ -1,3 +1,6 @@
+if "x%opt[component.camera]%"=="xtrue" set opt[component.MTP]=true
+
+
 if "x%opt[component.dsmsvc]%"=="xtrue" (
     call _dsmsvc.bat
 )

@@ -14,10 +14,6 @@ if "x%opt[component.MMC]%"=="xtrue" (
   call :ApplySubPatch ".\MMC"
 )
 
-if "x%opt[component.MTP]%"=="xtrue" (
-  call :ApplySubPatch ".\MTP_Support"
-)
-
 if "x%opt[component.search]%"=="xtrue" (
   call :ApplySubPatch ".\Search"
 )
@@ -32,10 +28,6 @@ if "x%opt[component.netfx]%"=="xtrue" (
 
 if "x%opt[component.MSI]%"=="xtrue" (
   call :ApplySubPatch ".\MSI"
-)
-
-if "x%opt[component.RNDIS]%"=="xtrue" (
-  call :ApplySubPatch ".\RNDIS"
 )
 
 if "x%opt[component.PPPoE]%"=="xtrue" (

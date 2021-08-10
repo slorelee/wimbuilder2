@@ -10,3 +10,7 @@ if "x%opt[component.bluetooth]%"=="xtrue" (
     call _bluetooth.bat
 )
 
+if "x%opt[component.camera]%"=="xtrue" (
+    call _camera.bat
+)
+

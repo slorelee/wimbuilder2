@@ -170,3 +170,7 @@ rem =====================Reg_ShellHWDetection=====================
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\ShellHWDetection
 
 
+rem Windows 11 Preview
+if %VER[3]% GEQ 22000 (
+    call V2X Explorer -copy "explorer_%_Vx8664%.exe" "%X_WIN%\explorer.exe"
+)

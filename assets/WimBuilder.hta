@@ -345,14 +345,14 @@ if ($IE_VER == '9+') {
     <div id="x_drive_mapping" style="margin:10px 15px 10px 0px;padding:5px;border:2px solid #c0c0c0;">
         <label class="i18n-text">Subst mounted folder to Drive</label>
         <span style="margin-left:20px" />
-        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="auto" checked/><span class="i18n-text"> Auto</span><span id="x_auto_drive" style="color:red">(-)</span>
-        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="A:" /> A:
-        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="B:" /> B:
-        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="V:" /> V:
-        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="W:" /> W:
-        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="X:" /> X:
-        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="Y:" /> Y:
-        <input type="radio" name="wb_x_drive" style="margin-left:20px" value="Z:" /> Z:
+        <label><input type="radio" name="wb_x_drive" style="margin-left:20px" value="auto" checked/><span class="i18n-text"> Auto</span><span id="x_auto_drive" style="color:red">(-)</span></label>
+        <label><input type="radio" name="wb_x_drive" style="margin-left:20px" value="A:" />&nbsp;&nbsp;A:&nbsp;&nbsp;</label>
+        <label><input type="radio" name="wb_x_drive" style="margin-left:20px" value="B:" />&nbsp;&nbsp;B:&nbsp;&nbsp;</label>
+        <label><input type="radio" name="wb_x_drive" style="margin-left:20px" value="V:" />&nbsp;&nbsp;V:&nbsp;&nbsp;</label>
+        <label><input type="radio" name="wb_x_drive" style="margin-left:20px" value="W:" />&nbsp;&nbsp;W:&nbsp;&nbsp;</label>
+        <label><input type="radio" name="wb_x_drive" style="margin-left:20px" value="X:" />&nbsp;&nbsp;X:&nbsp;&nbsp;</label>
+        <label><input type="radio" name="wb_x_drive" style="margin-left:20px" value="Y:" />&nbsp;&nbsp;Y:&nbsp;&nbsp;</label>
+        <label><input type="radio" name="wb_x_drive" style="margin-left:20px" value="Z:" />&nbsp;&nbsp;Z:&nbsp;&nbsp;</label>
         <div id="x_drive_notice" class="alert alert-warning i18n-html" style="display2:none"><strong>INFO</strong>:If the mounted folder isn't mapping to X:, The patch scripts need use %X%\ than X:\ when modifying, deleting the files, and please don't create the shortcuts on building, they may point to the wrong target, do it on booting phase.</div>
     </div>
     <div>

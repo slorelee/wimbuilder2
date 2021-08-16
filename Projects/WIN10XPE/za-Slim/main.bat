@@ -1,3 +1,7 @@
+if "x%opt[slim.ieframedll]%"=="xtrue" (
+  if exist "%X_SYS%\ieframe.dll" del /a /f /q "%X_SYS%\ieframe.dll"
+)
+
 if "x%_Slim_Main%"=="xreplacement" (
   goto :REPLACEMENT_ACTION
 )
@@ -144,12 +148,6 @@ if "x%opt[slim.speech]%"=="xtrue" (
 if "x%opt[slim.dism]%"=="xtrue" (
   rd /s /q "%X_SYS%\Dism"
   del /f /a /q "%X_SYS%\dism.exe"
-)
-
-if "x%opt[slim.ieframedll]%"=="xtrue" (
-  del /a /f /q "%X_WIN%\SystemResources\ieframe.dll.mun"
-  del /a /f /q "%X_SYS%\ieframe.dll"
-  del /a /f /q "%X_SYS%\%WB_PE_LANG%\ieframe.dll.mui"
 )
 
 if "x%opt[slim.winboot]%"=="xtrue" (

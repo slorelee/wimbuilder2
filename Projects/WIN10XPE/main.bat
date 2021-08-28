@@ -67,6 +67,9 @@ if "%opt[support.wow64]%"=="true" (
   set ADDFILES_SYSWOW64=1
 )
 
+set System32OrSysWOW64=SysWOW64
+ if not "x%WB_PE_ARCH%"=="xx64" set System32OrSysWOW64=System32
+
 rem call CheckPatch "01-Components\02-Network"
 rem set opt[support.network]=%HasPatch%
 
@@ -82,8 +85,9 @@ set VER[3]
 set VER[4]
 set VER[3.4]
 echo.
-echo X=%X%
+echo %%X%%=%X%
 set X_
+echo System32OrSysWOW64=%System32OrSysWOW64%
 echo.
 set _CUSTOMFILES_
 set _USER_

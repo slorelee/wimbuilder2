@@ -21,7 +21,7 @@ drivers\WdmCompanionFilter.sys
 
 CameraCaptureUI.dll
 CameraSettingsUIHost.exe
-cdd.dll
+;cdd.dll
 devenum.dll
 fundisc.dll
 ksproxy.ax

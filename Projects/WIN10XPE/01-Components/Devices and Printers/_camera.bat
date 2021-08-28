@@ -30,7 +30,11 @@ Kswdmcap.ax
 ksxbar.ax
 WebcamUi.dll
 
-;xeoma
+;Xeoma
+
+;add for boot.wim
+d3d9.dll
+
 opengl32.dll
 glu32.dll
 dsound.dll
@@ -38,6 +42,14 @@ pdh.dll
 
 +ver > 19000
 RESAMPLEDMO.DLL
++ver*
+
+;ECap, webcam 7
+@\Windows\SysWOW64\
+ksproxy.ax,ksuser.dll
+
+@\Windows\%System32OrSysWOW64%\
+qcap.dll,qedit.dll,qedwipes.dll
 
 :end_files
 

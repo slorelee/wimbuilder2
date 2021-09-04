@@ -13,6 +13,8 @@ CoreMessaging.dll,CoreUIComponents.dll,ISM.dll,rmclient.dll
 
 +ver > 18950
 GameInput.dll
++ver > 22440
+wuceffects.dll
 +ver*
 
 +if "%VER[3]%" = "19041" Or "%VER[3]%" = "19042" Or "%VER[3]%" = "19043"

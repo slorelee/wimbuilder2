@@ -1,7 +1,13 @@
 rem install mtpHelper
 
-rem use yamingw's ring0 kernel driver
-if exist "mtpHelper_%WB_PE_ARCH%.sys" (
+set opt[MTP.mtpHelper]=mtpHelper.sys
+if not exist "mtpHelper_%WB_PE_ARCH%.sys" (
+    set opt[MTP.mtpHelper]=mtpHelper.dll
+)
+if %VER[3]% GEQ 22000 set opt[MTP.mtpHelper]=mtpHelper.dll
+
+if "%opt[MTP.mtpHelper]%"=="mtpHelper.sys" (
+  rem use yamingw's ring0 kernel driver
   copy mtpHelper_%WB_PE_ARCH%.sys %X_SYS%\Drivers\mtpHelper.sys
   reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v ImagePath /t REG_EXPAND_SZ /d "System32\Drivers\mtpHelper.sys" /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v Start /t REG_DWORD /d 1 /f

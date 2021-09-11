@@ -1,5 +1,5 @@
 if "x%opt[component.taskmgr]%"=="xtrue" (
-  call AddFiles \Windows\System32\taskmgr.exe
+  call AddFiles "pdh.dll,taskmgr.exe"
 )
 
 if "x%opt[component.bitlocker]%"=="xtrue" (

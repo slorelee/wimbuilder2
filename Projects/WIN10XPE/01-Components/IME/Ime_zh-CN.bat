@@ -15,6 +15,7 @@ goto :end_files
 
 @\Windows\InputMethod\CHS\
 ChsPinyin.lex,ChsPinyin.lm
+ChsPinyinStx.lex
 ChsWubi.lex
 
 @\Windows\System32\
@@ -57,6 +58,9 @@ if "x%opt[IME.ms_wubi]%"=="xtrue" (
 rem Default Mode for CHSIMEs: 0 - Chinese, 1 - English
 reg add "HKLM\Tmp_DEFAULT\Software\Microsoft\InputMethod\Settings\CHS" /v "Default Mode" /t REG_DWORD /d 1 /f
 
+rem Enable U, V mode
+reg add "HKLM\Tmp_DEFAULT\Software\Microsoft\InputMethod\Settings\CHS" /v "EnableUMode" /t REG_DWORD /d 1 /f
+reg add "HKLM\Tmp_DEFAULT\Software\Microsoft\InputMethod\Settings\CHS" /v "EnableVMode" /t REG_DWORD /d 1 /f
 goto :EOF
 
 :UDPATE_IME_REGISTY

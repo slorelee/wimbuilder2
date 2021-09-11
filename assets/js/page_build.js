@@ -271,7 +271,11 @@ function make_iso(keep, mode) {
         update_output(oExec);
     } else {
         wsh.run('cmd /d /c _MakeBootISO.bat', 1, true);
+        _in_makeiso = 'done'
     }
+
+    if (!keep) return  // UI button clicked
+
     if ($wb_auto_testiso) {
         wait_and_test();
     }

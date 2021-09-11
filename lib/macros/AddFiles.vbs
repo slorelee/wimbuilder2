@@ -63,17 +63,25 @@ Set regEx_sysres = New RegExp
 regEx_sysres.IgnoreCase = True
 
 Dim bCode, line
+Dim strStartCode, strEndCode
 Dim outs
 outs = ""
 
 If code_file <> "" Then
+  strStartCode = "goto " & code_word
+  strEndCode = code_word
+  If InStr(1, code_word, ":[") = 1 Then
+      strStartCode = code_word
+      strEndCode = "goto :EOF"
+  End If
   Set f = fso.OpenTextFile(code_file, ForReading, False)
   line = f.Readline
+
   Do Until f.AtEndOfStream
      line = f.ReadLine
-     If (Not bCode) And line = "goto " & code_word Then
+     If (Not bCode) And line = strStartCode Then
          bCode = true
-     ElseIf line = code_word Then
+     ElseIf line = strEndCode Then
          Exit Do
      ElseIf bCode Then
          parser(line)
@@ -81,8 +89,8 @@ If code_file <> "" Then
   Loop
   f.Close
 Else
+  g_path = "\Windows\System32\"
   line = code_word
-  If Left(line, 1) = "\" Then line = Mid(line, 2)
   Dim arr
   arr = Split(line, "#n")
   For i = 0 To Ubound(arr)

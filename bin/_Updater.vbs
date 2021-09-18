@@ -10,6 +10,15 @@ Const ForAppending = 8
 
 Dim argCount:argCount = Wscript.Arguments.Count
 
+
+Dim optGitmode:optGitmode = 0
+
+If argCount >= 1 Then
+    If Wscript.Arguments(0) = "--git" Then
+        optGitmode = 1
+    End If
+End If
+
 Dim optDir
 If argCount > 1 Then
     If Wscript.Arguments(0) = "--dir" Then
@@ -31,6 +40,10 @@ Dim inFile, outFile, inStream, outStream, inLine, FSO, WshShell
 
 Set WshShell = Wscript.CreateObject("Wscript.Shell")
 Set FSO = CreateObject("Scripting.FileSystemObject")
+
+If optGitmode = 1 Then
+    Wscript.Quit(GetUpdateListWithGitInfo())
+End If
 
 If optCheck = 1 Then
     optCheck = CheckUpdatedTime("remote.md5", "source.info")
@@ -67,7 +80,7 @@ End If
 Dim outstr
 outstr = vbCrLf
 For Each file In objRemoteMD5
-    outstr = outstr & file & vbCrLf
+    outstr = outstr & "+    " & file & vbCrLf
 Next
 
 outstr = Replace(outstr, "\", "/")
@@ -148,4 +161,71 @@ Function RegKeyRePlacer(transFlag, str, okey, nkey)
     RegKeyRePlacer = Replace(str, okey, nkey, 1, 1)
     transFlag = 1
   End If
+End Function
+
+Function GetUpdateListWithGitInfo()
+  Dim i, n, data, outstr
+  Set inStream = FSO.OpenTextFile("git_commits.txt", ForReading, FailIfNotExist)
+  data = inStream.ReadAll
+  inStream.Close
+
+  Dim fname, fstatus, pos
+  Dim content_url, master_id, id_pos
+  pos = 1
+  Do While pos > 0
+    fname = StrMatch(pos, data, """filename"":""", """,")
+    fstatus = StrMatch(pos, data, """status"":""", """,")
+    If pos > 0 Then
+      If fstatus = "removed" Then
+        outstr = outstr & "-    " & fname & vbCrLf
+      Else
+        outstr = outstr & "+    " & fname & vbCrLf
+      End If
+
+      If master_id = "" Then
+        id_pos = pos
+        content_url = StrMatch(id_pos, data, """content_url"":""", """,")    'gitee
+        If id_pos = 0 Then
+          id_pos = pos
+          content_url = StrMatch(id_pos, data, """contents_url"":""", """,") 'github
+        End If
+        If id_pos > 0 Then
+          master_id = Right(content_url, 40)
+          master_id = Left(master_id, 8)
+        End If
+      End If
+
+    End If
+  Loop
+
+  If outstr = "" Then
+    GetUpdateListWithGitInfo = 1
+    Exit Function
+  End If
+
+  Set outStream = FSO.CreateTextFile("updatefile.list", OverwriteIfExist)
+  outStream.Write outstr
+  outStream.Close
+
+  GetUpdateListWithGitInfo = 0
+
+  If master_id <> "" Then
+    Set outStream = FSO.CreateTextFile("git_masterid.txt", OverwriteIfExist)
+    outStream.Write master_id
+    outStream.Close
+  End If
+End Function
+
+Function StrMatch(ByRef start, str, startmark, endmark)
+  Dim i, l
+  If start = 0 Then Exit Function
+  i = InStr(start, str, startmark)
+  If i = 0 Then start = 0:Exit Function
+
+  i = i + Len(startmark)
+  n = InStr(i, str, endmark)
+  If n = 0 Then start = 0:Exit Function
+
+  StrMatch = Mid(str, i, n - i)
+  start = n + Len(endmark)
 End Function

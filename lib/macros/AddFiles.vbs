@@ -81,7 +81,7 @@ If code_file <> "" Then
      line = f.ReadLine
      If (Not bCode) And line = strStartCode Then
          bCode = true
-     ElseIf line = strEndCode Then
+     ElseIf bCode And line = strEndCode Then
          Exit Do
      ElseIf bCode Then
          parser(line)

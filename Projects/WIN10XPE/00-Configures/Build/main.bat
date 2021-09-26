@@ -53,7 +53,3 @@ if "x%opt[build.registry.system]%"=="xmerge" (
 )
 
 call "%~dp0Catalog.bat"
-
-pushd "%~dp0WoW64_Basic"
-submain.bat
-popd

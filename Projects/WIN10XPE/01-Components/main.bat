@@ -18,18 +18,6 @@ if "x%opt[component.search]%"=="xtrue" (
   call :ApplySubPatch ".\Search"
 )
 
-if "x%opt[component.vcruntime]%"=="xtrue" (
-  call :ApplySubPatch ".\VCRuntime"
-)
-
-if "x%opt[component.netfx]%"=="xtrue" (
-  call :ApplySubPatch ".\NetFX"
-)
-
-if "x%opt[component.MSI]%"=="xtrue" (
-  call :ApplySubPatch ".\MSI"
-)
-
 if "x%opt[component.PPPoE]%"=="xtrue" (
   call :ApplySubPatch ".\PPPoE"
 )

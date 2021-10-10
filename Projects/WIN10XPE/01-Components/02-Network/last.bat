@@ -28,8 +28,3 @@ if not exist "%X_SYS%\netprofm.dll" goto :EOF
 binmay.exe -u "%X_SYS%\netprofm.dll" -s u:SystemSetupInProgress -r u:DisableNetworkListMgr
 fc /b "%X_SYS%\netprofm.dll.org" "%X_SYS%\netprofm.dll"
 del /f /q "%X_SYS%\netprofm.dll.org"
-
-if not exist "%X_SYS%\netprofmsvc.dll" goto :EOF
-binmay.exe -u "%X_SYS%\netprofmsvc.dll" -s u:SystemSetupInProgress -r u:DisableNetworkListMgr
-fc /b "%X_SYS%\netprofmsvc.dll.org" "%X_SYS%\netprofmsvc.dll"
-del /f /q "%X_SYS%\netprofmsvc.dll.org"

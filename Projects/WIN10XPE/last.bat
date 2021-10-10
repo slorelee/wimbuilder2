@@ -4,7 +4,7 @@ rem update lua scripts for escape characters
 call LuaLink -done
 call LuaPin -done
 
-if not exist "%X_SYS%\dwm.exe" ( 
+if not exist "%X_SYS%\dwm.exe" (
     reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v OneCoreNoBootDWM /t REG_DWORD /d 1 /f
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v Composition /t REG_DWORD /d 0 /f
 )
@@ -13,6 +13,12 @@ if %VER[3]% GEQ 22000 (
     if exist "%X_SYS%\wlansvc.dll" (
         call AddFiles "%CatRoot%\Microsoft-Windows-Client-Desktop-Required-Package04~*~*~~*.*.*.*.cat"
     )
+)
+
+if exist "%X_SYS%\netprofmsvc.dll" (
+    binmay.exe -u "%X_SYS%\netprofmsvc.dll" -s u:SystemSetupInProgress -r u:DisableNetworkListMgr
+    fc /b "%X_SYS%\netprofmsvc.dll.org" "%X_SYS%\netprofmsvc.dll"
+    del /f /q "%X_SYS%\netprofmsvc.dll.org"
 )
 
 call za-Slim\Cleanup.bat

@@ -9,6 +9,12 @@ if not exist "%X_SYS%\dwm.exe" (
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v Composition /t REG_DWORD /d 0 /f
 )
 
+if %VER[3]% GEQ 22000 (
+    if exist "%X_SYS%\wlansvc.dll" (
+        call AddFiles "%CatRoot%\Microsoft-Windows-Client-Desktop-Required-Package04~*~*~~*.*.*.*.cat"
+    )
+)
+
 call za-Slim\Cleanup.bat
 
 set _dll_drive=

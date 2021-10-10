@@ -34,6 +34,10 @@ simsun.ttc
 -if
 -if
 
++ver > 21000
+\Windows\Fonts\SegoeIcons.ttf
++ver*
+
 :end_files
 
 call AddDrivers winusb.inf
@@ -99,13 +103,10 @@ reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5
 rem // Disable Telemetry
 reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection /v AllowTelemetry /t REG_DWORD /d 0 /f
 
-reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "Segoe UI (TrueType)" /d segoeui.ttf /f
-
 if "x%opt[build.registry.software]%"=="xfull" (
   call :EditReg_FullSoftware
 ) else (
-  call _TextAssoc.bat
-  call RegCopy HKLM\SOFTWARE\Classes\.symlink
+  call :EditReg_NotFullSoftware
 )
 
 call SystemDriveSize.bat
@@ -127,3 +128,16 @@ rem //-
 rem // Autorecover wbem MOFs files from winre.wim. To do optionally with correct Language
 rem //reg add HKLM\Tmp_Software\Microsoft\WBEM\CIMOM /v "Autorecover MOFs" /t REG_MULTI_SZ /d %^windir%\system32\wbem\cimwin32.mof,%^windir%\system32\wbem\ncprov.mof,%^windir%\system32\wbem\en-us\cimwin32.mfl /f
 goto :EOF
+
+:EditReg_NotFullSoftware
+reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "Segoe UI (TrueType)" /d segoeui.ttf /f
+
+if exist "%X_WIN%\Fonts\SegoeIcons.ttf" (
+  reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "Segoe Fluent Icons (TrueType)" /d SegoeIcons.ttf /f
+)
+
+call _TextAssoc.bat
+call RegCopy HKLM\SOFTWARE\Classes\.symlink
+
+goto :EOF
+

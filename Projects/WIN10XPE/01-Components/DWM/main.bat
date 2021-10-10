@@ -13,7 +13,7 @@ CoreMessaging.dll,CoreUIComponents.dll,ISM.dll,rmclient.dll
 
 +ver > 18950
 GameInput.dll
-+ver > 22440
++ver > 22000
 wuceffects.dll
 +ver*
 

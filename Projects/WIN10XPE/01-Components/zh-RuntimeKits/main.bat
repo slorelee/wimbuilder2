@@ -15,6 +15,21 @@ if "x%opt[component.MSI]%"=="xtrue" (
   call :ApplySubPatch "..\MSI"
 )
 
+if "x%opt[component.opengl]%"=="xtrue" (
+  call AddFiles %0 :[OpenGL_Files]
+)
+
+if "x%opt[component.directx]%"=="xtrue" (
+  call _DirectX.bat
+)
+
+goto :EOF
+
+
+:[OpenGL_Files]
+@\Windows\System32\
++syswow64
+glmf32.dll,glu32.dll,opengl32.dll
 goto :EOF
 
 

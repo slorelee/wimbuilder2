@@ -17,7 +17,7 @@ function patches_page_init() {
       var valid = true;
       if ( valid ) {
         if (!$app_save_current_preset) return false;
-        save_current_preset(true);
+        save_current_preset(false);
         saveas_current_preset($obj_project, name.val());
         dialog.dialog("close");
       }

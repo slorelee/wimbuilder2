@@ -24,17 +24,22 @@ var $patches_opt = {
     "component.vcruntime":true,
     "component.MSI":true,
     "component.netfx":true,
+    "component.opengl":true,
+    "component.directx":true,
     "component.MTP":true,
     "component.RNDIS":true,
     "component.PPPoE":true,
     "component.printer":true,
     "component.bluetooth":true,
+    "component.camera":true,
     "component.wordpad":true,
     "component.mspaint":true,
     "component.winphotoviewer":true,
     "component.snippingtool":true,
     "component.accessibility":true,
     "component.termservice":true,
+    "appcompat.property_page":true,
+    "appcompat.assistant":true,
     "patch.drvinst":true,
     "IME.indicator":true,
     "IME.system_ime":true,
@@ -62,7 +67,7 @@ var $patches_opt = {
 
 //advanced operation
 function patches_state_init() {
-    select_tree_node('_CustomFiles_');
+    select_tree_node('01-Components');
     open_tree_node('00-Configures');
     open_tree_node('01-Components');
 }

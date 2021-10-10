@@ -31,7 +31,7 @@ var $patches_opt = {
 
 //advanced operation
 function patches_state_init() {
-    select_tree_node('_CustomFiles_');
+    select_tree_node('01-Components');
     open_tree_node('00-Configures');
     uncheck_tree_node('02-Apps');
     uncheck_tree_node('02-PEMaterial');
@@ -39,6 +39,7 @@ function patches_state_init() {
     check_tree_node('01-Components/00-Shell');
     check_tree_node('01-Components/IME');
     check_tree_node('01-Components/za-Accessories');
+    check_tree_node('01-Components/zh-RuntimeKits');
     open_tree_node('01-Components');
 }
 

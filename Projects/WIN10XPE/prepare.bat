@@ -23,6 +23,8 @@ set "_CUSTOMFILES_=%WB_PROJECT_PATH%\_CustomFiles_"
 set "WB_USER_PROJECT_PATH=%WB_ROOT%\%APPDATA_DIR%\Projects\%WB_PROJECT%"
 set "_USER_CUSTOMFILES_=%WB_USER_PROJECT_PATH%\_CustomFiles_"
 
+set CatRoot=\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}
+
 call "%WB_PROJECT_PATH%\shared\InitLoader.bat"
 
 call V2X -init

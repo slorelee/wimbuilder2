@@ -54,6 +54,9 @@ opengl32.dll
 ;ldplayer
 RESAMPLEDMO.DLL
 
+; Sound for TheWorld Web Browser
+ksuser.dll,wdmaud.drv
+
 +ver > 18300
 ; OpenOffice, LibreOffice, ... (Open file)
 shellstyle.dll

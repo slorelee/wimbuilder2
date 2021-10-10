@@ -2,8 +2,15 @@
     <label><input type="checkbox" name="component.dsmsvc" class="opt_item"> <b>DsmSvc</b>(Device Setup Manager) Service</label>
     <div style="margin:5px 0px 20px 20px">Enable the native 'Safely Remove Hardware(Eject USB Device)' feature</div>
 
-    <label><input type="checkbox" name="component.MTP" class="opt_item"> <b>MTP</b>(Share files with smart phone via USB)</label><br/>
-    <label><input type="checkbox" name="component.RNDIS" class="opt_item"> <b>RNDIS</b>(Access internet with smart phone via USB)</label><br/>
+    <label><input type="checkbox" name="component.MTP" class="opt_item"> <b>MTP</b>(Share files with smart phone via USB)</label>
+    <br/>
+    <div class="beginner-hide">
+    <label style="margin-left:20px"><input type="radio" class="opt_item" name="MTP.mtphelper" value="mtpHelper.sys" checked="checked" /> mtpHelper.sys</label>
+    <label style="margin-left:20px"><input type="radio" class="opt_item" name="MTP.mtphelper" value="mtpHelper.dll" /> mtpHelper.dll</label>
+    </div>
+    <br/>
+    <label><input type="checkbox" name="component.RNDIS" class="opt_item"> <b>RNDIS</b>(Access internet with smart phone via USB)</label>
+    <br/>
     <br/>
     <label><input type="checkbox" name="component.printer" class="opt_item"> <b>Printers</b></label>
     <br/>

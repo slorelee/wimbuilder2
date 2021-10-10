@@ -6,3 +6,6 @@ http://bbs.wuyou.net/forum.php?mod=viewthread&tid=411920
 
 <p>In 2019/2 yamingw build a ring0 mtpHelper.sys driver to make it work better.</p>
 http://bbs.wuyou.net/forum.php?mod=viewthread&tid=411399
+
+<p>In 2021/10 nianyueriPE signed mtpHelper.sys driver to make it work for Windows 11.</p>
+http://bbs.wuyou.net/forum.php?mod=viewthread&tid=427286

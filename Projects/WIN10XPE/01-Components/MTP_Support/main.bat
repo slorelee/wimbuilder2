@@ -1,14 +1,15 @@
 rem install mtpHelper
 
-set opt[MTP.mtpHelper]=mtpHelper.sys
-if not exist "mtpHelper_%WB_PE_ARCH%.sys" (
+set mtphelper_sysfile=mtpHelper_%WB_PE_ARCH%.sys
+if %VER[3]% GEQ 22000 set mtphelper_sysfile=mtpHelper_22000_%WB_PE_ARCH%.sys
+
+if not exist "%mtpHelper_sysfile%" (
     set opt[MTP.mtpHelper]=mtpHelper.dll
 )
-if %VER[3]% GEQ 22000 set opt[MTP.mtpHelper]=mtpHelper.dll
 
 if "%opt[MTP.mtpHelper]%"=="mtpHelper.sys" (
   rem use yamingw's ring0 kernel driver
-  copy mtpHelper_%WB_PE_ARCH%.sys %X_SYS%\Drivers\mtpHelper.sys
+  copy %mtphelper_sysfile% %X_SYS%\Drivers\mtpHelper.sys
   reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v ImagePath /t REG_EXPAND_SZ /d "System32\Drivers\mtpHelper.sys" /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v Start /t REG_DWORD /d 1 /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v ErrorControl /t REG_DWORD /d 0 /f
@@ -21,6 +22,7 @@ if "%opt[MTP.mtpHelper]%"=="mtpHelper.sys" (
   reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Windows" /v LoadAppInit_DLLs /t REG_DWORD /d 1 /f
   reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Windows" /v RequireSignedAppInit_DLLs /t REG_DWORD /d 0 /f
 )
+set mtphelper_sysfile=
 
 rem hook requirement(or BSOD)
 call RegCopy "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WUDF"

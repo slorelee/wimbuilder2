@@ -58,6 +58,11 @@ if %VER[3]% GTR 22000 set VER_XAMLRES=*
 set VER_XAMLRES=.%VER_XAMLRES%
 if "x%VER_XAMLRES%"=="x." set VER_XAMLRES=
 
+call CheckPatch "01-Components\zh-RuntimeKits"
+if "x%HasPatch%"=="xfalse" (
+  set opt[build.wow64support]=false
+)
+
 if "x%opt[build.wow64support]%"=="xtrue" (
   if not "x%WB_PE_ARCH%"=="xx64" set opt[build.wow64support]=false
 )

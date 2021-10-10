@@ -3,6 +3,10 @@ if "x%opt[build.wow64support]%"=="xtrue" (
   call :ApplySubPatch "..\SysWOW64_Basic"
 )
 
+if "x%opt[appcompat.property_page]%"=="xtrue" (
+  set opt[component.MSI]=true
+)
+
 if "x%opt[component.vcruntime]%"=="xtrue" (
   call :ApplySubPatch "..\VCRuntime"
 )
@@ -21,6 +25,10 @@ if "x%opt[component.opengl]%"=="xtrue" (
 
 if "x%opt[component.directx]%"=="xtrue" (
   call _DirectX.bat
+)
+
+if "x%opt[appcompat.property_page]%"=="xtrue" (
+  call _AppCompat.bat
 )
 
 goto :EOF

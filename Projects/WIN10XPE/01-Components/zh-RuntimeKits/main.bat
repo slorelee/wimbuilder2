@@ -31,6 +31,10 @@ if "x%opt[appcompat.property_page]%"=="xtrue" (
   call _AppCompat.bat
 )
 
+if "x%opt[system.high_compatibility]%"=="xtrue" (
+  call _Compatibility.bat
+)
+
 goto :EOF
 
 

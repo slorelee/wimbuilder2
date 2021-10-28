@@ -250,11 +250,12 @@ End Function
 
 
 Sub addfile(fn)
-  Dim i, ext, mui_arr, munfile, muifile
+  Dim i, ext, pn, mui_arr, munfile, muifile
 
   If InStr(fn, "%") > 0 Then
     fn = wshShell.ExpandEnvironmentStrings(fn)
   End If
+  pn = g_path & fn
 
   'ignore g_path
   If Left(fn, 1) = "\" Then
@@ -262,18 +263,26 @@ Sub addfile(fn)
     If flag_syswow64 <> "1" Then
       If InStr(1, fn, "\Windows\SysWOW64\") = 1 Then Exit Sub
     End If
-    outs = outs & fn & vbCrLf
-    Exit Sub
+
+    If InStr(1, fn, "\Windows\System32\", vbTextCompare) > 0 Then
+      pn = fn
+    ElseIf InStr(1, fn, "\Windows\SysWOW64\", vbTextCompare) > 0 Then
+      pn = fn
+    Else
+      outs = outs & fn & vbCrLf
+      Exit Sub
+    End If
+
   End If
 
   'ignore SysWOW64 files
   If flag_syswow64 <> "1" And g_path = "\Windows\SysWOW64\" Then Exit Sub
 
-  outs = outs & g_path & fn & vbCrLf
+  outs = outs & pn & vbCrLf
 
   'append mun file
   If txt_sysres <> "" Then
-    munfile = valid_munfile(g_path & fn)
+    munfile = valid_munfile(pn)
     If munfile <> "" Then outs = outs & munfile & vbCrLf
   End If
 
@@ -283,7 +292,7 @@ Sub addfile(fn)
 
   If g_mui = "" Then
       'append mui file
-      muifile = valid_muifile(g_path & fn)
+      muifile = valid_muifile(pn)
       If muifile <> "" Then outs = outs & muifile & vbCrLf
       If g_syswow64 <> "" Then
         muifile = valid_muifile(g_syswow64 & fn)

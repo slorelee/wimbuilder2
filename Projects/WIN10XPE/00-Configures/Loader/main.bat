@@ -16,7 +16,7 @@ if "%PE_LOADER%"=="LUA" goto :LOADER_LUA
 if "%PE_LOADER%"=="PECMD" goto :LOADER_PECMD
 
 rem  PE_LOADER=SYSTEM
-call AddFiles \Windows\System32\taskkill.exe
+call AddFiles taskkill.exe
 move /y "%X_PEMaterial%\startnet.cmd" "%X_SYS%\"
 call TextReplace "%X_SYS%\startnet.cmd" "X:\\PEMaterial\\" "X:\%opt[loader.PEMaterial]%\" g
 goto :EOF

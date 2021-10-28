@@ -27,7 +27,7 @@ call REGCOPY HKLM\Software\Microsoft\MMC
 
 call CompMgr.bat
 rem DevMgr.bat
-call AddFiles "@windows\system32\#ndevmgmt.msc,devmgr.dll"
+call AddFiles "devmgmt.msc,devmgr.dll"
 call DiskMgr.bat
 rem SrvMgr.bat
-call AddFiles \windows\system32\services.msc
+call AddFiles services.msc

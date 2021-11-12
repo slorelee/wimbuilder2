@@ -1,5 +1,18 @@
+<fieldset>
+<legend> Network security: LAN Manager authentication level</legend>
+<select id="policy_lmcompatlevel_select" name="policy.lmcompatlevel" width="95%" class="opt_item">
+    <option value="-" selected="selected">-</option>
+    <option value="0">Send LM & NTLM responses</option>
+    <option value="1">Send LM & NTLM - use NTLMv2 session security if negotiated</option>
+    <option value="2">Send NTLM response only</option>
+    <option value="3">Send NTLMv2 response only</option>
+    <option value="4">Send NTLMv2 response only. Refuse LM</option>
+    <option value="5">Send NTLMv2 response only. Refuse LM & NTLM</option>
+</select>
+</fieldset>
+<br/>
 
-<div style="margin:10px 0px 0px 15px">
+<div style="margin-left:20px">
   <label><input type="checkbox" name="component.PPPoE" class="opt_item"> PPPoE(ADSL)</label>
 </div>
 <br/>
@@ -46,6 +59,12 @@
 </fieldset>
 
 <script>
+
+(function() {
+    $("#policy_lmcompatlevel_select").selectmenu();
+    $("#policy_lmcompatlevel_select").selectmenu( "option", "width", '95%' );
+})();
+
 function open_netdrivers_custom_file() {
     var custom_file = $obj_project.appdata_full_path + '/netdrivers_custom.txt';
     if (!fso.FileExists(custom_file)) {

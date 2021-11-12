@@ -89,9 +89,6 @@ rem // Do Not Update the Last-Access Timestamp for Ntfs and Refs
 reg add HKLM\Tmp_System\ControlSet001\Control\FileSystem /v NtfsDisableLastAccessUpdate /t REG_DWORD /d 1 /f
 reg add HKLM\Tmp_System\ControlSet001\Control\FileSystem /v RefsDisableLastAccessUpdate /t REG_DWORD /d 1 /f
 
-rem // For Samba Servers
-reg add HKLM\Tmp_System\ControlSet001\Control\Lsa /v LmCompatibilityLevel /t REG_DWORD /d 2 /f
-
 rem // Allow network users to access without password > Also display Share with in Context Menu!
 reg add HKLM\Tmp_System\ControlSet001\Control\Lsa /v LimitBlankPasswordUse /t REG_DWORD /d 0 /f
 

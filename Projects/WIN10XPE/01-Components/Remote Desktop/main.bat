@@ -33,6 +33,11 @@ wuceffects.dll
 
 :end_files
 
+
+if "x%opt[mstsc.enable_credssp_support]%"=="xfalse" (
+  xcopy /h /y Default.rdp "%X%\Users\Default\Documents\"
+)
+
 rem ==========update registry==========
 
 if not "x%opt[build.registry.software]%"=="xfull" (

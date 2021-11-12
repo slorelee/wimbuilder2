@@ -18,10 +18,6 @@ if "x%opt[component.search]%"=="xtrue" (
   call :ApplySubPatch ".\Search"
 )
 
-if "x%opt[component.PPPoE]%"=="xtrue" (
-  call :ApplySubPatch ".\PPPoE"
-)
-
 if "x%opt[patch.drvinst]%"=="xtrue" (
   call :ApplySubPatch ".\Patch_drvinst"
 )

@@ -1,7 +1,11 @@
 if not "x%opt[shell.app]%"=="xwinxshell" goto :EOF
 
 if "x%opt[shell.light_theme]%"=="xtrue" (
-  binmay.exe -U "%X%\Program Files\WinXShell\WinXShell.jcfg" -s "t:\"theme\":  \"dark\"," -r "t:\"theme\": \"light\","
+  if "x%WB_PE_LANG%"=="xzh-CN" (
+    binmay.exe -U "%X%\Program Files\WinXShell\WinXShell.jcfg" -s "22 3A 3A E4B8BB E9A298 22 3A 20 20226461726B22 2C" -r "22 3A 3A E4B8BB E9A298 22 3A 20 226c6967687422 2C"
+  ) else (
+    binmay.exe -U "%X%\Program Files\WinXShell\WinXShell.jcfg" -s "t:\"theme\":  \"dark\"," -r "t:\"theme\": \"light\","
+  )
 )
 
 set "_MenuEXE=%X%\Program Files\Classic Shell\ClassicStartMenu.exe"
@@ -16,4 +20,9 @@ binmay.exe -u "%_MenuEXE%" -s "%_UStr_explorer%" -r "%_UStr_WinXShell%"
 fc /b "%_MenuEXE%.org" "%_MenuEXE%"
 del /f /q "%_MenuEXE%.org"
 
-binmay.exe -U "%X%\Program Files\WinXShell\WinXShell.jcfg" -s "t:\"start_icon\": \"theme\"," -r "t:\"start_icon\": \"empty\","
+if "x%WB_PE_LANG%"=="xzh-CN" (
+  binmay.exe -U "%X%\Program Files\WinXShell\WinXShell.jcfg" -s "223A3A E5BC80 E5A78B E68C89 E992AE 22 3A 20 22 7468656D65 22 2C" -r "223A3A E5BC80 E5A78B E68C89 E992AE 22 3A 20 22 656D707479 22 2C"
+) else (
+  binmay.exe -U "%X%\Program Files\WinXShell\WinXShell.jcfg" -s "t:\"start_icon\": \"theme\"," -r "t:\"start_icon\": \"empty\","
+)
+

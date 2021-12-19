@@ -17,7 +17,7 @@ call LuaPin -done
 
 call LuaPin -init "%X_Startup%\PinShortcuts.lua"
 
-call LinkToDesktop Explorer.lnk Explorer.exe
+call LinkToDesktop "#{@shell32.dll,22067}.lnk" Explorer.exe
 call LinkToDesktop "#{@shell32.dll,22022}.lnk" cmd.exe
 
 set _SU_ICON=319

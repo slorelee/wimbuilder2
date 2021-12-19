@@ -8,7 +8,7 @@
 
 -- LINK('%Programs%\\System Tools\\#{@shell32.dll,22022}.lnk', 'cmd.exe')
 
--- LINK('%Desktop%\\Explorer.lnk', 'Explorer.exe')
+-- LINK('%Desktop%\\#{@shell32.dll,22067}.lnk', 'Explorer.exe')
 -- LINK('%Desktop%\\#{@shell32.dll,22022}.lnk', 'cmd.exe')
 -- LINK('%Desktop%\\Internet Explorer.lnk', '%ProgramFiles%\\Internet Explorer\\iexplore.exe')
 

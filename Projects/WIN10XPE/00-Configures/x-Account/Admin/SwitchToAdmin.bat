@@ -84,7 +84,7 @@ if "x%opt[account.custom_admin_name]%"=="x%opt[account.localized_admin_name]%" s
 if not "x%opt[account.custom_admin_name]%"=="x" (
   expand Security.cab -F:* "%X_WIN%\Security"
   call TextReplace "%X_WIN%\Security\Templates\unattend.inf" "#qAdministrator#q" "#q%opt[account.custom_admin_name]%#q"
-  if exist "%X_SYS%\PecmdAdmin.ini" call TextReplace "%X_SYS%\%PECMDINI%" "Administrator" "%opt[account.custom_admin_name]%" /g
+  if exist "%X_SYS%\PecmdAdmin.ini" call TextReplace "%X_SYS%\%PECMDINI%" "Administrator" "%opt[account.custom_admin_name]%" g
   if exist "%X_PEMaterial%\pecmd.lua" call TextReplace "%X_PEMaterial%\pecmd.lua" "'DefaultUserName', 'Administrator'" "'DefaultUserName', '%opt[account.custom_admin_name]%'"
 
   if /i not "%opt[account.custom_admin_name]%"=="Administrator" (

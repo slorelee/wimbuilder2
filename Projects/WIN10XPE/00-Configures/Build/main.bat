@@ -11,7 +11,7 @@ call RegCopy HKLM\Software\Classes\AppID
 call ACLRegKey HKLM\Software\Classes\AppID
 
 rem set "RunAs"="Interactive User" -* "RunAs"=""
-for /F %%i IN ('Reg Query HKLM\Tmp_Software\Classes\AppID /s /f "Interactive User" ^|Findstr Tmp_Software') do (
+for /F %%i IN ('Reg Query HKLM\Tmp_Software\Classes\AppID /s /f "Interactive User" ^|%findcmd% Tmp_Software') do (
     Reg Add "%%i" /v RunAs /d "" /F >nul 2>nul
 )
 

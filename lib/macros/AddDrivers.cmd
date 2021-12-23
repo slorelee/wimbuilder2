@@ -48,7 +48,11 @@ if "x%2"=="xREG" goto :AddDriver_Reg
 
 rem ==========update filesystem==========
 if %_AddDriver_Wildcard% EQU 1 goto :END_INF_CHECK
-findstr /i /c:"%~1" "%WB_TMP_PATH%\_AddDrivers_INF.txt" >nul
+if "x%findcmd%"=="xfindstr" (
+    findstr /i /c:"%~1" "%WB_TMP_PATH%\_AddDrivers_INF.txt" >nul
+) else (
+    find /i "%~1" "%WB_TMP_PATH%\_AddDrivers_INF.txt" >nul
+)
 if not "%errorlevel%"=="0" (
     echo [INFO] Driver does not exist^(%~1^).
     goto :EOF

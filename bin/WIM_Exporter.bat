@@ -11,7 +11,10 @@ if "x%USE_WIMLIB%"=="x1" (
 )
 
 rem use imagex for building on Windows 7
-if not exist "%windir%\System32\findstr.exe" set findcmd=find
+if "x%findcmd%"=="x" (
+  set findcmd=findstr
+  if not exist "%windir%\System32\findstr.exe" set findcmd=find
+)
 ver|%findcmd% " 6.1." >nul
 if not ERRORLEVEL 1 (
   if "x%PROCESSOR_ARCHITECTURE%"=="xAMD64" (

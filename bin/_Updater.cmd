@@ -263,8 +263,14 @@ goto :EOF
 :UPDATE_GITREPO
 call :DELETE git_commits.txt
 call :DELETE git_masterid.txt
+
+if "x%findcmd%"=="x" (
+  set findcmd=findstr
+  if not exist "%windir%\System32\findstr.exe" set findcmd=find
+)
+
 rem var $app_verstr = '2021.08.08.e5f61d8a';
-for /f "tokens=5 delims='." %%i in ('findstr /c:"$app_verstr" "%APP_ROOT%\assets\app.js"') do set base_id=%%i
+for /f "tokens=5 delims='." %%i in ('%findcmd% "$app_verstr" "%APP_ROOT%\assets\app.js"') do set base_id=%%i
 if "x%base_id%"=="x" (
     echo ERROR: Failed to get the version of the project.
     errno 1

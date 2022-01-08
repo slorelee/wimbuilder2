@@ -26,7 +26,7 @@ $i18n = {
   "Please select the mounted Windows ISO drive(eg. H:\\)":"Adja meg a felcsatolt Windows ISO meghajtóját(pl. H:\\)",
   "Please select the Windows ISO folder/drive, or the 'sources' folder(auto detect)":"Kérlek, add meg a Windows ISO-t tartalmazó mappa/meghajtó helyét, vagy a 'forrás' könyvtárat (van auto detektálás)",
   "Select the image path or the 'sources' folder":"Adja meg a képfájl helyét, vagy a 'forrás' könyvtárt",
-  "Auto extract the winre.wim":" A wire.wim automatikus kibontása",
+  "Auto extract the winre.wim":" A winre.wim automatikus kibontása",
   "<strong>INFO</strong>:the install.wim isn't exist.":"<strong>INFO</strong>:az install.wim nem létezik.",
   "Select the install.wim file if it needed":"Válassz install.wim fájlt, ha szükséges",
   "<strong>ERROR</strong>:the base wim isn't exist.":"<strong>ERROR</strong>:az alap wim nem létezik.",

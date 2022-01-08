@@ -50,9 +50,6 @@ if not "x%opt[support.audio]%"=="xtrue" (
 )
 if not "x%opt[support.network]%"=="xtrue" (
     ren "%X_Startup%\NetInit.bat" NetInit.bat.skipped
-) else (
-    rem init network on booting
-    call TextReplace "%X_SYS%\unattend.xml" "EnableNetwork>false</EnableNetwork" "EnableNetwork>true</EnableNetwork"
 )
 
 call :DELEX "/f /q /a" "%X_PEMaterial%\LogonAdmin.bat"

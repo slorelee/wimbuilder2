@@ -103,6 +103,8 @@ call REGCOPY HKLM\SYSTEM\ControlSet001\Services\CoreMessagingRegistrar
 reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CoreMessagingRegistrar /f
 
 reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
+reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\System /v DelayedDesktopSwitchTimeout /t REG_DWORD /d 0 /f
+
 call RegCopy HKLM\System\ControlSet001\Services\seclogon
 rem ACLRegKey Tmp_System\ControlSet001\Services\gpsvc
 reg add HKLM\Tmp_System\ControlSet001\Services\gpsvc /v Start /t REG_DWORD /d 3 /f

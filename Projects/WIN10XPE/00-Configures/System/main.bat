@@ -9,6 +9,9 @@ goto :end_files
 \Windows\Cursors\aero_arrow.cur
 
 @\Windows\System32\
+
+wbem\xml\
+
 setx.exe
 
 ; ncsi.dll.mui is not included in winre.wim

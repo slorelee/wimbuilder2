@@ -121,9 +121,6 @@ rd /q /s "%X_SYS%\DiagSvcs"
 rd /q /s "%X_SYS%\SMI"
 rd /q /s "%X_SYS%\WindowsPowerShell"
 
-rd /q /s "%X_SYS%\wbem\Repository"
-md "%X_SYS%\wbem\Repository"
-
 rem Key Distrubution Service Provider
 del /a /f /q "%X_SYS%\KdsCli.dll"
 

@@ -8,7 +8,12 @@ Version=001
 :main
 set "f0=%~f0"
 
-call :VCRuntimes %WB_PE_ARCH% System32
+if "%WB_PE_ARCH%"=="x64" (
+    call :VCRuntimes amd64 System32
+) else (
+    call :VCRuntimes %WB_PE_ARCH% System32
+)
+
 if "x%opt[build.wow64support]%"=="xtrue" (
     call :VCRuntimes x86 SysWOW64
 )

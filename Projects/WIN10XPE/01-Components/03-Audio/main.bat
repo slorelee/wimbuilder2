@@ -93,4 +93,9 @@ if 0 EQU 1 (
 
 rem // Microphone (Identified by noelBlanc)
 call RegCopyEx Services camsvc
-call AddFiles "@\Windows\System32\#nCapabilityAccessManager.dll,CapabilityAccessManagerClient.dll"
+call AddFiles "CapabilityAccessManager.dll,CapabilityAccessManagerClient.dll"
+
+rem // update for Windows 11
+if %VER[3]% GEQ 22000 (
+  call AddFiles "StateRepository.Core.dll"
+)

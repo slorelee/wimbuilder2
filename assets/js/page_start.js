@@ -89,6 +89,12 @@ function auto_detect_wims(src_path) {
     if (fso.FileExists(wim_file)) {
         $wb_src = wim_file;
         found["install.wim"] = 1;
+    } else {
+        wim_file = src_path + '\\install.esd';
+        if (fso.FileExists(wim_file)) {
+            $wb_src = wim_file;
+            found["install.wim"] = 1;
+        }
     }
 
     wim_file = src_path + '\\winre.wim';

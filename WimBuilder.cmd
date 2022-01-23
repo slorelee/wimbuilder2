@@ -58,7 +58,7 @@ for /f "tokens=1,2 delims==';[] " %%i in ('%findcmd% "$lang" config.js') do (
   set LocaleID[%%i]=%%j
 )
 set LocaleID=%LocaleID[$lang]%
-for /f "delims=" %%i in ('cscript.exe //nologo "%I18N_SCRIPT%" init') do set APP_HOST_LANG=%%i
+for /f "delims=" %%i in ('cscript.exe //nologo "%I18N_SCRIPT%" GetLocaleName') do set APP_HOST_LANG=%%i
 if "x%APP_HOST_LANG%"=="x" set APP_HOST_LANG=en-US
 
 if not "x%LocaleID%"=="x" goto :SKIP_AUTO_LANG

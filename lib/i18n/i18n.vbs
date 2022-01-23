@@ -1,55 +1,99 @@
 If WSH.Arguments.Count = 0 Then WSH.Quit(0)
-If WSH.Arguments.Count = 1 Then
+
+Public strLocaleDicKeyName, objLocaleDic
+strLocaleDicKeyName = "NAME"
+Set objLocaleDic = CreateObject("scripting.dictionary")
+
+If WSH.Arguments(0) = "GetLocaleName" Then
     WSH.Echo GetLocaleName()
+    WSH.Quit(0)
+ElseIf WSH.Arguments(0) = "GetLocaleIdByName" Then
+    If WSH.Arguments.Count = 2 Then
+        WSH.Echo GetLocaleIdByName(WSH.Arguments(1))
+    Else
+        WSH.Echo "0"
+    End If
     WSH.Quit(0)
 End If
 
-Function GetLocaleName()
-    Set objLocaleDic = CreateObject("scripting.dictionary")
-    objLocaleDic.Add "1025", "ar-SA"
-    objLocaleDic.Add "1026", "bg-BG"
-    objLocaleDic.Add "1029", "cs-CZ"
-    objLocaleDic.Add "1030", "da-DK"
-    objLocaleDic.Add "1031", "de-DE"
-    objLocaleDic.Add "1032", "el-GR"
-    objLocaleDic.Add "1033", "en-US"
-    objLocaleDic.Add "3082", "es-ES"
-    objLocaleDic.Add "1061", "et-EE"
-    objLocaleDic.Add "1035", "fi-FI"
-    objLocaleDic.Add "1036", "fr-FR"
-    objLocaleDic.Add "1037", "he-IL"
-    objLocaleDic.Add "1050", "hr-HR"
-    objLocaleDic.Add "1038", "hu-HU"
-    objLocaleDic.Add "1040", "it-IT"
-    objLocaleDic.Add "1041", "ja-JP"
-    objLocaleDic.Add "1042", "ko-KR"
-    objLocaleDic.Add "1063", "lt-LT"
-    objLocaleDic.Add "1062", "lv-LV"
-    objLocaleDic.Add "1044", "nb-NO"
-    objLocaleDic.Add "1043", "nl-NL"
-    objLocaleDic.Add "1045", "pl-PL"
-    objLocaleDic.Add "1046", "pt-BR"
-    objLocaleDic.Add "2070", "pt-PT"
-    objLocaleDic.Add "1048", "ro-RO"
-    objLocaleDic.Add "1049", "ru-RU"
-    objLocaleDic.Add "1051", "sk-SK"
-    objLocaleDic.Add "1060", "sl-SI"
-    objLocaleDic.Add "1053", "sv-SE"
-    objLocaleDic.Add "1054", "th-TH"
-    objLocaleDic.Add "1055", "tr-TR"
-    objLocaleDic.Add "1058", "uk-UA"
-    objLocaleDic.Add "2052", "zh-CN"
-    objLocaleDic.Add "3076", "zh-HK"
-    objLocaleDic.Add "1028", "zh-TW"
 
+
+Sub AddLocaleDicItem(name, id)
+    If strLocaleDicKeyName = "NAME" Then
+        objLocaleDic.Add name, id
+    Else
+        objLocaleDic.Add id, name
+    End If
+End Sub
+
+Sub CreateLocaleMap()
+    'https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows
+    AddLocaleDicItem "ar-SA", "1025"
+    AddLocaleDicItem "be-BY", "1059"
+    AddLocaleDicItem "bg-BG", "1026"
+    AddLocaleDicItem "ca-ES", "1027"
+    AddLocaleDicItem "cs-CZ", "1029"
+    AddLocaleDicItem "da-DK", "1030"
+    AddLocaleDicItem "de-DE", "1031"
+    AddLocaleDicItem "el-GR", "1032"
+    AddLocaleDicItem "en-US", "1033"
+    AddLocaleDicItem "es-ES", "3082"
+    AddLocaleDicItem "et-EE", "1061"
+    AddLocaleDicItem "fi-FI", "1035"
+    AddLocaleDicItem "fr-FR", "1036"
+    AddLocaleDicItem "he-IL", "1037"
+    AddLocaleDicItem "hr-HR", "1050"
+    AddLocaleDicItem "hu-HU", "1038"
+    AddLocaleDicItem "hy-AM", "1067"
+    AddLocaleDicItem "id-ID", "1057"
+    AddLocaleDicItem "it-IT", "1040"
+    AddLocaleDicItem "ja-JP", "1041"
+    AddLocaleDicItem "ka-GE", "1079"
+    AddLocaleDicItem "ko-KR", "1042"
+    AddLocaleDicItem "lt-LT", "1063"
+    AddLocaleDicItem "lv-LV", "1062"
+    AddLocaleDicItem "mk-MK", "1071"
+    AddLocaleDicItem "nb-NO", "1044"
+    AddLocaleDicItem "nl-NL", "1043"
+    AddLocaleDicItem "pl-PL", "1045"
+    AddLocaleDicItem "pt-BR", "1046"
+    AddLocaleDicItem "pt-PT", "2070"
+    AddLocaleDicItem "ro-RO", "1048"
+    AddLocaleDicItem "ru-RU", "1049"
+    AddLocaleDicItem "sk-SK", "1051"
+    AddLocaleDicItem "sl-SI", "1060"
+    AddLocaleDicItem "sq-AL", "1052"
+    AddLocaleDicItem "sv-SE", "1053"
+    AddLocaleDicItem "th-TH", "1054"
+    AddLocaleDicItem "tr-TR", "1055"
+    AddLocaleDicItem "uk-UA", "1058"
+    AddLocaleDicItem "vi-VN", "1066"
+    AddLocaleDicItem "zh-CN", "2052"
+    AddLocaleDicItem "zh-HK", "3076"
+    AddLocaleDicItem "zh-TW", "1028"
+End Sub
+
+Function GetLocaleName()
     Dim lcid
     lcid = GetLocale()
+    strLocaleDicKeyName = "ID"
+    CreateLocaleMap()
     If objLocaleDic.Exists(CStr(lcid)) Then
         GetLocaleName = objLocaleDic.Item(CStr(lcid))
     Else
         GetLocaleName = lcid
     End If
 End Function
+
+Function GetLocaleIdByName(name)
+    CreateLocaleMap()
+    If objLocaleDic.Exists(name) Then
+        GetLocaleIdByName = objLocaleDic.Item(name)
+    Else
+        GetLocaleIdByName = "0"
+    End If
+End Function
+
 
 Set objI18nStrDic = CreateObject("scripting.dictionary")
 Set objI18nRegExpDic = CreateObject("scripting.dictionary")

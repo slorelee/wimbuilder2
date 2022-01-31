@@ -60,6 +60,9 @@ Windows.UI.dll
 +ver >= 20150
 dmenrollengine.dll
 
++ver >= 22000
+windowsudk.shellcommon.dll
+
 ; remove ver check (add with any ver)
 +ver*
 
@@ -169,8 +172,4 @@ reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v shel
 rem =====================Reg_ShellHWDetection=====================
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\ShellHWDetection
 
-
-rem Windows 11 Preview
-if %VER[3]% GEQ 22000 (
-    call V2X Explorer -copy "explorer_%_Vx8664%.exe" "%X_WIN%\explorer.exe"
-)
+reg add "HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarMn /t REG_DWORD /d 0 /f

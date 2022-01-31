@@ -11,6 +11,6 @@ del /s /q "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
 
 if "x%opt[shell.startmenu]%"=="x" set opt[shell.startmenu]=auto
 if "%opt[shell.startmenu]%"=="auto" (
-  if "x%opt[shell.app]%"=="xexplorer" set opt[shell.startmenu]=StartIsBack
+  if "x%opt[shell.app]%"=="xexplorer" set opt[shell.startmenu]=StartXBack
   if "x%opt[shell.app]%"=="xwinxshell" set opt[shell.startmenu]=ClassicShell
 )

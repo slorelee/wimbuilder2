@@ -1,1 +1,26 @@
-<p>Defraggler</p>
+<style>
+#defraggler .band--intro a {
+    margin-bottom: .4em;
+    font-size: 34px;
+    font-size: 2.42857rem;
+    line-height: 1.4;
+    font-weight: 600;
+    color: yellow;
+}
+</style>
+<div id="defraggler" style="padding:15px" >
+    <img src="df_128.png" alt="Defraggler">
+    <div class='band--intro'>
+        <a onclick="Run('https://www.ccleaner.com/defraggler')">Defraggler</a>
+    </div>
+</div>
+
+<script>
+(function() {
+    if (!$patch_loaded) {
+        $('#defraggler img').each(function(){
+            $(this).attr('src', '../' + $obj_patch.path + '/' + $(this).attr('src'));
+        });
+    }
+})();
+</script>

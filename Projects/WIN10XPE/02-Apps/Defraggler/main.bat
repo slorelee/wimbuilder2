@@ -44,7 +44,7 @@ set app_langid=%GetLocaleId_Ret%
 if "%WB_PE_LANG%"=="ku-ARAB-IQ" (
     set app_langid=9999
 ) else if "%WB_PE_LANG%"=="es-ES" (
-   set app_langid=1034
+    set app_langid=1034
 )
 set app_langfile=lang-%app_langid%.dll
 if not exist "%X_WIN%\%APP_NAME%\Lang\%app_langfile%" (
@@ -59,8 +59,8 @@ if not "%APP_HOST_LANG%"=="%WB_PE_LANG%" (
     copy /y DefragglerContextMenuUpdater.bat "%X_Startup%\"
     call TextReplace "%X_Startup%\DefragglerContextMenuUpdater.bat" APP_LANGFILE %app_langfile% g
 ) else (
-"%WINXSHELL%" -code "reg_write([[HKEY_LOCAL_MACHINE\Tmp_Default\Software\Piriform\Defraggler]], 'AnalyzeContextString', app:call('resstr', [[#{@%X_PF%\%APP_NAME%\Lang\%app_langfile%,505}]]))"
-"%WINXSHELL%" -code "reg_write([[HKEY_LOCAL_MACHINE\Tmp_Default\Software\Piriform\Defraggler]], 'DefragContextString', app:call('resstr', [[#{@%X_PF%\%APP_NAME%\Lang\%app_langfile%,504}]]))"
+    "%WINXSHELL%" -code "reg_write([[HKEY_LOCAL_MACHINE\Tmp_Default\Software\Piriform\Defraggler]], 'AnalyzeContextString', app:call('resstr', [[#{@%X_PF%\%APP_NAME%\Lang\%app_langfile%,505}]]))"
+    "%WINXSHELL%" -code "reg_write([[HKEY_LOCAL_MACHINE\Tmp_Default\Software\Piriform\Defraggler]], 'DefragContextString', app:call('resstr', [[#{@%X_PF%\%APP_NAME%\Lang\%app_langfile%,504}]]))"
 )
 set app_langfile=
 set app_langid=

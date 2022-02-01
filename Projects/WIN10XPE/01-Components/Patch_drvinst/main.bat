@@ -1,5 +1,3 @@
-@echo off
-
 rem install test driver
 
 rem run "drvload X:\windows\INF\wceisvista.inf" to test

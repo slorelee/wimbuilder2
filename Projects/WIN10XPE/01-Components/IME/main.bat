@@ -1,5 +1,3 @@
-@echo off
-
 set IME_Startup=0
 if exist Ime_%WB_PE_LANG%.bat (
   if "x%opt[IME.indicator]%"=="xtrue" (

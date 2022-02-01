@@ -1,4 +1,3 @@
-@echo off
 if not "x%opt[shell.app]%"=="xexplorer" goto :EOF
 
 call AddFiles %0 :end_files

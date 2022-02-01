@@ -1,5 +1,3 @@
-@echo off
-
 rem MMC base
 
 rem ==========add files==========

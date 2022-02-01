@@ -1,5 +1,3 @@
-@echo off
-
 rem [Catalog_AddFiles_Info]
 rem Use signtool.exe to find Catalogs ex: Signtool verify /kp /v /a X:\Windows\System32\drivers\*.sys > B:\SignDrivers.txt
 

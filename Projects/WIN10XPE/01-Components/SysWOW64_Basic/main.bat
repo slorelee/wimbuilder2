@@ -1,5 +1,3 @@
-@echo off
-
 goto :main
 [Main]
 Title=WoW64 basic

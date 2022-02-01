@@ -10,8 +10,10 @@ mmc.exe,mmcbase.dll,mmcndmgr.dll,mmcshext.dll
 ; mmc resources
 filemgmt.dll
 OnDemandConnRouteHelper.dll
+
+@\Windows\System32\wbem\
 +mui
-wbem\servdeps.dll
+servdeps.dll
 -mui
 :end_files
 

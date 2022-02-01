@@ -6,7 +6,7 @@ md "%X%\Program Files\WinXShell\%WB_PE_LANG%"
 copy /y "%X_SYS%\%WB_PE_LANG%\systemcpl.dll.mui" "%X%\Program Files\WinXShell\%WB_PE_LANG%\"
 
 rem Grant right for Administrator
-call _ACLRegKey Tmp_Software\Classes\ms-settings
+call _ACLRegKey "Tmp_Software\Classes\ms-settings"
 call _ACLRegKey Tmp_Software\Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}
 
 set _ui_opt=-hidewindow

@@ -123,8 +123,8 @@ var Project = {
             if (type == 'link') cid = cid + ".LINK";
             var item = { "id" : cid , "parent" : pid, "text" : name,
                 "state": {opened: state_opened, checked: state_selected} };
-            if (cid == '_CustomFiles_') {
-                arr.unshift(item);
+            if (cid == '_CustomFiles_' || pid == '_CustomFiles_') {
+                arr[0].push(item);
             } else {
                 arr.push(item);
             }
@@ -161,8 +161,15 @@ var Project = {
             return parent_selected;
         };
         var arr = new Array();
+        var prior_arr = new Array();
         var rootdir = project.path;
+        arr.push(prior_arr);
         get_sub_patches(rootdir, rootdir, '#', arr);
+        arr.shift();
+        if (prior_arr.length > 0) {
+            arr = prior_arr.concat(arr);
+        }
+
         if (typeof(project.patches_node_init) == 'function') {
             arr = project.patches_node_init(arr);
         }

@@ -397,14 +397,19 @@ function dump_patches_selected() {
     var patches_selected = $('#patches_tree').jstree(true).get_checked();
     patches_selected = patches_undetermined.concat(patches_selected);
     var str = '';
+    var prior_str = '';
+    var patch_id = '';
     patches_selected = patches_selected.sort();
     for(var patch_id in patches_selected) {
-        str += patches_selected[patch_id] + "\r\n";
+        patch_id = patches_selected[patch_id];
+        if (patch_id.indexOf("_CustomFiles_") == 0) {
+            prior_str += patch_id + "\r\n";
+        } else {
+            str += patch_id + "\r\n";
+        }
     }
+    str = prior_str + str;
     str = str.replace(/\//g, "\\");
-    if (str.indexOf("\r\n_CustomFiles_\r\n") != -1) {
-        str = "_CustomFiles_\r\n" + str.replace("\r\n_CustomFiles_\r\n", "\r\n");
-    }
     save_text_file(tmp_folder + "\\_patches_selected.txt", str);
     return str;
 }

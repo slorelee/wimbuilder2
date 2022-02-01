@@ -1,5 +1,3 @@
-@echo off
-
 rem MACRO:RegCopyEx TYPE KEY(s)
 rem Usage:
 rem       RegCopyEx Services NlaSvc

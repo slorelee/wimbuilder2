@@ -1,5 +1,3 @@
-@echo off
-
 goto :main
 echo MACRO:OpenTextFile
 echo    I will open %2 and modify it with %4@%3 section

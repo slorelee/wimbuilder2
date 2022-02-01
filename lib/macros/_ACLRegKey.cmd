@@ -1,5 +1,3 @@
-@echo off
-
 rem MACRO:ACLRegKey RegKey [user] [owner]
 rem call SetACL.exe to set the registry's ACL
 

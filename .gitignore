@@ -6,7 +6,8 @@ AppData
 vendor*
 ReleaseHelper.vbs
 UserConfig.cmd
-assets/themes/the_spring_festival
+/assets/update.js
+/assets/themes/the_spring_festival
 bin/7z.*
 bin/*/7z.*
 bin/*/aria2c.*

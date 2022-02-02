@@ -270,7 +270,7 @@ if "x%findcmd%"=="x" (
 )
 
 rem var $app_verstr = '2021.08.08.e5f61d8a';
-for /f "tokens=5 delims='." %%i in ('%findcmd% "$app_verstr" "%APP_ROOT%\assets\app.js"') do set base_id=%%i
+for /f "tokens=5 delims='." %%i in ('%findcmd% "$app_rev" "%APP_ROOT%\assets\app.js"') do set base_id=%%i
 if "x%base_id%"=="x" (
     echo ERROR: Failed to get the version of the project.
     errno 1

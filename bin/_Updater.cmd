@@ -220,22 +220,33 @@ if not "x%UPT_SILENT%"=="x1" (
 )
 
 echo PHASE: Process updated file(s) ...
+
+set /a _update_error=0
 for /f "tokens=1,* usebackq delims= " %%i in ("%TMP_UPT%\updatefile.list") do (
     call :UPDATE_FILES "%%i" "%%j"
-
 )
+
+if %_update_error% NEQ 0 (
+    echo ERROR: Failed to update with %_update_error% error^(s^).
+    pause
+    goto :EOF
+)
+echo INFO: Update successfully.
+echo $app_rev = '%GIT_MASTER_ID%'; > "%APP_ROOT%\assets\update.js"
+set _update_error=
+
 pause
 goto :EOF
 
 :UPDATE_FILES
 if "x%~1"=="x+" (
     echo Downloading %~2 ...
-    aria2c.exe -c "%SOURCE_URL%/%~2" -d "%APP_ROOT%" -o "%~2" --allow-overwrite=true 
+    aria2c.exe -c "%SOURCE_URL%/%~2" -d "%APP_ROOT%" -o "%~2" --allow-overwrite=true
+    if ERRORLEVEL 1 set /a _update_error+=1
 ) else if "x%~1"=="x-" (
     echo Deleting %~2 ...
     call :DELETE "%APP_ROOT%\%~2"
 )
-
 goto :EOF
 
 :UPDATE_CHECK
@@ -269,8 +280,18 @@ if "x%findcmd%"=="x" (
   if not exist "%windir%\System32\findstr.exe" set findcmd=find
 )
 
-rem var $app_verstr = '2021.08.08.e5f61d8a';
-for /f "tokens=5 delims='." %%i in ('%findcmd% "$app_rev" "%APP_ROOT%\assets\app.js"') do set base_id=%%i
+
+set _rev_file=app.js
+if exist "%APP_ROOT%\assets\update.js" set _rev_file=update.js
+echo INFO: Get current version from %APP_ROOT%\assets\%_rev_file%.
+rem var $app_rev = 'e5f61d8a';
+for /f "tokens=2 delims='" %%i in ('%findcmd% "$app_rev" "%APP_ROOT%\assets\%_rev_file%"') do (
+    set base_id=%%i
+    goto :end_rev_getter
+)
+:end_rev_getter
+set _rev_file=
+
 if "x%base_id%"=="x" (
     echo ERROR: Failed to get the version of the project.
     errno 1
@@ -280,11 +301,19 @@ if "x%base_id%"=="x" (
 aria2c -o git_commits.txt --header="Content-Type: application/text;charset=UTF-8" ^
 "%COMPARE_URL%/%base_id%...master"
 
+if not exist git_commits.txt (
+    echo.
+    echo GIT_BASE_ID=%base_id%
+    echo ERROR: Failed to get the update list of the project.
+    goto :EOF
+)
+
 cscript //nologo "%TMP_UPT%\%~n0.vbs" --git
 
 if exist git_masterid.txt (
   set /p GIT_MASTER_ID=<git_masterid.txt
   echo.
+  echo GIT_*BASE*_ID=%base_id%
   set GIT_MASTER_ID
 )
 goto :EOF

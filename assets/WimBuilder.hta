@@ -71,6 +71,7 @@ if ($IE_VER == '0') {
 <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
 <script src="htakit/js/htakit.js"></script>
 <script src="app.js"></script>
+<script src="update.js"></script>
 <script src="js/fs_project.js"></script>
 <script src="js/fs_patch.js"></script>
 <script src="js/app.js"></script>
@@ -598,6 +599,7 @@ if ($IE_VER == '9+') {
 
 <script src="js/i18n.js"></script>
 <script type="text/javascript">
+    $app_verstr = $app_ver + '.' + $app_rev;
     document.title = $app_title + " - v" + $app_verstr;
     function window_onload() {
         var w = $width, h = $height; 

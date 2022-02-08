@@ -1,5 +1,3 @@
-@echo off
-
 echo MACRO:Coder
 echo    Run %3 block in %2
 echo    as %1 code

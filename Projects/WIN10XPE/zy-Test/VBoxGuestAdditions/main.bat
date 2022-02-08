@@ -1,5 +1,3 @@
-@echo off
-
 set vbox_version=%opt[vbox.version]%
 if "x%vbox_version%"=="xauto" call :DETECT_VBOXVERSION
 set _Vx86amd64=amd64

@@ -1,5 +1,3 @@
-@echo off
-
 call AddFiles %0 :end_files
 goto :end_files
 
@@ -34,7 +32,7 @@ rem ==========update registry==========
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\CoreMessagingRegistrar
 reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CoreMessagingRegistrar /f
 
-reg query "HKLM\Tmp_Software\Microsoft\SecurityManager\TransientObjects\%5C%5C.%5CAlpcPort%5CMPCManager" 1>nul
+reg query "HKLM\Tmp_Software\Microsoft\SecurityManager\TransientObjects\%5C%5C.%5CAlpcPort%5CMPCManager" 1>nul 2>nul
 if ERRORLEVEL 1 reg import TransientObjects_MPCManager.reg
 
 call REGCOPY HKLM\Software\Microsoft\Windows\DWM

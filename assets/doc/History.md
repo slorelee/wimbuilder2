@@ -1,5 +1,26 @@
 # 更新历史记录
 
+## WimBuilder2 v2022.02.02
+这是一个主要更新。添加和改善了以下内容:
+
+* 改善 对Windows 11系统组件功能完善。 (感谢 @我是小青蛙)
+* 新增 俄语资源文件(程序界面)。 (感谢 @Ruslan)
+* 更新 界面选项的匈牙利语资源。 (感谢 @La_Valse)
+* 改善 支持在我的电脑中对全盘进行搜素。 (感谢 @xmzhqw)
+* 更新 PENetwork, Explorer++ 脚本。 (感谢 @Ruslan)
+* 新增 Defraggler 脚本。  (感谢 @Ruslan)
+* 修复 VC++运行库WinSxS文件添加路径不正确的问题。 (感谢 @Ruslan)
+* 改进 快速登录Administrator账户。
+* 修复 我的定制(前置)的执行顺序靠后的问题。
+* 新增 GetLocaleId 宏命令。
+* 改进 Updater更新脚本， 已经下载的更新文件，不再重复下载。
+
+* 新增 StartAllBack 开始菜单。
+* 更新 WinXShell 至 v4.6.4
+        修复因Defraggler的外壳菜单导致崩溃的问题。
+
+* 其他 细节更新。
+
 ## WimBuilder2 v2021.11.11
 这是一个常规更新。添加和改善了以下内容:
 

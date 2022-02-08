@@ -1,4 +1,3 @@
-echo off
 set GetLastError=1
 set _REWRITE_MODE=
 

@@ -41,7 +41,7 @@ for /f %%i in ('dir /a-d /b "%X_WIN%\SysWOW64\%WB_PE_LANG%\*.mui"') do (
 :END_DEL_MUI
 
 rem cleanup registry
-reg delete "HKLM\Tmp_Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\PackageRepository\Packages" /f
+rem reg delete "HKLM\Tmp_Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\PackageRepository\Packages" /f
 reg delete "HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\AppX" /f
 
 if %Check_SysWOW64% EQU 0 call :REMOVE_WOW64_REG

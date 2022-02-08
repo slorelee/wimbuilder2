@@ -3,7 +3,7 @@ rem del /a /q "%X%\Users\Default\Desktop\desktop.ini"
 rem del /a /q "%X%\Users\Public\Desktop\desktop.ini"
 
 rem -- no need this file if there is WinXShell.exe's UI_Shutdown
-del /a /q "%X%\Users\Default\Desktop\shutdown.bat"
+rem del /a /q "%X%\Users\Default\Desktop\shutdown.bat"
 
 
 call LuaPin -init "%X_Startup%\00-InitPinIcons.lua"

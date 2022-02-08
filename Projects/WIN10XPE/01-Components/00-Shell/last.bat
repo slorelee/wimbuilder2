@@ -95,4 +95,5 @@ if not exist "%X_SYS%\ieframe.dll" (
     reg delete HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Personalize\command /v DelegateExecute /f
 )
 
+call Explorer\sublast.bat
 call WinXShell\sublast.bat

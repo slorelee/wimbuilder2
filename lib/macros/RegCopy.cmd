@@ -1,5 +1,3 @@
-@echo off
-
 rem MACRO:RegCopy
 rem replace KEY_PATH to Src_XXX, Tmp_XXX and call reg.exe COPY
 rem Usage:

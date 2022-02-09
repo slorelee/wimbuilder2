@@ -69,6 +69,10 @@ Windows.FileExplorer.Common.dll
 ;Tencent QQ(x86), Office 2010
 prxyqry.dll
 
+; FeiQ
+;Windows.System.Launcher.dll
+DiagnosticDataSettings.dll
+
 +ver*
 
 -if

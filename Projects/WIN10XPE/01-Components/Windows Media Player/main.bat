@@ -191,7 +191,11 @@ ssdpapi.dll
 sspicli.dll
 StorageUsage.dll
 taskschd.dll
+
++ver < 22000
 TileDataRepository.dll
++ver*
+
 tsbyuv.dll
 twinapi.dll
 unregmp2.exe

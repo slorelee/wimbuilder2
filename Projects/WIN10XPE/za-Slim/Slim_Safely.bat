@@ -44,7 +44,7 @@ goto :EOF
 :_Slim_keyboard
 rem ==============================================
 set _LocaleId=
-for /f "tokens=4" %%l in ('reg query "HKLM\Tmp_SYSTEM\ControlSet001\Control\Nls\Locale" /ve') do (
+for /f "tokens=3" %%l in ('reg query "HKLM\Tmp_SYSTEM\ControlSet001\Control\Nls\Locale" /v "(Default)"') do (
   set _LocaleId=%%l
 )
 if "x%_LocaleId%"=="x" (

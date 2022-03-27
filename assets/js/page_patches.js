@@ -400,14 +400,13 @@ function dump_patches_selected() {
     var prior_str = '';
     var patch_id = '';
     patches_selected = patches_selected.sort();
-    for(var patch_id in patches_selected) {
-        patch_id = patches_selected[patch_id];
+    patches_selected.forEach(function(patch_id) {
         if (patch_id.indexOf("_CustomFiles_") == 0) {
             prior_str += patch_id + "\r\n";
         } else {
             str += patch_id + "\r\n";
         }
-    }
+    });
     str = prior_str + str;
     str = str.replace(/\//g, "\\");
     save_text_file(tmp_folder + "\\_patches_selected.txt", str);

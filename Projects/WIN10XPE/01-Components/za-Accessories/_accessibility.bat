@@ -27,9 +27,15 @@ UIRibbon.dll
 osk.exe,utilman.exe,OskSupport.dll
 
 ; Ease of Access
-accessibilitycpl.dll,Magnification.dll,Magnify.exe,PlaySndSrv.dll,sethc.exe
+accessibilitycpl.dll,PlaySndSrv.dll,sethc.exe
 ;Windows.Media.Speech.dll
-Windows.Internal.Shell.Broker.dll,Windows.Perception.Stub.dll,Windows.UI.dll
+Windows.Internal.Shell.Broker.dll,Windows.Perception.Stub.dll
+
+;Magnify
+Magnification.dll,Magnify.exe
+Windows.UI.dll
+Windows.UI.Xaml.dll
+Windows.UI.Xaml.Resources%VER_XAMLRES%.dll
 
 :end_files
 

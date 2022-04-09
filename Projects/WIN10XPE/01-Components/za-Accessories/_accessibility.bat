@@ -35,6 +35,7 @@ Windows.Internal.Shell.Broker.dll,Windows.Perception.Stub.dll
 Magnification.dll,Magnify.exe
 Windows.UI.dll
 Windows.UI.Xaml.dll
+Windows.UI.Xaml.Resources.Common.dll
 Windows.UI.Xaml.Resources%VER_XAMLRES%.dll
 
 :end_files

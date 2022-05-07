@@ -118,6 +118,14 @@ xpsrchvw.exe
 ;Print on Internet
 inetpp.dll
 
+;Windows 11
++ver >= 22000
+xpspushlayer.dll
+PrinterCleanupTask.dll
+Print.PrintSupport.Source.dll
+printticketvalidation.dll
++ver*
+
 ;For PDF and XPS
 OpcServices.dll
 xpsservices.dll

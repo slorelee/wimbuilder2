@@ -45,6 +45,7 @@ function resize_theme_canvas(dy) {
 
 function init_theme_canvas() {
   $theme_canvas = $("#theme_canvas");
+  $theme_canvas.show();
 
   if (typeof(window.addEventListener) == 'undefined') {
     return;

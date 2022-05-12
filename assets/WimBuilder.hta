@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="htakit/css/uikit-tab.css" />
     <link rel="stylesheet" href="css/alert.css" />
     <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="themes/default.css" />
     <link rel="stylesheet" href="css/mode.css" />
 </head>
 
@@ -84,6 +85,21 @@ if ($IE_VER == '0') {
 <script src="../config.js"></script>
 <script src="../AppData/auto_config.js"></script>
 <script src="../AppData.link/auto_config.js"></script>
+
+<!--[if lte IE 9]>
+<style>
+.uk-tab {
+  padding-bottom : 20px;
+}
+.uk-tab > li {
+  float: left;
+}
+.uk-tab::before {
+  bottom: -6px;
+}
+</style>
+<![endif]-->
+
 
 <div id="theme_div">
     <canvas id="theme_canvas"></canvas>
@@ -207,10 +223,10 @@ if ($IE_VER == '9+') {
     title="Select the install.wim file if it needed">Wim/Esd</a>
 
 <label class="beginner-hide" for="wb_auto_winre">
-    <input type="checkbox" class="beginner-hide" id="wb_auto_winre" checked /><span class="i18n-text">Auto extract the winre.wim</span>
+    <input type="checkbox" id="wb_auto_winre" checked /><span class="i18n-text">Auto extract the winre.wim</span>
 </label>
 
-<div id="wb_src_alert" class="alert alert-info i18n-html" style="display:none"><strong>INFO</strong>:The install.wim does not exist.</div>
+<div id="wb_src_alert" class="alert alert-info i18n-html" style="display:none;margin-top:3px"><strong>INFO</strong>:The install.wim does not exist.</div>
 <div id="wb_src_wiminfo" class="alert alert-info">wim information</div>
 
 <br/>
@@ -238,7 +254,7 @@ if ($IE_VER == '9+') {
     <option value="test\boot.wim[2]"> test\boot.wim (x86)</option>
 </select>
 
-<div id="wb_base_alert" class="alert alert-error i18n-html" style="display:none"><strong>ERROR</strong>:The base wim does not exist.</div>
+<div id="wb_base_alert" class="alert alert-error i18n-html" style="display:none;margin-top:3px"><strong>ERROR</strong>:The base wim does not exist.</div>
 <div id="wb_base_wiminfo" class="alert alert-info">wim information</div>
 
     <div>
@@ -267,7 +283,7 @@ if ($IE_VER == '9+') {
 
 <div id="pj_tab">
     <div class="tab tab0">
-        <span style="font-weight:bold;color:#000;" class="i18n-text">Please select a project:</span>
+        <span style="font-weight:bold;" class="i18n-text">Please select a project:</span>
         <div>
             <div style="float:left" id="project_list"></div>
         </div>
@@ -277,7 +293,7 @@ if ($IE_VER == '9+') {
         </div>
     </div>
     <div class="tab tab1">
-        <!-- <span style="font-weight:bold;color:#000;">Project Info</span> -->
+        <!-- <span style="font-weight:bold;">Project Info</span> -->
         <div id="project_html"></div>
     </div>
 </div>
@@ -315,7 +331,7 @@ if ($IE_VER == '9+') {
     </div>
     <div style="margin-top:20px; width:98%; border:0.5px solid #ccc;"></div>
     <div style="margin-top:5px;margin-bottom:-12px">
-    <span style="font-weight:bold;color:#000;" class="i18n-text">Current project:</span>
+    <span style="font-weight:bold;" class="i18n-text">Current project:</span>
     <span id="patch_project_name"></span>
     <span style="margin-left:180px" class="i18n-text">Patch Preset:</span>
     <!-- Selectmenu -->
@@ -361,33 +377,10 @@ if ($IE_VER == '9+') {
         <div id="x_drive_notice" class="alert alert-warning i18n-html" style="display2:none"><strong>INFO</strong>:If the mounted folder isn't mapping to X:, The patch scripts need use %X%\ than X:\ when modifying, deleting the files, and please don't create the shortcuts on building, they may point to the wrong target, do it on booting phase.</div>
     </div>
     <div>
-        <style scoped>
-        .button-green, .button-maroon, .button-orange, .button-lightblue {
-            color: white;
-            border-radius: 4px;
-            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-        }
-
-        .button-green {
-            background: rgb(28, 184, 65); /* this is a green */
-        }
-
-        .button-maroon {
-            background: rgb(202, 60, 60); /* this is a maroon */
-        }
-
-        .button-orange {
-            background: rgb(223, 117, 20); /* this is an orange */
-        }
-
-        .button-lightblue {
-            background: rgb(66, 184, 221); /* this is a light blue */
-        }
-        </style>
-        <button class="pure-button button-green i18n-text" onclick="cleanup()">0-cleanup</button>
-        <button class="pure-button button-maroon i18n-text" onclick="run_build()">1-build(cmd)</button>
-        <button class="pure-button button-orange i18n-text" onclick="exec_build()">1-build(log)</button>
-        <button class="pure-button button-lightblue i18n-text" onclick="make_iso()">2-make_iso</button>
+        <button id="build_cleanp" class="pure-button i18n-text" onclick="cleanup()">0-cleanup</button>
+        <button id="build_cmd" class="pure-button button-maroon i18n-text" onclick="run_build()">1-build(cmd)</button>
+        <button id="build_log" class="pure-button button-orange i18n-text" onclick="exec_build()">1-build(log)</button>
+        <button id="build_makeiso" class="pure-button button-lightblue i18n-text" onclick="make_iso()">2-make_iso</button>
         <label for="wb_auto_makeiso">
             <input type="checkbox" id="wb_auto_makeiso" /><span class="i18n-text">Create ISO after building</span>
         </label>
@@ -400,14 +393,6 @@ if ($IE_VER == '9+') {
             <input type="text" id="wb_test_cmd" style="width:50%;" class="i18n-placeholder" placeholder="Please input the command.(eg. VBox.cmd testvm)" />
             <button class="pure-button pure-button-primary i18n-text" onclick="test_iso()">Execute</button>
         </div>
-        <style type="text/css">
-            #wb_test_cmd {
-                color: #000;
-            }
-            #wb_test_cmd:-ms-input-placeholder {
-                color: #999;
-            }
-        </style>
     </div>
     <div id="build_stdout" style="overflow:scroll;margin-top:10px">stdout</div>
     <div style="margin-top:10px">
@@ -506,10 +491,10 @@ if ($IE_VER == '9+') {
 <div id="page_advanced" class="content_page">
 <div id="adv_tab">
     <div class="tab tab0">
-        <button class="pure-button button-green i18n-text" onclick="clean_advcmd()">Clear</button>
-        <button class="pure-button button-maroon i18n-text" onclick="load_advcmd()">Load</button>
-        <button class="pure-button button-orange i18n-text" onclick="save_advcmd()">Save</button>
-        <button class="pure-button pure-button-primary i18n-text" style="margin-left:50px;" onclick="exec_advcmd()">Execute</button>
+        <button id="adv_clean" class="pure-button i18n-text" onclick="clean_advcmd()">Clear</button>
+        <button id="adv_load" class="pure-button i18n-text" onclick="load_advcmd()">Load</button>
+        <button id="adv_save" class="pure-button i18n-text" onclick="save_advcmd()">Save</button>
+        <button id="adv_exec" class="pure-button pure-button-primary i18n-text" style="margin-left:50px;" onclick="exec_advcmd()">Execute</button>
         <br/>
         <textarea id="adv_cmdtext" style="overflow:scroll;margin-top:10px" onkeydown="return advcmd_save_event();"></textarea>
     </div>
@@ -526,8 +511,8 @@ if ($IE_VER == '9+') {
 
 <!-- ############################# page_about Start ############################# -->
 <div id="page_about" class="content_page">
-    <button class="pure-button button-lightblue i18n-text" onclick="update_me()">Update</button>
-    <button class="pure-button button-green i18n-text" onclick="restart_me()">Restart</button>
+    <button id="about_update" class="pure-button i18n-text" onclick="update_me()">Update</button>
+    <button id="about_restart" class="pure-button i18n-text" onclick="restart_me()">Restart</button>
     <!-- <button class="pure-button button-lightblue" onclick="self.close()">closeMe</button>  -->
     <br/><br/>
     Project:<a herf="#" onclick="Run($(this).text())">https://github.com/slorelee/wimbuilder2</a><br/>

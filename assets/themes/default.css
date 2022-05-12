@@ -1,0 +1,118 @@
+#theme_div {
+  display:block;
+}
+
+#theme_canvas {
+  display:none;
+  background-size:cover;
+}
+
+body {
+  color: #000;
+}
+
+select, option, input[type=text],
+.pure-form input[type=text],
+.pure-form select,
+.pure-form-input input[type=text],
+.pure-form-input select {
+}
+
+.pure-button.pure-button-primary {
+  background-color: #0078e7;
+  color: #fff;
+}
+
+.pure-button.button-green {
+  background: rgb(28, 184, 65); /* this is a green */
+}
+
+.pure-button.button-maroon {
+  background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.pure-button.button-orange {
+  background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.pure-button.button-lightblue {
+  background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+.pure-button.pre-button, .pure-button.next-button {
+  margin-top: 10px;
+  width: 200px;
+  background-color:#c23501;
+  color:#fff;
+}
+
+.pure-button.next-button {
+  background-color:#0078e7;
+}
+
+.pure-button.project-selected {
+  background: red;
+  color: #fff;
+}
+
+.box {
+  color: black;
+}
+
+
+#build_cleanp, #build_cmd, #build_log, #build_makeiso {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+#build_cleanp {
+  background: rgb(28, 184, 65); /* this is a green */
+}
+
+#build_cmd {
+  background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+#build_log {
+  background: rgb(223, 117, 20); /* this is an orange */
+}
+
+#build_makeiso {
+  background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+#wb_test_cmd {
+  /* color: white; */
+}
+
+#wb_test_cmd:-ms-input-placeholder {
+  color: #999;
+}
+
+
+#adv_clean, #adv_load, #adv_save {
+  color: white;
+}
+
+#adv_clean {
+  background: rgb(28, 184, 65); /* this is a green */
+}
+
+#adv_load {
+  background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+#adv_save {
+  background: rgb(223, 117, 20); /* this is an orange */
+}
+
+#about_update {
+  color: white;
+  background: rgb(28, 184, 65); /* this is a green */
+}
+
+#about_restart {
+  color: white;
+  background: rgb(66, 184, 221); /* this is a light blue */
+}

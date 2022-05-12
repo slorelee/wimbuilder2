@@ -1,0 +1,1 @@
+$theme_canvas.hide();

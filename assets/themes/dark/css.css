@@ -1,0 +1,78 @@
+
+body {
+  background-color:#1e1e1e;
+  color: #d4d4d4;
+}
+
+select, option, input[type=text],
+.pure-form input[type=text],
+.pure-form select,
+.pure-form-input input[type=text],
+.pure-form-input select {
+  background: #3c3c3c;
+  border: 1px solid #252526;
+  border-radius: 4px;
+  box-shadow: none;
+  color: #d4d4d4;
+  margin-bottom: 2px;
+}
+
+.pure-button {
+    background-color: #444;
+    color: #ececec;
+}
+
+.uk-tab > * > a {
+  color: lightgray;
+}
+
+/* Hover + Focus */
+.uk-tab > * > a:hover,
+.uk-tab > * > a:focus {
+  color: lightblue;
+}
+
+/* Active */
+.uk-tab > .uk-active > a {
+  color: white;
+}
+
+#patches_list, #patch_html  {
+  color: #d4d4d4;
+}
+
+#patch_html fieldset legend {
+  color: #d4d4d4;
+}
+
+.jstree-default .jstree-hovered {
+  background:rgb(31,141,214);
+}
+
+.jstree-default .jstree-clicked {
+  background: rgb(31,141,214);
+  color: #fff;
+}
+
+#patch_html fieldset {
+  margin-top: 5px;
+  padding: 5px;
+  background-color:#2b2b2b;
+  border: 1px solid #202020;
+}
+
+#patch_html fieldset legend {
+  width:100%;
+  display: inline-block;
+  position: absolution;
+  padding: 3px 5px 3px 5px;
+  margin: -5px 0px 5px -5px;
+  border-radius: 4px;
+  background: #4e4e4e;
+}
+
+#patch_html fieldset legend:after {
+  float:right;
+  padding-right: 5px;
+  content: "=";
+}

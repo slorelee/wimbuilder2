@@ -62,6 +62,10 @@ dmenrollengine.dll
 +ver >= 22000
 windowsudk.shellcommon.dll
 
++ver >= 22610
+Windows.UI.Core.TextInput.dll
+Windows.UI.Immersive.dll
+
 ; remove ver check (add with any ver)
 +ver*
 
@@ -158,6 +162,10 @@ call REGCOPY HKLM\SYSTEM\ControlSet001\Services\Themes
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\WindowsTrustedRT
 reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\Themes /f
 reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CoreMessagingRegistrar /f
+
+if %VER[3]% GEQ 22610 (
+  call REGCOPY HKLM\Software\Microsoft\WindowsRuntime
+)
 
 :Reg_Explorer
 

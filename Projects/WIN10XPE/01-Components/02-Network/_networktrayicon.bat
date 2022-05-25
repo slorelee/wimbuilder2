@@ -2,6 +2,12 @@ if not "x%opt[network.trayicon]%"=="xtrue" goto :EOF
 if "x%opt[network.full_functional]%"=="xtrue" goto :EOF
 
 rem ==========update filesystem==========
+
+if %VER[3]% GEQ 22000 (
+  call AddFiles WlanMediaManager.dll
+  goto :update_registry
+)
+
 call AddFiles %0 :end_files
 goto :end_files
 @\Windows\System32\drivers\
@@ -34,6 +40,7 @@ wlanmsm.dll,wlanpref.dll,wlansvc.dll,wlansvcpal.dll
 
 :end_files
 
+:update_registry
 rem ==========update registry==========
 call RegCopy HKLM\Software\Microsoft\wcmsvc
 call RegCopy HKLM\Software\Policies\Microsoft\Windows\WcmSvc

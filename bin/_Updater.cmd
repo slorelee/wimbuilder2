@@ -9,6 +9,7 @@ if "x%SOURCE_URL%"=="xhttps://github.com/slorelee/wimbuilder2/raw/master" (
 if "x%SOURCE_URL%"=="xhttps://gitee.com/slorelee/wimbuilder2/raw/master" (
     set SOURCE_INFO=http://gitee.com/api/v5/repos/slorelee/wimbuilder2/branches/master
     set COMPARE_URL=https://gitee.com/api/v5/repos/slorelee/wimbuilder2/compare
+    set USERAGENT=--user-agent="curl/7.77.0"
 )
 
 if "x%1"=="x--help" set UPT_HELP=1
@@ -241,7 +242,7 @@ goto :EOF
 :UPDATE_FILES
 if "x%~1"=="x+" (
     echo Downloading %~2 ...
-    aria2c.exe -c "%SOURCE_URL%/%~2" -d "%APP_ROOT%" -o "%~2" --allow-overwrite=true
+    aria2c.exe %USERAGENT% -c "%SOURCE_URL%/%~2" -d "%APP_ROOT%" -o "%~2" --allow-overwrite=true
     if ERRORLEVEL 1 set /a _update_error+=1
 ) else if "x%~1"=="x-" (
     echo Deleting %~2 ...
@@ -298,7 +299,7 @@ if "x%base_id%"=="x" (
     goto :EOF
 )
 
-aria2c -o git_commits.txt --header="Content-Type: application/text;charset=UTF-8" ^
+aria2c -o git_commits.txt %USERAGENT% --header="Content-Type: application/text;charset=UTF-8" ^
 "%COMPARE_URL%/%base_id%...master"
 
 if not exist git_commits.txt (

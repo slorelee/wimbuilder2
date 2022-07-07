@@ -102,6 +102,10 @@ rem ==========update registry==========
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\CoreMessagingRegistrar
 reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CoreMessagingRegistrar /f
 
+if %VER[3]% GEQ 22621 (
+  Call RegCopyEx Services TextInputManagementService
+)
+
 reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
 reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\System /v DelayedDesktopSwitchTimeout /t REG_DWORD /d 0 /f
 

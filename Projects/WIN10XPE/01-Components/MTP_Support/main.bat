@@ -1,7 +1,6 @@
 rem install mtpHelper
 
 set mtphelper_sysfile=mtpHelper_%WB_PE_ARCH%.sys
-if %VER[3]% GEQ 22000 set mtphelper_sysfile=mtpHelper_22000_%WB_PE_ARCH%.sys
 
 if not exist "%mtpHelper_sysfile%" (
     set opt[MTP.mtpHelper]=mtpHelper.dll
@@ -15,6 +14,7 @@ if "%opt[MTP.mtpHelper]%"=="mtpHelper.sys" (
   reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v ErrorControl /t REG_DWORD /d 0 /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v Type /t REG_DWORD /d 1 /f
   reg add HKLM\Tmp_System\ControlSet001\Services\mtpHelper /v DisplayName /t REG_SZ /d "mtpHelper" /f
+  reg import mtpHelper_EVRootCA.reg.txt
 ) else (
   rem use mtpHelper.dll hook
   copy mtpHelper_%WB_PE_ARCH%.dll %X_SYS%\mtpHelper.dll

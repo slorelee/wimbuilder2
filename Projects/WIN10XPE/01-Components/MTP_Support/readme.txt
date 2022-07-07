@@ -9,3 +9,6 @@ http://bbs.wuyou.net/forum.php?mod=viewthread&tid=411399
 
 <p>In 2021/10 nianyueriPE signed mtpHelper.sys driver to make it work for Windows 11.</p>
 http://bbs.wuyou.net/forum.php?mod=viewthread&tid=427286
+
+<p>In 2022/4 nianyueriPE signed mtpHelper.sys driver(update).</p>
+http://bbs.wuyou.net/forum.php?mod=viewthread&tid=427286

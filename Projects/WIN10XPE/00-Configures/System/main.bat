@@ -44,6 +44,7 @@ simsun.ttc
 :end_files
 
 call AddDrivers winusb.inf
+copy /y System.evtx "%X_SYS%\winevt\Logs\"
 
 rem ==========update registry==========
 

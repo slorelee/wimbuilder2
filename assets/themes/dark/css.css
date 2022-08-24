@@ -45,11 +45,23 @@ select, option, input[type=text],
   color: #d4d4d4;
 }
 
+/* hightlight jstree node */
+.jstree-default .hl-node {
+    display:inline-block;
+    font-weight:bold;
+    color: rgb(66, 184, 221);
+}
+
+.jstree-default .jstree-hovered .hl-node {
+     color: #fff;
+}
+
 .jstree-default .jstree-hovered {
   background:rgb(31,141,214);
 }
 
-.jstree-default .jstree-clicked {
+.jstree-default .jstree-clicked,
+.jstree-default .jstree-clicked .hl-node {
   background: rgb(31,141,214);
   color: #fff;
 }

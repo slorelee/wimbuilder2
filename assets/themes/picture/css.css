@@ -13,6 +13,13 @@ body {
   color: white;
 }
 
+/* hightlight jstree node */
+.jstree-default .hl-node {
+    display:inline-block;
+    font-weight:bold;
+    color: blue;
+}
+
 .jstree-default .jstree-hovered {
   background: #00b2ff;
 }

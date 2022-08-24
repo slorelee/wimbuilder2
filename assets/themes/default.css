@@ -55,6 +55,14 @@ select, option, input[type=text],
   color: #fff;
 }
 
+
+/* hightlight jstree node */
+.jstree-default .hl-node {
+    display:inline-block;
+    font-weight:bold;
+    color: blue;
+}
+
 .box {
   color: black;
 }

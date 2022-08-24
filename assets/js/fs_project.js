@@ -90,6 +90,7 @@ var Project = {
             var def_conf = load_utf8_file(cdir + '/' + name + '/en-US.js');
             var i18n = load_utf8_file(cdir + '/' + name + '/' + $lang + '.js');
 
+            var patch_style = null;
             var patch_name = null;
             var patch_opened = null;
             var patch_selected = null;
@@ -107,7 +108,11 @@ var Project = {
             }
 
             if (patch_name != null) {
-                name = patch_name;
+                if (patch_style != null) {
+                    name = "<span class='" + patch_style + "'>" + patch_name + "</span>";
+                } else {
+                    name = patch_name;
+                }
             } else {
                 var pos = name.indexOf('-');
                 if (pos >= 0) name = name.substring(pos + 1);

@@ -88,13 +88,7 @@ rem ======set macros PATH======
 set "PATH=%APP_ROOT%\lib\macros;%PATH%"
 rem ========================
 
-if not "%PROCESSOR_ARCHITECTURE%"=="AMD64" goto :Normal_Start
-if exist "%windir%\SysWOW64\mshta.exe" goto :Normal_Start
 start %APP_START_OPT% mshta "%~dp0assets\%APP_NAME%.hta" %*
-goto :EOF
-
-:Normal_Start
-start %APP_START_OPT% assets\%APP_NAME%.hta %*
 goto :EOF
 
 

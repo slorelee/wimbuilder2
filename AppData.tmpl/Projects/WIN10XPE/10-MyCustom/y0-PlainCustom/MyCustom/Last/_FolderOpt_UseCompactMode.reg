@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+;Decrease space between items (File Explorer)
+[HKEY_LOCAL_MACHINE\tmp_DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"UseCompactMode"=dword:00000001

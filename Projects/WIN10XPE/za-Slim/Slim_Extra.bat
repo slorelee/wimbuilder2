@@ -23,7 +23,10 @@ if "x%opt[support.network]%"=="xtrue" (
 )
 
 if "x%opt[support.admin]%"=="xtrue" (
-  call :KEEP_FILES \Windows\System32\ "CredProv2faHelper.dll,CredProvDataModel.dll,credprovhost.dll,credprovs.dll,credprovslegacy.dll,Faultrep.dll,WerFault.exe"
+  call :KEEP_FILES \Windows\System32\ "Faultrep.dll,WerFault.exe"
+  rem CredProv2faHelper.dll,CredProvDataModel.dll,credprovhost.dll,credprovs.dll,credprovslegacy.dll
+  rem CredProvCommonCore.dll
+  move "%X%\Windows\System32\CredProv*.dll" "%X%\[KEEP]\Windows\System32\"
 )
 
 rem del files

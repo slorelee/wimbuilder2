@@ -48,6 +48,7 @@ dpnhupnp.dll,dpnlobby.dll,dpnsvr.exe
 DWrite.dll,DXCaptureReplay.dll,DXCpl.exe
 dxdiag.exe,dxdiagn.dll,dxgi.dll,dxgwdi.dll
 dxilconv.dll,dxtmsft.dll,dxtrans.dll,dxva2.dll
+mscat32.dll
 
 ;DirectShow
 amstream.dll,cca.dll

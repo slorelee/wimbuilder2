@@ -58,6 +58,12 @@ drivers\rfcomm.sys
 Microsoft-Windows-Desktop-Shared-Drivers-merged-Package*.cat
 Microsoft-OneCore-Bluetooth-Package~*.cat
 
++ver >= 22000
+WppRecorderUM.dll
+Windows.Internal.Devices.Bluetooth.dll
+MSAJApi.dll
+Windows.Devices.Bluetooth.dll
+
 :end_files
 
 call RegCopy "HKLM\Software\Microsoft\Device Association Framework"

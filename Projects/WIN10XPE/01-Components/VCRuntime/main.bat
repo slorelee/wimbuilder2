@@ -40,6 +40,10 @@ msvcp110.dll,msvcp140_clr0400.dll,msvcr110.dll
 ucrtbase_clr0400.dll
 ucrtbase_enclave.dll
 
++ver >= 22621
+vcruntime140_1_clr0400.dll
++ver*
+
 ; WinSxS VC++ runtimes
 \Windows\WinSxS\%SxSArch%_microsoft.vc80.crt*
 \Windows\WinSxS\%SxSArch%_microsoft.vc90.crt*

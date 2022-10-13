@@ -168,15 +168,15 @@ if ($IE_VER == '9+') {
 
 <script>
 if ($IE_VER == '9+') {
-    document.write('<div id="content" style="margin-bottom:40px">');
+    document.write('<div id="content" style="margin-bottom:2.5rem">');
 }
 </script>
 
 <div id="page_header">
-<div id="quick_build" style="display:none;float:right;margin:5px 10px 0px 0px">
+<div id="quick_build" style="display:none;float:right;margin:0.5rem 0.5rem 0px 0px">
     <a href="#" title="Quick build" class="i18n-title" onclick="do_quick_build();"
-       style="display:inline-block;height:48px;width:48px;background-image:url(img/play.png)" ></a>
-    <div style="display:inline-block;height:48px;">
+       style="display:inline-block;height:3rem;width:3rem;background-image:url(img/play.png);background-size:cover;background-repeat:no-repeat;" ></a>
+    <div style="display:inline-block;width:6em;">
     <label for="quick_build_mode_run">
         <input type="radio" name="quick_build_mode" id="quick_build_mode_run" /><span class="i18n-text">build(cmd)</span><br/>
     </label>
@@ -196,20 +196,20 @@ if ($IE_VER == '9+') {
 </div>
 <br/>
 <div style="display:none"> <!-- hide workspace -->
-<input type="text" id="wb_workspace" style="width:450px" value="D:\WB_Workspace" />
+<input type="text" id="wb_workspace" style="width:28rem" value="D:\WB_Workspace" />
 <a href="#" disabled="disabled" id="wb_workspace_folder_btn" class="ibutton browse i18n-title i18n-text"
     title="Set the build workspace">Browse...</a><br/>
 </div>
 
 <span id="wb_src_prompt" style="font-weight:bold;" class="i18n-text">Please select the Windows ISO folder/drive, or the 'sources' folder(auto detect)</span><br/>
-<input type="text" id="wb_src_folder" style="width:450px" value="" />
+<input type="text" id="wb_src_folder" style="width:28rem" value="" />
 <!-- keep same align -->
 <select style="visibility:hidden"><option value ="-1">-</option></select>
 <a href="#" id="wb_src_folder_btn" class="ibutton browse i18n-title i18n-text"
     title="Select the image path or the 'sources' folder">Browse...</a><br/>
 
 <span style="font-weight:bold;" class="i18n-text beginner-hide">Select the install.wim file if it needed</span><br/>
-<input type="text" id="wb_src" style="width:450px" value="D:\WB_Workspace\mnt\install.wim" />
+<input type="text" id="wb_src" style="width:28rem" value="D:\WB_Workspace\mnt\install.wim" />
 <script>
     document.write('<select id="wb_src_idx_opt">');
     document.write('  <option value ="-1">-</option>');
@@ -231,7 +231,7 @@ if ($IE_VER == '9+') {
 
 <br/>
 <span style="font-weight:bold;" class="i18n-text beginner-hide">Select the base image(boot.wim/winre.wim or other customed.wim)</span><br/>
-<input type="text" id="wb_base" style="width:450px" />
+<input type="text" id="wb_base" style="width:28rem" />
 <select id='wb_base_idx_opt'>
   <option value ="-1">-</option>
   <option value ="1">1</option>
@@ -533,12 +533,12 @@ if ($IE_VER == '9+') {
 <style type="text/css">
     #statusbar {
         position: fixed;right: 0;top: 100%;
-        height: 30px;width: 100%;
+        height: 2em;width: 100%;
         transform: translate(0,-100%);
         background-color: #191818;color: white;
     }
     #status_text_div {
-        float:right;margin-top:-10px;
+        float:right;margin-top:-0.5em;
         margin-right: 5px;
     }
 </style>
@@ -561,7 +561,7 @@ if ($IE_VER == '9+') {
             position: fixed;
             bottom: 2.2em;
             right: 0.3em;
-            width: 460px;
+            width: 28.75em;
             height: 4.2em;
             background: rgb(48, 48, 48);
             opacity: 0.85;

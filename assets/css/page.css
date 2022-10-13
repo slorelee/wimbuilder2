@@ -1,10 +1,9 @@
 .content_page {
-    padding: 10px 0px 0px 10px;
+    padding: 1rem 0px 0px 1rem;
 }
 
 .pre-button, .next-button {
-  margin-top: 10px;
-  width: 200px;
+  margin-top: 1rem;
   background-color:#c23501;
   color:#fff;
 }
@@ -22,7 +21,7 @@ display:block;
 }
 
 .project-button {
-    width: 240px;
+    min-width: 14rem;
     margin-bottom: 5px;
 }
 
@@ -32,14 +31,14 @@ display:block;
 }
 
 #build_stdout {
-    height: 400px;
+    height: 20em;
     width: 95%;
     background-color: #000000;
     color: #fff;
 }
 
 #adv_cmdtext {
-    height: 400px;
+    height: 24em;
     width: 95%;
     background-color: #000000;
     color: #fff;

@@ -1,13 +1,41 @@
+body {
+    font-size: 1.24rem;
+}
+
+input[type=checkbox], input[type=radio] {
+    zoom: 120%;
+}
+
+input[type=checkbox]+span, input[type=radio]+span {
+    margin-left: 0.2em;
+}
+
+@media (min-width: 48em) {
+    #menu {
+        margin-left: -12.5em; /* "#menu" width */
+        width: 12.5em;
+        left: 12.5em;
+    }
+
+    #layout {
+        padding-left: 12.5em; /* left col width "#menu" */
+    }
+
+    #layout.active #menu {
+        width: 12.5em;
+    }
+}
+
+#status_text_div {
+    margin-top:-1rem;
+}
+
 .jstree-default .jstree-node {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 1.3rem;
+    line-height: 1.3rem;
 }
 
 .jstree-default .jstree-anchor {
-    height: 30px;
-    line-height: 30px;
-}
-
-#patch_html fieldset legend {
-    font-size: 24px;
+    height: 1.3rem;
+    line-height: 1.3rem;
 }

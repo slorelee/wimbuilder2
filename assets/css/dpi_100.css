@@ -1,13 +1,38 @@
+body {
+    font-size: 1rem;
+}
+
+input[type=checkbox], input[type=radio] {
+    zoom: 100%;
+    -ms-transform: scale(1);
+}
+
+input[type=checkbox] span, input[type=radio] span {
+    margin-left: 0;
+}
+
+@media (min-width: 48em) {
+    #menu {
+        margin-left: -12rem; /* "#menu" width */
+        width: 12rem;
+        left: 12rem;
+    }
+
+    #layout {
+        padding-left: 12rem; /* left col width "#menu" */
+    }
+}
+
+#status_text_div {
+    margin-top:-0.5rem;
+}
+
 .jstree-default .jstree-node {
-    font-size: 16px;
-    line-height: 24px;
+    font-size:initial;
+    line-height: initial;
 }
 
 .jstree-default .jstree-anchor {
-    height: 24px;
-    line-height: 24px;
-}
-
-#patch_html fieldset legend {
-    font-size: 16px;
+    height: initial;
+    line-height: initial;
 }

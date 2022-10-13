@@ -1,13 +1,50 @@
+body {
+    font-size: 36px;
+}
+
+input[type=checkbox], input[type=radio] {
+    zoom: 150%;
+    -ms-transform: scale(1.5);
+}
+
+input[type=checkbox]+span, input[type=radio]+span {
+    margin-left: 0.25em;
+}
+
+@media (min-width: 48em) {
+    #menu {
+        margin-left: -10em; /* "#menu" width */
+        width: 10em;
+        left: 10em;
+    }
+
+    #layout {
+        padding-left: 10em; /* left col width "#menu" */
+    }
+
+    #layout.active #menu {
+        width: 10em;
+    }
+}
+
+#status_text_div {
+    margin-top:-1rem;
+}
+
 .jstree-default .jstree-node {
-    font-size: 60px;
-    line-height: 60px;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
 }
 
 .jstree-default .jstree-anchor {
-    height: 60px;
-    line-height: 60px;
+    height: 1.6rem;
+    line-height: 1.6rem;
 }
 
-#patch_html fieldset legend {
-    font-size: 40px;
+#build_stdout {
+    height: 24em;
+}
+
+#adv_cmdtext {
+    height: 30em;
 }

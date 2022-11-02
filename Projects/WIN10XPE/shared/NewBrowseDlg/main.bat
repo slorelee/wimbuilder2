@@ -40,6 +40,16 @@ actxprxy.dll
 ;filter
 StructuredQuery.dll
 
+;text preview
+prevhost.exe
+
++if 0
+;image preview
+\Windows\SystemResources\imageres.dll.mun
+PhotoMetadataHandler.dll,thumbcache.dll
+capisp.dll,IconCodecService.dll
+-if
+
 :end_files
 
 rem ;For "Security" tab (rshx32.dll)

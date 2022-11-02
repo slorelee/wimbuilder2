@@ -53,16 +53,16 @@ irprops.cpl
 drivers\bth*.sys
 drivers\rfcomm.sys
 
-+ver > 20000
-@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
-Microsoft-Windows-Desktop-Shared-Drivers-merged-Package*.cat
-Microsoft-OneCore-Bluetooth-Package~*.cat
-
 +ver >= 22000
 WppRecorderUM.dll
 Windows.Internal.Devices.Bluetooth.dll
 MSAJApi.dll
 Windows.Devices.Bluetooth.dll
+
++ver > 20000
+@\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
+Microsoft-Windows-Desktop-Shared-Drivers-merged-Package*.cat
+Microsoft-OneCore-Bluetooth-Package~*.cat
 
 :end_files
 

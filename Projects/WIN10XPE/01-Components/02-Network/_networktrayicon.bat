@@ -3,7 +3,7 @@ if "x%opt[network.full_functional]%"=="xtrue" goto :EOF
 
 rem ==========update filesystem==========
 
-if %VER[3]% GEQ 22000 (
+if %VER[3]% GEQ 22621 (
   call AddFiles WlanMediaManager.dll
   goto :update_registry
 )

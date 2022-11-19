@@ -31,6 +31,9 @@ call RegCopy "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Svchost"
 call RegCopy HKLM\Software\Microsoft\SecurityManager
 call RegCopy HKLM\Software\Microsoft\Ole
 
+rem // WLAN AutoConfig
+reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Svchost" /v WlansvcGroup /t REG_MULTI_SZ /d wlansvc\0 /f
+
 rem // policymanager.dll need:
 call RegCopy HKLM\Software\Microsoft\PolicyManager
 rem call RegCopy HKLM\Software\Classes\Unknown

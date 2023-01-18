@@ -38,6 +38,11 @@ if ERRORLEVEL 1 reg import TransientObjects_MPCManager.reg
 call REGCOPY HKLM\Software\Microsoft\Windows\DWM
 reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v OneCoreNoBootDWM /t REG_DWORD /d 0 /f
 
+rem Enable Rounded Corners in Windows 11
+if %VER[3]% GEQ 22621 (
+    reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v ForceEffectMode /t REG_DWORD /d 2 /f
+)
+
 rem No shadow effect, so force ColorPrevalence to 1
 reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v ColorPrevalence /t REG_DWORD /d 1 /f
 

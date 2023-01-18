@@ -38,5 +38,14 @@ Windows.UI.Xaml.dll
 Windows.UI.Xaml.Resources.Common.dll
 Windows.UI.Xaml.Resources%VER_XAMLRES%.dll
 
++ver > 22600
+
++if "%opt[account.admin_enabled]%"="true"
+;Ease of Access button on login screen
+camext.dll
+-if
+
++ver*
+
 :end_files
 

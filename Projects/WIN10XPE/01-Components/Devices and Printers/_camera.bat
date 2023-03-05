@@ -42,11 +42,60 @@ pdh.dll
 
 +ver > 19000
 RESAMPLEDMO.DLL
+
++ver >= 22000
+\Windows\WMSysPr9.prx
+
+CaptureService.dll
+CapabilityAccessManagerClient.dll
+CapabilityAccessHandlers.dll
+FrameServerMonitorClient.dll
+mapi32.dll
+mfcore.dll
+mfksproxy.dll
+mfsensorgroup.dll
+vfwwdm32.dll
+WindowManagementAPI.dll
+Windows.Internal.CapturePicker.Desktop.dll
+Windows.Media.MediaControl.dll
+Windows.System.Launcher.dll
+SettingsHandlers_Camera.dll
+
++syswow64
+; record
+mfplat.dll
+qasf.dll
+COLORCNV.DLL
+VIDRESZR.DLL
+WMADMOE.DLL
+WMASF.DLL
+WMVCORE.DLL
+WMVENCOD.DLL
+
+; recording timing
+Kswdmcap.ax
+
+; non-core
+msyuv.dll
+l3codeca.acm
+msg711.acm
+msgsm32.acm
+-syswow64
+
 +ver*
 
 ;ECap, webcam 7
 @\Windows\SysWOW64\
 ksproxy.ax,ksuser.dll
+
++ver >= 22000
+CapabilityAccessManagerClient.dll
+FrameServerMonitorClient.dll
+usermgrcli.dll
+UserMgrProxy.dll
+Windows.Media.MediaControl.dll
+
++ver*
 
 @\Windows\%System32OrSysWOW64%\
 qcap.dll,qedit.dll,qedwipes.dll
@@ -55,3 +104,14 @@ qcap.dll,qedit.dll,qedwipes.dll
 
 call RegCopyEx Services "WdmCompanionFilter"
 call RegCopy HKLM\SYSTEM\ControlSet001\Control\Class\{ca3e7ab9-b4c3-4ae6-8251-579ef933890f}
+
+if %VER[3]% GEQ 22000 (
+  call AddDrivers image.inf
+
+  call RegCopyEx Services "FrameServer,FrameServerMonitor"
+  call RegCopyEx Services CaptureService
+  reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CaptureService /f
+
+  call RegCopy HKLM\SOFTWARE\Classes\Interface\{877E4352-6FEA-11d0-B863-00AA00A216A1}
+  call RegCopy HKLM\SOFTWARE\Classes\WOW6432Node\Interface\{877E4352-6FEA-11d0-B863-00AA00A216A1}
+)

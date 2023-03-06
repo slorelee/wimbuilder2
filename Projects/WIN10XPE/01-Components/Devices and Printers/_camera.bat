@@ -102,6 +102,17 @@ qcap.dll,qedit.dll,qedwipes.dll
 
 :end_files
 
+; output file(s) setting for recording
+call RegCopyEx Classes "SAPI_OneCore.SpAudioFormat,SAPI_OneCore.SpAudioFormat.1"
+call RegCopyEx Classes "SAPI_OneCore.SpMMAudioEnum,SAPI_OneCore.SpMMAudioEnum.1"
+call RegCopyEx Classes "SAPI_OneCore.SpMMAudioIn,SAPI_OneCore.SpMMAudioIn.1"
+call RegCopyEx Classes "SAPI_OneCore.SpMMAudioOut,SAPI_OneCore.SpMMAudioOut.1"
+call RegCopyEx Classes "Stack.Audio,Stack.System.Music,Stack.Video"
+call RegCopyEx Classes "Stack.System.Music.AlbumTitle,Stack.System.Music.AlbumID,Stack.System.Music.Artist"
+call RegCopyEx Classes "Stack.System.Music.DisplayArtist,Stack.System.Music.Genre,Stack.System.Photo"
+call RegCopyEx Classes "WiaDevMgr,WiaDevMgr.1"
+call RegCopy "HKLM\SOFTWARE\Classes\Windows Media"
+
 call RegCopyEx Services "WdmCompanionFilter"
 call RegCopy HKLM\SYSTEM\ControlSet001\Control\Class\{ca3e7ab9-b4c3-4ae6-8251-579ef933890f}
 

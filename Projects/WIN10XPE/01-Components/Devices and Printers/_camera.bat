@@ -116,13 +116,13 @@ call RegCopy "HKLM\SOFTWARE\Classes\Windows Media"
 call RegCopyEx Services "WdmCompanionFilter"
 call RegCopy HKLM\SYSTEM\ControlSet001\Control\Class\{ca3e7ab9-b4c3-4ae6-8251-579ef933890f}
 
+call RegCopy HKLM\SOFTWARE\Classes\Interface\{877E4352-6FEA-11d0-B863-00AA00A216A1}
+call RegCopy HKLM\SOFTWARE\Classes\WOW6432Node\Interface\{877E4352-6FEA-11d0-B863-00AA00A216A1}
+
 if %VER[3]% GEQ 22000 (
   call AddDrivers image.inf
 
   call RegCopyEx Services "FrameServer,FrameServerMonitor"
   call RegCopyEx Services CaptureService
   reg add HKLM\Tmp_SYSTEM\Setup\AllowStart\CaptureService /f
-
-  call RegCopy HKLM\SOFTWARE\Classes\Interface\{877E4352-6FEA-11d0-B863-00AA00A216A1}
-  call RegCopy HKLM\SOFTWARE\Classes\WOW6432Node\Interface\{877E4352-6FEA-11d0-B863-00AA00A216A1}
 )

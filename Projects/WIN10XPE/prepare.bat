@@ -56,16 +56,6 @@ if "x%opt[component.netfx]%"=="xtrue" (
     set opt[build.registry.software]=full
 )
 
-call CheckPatch "01-Components\Devices and Printers"
-if "x%HasPatch%_%opt[component.bluetooth]%"=="xtrue_true" (
-    set opt[component.MTP]=true
-    set opt[component.printer]=true
-)
-
-if "x%HasPatch%_%opt[component.printer]%"=="xtrue_true" (
-    set opt[build.registry.software]=full
-    set opt[patch.drvinst]=true
-)
 
 if "x%opt[build.registry.system]%"=="xtrue" (
     set opt[build.registry.system]=merge

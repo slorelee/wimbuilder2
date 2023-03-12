@@ -88,3 +88,7 @@ call AddDrivers "%ms_bth%_hfp.inf,%ms_bth%_hfp_ag.inf,%ms_bth%_hfp_hf.inf"
 set ms_bth=
 
 call RegCopy "HKLM\SYSTEM\ControlSet001\Control\DevQuery"
+
+
+rem search bluetooth device(s)
+rem DevicePairingWizard.exe /bluetooth

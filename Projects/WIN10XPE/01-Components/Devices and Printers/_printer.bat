@@ -161,6 +161,18 @@ call RegCopyEx Services Spooler
 rem remove usbprint if this is additional component
 call RegCopyEx Services usbprint
 
+
+call RegCopyEx Classes ".pdf"
+call RegCopy "HKLM\SOFTWARE\Microsoft\Function Discovery"
+call RegCopy "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\XWizards"
+
+call RegCopy "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print"
+call RegCopy "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\DeviceDisplayObjects"
+call RegCopy "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Svchost\PrintWorkflow"
+call RegCopy "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports"
+
+reg add "HKLM\Tmp_Software\Microsoft\Windows NT\Windows" /v Spooler /d yes /f
+
 rem avoid error: "the printer driver is not compatible with a policy on your computer which disable NT4.0 driver"
 reg add "HKLM\Tmp_Software\Policies\Microsoft\Windows NT\Printers" /v KmPrintersAreBlocked /t REG_DWORD /d 0 /f
 

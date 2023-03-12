@@ -1,3 +1,8 @@
+if "x%opt[component.bluetooth]%"=="xtrue" (
+    set opt[component.MTP]=true
+    set opt[component.printer]=true
+)
+
 if "x%opt[component.camera]%"=="xtrue" set opt[component.MTP]=true
 
 

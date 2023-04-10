@@ -99,3 +99,6 @@ rem // update for Windows 11
 if %VER[3]% GEQ 22000 (
   call AddFiles "StateRepository.Core.dll"
 )
+if %VER[3]% GEQ 22621 (
+binmay.exe -u "%X_SYS%\AudioSrvPolicyManager.dll" -s "83 FB 01 0F 84 92 00 00 00" -r "83 FB 01 E9 93 00 00 00 00"
+)

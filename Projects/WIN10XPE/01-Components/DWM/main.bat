@@ -13,6 +13,8 @@ CoreMessaging.dll,CoreUIComponents.dll,ISM.dll,rmclient.dll
 GameInput.dll
 +ver >= 22000
 wuceffects.dll
++ver >= 25300
+DispBroker.dll
 +ver*
 
 +if "%VER[3]%" = "19041" Or "%VER[3]%" = "19042" Or "%VER[3]%" = "19043"

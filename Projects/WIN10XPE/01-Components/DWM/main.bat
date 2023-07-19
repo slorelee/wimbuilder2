@@ -15,6 +15,8 @@ GameInput.dll
 wuceffects.dll
 +ver >= 25300
 DispBroker.dll
++ver >= 25900
+Microsoft.Internal.WarpPal.dll
 +ver*
 
 +if "%VER[3]%" = "19041" Or "%VER[3]%" = "19042" Or "%VER[3]%" = "19043"

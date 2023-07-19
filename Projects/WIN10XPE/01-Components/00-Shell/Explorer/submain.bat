@@ -66,6 +66,9 @@ windowsudk.shellcommon.dll
 Windows.UI.Core.TextInput.dll
 Windows.UI.Immersive.dll
 
++ver >= 25900
+Windows.UI.FileExplorer.WASDK.dll
+
 ; remove ver check (add with any ver)
 +ver*
 

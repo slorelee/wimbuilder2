@@ -2,11 +2,11 @@ fieldset {
     /*background: rgba(255,255,255,.3);
     border-color: rgba(255,255,255,.6);*/
     border-style: solid;
-    border-width: 2px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
+    border-width: 0.16rem;
+    -moz-border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -khtml-border-radius: 0.5rem;
+    border-radius: 0.5rem;
     padding: 2px 10px;
     margin-bottom: 2px;
     /* font-size:0.8em; */
@@ -14,23 +14,31 @@ fieldset {
 
 fieldset legend {
     color: #302A2A;
-    font: bold 16px/2 Verdana, Geneva, sans-serif;
+    font: bold 1.2rem/2 Verdana, Geneva, sans-serif;
     font-weight: bold;
     text-align: left;
     text-shadow: 2px 2px 2px rgb(88, 126, 156);
 }
 
+#patch_html fieldset {
+    margin:10px 10px 0px 0px;
+}
+
 .box {
-  background-color: #f1f1f1;
-  padding: 0.01em 2px;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+    background-color: #f1f1f1;
+    padding: 0.5rem 5rem 0.5rem 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -khtml-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
 }
 
 .left_label {
-  display:inline-block;
-  width: 50%;
+    display:inline-block;
+    width: 50%;
 }
 .right_val {
-  display:inline-block;
-  width: 40%;
+    display:inline-block;
+    width: 40%;
 }

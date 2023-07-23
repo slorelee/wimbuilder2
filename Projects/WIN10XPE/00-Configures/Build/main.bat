@@ -41,6 +41,7 @@ rem call RegCopy HKLM\Software\Classes\Unknown
 rem //- fix Speech path for the full SOFTWARE hive (Speech_OneCore -> Speech)
 if not "x%opt[build.registry.software]%"=="xfull" goto :End_FixSpeechPath
 
+if "%WB_PE_LANG%"=="ru-RU" set SpeechPath_FixReg=WINRE_TTS_MS_RU-RU_IRINA_11.0.reg
 if "%WB_PE_LANG%"=="zh-CN" set SpeechPath_FixReg=WINRE_TTS_MS_ZH-CN_HUIHUI_11.0.reg
 if "%WB_PE_LANG%"=="zh-TW" set SpeechPath_FixReg=WINRE_TTS_MS_ZH-TW_HANHAN_11.0.reg
 if "%SpeechPath_FixReg%"=="" goto :End_FixSpeechPath

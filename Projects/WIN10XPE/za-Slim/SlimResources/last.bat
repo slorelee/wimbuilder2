@@ -5,6 +5,7 @@ set WB_ARCH=x64
 )
 
 if not exist "%WINXSHELL%" goto :EOF
+if exist "%X_SYS%\AppxSysprep.dll" goto :EOF
 
 set "Icons=%X_WIN%\Resources\Icons"
 if not exist "%Icons%" md "%Icons%"

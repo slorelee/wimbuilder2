@@ -10,15 +10,6 @@ SetACL.exe -on "HKLM\Tmp_SYSTEM" -ot reg -actn ace -ace "n:Everyone;p:full"
 call RegCopy HKLM\Software\Classes\AppID
 call ACLRegKey HKLM\Software\Classes\AppID
 
-rem set "RunAs"="Interactive User" -* "RunAs"=""
-echo REGEDIT4 > "%WB_TMP_PATH%\RunAsUpdateTmp.reg"
-echo. >> "%WB_TMP_PATH%\RunAsUpdateTmp.reg"
-for /F %%i IN ('Reg Query HKLM\Tmp_Software\Classes\AppID /s /f "Interactive User" ^|%findcmd% Tmp_Software') do (
-    echo [%%i]
-    echo "RunAs"=""
-) >> "%WB_TMP_PATH%\RunAsUpdateTmp.reg"
-reg import "%WB_TMP_PATH%\RunAsUpdateTmp.reg"
-
 call RegCopy HKLM\Software\Classes\CLSID
 call RegCopy HKLM\Software\Classes\Interface
 call RegCopy HKLM\Software\Classes\TypeLib

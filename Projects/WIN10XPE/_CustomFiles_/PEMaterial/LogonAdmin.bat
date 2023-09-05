@@ -21,7 +21,12 @@ if not exist X:\Windows\explorer.exe (
 )
 
 reg add "%regkey%\SpecialAccounts\UserList" /v Guest /t REG_DWORD /d 0 /f
-reg add "%regkey%" /v EnableSIHostIntegration /t REG_DWORD /d 0 /f
+
+if exist X:\Windows\System32\AppxSysprep.dll (
+    reg add "%regkey%" /v EnableSIHostIntegration /t REG_DWORD /d 1 /f
+) else (
+    reg add "%regkey%" /v EnableSIHostIntegration /t REG_DWORD /d 0 /f
+)
 
 rem -- // REGI HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-18\ProfileImagePath=X:\Users\Administrator
 
@@ -36,6 +41,19 @@ rem -- call_dll('Netapi32.dll','NetJoinDomain', nil, 'WORKGROUP', nil, nil, nil,
 sc start seclogon
 
 if exist "%WinDir%\System32\PreCreateAdminProfile.bat" call PreCreateAdminProfile.bat
+
+if exist X:\Windows\System32\AppxSysprep.dll (
+     reg add HKEY_LOCAL_MACHINE\SYSTEM\Setup /v SystemSetupInProgress /t REG_DWORD /d 0 /f
+     sc start SENS
+     sc start CoreMessagingRegistrar
+     sc start UserManager
+     sc start BrokerInfrastructure
+     sc start StateRepository
+     sc start Schedule
+     sc start AppReadiness
+     rem sc stop DsmSvc
+)
+start /wait "System Init" "X:\Program Files\WinXShell\WinXShell.exe" -code WinPE:SystemInit()
 
 echo Ready to logon ...
 tsdiscon.exe

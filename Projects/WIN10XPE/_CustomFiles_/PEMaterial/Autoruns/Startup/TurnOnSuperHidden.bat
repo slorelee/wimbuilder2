@@ -1,0 +1,1 @@
+start WinXShell.exe -code "FolderOptions:Set('ShowAll', 1)"

@@ -3,6 +3,10 @@ del /q X:\Users\Default\NTUSER.DAT
 copy /y X:\Windows\System32\config\Default X:\Users\Default\NTUSER.DAT
 
 echo Update registry ...
+
+rem show logon animation
+reg delete "HKLM\tmp_DEFAULT\Control Panel\Desktop" /v "UserPreferencesMask" /f
+
 set "regkey=HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
 reg add "%regkey%" /v AutoAdminLogon /t REG_DWORD /d 1 /f
 reg add "%regkey%" /v DefaultUserName /d Administrator /f
@@ -37,7 +41,6 @@ if exist X:\Windows\security\templates\unattend.inf (
 )
 
 echo Start services ...
-rem -- call_dll('Netapi32.dll','NetJoinDomain', nil, 'WORKGROUP', nil, nil, nil, 32)
 sc start seclogon
 
 if exist "%WinDir%\System32\PreCreateAdminProfile.bat" call PreCreateAdminProfile.bat
@@ -52,8 +55,11 @@ if exist X:\Windows\System32\AppxSysprep.dll (
      sc start Schedule
      sc start AppReadiness
      rem sc stop DsmSvc
+     rem classic contextmenu
+     rem reg delete "HKLM\tmp_SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /va /f
 )
 start /wait "System Init" "X:\Program Files\WinXShell\WinXShell.exe" -code WinPE:SystemInit()
+start /wait "NetJoin" "X:\Program Files\WinXShell\WinXShell.exe" -code System:NetJoin('WORKGROUP')
 
 echo Ready to logon ...
 tsdiscon.exe

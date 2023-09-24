@@ -54,7 +54,7 @@ if %VER[3]% GTR 17700 set VER_XAMLRES=rs5
 if %VER[3]% GTR 18300 set VER_XAMLRES=19h1
 if %VER[3]% GTR 21000 set VER_XAMLRES=21h1
 rem for future version
-if %VER[3]% GTR 22000 set VER_XAMLRES=*
+if %VER[3]% GTR 23000 set VER_XAMLRES=*
 set VER_XAMLRES=.%VER_XAMLRES%
 if "x%VER_XAMLRES%"=="x." set VER_XAMLRES=
 

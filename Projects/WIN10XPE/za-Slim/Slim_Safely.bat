@@ -71,7 +71,7 @@ goto :EOF
 
 :_Slim_nls
 if "x%WB_PE_ACP%"=="x*" goto :EOF
-call :KEEP_FILES \Windows\System32\ "C_1252.NLS,C_437.NLS,C_20127.NLS"
+call :KEEP_FILES \Windows\System32\ "C_1252.NLS,C_28591.NLS,C_437.NLS,C_20127.NLS"
 if not "x%WB_PE_ACP%"=="x1252" (
   call :KEEP_FILE \Windows\System32\C_%WB_PE_ACP%.NLS
 )

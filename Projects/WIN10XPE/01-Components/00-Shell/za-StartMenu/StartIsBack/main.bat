@@ -25,8 +25,23 @@ set _startMenuName=StartAllBack
 call V2X StartAllBack -extract StartAllBack_*_setup.exe "%X_PF%\StartAllBack"
 
 if not exist "%X_PF%\StartAllBack\StartAllBackX64.dll" goto :EOF
-del /f "%X%\Program Files\StartAllBack\StartAllBackLoaderA64.dll" 2> nul
-del /f "%X%\Program Files\StartAllBack\StartAllBackA64.dll" 2> nul
+if not "%WB_PE_ARCH%"=="arm64" (
+    del /f "%X%\Program Files\StartAllBack\StartAllBackLoaderA64.dll" 2> nul
+    del /f "%X%\Program Files\StartAllBack\StartAllBackA64.dll" 2> nul
+    del /f "%X%\Program Files\StartAllBack\DarkMagicLoaderA64.exe" 2> nul
+    del /f "%X%\Program Files\StartAllBack\DarkMagicA64.dll" 2> nul
+)
+if  not "%WB_PE_ARCH%"=="x64" (
+    del /f "%X%\Program Files\StartAllBack\StartAllBackLoaderX64.dll" 2> nul
+    del /f "%X%\Program Files\StartAllBack\StartAllBackX64.dll" 2> nul
+    del /f "%X%\Program Files\StartAllBack\DarkMagicLoaderX64.exe" 2> nul
+    del /f "%X%\Program Files\StartAllBack\DarkMagicX64.dll" 2> nul
+)
+if  not "%WB_PE_ARCH%"=="x86" (
+    del /f "%X%\Program Files\StartAllBack\DarkMagicLoaderX86.exe" 2> nul
+    del /f "%X%\Program Files\StartAllBack\DarkMagicX86.dll" 2> nul
+)
+
 del /f "%X%\Program Files\StartAllBack\UpdateCheck.exe" 2> nul
 :End_StartXBackFiles
 
@@ -49,6 +64,7 @@ van.dll
 if "%_startMenuName%"=="StartAllBack" (
     reg import "%~dp0SAB_RegDefault.reg"
     reg import "%~dp0SAB_RegSoftware.reg"
+    if "%WB_PE_ARCH%"=="arm64"  reg import "%~dp0SAB_RegSoftware_arm64.reg"
 ) else (
     reg import "%~dp0SIB_RegDefault.reg"
     reg import "%~dp0SIB_RegSoftware.reg"

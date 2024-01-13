@@ -183,3 +183,5 @@ rem =====================Reg_ShellHWDetection=====================
 call REGCOPY HKLM\SYSTEM\ControlSet001\Services\ShellHWDetection
 
 reg add "HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarMn /t REG_DWORD /d 0 /f
+
+reg add "HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v StartMenuInit /t REG_DWORD /d 0x0d /f

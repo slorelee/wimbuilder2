@@ -40,6 +40,9 @@ reg import %SpeechPath_FixReg%
 
 :End_FixSpeechPath
 
+rem // show right version info for 23H2 and later
+call RegCopy HKLM\SYSTEM\Software\Microsoft\BuildLayers
+
 rem has high cost performance to copy all DriverDatabase items,
 rem just 4MB SYSTEM size(608KB compressed)
 if not "x%opt[build.registry.drivers]%"=="xnotset" (

@@ -16,8 +16,8 @@ call V2X StartIsBack -extract StartIsBackPlusPlus_setup[v%opt[SIB.version]%].exe
 if not exist "%X%\Program Files\StartIsBack\StartIsBack64.dll" goto :EOF
 if not "%WB_PE_ARCH%"=="x64" del /f "%X%\Program Files\StartIsBack\StartIsBack64.dll"
 del /f "%X%\Program Files\StartIsBack\StartIsBackARM64.dll" 2> nul
-del /f "%X%\Program Files\StartIsBack\startscreen.exe" 2> nul
-del /f "%X%\Program Files\StartIsBack\UpdateCheck.exe" 2> nul
+rem del /f "%X%\Program Files\StartIsBack\startscreen.exe" 2> nul
+rem del /f "%X%\Program Files\StartIsBack\UpdateCheck.exe" 2> nul
 goto :End_StartXBackFiles
 
 :StartAllBackFiles

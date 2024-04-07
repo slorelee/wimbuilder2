@@ -46,6 +46,17 @@ for /f "tokens=3 usebackq" %%i in (`reg query "HKLM\Src_SOFTWARE\Microsoft\Windo
 set VER[4]=%WB_PE_BUILD%
 set VER[3.4]=%VER[3]%.%VER[4]%
 
+if "%VER[3]%"=="22621" (
+  if %VER[4]% GEQ 2428 (
+    set VER[3]=22631
+    set VER[3.4]=22631.%VER[4]%
+    set WB_PE_VER=10.0.22631
+    echo [UPDATED]:WB_PE_VER=10.0.22631
+    echo [UPDATED]:VER[3]=22631
+    echo [UPDATED]:VER[3.4]=22631.%VER[4]%
+  )
+)
+
 rem Windows.UI.Xaml.Resources.*.dll
 
 set VER_XAMLRES=

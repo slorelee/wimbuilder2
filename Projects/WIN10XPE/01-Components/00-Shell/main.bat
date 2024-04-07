@@ -49,6 +49,11 @@ shwebsvc.dll
 ; Details default folderview layout
 windows.storage.dll
 
+; Resolution settings for 24h2
++ver >= 26100
+DispBroker.Desktop.dll
+Windows.Graphics.dll
+
 :end_files
 
 call RegCopy /-s "HKLM\SOFTWARE\Classes\*"

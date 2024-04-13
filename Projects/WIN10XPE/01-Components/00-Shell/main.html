@@ -14,7 +14,8 @@ INIT-->
 
 
 <style>
- #shell_tab fieldset {
+ #shell_tab fieldset,
+ #shell_wallpaper {
     width: 22rem;
   }
 </style>
@@ -52,14 +53,14 @@ INIT-->
 
 <fieldset>
 <legend>Wallpaper</legend>
-<input type="image" class="opt_item" name="shell.wallpaper" update="src" src="wallpaper.jpg"
-   style="width:22rem;height:16.5rem;padding-top:0.25rem" onclick="select_image(this)" />
+<input type="image" id="shell_wallpaper" class="opt_item" name="shell.wallpaper" update="src" src="wallpaper.jpg"
+   style="height:16.5rem;padding-top:0.25rem" onclick="select_image(this)" />
 </fieldset>
 </div>
 <!-- TAB0 LEFT END -->
 
 <!-- TAB0 RIGHT START -->
-<div style="float:right;margin-right:20px;">
+<div style="float:left;">
 <fieldset>
 <legend>Desktop</legend>
 <span style="float:left;">Show This PC on Desktop</span>
@@ -115,13 +116,13 @@ INIT-->
     <div class="tab tab1">
 <!-- TAB1 START -->
 <div>
-<fieldset>
+<fieldset style="width:25rem;">
 <legend>Fix with WinXShell</legend>
 <style>
 #winxshell_fixitem .chklabel {
   float:left;padding-top:2px;
   height:2.4rem;
-  width:20rem;
+  width:22rem;
 }
 
 </style>

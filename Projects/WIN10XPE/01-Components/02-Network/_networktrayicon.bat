@@ -3,11 +3,6 @@ if "x%opt[network.full_functional]%"=="xtrue" goto :EOF
 
 rem ==========update filesystem==========
 
-if %VER[3]% GEQ 22621 (
-  call AddFiles WlanMediaManager.dll
-  goto :update_registry
-)
-
 call AddFiles %0 :end_files
 goto :end_files
 @\Windows\System32\drivers\
@@ -27,16 +22,24 @@ Microsoft-Windows-NetIO-Package~*.cat
 +ver*
 
 @\Windows\System32\
++ver < 22621
 authfwcfg.dll,CoreMessaging.dll,dmcmnutils.dll,fdWNet.dll,mdmregistration.dll,mprddm.dll
 ndfapi.dll,netevent.dll,networkexplorer.dll,NetworkStatus.dll
 p2pnetsh.dll,sc.exe,sscoreext.dll,VAN.dll,wfhc.dll,Windows.Globalization.dll,winhttp.dll
++ver*
+
 ; WcmSvc
 wcmapi.dll,wcmcsp.dll,wcmsvc.dll,NetworkUXBroker.dll
 ; WcncSvc
 WcnApi.dll,wcncsvc.dll,WcnEapAuthProxy.dll,WcnEapPeerProxy.dll,WcnNetsh.dll
+
++if "x%opt[network.trayicon_wlan]%"="xtrue"
 ; Wlan
 mobilenetworking.dll,wlanapi.dll,wlancfg.dll,WLanConn.dll,wlandlg.dll,wlanhlp.dll
 wlanmsm.dll,wlanpref.dll,wlansvc.dll,wlansvcpal.dll
+
+WlanMediaManager.dll
+-if
 
 :end_files
 

@@ -1,5 +1,7 @@
 rem incompatible with StartIsBack(SYSTEM account)
-del /q "%X_SYS%\windows.immersiveshell.serviceprovider.dll"
+if not exist "%X_SYS%\seclogon.dll" (
+  del /q "%X_SYS%\windows.immersiveshell.serviceprovider.dll"
+)
 
 rem // hide useless contextmenu
 reg add "HKLM\Tmp_DEFAULT\Software\Policies\Microsoft\Windows\Explorer" /v HidePeopleBar /t REG_DWORD /d 1 /f 

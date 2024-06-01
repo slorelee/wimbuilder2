@@ -7,7 +7,7 @@ if "x%opt[build.cmd_mode]%"=="xtrue" (
 rem ===================================
 rem set Enviroment
 rem BUILD_NUMBER
-for /f "tokens=3 delims=." %%v in ("%WB_PE_VER%") do set VER[3]=%%v
+for /f "tokens=1,2,3 delims=." %%a in ("%WB_PE_VER%") do (set VER[1]=%%a) & (set VER[2]=%%b) & (set VER[3]=%%c)
 set VER[4]=%WB_PE_BUILD%
 set VER[3.4]=%VER[3]%.%VER[4]%
 rem ===================================

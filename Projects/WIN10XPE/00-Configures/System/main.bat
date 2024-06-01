@@ -61,7 +61,9 @@ if %VER[3]% GTR 17700 (
   reg add HKLM\Tmp_System\Setup\AllowStart\NlaSvc /f
 )
 
-call ProductOptions.bat
+if %VER[1]% GEQ 10 (
+  call ProductOptions.bat
+)
 
 rem // Environment
 reg add "HKLM\Tmp_System\ControlSet001\Control\Session Manager\Environment" /v AppData /t REG_EXPAND_SZ  /d "%%SystemDrive%%\Users\Default\AppData\Roaming" /f

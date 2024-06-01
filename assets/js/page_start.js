@@ -59,7 +59,7 @@ function start_page_init() {
         $('#quick_wim_selector').selectmenu({
             select: quick_wim_selector_click
         });
-        $('#quick_wim_selector').selectmenu('option', 'width', '200px');
+        $('#quick_wim_selector').selectmenu('option', 'width', '15rem');
         $('#quick_wim_selector').val('-');
         $('#quick_wim_selector').selectmenu('refresh');
         quick_wim_selector_event_enabled = true;
@@ -77,7 +77,7 @@ $('#wb_workspace_folder_btn').click(function(){
     $wb_workspace = $(this).val();
 });
 
-function auto_detect_wims(src_path) {
+function auto_detect_wims(src_path, ignore_winre) {
     var found = {
         "install.wim":0,
         "winre.wim":0,
@@ -111,7 +111,7 @@ function auto_detect_wims(src_path) {
         }
     }
 
-    if ($("#wb_auto_winre").prop("checked") == true) {
+    if (!ignore_winre && $("#wb_auto_winre").prop("checked") == true) {
         if (found["install.wim"] == 1 && found["winre.wim"] == 0) {
             $wb_base = "winre.wim";
             found["winre.wim"] = 1;
@@ -136,7 +136,7 @@ function reset_quick_wim_selector() {
     quick_wim_selector_event_enabled = true;
 }
 
-function wb_src_folder_btn_click(event) {
+function wb_src_folder_btn_click(event, ignore_winre) {
     if (event) {
         $('#wb_src_folder').val(BrowseFolder($i18n['Select the extracted install.wim folder:']));
     }
@@ -151,7 +151,7 @@ function wb_src_folder_btn_click(event) {
     if (path.slice(-1) == '\\') path = path.slice(0, -1);
     var found = auto_detect_wims(path);
     if (found["install.wim"] == 0) {
-        found = auto_detect_wims(path + '\\sources');
+        found = auto_detect_wims(path + '\\sources', ignore_winre);
     }
 
     check_wim_file();
@@ -201,6 +201,12 @@ function quick_wim_selector_click(event, ui) {
             $('#wb_base').val('');
             base_idx = 0;
             wb_src_folder_btn_click(false);
+            break;
+        case 'boot.wim[2]':
+            $wb_base = '';
+            $('#wb_base').val('');
+            base_idx = 0;
+            wb_src_folder_btn_click(false, true);
             break;
         case 'test\\boot.wim[1]':
             base_idx = 1;

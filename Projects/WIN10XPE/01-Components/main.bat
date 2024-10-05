@@ -1,5 +1,5 @@
 if "x%opt[component.taskmgr]%"=="xtrue" (
-  call AddFiles "pdh.dll,taskmgr.exe"
+  call AddFiles "pdh.dll,d3d12.dll,TaskManagerDataLayer.dll,taskmgr.exe"
 )
 
 if "x%opt[component.bitlocker]%"=="xtrue" (

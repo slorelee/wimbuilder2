@@ -70,6 +70,8 @@ if "%_startMenuName%"=="StartAllBack" (
     reg import "%~dp0SIB_RegSoftware.reg"
 )
 
+rem reg add HKLM\Tmp_Default\Software\StartIsBack /v WinBuild /t REG_DWORD /d %VER[3]% /f
+
 rem disable Win32 tray clock
 reg add HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell /v UseWin32TrayClockExperience /t REG_DWORD /d 0 /f
 

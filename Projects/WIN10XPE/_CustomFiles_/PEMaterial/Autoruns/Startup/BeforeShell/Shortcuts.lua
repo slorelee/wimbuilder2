@@ -13,7 +13,7 @@
 -- LINK('%Desktop%\\Internet Explorer.lnk', '%ProgramFiles%\\Internet Explorer\\iexplore.exe')
 
 
--- if File.exists('X:\\Windows\\System32\\seclogon.dll') then
+-- if File.exists('X:\\Windows\\System32\\tsdiscon.exe') then
 --   LINK('%Desktop%\\#{@shutdownux.dll,3052}.lnk', 'X:\\Windows\\System32\\SwitchUser.bat', '', 'imageres.dll', 319)
 -- end
 

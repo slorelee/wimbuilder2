@@ -3,7 +3,7 @@ if "x%opt[shell.startmenu]%"=="xStartAllBack" (
 )
 
 rem incompatible with StartIsBack(SYSTEM account)
-if not exist "%X_SYS%\seclogon.dll" (
+if not exist "%X_SYS%\tsdiscon.exe" (
   del /q "%X_SYS%\windows.immersiveshell.serviceprovider.dll"
 )
 

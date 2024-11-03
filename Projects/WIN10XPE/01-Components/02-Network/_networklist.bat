@@ -13,7 +13,7 @@ ImplatSetup.dll,netprofm.dll,netprofmsvc.dll,npmproxy.dll,pnidui.dll
 
 rem // NetworkSetup2 and NetworkUxManager
 
-if exist "%X_SYS%\seclogon.dll" (
+if exist "%X_SYS%\tsdiscon.exe" (
     call RegCopy HKLM\System\ControlSet001\Control\NetworkSetup2
 ) else (
     call RegCopy HKLM\System\ControlSet001\Control\NetworkSetup2\Filters

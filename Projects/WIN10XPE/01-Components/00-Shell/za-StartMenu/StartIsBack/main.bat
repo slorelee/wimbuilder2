@@ -42,7 +42,7 @@ if  not "%WB_PE_ARCH%"=="x86" (
     del /f "%X%\Program Files\StartAllBack\DarkMagicX86.dll" 2> nul
 )
 
-del /f "%X%\Program Files\StartAllBack\UpdateCheck.exe" 2> nul
+rem del /f "%X%\Program Files\StartAllBack\UpdateCheck.exe" 2> nul
 :End_StartXBackFiles
 
 rem Support SIB v2.9.4
@@ -70,7 +70,18 @@ if "%_startMenuName%"=="StartAllBack" (
     reg import "%~dp0SIB_RegSoftware.reg"
 )
 
-rem reg add HKLM\Tmp_Default\Software\StartIsBack /v WinBuild /t REG_DWORD /d %VER[3]% /f
+rem keep UpdateCheck.exe to update
+goto :WinInfoUpdated
+
+rem Support SAB v3.8
+reg add HKLM\Tmp_Default\Software\StartIsBack /v WinBuild /t REG_DWORD /d %VER[3]% /f
+
+call GetLocaleId %WB_PE_LANG%
+set WinLangID=%GetLocaleId_Ret%
+if "x%WinLangID%"=="x" set WinLangID=1033
+reg add HKLM\Tmp_Default\Software\StartIsBack /v WinLangID /t REG_DWORD /d %WinLangID% /f
+
+:WinInfoUpdated
 
 rem disable Win32 tray clock
 reg add HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell /v UseWin32TrayClockExperience /t REG_DWORD /d 0 /f

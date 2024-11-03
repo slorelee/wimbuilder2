@@ -62,6 +62,8 @@ van.dll
 :end_files
 
 if "%_startMenuName%"=="StartAllBack" (
+    rem volume icon
+    if "x%opt[support.audio]%"=="xtrue" call :AddFiles seclogon.dll
     reg import "%~dp0SAB_RegDefault.reg"
     reg import "%~dp0SAB_RegSoftware.reg"
     if "%WB_PE_ARCH%"=="arm64"  reg import "%~dp0SAB_RegSoftware_arm64.reg"

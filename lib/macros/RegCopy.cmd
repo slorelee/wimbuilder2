@@ -29,7 +29,7 @@ echo [MACRO]RegCopy %*
 
 if "x%~2"=="x" goto :_SimpleCopy
 set "find_key=%~2"
-for /f "delims=" %%A IN ('Reg Query "%src_key%" /s /f "%find_key%"') Do Call :_RegCopy "%%A"
+for /f "delims=" %%A IN ('Reg Query "%src_key%" /f "%find_key%"') Do Call :_RegCopy "%%A"
 goto :EOF
 
 :_SimpleCopy

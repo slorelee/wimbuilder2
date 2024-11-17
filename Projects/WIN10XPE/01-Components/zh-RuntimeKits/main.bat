@@ -3,6 +3,10 @@ if "x%opt[build.wow64support]%"=="xtrue" (
   call :ApplySubPatch "..\SysWOW64_Basic"
 )
 
+if "x%opt[wow64.speech_api]%"=="xtrue" (
+  call _SysWOW64_SAPI.bat
+)
+
 if "x%opt[appcompat.property_page]%"=="xtrue" (
   set opt[component.MSI]=true
 )
@@ -25,6 +29,10 @@ if "x%opt[component.opengl]%"=="xtrue" (
 
 if "x%opt[component.directx]%"=="xtrue" (
   call _DirectX.bat
+)
+
+if "x%opt[component.speech_onecore]%"=="xtrue" (
+  call _Speech_OneCore.bat
 )
 
 if "x%opt[appcompat.property_page]%"=="xtrue" (

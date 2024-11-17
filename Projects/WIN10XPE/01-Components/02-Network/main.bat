@@ -3,9 +3,12 @@ rem // For Samba Servers
 call :PolicyLmCompatLevel
 
 if "x%opt[component.PPPoE]%"=="xtrue" (
-  call :ApplySubPatch "..\PPPoE"
+  call :ApplySubPatch "..\PPPoE" main.bat
 )
 
+if not exist "%X_SYS%\wlanapi.dll" (
+  call :ApplySubPatch "..\00-Boot2WinRE" _WinPE-WiFi-Package.bat
+)
 call _networktrayicon.bat
 call full_functional.bat
 call netdrivers.bat
@@ -13,9 +16,9 @@ call netdrivers.bat
 goto :EOF
 
 :ApplySubPatch
-  echo Applying Patch: %~1\main.bat
+  echo Applying Patch: %~1\%~2
   pushd "%~1"
-  call main.bat
+  call %~2
   popd
 goto :EOF
 

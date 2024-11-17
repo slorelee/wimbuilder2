@@ -54,6 +54,10 @@ rem always keep en-US
 call :_REMOVE_MUI "%~1" "ar-SA bg-BG ca-ES cs-CZ da-DK de-DE el-GR en-GB es-ES eu-ES es-MX et-EE fi-FI fr-CA fr-FR"
 call :_REMOVE_MUI "%~1" "gl-ES he-IL hr-HR hu-HU id-ID it-IT ja-JP ko-KR lt-LT lv-LV nb-NO nl-NL pl-PL pt-BR pt-PT"
 call :_REMOVE_MUI "%~1" "qps-ploc ro-RO ru-RU sk-SK sl-SI sr-Latn-RS sv-SE th-TH tr-TR uk-UA vi-VN zh-CN zh-TW"
+call :_REMOVE_MUI "%~1" "af-ZA am-ET as-IN az-Latn-AZ be-BY bn-IN bs-Latn-BA ca-ES-valencia chr-CHER-US cy-GB"
+call :_REMOVE_MUI "%~1" "fa-IR fil-PH ga-IE gd-GB gu-IN hi-IN hy-AM is-IS ka-GE kk-KZ km-KH kn-IN kok-IN lb-LU lo-LA"
+call :_REMOVE_MUI "%~1" "mi-NZ mk-MK ml-IN mr-IN ms-MY mt-MT ne-NP nn-NO or-IN pa-IN qps-plocm quz-PE"
+call :_REMOVE_MUI "%~1" "sq-AL sr-Cyrl-BA sr-Cyrl-RS ta-IN te-IN tt-RU ug-CN ur-PK uz-Latn-UZ"
 goto :EOF
 
 :_REMOVE_MUI

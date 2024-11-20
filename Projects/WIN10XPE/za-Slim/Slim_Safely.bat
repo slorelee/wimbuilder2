@@ -75,6 +75,12 @@ call :KEEP_FILES \Windows\System32\ "C_1252.NLS,C_28591.NLS,C_437.NLS,C_20127.NL
 if not "x%WB_PE_ACP%"=="x1252" (
   call :KEEP_FILE \Windows\System32\C_%WB_PE_ACP%.NLS
 )
+if "x%WB_PE_ACP%"=="x936" (
+  call :KEEP_FILE \Windows\System32\C_950.NLS
+)
+if "x%WB_PE_ACP%"=="x950" (
+  call :KEEP_FILE \Windows\System32\C_936.NLS
+)
 if not "x%WB_PE_OEMCP%"=="x437" (
   call :KEEP_FILE \Windows\System32\C_%WB_PE_OEMCP%.NLS
 )

@@ -77,6 +77,11 @@ netplwiz.dll
 ; Control Pannel
 inetcpl.cpl,netid.dll
 
++ver >= 26100
+; system tray icon
+NetworkIcon.dll
++ver*
+
 ; Windows Firewall/Internet Connection Sharing s (ICS) ervice
 ipnathlp.dll,icsigd.dll,icsunattend.exe
 

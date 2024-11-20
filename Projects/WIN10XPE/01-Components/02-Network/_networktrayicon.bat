@@ -26,6 +26,8 @@ Microsoft-Windows-NetIO-Package~*.cat
 authfwcfg.dll,CoreMessaging.dll,dmcmnutils.dll,fdWNet.dll,mdmregistration.dll,mprddm.dll
 ndfapi.dll,netevent.dll,networkexplorer.dll,NetworkStatus.dll
 p2pnetsh.dll,sc.exe,sscoreext.dll,VAN.dll,wfhc.dll,Windows.Globalization.dll,winhttp.dll
++ver >= 26100
+NetworkIcon.dll
 +ver*
 
 ; WcmSvc

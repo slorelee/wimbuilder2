@@ -94,7 +94,12 @@ FrameServerMonitorClient.dll
 usermgrcli.dll
 UserMgrProxy.dll
 Windows.Media.MediaControl.dll
-
++ver >= 26100
+atl.dll
+mfksproxy.dll
+mfsensorgroup.dll
+vfwwdm32.dll
+RTWorkQ.dll
 +ver*
 
 @\Windows\%System32OrSysWOW64%\

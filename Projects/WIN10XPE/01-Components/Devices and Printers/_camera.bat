@@ -82,6 +82,8 @@ msg711.acm
 msgsm32.acm
 -syswow64
 
++ver >= 26100
+VoiceClarityApo.dll
 +ver*
 
 ;ECap, webcam 7

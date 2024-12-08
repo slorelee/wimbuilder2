@@ -8,6 +8,9 @@ goto :end_files
 Microsoft-Windows-Client-Desktop-Required-Package*.cat
 +ver > 19500
 Microsoft-OneCore-Connectivity-UsbHost-Package~*.cat
++ver >= 26100
+Microsoft-OneCore-Connectivity-UsbConnectorManager-Package~*.cat
+Microsoft-OneCore-Connectivity-UsbDualRole-Package~~*.cat
 +ver*
 \Windows\System32\winusb*
 :end_files

@@ -139,8 +139,10 @@ del /a /f /q "%X_SYS%\sysreset.exe"
 if exist "%X_SYS%\TDLMigration.dll" del /a /f /q "%X_SYS%\TDLMigration.dll"
 del /a /f /q "%X_SYS%\tier2punctuations.dll"
 
-del /a /f /q "%X_SYS%\TimeBrokerClient.dll"
-del /a /f /q "%X_SYS%\TimeBrokerServer.dll"
+if %VER[3]% LSS 22000 (
+  del /a /f /q "%X_SYS%\TimeBrokerClient.dll"
+  del /a /f /q "%X_SYS%\TimeBrokerServer.dll"
+)
 
 if 1==0 (
   del /a /f /q "%X_SYS%\appinfo.dll"
@@ -190,12 +192,16 @@ del /a /f /q "%X_SYS%\winquic.dll"
 del /a /f /q "%X_SYS%\winresume.efi"
 del /a /f /q "%X_SYS%\winresume.exe"
 
-del /a /f /q "%X_SYS%\winsqlite3.dll"
+if %VER[3]% LSS 22000 (
+  del /a /f /q "%X_SYS%\winsqlite3.dll"
+)
 
 del /a /f /q "%X_SYS%\wpr.config.xml"
 del /a /f /q "%X_SYS%\wpr.exe"
 
-del /a /f /q "%X_SYS%\wpx.dll"
+if %VER[3]% LSS 22000 (
+  del /a /f /q "%X_SYS%\wpx.dll"
+)
 
 :END_SLIM_FILES
 rem restore [KEEP]

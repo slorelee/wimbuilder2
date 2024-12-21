@@ -38,7 +38,7 @@ goto :end_files
 \Windows\WinSxS\Manifests\%SxSArch%_microsoft-windows-servicingstack_*.manifest
 
 
-@windows\system32\
+@\Windows\System32\
 ; Not required with build 16299 \Windows\System32\SetWoW64.exe(loadWoW64.exe)
 ntdll.dll
 wow64.dll,wow64cpu.dll,wow64win.dll,wowreg32.exe
@@ -47,8 +47,9 @@ wow64.dll,wow64cpu.dll,wow64win.dll,wowreg32.exe
 wow64base.dll
 wow64con.dll
 
-@windows\SysWOW64\
-C_*.NLS,KBD*.dll
+@\Windows\SysWOW64\
+KBDUS.DLL
+%KBD_LayoutFile%
 
 +ver > 18300
 DXCore.dll

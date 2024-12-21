@@ -54,18 +54,17 @@ if "x%_LocaleId%"=="x" (
 
 set _LayoutFile=
 for /f "tokens=4" %%l in ('reg query "HKLM\Tmp_SYSTEM\ControlSet001\Control\Keyboard Layouts\%_LocaleId%" /v "Layout File"') do (
-  set _LayoutFile=%%l
+  set KBD_LayoutFile=%%l
 )
 echo [INFO] Got LocaleId:%_LocaleId%
-echo [INFO] Got LayoutFile:%_LayoutFile%
+echo [INFO] Got LayoutFile:%KBD_LayoutFile%
 
 call :KEEP_FILE \Windows\System32\KBDUS.DLL
-if /i "x%_LayoutFile%"=="xKBDUS.DLL" set _LayoutFile=
-if not "x%_LayoutFile%"=="x" (
-  call :KEEP_FILE "\Windows\System32\%_LayoutFile%"
+if /i "x%KBD_LayoutFile%"=="xKBDUS.DLL" set KBD_LayoutFile=
+if not "x%KBD_LayoutFile%"=="x" (
+  call :KEEP_FILE "\Windows\System32\%KBD_LayoutFile%"
 )
 set _LocaleId=
-set _LayoutFile=
 del /a /f /q "%X_SYS%\KB*.DLL"
 goto :EOF
 

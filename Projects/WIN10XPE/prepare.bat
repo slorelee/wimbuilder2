@@ -69,6 +69,13 @@ if "x%HasPatch%"=="xtrue" (
 )
 
 rem ===================================
+echo load i18n resources ...
+call _Locales_\i18n[en-US].bat
+if not "%WB_HOST_LANG%"=="%WB_PE_LANG%" goto :I18N_PRINT
+if exist "_Locales_\i18n[%WB_PE_LANG%].bat" call "_Locales_\i18n[%WB_PE_LANG%].bat"
+:I18N_PRINT
+set i18n.t
+rem ===================================
 rem reduce the wim file before mounting it
 cd /d za-Slim
 call SlimWim.bat

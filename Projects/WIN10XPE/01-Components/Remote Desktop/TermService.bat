@@ -127,4 +127,4 @@ if 1==1 (
   echo net start TermService
 )>"%X_PEMaterial%\EnableTermServiceFeature.bat"
 
-call LinkToDesktop -paramlist EnableTermServiceFeature.lnk "[[%X_PEMaterial%\EnableTermServiceFeature.bat]], '', 'shell32.dll', 17"
+call LinkToDesktop -paramlist "%i18n.t[EnableTermServiceFeature]%.lnk" "[[%X_PEMaterial%\EnableTermServiceFeature.bat]], '', 'shell32.dll', 17"

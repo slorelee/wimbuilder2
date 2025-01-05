@@ -11,11 +11,11 @@ if "x%opt[component.dsmsvc]%"=="xtrue" (
 )
 
 if "x%opt[component.MTP]%"=="xtrue" (
-    call :ApplySubPatch "..\MTP_Support"
+    call ApplyPatch "..\MTP_Support"
 )
 
 if "x%opt[component.RNDIS]%"=="xtrue" (
-    call :ApplySubPatch "..\RNDIS"
+    call ApplyPatch "..\RNDIS"
 )
 
 if "x%opt[component.printer]%"=="xtrue" (
@@ -31,11 +31,4 @@ if "x%opt[component.camera]%"=="xtrue" (
 )
 
 
-goto :EOF
-
-:ApplySubPatch
-echo Applying Patch: %~1\main.bat
-pushd "%~1"
-call main.bat
-popd
 goto :EOF

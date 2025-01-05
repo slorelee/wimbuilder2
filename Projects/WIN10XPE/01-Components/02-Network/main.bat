@@ -3,11 +3,11 @@ rem // For Samba Servers
 call :PolicyLmCompatLevel
 
 if "x%opt[component.PPPoE]%"=="xtrue" (
-  call :ApplySubPatch "..\PPPoE" main.bat
+  call ApplyPatch "..\PPPoE" main.bat
 )
 
 if not exist "%X_SYS%\wlanapi.dll" (
-  call :ApplySubPatch "..\00-Boot2WinRE" _WinPE-WiFi-Package.bat
+  call ApplyPatch "..\00-Boot2WinRE" _WinPE-WiFi-Package.bat
 )
 
 if "x%opt[build.registry.software]%"=="xfull" (
@@ -19,14 +19,6 @@ call full_functional.bat
 call netdrivers.bat
 
 goto :EOF
-
-:ApplySubPatch
-  echo Applying Patch: %~1\%~2
-  pushd "%~1"
-  call %~2
-  popd
-goto :EOF
-
 
 :PolicyLmCompatLevel
 if "x%opt[policy.lmcompatlevel]%"=="x-" set opt[policy.lmcompatlevel]=

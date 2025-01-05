@@ -1,6 +1,6 @@
 
 if "x%opt[build.wow64support]%"=="xtrue" (
-  call :ApplySubPatch "..\SysWOW64_Basic"
+  call ApplyPatch "..\SysWOW64_Basic"
 )
 
 if "x%opt[wow64.speech_api]%"=="xtrue" (
@@ -12,15 +12,15 @@ if "x%opt[appcompat.property_page]%"=="xtrue" (
 )
 
 if "x%opt[component.vcruntime]%"=="xtrue" (
-  call :ApplySubPatch "..\VCRuntime"
+  call ApplyPatch "..\VCRuntime"
 )
 
 if "x%opt[component.netfx]%"=="xtrue" (
-  call :ApplySubPatch "..\NetFX"
+  call ApplyPatch "..\NetFX"
 )
 
 if "x%opt[component.MSI]%"=="xtrue" (
-  call :ApplySubPatch "..\MSI"
+  call ApplyPatch "..\MSI"
 )
 
 if "x%opt[component.opengl]%"=="xtrue" (
@@ -43,12 +43,4 @@ if "x%opt[system.high_compatibility]%"=="xtrue" (
   call _Compatibility.bat
 )
 
-goto :EOF
-
-
-:ApplySubPatch
-  echo Applying Patch: %~1\main.bat
-  pushd "%~1"
-  call main.bat
-  popd
 goto :EOF

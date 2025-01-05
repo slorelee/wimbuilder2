@@ -3,30 +3,23 @@ if "x%opt[component.taskmgr]%"=="xtrue" (
 )
 
 if "x%opt[component.bitlocker]%"=="xtrue" (
-  call :ApplySubPatch ".\BitLocker"
+  call ApplyPatch ".\BitLocker"
 )
 
 if "x%opt[component.DWM]%"=="xtrue" (
-  call :ApplySubPatch ".\DWM"
+  call ApplyPatch ".\DWM"
 )
 
 if "x%opt[component.MMC]%"=="xtrue" (
-  call :ApplySubPatch ".\MMC"
+  call ApplyPatch ".\MMC"
 )
 
 if "x%opt[component.search]%"=="xtrue" (
-  call :ApplySubPatch ".\Search"
+  call ApplyPatch ".\Search"
 )
 
 if "x%opt[patch.drvinst]%"=="xtrue" (
-  call :ApplySubPatch ".\Patch_drvinst"
+  call ApplyPatch ".\Patch_drvinst"
 )
 
-goto :EOF
-
-:ApplySubPatch
-  echo Applying Patch: %~1\main.bat
-  pushd "%~1"
-  call main.bat
-  popd
 goto :EOF

@@ -47,6 +47,11 @@ WindowManagement.dll
 WindowManagementAPI.dll
 +ver > 20000
 pfclient.dll
++ver > 22621
+Windows.Globalization.dll
+;logoff(optional)
+Windows.UI.Core.TextInput.dll
+windowsudk.shellcommon.dll
 +ver*
 
 \Windows\SystemResources\Windows.UI.Logon

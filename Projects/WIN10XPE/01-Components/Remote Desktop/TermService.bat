@@ -37,6 +37,13 @@ rdvvmtransport.dll
 rfxvmt.dll
 tlscsp.dll
 
+UIAnimation.dll
+windowsudk.shellcommon.dll
+
+;logon screen background(optional)
+windows.immersiveshell.serviceprovider.dll
+WorkFoldersShell.dll
+
 ;v1803
 CertProp.dll
 

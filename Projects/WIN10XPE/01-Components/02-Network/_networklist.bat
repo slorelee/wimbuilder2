@@ -17,10 +17,11 @@ if exist "%X_SYS%\tsdiscon.exe" (
     call RegCopy HKLM\System\ControlSet001\Control\NetworkSetup2
 ) else (
     call RegCopy HKLM\System\ControlSet001\Control\NetworkSetup2\Filters
-    rem remove ms_pacer filter(QoS Packet Scheduler)
-    reg delete HKLM\Tmp_System\ControlSet001\Control\NetworkSetup2\Filters\{B5F4D659-7DAA-4565-8E41-BE220ED60542} /f
     call RegCopy HKLM\System\ControlSet001\Control\NetworkSetup2\Plugins
 )
+rem remove ms_pacer filter(QoS Packet Scheduler)
+reg delete HKLM\Tmp_System\ControlSet001\Control\NetworkSetup2\Filters\{B5F4D659-7DAA-4565-8E41-BE220ED60542} /f
+
 call RegCopy HKLM\System\ControlSet001\Control\NetworkUXManager
 
 call RegCopy "HKLM\Software\Microsoft\Windows NT\CurrentVersion\NetworkList"

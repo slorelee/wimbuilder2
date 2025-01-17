@@ -22,9 +22,9 @@ rem copy /y "%X%\Windows\WinSxS\mrxsmb10.sys" "%X_SYS%\drivers\mrxsmb10.sys"
 rem sxsexp32 must run in Windows 10(build host)
 
 if %WB_ARCH%==x64 (
-  sxsexp64.exe "%X%\Windows\WinSxS\mrxsmb10.sys" "%X_SYS%\drivers\mrxsmb10.sys"
+  sxsexp64.exe "%X%\Windows\WinSxS\mrxsmb10.sys" "%X_SYS%\drivers\mrxsmb10.sys" 2>&1>tmp.txt & type tmp.txt & del tmp.txt
 ) else (
-  sxsexp32.exe "%X%\Windows\WinSxS\mrxsmb10.sys" "%X_SYS%\drivers\mrxsmb10.sys"
+  sxsexp32.exe "%X%\Windows\WinSxS\mrxsmb10.sys" "%X_SYS%\drivers\mrxsmb10.sys" 2>&1>tmp.txt & type tmp.txt & del tmp.txt
 )
 
 del /f /q "%X%\Windows\WinSxS\mrxsmb10.sys"

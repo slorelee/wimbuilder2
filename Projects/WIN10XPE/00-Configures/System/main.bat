@@ -39,6 +39,7 @@ simsun.ttc
 
 +ver > 21000
 \Windows\Fonts\SegoeIcons.ttf
+\Windows\System32\ISM.exe
 +ver*
 
 :end_files

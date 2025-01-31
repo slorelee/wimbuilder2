@@ -114,7 +114,7 @@ var Project = {
                     name = patch_name;
                 }
             } else {
-                var pos = name.indexOf('-');
+                var pos = name.lastIndexOf('-');
                 if (pos >= 0) name = name.substring(pos + 1);
             }
             if (patch_opened != null) state_opened = patch_opened;

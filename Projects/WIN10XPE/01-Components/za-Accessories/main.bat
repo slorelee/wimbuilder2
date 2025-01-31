@@ -26,3 +26,7 @@ if "x%opt[component.accessibility]%"=="xtrue" (
 call AddFiles "\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\desktop.ini"
 
 call doAddFiles
+
+if "x%opt[component.WMP]%"=="xtrue" (
+  call ApplyPatch "..\Windows Media Player"
+)

@@ -108,22 +108,7 @@ Windows Registry Editor Version 5.00
 @=hex(2):22,00,58,00,3a,00,5c,00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,00,20,00,46,00,69,00,6c,00,65,00,73,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,20,00,4d,00,65,00,64,00,69,00,61,00,20,00,50,00,6c,00,61,00,79,00,65,00,72,00,5c,00,77,00,6d,00,70,00,6c,00,61,00,79,00,65,00,72,00,2e,00,65,00,78,00,65,00,22,00,20,00,22,00,25,00,31,00,22,00
 ;//-- Associate file types
 
-[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.wav]
-@="WMP"
-
-[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.wmv]
-@="WMP"
-
-[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.wma]
-@="WMP"
-
-[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mp3]
-@="WMP"
-
 [HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.asf]
-@="WMP"
-
-[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.avi]
 @="WMP"
 
 [HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.divx]
@@ -131,19 +116,7 @@ Windows Registry Editor Version 5.00
 ;//RegWrite,HKLM,0x1,Tmp_Software\Classes\.flv,,WMP
 ;//RegWrite,HKLM,0x1,Tmp_Software\Classes\.flv4,,WMP
 
-[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.m4v]
-@="WMP"
-
-[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mov]
-@="WMP"
-
 [HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mpg]
-@="WMP"
-
-[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mp4]
-@="WMP"
-
-[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mkv]
 @="WMP"
 
 [HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.flac]
@@ -154,7 +127,32 @@ Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.m2ts]
 @="WMP"
+
 ;//
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.wav]
+@="WMP11.AssocFile.WAV"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mp3]
+@="WMP11.AssocFile.MP3"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.avi]
+@="WMP11.AssocFile.AVI"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mov]
+@="WMP11.AssocFile.MOV"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mp4]
+@="WMP11.AssocFile.MP4"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.mkv]
+@="WMP11.AssocFile.MKV"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.wma]
+@="WMP11.AssocFile.WMA"
+
+[HKEY_LOCAL_MACHINE\Tmp_Software\Classes\.wmv]
+@="WMP11.AssocFile.WMV"
 
 [HKEY_LOCAL_MACHINE\Tmp_System\ControlSet001\Services\EventLog\System\WMPNetworkSvc]
 "ProviderGuid"="{6A2DC7C1-930A-4FB5-BB44-80B30AEBED6C}"

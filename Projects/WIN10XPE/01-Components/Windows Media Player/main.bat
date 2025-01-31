@@ -260,6 +260,10 @@ wuaueng.dll
 
 rem ==========update registry==========
 
+call RegCopy HKLM\Software\Microsoft\MediaPlayer
+call RegCopyEx Classes "WMP11.AssocFile.WAV,WMP11.AssocFile.MP3"
+call RegCopyEx Classes "WMP11.AssocFile.AVI,WMP11.AssocFile.MOV,WMP11.AssocFile.MP4"
+call RegCopyEx Classes "WMP11.AssocFile.MKV,WMP11.AssocFile.WMA,WMP11.AssocFile.WMV"
 reg import MSMediaPlayer.reg
 
 rem link to X:\ProgramFiles\Windows Media Player\wmplayer.exe

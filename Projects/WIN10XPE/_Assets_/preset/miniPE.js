@@ -54,7 +54,6 @@ function patches_node_init(arr) {
     remove_tree_node(arr, '01-Components/IME');
     remove_tree_node(arr, '01-Components/Internet Explorer');
     remove_tree_node(arr, '01-Components/Remote Desktop');
-    remove_tree_node(arr, '01-Components/Windows Media Player');
     remove_tree_node(arr, '01-Drivers');
     return arr;
 }

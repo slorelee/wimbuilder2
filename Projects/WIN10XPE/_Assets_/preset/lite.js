@@ -36,6 +36,7 @@ function patches_state_init() {
     uncheck_tree_node('02-Apps');
     uncheck_tree_node('02-PEMaterial');
     uncheck_tree_node('01-Components');
+    check_tree_node('01-Components/00-KK-System Tools');
     check_tree_node('01-Components/00-Shell');
     open_tree_node('01-Components');
     uncheck_tree_node('01-Drivers');

@@ -4,6 +4,7 @@ if "x%opt[component.MMC]%"=="xtrue" (
 
 if "x%opt[component.taskmgr]%"=="xtrue" (
   call AddFiles %0 :[TaskManager]
+  reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Run /v DiskUsageInTaskmangerPerformanceTab /d "diskperf.exe -y" /f
 )
 
 if "x%opt[component.resmon]%"=="xtrue" (
@@ -24,6 +25,10 @@ taskmgr.exe
 
 ;already in winre.wim
 Windows.Web.dll
+
+; real-time data of the connected drives in the Performance tab
+diskperf.exe
+\Windows\SysWOW64\diskperf.exe
 goto :EOF
 
 :[ResMon]

@@ -46,7 +46,6 @@ rem update wim with SlimPatch.txt
 
 echo Wimlib Cleanup and reduce Winre.wim
 wimlib-imagex.exe update "%WB_BASE_PATH%" %WB_BASE_INDEX% < "%WB_TMP_PATH%\SlimPatch.txt"
-if not exist "%X_WIN%\WinSxS\Catalogs\" mkdir "%X_WIN%\WinSxS\Catalogs"
 goto :EOF
 
 :REMOVE_MUI

@@ -1,3 +1,5 @@
+if not exist "%X_WIN%\WinSxS\Catalogs\" mkdir "%X_WIN%\WinSxS\Catalogs"
+
 call ACLRegKey Tmp_System
 call ACLRegKey Tmp_Software
 call ACLRegKey Tmp_Default

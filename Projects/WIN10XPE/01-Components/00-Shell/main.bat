@@ -10,8 +10,7 @@ goto :end_files
 ; Battery icon - In Winre.wim inf: hidbatt.inf,cmbatt.inf - drivers: battc.sys,HidBatt.sys,CmBatt.sys - system32: umpo.dll,umpnpmgr.dll
 \Windows\INF\battery.inf
 \Windows\INF\c_battery.inf
-@\Windows\System32\
-batmeter.dll
+\Windows\System32\batmeter.dll
 
 @\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
 +if "x%opt[shell.app]%"<>"xwinxshell"
@@ -24,6 +23,9 @@ Microsoft-Windows-Client-Features-WOW64-Package*.cat
 -if
 
 @\Windows\System32\
+
+;in winre.wim
+ieframe.dll
 
 ; resources for Computer Management
 mycomput.dll
@@ -59,7 +61,7 @@ Windows.Graphics.dll
 call RegCopy /-s "HKLM\SOFTWARE\Classes\*"
 
 rem Computer Management Command
-reg add HKLM\Tmp_software\Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\shell\Manage\command /ve /d "mmc.exe compmgmt.msc /s" /f
+reg add HKLM\Tmp_Software\Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\shell\Manage\command /ve /d "mmc.exe compmgmt.msc /s" /f
 
 rem fix blank shortcut icons
 reg add HKLM\Tmp_Software\Policies\Microsoft\Windows\Explorer /v EnableShellShortcutIconRemotePath /t REG_DWORD /d 1 /f

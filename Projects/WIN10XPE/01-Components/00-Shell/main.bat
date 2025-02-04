@@ -25,6 +25,7 @@ Microsoft-Windows-Client-Features-WOW64-Package*.cat
 @\Windows\System32\
 
 ;in winre.wim
+mlang.dat,mlang.dll
 ieframe.dll
 
 ; resources for Computer Management

@@ -162,9 +162,9 @@ if "x%opt[slim.winboot]%"=="xtrue" (
     del /f /a /q "%X_WIN%\Boot\Fonts\kor_boot.ttf"
     del /f /a /q "%X_WIN%\Boot\Fonts\msjh_boot.ttf"
     del /f /a /q "%X_WIN%\Boot\Fonts\msjhn_boot.ttf"
-    rd /s /q "%X_WIN%\Boot\PXE\*.com"
-    rd /s /q "%X_WIN%\Boot\PXE\*.n12"
-    rd /s /q "%X_WIN%\Boot\PXE\WdsConfig.inf"
+    del /f /a /q "%X_WIN%\Boot\PXE\*.com"
+    del /f /a /q "%X_WIN%\Boot\PXE\*.n12"
+    del /f /a /q "%X_WIN%\Boot\PXE\WdsConfig.inf"
 )
 
 call Slim_Safely.bat

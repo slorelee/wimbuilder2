@@ -109,7 +109,7 @@ qcap.dll,qedit.dll,qedwipes.dll
 
 :end_files
 
-; output file(s) setting for recording
+rem output file(s) setting for recording
 call RegCopyEx Classes "SAPI_OneCore.SpAudioFormat,SAPI_OneCore.SpAudioFormat.1"
 call RegCopyEx Classes "SAPI_OneCore.SpMMAudioEnum,SAPI_OneCore.SpMMAudioEnum.1"
 call RegCopyEx Classes "SAPI_OneCore.SpMMAudioIn,SAPI_OneCore.SpMMAudioIn.1"

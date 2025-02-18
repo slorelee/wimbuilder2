@@ -32,10 +32,10 @@ rem reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\DataColl
 rem //-
 rem // Disable Diagnostic Telemetry Service (DiagTrack and diagnosticshub.standardcollector.service are disabled)
 
-rd /s /q "%X_WIN%\DiagTrack"
-rd /s /q "%X_SYS%\DiagSvcs"
-del /f /a /q "%X_SYS%\diagER.dll"
-del /f /a /q "%X_SYS%\diagtrack.dll"
+if exist "%X_WIN%\DiagTrack\" rd /s /q "%X_WIN%\DiagTrack"
+if exist "%X_SYS%\DiagSvcs\" rd /s /q "%X_SYS%\DiagSvcs"
+if exist "%X_SYS%\diagER.dll" del /f /a /q "%X_SYS%\diagER.dll"
+if exist "%X_SYS%\diagtrack.dll" del /f /a /q "%X_SYS%\diagtrack.dll"
 
 if "x%opt[slim.winre_sources]%"=="xtrue" rd /s /q "%X%\sources"
 
@@ -51,7 +51,7 @@ if "x%opt[slim.wbem_repository]%"=="xtrue" (
 
 if "x%WB_PE_LANG%"=="xzh-TW" set opt[slim.font.mingliu]=false
 if "x%opt[slim.font.mingliu]%"=="xtrue" (
-  del /f /a /q "%X_WIN%\Fonts\mingliu.ttc"
+  if exist "%X_WIN%\Fonts\mingliu.ttc" del /f /a /q "%X_WIN%\Fonts\mingliu.ttc"
 )
 
 set opt[component.hta]=false

@@ -22,7 +22,14 @@ goto :End_StartXBackFiles
 
 :StartAllBackFiles
 set _startMenuName=StartAllBack
-call V2X StartAllBack -extract StartAllBack_*_setup.exe "%X_PF%\StartAllBack"
+if %VER[3]% GEQ 26100 (
+    if exist "%V%\StartAllBack\24H2" (
+        call V2X StartAllBack\24H2 -extract StartAllBack_*_setup.exe "%X_PF%\StartAllBack"
+    )
+)
+if not exist "%X_PF%\StartAllBack\StartAllBackX64.dll" (
+    call V2X StartAllBack -extract StartAllBack_*_setup.exe "%X_PF%\StartAllBack"
+)
 
 if not exist "%X_PF%\StartAllBack\StartAllBackX64.dll" goto :EOF
 if not "%WB_PE_ARCH%"=="arm64" (

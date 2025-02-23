@@ -56,7 +56,7 @@ Windows.Web.dll
 ime_textinputhelpers.dll
 +ver >= 20313
 CorePrivacySettingsStore.dll
-+ver >= 26100
++ver >= 22621
 ;IME icons
 \Windows\SystemApps\MicrosoftWindows.Client.Core_cw5n1h2txyewy\SystemTray\Assets\AXPIcons.ttf
 +ver*

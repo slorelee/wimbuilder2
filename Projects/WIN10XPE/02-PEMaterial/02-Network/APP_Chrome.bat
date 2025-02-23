@@ -1,5 +1,7 @@
-rem https://www.chrome-portable.com/index.php/google-chrome-offline-installer
+rem https://dl.google.com/update2/installers/ChromeStandaloneSetup64.exe
+rem https://dl.google.com/update2/installers/ChromeStandaloneSetup.exe (32 bit)
 rem https://dl.google.com/release2/chrome/AMQFLHv8Muh_ExYptfSwv2g_81.0.4044.113/81.0.4044.113_chrome_installer.exe
+rem https://dl.google.com/release2/chrome/adhdmtjrj6gjxezzjtmbwssgxsva_133.0.6943.99/133.0.6943.99_chrome_installer.exe
 
 if not "x%opt[PEMApp.chrome]%"=="xtrue" goto :EOF
 

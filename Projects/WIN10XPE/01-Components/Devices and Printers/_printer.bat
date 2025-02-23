@@ -181,6 +181,13 @@ if %VER[3]% GTR 18300 (
   reg add "HKLM\tmp_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Notifications\Data" /v 41960B29A3BC0C75 /t REG_BINARY /d 0100000001000000 /f
 )
 
+echo Windows control panel Devices and Printers: Print to PDF doesn't work in some version.
+echo Make things easier with set ownership and full access to Everyone ...
+set "_DefSpoolDir=%X_SYS%\spool"
+SetACL.exe -on "%_DefSpoolDir%" -ot file -actn setowner -ownr "n:everyone"
+SetACL.exe -on "%_DefSpoolDir%" -ot file -actn ace -ace "n:everyone;p:full;s:y"
+set _DefSpoolDir=
+
 rem update spoolsv.exe binary
 binmay.exe -u "%X_SYS%\spoolsv.exe" -s u:SystemSetupInProgress -r u:DisableSpoolsvInWinPE
 fc /b "%X_SYS%\spoolsv.exe.org" "%X_SYS%\spoolsv.exe"

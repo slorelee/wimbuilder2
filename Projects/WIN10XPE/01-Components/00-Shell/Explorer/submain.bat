@@ -69,6 +69,9 @@ Windows.UI.Immersive.dll
 +ver >= 25900
 Windows.UI.FileExplorer.WASDK.dll
 
++ver >= 27842
+mdmregistration.dll
+
 ; remove ver check (add with any ver)
 +ver*
 

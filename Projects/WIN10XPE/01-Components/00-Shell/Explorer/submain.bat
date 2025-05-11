@@ -71,6 +71,7 @@ Windows.UI.FileExplorer.WASDK.dll
 
 +ver >= 27842
 mdmregistration.dll
+SystemSettings.DataModel.dll
 
 ; remove ver check (add with any ver)
 +ver*
@@ -136,6 +137,11 @@ appinfo.dll,appinfoext.dll,objsel.dll
 winver.exe
 
 :end_files
+
+if exist srd_%VER[3]%.7z (
+  call RegCopyEx Services "StateRepository"
+  call Extract2X srd_%VER[3]%.7z "%X%\ProgramData\Microsoft\Windows\AppRepository\"
+)
 
 rem display folders/shortcuts name with language
 attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"

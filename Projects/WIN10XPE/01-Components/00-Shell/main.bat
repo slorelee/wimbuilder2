@@ -75,5 +75,11 @@ if not "x%opt[build.registry.software]%"=="xfull" (
 reg import Shell_RegDefault.reg
 reg import Shell_RegSoftware.reg
 
-call Explorer\submain.bat
-call WinXShell\submain.bat
+pushd Explorer
+call submain.bat
+popd
+
+pushd WinXShell
+call submain.bat
+popd
+

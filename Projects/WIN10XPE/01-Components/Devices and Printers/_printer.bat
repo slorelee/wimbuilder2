@@ -124,6 +124,8 @@ xpspushlayer.dll
 PrinterCleanupTask.dll
 Print.PrintSupport.Source.dll
 printticketvalidation.dll
++ver >= 26100
+Windows.Data.Pdf.dll
 +ver*
 
 ;For PDF and XPS
@@ -138,9 +140,6 @@ timeout.exe
 :end_files
 
 call DoAddFiles
-
-rem ; V1709
-SetACL.exe -on "%X_SYS%\spool\PRINTERS" -ot file -actn ace -ace "n:Everyone;p:full;s:y"
 
 rem ; V1803
 rem prn*.inf
@@ -182,11 +181,14 @@ if %VER[3]% GTR 18300 (
 )
 
 echo Windows control panel Devices and Printers: Print to PDF doesn't work in some version.
-echo Make things easier with set ownership and full access to Everyone ...
+echo Make things easier with set ownership and full access to Everyone(S-1-1-0) ...
 set "_DefSpoolDir=%X_SYS%\spool"
-SetACL.exe -on "%_DefSpoolDir%" -ot file -actn setowner -ownr "n:everyone"
-SetACL.exe -on "%_DefSpoolDir%" -ot file -actn ace -ace "n:everyone;p:full;s:y"
+SetACL.exe -on "%_DefSpoolDir%" -ot file -actn setowner -ownr "n:S-1-1-0"
+SetACL.exe -on "%_DefSpoolDir%" -ot file -actn ace -ace "n:S-1-1-0;p:full;s:y"
 set _DefSpoolDir=
+
+rem ; V1709
+SetACL.exe -on "%X_SYS%\spool\PRINTERS" -ot file -actn ace -ace "n:S-1-1-0;p:full;s:y"
 
 rem update spoolsv.exe binary
 binmay.exe -u "%X_SYS%\spoolsv.exe" -s u:SystemSetupInProgress -r u:DisableSpoolsvInWinPE
@@ -196,9 +198,9 @@ del /f /q "%X_SYS%\spoolsv.exe.org"
 
 rem https://theoven.org/index?topic=1639.msg39755#msg39755 by noelBlanc
 if "%WB_PE_ARCH%"=="x64" (
-    binmay.exe -u "%X_SYS%\spoolsv.exe" -s "BA C0 D4 01 00 48" -r "BA E8 03 00 00 48"
+    binmay.exe -u "%X_SYS%\spoolsv.exe" -s "BA C0 D4 01 00 48" -r "BA A0 0F 00 00 48"
 ) else (
-    binmay.exe -u "%X_SYS%\spoolsv.exe" -s "68 C0 D4 01 00" -r "68 E8 03 00 00"
+    binmay.exe -u "%X_SYS%\spoolsv.exe" -s "68 C0 D4 01 00" -r "68 A0 0F 00 00"
 )
 fc /b "%X_SYS%\spoolsv.exe.org" "%X_SYS%\spoolsv.exe"
 del /f /q "%X_SYS%\spoolsv.exe.org"

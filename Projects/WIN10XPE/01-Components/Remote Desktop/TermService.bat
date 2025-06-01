@@ -94,12 +94,12 @@ if %VER[3]% GEQ 22000 (
 call RegCopy "HKLM\System\ControlSet001\Control\Terminal Server"
 call ACLRegKey "HKLM\System\ControlSet001\Control\Terminal Server\RCM"
 
-call _ACLRegKey "Tmp_SYSTEM\ControlSet001\Control\Terminal Server\RCM" Everyone -
+call _ACLRegKey "Tmp_SYSTEM\ControlSet001\Control\Terminal Server\RCM" S-1-1-0 -
 call _ACLRegKey "Tmp_SYSTEM\ControlSet001\Control\Terminal Server\RCM" "NT SERVICE\termservice" -
 reg add "HKLM\Tmp_SYSTEM\ControlSet001\Control\Terminal Server\RCM\secrets"
 call _ACLRegKey "Tmp_SYSTEM\ControlSet001\Control\Terminal Server\RCM\secrets" "Network Service" -
 
-icacls "%X%\ProgramData\Microsoft\Crypto\RSA\MachineKeys" /grant everyone:(OI)(CI)(F)
+icacls "%X%\ProgramData\Microsoft\Crypto\RSA\MachineKeys" /grant *S-1-1-0:(OI)(CI)(F)
 
 call RegCopy "HKLM\System\ControlSet001\Control\NetworkProvider"
 call RegCopy "HKLM\System\ControlSet001\Control\Video"

@@ -3,7 +3,7 @@ if not "x%opt[network.function_discovery]%"=="xtrue" goto :EOF
 rem // Function Discovery Provider Host and Publication and SSDP Discovery services
 call RegCopyEx Services "fdPHost,FDResPub,SSDPSRV"
 
-call _ACLRegKey "Tmp_SYSTEM\ControlSet001\Services\FDResPub" Everyone -
+call _ACLRegKey "Tmp_SYSTEM\ControlSet001\Services\FDResPub" S-1-1-0 -
 
 call AddFiles %0 :end_files
 goto :end_files

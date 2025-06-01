@@ -23,7 +23,7 @@ if exist "%X_SYS%\netprofmsvc.dll" (
 
 call za-Slim\Cleanup.bat
 
-SetACL.exe -on "%X_WIN%\Fonts" -ot file -actn ace -ace "n:Everyone;p:full" -rec yes
+SetACL.exe -on "%X_WIN%\Fonts" -ot file -actn ace -ace "n:S-1-1-0;p:full" -rec yes
 
 set _dll_drive=
 for /f "tokens=3 delims=: " %%i in ('reg query HKLM\Tmp_Software\Classes\CLSID\{0000002F-0000-0000-C000-000000000046}\InprocServer32 /ve') do set _dll_drive=%%i

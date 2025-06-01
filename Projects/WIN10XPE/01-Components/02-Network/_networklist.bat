@@ -44,6 +44,6 @@ rem SetAcl.exe -on "%NetworkList_Key%\Permissions" -ot reg -actn ace -ace "n:%Ww
 rem SetAcl.exe -on "%NetworkList_Key%\Permissions" -ot reg -actn ace -ace "n:S-1-5-32-556;p:full"
 rem SetAcl.exe -on "%NetworkList_Key%\Permissions" -ot reg -actn ace -ace "n:S-1-5-92-1467204242-1103346305-4253404563-2848856930-0;p:full"
 
-SetAcl.exe -on "%NetworkList_Key%\Permissions" -ot reg -actn ace -ace "n:Everyone;p:full;s:y"
+SetAcl.exe -on "%NetworkList_Key%\Permissions" -ot reg -actn ace -ace "n:S-1-1-0;p:full;s:y"
 
 copy /y StartNetprofm.bat "%X_Startup%\"

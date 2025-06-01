@@ -85,11 +85,11 @@ rem --no-sandbox option
 reg add "HKLM\Tmp_Software\Policies\Google\Chrome" /v "AudioSandboxEnabled" /t REG_DWORD /d 0 /f
 reg add "HKLM\Tmp_Software\Policies\Microsoft\Edge" /v "AudioSandboxEnabled" /t REG_DWORD /d 0 /f
 
-SetACL.exe -on "HKLM\Tmp_Software\Policies" -ot reg -actn ace -ace "n:Everyone;p:full"
+SetACL.exe -on "HKLM\Tmp_Software\Policies" -ot reg -actn ace -ace "n:S-1-1-0;p:full"
 
 if "x%opt[build.wow64support]%"=="xtrue" (
     reg add "HKLM\Tmp_Software\Wow6432Node\Policies\Google\Chrome" /v "AudioSandboxEnabled" /t REG_DWORD /d 0 /f
     reg add "HKLM\Tmp_Software\Wow6432Node\Policies\Microsoft\Edge" /v "AudioSandboxEnabled" /t REG_DWORD /d 0 /f
 
-    SetACL.exe -on "HKLM\Tmp_Software\Wow6432Node\Policies" -ot reg -actn ace -ace "n:Everyone;p:full"
+    SetACL.exe -on "HKLM\Tmp_Software\Wow6432Node\Policies" -ot reg -actn ace -ace "n:S-1-1-0;p:full"
 )

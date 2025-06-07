@@ -1,7 +1,7 @@
 @echo off
 if "x%APP_ROOT%"=="x" goto :EOF
 
-IsAdmin.exe
+call IsAdmin.bat
 if not ERRORLEVEL 1 (
     ElevateMe.vbs "%~0" "%~fs1"
     goto :EOF

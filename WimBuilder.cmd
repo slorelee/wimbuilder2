@@ -33,7 +33,7 @@ rem ========================
 call EnvCheck.bat
 
 rem run with Administrators right
-IsAdmin.exe
+call IsAdmin.bat
 
 if not ERRORLEVEL 1 (
   if not "x%~1"=="xrunas" (

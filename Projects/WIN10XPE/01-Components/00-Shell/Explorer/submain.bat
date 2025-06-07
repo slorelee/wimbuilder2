@@ -40,17 +40,6 @@ coloradapterclient.dll
 dsreg.dll
 VEEventDispatcher.dll
 
-+ver > 17700
-+if "%opt[slim.extra]%" <> "true"
-; dll for StateRepository (AppRepository). The StateRepository service is not registered in the Registry
-StateRepository.core.dll,Windows.StateRepository.dll
-Windows.StateRepositoryBroker.dll
-Windows.StateRepositoryCore.dll
-Windows.StateRepositoryClient.dll
-Windows.StateRepositoryPS.dll
-Windows.StateRepositoryUpgrade.dll
--if
-
 +ver >= 18885
 CoreMessaging.dll,CoreUIComponents.dll,rmclient.dll,twinapi.appcore.dll,InputHost.dll,TextInputFramework.dll
 
@@ -71,10 +60,10 @@ Windows.UI.Immersive.dll
 +ver >= 25900
 Windows.UI.FileExplorer.WASDK.dll
 
-+ver >= 22631
-;22631.5335, 26100.4061 (May 2025 update), 27842.1000
++if "x%VER_202505_LATER%"="x1"
 mdmregistration.dll
 SystemSettings.DataModel.dll
+-if
 
 ; remove ver check (add with any ver)
 +ver*
@@ -141,20 +130,9 @@ winver.exe
 
 :end_files
 
-set _SRD_Files=srd.7z
-if %VER[3]% GEQ 22631 (
-  call RegCopyEx Services "StateRepository"
-  mkdir "%X%\ProgramData\Microsoft\Windows\AppRepository\"
-  set _SRD_Files=srd_22631.7z
+if "x%VER_202505_LATER%"=="x1" (
+  call SharedPatch StateRepositoryService
 )
-if %VER[3]% GEQ 27842 (
-  set _SRD_Files=srd_27842.7z
-)
-
-if exist %_SRD_Files% (
-  call Extract2X %_SRD_Files% "%X%\ProgramData\Microsoft\Windows\AppRepository\"
-)
-set _SRD_Files=
 
 rem display folders/shortcuts name with language
 attrib +s "%X%\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"

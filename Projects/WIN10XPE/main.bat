@@ -71,6 +71,25 @@ if %VER[3]% GTR 23000 set VER_XAMLRES=*
 set VER_XAMLRES=.%VER_XAMLRES%
 if "x%VER_XAMLRES%"=="x." set VER_XAMLRES=
 
+rem 22631.5335, 26100.4061 (May 2025 update), 27842.1000
+set VER_202505_LATER=0
+if %VER[3]% GEQ 22631 (
+  if %VER[4]% GEQ 5335 (
+    set VER_202505_LATER=1
+  )
+)
+
+if %VER[3]% GEQ 26100 (
+  if %VER[4]% GEQ 4061 (
+    set VER_202505_LATER=1
+  )
+)
+
+if %VER[3]% GEQ 27842 (
+    set VER_202505_LATER=1
+)
+echo VER_202505_LATER=%VER_202505_LATER%
+
 call CheckPatch "01-Components\zh-RuntimeKits"
 if "x%HasPatch%"=="xfalse" (
   set opt[build.wow64support]=false

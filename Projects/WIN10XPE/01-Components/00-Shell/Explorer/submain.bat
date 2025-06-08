@@ -59,6 +59,7 @@ Windows.UI.Immersive.dll
 
 +ver >= 25900
 Windows.UI.FileExplorer.WASDK.dll
+mscms.dll
 
 +if "x%VER_202505_LATER%"="x1"
 mdmregistration.dll

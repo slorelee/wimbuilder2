@@ -1,3 +1,11 @@
+if "x%opt[component.DWM]%"=="xtrue" (
+  call ApplyPatch "..\DWM"
+)
+
+if "x%opt[component.search]%"=="xtrue" (
+  call ApplyPatch "..\Search"
+)
+
 if "x%opt[component.MMC]%"=="xtrue" (
   call ApplyPatch "..\MMC"
 )

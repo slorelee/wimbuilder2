@@ -39,12 +39,15 @@ rd /s /q "%X_SYS%\Sysprep"
 rd /s /q "%X_SYS%\WCN"
 rd /s /q "%X_SYS%\winevt"
 
-call :DEL_DRVSTORES "3ware,acpi,adp80xx,amdsata,amdsbs,arcsas,bcmdhd64,bcmwdidhdpcie,bfad,bfadfcoe,bnxtnd,bxfcoe,bxois"
-call :DEL_DRVSTORES "c_fdc,c_floppydisk,c_nettrans,c_pnpprinters,c_printer,dc21x4vm,e2xw10x64,ehstortcgdrv,elxfcoe,elxstor,fdc,flpydisk"
+rem call :DEL_DRVSTORES "3ware,acpi,adp80xx,amdsata,amdsbs,arcsas"
+call :DEL_DRVSTORES "bcmdhd64,bcmwdidhdpcie,bfad,bfadfcoe,bnxtnd,bxfcoe,bxois"
+rem call :DEL_DRVSTORES "c_fdc,c_floppydisk,ehstortcgdrv,fdc,flpydisk"
+call :DEL_DRVSTORES "c_nettrans,c_pnpprinters,c_printer,dc21x4vm,e2xw10x64,elxfcoe,elxstor"
 call :DEL_DRVSTORES "hdaudio,hdaudss,hpsamd,iastorav,iastorv,ipoib6x,itsas35i,lsi_sss,kdnic,lltdio,lsi_sas,lsi_sas2i"
 call :DEL_DRVSTORES "megas" "*"
 call :DEL_DRVSTORES "mrvlpcie8897,mssmbios,msux64w10,mvumis,mwlu97w8x64,ndisimplatform,ndisimplatformmp,ndisuio,npsvctrig"
-call :DEL_DRVSTORES "nvraid,pci,pcmcia,percsas2i,percsas3i,qefcoe,qeois,ql2300,ql40xx2i,qlfcoei,rspndr,rt640x64,rtux64w10,sbp2"
+rem call :DEL_DRVSTORES "nvraid,pci,pcmcia,percsas2i,percsas3i"
+call :DEL_DRVSTORES "qefcoe,qeois,ql2300,ql40xx2i,qlfcoei,rspndr,rt640x64,rtux64w10,sbp2"
 call :DEL_DRVSTORES "scmbus,sisraid2,sisraid4,smartsamd,spaceport,stexstor,stornvme,storufs,usbnet,vdrvroot,vhdmp,vsmraid,vstxraid"
 call :DEL_DRVSTORES "wdmaudio,wdmaudiocoresystem,wdma_usb,wnetvsc,ykinx64"
 
@@ -56,6 +59,12 @@ if %VER[3]%  LSS 18800 (
 ) else if not exist "%X_WIN%\explorer.exe" (
   del /a /f /q "%X_SYS%\aepic.dll"
 )
+
+del /a /f /q "%X_SYS%\AppXDeploymentServer.dll"
+del /a /f /q "%X_SYS%\AppXDeploymentClient.dll"
+del /a /f /q "%X_SYS%\AppXApplicabilityBlob.dll"
+del /a /f /q "%X_SYS%\AppExtAgent.dll"
+del /a /f /q "%X_SYS%\AggregatorHost.exe"
 
 del /a /f /q "%X_SYS%\authui.dll"
 del /a /f /q "%X_SYS%\avrt.dll"
@@ -75,6 +84,7 @@ del /a /f /q "%X_SYS%\certcli.dll"
 del /a /f /q "%X_SYS%\cfmifs.dll"
 del /a /f /q "%X_SYS%\cfmifsproxy.dll"
 del /a /f /q "%X_SYS%\chkwudrv.dll"
+del /a /f /q "%X_SYS%\CloudRecoveryDownloadTool.dll"
 del /a /f /q "%X_SYS%\cmifw.dll"
 del /a /f /q "%X_SYS%\comcat.dll"
 del /a /f /q "%X_SYS%\comcat.dll"
@@ -140,7 +150,10 @@ del /a /f /q "%X_SYS%\fontsub.dll"
 del /a /f /q "%X_SYS%\framedyn.dll"
 del /a /f /q "%X_SYS%\ftp.exe"
 
+call :KEEP_FILE \Windows\System32\fveapi.dll
 call :KEEP_FILE \Windows\System32\fvecerts.dll
+call :KEEP_FILE \Windows\System32\fverecoverux.dll
+call :KEEP_FILE \Windows\System32\fveui.dll
 call :KEEP_FILE \Windows\System32\fwbase.dll
 del /a /f /q "%X_SYS%\fv*.dll"
 del /a /f /q "%X_SYS%\fw*.dll"
@@ -192,9 +205,12 @@ del /a /f /q "%X_SYS%\LogonController.dll"
 del /a /f /q "%X_SYS%\luainstall.dll"
 
 call :DEL_SYSFILES "manage-bde.exe,MBR2GPT.exe,mcbuilder.exe,MdSched.exe,mighost.exe,MRINFO.EXE"
-call :DEL_SYSFILES "mapi32.dll,mapistub.dll,mcupdate_AuthenticAMD.dll,mcupdate_GenuineIntel.dll,mf3216.dll"
+call :DEL_SYSFILES "mapi32.dll,mapistub.dll,mf3216.dll"
 
 call :KEEP_FILE \Windows\System32\mintdh.dll
+if exist "%X_SYS%\dwm.exe" (
+  call :KEEP_FILE \Windows\System32\Microsoft.Internal.WarpPal.dll
+)
 del /a /f /q "%X_SYS%\mi*.dll"
 
 call :DEL_SYSFILES "mprext.dll,mprmsg.dll,mprapi.dll,MPSSVC.dll,MMDevAPI.dll"
@@ -229,8 +245,13 @@ del /a /f /q "%X_SYS%\nc*.dll"
 call :KEEP_FILE \Windows\System32\normaliz.dll
 del /a /f /q "%X_SYS%\nor*.*"
 
-call :DEL_SYSFILES "newdev.exe,ngclocal.dll,nrpsrv.dll,nshwfp.dll"
-call :DEL_SYSFILES "ntlanman.dll,ntprint.dll,ntprint.exe,odbccp32.dll,odbctrac.dll,onex.dll"
+call :DEL_SYSFILES "netprofmsvc.dll,newdev.exe,ngclocal.dll,nrpsrv.dll,nshwfp.dll"
+call :DEL_SYSFILES "ntlanman.dll,ntprint.dll,ntprint.exe,onex.dll"
+
+call :DEL_SYSFILES "odbc32.dll,odbcad32.exe,odbcbcp.dll,odbccp32.dll,odbccu32.dll"
+call :DEL_SYSFILES "odbccr32.dll,odbcconf.exe,odbcconf.dll,odbcint.dll,odbctrac.dll"
+
+del /a /f /q "%X_SYS%\OLD*.tmp"
 del /a /f /q "%X_SYS%\offline*.*"
 
 del /a /f /q "%X_SYS%\ncpa.cpl"
@@ -269,6 +290,7 @@ del /a /f /q "%X_SYS%\Register-CimProvider.exe"
 del /a /f /q "%X_SYS%\ReInfo.dll"
 del /a /f /q "%X_SYS%\replace.exe"
 del /a /f /q "%X_SYS%\repair-bde.exe"
+del /a /f /q "%X_SYS%\ResetTelemetry.dll"
 del /a /f /q "%X_SYS%\resutils.dll"
 del /a /f /q "%X_SYS%\ROUTE.EXE"
 del /a /f /q "%X_SYS%\RpcRtRemote.dll"
@@ -311,6 +333,9 @@ call :DEL_SYSFILES "tapi32.dll,tbs.dll,tcpipcfg.dll,tcpmib.dll,TCPSVCS.EXE,token
 call :DEL_SYSFILES "TRACERT.EXE,TrustedSignalCredProv.dll,TSSessionUX.dll,TtlsAuth.dll,TtlsCfg.dll"
 
 del /a /f /q "%X_SYS%\ucsvc.exe"
+del /a /f /q "%X_SYS%\updatepolicy.dll"
+del /a /f /q "%X_SYS%\UpdateCompression.dll"
+del /a /f /q "%X_SYS%\UpdateAgent.dll"
 del /a /f /q "%X_SYS%\userinit.exe"
 del /a /f /q "%X_SYS%\userinitext.dll"
 del /a /f /q "%X_SYS%\usermgr.dll"
@@ -348,14 +373,13 @@ del /a /f /q "%X_SYS%\winlogonext.dll"
 del /a /f /q "%X_SYS%\winsku.dll"
 del /a /f /q "%X_SYS%\winsockhc.dll"
 
-call :KEEP_FILES \Windows\System32\ "Windows.Gaming.Input.dll,windows.storage.dll,Windows.UI.Immersive.dll"
-rem keep for Search feature
-call :KEEP_FILES \Windows\System32\ "Windows.Shell.Search.UriHandler.dll,Windows.Storage.Search.dll"
-rem keep for IME
-call :KEEP_FILES \Windows\System32\ "Windows.Devices.HumanInterfaceDevice.dll,Windows.Globalization.dll,Windows.UI.Core.TextInput.dll"
-rem keep for copying file (^>19041)
-call :KEEP_FILE \Windows\System32\Windows.FileExplorer.Common.dll
-del /a /f /q "%X_SYS%\Windows.*.dll"
+del /a /f /q "%X_SYS%\Windows.Devices.Midi.dll"
+del /a /f /q "%X_SYS%\Windows.Internal.UI.Logon.ProxyStub.dll"
+del /a /f /q "%X_SYS%\Windows.Management.Update.dll"
+del /a /f /q "%X_SYS%\Windows.Media.Devices.dll"
+del /a /f /q "%X_SYS%\Windows.System.RemoteDesktop.dll"
+del /a /f /q "%X_SYS%\Windows.UI.CredDialogController.dll"
+del /a /f /q "%X_SYS%\Windows.Web.dll"
 
 del /a /f /q "%X_SYS%\wosc.dll"
 

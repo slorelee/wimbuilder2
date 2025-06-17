@@ -41,7 +41,6 @@ del /a /f /q "%X_DRV%\dmvsc.sys"
 del /a /f /q "%X_DRV%\dumpfve.sys"
 del /a /f /q "%X_DRV%\fdc.sys"
 del /a /f /q "%X_DRV%\filetrace.sys"
-del /a /f /q "%X_DRV%\flpydisk.sys"
 del /a /f /q "%X_DRV%\fvevol.sys"
 del /a /f /q "%X_DRV%\hvsocket.sys"
 del /a /f /q "%X_DRV%\hyperkbd.sys"
@@ -59,15 +58,14 @@ del /a /f /q "%X_DRV%\netbios.sys"
 del /a /f /q "%X_DRV%\netbt.sys"
 del /a /f /q "%X_DRV%\rasacd.sys"
 del /a /f /q "%X_DRV%\rdbss.sys"
-del /a /f /q "%X_DRV%\sfloppy.sys"
 
-del /a /f /q "%X_DRV%\srv2.sys"
-del /a /f /q "%X_DRV%\srvnet.sys"
+rem del /a /f /q "%X_DRV%\srv2.sys"
+rem del /a /f /q "%X_DRV%\srvnet.sys"
 del /a /f /q "%X_DRV%\storqosflt.sys"
 del /a /f /q "%X_DRV%\storvsc.sys"
 del /a /f /q "%X_DRV%\tape.sys"
 del /a /f /q "%X_DRV%\tpm.sys"
-del /a /f /q "%X_DRV%\usbser.sys"
+rem del /a /f /q "%X_DRV%\usbser.sys"
 
 del /a /f /q "%X_DRV%\vmbkmcl.sys"
 del /a /f /q "%X_DRV%\vmbus.sys"
@@ -105,32 +103,40 @@ call :DEL_SYSFILES "BCP47Langs.DLL,BCP47mrm.dll,blbres.dll,blb_ps.dll,BootRec.ex
 call :DEL_SYSFILES "CompMgmtLauncher.exe,CoreMas.dll,cryptcatsvc.dll,cryptsvc.dll"
 call :DEL_SYSFILES "C_G18030.DLL,c_GSM7.dll,C_IS2022.dll,C_ISCII.dll"
 
-call :DEL_SYSFILES "chartv.dll,chkntfs.exe,cnvfat.dll,compact.exe,console.dll,fms.dll,gpapi.dll,input.dll"
+call :DEL_SYSFILES "chkntfs.exe,cnvfat.dll,compact.exe,console.dll,fms.dll,gpapi.dll,input.dll"
 call :DEL_SYSFILES "mfc42u.dll,netprovfw.dll,nsisvc.dll,regapi.dll,sti.dll,umpo.dll,umpoext.dll,wkssvc.dll"
 
-call :DEL_SYSFILES "d2d1.dll,d3d10warp.dll,D3D12.dll,D3DCompiler_47.dll"
 call :DEL_SYSFILES "davhlpr.dll,dbghelp.dll,dciman32.dll"
 call :DEL_SYSFILES "defragproxy.dll,defragres.dll,defragsvc.dll"
 call :DEL_SYSFILES "diagnosticdataquery.dll,directmanipulation.dll,diskraid.dll,diskraid.exe,DismApi.dll,dispex.dll,doskey.exe"
-call :DEL_SYSFILES "drvsetup.dll,dskquota.dll,dssenh.dll,dtdump.exe,DWrite.dll,DXCore.dll,esent.dll,eventcls.dll"
+call :DEL_SYSFILES "drvsetup.dll,dskquota.dll,dssenh.dll,dtdump.exe,esent.dll,eventcls.dll"
 call :DEL_SYSFILES "Facilitator.dll,fbwflib.dll,fcon.dll,filemgmt.dll,FirewallAPI.dll,fltMC.exe"
-call :DEL_SYSFILES "framedynos.dll,fsmgmt.msc,fvecerts.dll,fwbase.dll,GdiPlus.dll"
-call :DEL_SYSFILES "HalExtIntcPseDMA.dll,HalExtIntcUartDMA.dll,hbaapi.dll,hhsetup.dll,hidserv.dll"
+call :DEL_SYSFILES "framedynos.dll,fsmgmt.msc,fvecerts.dll,fwbase.dll"
+call :DEL_SYSFILES "jscript9Legacy.dll,HalExtIntcPseDMA.dll,HalExtIntcUartDMA.dll,hbaapi.dll,hhsetup.dll,hidserv.dll"
 call :DEL_SYSFILES "icmp.dll,IESettingSync.exe,ifmon.dll,ifsutilx.dll"
 call :DEL_SYSFILES "IKEEXT.DLL,imaadp32.acm,imagesp1.dll,imapi.dll,imapi.exe,imapi2.dll,imapi2fs.dll,imgutil.dll,iscsidsc.dll"
+del /a /f /q "%X_SYS%\kd_*.dll"
 call :DEL_SYSFILES "kdcom.dll,KerbClientShared.dll,kmddsp.tsp,ksuser.dll,ktmw32.dll,lpk.dll,lz32.dll"
-call :DEL_SYSFILES "mfc42.dll,mlang.dat,mlang.dll,mode.com,msacm32.dll,mscpxl32.dll,msctf.dll,msftedit.dll,msieftp.dll"
-call :DEL_SYSFILES "msscript.ocx,msvcp110_win.dll,msvcp60.dll,msvcrt40.dll,MSWB70804.dll,msxml6.dll"
+call :DEL_SYSFILES "mfc42.dll,mlang.dat,mode.com,msacm32.dll,mscpxl32.dll,msctf.dll,msftedit.dll,msieftp.dll"
+call :DEL_SYSFILES "msscript.ocx,msvcp60.dll,msvcrt40.dll,MSWB70804.dll,msxml6.dll"
 rem net.exe: control services
-call :DEL_SYSFILES "ncobjapi.dll,net1.exe,netcfgx.dll,netmsg.dll,newdev.dll,NL7Data0804.dll,NL7Lexicons0804.dll,NL7Models0804.dll,NOISE.CHS,odbcint.dll"
-call :DEL_SYSFILES "oleacchooks.dll,olepro32.dll,OnDemandConnRouteHelper.dll,OneCoreCommonProxyStub.dll,OneCoreUAPCommonProxyStub.dll,OpenWith.exe,pcwum.dll,PING.EXE"
+call :DEL_SYSFILES "ncobjapi.dll,net1.exe,netcfgx.dll,netmsg.dll,newdev.dll,NL7Data0804.dll,NL7Lexicons0804.dll,NL7Models0804.dll,NOISE.CHS,ntkrla57.exe"
+call :DEL_SYSFILES "oleacchooks.dll,olepro32.dll,OnDemandConnRouteHelper.dll,OpenWith.exe,pcwum.dll,PING.EXE"
 call :DEL_SYSFILES "pnpdiag.dll,pnppropmig.dll,pnpui.dll,pnputil.exe,powercfg.cpl,prfc0804.dat,prfd0804.dat,prfh0804.dat,prfi0804.dat,regedt32.exe,riched20.dll,riched32.dll"
 call :DEL_SYSFILES "rshx32.dll,scrrun.dll,sdhcinst.dll,SensApi.dll,shwebsvc.dll,SmiEngine.dll,smphost.dll,snmpapi.dll,spaceutil.exe,spfileq.dll,srvsvc.dll,sscore.dll"
-call :DEL_SYSFILES "stdole2.tlb,streamci.dll,svsvc.dll,swprv.dll,sxshared.dll,syssetup.dll,systemcpl.dll,systray.exe,tdhres.dll,tzres.dll,UIAutomationCore.dll,ureg.dll,uudf.dll,vbscript.dll"
-rem vdmdbg.dll: taskmgr.exe 
+call :DEL_SYSFILES "stdole2.tlb,streamci.dll,svsvc.dll,swprv.dll,sxshared.dll,syssetup.dll,systemcpl.dll,systray.exe,tdhres.dll,tzres.dll,ureg.dll,uudf.dll,vbscript.dll"
+rem vdmdbg.dll: taskmgr.exe
 call :DEL_SYSFILES "VhfUm.dll,wbemcomn.dll,WerEnc.dll,wimserv.exe,vmbuspipe.dll,vsstrace.dll,vss_ps.dll"
-call :DEL_SYSFILES "wincorlib.dll,Windows.Devices.HumanInterfaceDevice.dll,winhttp.dll,winnlsres.dll,WinSCard.dll,WinTypes.dll,WMALFXGFXDSP.dll,WofUtil.dll,wowreg32.exe"
+call :DEL_SYSFILES "wincorlib.dll,Windows.Devices.HumanInterfaceDevice.dll,winhttp.dll,winnlsres.dll,WinSCard.dll,WMALFXGFXDSP.dll,wowreg32.exe"
 
+if "x%DontCareAboutCopyProgress%"=="xtrue" (
+  call :DEL_SYSFILES "chartv.dll,OneCoreCommonProxyStub.dll,OneCoreUAPCommonProxyStub.dll"
+)
+
+if not exist "%X_SYS%\dwm.exe" (
+  call :DEL_SYSFILES "d2d1.dll,d3d10warp.dll,D3D11.dll,D3D12.dll,D3DCompiler_47.dll"
+  call :DEL_SYSFILES "ISM.dll,ISM.exe"
+)
 
 :END_SLIM_FILES
 rem restore [KEEP]

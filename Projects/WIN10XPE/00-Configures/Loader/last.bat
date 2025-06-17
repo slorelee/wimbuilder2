@@ -50,6 +50,7 @@ if not "x%opt[support.audio]%"=="xtrue" (
 )
 if not "x%opt[support.network]%"=="xtrue" (
     ren "%X_Startup%\NetInit.bat" NetInit.bat.skipped
+    ren "%X_Startup%\InitializeNetwork.bat" InitializeNetwork.bat.skipped
 )
 
 call :DELEX "/f /q /a" "%X_PEMaterial%\LogonAdmin.bat"

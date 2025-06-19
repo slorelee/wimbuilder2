@@ -9,6 +9,10 @@ rem Grant right for Administrator
 call _ACLRegKey "Tmp_Software\Classes\ms-settings"
 call _ACLRegKey Tmp_Software\Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}
 
+if "x%opt[winxshell.fileexplorer]%"=="xtrue" (
+    call subFileExplorer.bat
+)
+
 set _ui_opt=-hidewindow
 
 if "x%opt[winxshell.ui_wifi.startup]%"=="xtrue" (

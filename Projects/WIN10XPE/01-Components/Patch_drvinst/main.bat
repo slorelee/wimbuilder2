@@ -41,6 +41,7 @@ if %VER[3]% GTR 17700 set VER_NAME=win10.rs5later
 if %VER[3]% GTR 18908 set VER_NAME=win10.18908later
 if %VER[3]% GEQ 19041 set VER_NAME=win10.20h1later
 if %VER[3]% GEQ 22621 set VER_NAME=win11.22h2later
+if %VER[3]% GEQ 26100 set VER_NAME=win11.24h2later
 call :Drvinst_%VER_NAME%_%WB_PE_ARCH%
 if "%PATCH_MODE%"=="local" pause
 goto :EOF
@@ -87,6 +88,10 @@ goto :EOF
 
 :Drvinst_win11.22h2later_x64
 call :FULL_PATCH 8BF8_85C0_7423 33C0_8BF8_EB23
+goto :EOF
+
+:Drvinst_win11.24h2later_x64
+call :FULL_PATCH 8BF8_85C0_7422 33C0_8BF8_EB22
 goto :EOF
 
 :FULL_PATCH

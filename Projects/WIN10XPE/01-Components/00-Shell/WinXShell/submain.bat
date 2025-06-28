@@ -5,6 +5,10 @@ if not exist "%X%\Program Files\WinXShell" goto :EOF
 md "%X%\Program Files\WinXShell\%WB_PE_LANG%"
 copy /y "%X_SYS%\%WB_PE_LANG%\systemcpl.dll.mui" "%X%\Program Files\WinXShell\%WB_PE_LANG%\"
 
+if "x%opt[shell.app]%"=="xwinxshell" (
+    reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Shell /t REG_SZ /d WinXShell.exe /f
+)
+
 rem Grant right for Administrator
 call _ACLRegKey "Tmp_Software\Classes\ms-settings"
 call _ACLRegKey Tmp_Software\Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}

@@ -14,7 +14,7 @@ if not "x%USERNAME%"=="xSYSTEM" goto :EOF
 
 rem hide this console window
 if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (
-  "%ProgramFiles%\WinXShell\WinXShell.exe" -luacode "HideWindow('ConsoleWindowClass')"
+  "%ProgramFiles%\WinXShell\WinXShell.exe" -code "HideWindow('ConsoleWindowClass')"
 ) else (
   echo SYSTEM account inited
   cmd.exe
@@ -50,17 +50,20 @@ goto :EOF
 echo RunShell ...
 set SHELL_NAME=
 if exist "%windir%\explorer.exe" (
+    reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Shell | find "explorer.exe"
+    if errorlevel 1 goto :OTHERSHELL
     set SHELL_NAME=Explorer
     if "x%USERNAME%"=="xSYSTEM" start explorer.exe
     if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (
         start "wxsDaemon" "%ProgramFiles%\WinXShell\WinXShell.exe" -regist -daemon
     )
-) else (
-    if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (
-        set SHELL_NAME=WinXShell
-        if "x%USERNAME%"=="xSYSTEM" (
-            start "WinXShell" "%ProgramFiles%\WinXShell\WinXShell.exe" -regist -winpe
-        )
+    goto :EOF
+)
+:OTHERSHELL
+if exist "%ProgramFiles%\WinXShell\WinXShell.exe" (
+    set SHELL_NAME=WinXShell
+    if "x%USERNAME%"=="xSYSTEM" (
+        start "WinXShell" "%ProgramFiles%\WinXShell\WinXShell.exe" -regist -shell
     )
 )
 goto :EOF

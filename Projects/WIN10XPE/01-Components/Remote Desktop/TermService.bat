@@ -96,7 +96,7 @@ call ACLRegKey "HKLM\System\ControlSet001\Control\Terminal Server\RCM"
 
 call _ACLRegKey "Tmp_SYSTEM\ControlSet001\Control\Terminal Server\RCM" S-1-1-0 -
 call _ACLRegKey "Tmp_SYSTEM\ControlSet001\Control\Terminal Server\RCM" "NT SERVICE\termservice" -
-reg add "HKLM\Tmp_SYSTEM\ControlSet001\Control\Terminal Server\RCM\secrets"
+reg add "HKLM\Tmp_SYSTEM\ControlSet001\Control\Terminal Server\RCM\secrets" /f
 call _ACLRegKey "Tmp_SYSTEM\ControlSet001\Control\Terminal Server\RCM\secrets" "Network Service" -
 
 icacls "%X%\ProgramData\Microsoft\Crypto\RSA\MachineKeys" /grant *S-1-1-0:(OI)(CI)(F)

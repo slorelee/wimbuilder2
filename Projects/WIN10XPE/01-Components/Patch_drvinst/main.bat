@@ -41,6 +41,7 @@ if %VER[3]% GTR 17700 set VER_NAME=win10.rs5later
 if %VER[3]% GTR 18908 set VER_NAME=win10.18908later
 if %VER[3]% GEQ 19041 set VER_NAME=win10.20h1later
 if %VER[3]% GEQ 22621 set VER_NAME=win11.22h2later
+if %VER[3]% EQU 26100 set VER_NAME=win11.24h2later
 if %VER[3]% EQU 26100 if %VER[4]% GEQ 3775 set VER_NAME=win11.24h2april2025later
 if %VER[3]% GTR 26100 set VER_NAME=win11.25h2later
 call :Drvinst_%VER_NAME%_%WB_PE_ARCH%
@@ -88,6 +89,7 @@ call :FULL_PATCH 8BD8_85DB_741B_53 33C0_8BD8_EB1B_53
 goto :EOF
 
 :Drvinst_win11.22h2later_x64
+:Drvinst_win11.24h2later_x64
 call :FULL_PATCH 8BF8_85C0_7423 33C0_8BF8_EB23
 goto :EOF
 
@@ -96,6 +98,12 @@ goto :EOF
 call :FULL_PATCH 8BF8_85C0_7422 33C0_8BF8_EB22
 goto :EOF
 
+rem ------------------------------------------------------------------------------------------------
+:Drvinst_win11.24h2later_arm64
+call :FULL_PATCH 71060094_F603002A_56010034 71060094_16008052_0A000014
+goto :EOF
+
+rem ------------------------------------------------------------------------------------------------
 :FULL_PATCH
 binmay.exe -v -s "%1" -r "%2" -u "%X_SYS%\drvinst.exe"
 goto :PATCH_CONFIRM

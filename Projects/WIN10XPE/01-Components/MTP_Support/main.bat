@@ -1,3 +1,14 @@
+rem update policy
+rem built-in support since November 21, 2024 update (OS Build 26100.2454)
+binmay.exe -i "%X_SYS%\services.exe" -s u:UMDF-WINPE-ENABLED | %findcmd% ":55"
+if ERRORLEVEL 1 goto :INSTALL_MTPHELPER
+
+"%WINXSHELL%" -code "App:Call('exitcode', Reg.PolicySet == nil or 1)"
+if not ERRORLEVEL 1 goto :INSTALL_MTPHELPER
+"%WINXSHELL%" -code "Reg:PolicySet([[HKLM\Tmp_SYSTEM\ControlSet001\Control\ProductOptions]],'ProductPolicy', 'UMDF-WINPE-ENABLED', 1)"
+goto :MTP_SUPPORT
+
+:INSTALL_MTPHELPER
 rem install mtpHelper
 
 set mtphelper_sysfile=mtpHelper_%WB_PE_ARCH%.sys
@@ -24,6 +35,7 @@ if "%opt[MTP.mtpHelper]%"=="mtpHelper.sys" (
 )
 set mtphelper_sysfile=
 
+:MTP_SUPPORT
 rem hook requirement(or BSOD)
 call RegCopy "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WUDF"
 rem call AddFiles WUDFPlatform.dll MUI

@@ -12,6 +12,9 @@ reg add "%regkey%" /v AutoAdminLogon /t REG_DWORD /d 1 /f
 reg add "%regkey%" /v DefaultUserName /d Administrator /f
 reg add "%regkey%" /v DefaultPassword /d "" /f
 
+if /i "%USERNAME%"=="SYSTEM" (
+  "X:\Program Files\WinXShell\WinXShell.exe" -code Shell:Close^(^)
+)
 if "x%~1"=="xLUA" (
   reg add "%regkey%" /v Userinit /d "userinit.exe,X:\Program Files\WinXShell\WinXShell.exe -script %PECMD_SCRIPT% -user Administrator" /f
 ) else if "x%~1"=="xPECMD" (

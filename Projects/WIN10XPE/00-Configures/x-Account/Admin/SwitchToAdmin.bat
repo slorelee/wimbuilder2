@@ -59,6 +59,40 @@ windowsudk.shellcommon.dll
 
 :end_files
 
+if exist "%X_SYS%\tsdiscon.exe" goto :COMMANDS_CONFIRM
+
+rem try to extract from WinSxS
+set sxsexpcmd=sxsexp32.exe
+set _SxSArch=%WB_PE_ARCH%
+if "%_SxSArch%"=="x64" set _SxSArch=amd64
+if "%_SxSArch%"=="x64" set sxsexpcmd=sxsexp64.exe
+call AddFiles %0 :[CommandsFromWinSxS]
+for /f "usebackq delims=" %%i in (`dir /b "%X_WIN%\WinSxS\%_SxSArch%_microsoft-windows-t..es-commandlinetools_*"`) do (
+  %sxsexpcmd% "%X_WIN%\WinSxS\%%i\tsdiscon.exe" "%X_SYS%\tsdiscon.exe"
+  %sxsexpcmd% "%X_WIN%\WinSxS\%%i\tscon.exe" "%X_SYS%\tscon.exe"
+  rem use the first one
+  goto :_COPY_CMD_MUI
+)
+
+:_COPY_CMD_MUI
+for /f "usebackq delims=" %%i in (`dir /b "%X_WIN%\WinSxS\%_SxSArch%_microsoft-windows-t..linetools.resources_*_%WB_PE_LANG%_*"`) do (
+  copy /y "%X_WIN%\WinSxS\%%i\*.exe.mui" "%X_SYS%\%WB_PE_LANG%\"
+  rem use the first one
+  goto :_COPY_CMD_MUI_END
+)
+
+:_COPY_CMD_MUI_END
+set _SxSArch=
+goto :COMMANDS_CONFIRM
+
+:[CommandsFromWinSxS]
+\Windows\WinSxS\%_SxSArch%_microsoft-windows-t..es-commandlinetools_*\tsdiscon.exe
+\Windows\WinSxS\%_SxSArch%_microsoft-windows-t..es-commandlinetools_*\tscon.exe
+\Windows\WinSxS\%_SxSArch%_microsoft-windows-t..linetools.resources_*_%WB_PE_LANG%_*\tsdiscon.exe.mui
+\Windows\WinSxS\%_SxSArch%_microsoft-windows-t..linetools.resources_*_%WB_PE_LANG%_*\tscon.exe.mui
+goto :EOF
+
+:COMMANDS_CONFIRM
 if not exist "%X_SYS%\tsdiscon.exe" (
   echo \033[97;101mERROR Switch to Admin needs tsdiscon.exe present in Education, Professional or Enterprise edition | cmdcolor.exe
   sleep 5

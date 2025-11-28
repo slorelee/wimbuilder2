@@ -57,6 +57,11 @@ windows.storage.dll
 DispBroker.Desktop.dll
 Windows.Graphics.dll
 
+; system tray icons stuck issue for 26h1
++ver >= 27000
+CapabilityAccessManager.Desktop.Storage.dll
+gamemode.dll
+
 :end_files
 
 call RegCopy /-s "HKLM\SOFTWARE\Classes\*"

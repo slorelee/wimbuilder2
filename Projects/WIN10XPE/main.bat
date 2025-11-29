@@ -72,7 +72,9 @@ set VER_XAMLRES=.%VER_XAMLRES%
 if "x%VER_XAMLRES%"=="x." set VER_XAMLRES=
 
 rem 22631.5335, 26100.4061 (May 2025 update), 27842.1000
+rem 26100.4946 (August 2025 update), 26200.*, 27909.1
 set VER_202505_LATER=0
+set VER_202508_LATER=0
 if %VER[3]% GEQ 22631 (
   if %VER[4]% GEQ 5335 (
     set VER_202505_LATER=1
@@ -83,12 +85,20 @@ if %VER[3]% GEQ 26100 (
   if %VER[4]% GEQ 4061 (
     set VER_202505_LATER=1
   )
+  if %VER[4] GTR 4946 (
+    set VER_202508_LATER=1
+  )
 )
 
 if %VER[3]% GEQ 27842 (
     set VER_202505_LATER=1
 )
+
+if %VER[3]% GEQ 27909 (
+    set VER_202508_LATER=1
+)
 echo VER_202505_LATER=%VER_202505_LATER%
+echo VER_202508_LATER=%VER_202508_LATER%
 
 call CheckPatch "01-Components\zh-RuntimeKits"
 if "x%HasPatch%"=="xfalse" (

@@ -57,10 +57,11 @@ windows.storage.dll
 DispBroker.Desktop.dll
 Windows.Graphics.dll
 
-; system tray icons stuck issue for 26h1
-+ver >= 27000
+; system tray icons stuck issue for 2025.08 update latter
++if "%VER_202508_LATER%"="1"
 CapabilityAccessManager.Desktop.Storage.dll
 gamemode.dll
+-if
 
 :end_files
 

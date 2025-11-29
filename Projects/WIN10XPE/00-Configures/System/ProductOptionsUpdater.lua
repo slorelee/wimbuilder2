@@ -26,5 +26,4 @@ poleditor:Set("TerminalServices-RemoteConnectionManager-AllowRemoteConnections",
 poleditor:Set("TerminalServices-RemoteConnectionManager-b7857721-7a62-4a37-aff3-253fe2b8b0e8-MaxSessions", 1)
 poleditor:Set("TerminalServices-RemoteConnectionManager-ce0ad219-4670-4988-98fb-89b14c2f072b-MaxSessions", 1)
 poleditor:Set("TerminalServices-RemoteConnectionManager-MaxUserSessions", 5)
-poleditor:Set("UMDF-WINPE-ENABLED", 1) -- since November 21, 2024 update (OS Build 26100.2454)
 poleditor:Save()

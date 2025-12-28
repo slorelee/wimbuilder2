@@ -61,13 +61,13 @@ Windows.UI.Immersive.dll
 Windows.UI.FileExplorer.WASDK.dll
 mscms.dll
 
+; remove ver check (add with any ver)
++ver*
+
 +if "x%VER_202505_LATER%"="x1"
 mdmregistration.dll
 SystemSettings.DataModel.dll
 -if
-
-; remove ver check (add with any ver)
-+ver*
 
 +if "%VER[3]%" = "19041" Or "%VER[3]%" = "19042" Or "%VER[3]%" = "19043"
 ;+if %VER[4]% >= 450

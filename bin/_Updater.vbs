@@ -177,7 +177,7 @@ Function GetUpdateListWithGitInfo()
     fstatus = StrMatch(pos, data, """status"":""", """,")
     If pos > 0 Then
       If fstatus = "removed" Then
-        outstr = outstr & "-    " & fname & vbCrLf
+        outstr = outstr & "-    " & Replace(fname, "/", "\") & vbCrLf
       Else
         outstr = outstr & "+    " & fname & vbCrLf
       End If

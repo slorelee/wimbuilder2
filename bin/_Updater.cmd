@@ -58,6 +58,8 @@ if exist "x64\" (
 )
 
 set "APP_ROOT=%cd%"
+set "FACTORY_PATH=%APP_ROOT%\_Factory_"
+set "TMP_UPT=%FACTORY_PATH%\tmp"
 if not exist "%TMP_UPT%\" md "%TMP_UPT%"
 
 set APP_ARCH=x64

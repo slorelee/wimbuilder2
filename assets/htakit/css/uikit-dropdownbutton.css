@@ -1,0 +1,103 @@
+﻿/* ========================================================================
+   Component:  Split dropdown button
+ ========================================================================== */
+/* Bootstrap - split dropdown button */
+.btn-group>.btn+.dropdown-toggle {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group {
+    margin-left: -1px;
+}
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.btn-group>.btn:first-child {
+    margin-left: 0;
+}
+.btn-group-vertical>.btn, .btn-group>.btn {
+    position: relative;
+    float: left;
+}
+.btn {
+    display: inline-block;
+    padding: 0.5rem 0.8rem;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.8rem;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0.2rem;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.btn-default:hover,
+.btn-default.hover {
+	background-color: #e6e6e6;
+}
+.btn-primary:hover,
+.btn-primary.hover {
+	background-color: #286090;
+}
+.caret {
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    margin-left: 0px;
+    vertical-align: middle;
+    border-top: 0.4rem dashed;
+    border-top: 0.4rem solid\9;
+    border-right: 0.4rem solid transparent;
+    border-left: 0.4rem solid transparent;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    padding-top: 0.4rem;
+	margin-top: 0.1rem;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 0.2rem;
+}
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 0.2rem;
+}
+.dropdown-menu a:hover {background-color: #f1f1f1}
+
+.dropdown-toggle:hover .dropdown-menu {
+	display: block;
+}

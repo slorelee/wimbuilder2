@@ -115,9 +115,20 @@ select, option, input[type=text],
   background: rgb(223, 117, 20); /* this is an orange */
 }
 
-#about_update {
+#about_update, #about_update-dropdown {
   color: white;
   background: rgb(28, 184, 65); /* this is a green */
+  border-color: #3e8e41;
+}
+
+#about_update {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#about_update:hover,
+#about_update-dropdown:hover {
+  background-color: #3e8e41;
 }
 
 #about_restart {

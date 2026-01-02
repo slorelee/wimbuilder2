@@ -513,7 +513,16 @@ if ($IE_VER == '9+') {
 
 <!-- ############################# page_about Start ############################# -->
 <div id="page_about" class="content_page">
-    <button id="about_update" class="pure-button i18n-text" onclick="update_me()">Update</button>
+    <div class="btn-group">
+        <button id="about_update" class="btn i18n-text" onclick="update_me()">Update</button>
+        <label id="about_update-dropdown" class="btn dropdown-toggle">
+            <span class="caret"></span>
+            <div class="dropdown-menu">
+                <a href="#" onclick="setTimeout('update_me(\'github\')', 200)">GitHub</a>
+                <a href="#" onclick="setTimeout('update_me(\'gitee\')', 200)">Gitee</a>
+            </div>
+        </label>
+    </div>
     <button id="about_restart" class="pure-button i18n-text" onclick="restart_me()">Restart</button>
     <!-- <button class="pure-button button-lightblue" onclick="self.close()">closeMe</button>  -->
     <br/><br/>

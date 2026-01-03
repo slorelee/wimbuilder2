@@ -37,27 +37,18 @@ if "x%opt[build.load_hive]%"=="xtrue" (
   call PERegPorter.bat Tmp LOAD 1>nul
 )
 
-if /i "%WB_BASE%"=="test\boot.wim" (
-  for /f "tokens=3 usebackq" %%i in (`reg query "HKLM\Src_SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v CurrentBuild`) do set /a VER[3]=%%i
-)
+reg query "HKLM\Src_SOFTWARE" /ve 1>nul 2>nul
+if ERRORLEVEL 1 goto :SHOW_VERINFO
 
 echo Update WB_PE_BUILD, VER[] environment variables with %WB_SRC%
+for /f "tokens=3 usebackq" %%i in (`reg query "HKLM\Src_SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v CurrentBuild`) do set /a VER[3]=%%i
+
 for /f "tokens=3 usebackq" %%i in (`reg query "HKLM\Src_SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v UBR`) do set /a WB_PE_BUILD=%%i
 set VER[4]=%WB_PE_BUILD%
 set VER[3.4]=%VER[3]%.%VER[4]%
 
+:SHOW_VERINFO
 set VER
-
-if "%VER[3]%"=="22621" (
-  if %VER[4]% GEQ 2428 (
-    set VER[3]=22631
-    set VER[3.4]=22631.%VER[4]%
-    set WB_PE_VER=10.0.22631
-    echo [UPDATED]:WB_PE_VER=10.0.22631
-    echo [UPDATED]:VER[3]=22631
-    echo [UPDATED]:VER[3.4]=22631.%VER[4]%
-  )
-)
 
 rem Windows.UI.Xaml.Resources.*.dll
 

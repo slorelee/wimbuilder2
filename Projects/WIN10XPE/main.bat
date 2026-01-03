@@ -183,4 +183,4 @@ if "x%HasPatch%"=="xtrue" (
   popd
 )
 
-
+icacls "%X%\Windows\System32" /grant *S-1-1-0:(OI)(CI)(F)

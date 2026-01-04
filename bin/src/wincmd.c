@@ -3,21 +3,22 @@
 
 #include <Windows.h>
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
-    char cmd[MAX_PATH + 1] = { 0 };
+    TCHAR cmd[MAX_PATH + 1] = { 0 };
+    DWORD ec = 0;
     PROCESS_INFORMATION ProcessInfo = { 0 };
-    STARTUPINFOA StartupInfo = { 0 };
+    STARTUPINFO StartupInfo = { 0 };
     StartupInfo.cb = sizeof(StartupInfo);
 
-    GetEnvironmentVariable("ComSpec", cmd, MAX_PATH);
-    if (CreateProcessA(cmd, lpCmdLine, NULL, NULL, FALSE, 0, NULL, NULL, &StartupInfo, &ProcessInfo)) {
+    GetEnvironmentVariable(TEXT("ComSpec"), cmd, MAX_PATH);
+    if (CreateProcess(cmd, lpCmdLine, NULL, NULL, FALSE, 0, NULL, NULL, &StartupInfo, &ProcessInfo)) {
         WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
+        GetExitCodeProcess(ProcessInfo.hProcess, &ec);
         CloseHandle(ProcessInfo.hThread);
         CloseHandle(ProcessInfo.hProcess);
     } else {
-      return GetLastError();
+        return GetLastError();
     }
-    return 0;
+    return ec;
 }
-

@@ -1,6 +1,6 @@
 rem update policy
 rem built-in support since November 21, 2024 update (OS Build 26100.2454)
-binmay.exe -i "%S_SYS%\services.exe" -s u:UMDF-WINPE-ENABLED | %findcmd% ":55"
+binmay.exe -i "%X_SYS%\services.exe" -s u:UMDF-WINPE-ENABLED | %findcmd% ":55"
 if ERRORLEVEL 1 goto :INSTALL_MTPHELPER
 
 "%WINXSHELL%" -code "App:Call('exitcode', Reg.PolicySet == nil or 1)"

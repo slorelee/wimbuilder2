@@ -12,3 +12,9 @@ http://bbs.wuyou.net/forum.php?mod=viewthread&tid=427286
 
 <p>In 2022/4 nianyueriPE signed mtpHelper.sys driver(update).</p>
 http://bbs.wuyou.net/forum.php?mod=viewthread&tid=427286
+
+<p>In 2025/7 nianyueriPE signed mtpHelper.sys driver(update).</p>
+http://bbs.wuyou.net/forum.php?mod=viewthread&tid=427286
+
+<p>In 2025/7 YWFhYmJi found IsUMDFEnabledInWinPEMode() switch to enable the feature for Windows 11 24H2 later.</p>
+http://bbs.wuyou.net/forum.php?mod=viewthread&tid=427286&page=3#pid5765154

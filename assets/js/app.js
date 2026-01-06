@@ -105,9 +105,10 @@ function app_mode_init() {
     }
 }
 
-function app_env_init() {
+function app_env_init(repo) {
     var env = wsh.Environment("PROCESS");
-    var k = $ui_settings['update_source'];
+    var k = repo;
+    if (k == null) k = $ui_settings['update_source'];
     if (k == 'custom') {
         env('REMOTE_URL') = $ui_settings['custom_remote_url'];
         env('SOURCE_URL') = $ui_settings['custom_source_url'];

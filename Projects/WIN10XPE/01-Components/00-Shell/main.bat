@@ -57,6 +57,15 @@ windows.storage.dll
 DispBroker.Desktop.dll
 Windows.Graphics.dll
 
+; remove ver check (add with any ver)
++ver*
+
+; system tray icons stuck issue for 2025.08 update latter
++if "%VER_202508_LATER%"="1"
+CapabilityAccessManager.Desktop.Storage.dll
+gamemode.dll
+-if
+
 :end_files
 
 call RegCopy /-s "HKLM\SOFTWARE\Classes\*"

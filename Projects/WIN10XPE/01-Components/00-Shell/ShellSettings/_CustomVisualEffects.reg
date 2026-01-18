@@ -1,7 +1,21 @@
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\tmp_DEFAULT\Control Panel\Desktop]
-"UserPreferencesMask"=hex:9c,12,03,80,10,00,00,00
+;Binary sets (5) of "UserPreferencesMask"
+;     9   ?+0    ?+1 ?+2       0  ?+3       8     0       1  ?+0
+;1001ABC0 00D1EF10 00000G11 10000000 000100H0
+; (A) Smooth-scroll list boxes = 1
+; (B) Slide open combo boxes  = 1
+; (C) Fade or slide menus into view = 0
+; (D) Show shadows under mouse pointer = 0
+; (E) Fade or slide ToolTips into view = 0
+; (F) Fade out menu items after clicking = 0
+; (G) Show shadows under windows = 0
+; (H) Animate controls and elements inside windows = 1
+;
+;10011100 00010010 00000011 10000000 00010000
+;           9C            12            03             80            12
+"UserPreferencesMask"=hex:9c,12,03,80,12,00,00,00
 
 [HKEY_LOCAL_MACHINE\tmp_DEFAULT\Control Panel\Desktop\WindowMetrics]
 "MinAnimate"="0"

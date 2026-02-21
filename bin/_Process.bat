@@ -107,14 +107,13 @@ set "_WB_BASE_WIM=%WB_BASE_PATH%"
 :PHRASE_GETINFO1
 call :cecho PHRASE "PHRASE:Get WIM image INFO"
 for /f "tokens=1,2 delims=:(" %%i in ('DismX /Get-WimInfo /WimFile:"%WB_ROOT%\sources\boot.wim" /Index:1 /English') do (
-  if "%%i"=="Architecture " set WB_OTHER_ARCH=%%j
-  if "%%i"=="Version " set WB_OTHER_VER=%%j
-  if "%%i"=="ServicePack Build " set WB_OTHER_BUILD=%%j
-
+  if "%%i"=="Architecture " set WB_OTHER_ARCH=%%j
+  if "%%i"=="Version " set WB_OTHER_VER=%%j
+  if "%%i"=="ServicePack Build " set WB_OTHER_BUILD=%%j
 set "WB_OTHER_ARCH=%WB_OTHER_ARCH: =%"
 set "WB_OTHER_VER=%WB_OTHER_VER: =%"
 set "WB_OTHER_BUILD=%WB_OTHER_BUILD: =%"
-md %Factory%\target\%WB_PROJECT%\UBR\%WB_OTHER_BUILD%
+md %Factory%\target\%WB_PROJECT%\UBR\%WB_OTHER_ARCH%-%WB_OTHER_VER%.%WB_OTHER_BUILD%
 set WB_OTHER_
 echo.
 call :PHRASE_GETINFO2
@@ -143,7 +142,7 @@ set "WB_PE_BUILD=%WB_PE_BUILD: =%"
 rem here is TAB, not SPACE 
 set "WB_PE_LANG=%WB_PE_LANG:	=%"
 set "WB_PE_LANG=%WB_PE_LANG: =%"
-md %Factory%\target\%WB_PROJECT%\UBR\%WB_PE_BUILD%
+md %Factory%\target\%WB_PROJECT%\UBR\%WB_PE_ARCH%-%WB_PE_VER%.%WB_PE_BUILD%
 set WB_PE_
 echo.
 
@@ -223,7 +222,7 @@ if "x%opt[build.mount_wim_action]%"=="xcustom" (
 )
 
 set "FlagFile=%Factory%\target\%WB_PROJECT%\DirCheck.ok"
-cscript //nologo "%~dp0CountDirs.js" "%%Factory%\target\%WB_PROJECT%\UBR%" "%FlagFile%"
+cscript //nologo "%~dp0CountDirs.js" "%Factory%\target\%WB_PROJECT%\UBR" "%FlagFile%"
 if not exist "%LogFile%" goto :CLEANUP
 call WIM_Mounter "%_WB_PE_WIM%" %WB_BASE_INDEX% "%_WB_MNT_DIR%" base_wim_mounted
 if not "%base_wim_mounted%"=="1" (

@@ -34,6 +34,8 @@ if "x%USE_WIMLIB%"=="x1" goto :UNMOUNT_SKIPPED
 if exist "%_WB_MNT_DIR%\Windows" (
   call WIM_UnMounter.bat "%_WB_MNT_DIR%" %UNMNT_OPT% base_wim_mounted
 )
+del /f /q /a "%Factory%\target\%WB_PROJECT%\DirCheck.ok" 1>nul 2>nul
+rd /s /q "%Factory%\target\%WB_PROJECT%\UBR" 1>nul 2>nul
 dism /Cleanup-Mountpoints
 
 :UNMOUNT_SKIPPED

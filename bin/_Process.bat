@@ -108,8 +108,8 @@ set "_WB_BASE_WIM=%WB_BASE_PATH%"
 call :cecho PHRASE "PHRASE:Get WIM image INFO"
 for /f "tokens=1,2 delims=:(" %%i in ('DismX /Get-WimInfo /WimFile:"%WB_SRC_FOLDER%\sources\boot.wim" /Index:1 /English') do (
   if "%%i"=="Architecture " set WB_OTHER_ARCH=%%j
-  if "%%i"=="Version " set WB_OTHER_VER=%%j
-  if "%%i"=="ServicePack Build " set WB_OTHER_BUILD=%%j
+  if "%%i"=="Version " set WB_OTHER_VER[1][2][3]=%%j
+  if "%%i"=="ServicePack Build " set WB_OTHER_BUILD[4]=%%j
 )
 set "WB_OTHER_ARCH=%WB_OTHER_ARCH: =%"
 set "WB_OTHER_VER[1][2][3]=%WB_OTHER_VER[1][2][3]: =%"
@@ -123,8 +123,8 @@ call :PHRASE_GETINFO2
 call :cecho PHRASE "PHRASE:Get WIM image INFO"
 for /f "tokens=1,2 delims=:(" %%i in ('DismX /Get-WimInfo /WimFile:"%_WB_BASE_WIM%" /Index:%WB_BASE_INDEX% /English') do (
   if "%%i"=="Architecture " set WB_PE_ARCH=%%j
-  if "%%i"=="Version " set WB_PE_VER=%%j
-  if "%%i"=="ServicePack Build " set WB_PE_BUILD=%%j
+  if "%%i"=="Version " set WB_PE_VER[1][2][3]=%%j
+  if "%%i"=="ServicePack Build " set WB_PE_VER[4]=%%j
   if "x!LANG_FLAG!"=="x1" (
     set WB_PE_LANG=%%i
     set LANG_FLAG=
@@ -362,4 +362,5 @@ if "x%1"=="x0" (
 )
 pause
 exit 1
+
 

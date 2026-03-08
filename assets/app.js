@@ -1,6 +1,6 @@
 var $app_name = 'WimBuilder';
-var $app_ver = '2024.11.11';
-var $app_rev = '96dfd78d';
+var $app_ver = '2026.03.03';
+var $app_rev = '228ce300';
 var $app_verstr = $app_ver + '.' + $app_rev;
 var $app_title = 'Wim Builder';
 

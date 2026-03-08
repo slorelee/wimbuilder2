@@ -63,7 +63,7 @@ set "_AddDriver_INF=%~1"
 set "_AddDriver_Name=%~n1"
 call AddFiles "%_AddDrivers_FILE%" :end_files
 goto :end_files
-windows\INF\%_AddDriver_INF%
+\Windows\INF\%_AddDriver_INF%
 \Windows\System32\drivers\%_AddDriver_Name%.sys
 \Windows\System32\DriverStore\FileRepository\%_AddDriver_INF%*
 \Windows\System32\DriverStore\%WB_PE_LANG%\%_AddDriver_INF%_loc

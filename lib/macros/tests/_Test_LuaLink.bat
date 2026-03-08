@@ -23,6 +23,10 @@ rem use #p than %%%%%%%%
 call LinkToDesktop "7-Zip.lnk" "#pProgramFiles#p\7-Zip\7zFM.exe"
 call LinkToStartMenu "7-Zip\7-Zip File Manager.lnk" "#pProgramFiles#p\7-Zip\7zFM.exe"
 
+rem use #a than &
+call LinkToDesktop -paramlist "MyEXE.lnk" "[[#pWinDir#p\System32\cmd.exe]], '/k cd ..\\SysWOW64 \x26 #pWindir#p\\SysWOW64\\MyEXE.exe', '#pWindir#p\\SysWOW64\\MyEXE.exe', 4"
+call LinkToDesktop -paramlist "MyEXE.lnk" "[[#pWinDir#p\System32\cmd.exe]], [[/k cd ..\SysWOW64 #a #pWindir#p\SysWOW64\MyEXE.exe]], [[#pWindir#p\SysWOW64\MyEXE.exe]], 4"
+
 call LuaLink -done
 
 pause

@@ -23,4 +23,5 @@ call TextReplace "%LUAPIN_FILE%" #{# "(" g
 call TextReplace "%LUAPIN_FILE%" #}# ")" g
 call TextReplace "%LUAPIN_FILE%" #sp "%%%%" g
 call TextReplace "%LUAPIN_FILE%" #sq #q g
+call TextReplace "%LUALINK_FILE%" #sa "&" g
 goto :EOF

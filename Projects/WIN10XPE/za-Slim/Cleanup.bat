@@ -125,7 +125,7 @@ call :REMOVE_SERV_REG svsvc svsvc.dll
 call :REMOVE_SERV_REG TPM drivers\tpm.sys
 call :REMOVE_SERV_REG usbser drivers\usbser.sys
 call :REMOVE_SERV_REG vmbus drivers\vmbus.sys
-call :REMOVE_SERV_REG drivers\VMBusHID.sys
+call :REMOVE_SERV_REG VMBusHID drivers\VMBusHID.sys
 
 set Check_SysWOW64=
 goto :EOF

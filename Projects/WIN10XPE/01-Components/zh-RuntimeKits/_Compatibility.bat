@@ -18,6 +18,9 @@ goto :end_files
 ;Here for both System32 and SysWOW64
 @\Windows\%SysDir%\
 
+; add winre.wim files for boot.wim
+mlang.dat,mlang.dll,oledlg.dll
+
 findstr.exe
 
 ; AFAIK Tencent QQ(x86) required

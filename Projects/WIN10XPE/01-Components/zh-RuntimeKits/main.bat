@@ -3,6 +3,8 @@ if "x%opt[build.wow64support]%"=="xtrue" (
   call ApplyPatch "..\SysWOW64_Basic"
 )
 
+call _Arm64_x8664Support.bat
+
 if "x%opt[wow64.speech_api]%"=="xtrue" (
   call _SysWOW64_SAPI.bat
 )

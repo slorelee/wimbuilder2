@@ -128,6 +128,11 @@ KBDUSA.DLL
 :end_wow64_files
 
 :UDPATE_REGISTY
+call RegCopyEx Classes ImeCommonAPIClassFactory1042
+call RegCopyEx Classes ImeCommonAPIClassFactory1042.1
+call RegCopyEx Classes ImeCommonAPIClassFactory1042.15
+call RegCopy HKLM\SOFTWARE\Microsoft\MSIME
+
 if not "x%opt[build.registry.software]%"=="xfull" (
   call :Fonts_Reg
 )

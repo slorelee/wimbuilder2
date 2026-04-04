@@ -1,6 +1,6 @@
 if "x%V%"=="x" (
 rem test_setup
-set V=D:\WimBuilder2\vendor
+set V=D:\dev\WimBuilder2\vendor
 set WB_ARCH=x64
 )
 

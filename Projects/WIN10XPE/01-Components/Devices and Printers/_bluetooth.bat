@@ -82,7 +82,7 @@ call RegCopy "HKLM\SYSTEM\ControlSet001\Control\mediaInterfaces"
 :AddBTHDrivers
 set ms_bth=microsoft_bluetooth
 call AddDrivers "BtaMpm.inf,bth.inf,BthLCPen.inf,bthleenum.inf,bthmtpenum.inf,BthOob.inf,bthpan.inf,bthprint.inf,bthspp.inf"
-call AddDrivers "hidbth.inf,hidbthle.inf,hidvhf.inf,mdmbtmdm,mshidkmdf.inf,mshidumdf.inf,tdibth.inf,umpass.inf,xinputhid.inf"
+call AddDrivers "hidbth.inf,hidbthle.inf,hidvhf.inf,mdmbtmdm.inf,mshidkmdf.inf,mshidumdf.inf,tdibth.inf,umpass.inf,xinputhid.inf"
 call AddDrivers "%ms_bth%_a2dp.inf,%ms_bth%_a2dp_src.inf,%ms_bth%_avrcptransport.inf"
 call AddDrivers "%ms_bth%_hfp.inf,%ms_bth%_hfp_ag.inf,%ms_bth%_hfp_hf.inf"
 set ms_bth=

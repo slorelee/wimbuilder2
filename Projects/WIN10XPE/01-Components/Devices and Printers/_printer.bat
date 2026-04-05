@@ -190,6 +190,20 @@ set _DefSpoolDir=
 rem ; V1709
 SetACL.exe -on "%X_SYS%\spool\PRINTERS" -ot file -actn ace -ace "n:S-1-1-0;p:full;s:y"
 
+rem ; Windows 11
+rem ; Property of the printers in Devices and Printers(Control Panel)
+call RegCopyEx Classes "DeviceDisplayObject"
+call RegCopyEx Classes "PrintConfig.PrinterExtensionManager"
+call RegCopyEx Classes "Printers"
+call RegCopyEx Classes "PrintSys.CoFilterPipeline,PrintSys.CoFilterPipeline.1"
+call RegCopyEx Classes "PrintSys.CoPrintIsolationHost,PrintSys.CoPrintIsolationHost.1"
+call RegCopyEx Classes "SplSetup.CFindNetPrinters,SplSetup.CFindNetPrinters.1"
+call RegCopyEx Classes "TemplatePrinter.TemplatePrinter,TemplatePrinter.TemplatePrinter.1"
+call RegCopyEx Classes "Uev.PrinterProgId,Uev.PrinterProgId.1"
+
+rem ; Print to PDF with *.pdf file extension
+reg delete HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\Setup /v MinimizeFootprint /f
+
 rem update spoolsv.exe binary
 binmay.exe -u "%X_SYS%\spoolsv.exe" -s u:SystemSetupInProgress -r u:DisableSpoolsvInWinPE
 fc /b "%X_SYS%\spoolsv.exe.org" "%X_SYS%\spoolsv.exe"

@@ -11,13 +11,6 @@ if "x%opt[patch_drvinst.install_test_driver]%"=="xtrue" (
   xcopy /E /Y X\*.* "%X%\"
 )
 
-rem set PATCH_MODE=local
-if "%PATCH_MODE%"=="local" (
-  set WB_PE_VER=10.0.18323
-  set VER[3]=18323
-  set WB_PE_ARCH=x64
-  set X_SYS=.
-)
 rem use JFX's generic patcher
 rem http://theoven.org/index.php?topic=2768.0 (>= v1.0.1)
 rem http://theoven.org/index.php?topic=2726.msg31375#msg31375 (v1.0.0)

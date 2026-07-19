@@ -3,7 +3,7 @@ rem fix issue that the audio driver can not work for 17134.1845(RS4), 17763.1577
 if not exist "%X_SYS%\drivers\portcls.sys" goto :EOF
 
 set DrvFolder=
-for /f "delims=" %%i in ('dir /b %X_SYS%\DriverStore\FileRepository\wdmaudio.inf_*') do set DrvFolder=%%i
+for /f "delims=" %%i in ('dir /b /ad %X_SYS%\DriverStore\FileRepository\wdmaudio.inf_*') do set DrvFolder=%%i
 if "x%DrvFolder%"=="x" goto :EOF
 
 fc /b "%X_SYS%\DriverStore\FileRepository\%DrvFolder%\portcls.sys" "%X_SYS%\drivers\portcls.sys" 1>nul

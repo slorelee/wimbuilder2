@@ -93,8 +93,8 @@ goto :EOF
 
 :Drvinst_win11.24h2april2025later_x64
 :Drvinst_win11.25h2later_x64
-:Drvinst_win11.win11.27xxx_x64
-:Drvinst_win11.win11.26h1later_x64
+:Drvinst_win11.27xxx_x64
+:Drvinst_win11.26h1later_x64
 call :FULL_PATCH 8BF8_85C0_7422 33C0_8BF8_EB22
 goto :EOF
 

@@ -1,0 +1,216 @@
+{
+  "JS_README": {
+    "此段可省略": true,
+    "说明": [
+      "WinXShell的jcfg配置文件的说明。",
+      "需要自定义WinXShell中的开始菜单项目，任务栏大小，背景色，文字颜色等时,",
+      "可利用此文件进行定义，未定义时，将利用默认设定。",
+      "配置文件中的字符串资源可进行扩展:",
+      "    【%】开始的字符串将进行环境变量扩展，需要使用%时，使用%%。",
+      "    【#】开始的字符串将进行变量扩展，需要使用#时，使用#{#}。",
+      "    【=】开始的字符串将识别为计算表达式，进行变量扩展后，计算其数值。(未实现)"
+    ]
+  },
+  "JS_JCFG": {
+    "此段可省略": true,
+    "说明": [
+      "外部WinXShell.jcfg配置文件加载设定。",
+      "LOADPATH 内核配置文件中指定外部配置文件路径格式",
+      "LOADIF 外部配置文件中可定义存在指定环境变量时加载"
+    ],
+    "LOADPATH": "?:\\WinXShell\\WinXShell.jcfg",
+    "LOADIF": "WIN10PEx64-A"
+  },
+  "JS_JMACRO": {
+    "此段可省略": true,
+    "说明": [
+      "jcfg文件中使用的内部固定变量名",
+      "MACRO键值格式为:<内部名>,<别名>,<说明>",
+      "<内部名>:修改无效",
+      "<别  名>:可为内部名指定一个以【::】开头的别名,",
+      "         预处理阶段将jcfg文件中的别名替换为内部名。",
+      "         指定为空字符串将不进行任何处理,jcfg文件中需要使用内部名。",
+      "<说  明>:仅对内部名进行说明，修改无效。"
+    ],
+    "JKEYNAME": [
+      ["JS_README", "",           "段名。jcfg文件说明段"],
+      ["JS_JMACRO", "",           "段名。可为内部名定义指定别名"],
+      ["JS_JENV", "::环境变量",   "段名。用于定义环境变量"],
+      ["JS_JVAR", "::程序变量",   "段名。可以定义方便内部多出使用的变量"],
+      ["JS_FILEEXPLORER", "::文件管理器",     "段名。可对桌面进行设置"],
+      ["3rd_filename", "::第3方文件管理器",   "属性名。"],
+      ["JS_THEMES", "::主题段",     "段名。可定义多个主题"],
+      ["JS_TASKBAR", "::任务栏",  "段名。可对任务栏的高度，颜色等进行设置"],
+      ["smallicon",        "::使用小图标",        "属性名。"],
+      ["thumbnail",         "::显示任务缩略图",   "属性名。"],
+      ["task_close_button", "::显示任务关闭按钮", "属性名。"],
+      ["no_task_title",     "::隐藏任务标题",     "属性名。"],
+      ["userebar",          "::使用Rebar",        "属性名。"],
+      ["theme",             "::主题",             "属性名。"],
+      ["height",            "::高度",             "属性名。"],
+      ["JS_STARTMENU", "::开始菜单",          "段名。可对开始菜单进行设置"],
+      ["start_pushed_bkcolor", "::开始按钮按下背景色", "属性名。"],
+      ["start_icon_comment",   "::开始按钮设定值说明", "属性名。"],
+      ["start_icon",    "::开始按钮",          "属性名。"],
+      ["start_command", "::开始按钮动作",      "属性名。"],
+      ["notopitems",    "::隐藏顶部菜单",      "属性名。"],
+      ["noprograms",    "::隐藏程序菜单",      "属性名。"],
+      ["nosettings",    "::隐藏设置菜单",      "属性名。"],
+      ["nobrowse",      "::隐藏浏览菜单",      "属性名。"],
+      ["noconnections", "::隐藏网络连接菜单",  "属性名。"],
+      ["nofind",        "::隐藏查找菜单",      "属性名。"],
+      ["norun",         "::隐藏运行菜单",      "属性名。"],
+      ["nologoff",      "::隐藏注销菜单",      "属性名。"],
+      ["norestart",     "::隐藏重启菜单",      "属性名。"],
+      ["noshutdown",    "::隐藏关机菜单",      "属性名。"],
+      ["noterm",        "::隐藏终止菜单",      "属性名。"],
+      ["JS_QUICKLAUNCH", "::快速启动栏",      "段名。可对快速启动栏进行设置"],
+      ["maxiconsinrow",         "::单行最大图标数",          "属性名。"],
+      ["3rd_startup_arguments", "::第3方文件管理器启动参数", "属性名。"],
+      ["hide_showdesktop",      "::隐藏显示桌面图标",        "属性名。"],
+      ["hide_fileexplorer",     "::隐藏资源管理器图标",      "属性名。"],
+      ["hide_fixedsep",         "::隐藏分隔符",              "属性名。"],
+      ["hide_usericons",        "::隐藏用户图标",            "属性名。"],
+      ["folder",                "::位置",                    "属性名。"],
+      ["JS_NOTIFYAREA", "::托盘区域",         "段名。可对托盘区域进行设置"],
+      ["hide_toggle_button",      "::隐藏显示隐藏图标按钮",         "属性名。"],
+      ["hide_showdesktop_button", "::隐藏显示桌面按钮",             "属性名。"],
+      ["handle_system_network",   "::接管系统网络图标左键单击事件", "属性名。"],
+      ["handle_system_volume",    "::接管系统声音图标左键单击事件", "属性名。"],
+      ["JS_NOTIFYCLOCK", "::时钟栏",          "段名。可对时钟栏进行设置"],
+      ["visible", "::显示", "属性名。"],
+      ["JS_DESKTOP", "::桌面",                "段名。可对桌面进行设置"],
+      ["3rd_open_arguments", "::第3方文件管理器打开参数", "属性名。"],
+      ["bkcolor",            "::桌面背景色",              "属性名。"],
+      ["cascademenu",        "::多级菜单",                "属性名。"],
+      ["iconsize",           "::桌面图标大小",            "属性名。"],
+      ["wallpaperstyle",     "::桌面壁纸显示样式",        "属性名。有效值:0-拉伸(默认值);1-平铺;2-居中"],
+      ["wallpaper",          "::桌面壁纸",                "属性名。"]
+      ],
+    "JTYPENAME":
+    [
+      ["JT_STARTMENU_FOLDER", "::开始菜单_文件夹类型", ""]
+    ]
+  },
+  "JS_DAEMON": {
+    "clockarea_click": {
+      "command": "##{JVAR_MODULEPATH}\\#{JVAR_MODULENAME}",
+      "parameters": "-code \"wxsUI('UI_Calendar','main.jcfg')\""
+    },
+    "clockarea_dbclick": {
+      "command": "timedate.cpl"
+    },
+    "handle_CAPS_double": false,
+    "disable_showdesktop": false,
+    "screen_brightness": 100
+  },
+  "::文件管理器": {
+    "#::第3方文件管理器": "##{JVAR_MODULEPATH}\\explorer++.exe",
+    "WIN+E": {
+      "#::第3方文件管理器": ""
+    },
+    "#padding-bottom": 20
+  },
+  "::桌面": {
+    "::第3方文件管理器打开参数": "\"%s\"",
+    "::多级菜单": {
+      "#WinXNew": "Directory\\Background\\shell\\WinXNew"
+    },
+    "#::桌面图标大小": 32,
+    "背景色注释": "绿豆沙色",
+    "::桌面背景色": [199, 237, 204],
+    "显示样式注释": "0-拉伸(默认值);1-平铺;2-居中",
+    "::桌面壁纸显示样式": 0,
+    "壁纸注释": "设置为空,或者不设置,将使用系统设置",
+    "::桌面壁纸": ""
+  },
+  "::主题段": {
+    "blue": {
+      "taskbar": {
+        "bkcolor": [0, 120, 215],
+        "#bkmode_values": "opaque; transparent; acrylic",
+        "bkmode": "opaque",
+        "transparency": 100,
+        "task_line_color": [238, 238, 238],
+        "textcolor": "0xffffff"
+      }
+    },
+    "dark": {
+      "taskbar": {
+        "bkcolor": [38, 38, 38],
+        "#bkmode_values": "opaque; transparent; acrylic",
+        "bkmode": "transparent",
+        "transparency": 64,
+        "task_line_color": [238, 238, 238],
+        "textcolor": "0xffffff"
+      }
+    },
+    "light": {
+      "taskbar": {
+        "style": "light",
+        "bkcolor": [238, 238, 238],
+        "#bkmode_values": "opaque; transparent; acrylic",
+        "bkmode": "acrylic",
+        "transparency": 100,
+        "task_line_color": [0, 120, 215],
+        "textcolor": "0x000000"
+      }
+    }
+  },
+  "::任务栏": {
+    "::显示": true,
+    "::使用小图标": false,
+    "::显示任务缩略图": true,
+    "::显示任务关闭按钮": true,
+    "::隐藏任务标题": false,
+    "::使用Rebar": false,
+    "::主题": "dark",
+    "::高度": 40
+  },
+  "::开始菜单": {
+    "::开始按钮按下背景色" : [0, 100, 180],
+    "::开始按钮设定值说明": "theme;empty;custom;files",
+    "::开始按钮": "theme",
+    "::开始按钮动作": "",
+    "::隐藏顶部菜单": false,
+    "::隐藏程序菜单": false,
+    "::隐藏设置菜单": true,
+    "::隐藏浏览菜单": false,
+    "::隐藏网络连接菜单": false,
+    "::隐藏查找菜单": true,
+    "::隐藏运行菜单": false,
+    "::隐藏注销菜单": true,
+    "::隐藏重启菜单": false,
+    "::隐藏关机菜单": false,
+    "::隐藏终止菜单": true,
+    "commands": {
+      "reboot": {
+        "command": "Wpeutil.exe",
+        "parameters": "Reboot"
+      },
+      "shutdown": {
+        "command": "Wpeutil.exe",
+        "parameters": "Shutdown"
+      }
+    }
+  },
+  "::快速启动栏": {
+    "::单行最大图标数": 20,
+    "#::第3方文件管理器": "",
+    "::第3方文件管理器启动参数": "",
+    "::隐藏显示桌面图标": false,
+    "::隐藏资源管理器图标": false,
+    "::隐藏分隔符": false,
+    "::隐藏用户图标": false,
+    "::位置": "Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar"
+  },
+  "::托盘区域": {
+    "::隐藏显示隐藏图标按钮": false,
+    "::隐藏显示桌面按钮": false,
+    "#::接管系统网络图标左键单击事件": true,
+    "#::接管系统声音图标左键单击事件": true
+  },
+  "::时钟栏": {
+    "::显示": true
+  }
+}

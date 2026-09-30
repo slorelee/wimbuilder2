@@ -17,6 +17,12 @@ if %VER[3]% GEQ 27842 (
   set _SRD_Files=srd_27842.7z
 )
 
+if %VER[3]% GEQ 28000 (
+  if %VER[4]% GEQ 1890 (
+    set _SRD_Files=srd_26300.7z
+  )
+)
+
 if exist %_SRD_Files% (
   call Extract2X %_SRD_Files% "%X%\ProgramData\Microsoft\Windows\AppRepository\"
 )

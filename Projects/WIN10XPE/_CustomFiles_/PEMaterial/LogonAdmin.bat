@@ -30,7 +30,9 @@ if not exist X:\Windows\explorer.exe (
 reg add "%regkey%\SpecialAccounts\UserList" /v Guest /t REG_DWORD /d 0 /f
 
 if exist X:\Windows\System32\AppxSysprep.dll (
-    reg add "%regkey%" /v EnableSIHostIntegration /t REG_DWORD /d 1 /f
+    if exist X:\Windows\System32\sihost.exe (
+        reg add "%regkey%" /v EnableSIHostIntegration /t REG_DWORD /d 1 /f
+    )
 ) else (
     reg add "%regkey%" /v EnableSIHostIntegration /t REG_DWORD /d 0 /f
 )

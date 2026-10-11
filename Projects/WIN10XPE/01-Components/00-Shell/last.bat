@@ -95,5 +95,11 @@ if not exist "%X_SYS%\ieframe.dll" (
     reg delete HKLM\Tmp_Software\Classes\DesktopBackground\Shell\Personalize\command /v DelegateExecute /f
 )
 
+if exist "%X_SYS%\sihost.exe" (
+    reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v EnableSIHostIntegration /t REG_DWORD /d 1 /f
+) else (
+    reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v EnableSIHostIntegration /t REG_DWORD /d 0 /f
+)
+
 call Explorer\sublast.bat
 call WinXShell\sublast.bat

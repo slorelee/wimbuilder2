@@ -4,6 +4,9 @@ rem update lua scripts for escape characters
 call LuaLink -done
 call LuaPin -done
 
+copy /y "%X_Startup%\00-InitPinIcons.lua" "%X_Startup%\BeforeShell\00-InitPinIcons.lua.bat"
+copy /y "%X_Startup%\PinShortcuts.lua" "%X_Startup%\BeforeShell\PinShortcuts.lua.bat"
+
 if not exist "%X_SYS%\dwm.exe" (
     reg add HKLM\Tmp_Software\Microsoft\Windows\DWM /v OneCoreNoBootDWM /t REG_DWORD /d 1 /f
     reg add HKLM\Tmp_Default\Software\Microsoft\Windows\DWM /v Composition /t REG_DWORD /d 0 /f

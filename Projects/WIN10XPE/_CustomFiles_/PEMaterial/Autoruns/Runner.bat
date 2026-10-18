@@ -1,12 +1,18 @@
 @echo off
 pushd "%~dp0"
 set Autoruns_Runner=1
-set "RUNLOG=%Temp%\Runner.log"
+set "RUNLOG=%Temp%\Runner.%USERNAME%.log"
 if "x%~1"=="x" goto :RUN_END
 if not exist "%~1" goto :RUN_END
 
 set "_f1=%~dp0%~1"
 cd /d "%~1"
+
+echo . 
+echo %date% %time% Running(%USERNAME%) "%~1" ...
+
+echo . >> "%RUNLOG%"
+echo %date% %time% Running(%USERNAME%) "%~1" ... >> "%RUNLOG%"
 
 for /f %%i in ('dir /b *.*') do (
   call :ExecDispatcher "%%~i"
@@ -19,9 +25,9 @@ goto :EOF
 
 :ExecDispatcher
 if "x%SYSTEM_LOADER%"=="x1" (
-  echo ExecDispatcher "%~1"
+  echo %date% %time%     - ExecDispatcher "%~1"
 )
-echo ExecDispatcher "%~1" >> "%RUNLOG%"
+echo %date% %time%     - ExecDispatcher "%~1" >> "%RUNLOG%"
 set RunOnce=0
 cd /d "%_f1%"
 if /i "%~x1"==".reg" reg import "%~1"
